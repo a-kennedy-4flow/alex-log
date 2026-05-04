@@ -1,0 +1,1 @@
+{"version":3,"file":"config-reader.d.ts","sourceRoot":"","sources":["../src/config-reader.ts"],"names":[],"mappings":"AAKA,UAAU,MAAM;IACZ,gBAAgB,CAAC,EAAE,MAAM,CAAC;IAC1B,eAAe,CAAC,EAAE,MAAM,CAAC;IACzB,oBAAoB,CAAC,EAAE,MAAM,CAAC;IAC9B,CAAC,GAAG,EAAE,MAAM,GAAG,GAAG,CAAC;CACtB;AAED,wBAAgB,UAAU,CAAC,QAAQ,EAAE,MAAM,GAAG,MAAM,CASnD"}

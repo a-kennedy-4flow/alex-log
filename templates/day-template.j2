@@ -1,0 +1,15 @@
+# {{ title }} - {{ prettydate }}
+
+
+## {{ heading }}
+
+* todo...
+
+## Links
+{% if items %}
+{% for item in items %}
+{{ item.name }} - {{ item.value }}
+{% endfor %}
+{% else %}
+No items available.
+{% endif %}
