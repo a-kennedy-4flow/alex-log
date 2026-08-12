@@ -1,0 +1,49 @@
+---
+host_description_long: "{{ inventory_hostname }} - 4flow vista application server (Autoliv NA)"
+host_description_short: "{{ inventory_hostname }}"
+
+vista_instance_id: "autolivna"
+vista_instance_hash: 865e4083886896a3f52eb32b39a07264
+
+region: "us-east-2"
+
+masterclient_id: "autolivna"
+
+forflow_app_users_host_extra_list:
+  - name: "{{ vista_user }}"
+    home: "/home/{{ vista_user }}"
+
+vista_mail_senderdefault: autoliv-na@4flow-vista.com
+
+vista_disttype: strategictpplanning
+vista_srvconf_template_name: srvconf_strategictpplanning_mysql
+vista_profile_template_name: pmservice_strategictpplanning
+vista_configure_license_count: 11
+
+vista_dbs_database: "vista_autolivna"
+vista_dbs_user: "vista_autolivna"
+vista_dbs_host: "{{ hostvars['4FL-AWS-EC2-006'].internal_hostname }}"
+vista_dbs_password: "{{ mysql_4flawsec2006_vista_autolivna_password }}"
+
+vista_sso_enabled: true
+
+vista_update_cockpitui_deploy: false
+
+wildfly_vista_variant: STRATEGICTPPLANNING
+
+metricbeat_version: "7.17.10"
+
+monitoring:
+  host_notifications:
+    usergroups:
+      - dev_mgmt_itms
+
+  systemd_services:
+    - service: "{{ wildfly_vista_processname }}"
+      process: "{{ wildfly_vista_processname | upper }}"
+      name: "{{ wildfly_vista_processname }}"
+  disks:
+    - name: Disk - Root (/)
+      warning: "10%"
+      critical: "3%"
+      path: ["/"]

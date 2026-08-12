@@ -1,0 +1,76 @@
+a simple java spring app that plays withmysql  databases
+Modern Java.
+THe plan is to run this app and tune the database usage up and down while displaying the differnece on a stats page. I eventually want to try out different database setups and experiment with clustering. This is a POC. Maybe later there will be a db admin portal so bear that in mind but dont impliment.
+1 html page showing database statistics. This is about testing the database and not writing better sql queries.
+I want to write random strings to a database along with some numbers 3 coloums total. Words, Number, ID.
+Each string is from a language and one language corrosponds to one database.
+I want a stats page showing the current database performance. I want faily detaild statistics but I still want to just run a simple java application.
+I want to configure the number of readers and writers
+I want these readers and writers to use 1 database connection each.
+The code should not repeat.
+I want to be able to configure the number of connections avalible for each reader and writer
+Each Writer should be configurable if it writes to one database or many
+Each reader should be configurable if it reads to one database or many
+No HIkari nothing fancy. if it cant be done without then do the bad version.
+We dont care about tests.
+Code must be concise and follow clean code practices.
+
+---
+
+running it
+
+  docker compose -f ../servers/mysql.docker_compose.yml up -d
+  ./gradlew bootRun
+
+The page is on http://localhost:8080. The same numbers are on /api/stats as json.
+Java 25 and Spring Boot 4.1. The gradle wrapper is here. Nothing else needs installing.
+
+terms
+
+client. One reader or one writer. Both are headless.
+fleet. Every client in one run.
+tick. One scheduled run of one client. Each client ticks on its own interval.
+scope. Which databases one client uses. It is all of them or one of them.
+graph. The small line beside a number. It is one line per number and it holds the last 60 polls.
+
+tuning it
+
+Every setting is in src/main/resources/application.yml. Any setting is also an argument.
+
+  ./gradlew bootRun --args='--app.writers.count=8 --app.readers.count=4'
+
+  app.writers.count        how many writers. app.readers.count does the same for readers
+  app.writers.connections  connections for one writer. one each by default
+  app.writers.scope        all or one
+  app.writers.interval     how often one writer ticks
+  app.writers.clients[0]   index and scope and language and connections for one writer only
+  app.stats.interval       how often the page samples the server
+  app.stats.refresh        how often the page reloads itself
+
+A writer inserts one row per database per tick. A reader counts the rows and reads the newest row.
+The page is the only thing served.
+
+how it works
+
+One database per language. strings_english and strings_german and strings_french and strings_russian
+and strings_japanese. Each holds one table of id and words and number. All of them are created on
+startup. No url selects a database. Every statement names its own.
+
+There is no pool library. Each client owns a fixed set of connections. Its pool hands out one at a
+time. A count of one allows one statement at a time. A client waiting for its own connection is inside
+its avg ms. Raising the count shows that cost falling.
+
+The page reads SHOW GLOBAL STATUS and SHOW GLOBAL VARIABLES and the processlist and information_schema.
+It marks the processlist rows that belong to this app. It counts every language's rows exactly. The
+information_schema estimate can then be compared against the exact count.
+
+graphs
+
+Every graph is drawn in the browser. The server keeps no history and it never has. Each poll the page
+carries one number per graph. The browser appends it to what it already has and draws the line itself.
+That history sits in sessionStorage. A reload between two polls is ignored so no number is counted
+twice. A new tab starts with nothing and closing the tab throws the history away.
+
+The scale runs from zero to the highest number in the window. A flat line is a steady number and not a
+rounding artefact. Hover a graph for its lowest and highest and newest number. Only a number that moves
+is graphed. A constant such as max connections is text alone.

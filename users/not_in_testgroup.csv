@@ -1,0 +1,22 @@
+Name,Email,First name,Last name,Role
+p.maroti,p.maroti@4flow.com,Maroti,Peter,sysadmin
+r.baradari,r.baradari@4flow.de,Baradari,Ramin,sysadmin
+d.molina,d.molina@4flow.com,Molina,Diego,user
+e.operator,e.operator@4flow.com,Operations,Eduardo,user
+g.ghevondyan,g.ghevondyan@4flow.com,Ghevondyan,Garik,user
+h.wermer,h.wermer@4flow.com,Wermer,Hendrik,user
+j.rosignuolo,j.rosignuolo@4flow.com,Rosignuolo,Juan Ignacio,user
+k.bosnyak,k.bosnyak@4flow.com,Bosnyák,Krisztián,user
+l.luo,l.luo@4flow.com,Luo,Liang,user
+l.meisel,l.meisel@4flow.com,Meisel,Lyndale,user
+m.gombos,m.gombos@4flow.com,Gombos,Matyas,user
+m.schmitz,m.schmitz@4flow.de,Schmitz,Marcel,user
+meghan,meghan@4flow.com,Planner,Meghan,user
+p.souza,p.souza@4flow.com,Souza,Patrick,user
+r.lebow,r.lebow@4flow.com,LeBow,Robert,user
+s.shankar,s.shankar@4flow.com,Shankar,Sharvari,user
+service-account-risk-management.backend,team_risk_management+backendserviceaccount@4flow.com,riskmgmt,Riskmgmt,user
+service.request.agent,platform-ai-and-automation@4flow.com,Agent,Service Request,user
+v.nadahalli,v.nadahalli@4flow.com,Nadahalli,Vaishali,user
+v.tola,v.tola@4flow.com,Tola,Viviane,user
+yunge.wang,yunge.wang@4flow.com,Wang,Yunge,user

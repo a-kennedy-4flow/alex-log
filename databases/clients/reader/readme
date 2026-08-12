@@ -1,0 +1,3 @@
+Reads the same things as reader_writer only reads. Doesnt do anything else.
+This is a demo of how read replicas are useful.
+no http server. Just reads.

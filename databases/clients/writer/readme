@@ -1,0 +1,2 @@
+Writes the same things as reader_writer only writes. Doesnt do anything else.
+no http server. Just writes.

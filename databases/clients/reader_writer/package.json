@@ -1,0 +1,13 @@
+{
+    "name": "reader-writer",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "main": "server.js",
+    "author": "Alexander Kennedy <a.kennedy@4flow.com>",
+    "license": "MIT",
+    "packageManager": "pnpm@11.10.0",
+    "scripts": {
+        "start": "node server.js"
+    }
+}

@@ -1,0 +1,8 @@
+PLRS-1099 finishing up
+
+* Added reopendState to the default workflow defintion
+* Default reopened status for an email received to a closed workitem is now Open
+* Validates that the last state cannot equal reopenedState
+* Updated comments to remove ai slop
+* BulkStatusTransition renamed to transitionWorkflowANDworkitem
+* Updated tests

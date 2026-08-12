@@ -1,0 +1,8 @@
+manage.js starts a configurable fleet of the clients that sit in the folders below it.
+A configurable number of readers, writers and reader_writers, plus a single stats server.
+Readers and writers are headless, so only the stats server and the reader_writers get ports.
+It has no dependencies of its own and runs pnpm install for any client that has never been installed.
+Each client keeps its own stdout, prefixed with its label, and ctrl-c stops the whole fleet.
+
+  node manage.js --readers 2 --writers 3 --reader-writers 1
+  node manage.js --help

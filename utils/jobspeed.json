@@ -1,0 +1,615 @@
+{
+    "data": {
+        "runner": {
+            "id": "gid://gitlab/Ci::Runner/19",
+            "projectCount": null,
+            "jobCount": 1001,
+            "jobs": {
+                "nodes": [
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282936",
+                        "duration": 4,
+                        "queuedDuration": 0.172874,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282935",
+                        "duration": 5,
+                        "queuedDuration": 1.083394,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282934",
+                        "duration": 7,
+                        "queuedDuration": 0.072526,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282933",
+                        "duration": 11,
+                        "queuedDuration": 1.004972,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282932",
+                        "duration": 7,
+                        "queuedDuration": 0.765588,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282924",
+                        "duration": 62,
+                        "queuedDuration": 0.367041,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282921",
+                        "duration": 63,
+                        "queuedDuration": 1.652994,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282918",
+                        "duration": 25,
+                        "queuedDuration": 1.309801,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282917",
+                        "duration": 5,
+                        "queuedDuration": 1.425922,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282916",
+                        "duration": 9,
+                        "queuedDuration": 0.725795,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282915",
+                        "duration": 34,
+                        "queuedDuration": 0.721092,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282914",
+                        "duration": 8,
+                        "queuedDuration": 1.061791,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282910",
+                        "duration": 9,
+                        "queuedDuration": 20.514464,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282908",
+                        "duration": 6,
+                        "queuedDuration": 11.565944,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282906",
+                        "duration": 6,
+                        "queuedDuration": 4.936208,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282905",
+                        "duration": 41,
+                        "queuedDuration": 7.873045,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282904",
+                        "duration": 211,
+                        "queuedDuration": 5.383391,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282903",
+                        "duration": 27,
+                        "queuedDuration": 105.197243,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282899",
+                        "duration": 31,
+                        "queuedDuration": 1.681769,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282898",
+                        "duration": 28,
+                        "queuedDuration": 61.377295,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282896",
+                        "duration": 25,
+                        "queuedDuration": 35.719281,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282894",
+                        "duration": 6,
+                        "queuedDuration": 35.807589,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282893",
+                        "duration": 5,
+                        "queuedDuration": 2.398099,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282892",
+                        "duration": 10,
+                        "queuedDuration": 25.740366,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282891",
+                        "duration": 29,
+                        "queuedDuration": 7.569588,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282889",
+                        "duration": 8,
+                        "queuedDuration": 145.588692,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282887",
+                        "duration": 14,
+                        "queuedDuration": 108.949412,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282885",
+                        "duration": 13,
+                        "queuedDuration": 97.538669,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282883",
+                        "duration": 8,
+                        "queuedDuration": 89.084456,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282881",
+                        "duration": 7,
+                        "queuedDuration": 82.179592,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282879",
+                        "duration": 9,
+                        "queuedDuration": 70.558964,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282877",
+                        "duration": 9,
+                        "queuedDuration": 71.20622,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282875",
+                        "duration": 9,
+                        "queuedDuration": 61.627177,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282873",
+                        "duration": 8,
+                        "queuedDuration": 51.712062,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282871",
+                        "duration": 10,
+                        "queuedDuration": 31.099436,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282868",
+                        "duration": 6,
+                        "queuedDuration": 1.164664,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282866",
+                        "duration": 7,
+                        "queuedDuration": 8.241295,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282865",
+                        "duration": 164,
+                        "queuedDuration": 12.348799,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282864",
+                        "duration": 508,
+                        "queuedDuration": 2.727259,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282863",
+                        "duration": 8,
+                        "queuedDuration": 12.00455,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282862",
+                        "duration": 31,
+                        "queuedDuration": 1.242567,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282861",
+                        "duration": 115,
+                        "queuedDuration": 3.075611,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282859",
+                        "duration": 34,
+                        "queuedDuration": 5.59447,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282858",
+                        "duration": 28,
+                        "queuedDuration": 1.591264,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282857",
+                        "duration": 24,
+                        "queuedDuration": 26.709865,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282856",
+                        "duration": 26,
+                        "queuedDuration": 0.978717,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282855",
+                        "duration": 27,
+                        "queuedDuration": 0.97972,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282854",
+                        "duration": 48,
+                        "queuedDuration": 1.023901,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282853",
+                        "duration": 6,
+                        "queuedDuration": 2.755677,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282852",
+                        "duration": 7,
+                        "queuedDuration": 0.510056,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282851",
+                        "duration": 8,
+                        "queuedDuration": 2.666447,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282850",
+                        "duration": 30,
+                        "queuedDuration": 0.835061,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282846",
+                        "duration": 58,
+                        "queuedDuration": 6.790992,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282843",
+                        "duration": 119,
+                        "queuedDuration": 3.885285,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282839",
+                        "duration": 26,
+                        "queuedDuration": 70.121724,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282838",
+                        "duration": 38,
+                        "queuedDuration": 64.697389,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282837",
+                        "duration": 4,
+                        "queuedDuration": 97.299102,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282836",
+                        "duration": 6,
+                        "queuedDuration": 6.195598,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282835",
+                        "duration": 9,
+                        "queuedDuration": 88.500494,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282834",
+                        "duration": 37,
+                        "queuedDuration": 11.776375,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282821",
+                        "duration": 219,
+                        "queuedDuration": 1.69926,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282817",
+                        "duration": 27,
+                        "queuedDuration": 0.86408,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282816",
+                        "duration": 28,
+                        "queuedDuration": 0.749312,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282815",
+                        "duration": 24,
+                        "queuedDuration": 64.768329,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282814",
+                        "duration": 27,
+                        "queuedDuration": 37.67501,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282813",
+                        "duration": 38,
+                        "queuedDuration": 37.683963,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282812",
+                        "duration": 4,
+                        "queuedDuration": 82.796095,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282811",
+                        "duration": 5,
+                        "queuedDuration": 4.37585,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282810",
+                        "duration": 9,
+                        "queuedDuration": 71.905156,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282809",
+                        "duration": 32,
+                        "queuedDuration": 59.31297,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282808",
+                        "duration": 69,
+                        "queuedDuration": 11.878078,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282807",
+                        "duration": 6,
+                        "queuedDuration": 195.828413,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282806",
+                        "duration": 50,
+                        "queuedDuration": 2.238177,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282805",
+                        "duration": 6,
+                        "queuedDuration": 192.420004,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282804",
+                        "duration": 86,
+                        "queuedDuration": 3.970029,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282803",
+                        "duration": 6,
+                        "queuedDuration": 189.657533,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282801",
+                        "duration": 8,
+                        "queuedDuration": 181.474079,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282799",
+                        "duration": 8,
+                        "queuedDuration": 173.057017,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282798",
+                        "duration": 63,
+                        "queuedDuration": 2.294141,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282797",
+                        "duration": 9,
+                        "queuedDuration": 0.978797,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282796",
+                        "duration": 234,
+                        "queuedDuration": 2.110249,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282794",
+                        "duration": 4,
+                        "queuedDuration": 3.205123,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282792",
+                        "duration": 172,
+                        "queuedDuration": 129.345223,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282791",
+                        "duration": 66,
+                        "queuedDuration": 2.673408,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282789",
+                        "duration": 98,
+                        "queuedDuration": 2.232447,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282788",
+                        "duration": 42,
+                        "queuedDuration": 1.628313,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282787",
+                        "duration": 6,
+                        "queuedDuration": 2.271995,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282786",
+                        "duration": 15,
+                        "queuedDuration": 152.909943,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282785",
+                        "duration": 154,
+                        "queuedDuration": 6.28317,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282784",
+                        "duration": 15,
+                        "queuedDuration": 148.464893,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282774",
+                        "duration": 6,
+                        "queuedDuration": 1.777904,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282772",
+                        "duration": 116,
+                        "queuedDuration": 17.48294,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282771",
+                        "duration": 7,
+                        "queuedDuration": 0.989026,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282770",
+                        "duration": 11,
+                        "queuedDuration": 190.980311,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282764",
+                        "duration": 8,
+                        "queuedDuration": 327.706461,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282762",
+                        "duration": 7,
+                        "queuedDuration": 321.030556,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282760",
+                        "duration": 9,
+                        "queuedDuration": 312.000688,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282756",
+                        "duration": 8,
+                        "queuedDuration": 303.788496,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282754",
+                        "duration": 8,
+                        "queuedDuration": 294.615292,
+                        "__typename": "CiJob"
+                    },
+                    {
+                        "id": "gid://gitlab/Ci::Build/1282750",
+                        "duration": 8,
+                        "queuedDuration": 287.571335,
+                        "__typename": "CiJob"
+                    }
+                ],
+                "__typename": "CiJobInterfaceConnection"
+            },
+            "__typename": "CiRunner"
+        }
+    }
+}

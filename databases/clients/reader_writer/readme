@@ -1,0 +1,8 @@
+A small and simple nodejs server that purely reads and writes random strings to and sql database.
+These random strings are split up accross languages with each language coming from a seperate database.
+it constantly writes at configurable intervals.
+Starting the stats page is also configurable.
+It serves a page that shows the current count of strings in each database along with the first and last string.
+It also prints out database response time along with other useful statistics.
+its a very small number of lines.
+We only use pnpm.

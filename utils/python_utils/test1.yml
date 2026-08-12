@@ -1,0 +1,59 @@
+---
+host_description_long: "{{ inventory_hostname }} - MySQL"
+host_description_short: "{{ inventory_hostname }}"
+
+region: "us-east-2"
+
+admin_tools_extras_list:
+  - gcc
+  - librsync-devel
+  - python3-devel
+  - vim
+
+pgp_keys:
+  - path: "{{ inventory_dir }}/../../files/pgp/duplicity-backup.public.key"
+    trust: 5
+    user: root
+  - path: "{{ inventory_dir }}/../../files/pgp/duplicity-backup.secret.key.vault"
+    passphrase: "{{ pgp_duplicity_backup_key_passphrase }}"
+    secret: true
+    trust: 5
+    user: root
+
+mysql_admin_password: "{{ mysql_4flawsec2006_root_password }}"
+
+mysqlappusage_db_list:
+  - name: "{{ hostvars['4FL-AWS-EC2-005'].vista_dbs_database }}"
+    encoding: utf8mb3
+    collation: utf8mb3_general_ci
+  - name: "{{ hostvars['4FL-AWS-EC2-008'].vista_dbs_database }}"
+    encoding: utf8mb3
+    collation: utf8mb3_general_ci
+
+mysqlappusage_user_list:
+  - name: "{{ hostvars['4FL-AWS-EC2-005'].vista_dbs_user }}"
+    password: "{{ hostvars['4FL-AWS-EC2-005'].vista_dbs_password }}"
+    host: "{{ hostvars['4FL-AWS-EC2-005'].internal_hostname }}"
+    priv: "{{ mysqlappusage_grants_appuser_general }}/{{ hostvars['4FL-AWS-EC2-005'].vista_dbs_database }}.*:{{ mysqlappusage_grants_appuser_app }}"
+  - name: "{{ hostvars['4FL-AWS-EC2-008'].vista_dbs_user }}"
+    password: "{{ hostvars['4FL-AWS-EC2-008'].vista_dbs_password }}"
+    host: "{{ hostvars['4FL-AWS-EC2-008'].internal_hostname }}"
+    priv: "{{ mysqlappusage_grants_appuser_general }}/{{ hostvars['4FL-AWS-EC2-008'].vista_dbs_database }}.*:{{ mysqlappusage_grants_appuser_app }}"
+
+mysqlappusage_dumpduplicity_db_list: "{{ mysqlappusage_db_list }}"
+mysqlappusage_dumpduplicity_db_password: "{{ mysql_admin_password }}"
+mysqlappusage_dumpduplicity_cron_hour: "3"
+mysqlappusage_dumpduplicity_cron_minute: "0"
+mysqlappusage_dumpduplicity_bucketname: "4flow-backup-database-dumps-us-east-2"
+mysqlappusage_dumpduplicity_aws_default_region: "us-east-2"
+
+monitoring:
+  host_notifications:
+    usergroups:
+      - dev_mysql
+
+  disks:
+    - name: Disk - Root (/)
+      warning: "13%"
+      critical: "7%"
+      path: ["/"]

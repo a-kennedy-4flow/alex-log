@@ -1,0 +1,138 @@
+Name,Email,First name,Last name,Role
+a.kennedy,a.kennedy@4flow.com,Kennedy,Alexander,sysadmin
+c.newell,c.newell@4flow.com,Newell,Christopher,sysadmin
+d.müller,d.mueller@4flow.com,Müller,David,sysadmin
+g.magee,g.magee@4flow.com,Magee,Greg,sysadmin
+i.ulbricht,i.ulbricht@4flow.de,Ulbricht,Ines,sysadmin
+k.bakish,k.bakish@4flow.com,Bakish,Karina,sysadmin
+l.hoffmann,l.hoffmann@4flow.com,Hoffman,Lilly,sysadmin
+m.grzemski,m.grzemski@4flow.com,Grzemski,Marcin,sysadmin
+m.henderson,m.henderson@4flow.com,Henderson,Marty,sysadmin
+m.jassim,m.jassim@4flow.com,Jassim,Muhammad,sysadmin
+p.aicken,p.aicken@4flow.com,Aicken,Phil,sysadmin
+p.maroti,p.maroti@4flow.com,Maroti,Peter,sysadmin
+r.armstrong,r.armstrong@4flow.com,Armstrong,Rory,sysadmin
+r.baradari,r.baradari@4flow.de,Baradari,Ramin,sysadmin
+s.bolte,s.bolte@4flow.com,Bolte,Sebastian-Aurel,sysadmin
+h.boeddeker,h.boeddeker@4flow.com,Boeddeker,Hendrick,admin
+s.drescher,s.drescher@4flow.com,Drescher,Steve,admin
+t.korte,t.korte@4flow.com,Korte,Tobias,admin
+a.andreoti,a.andreoti@4flow.com,Andreoti,Andre,user
+a.campos,a.campos@4flow.com,Campos,Alan,user
+a.hegedus,a.hegedus@4flow.com,Hegedüs,Andor,user
+a.maskova,a.maskova@4flow.com,Mašková,Adéla,user
+a.salum,a.salum@4flow.com,Salum,Alejandro Noriega,user
+a.szabo,a.szabo@4flow.com,Szabo,Anita,user
+a.szatmary,a.szatmary@4flow.com,Szatmáry,Alex Zsolt,user
+a.vejsicky,a.vejsicky@4flow.com,Vejšický,Adam,user
+b.kolus,b.kolus@4flow.com,Kolus,Bert,user
+b.mohacsi,b.mohacsi@4flow.com,Mohácsi,Blanka,user
+b.pirnerova,b.pirnerova@4flow.com,Pirnerová,Blanka,user
+b.szabo,b.szabo@4flow.com,Szabó,Bence,user
+b.varga,b.varga@4flow.com,Varga,Barnabás,user
+c.coordinator,polaris-test-exceptionmgmt@4flow-service.com,Coordinator,Catarzyna,user
+c.torok,c.torok@4flow.com,Török,Cecília,user
+d.cunup,d.cunup@4flow.com,Cunup,Diana,user
+d.guenther,d.guenther@4flow.com,Guenther,Daniel,user
+d.kristof,d.kristof@4flow.com,Kristóf,Daniela,user
+d.major,d.major@4flow.com,Major,Dóra,user
+d.molina,d.molina@4flow.com,Molina,Diego,user
+d.silveira,d.silveira@4flow.com,Silveira,Danilo,user
+d.sulc,d.sulc@4flow.com,Šulc,Dominik,user
+d.ujvari,d.ujvari@4flow.com,Ujvari,Dora,user
+d.volf,d.volf@4flow.com,Volf,Dominik,user
+e.bauvert,e.bauvert@4flow.com,Bauvert,Eric,user
+e.operator,e.operator@4flow.com,Operations,Eduardo,user
+e.welty,e.welty@4flow.com,Welty,Emma,user
+f.batistadearaujo,f.batistadearaujo@4flow.com,Batista de Araújo,Fabrício,user
+f.cardoso,f.cardoso@4flow.com,Cardoso,Felipe,user
+f.lima,f.lima@4flow.com,Lima,Felipe,user
+f.pavlicz,f.pavlicz@4flow.com,Pávlicz,Fanni,user
+f.perez,f.perez@4flow.com,Pérez,Fernando,user
+f.pikl,f.pikl@4flow.com,Pikl,František,user
+g.ghevondyan,g.ghevondyan@4flow.com,Ghevondyan,Garik,user
+g.gyarmati,g.gyarmati@4flow.com,Gyarmati,György,user
+g.oliveira,g.oliveira@4flow.com,Oliveira,Gabrielle,user
+g.pathak,g.pathak@4flow.com,Pathak,Gaurav,user
+g.tomas,g.tomas@4flow.com,Tomás,Guillermo,user
+g.zsolnai,g.zsolnai@4flow.com,Zsolnai,Gábor,user
+h.eipert,h.eipert@4flow.com,Eipert,Harald,user
+h.wermer,h.wermer@4flow.com,Wermer,Hendrik,user
+i.gabrielanastace,i.gabrielanastace@4flow.com,Nastace,Ioana Gabriela,user
+i.lopez,i.lopez@4flow.com,López,Inés,user
+i.szabo,i.szabo@4flow.com,Szabó,Imre,user
+i.varga,i.varga@4flow.com,Varga,Imola,user
+j.dovalle,j.dovalle@4flow.com,Dovalle,Jose,user
+j.pawlisiak,j.pawlisiak@4flow.com,Pawlisiak,Jakub,user
+j.rosignuolo,j.rosignuolo@4flow.com,Rosignuolo,Juan Ignacio,user
+j.stastny,j.stastny@4flow.com,Šťastný,Jan,user
+j.teixeira,j.teixeira@4flow.com,Teixeira,Juliana Ferreira,user
+k.bosnyak,k.bosnyak@4flow.com,Bosnyák,Krisztián,user
+k.coomans,k.coomans@4flow.com,Coomans,Katrien,user
+k.souza,k.souza@4flow.com,Souza,Kariston,user
+k.trnka,k.trnka@4flow.com,Trnka,Kristýna,user
+l.cai,l.cai@4flow.com,Cai,Li,user
+l.dubova,l.dubova@4flow.com,Dubová,Libuše,user
+l.luo,l.luo@4flow.com,Luo,Liang,user
+l.martinezwitte,l.martinezwitte@4flow.com,Martinez Witte,Lars,user
+l.meisel,l.meisel@4flow.com,Meisel,Lyndale,user
+l.vanourek,l.vanourek@4flow.com,Vaňourek,Lukáš,user
+m.crozariol,m.crozariol@4flow.com,Crozariol,Maythe,user
+m.delattre,m.delattre@4flow.com,Delattre,Maël,user
+m.gombos,m.gombos@4flow.com,Gombos,Matyas,user
+m.hynes,m.hynes@4flow.com,Hyneš,Matěj,user
+m.kaderova,m.kaderova@4flow.com,Kaderova,Michala,user
+m.kathmann,m.kathmann@4flow.com,Kathmann,Michelle,user
+m.khalilzadeh,m.khalilzadeh@4flow.com,Khalilzadeh,Mohammadreza,user
+m.kovacs,m.kovacs@4flow.com,Kovács,Martin,user
+m.lizama,m.lizama@4flow.com,Lizama,Marina,user
+m.mahn,m.mahn@4flow.com,Mahn,Merten,user
+m.malafa,m.malafa@4flow.com,Malafa,Marek,user
+m.schmitz,m.schmitz@4flow.de,Schmitz,Marcel,user
+m.trojovsky,m.trojovsky@4flow.com,Trojovský,Martin,user
+meghan,meghan@4flow.com,Planner,Meghan,user
+msf_planning,msf_planning@4flow.com,team,Msf_planning,user
+n.bodnar,n.bodnar@4flow.com,Bodnár,Nora,user
+n.kocsik,n.kocsik@4flow.com,Kocsik,Nóra,user
+n.zagotto,n.zagotto@4flow.com,Zagotto,Nayre,user
+p.balogh,p.balogh@4flow.com,Balogh,Petra Nóra,user
+p.sebastian,p.sebastian@4flow.com,Sebastián,Pedro,user
+p.souza,p.souza@4flow.com,Souza,Patrick,user
+p.toth,p.toth@4flow.com,Tóth,Petra,user
+q.zhao,q.zhao@4flow.com,Zhao,Qiuling,user
+r.harmat,r.harmat@4flow.com,Harmat,Roland,user
+r.iles-muszka,r.iles-muszka@4flow.com,Ilés-Muszka,Rudolf,user
+r.karimnia,r.karimnia@4flow.com,Karimnia,Roya,user
+r.lebow,r.lebow@4flow.com,LeBow,Robert,user
+s.dossantos,s.dossantos@4flow.com,dos Santos,Soraia,user
+s.kraftova,s.kraftova@4flow.com,Kraftová,Sandra,user
+s.shankar,s.shankar@4flow.com,Shankar,Sharvari,user
+service-account-risk-management.backend,team_risk_management+backendserviceaccount@4flow.com,riskmgmt,Riskmgmt,user
+service.request.agent,platform-ai-and-automation@4flow.com,Agent,Service Request,user
+t.mucs,t.mucs@4flow.de,Mucs,Tamas,user
+t.roedle,t.roedle@4flow.com,Rödle,Tillman,user
+t.ruhrmann,t.ruhrmann@4flow.com,Ruhrmann,Theresa,user
+test-automation.plrs,test-automation.plrs@4flow-service.com,PLRS,Test Automation,user
+v.doshi,v.doshi@4flow.com,Doshi,Vaibhav,user
+v.hogya,v.hogya@4flow.com,Hogya,Veronika,user
+v.kolesnik,v.kolesnik@4flow.com,Kolesnik,Vitalii,user
+v.nadahalli,v.nadahalli@4flow.com,Nadahalli,Vaishali,user
+v.papp,v.papp@4flow.com,Papp,Veronika,user
+v.sipos,v.sipos@4flow.com,Sipos,Veronika,user
+v.tokarev,v.tokarev@4flow.com,Tokarev,Vladimir,user
+v.tola,v.tola@4flow.com,Tola,Viviane,user
+yunge.wang,yunge.wang@4flow.com,Wang,Yunge,user
+z.liu,z.liu@4flow.com,Liu,Zhenchao,user
+a.kessens,a.kessens@4flow.com,Kessens,Ann-Christine,
+a.lux,a.lux@4flow.com,Lux,Anne,
+d.baudeweyns,d.baudeweyns@4flow.com,Baudeweyns,Dorien,
+i.vlerken,i.vlerken@4flow.com,van Vlerken,Isabelle,
+j.vonmalottki,j.vonmalottki@4flow.com,von Malottki,Jan,
+k.karstedt,s.karstedt@4flow.com,von Karstedt,Steffen,
+k.stoever,k.stoever@4flow.com,Stöver,Kevin,
+l.crisp,l.crisp@4flow.com,Crisp,Luis Henrique,
+m.lunk,m.lunk@4flow.com,Lunk,Markus,
+m.muller,m.muller@4flow.com,Müller,Michael,
+p.datto,p.datto@4flow.com,Datto,Pedro,
+radiance-tech,h.ghatikachalam@4flow.com,tech,radiance,
+sdas,s.dass@4flow.com,Das S,Sarin,

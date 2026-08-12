@@ -3,9 +3,11 @@
 
 ## To do today...
 
-* todo...
+* Do mandatory training
+* Create templates for the virtual machines
+* Make some way to generate virtual machines
+
 
 ## Links
 
 No items available.
-

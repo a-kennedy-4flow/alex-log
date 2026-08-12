@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: java-version
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8080
+
+app:
+  # the server every client uses. the url selects no database. one connection reaches them all
+  db:
+    host: 127.0.0.1
+    port: 3306
+    user: root
+    password: password
+    database-prefix: strings_ # one database per language. strings_english and so on
+    table: words              # three columns. id and words and number
+
+  # headless clients that only insert
+  writers:
+    count: 2
+    connections: 1 # connections for one writer. this is also how much of one tick can overlap
+    scope: all     # all = every database. one = a single database chosen round robin by index
+    interval: 1s
+    clients: []    # anything above changed for one writer only. count still decides how many there are
+    #  - index: 0
+    #    scope: one
+    #    language: japanese
+    #    connections: 3
+
+  # headless clients that only select
+  readers:
+    count: 2
+    connections: 1
+    scope: all
+    interval: 1s
+    clients: []
+
+  # the one page. the connections it samples the server with
+  stats:
+    interval: 1s
+    connections: 1
+    refresh: 2s # how often the page reloads itself

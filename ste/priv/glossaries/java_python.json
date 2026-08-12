@@ -1,0 +1,348 @@
+{
+ "name": "java_python",
+ "subject_field": "Software engineering: Java and Python",
+ "source": "Project glossary. Not part of ASD-STE100.",
+ "note": "Rule 1.8 tells you to use the technical nouns that are approved in your company, industry, or subject field, and rule 1.5 says the category lists of the standard are examples and not a full list. This is the glossary for software documentation about Java and Python. The categories continue the numbering of rule 1.5 (technical nouns, category 19 is computer science and information and communication technology) and rule 1.12 (technical verbs, category 2 is computer processes and applications), so that a term keeps a category that the standard recognizes.",
+ "rules_observed": {
+  "1.1": "A word that part 2 approves as the part of speech the subject field needs is not in this glossary, because rule 1.1 already permits it. That is why 'method', 'function', 'value', 'type' and 'set' are absent: they are approved nouns. See not_included.",
+  "1.7_and_1.13": "A term is a technical noun or a technical verb, never both. Where English uses one word for both, the glossary keeps the part of speech that the subject field needs, and the other form is written with an approved verb: 'build' and 'package' are nouns here, and to make one you ASSEMBLE, COMPILE or BUNDLE it.",
+  "1.9": "Where the subject field has a short term and a long one for the same thing, the short one is here: 'thread', not 'thread of execution'.",
+  "1.10": "Slang and jargon are not included, even where they are common in the subject field: no 'monkey patch', 'footgun', 'gotcha', 'syntactic sugar', 'boilerplate'.",
+  "1.11": "One term for one thing. 'dictionary' is here and 'hash', 'hashmap' and 'associative array' are not, although Java calls the same idea a map.",
+  "1.14": "American English spelling: 'serialize', 'initialize', not 'serialise', 'initialise'.",
+  "2.1": "No technical noun in this glossary is more than three words."
+ },
+ "nouns": {
+  "19a_language_constructs": [
+   "annotation",
+   "argument",
+   "attribute",
+   "block",
+   "class",
+   "closure",
+   "comment",
+   "constant",
+   "constructor",
+   "decorator",
+   "docstring",
+   "expression",
+   "identifier",
+   "keyword",
+   "lambda",
+   "literal",
+   "modifier",
+   "module",
+   "namespace",
+   "operator",
+   "package",
+   "parameter",
+   "scope",
+   "signature",
+   "statement",
+   "subclass",
+   "superclass",
+   "variable"
+  ],
+  "19b_types_and_data_structures": [
+   "array",
+   "boolean",
+   "character",
+   "dictionary",
+   "enum",
+   "generic type",
+   "index",
+   "integer",
+   "iterator",
+   "key",
+   "list",
+   "map",
+   "null value",
+   "primitive type",
+   "queue",
+   "record",
+   "reference",
+   "string",
+   "tuple"
+  ],
+  "19c_runtime_and_execution": [
+   "bytecode",
+   "call stack",
+   "coroutine",
+   "deadlock",
+   "event loop",
+   "exception",
+   "garbage collector",
+   "generator",
+   "heap",
+   "interpreter",
+   "lock",
+   "memory leak",
+   "process",
+   "race condition",
+   "recursion",
+   "runtime",
+   "stack frame",
+   "stack trace",
+   "thread",
+   "thread pool",
+   "virtual machine"
+  ],
+  "19d_build_packaging_and_tooling": [
+   "artifact",
+   "build",
+   "build file",
+   "classpath",
+   "compiler",
+   "dependency",
+   "distribution",
+   "formatter",
+   "linter",
+   "manifest",
+   "package manager",
+   "repository",
+   "requirements file",
+   "source file",
+   "virtual environment",
+   "wheel"
+  ],
+  "19e_testing_and_diagnosis": [
+   "assertion",
+   "breakpoint",
+   "code coverage",
+   "debugger",
+   "fixture",
+   "integration test",
+   "log level",
+   "mock",
+   "profiler",
+   "regression test",
+   "stub",
+   "test case",
+   "test suite",
+   "unit test"
+  ],
+  "19f_interfaces_and_data_formats": [
+   "API",
+   "endpoint",
+   "payload",
+   "query parameter",
+   "request",
+   "response",
+   "schema",
+   "status code",
+   "JSON",
+   "YAML"
+  ],
+  "19g_products_tools_and_platforms": [
+   "Django",
+   "Flask",
+   "Gradle",
+   "Java",
+   "JUnit",
+   "JVM",
+   "Kotlin",
+   "Maven",
+   "NumPy",
+   "pandas",
+   "pip",
+   "PyPI",
+   "pytest",
+   "Python",
+   "Spring",
+   "venv"
+  ]
+ },
+ "verbs": {
+  "2d_software_development": [
+   "allocate",
+   "cast",
+   "compile",
+   "concatenate",
+   "declare",
+   "deserialize",
+   "import",
+   "inherit",
+   "initialize",
+   "instantiate",
+   "invoke",
+   "iterate",
+   "overload",
+   "parse",
+   "raise",
+   "refactor",
+   "serialize",
+   "throw",
+   "yield"
+  ],
+  "2e_build_packaging_and_release": [
+   "bundle",
+   "publish",
+   "version"
+  ],
+  "2f_testing_and_diagnosis": [
+   "assert",
+   "benchmark",
+   "lint",
+   "profile"
+  ]
+ },
+ "dictionary_conflicts": [
+  {
+   "term": "allocate",
+   "used_as": "v",
+   "dictionary": "allocate (v), not approved",
+   "reason": "To allocate memory is a process of the subject field and the alternatives of the dictionary do not name it."
+  },
+  {
+   "term": "annotation",
+   "used_as": "n",
+   "dictionary": "annotation (n), not approved, alternatives WRITE (v), RECORD (v)",
+   "reason": "In Java an annotation is a named element of the language (@Override), not the act of writing a note. Rule 1.6 permits a word that the dictionary does not approve when it is a technical noun."
+  },
+  {
+   "term": "block",
+   "used_as": "n",
+   "dictionary": "block (v), not approved",
+   "reason": "The dictionary decides the verb only. A block of statements between braces or an indent is a technical noun. To stop a thread, write STOP, not 'block'."
+  },
+  {
+   "term": "build",
+   "used_as": "n",
+   "dictionary": "build (n), not approved, alternative STRUCTURE (n); build (v), not approved, alternative ASSEMBLE (v)",
+   "reason": "A build is the artifact that a build tool produces, not a structure. Kept as a noun only: to make one, write ASSEMBLE or COMPILE, so that rule 1.7 is not broken."
+  },
+  {
+   "term": "compile",
+   "used_as": "v",
+   "dictionary": "compile (v), not approved, alternatives RECORD (v), COLLECT (v)",
+   "reason": "To compile source code into bytecode is a process of the subject field, and neither RECORD nor COLLECT names it. Rule 1.12 category 2 covers computer processes."
+  },
+  {
+   "term": "constant",
+   "used_as": "n",
+   "dictionary": "CONSTANT (adj), approved",
+   "reason": "The dictionary approves the adjective only. The noun is a technical noun of the subject field, so rule 1.2 is not broken by using it as a noun."
+  },
+  {
+   "term": "distribution",
+   "used_as": "n",
+   "dictionary": "distribution (n), not approved",
+   "reason": "A distribution is the packaged form of a Python project that is published to an index. The everyday sense that the dictionary rejects is a different one."
+  },
+  {
+   "term": "exception",
+   "used_as": "n",
+   "dictionary": "exception (n), not approved, no alternative given",
+   "reason": "An exception is the object that a program throws. The dictionary gives no alternative because it disapproves of the everyday sense."
+  },
+  {
+   "term": "key",
+   "used_as": "n",
+   "dictionary": "key (v), not approved, alternatives REFER (v), KEY (n)",
+   "reason": "The dictionary disapproves of the verb and points at the noun, which is the sense the subject field needs: the value that finds an entry in a dictionary or a map."
+  },
+  {
+   "term": "list",
+   "used_as": "n",
+   "dictionary": "list (v), not approved, alternatives RECORD (v), SHOW (v), LIST (n)",
+   "reason": "The dictionary disapproves of the verb and points at the noun. A Python list is that noun."
+  },
+  {
+   "term": "lock",
+   "used_as": "n",
+   "dictionary": "LOCK (v), approved",
+   "reason": "The dictionary approves the verb only. A lock that one thread holds is a technical noun."
+  },
+  {
+   "term": "process",
+   "used_as": "n",
+   "dictionary": "process (n), not approved, alternative PROCEDURE (n); process (v), not approved",
+   "reason": "An operating-system process is not a procedure. The standard's own rule 1.12 already lists 'process' as a technical verb of category 2c, which is the same exception applied to the verb."
+  },
+  {
+   "term": "profile",
+   "used_as": "v",
+   "dictionary": "profile (n), not approved, alternative CONTOUR (n)",
+   "reason": "The dictionary disapproves of the noun in its shape sense. To profile a program is a diagnostic process of the subject field."
+  },
+  {
+   "term": "raise",
+   "used_as": "v",
+   "dictionary": "raise (v), not approved, alternatives LIFT (v), INCREASE (v), RETRACT (v)",
+   "reason": "'raise' is the Python keyword that throws an exception, and no alternative names it. Use THROW in Java documentation and 'raise' only where the Python keyword is meant."
+  },
+  {
+   "term": "record",
+   "used_as": "n",
+   "dictionary": "RECORD (v), approved",
+   "reason": "The dictionary approves the verb. A record is also a Java type that holds data, which is a technical noun."
+  },
+  {
+   "term": "reference",
+   "used_as": "n",
+   "dictionary": "reference (n), not approved, alternative REFER (v)",
+   "reason": "A reference is a value that points at an object, not the act of referring."
+  },
+  {
+   "term": "request",
+   "used_as": "n",
+   "dictionary": "request (n) and request (v), not approved, alternatives TELL (v), WRITE (v)",
+   "reason": "An HTTP request is a message, not an act of telling. Kept as a noun only: to make one, write SEND."
+  },
+  {
+   "term": "Spring",
+   "used_as": "n",
+   "dictionary": "spring (v), not approved",
+   "reason": "Spring is the proper noun of a Java framework. Rule 8.6 counts a proper noun as one word and it keeps its own spelling and capital letter."
+  },
+  {
+   "term": "thread",
+   "used_as": "n",
+   "dictionary": "thread (v), not approved, alternatives PUT (v), TURN (v)",
+   "reason": "The dictionary disapproves of the verb only, in its mechanical sense. The noun is a technical noun of the subject field."
+  },
+  {
+   "term": "variable",
+   "used_as": "n",
+   "dictionary": "variable (adj), not approved, alternative CHANGE (v)",
+   "reason": "The dictionary disapproves of the adjective. The noun, a named place that holds a value, is not in the dictionary at all."
+  }
+ ],
+ "not_included": [
+  {
+   "term": "function, method, property, value, type, set, interface, object, loop",
+   "used_as": "n",
+   "reason": "Approved nouns in part 2. Rule 1.1 permits them without a glossary entry. Rule 1.3 still applies: use them only with their approved meaning, and where the subject field's sense is a different one, write a note in the company terminology database."
+  },
+  {
+   "term": "catch, deploy, override, record, extend, release, tag, lock, set",
+   "used_as": "v",
+   "reason": "Approved verbs in part 2. No glossary entry is needed."
+  },
+  {
+   "term": "debug, format, install, load, process, update, upgrade",
+   "used_as": "v",
+   "reason": "Already technical verbs of rule 1.12, category 2c."
+  },
+  {
+   "term": "field, memory, metadata, token, database, XML, file, network",
+   "used_as": "n",
+   "reason": "Already technical nouns of rule 1.5, category 19."
+  },
+  {
+   "term": "implement",
+   "used_as": "v",
+   "reason": "The dictionary gives DO. Write 'WRITE the class that gives the interface'."
+  },
+  {
+   "term": "test",
+   "used_as": "v",
+   "reason": "TEST (n) is approved and test (v) is not. Write 'DO the unit test', per rule 3.7."
+  },
+  {
+   "term": "build, package",
+   "used_as": "v",
+   "reason": "Both are technical nouns here, so rule 1.7 does not let them be verbs. Write ASSEMBLE, COMPILE or BUNDLE."
+  }
+ ]
+}

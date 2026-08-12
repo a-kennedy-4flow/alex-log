@@ -1,0 +1,8 @@
+A small and simple nodejs server that purely reads statistics out of a mysql server.
+It writes nothing — only SHOW GLOBAL STATUS, SHOW GLOBAL VARIABLES and information_schema.
+It polls at configurable intervals and keeps the previous sample so counters are shown as per second rates.
+It serves a page with connections, throughput, query mix, innodb, per database sizes and the live processlist.
+Its own polling connections are filtered out of the counts and the processlist, shown in the ui as -4.
+Starting the stats page is also configurable — with it off it just polls and logs.
+its a very small number of lines.
+We only use pnpm.
