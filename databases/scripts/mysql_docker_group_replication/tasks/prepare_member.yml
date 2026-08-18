@@ -1,0 +1,111 @@
+---
+# Give one member the account that distributed recovery uses to fetch missing
+# transactions from a donor. Written with sql_log_bin off so the account stays
+# local to this member and never enters the group's transaction history.
+
+- name: Check for the recovery account on {{ member.name }}
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT COUNT(*) FROM mysql.user WHERE user = '{{ mysql_group_recovery_user }}'"
+    env:
+      MYSQL_PWD: "{{ mysql_group_root_password }}"
+  register: mysql_group_account_count
+  changed_when: false
+
+- name: Create the recovery account on {{ member.name }}
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        SET SESSION sql_log_bin = 0;
+        CREATE USER '{{ mysql_group_recovery_user }}'@'%'
+        IDENTIFIED BY '{{ mysql_group_recovery_password }}';
+        GRANT REPLICATION SLAVE ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
+        GRANT CONNECTION_ADMIN ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
+        GRANT BACKUP_ADMIN ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
+        GRANT GROUP_REPLICATION_STREAM ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
+        SET SESSION sql_log_bin = 1;
+    env:
+      MYSQL_PWD: "{{ mysql_group_root_password }}"
+  when: mysql_group_account_count.stdout | trim | int == 0
+  no_log: true
+
+- name: Set the recovery credentials on {{ member.name }}
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        CHANGE REPLICATION SOURCE TO
+        SOURCE_USER = '{{ mysql_group_recovery_user }}',
+        SOURCE_PASSWORD = '{{ mysql_group_recovery_password }}'
+        FOR CHANNEL 'group_replication_recovery';
+    env:
+      MYSQL_PWD: "{{ mysql_group_root_password }}"
+  when: mysql_group_account_count.stdout | trim | int == 0
+  no_log: true
+
+# The image entrypoint loads the timezone tables during initialisation and those
+# writes reach the binary log. Every member therefore owns a private GTID history
+# that the group has never seen and a joining member is refused with error 3092.
+# Clearing the history leaves the table contents in place and only discards the
+# record of how they got there.
+- name: Check whether {{ member.name }} is already an online group member
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - >-
+        SELECT COUNT(*) FROM performance_schema.replication_group_members
+        WHERE member_id = @@server_uuid AND member_state = 'ONLINE'
+    env:
+      MYSQL_PWD: "{{ mysql_group_root_password }}"
+  register: mysql_group_member_online
+  changed_when: false
+
+- name: Read the transaction history of {{ member.name }}
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT @@gtid_executed"
+    env:
+      MYSQL_PWD: "{{ mysql_group_root_password }}"
+  register: mysql_group_member_gtids
+  changed_when: false
+
+- name: Clear the local transaction history on {{ member.name }}
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - "RESET BINARY LOGS AND GTIDS"
+    env:
+      MYSQL_PWD: "{{ mysql_group_root_password }}"
+  when:
+    # Never touch a member that is serving the group or that already carries
+    # transactions stamped with the group name.
+    - mysql_group_reset_local_gtids | bool
+    - mysql_group_member_online.stdout | trim | int == 0
+    - mysql_group_name not in mysql_group_member_gtids.stdout

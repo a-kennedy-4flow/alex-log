@@ -1,0 +1,143 @@
+---
+# Design A: asynchronous GTID replication.
+# One writable source streams its binary log to two read only replicas.
+# There is no quorum and no election. Promoting a replica is a manual act.
+# Compare with the mysql_docker_group_replication role for designs B and C.
+
+- name: Define the cluster settings
+  ansible.builtin.set_fact:
+    mysql_async_image: "{{ mysql_async_image | default('mysql:8.4') }}"
+    mysql_async_network: "{{ mysql_async_network | default('mysql-async') }}"
+    mysql_async_root_password: "{{ mysql_async_root_password | default('password') }}"
+    mysql_async_replication_user: "{{ mysql_async_replication_user | default('repl') }}"
+    mysql_async_replication_password: "{{ mysql_async_replication_password | default('replication') }}"
+    mysql_async_nodes: "{{ mysql_async_nodes | default(mysql_async_default_nodes) }}"
+  vars:
+    mysql_async_default_nodes:
+      - name: mysql-async-1
+        server_id: 1
+        host_port: 3306
+        role: source
+      - name: mysql-async-2
+        server_id: 2
+        host_port: 3307
+        role: replica
+      - name: mysql-async-3
+        server_id: 3
+        host_port: 3308
+        role: replica
+
+- name: Identify the source and the replicas
+  ansible.builtin.set_fact:
+    mysql_async_source: "{{ mysql_async_nodes | selectattr('role', 'eq', 'source') | first }}"
+    mysql_async_replicas: "{{ mysql_async_nodes | selectattr('role', 'eq', 'replica') | list }}"
+
+- name: Create the cluster network
+  community.docker.docker_network:
+    name: "{{ mysql_async_network }}"
+    driver: bridge
+    state: present
+
+- name: Create a data volume per node
+  community.docker.docker_volume:
+    name: "{{ item.name }}-data"
+    state: present
+  loop: "{{ mysql_async_nodes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Start a MySQL container per node
+  community.docker.docker_container:
+    name: "{{ item.name }}"
+    image: "{{ mysql_async_image }}"
+    state: started
+    restart_policy: unless-stopped
+    hostname: "{{ item.name }}"
+    networks:
+      - name: "{{ mysql_async_network }}"
+    networks_cli_compatible: true
+    ports:
+      # Publish container port 3306 as the host port for this node
+      - "{{ item.host_port }}:3306"
+    volumes:
+      - "{{ item.name }}-data:/var/lib/mysql"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ mysql_async_root_password }}"
+    command:
+      - "--server-id={{ item.server_id }}"
+      - "--report-host={{ item.name }}"
+      - "--log-bin=binlog"
+      - "--log-replica-updates=ON"
+      - "--gtid-mode=ON"
+      - "--enforce-gtid-consistency=ON"
+      - "--relay-log=relaylog"
+      - "--relay-log-recovery=ON"
+      - "--skip-name-resolve"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mysqladmin ping -h 127.0.0.1 -uroot -p"$MYSQL_ROOT_PASSWORD" --silent
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+  loop: "{{ mysql_async_nodes }}"
+  loop_control:
+    label: "{{ item.name }} ({{ item.role }})"
+
+- name: Wait for each node to report healthy
+  community.docker.docker_container_info:
+    name: "{{ item.name }}"
+  register: mysql_async_health
+  until: mysql_async_health.container.State.Health.Status | default('starting') == 'healthy'
+  retries: 30
+  delay: 5
+  loop: "{{ mysql_async_nodes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Check for the replication user on the source
+  community.docker.docker_container_exec:
+    container: "{{ mysql_async_source.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT COUNT(*) FROM mysql.user WHERE user = '{{ mysql_async_replication_user }}'"
+    env:
+      MYSQL_PWD: "{{ mysql_async_root_password }}"
+  register: mysql_async_user_count
+  changed_when: false
+
+- name: Create the replication user on the source
+  community.docker.docker_container_exec:
+    container: "{{ mysql_async_source.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        CREATE USER '{{ mysql_async_replication_user }}'@'%'
+        IDENTIFIED BY '{{ mysql_async_replication_password }}';
+        GRANT REPLICATION SLAVE ON *.* TO '{{ mysql_async_replication_user }}'@'%';
+    env:
+      MYSQL_PWD: "{{ mysql_async_root_password }}"
+  when: mysql_async_user_count.stdout | trim | int == 0
+  no_log: true
+
+- name: Attach each replica to the source
+  ansible.builtin.include_tasks: replica.yml
+  loop: "{{ mysql_async_replicas }}"
+  loop_control:
+    loop_var: replica
+    label: "{{ replica.name }}"
+
+- name: Report the cluster endpoints
+  ansible.builtin.debug:
+    msg: >-
+      Design A on network {{ mysql_async_network }}.
+      Source {{ mysql_async_source.name }} on host port {{ mysql_async_source.host_port }} accepts writes.
+      Replicas {{ mysql_async_replicas | map(attribute='host_port') | join(' and ') }} are read only.
+      Failover is manual.

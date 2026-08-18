@@ -1,0 +1,35 @@
+---
+# Remove every demo stack so the next experiment starts from nothing.
+# This matters between designs. A volume carrying the old GTID history or the
+# old group settings will refuse to rejoin a group configured differently.
+
+- name: Define the stacks to remove
+  ansible.builtin.set_fact:
+    mysql_teardown_stacks: "{{ mysql_teardown_stacks | default(mysql_teardown_default_stacks) }}"
+  vars:
+    mysql_teardown_default_stacks:
+      - network: mysql-async
+        nodes: [mysql-async-1, mysql-async-2, mysql-async-3]
+      - network: mysql-sp
+        nodes: [mysql-sp-1, mysql-sp-2, mysql-sp-3]
+      - network: mysql-mp
+        nodes: [mysql-mp-1, mysql-mp-2, mysql-mp-3]
+
+- name: Remove the containers
+  community.docker.docker_container:
+    name: "{{ item }}"
+    state: absent
+    force_kill: true
+  loop: "{{ mysql_teardown_stacks | map(attribute='nodes') | flatten }}"
+
+- name: Remove the data volumes
+  community.docker.docker_volume:
+    name: "{{ item }}-data"
+    state: absent
+  loop: "{{ mysql_teardown_stacks | map(attribute='nodes') | flatten }}"
+
+- name: Remove the networks
+  community.docker.docker_network:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ mysql_teardown_stacks | map(attribute='network') | list }}"

@@ -1,0 +1,8 @@
+---
+- name: Deploy sql stack
+  vars_files:
+      - group_vars/all.yml
+  roles:
+      - mysql_docker
+  hosts:
+      - localhost

@@ -1,0 +1,67 @@
+---
+# Attach one replica to the source. Included once per replica.
+
+- name: Read the current status of {{ replica.name }}
+  community.docker.docker_container_exec:
+    container: "{{ replica.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - 'SHOW REPLICA STATUS\G'
+    env:
+      MYSQL_PWD: "{{ mysql_async_root_password }}"
+  register: mysql_async_replica_status
+  changed_when: false
+
+- name: Point {{ replica.name }} at the source
+  community.docker.docker_container_exec:
+    container: "{{ replica.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        STOP REPLICA;
+        CHANGE REPLICATION SOURCE TO
+        SOURCE_HOST = '{{ mysql_async_source.name }}',
+        SOURCE_PORT = 3306,
+        SOURCE_USER = '{{ mysql_async_replication_user }}',
+        SOURCE_PASSWORD = '{{ mysql_async_replication_password }}',
+        SOURCE_AUTO_POSITION = 1,
+        GET_SOURCE_PUBLIC_KEY = 1;
+        START REPLICA;
+    env:
+      MYSQL_PWD: "{{ mysql_async_root_password }}"
+  when: "'Replica_IO_Running: Yes' not in mysql_async_replica_status.stdout"
+  no_log: true
+
+- name: Protect {{ replica.name }} from writes
+  community.docker.docker_container_exec:
+    container: "{{ replica.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - "SET GLOBAL read_only = ON; SET GLOBAL super_read_only = ON"
+    env:
+      MYSQL_PWD: "{{ mysql_async_root_password }}"
+  changed_when: false
+
+- name: Verify that {{ replica.name }} is following the source
+  community.docker.docker_container_exec:
+    container: "{{ replica.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - 'SHOW REPLICA STATUS\G'
+    env:
+      MYSQL_PWD: "{{ mysql_async_root_password }}"
+  register: mysql_async_replica_check
+  changed_when: false
+  until: >-
+    'Replica_IO_Running: Yes' in mysql_async_replica_check.stdout
+    and 'Replica_SQL_Running: Yes' in mysql_async_replica_check.stdout
+  retries: 12
+  delay: 5

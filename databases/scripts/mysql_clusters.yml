@@ -1,0 +1,59 @@
+---
+# Three MySQL cluster designs for side by side experiments.
+# Every play is tagged never so nothing runs unless you name a design.
+#
+#   ansible-playbook -i hosts mysql_clusters.yml --tags async
+#   ansible-playbook -i hosts mysql_clusters.yml --tags single
+#   ansible-playbook -i hosts mysql_clusters.yml --tags multi
+#   ansible-playbook -i hosts mysql_clusters.yml --tags teardown
+#
+# The three stacks use separate networks names and host ports so they can all
+# run at once. That costs nine MySQL containers.
+
+- name: Design A - asynchronous source and two replicas
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - async
+  roles:
+    - mysql_docker_cluster
+
+- name: Design B - group replication with a single primary
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - single
+  roles:
+    - role: mysql_docker_group_replication
+      vars:
+        mysql_group_single_primary: true
+        mysql_group_prefix: mysql-sp
+        mysql_group_network: mysql-sp
+        mysql_group_base_port: 3316
+        mysql_group_name: 11111111-1111-1111-1111-111111111111
+
+- name: Design C - group replication with every member writable
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - multi
+  roles:
+    - role: mysql_docker_group_replication
+      vars:
+        mysql_group_single_primary: false
+        mysql_group_prefix: mysql-mp
+        mysql_group_network: mysql-mp
+        mysql_group_base_port: 3326
+        mysql_group_name: 22222222-2222-2222-2222-222222222222
+
+- name: Remove every design
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - teardown
+  roles:
+    - mysql_docker_teardown

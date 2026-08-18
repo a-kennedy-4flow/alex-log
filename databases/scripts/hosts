@@ -1,0 +1,12 @@
+
+all:
+  children:
+    default:
+      hosts:
+        local-nginx:
+          ansible_connection: local
+          ansible_host: local
+          pipelining: True
+          ansible_python_interpreter: /home/alex/repos/alex-log/databases/scripts/venv/bin/python
+          #generic path
+          #/opt/4flow/virtualenv
