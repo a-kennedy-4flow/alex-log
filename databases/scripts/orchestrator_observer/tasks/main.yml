@@ -1,0 +1,151 @@
+---
+# Attach a read only orchestrator to an existing stack purely to view the
+# topology. It discovers and draws. It changes nothing.
+#
+# Read only is enforced inside orchestrator by isAuthorizedForAction which
+# refuses every write action outright. That includes the discover action itself
+# so the instances to watch are handed over as DiscoverySeeds instead. Seeding
+# runs inside the orchestrator loop rather than through the API so the read only
+# check never sees it.
+
+- name: Check that the role was given something to watch
+  ansible.builtin.assert:
+    that:
+      - orc_observer_nodes | length > 0
+    fail_msg: orc_observer_nodes must list the containers to watch
+
+# Works for any of the designs. A group secondary and an asynchronous replica
+# both report super_read_only on. The writable one is where the account goes.
+- name: Read the writable state of each node
+  community.docker.docker_container_exec:
+    container: "{{ item }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT @@global.super_read_only"
+    env:
+      MYSQL_PWD: "{{ orc_observer_root_password }}"
+  register: orc_observer_writable
+  changed_when: false
+  loop: "{{ orc_observer_nodes }}"
+  loop_control:
+    label: "{{ item }}"
+
+- name: Pick a writable node for the account
+  ansible.builtin.set_fact:
+    orc_observer_write_target: >-
+      {{ (orc_observer_writable.results
+          | selectattr('stdout', 'defined')
+          | selectattr('stdout', 'search', '^\s*0\s*$')
+          | map(attribute='item') | list | first) }}
+
+- name: Check for the topology account
+  community.docker.docker_container_exec:
+    container: "{{ orc_observer_write_target }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT COUNT(*) FROM mysql.user WHERE user = '{{ orc_observer_topology_user }}'"
+    env:
+      MYSQL_PWD: "{{ orc_observer_root_password }}"
+  register: orc_observer_account_count
+  changed_when: false
+
+- name: Create the topology account on {{ orc_observer_write_target }}
+  community.docker.docker_container_exec:
+    container: "{{ orc_observer_write_target }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        CREATE USER IF NOT EXISTS '{{ orc_observer_topology_user }}'@'%'
+        IDENTIFIED BY '{{ orc_observer_topology_password }}';
+        GRANT SUPER, PROCESS, REPLICATION SLAVE, REPLICATION CLIENT, RELOAD
+        ON *.* TO '{{ orc_observer_topology_user }}'@'%';
+        GRANT SELECT ON mysql.slave_master_info TO '{{ orc_observer_topology_user }}'@'%';
+        GRANT SELECT ON performance_schema.* TO '{{ orc_observer_topology_user }}'@'%';
+    env:
+      MYSQL_PWD: "{{ orc_observer_root_password }}"
+  when: orc_observer_account_count.stdout | trim | int == 0
+  no_log: true
+
+- name: Start the read only orchestrator
+  community.docker.docker_container:
+    name: "{{ orc_observer_name }}"
+    image: "{{ orc_observer_image }}"
+    state: started
+    restart_policy: unless-stopped
+    hostname: "{{ orc_observer_name }}"
+    networks:
+      - name: "{{ orc_observer_network }}"
+    networks_cli_compatible: true
+    ports:
+      - "127.0.0.1:{{ orc_observer_web_port }}:3000"
+    env:
+      ORC_READ_ONLY: "true"
+      ORC_TOPOLOGY_USER: "{{ orc_observer_topology_user }}"
+      ORC_TOPOLOGY_PASSWORD: "{{ orc_observer_topology_password }}"
+      ORC_DISCOVERY_SEEDS: "{{ orc_observer_nodes | product([':3306']) | map('join') | join(',') }}"
+
+- name: Wait for orchestrator to report healthy
+  community.docker.docker_container_info:
+    name: "{{ orc_observer_name }}"
+  register: orc_observer_health
+  until: orc_observer_health.container.State.Health.Status | default('starting') == 'healthy'
+  retries: 30
+  delay: 5
+
+# A seed becomes a placeholder row the moment it is injected so counting rows
+# proves nothing. The placeholder carries the literal string Unknown as its
+# version rather than an empty one so a presence test passes on it too. Only a
+# version that starts with a digit means the poller has actually reached the
+# instance. Without this the play returns while the topology still reads Unknown
+# and nobinlog for another six seconds or so.
+- name: Wait for each node to be polled
+  community.docker.docker_container_exec:
+    container: "{{ orc_observer_name }}"
+    argv:
+      - orchestrator-client
+      - -c
+      - api
+      - -path
+      - "instance/{{ item }}/3306"
+    env:
+      ORCHESTRATOR_API: http://127.0.0.1:3000/api
+  register: orc_observer_polled
+  changed_when: false
+  until: >-
+    orc_observer_polled.stdout is search('Version')
+    and (orc_observer_polled.stdout | from_json).Version | default('', true) is match('[0-9]')
+  retries: 30
+  delay: 5
+  loop: "{{ orc_observer_nodes }}"
+  loop_control:
+    label: "{{ item }}"
+
+- name: Read the instances being watched
+  community.docker.docker_container_exec:
+    container: "{{ orc_observer_name }}"
+    argv:
+      - orchestrator-client
+      - -c
+      - all-instances
+    env:
+      ORCHESTRATOR_API: http://127.0.0.1:3000/api
+  register: orc_observer_instances
+  changed_when: false
+
+- name: Report the observer state
+  ansible.builtin.debug:
+    msg: >-
+      {{ orc_observer_name }} is watching
+      {{ orc_observer_instances.stdout_lines | length }} instances read only on
+      http://127.0.0.1:{{ orc_observer_web_port }}/web/clusters.
+      It refuses every change with Unauthorized.

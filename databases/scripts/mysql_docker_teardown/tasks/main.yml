@@ -6,16 +6,30 @@
 - name: Define the stacks to remove
   ansible.builtin.set_fact:
     mysql_teardown_stacks: "{{ mysql_teardown_stacks | default(mysql_teardown_default_stacks) }}"
+    mysql_teardown_config_root: "{{ mysql_teardown_config_root | default('/var/tmp/mysql-demo') }}"
   vars:
     mysql_teardown_default_stacks:
       - network: mysql-async
         nodes: [mysql-async-1, mysql-async-2, mysql-async-3]
+        extras: []
       - network: mysql-sp
         nodes: [mysql-sp-1, mysql-sp-2, mysql-sp-3]
+        extras: [proxysql-sp, orchestrator-sp]
       - network: mysql-mp
         nodes: [mysql-mp-1, mysql-mp-2, mysql-mp-3]
+        extras: [proxysql-mp, orchestrator-mp]
 
-- name: Remove the containers
+# The routers and the observers come first. A network cannot go while anything
+# is still attached to it.
+- name: Remove the routers and the observers
+  community.docker.docker_container:
+    name: "{{ item }}"
+    state: absent
+    force_kill: true
+    keep_volumes: false
+  loop: "{{ mysql_teardown_stacks | map(attribute='extras') | flatten }}"
+
+- name: Remove the MySQL containers
   community.docker.docker_container:
     name: "{{ item }}"
     state: absent
@@ -33,3 +47,8 @@
     name: "{{ item }}"
     state: absent
   loop: "{{ mysql_teardown_stacks | map(attribute='network') | list }}"
+
+- name: Remove the rendered router configuration
+  ansible.builtin.file:
+    path: "{{ mysql_teardown_config_root }}"
+    state: absent

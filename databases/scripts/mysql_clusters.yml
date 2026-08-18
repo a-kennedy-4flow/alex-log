@@ -5,10 +5,17 @@
 #   ansible-playbook -i hosts mysql_clusters.yml --tags async
 #   ansible-playbook -i hosts mysql_clusters.yml --tags single
 #   ansible-playbook -i hosts mysql_clusters.yml --tags multi
+#   ansible-playbook -i hosts mysql_clusters.yml --tags routed-single
+#   ansible-playbook -i hosts mysql_clusters.yml --tags routed-multi
 #   ansible-playbook -i hosts mysql_clusters.yml --tags teardown
 #
-# The three stacks use separate networks names and host ports so they can all
-# run at once. That costs nine MySQL containers.
+# Each design owns a role and a fact namespace of its own. The stacks use
+# separate networks names and host ports so they can all run at once.
+#
+# Designs B and C each carry a read only orchestrator for viewing the topology.
+# Designs D and E are those same stacks with a ProxySQL router added. They reuse
+# the same networks and the same MySQL containers so running routed-single after
+# single adds the router to that stack rather than building a new one.
 
 - name: Design A - asynchronous source and two replicas
   hosts: localhost
@@ -26,13 +33,17 @@
     - never
     - single
   roles:
-    - role: mysql_docker_group_replication
-      vars:
-        mysql_group_single_primary: true
-        mysql_group_prefix: mysql-sp
-        mysql_group_network: mysql-sp
-        mysql_group_base_port: 3316
-        mysql_group_name: 11111111-1111-1111-1111-111111111111
+    - mysql_docker_single_primary
+    - role: orchestrator_observer
+      # The anchor is reused by design D so the two plays cannot drift apart.
+      vars: &observer_sp
+        orc_observer_name: orchestrator-sp
+        orc_observer_network: mysql-sp
+        orc_observer_nodes:
+          - mysql-sp-1
+          - mysql-sp-2
+          - mysql-sp-3
+        orc_observer_web_port: 6516
 
 - name: Design C - group replication with every member writable
   hosts: localhost
@@ -41,13 +52,41 @@
     - never
     - multi
   roles:
-    - role: mysql_docker_group_replication
-      vars:
-        mysql_group_single_primary: false
-        mysql_group_prefix: mysql-mp
-        mysql_group_network: mysql-mp
-        mysql_group_base_port: 3326
-        mysql_group_name: 22222222-2222-2222-2222-222222222222
+    - mysql_docker_multi_primary
+    - role: orchestrator_observer
+      # The anchor is reused by design E so the two plays cannot drift apart.
+      vars: &observer_mp
+        orc_observer_name: orchestrator-mp
+        orc_observer_network: mysql-mp
+        orc_observer_nodes:
+          - mysql-mp-1
+          - mysql-mp-2
+          - mysql-mp-3
+        orc_observer_web_port: 6526
+
+- name: Design D - the single primary group behind a ProxySQL router
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - routed-single
+  roles:
+    - mysql_docker_single_primary
+    - proxysql_single_primary
+    - role: orchestrator_observer
+      vars: *observer_sp
+
+- name: Design E - the multi primary group behind a ProxySQL router
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - routed-multi
+  roles:
+    - mysql_docker_multi_primary
+    - proxysql_multi_primary
+    - role: orchestrator_observer
+      vars: *observer_mp
 
 - name: Remove every design
   hosts: localhost

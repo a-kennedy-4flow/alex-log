@@ -1,0 +1,54 @@
+---
+# Start group replication on one member unless it is already serving the group.
+# This runs for every member including the one that bootstrapped so a member
+# that was stopped rejoins on the next run.
+
+- name: Read the state of {{ member.name }}
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - >-
+        SELECT member_state FROM performance_schema.replication_group_members
+        WHERE member_id = @@server_uuid
+    env:
+      MYSQL_PWD: "{{ mysql_mp_root_password }}"
+  register: mysql_mp_member_state
+  changed_when: false
+
+- name: Join {{ member.name }} to the group
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - "START GROUP_REPLICATION;"
+    env:
+      MYSQL_PWD: "{{ mysql_mp_root_password }}"
+  # RECOVERING means the plugin is already running and fetching what it missed.
+  when: mysql_mp_member_state.stdout | trim not in ['ONLINE', 'RECOVERING']
+
+- name: Wait for {{ member.name }} to finish recovery
+  community.docker.docker_container_exec:
+    container: "{{ member.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - >-
+        SELECT member_state FROM performance_schema.replication_group_members
+        WHERE member_id = @@server_uuid
+    env:
+      MYSQL_PWD: "{{ mysql_mp_root_password }}"
+  register: mysql_mp_member_check
+  changed_when: false
+  until: mysql_mp_member_check.stdout | trim == 'ONLINE'
+  retries: 24
+  delay: 5

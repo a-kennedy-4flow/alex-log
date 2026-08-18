@@ -1,0 +1,14 @@
+---
+# Defaults rather than set_fact because this role is invoked once per stack.
+# Role defaults are re-evaluated on every invocation. A fact set by an earlier
+# play would survive into the next one and the second stack would inherit the
+# first stack's name and port.
+
+orc_observer_image: 127.0.0.1:5000/orchestrator:4.30.0
+orc_observer_name: orchestrator
+orc_observer_network: bridge
+orc_observer_nodes: []
+orc_observer_web_port: 6516
+orc_observer_root_password: password
+orc_observer_topology_user: orchestrator
+orc_observer_topology_password: orchestrator

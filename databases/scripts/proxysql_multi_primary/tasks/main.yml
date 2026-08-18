@@ -1,0 +1,251 @@
+---
+# Design E: a ProxySQL router in front of the multi primary group of design C.
+#
+# Every member of design C accepts writes so there is no primary to chase. What
+# a client still cannot do is spread itself across three addresses and drop one
+# when it dies. ProxySQL closes that gap. It holds all three members in the
+# writer hostgroup and balances writes across them.
+#
+# Terms used here:
+#   hostgroup      a numbered set of backends that ProxySQL routes to
+#   writer         hostgroup 10. Here that is all three members
+#   reader         hostgroup 11. Members that serve selects
+#   backup writer  hostgroup 12. Writable members held in reserve
+#   offline        hostgroup 13. Members ProxySQL will not use
+#   shunned        a backend ProxySQL has taken out of service
+#
+# This role expects the mysql_docker_multi_primary role to have run first in the
+# same play. It reads that role's node list and network.
+
+- name: Define the router settings
+  ansible.builtin.set_fact:
+    proxysql_mp_image: "{{ proxysql_mp_image | default('proxysql/proxysql:3.0.10') }}"
+    proxysql_mp_name: "{{ proxysql_mp_name | default('proxysql-mp') }}"
+    proxysql_mp_network: "{{ proxysql_mp_network | default(mysql_mp_network | default('mysql-mp')) }}"
+    proxysql_mp_nodes: "{{ proxysql_mp_nodes | default(mysql_mp_nodes) }}"
+    proxysql_mp_root_password: "{{ proxysql_mp_root_password | default(mysql_mp_root_password | default('password')) }}"
+    proxysql_mp_client_port: "{{ proxysql_mp_client_port | default(6326) | int }}"
+    proxysql_mp_admin_port: "{{ proxysql_mp_admin_port | default(6426) | int }}"
+    proxysql_mp_config_dir: "{{ proxysql_mp_config_dir | default('/var/tmp/mysql-demo/proxysql-mp') }}"
+    proxysql_mp_monitor_user: "{{ proxysql_mp_monitor_user | default('proxysql_monitor') }}"
+    proxysql_mp_monitor_password: "{{ proxysql_mp_monitor_password | default('monitor') }}"
+    proxysql_mp_app_user: "{{ proxysql_mp_app_user | default('app') }}"
+    proxysql_mp_app_password: "{{ proxysql_mp_app_password | default('app') }}"
+    proxysql_mp_app_database: "{{ proxysql_mp_app_database | default('demo') }}"
+    proxysql_mp_admin_password: "{{ proxysql_mp_admin_password | default('radmin') }}"
+
+- name: Find a member that accepts writes
+  community.docker.docker_container_exec:
+    container: "{{ proxysql_mp_nodes | map(attribute='name') | first }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - >-
+        SELECT member_host FROM performance_schema.replication_group_members
+        WHERE member_role = 'PRIMARY' AND member_state = 'ONLINE' LIMIT 1
+    env:
+      MYSQL_PWD: "{{ proxysql_mp_root_password }}"
+  register: proxysql_mp_primary
+  changed_when: false
+  until: proxysql_mp_primary.stdout | trim | length > 0
+  retries: 12
+  delay: 5
+
+- name: Check for the router accounts
+  community.docker.docker_container_exec:
+    container: "{{ proxysql_mp_primary.stdout | trim }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - >-
+        SELECT COUNT(*) FROM mysql.user
+        WHERE user IN ('{{ proxysql_mp_monitor_user }}', '{{ proxysql_mp_app_user }}')
+    env:
+      MYSQL_PWD: "{{ proxysql_mp_root_password }}"
+  register: proxysql_mp_account_count
+  changed_when: false
+
+# Accounts are created on the primary only. Group replication carries them to
+# the other members. ProxySQL 3.0 reads performance_schema directly so the
+# sys.gr_member_routing_candidate_status view that older releases needed is not
+# created here.
+- name: Create the router accounts on the primary
+  community.docker.docker_container_exec:
+    container: "{{ proxysql_mp_primary.stdout | trim }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        CREATE USER IF NOT EXISTS '{{ proxysql_mp_monitor_user }}'@'%'
+        IDENTIFIED BY '{{ proxysql_mp_monitor_password }}';
+        GRANT USAGE, REPLICATION CLIENT ON *.* TO '{{ proxysql_mp_monitor_user }}'@'%';
+        GRANT SELECT ON performance_schema.* TO '{{ proxysql_mp_monitor_user }}'@'%';
+        CREATE USER IF NOT EXISTS '{{ proxysql_mp_app_user }}'@'%'
+        IDENTIFIED BY '{{ proxysql_mp_app_password }}';
+        CREATE DATABASE IF NOT EXISTS {{ proxysql_mp_app_database }};
+        GRANT ALL ON {{ proxysql_mp_app_database }}.* TO '{{ proxysql_mp_app_user }}'@'%';
+    env:
+      MYSQL_PWD: "{{ proxysql_mp_root_password }}"
+  when: proxysql_mp_account_count.stdout | trim | int < 2
+  no_log: true
+
+- name: Create the config directory
+  ansible.builtin.file:
+    path: "{{ proxysql_mp_config_dir }}"
+    state: directory
+    mode: "0755"
+
+# ProxySQL persists its configuration to its own database and ignores this file
+# on later starts. The container is therefore started with --initial so the file
+# is the single source of truth and every run converges on it.
+- name: Write the ProxySQL configuration
+  ansible.builtin.copy:
+    dest: "{{ proxysql_mp_config_dir }}/proxysql.cnf"
+    mode: "0644"
+    content: |
+      datadir="/var/lib/proxysql"
+
+      admin_variables=
+      {
+        # The admin account is refused from anywhere but the container itself.
+        # radmin is the one that answers over the network.
+        admin_credentials="admin:admin;radmin:{{ proxysql_mp_admin_password }}"
+        mysql_ifaces="0.0.0.0:6032"
+      }
+
+      mysql_variables=
+      {
+        threads=2
+        max_connections=2048
+        interfaces="0.0.0.0:6033"
+        default_schema="information_schema"
+        server_version="8.4.11"
+        monitor_username="{{ proxysql_mp_monitor_user }}"
+        monitor_password="{{ proxysql_mp_monitor_password }}"
+        monitor_connect_interval=2000
+        monitor_ping_interval=2000
+        monitor_read_only_interval=1500
+        monitor_read_only_timeout=500
+        connect_timeout_server=3000
+        connect_retries_on_failure=10
+      }
+
+      # Every member starts in the writer hostgroup and every member stays
+      # there because max_writers matches the group size.
+      mysql_servers=
+      (
+      {% for node in proxysql_mp_nodes %}
+        { address="{{ node.name }}", port=3306, hostgroup=10, max_connections=100 }{{ "," if not loop.last }}
+      {% endfor %}
+      )
+
+      mysql_group_replication_hostgroups=
+      (
+        {
+          writer_hostgroup=10
+          backup_writer_hostgroup=12
+          reader_hostgroup=11
+          offline_hostgroup=13
+          active=1
+          max_writers=3
+          writer_is_also_reader=1
+          max_transactions_behind=100
+        }
+      )
+
+      mysql_users=
+      (
+        { username="{{ proxysql_mp_app_user }}", password="{{ proxysql_mp_app_password }}", default_hostgroup=10, transaction_persistent=1, active=1 }
+      )
+
+      # No read and write split. Every statement goes to hostgroup 10 which
+      # holds all three members so reads and writes both spread across them.
+  register: proxysql_mp_config
+
+- name: Start the ProxySQL container
+  community.docker.docker_container:
+    name: "{{ proxysql_mp_name }}"
+    image: "{{ proxysql_mp_image }}"
+    state: started
+    restart: "{{ proxysql_mp_config is changed }}"
+    restart_policy: unless-stopped
+    hostname: "{{ proxysql_mp_name }}"
+    networks:
+      - name: "{{ proxysql_mp_network }}"
+    networks_cli_compatible: true
+    ports:
+      - "127.0.0.1:{{ proxysql_mp_client_port }}:6033"
+      - "127.0.0.1:{{ proxysql_mp_admin_port }}:6032"
+    volumes:
+      - "{{ proxysql_mp_config_dir }}/proxysql.cnf:/etc/proxysql.cnf:ro"
+    # ProxySQL warns loudly when it inherits the default file descriptor limit.
+    ulimits:
+      - "nofile:102400:102400"
+    command:
+      - proxysql
+      - --foreground
+      - --idle-threads
+      - --config
+      - /etc/proxysql.cnf
+      - --initial
+
+- name: Wait for ProxySQL to place every member in a hostgroup
+  community.docker.docker_container_exec:
+    container: "{{ proxysql_mp_nodes | map(attribute='name') | first }}"
+    argv:
+      - mysql
+      - -h
+      - "{{ proxysql_mp_name }}"
+      - -P
+      - "6032"
+      - -u
+      - radmin
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT COUNT(*) FROM runtime_mysql_servers WHERE hostgroup_id = 10 AND status = 'ONLINE'"
+    env:
+      MYSQL_PWD: "{{ proxysql_mp_admin_password }}"
+  register: proxysql_mp_writers
+  changed_when: false
+  until: proxysql_mp_writers.stdout | trim | int == proxysql_mp_nodes | length
+  retries: 18
+  delay: 5
+
+- name: Read the routing table
+  community.docker.docker_container_exec:
+    container: "{{ proxysql_mp_nodes | map(attribute='name') | first }}"
+    argv:
+      - mysql
+      - -h
+      - "{{ proxysql_mp_name }}"
+      - -P
+      - "6032"
+      - -u
+      - radmin
+      - --table
+      - -e
+      - >-
+        SELECT hostgroup_id, hostname, status FROM runtime_mysql_servers
+        ORDER BY hostgroup_id, hostname
+    env:
+      MYSQL_PWD: "{{ proxysql_mp_admin_password }}"
+  register: proxysql_mp_routing
+  changed_when: false
+
+- name: Report the router state
+  ansible.builtin.debug:
+    msg: "{{ [proxysql_mp_summary] + proxysql_mp_routing.stdout.split('\n') }}"
+  vars:
+    proxysql_mp_summary: >-
+      Design E. Clients use 127.0.0.1:{{ proxysql_mp_client_port }} as
+      {{ proxysql_mp_app_user }} against the {{ proxysql_mp_app_database }} schema.
+      The ProxySQL admin is on 127.0.0.1:{{ proxysql_mp_admin_port }} as radmin.
+      Writes spread across all three members and a dead member is shunned.

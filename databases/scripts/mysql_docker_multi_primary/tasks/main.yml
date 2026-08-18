@@ -1,0 +1,200 @@
+---
+# Design C: Group Replication with every member writable.
+# Three members form a group and agree writes by consensus.
+# Two of three is a quorum so the group survives losing one member.
+# Every member accepts writes so there is no write bottleneck and no election
+# delay. Two members writing the same row are settled by certification and the
+# loser is rolled back at commit time.
+#
+# Terms used here:
+#   member        a mysqld instance that belongs to the group
+#   primary       a member that accepts writes. Here that is all of them
+#   quorum        the majority of members needed to agree a write
+#   certification the conflict check that decides which of two competing writes survives
+
+- name: Define the multi primary settings
+  ansible.builtin.set_fact:
+    mysql_mp_image: "{{ mysql_mp_image | default('mysql:8.4') }}"
+    mysql_mp_network: "{{ mysql_mp_network | default('mysql-mp') }}"
+    mysql_mp_group_name: "{{ mysql_mp_group_name | default('22222222-2222-2222-2222-222222222222') }}"
+    mysql_mp_root_password: "{{ mysql_mp_root_password | default('password') }}"
+    mysql_mp_recovery_user: "{{ mysql_mp_recovery_user | default('repl') }}"
+    mysql_mp_recovery_password: "{{ mysql_mp_recovery_password | default('replication') }}"
+    mysql_mp_reset_local_gtids: "{{ mysql_mp_reset_local_gtids | default(true) | bool }}"
+    mysql_mp_nodes: "{{ mysql_mp_nodes | default(mysql_mp_default_nodes) }}"
+  vars:
+    mysql_mp_default_nodes:
+      - name: mysql-mp-1
+        server_id: 1
+        host_port: 3326
+      - name: mysql-mp-2
+        server_id: 2
+        host_port: 3327
+      - name: mysql-mp-3
+        server_id: 3
+        host_port: 3328
+
+- name: Define the group seeds
+  ansible.builtin.set_fact:
+    mysql_mp_seeds: "{{ mysql_mp_nodes | map(attribute='name') | product([':33061']) | map('join') | join(',') }}"
+
+- name: Create the group network
+  community.docker.docker_network:
+    name: "{{ mysql_mp_network }}"
+    driver: bridge
+    state: present
+
+- name: Create a data volume per member
+  community.docker.docker_volume:
+    name: "{{ item.name }}-data"
+    state: present
+  loop: "{{ mysql_mp_nodes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Start a MySQL container per member
+  community.docker.docker_container:
+    name: "{{ item.name }}"
+    image: "{{ mysql_mp_image }}"
+    state: started
+    restart_policy: unless-stopped
+    hostname: "{{ item.name }}"
+    networks:
+      - name: "{{ mysql_mp_network }}"
+    networks_cli_compatible: true
+    ports:
+      # Publish container port 3306 as the host port for this member
+      - "{{ item.host_port }}:3306"
+    volumes:
+      - "{{ item.name }}-data:/var/lib/mysql"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ mysql_mp_root_password }}"
+    command:
+      - "--server-id={{ item.server_id }}"
+      - "--report-host={{ item.name }}"
+      - "--report-port=3306"
+      - "--log-bin=binlog"
+      - "--log-replica-updates=ON"
+      - "--gtid-mode=ON"
+      - "--enforce-gtid-consistency=ON"
+      - "--relay-log=relaylog"
+      - "--plugin-load-add=group_replication.so"
+      # The loose prefix keeps mysqld from refusing to start before the plugin loads
+      - "--loose-group-replication-group-name={{ mysql_mp_group_name }}"
+      - "--loose-group-replication-local-address={{ item.name }}:33061"
+      - "--loose-group-replication-group-seeds={{ mysql_mp_seeds }}"
+      - "--loose-group-replication-start-on-boot=OFF"
+      - "--loose-group-replication-bootstrap-group=OFF"
+      - "--loose-group-replication-recovery-get-public-key=ON"
+      - "--loose-group-replication-exit-state-action=READ_ONLY"
+      # This pair is what makes the design multi primary. Every member is
+      # writable and update everywhere checks reject statements that cannot be
+      # certified safely across members.
+      - "--loose-group-replication-single-primary-mode=OFF"
+      - "--loose-group-replication-enforce-update-everywhere-checks=ON"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mysqladmin ping -h 127.0.0.1 -uroot -p"$MYSQL_ROOT_PASSWORD" --silent
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+  loop: "{{ mysql_mp_nodes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Wait for each member to report healthy
+  community.docker.docker_container_info:
+    name: "{{ item.name }}"
+  register: mysql_mp_health
+  until: mysql_mp_health.container.State.Health.Status | default('starting') == 'healthy'
+  retries: 30
+  delay: 5
+  loop: "{{ mysql_mp_nodes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Prepare each member for the group
+  ansible.builtin.include_tasks: prepare_member.yml
+  loop: "{{ mysql_mp_nodes }}"
+  loop_control:
+    loop_var: member
+    label: "{{ member.name }}"
+
+- name: Read the group view from each member
+  community.docker.docker_container_exec:
+    container: "{{ item.name }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - >-
+        SELECT COUNT(*) FROM performance_schema.replication_group_members
+        WHERE member_state = 'ONLINE'
+    env:
+      MYSQL_PWD: "{{ mysql_mp_root_password }}"
+  register: mysql_mp_views
+  changed_when: false
+  loop: "{{ mysql_mp_nodes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Decide whether the group needs bootstrapping
+  ansible.builtin.set_fact:
+    # Bootstrap only when no member anywhere reports an online peer.
+    # Bootstrapping a live group would split the brain.
+    mysql_mp_needs_bootstrap: >-
+      {{ mysql_mp_views.results | map(attribute='stdout') | map('trim') | map('int') | sum == 0 }}
+
+- name: Bootstrap the group on the first member
+  community.docker.docker_container_exec:
+    container: "{{ mysql_mp_nodes | map(attribute='name') | first }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        SET GLOBAL group_replication_bootstrap_group = ON;
+        START GROUP_REPLICATION;
+        SET GLOBAL group_replication_bootstrap_group = OFF;
+    env:
+      MYSQL_PWD: "{{ mysql_mp_root_password }}"
+  when: mysql_mp_needs_bootstrap | bool
+
+- name: Join every member that is not already online
+  ansible.builtin.include_tasks: join_member.yml
+  loop: "{{ mysql_mp_nodes }}"
+  loop_control:
+    loop_var: member
+    label: "{{ member.name }}"
+
+- name: Read the final group membership
+  community.docker.docker_container_exec:
+    container: "{{ mysql_mp_nodes | map(attribute='name') | first }}"
+    argv:
+      - mysql
+      - -uroot
+      - --table
+      - -e
+      - >-
+        SELECT member_host, member_port, member_state, member_role
+        FROM performance_schema.replication_group_members ORDER BY member_host
+    env:
+      MYSQL_PWD: "{{ mysql_mp_root_password }}"
+  register: mysql_mp_membership
+  changed_when: false
+  until: mysql_mp_membership.stdout | regex_findall('ONLINE') | length == mysql_mp_nodes | length
+  retries: 24
+  delay: 5
+
+- name: Report the group state
+  ansible.builtin.debug:
+    msg: "{{ [mysql_mp_summary] + mysql_mp_membership.stdout.split('\n') }}"
+  vars:
+    mysql_mp_summary: >-
+      Design C multi primary on network {{ mysql_mp_network }} with host ports
+      {{ mysql_mp_nodes | map(attribute='host_port') | join(' ') }}.
+      Every member accepts writes and conflicts are settled by certification.

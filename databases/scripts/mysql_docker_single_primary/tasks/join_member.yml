@@ -16,8 +16,8 @@
         SELECT member_state FROM performance_schema.replication_group_members
         WHERE member_id = @@server_uuid
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  register: mysql_group_member_state
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  register: mysql_sp_member_state
   changed_when: false
 
 - name: Join {{ member.name }} to the group
@@ -29,9 +29,9 @@
       - -e
       - "START GROUP_REPLICATION;"
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
   # RECOVERING means the plugin is already running and fetching what it missed.
-  when: mysql_group_member_state.stdout | trim not in ['ONLINE', 'RECOVERING']
+  when: mysql_sp_member_state.stdout | trim not in ['ONLINE', 'RECOVERING']
 
 - name: Wait for {{ member.name }} to finish recovery
   community.docker.docker_container_exec:
@@ -46,9 +46,9 @@
         SELECT member_state FROM performance_schema.replication_group_members
         WHERE member_id = @@server_uuid
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  register: mysql_group_member_check
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  register: mysql_sp_member_check
   changed_when: false
-  until: mysql_group_member_check.stdout | trim == 'ONLINE'
+  until: mysql_sp_member_check.stdout | trim == 'ONLINE'
   retries: 24
   delay: 5

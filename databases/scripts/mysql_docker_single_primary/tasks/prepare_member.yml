@@ -1,7 +1,6 @@
 ---
-# Give one member the account that distributed recovery uses to fetch missing
-# transactions from a donor. Written with sql_log_bin off so the account stays
-# local to this member and never enters the group's transaction history.
+# Prepare one member before it joins the group.
+# Included once per member.
 
 - name: Check for the recovery account on {{ member.name }}
   community.docker.docker_container_exec:
@@ -12,12 +11,14 @@
       - --skip-column-names
       - --batch
       - -e
-      - "SELECT COUNT(*) FROM mysql.user WHERE user = '{{ mysql_group_recovery_user }}'"
+      - "SELECT COUNT(*) FROM mysql.user WHERE user = '{{ mysql_sp_recovery_user }}'"
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  register: mysql_group_account_count
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  register: mysql_sp_account_count
   changed_when: false
 
+# Written with sql_log_bin off so the account stays local to this member and
+# never enters the group's transaction history.
 - name: Create the recovery account on {{ member.name }}
   community.docker.docker_container_exec:
     container: "{{ member.name }}"
@@ -27,16 +28,16 @@
       - -e
       - >-
         SET SESSION sql_log_bin = 0;
-        CREATE USER '{{ mysql_group_recovery_user }}'@'%'
-        IDENTIFIED BY '{{ mysql_group_recovery_password }}';
-        GRANT REPLICATION SLAVE ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
-        GRANT CONNECTION_ADMIN ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
-        GRANT BACKUP_ADMIN ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
-        GRANT GROUP_REPLICATION_STREAM ON *.* TO '{{ mysql_group_recovery_user }}'@'%';
+        CREATE USER '{{ mysql_sp_recovery_user }}'@'%'
+        IDENTIFIED BY '{{ mysql_sp_recovery_password }}';
+        GRANT REPLICATION SLAVE ON *.* TO '{{ mysql_sp_recovery_user }}'@'%';
+        GRANT CONNECTION_ADMIN ON *.* TO '{{ mysql_sp_recovery_user }}'@'%';
+        GRANT BACKUP_ADMIN ON *.* TO '{{ mysql_sp_recovery_user }}'@'%';
+        GRANT GROUP_REPLICATION_STREAM ON *.* TO '{{ mysql_sp_recovery_user }}'@'%';
         SET SESSION sql_log_bin = 1;
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  when: mysql_group_account_count.stdout | trim | int == 0
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  when: mysql_sp_account_count.stdout | trim | int == 0
   no_log: true
 
 - name: Set the recovery credentials on {{ member.name }}
@@ -48,12 +49,12 @@
       - -e
       - >-
         CHANGE REPLICATION SOURCE TO
-        SOURCE_USER = '{{ mysql_group_recovery_user }}',
-        SOURCE_PASSWORD = '{{ mysql_group_recovery_password }}'
+        SOURCE_USER = '{{ mysql_sp_recovery_user }}',
+        SOURCE_PASSWORD = '{{ mysql_sp_recovery_password }}'
         FOR CHANNEL 'group_replication_recovery';
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  when: mysql_group_account_count.stdout | trim | int == 0
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  when: mysql_sp_account_count.stdout | trim | int == 0
   no_log: true
 
 # The image entrypoint loads the timezone tables during initialisation and those
@@ -74,8 +75,8 @@
         SELECT COUNT(*) FROM performance_schema.replication_group_members
         WHERE member_id = @@server_uuid AND member_state = 'ONLINE'
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  register: mysql_group_member_online
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  register: mysql_sp_member_online
   changed_when: false
 
 - name: Read the transaction history of {{ member.name }}
@@ -89,8 +90,8 @@
       - -e
       - "SELECT @@gtid_executed"
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
-  register: mysql_group_member_gtids
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
+  register: mysql_sp_member_gtids
   changed_when: false
 
 - name: Clear the local transaction history on {{ member.name }}
@@ -102,10 +103,10 @@
       - -e
       - "RESET BINARY LOGS AND GTIDS"
     env:
-      MYSQL_PWD: "{{ mysql_group_root_password }}"
+      MYSQL_PWD: "{{ mysql_sp_root_password }}"
   when:
     # Never touch a member that is serving the group or that already carries
     # transactions stamped with the group name.
-    - mysql_group_reset_local_gtids | bool
-    - mysql_group_member_online.stdout | trim | int == 0
-    - mysql_group_name not in mysql_group_member_gtids.stdout
+    - mysql_sp_reset_local_gtids | bool
+    - mysql_sp_member_online.stdout | trim | int == 0
+    - mysql_sp_group_name not in mysql_sp_member_gtids.stdout
