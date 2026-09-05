@@ -1,0 +1,29 @@
+{
+  "name": "@timesheets/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite-node --watch src/local.ts",
+    "start": "vite-node src/local.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "bundle": "node build.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.712.0",
+    "@aws-sdk/util-dynamodb": "^3.712.0",
+    "@timesheets/core": "workspace:*",
+    "@timesheets/xlsm-writer": "workspace:*"
+  },
+  "devDependencies": {
+    "@timesheets/fixtures": "workspace:*",
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.3",
+    "vite-node": "^3.2.4",
+    "vitest": "^3.2.4",
+    "fflate": "^0.8.2"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "source": {
+    "workbook": "Kennedy.Alexander_2026_08_projecttracker_DE.xlsm",
+    "projectListUpdated": "last update: 27.08.2026",
+    "projectListFile": "4flow_Projectnumbers.xlsm",
+    "projectListPath": "X:\\finance\\Projektnummernliste"
+  },
+  "specifications": {
+    "spec_4flow_na": [
+      "4c_Business consulting",
+      "4c_Digital consulting",
+      "4c_Logistics Enginnering",
+      "4c_SAP Implementation",
+      "4c_iSCM",
+      "4c_Intralogistics and Production",
+      "4c_strategy",
+      "4c_IT Strategy",
+      "4c_Transport and Network",
+      "4c_Kinaxis",
+      "4c_Data Science",
+      "4c_Sustainability",
+      "4r_Funding",
+      "4s_Change request",
+      "4s_Customer project",
+      "4s_Running fees",
+      "4s_Overheads_Concept & development",
+      "4s_Overheads_Product operations",
+      "4s_Overheads_Sales & marketing",
+      "4s_Overheads_Communities of practice",
+      "4s_Overheads_Educational training",
+      "4s_Overheads_People management",
+      "4s_Overheads_Recruiting",
+      "4s_Overheads_Organizational meetings",
+      "4s_Overheads_General administration",
+      "4s_Overheads_Corporate engagement",
+      "4s_Overheads_Other",
+      "4s_Overheads_Absence"
+    ],
+    "spec_consulting_cc": [
+      "4c_Business consulting",
+      "4c_Digital consulting",
+      "4c_Logistics Enginnering",
+      "4c_SAP Implementation",
+      "4c_iSCM",
+      "4c_Intralogistics and Production",
+      "4c_strategy",
+      "4c_IT Strategy",
+      "4c_Transport and Network",
+      "4c_Kinaxis",
+      "4c_Data Science",
+      "4c_Sustainability",
+      "Overheads"
+    ],
+    "spec_consulting_proj": [
+      "4c_Business consulting",
+      "4c_Digital consulting",
+      "4c_Logistics Enginnering",
+      "4c_SAP Implementation",
+      "4c_iSCM",
+      "4c_Intralogistics and Production",
+      "4c_strategy",
+      "4c_IT Strategy",
+      "4c_Transport and Network",
+      "4c_Kinaxis",
+      "4c_Data Science",
+      "4c_Sustainability"
+    ],
+    "spec_management_cc": [
+      "4m_Account Management",
+      "4m_Business development",
+      "4m_Execution",
+      "4m_IT",
+      "4m_Launch",
+      "4m_Planning",
+      "4m_Quality",
+      "4m_Running",
+      "4m_Invest",
+      "Overheads"
+    ],
+    "spec_management_proj": [
+      "4m_Account Management",
+      "4m_Business development",
+      "4m_Execution",
+      "4m_IT",
+      "4m_Launch",
+      "4m_Planning",
+      "4m_Quality",
+      "4m_Running",
+      "4m_Invest"
+    ],
+    "spec_overhead_na": [
+      "4s_Overheads_Absence"
+    ],
+    "spec_research_cc": [
+      "4c_Business consulting",
+      "4c_Digital consulting",
+      "4c_Logistics Enginnering",
+      "4c_SAP Implementation",
+      "4c_iSCM",
+      "4c_Intralogistics and Production",
+      "4c_strategy",
+      "4c_IT Strategy",
+      "4c_Transport and Network",
+      "4c_Kinaxis",
+      "4c_Data Science",
+      "4c_Sustainability",
+      "Overheads"
+    ],
+    "spec_research_proj": [
+      "4c_Business consulting",
+      "4c_Digital consulting",
+      "4c_Logistics Enginnering",
+      "4c_SAP Implementation",
+      "4c_iSCM",
+      "4c_Intralogistics and Production",
+      "4c_strategy",
+      "4c_IT Strategy",
+      "4c_Transport and Network",
+      "4c_Kinaxis",
+      "4c_Data Science",
+      "4c_Sustainability",
+      "4r_Funding",
+      "4s_Change request",
+      "4s_Customer project",
+      "4s_Running fees",
+      "4s_Overheads_Concept & development",
+      "4s_Overheads_Product operations",
+      "4s_Overheads_Sales & marketing",
+      "4s_Overheads_Communities of practice",
+      "4s_Overheads_Educational training",
+      "4s_Overheads_People management",
+      "4s_Overheads_Recruiting",
+      "4s_Overheads_Organizational meetings",
+      "4s_Overheads_General administration",
+      "4s_Overheads_Corporate engagement",
+      "4s_Overheads_Other",
+      "4s_Overheads_Absence"
+    ],
+    "spec_software_cc": [
+      "4s_Overheads_Concept & development",
+      "4s_Overheads_Product operations",
+      "4s_Overheads_Sales & marketing",
+      "4s_Overheads_Communities of practice",
+      "4s_Overheads_Educational training",
+      "4s_Overheads_People management",
+      "4s_Overheads_Recruiting",
+      "4s_Overheads_Organizational meetings",
+      "4s_Overheads_General administration",
+      "4s_Overheads_Corporate engagement",
+      "4s_Overheads_Other",
+      "4s_Overheads_Absence"
+    ],
+    "spec_software_proj": [
+      "4s_Change request",
+      "4s_Customer project",
+      "4s_Running fees"
+    ]
+  },
+  "brokenSpecRanges": [
+    {
+      "name": "spec_4flow_cc",
+      "formula": "parameters!#REF!"
+    },
+    {
+      "name": "spec_CorporateServices_cc",
+      "formula": "parameters!#REF!"
+    }
+  ]
+}

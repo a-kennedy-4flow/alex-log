@@ -1,0 +1,159 @@
+/*
+ * Brand palette. Orange and white and dark blue.
+ *
+ * Orange carries accents and never small text. Because a) white on this orange
+ * reaches only about 3.6 to 1. b) body text needs 4.5 to 1. c) navy on white
+ * clears 13 to 1 so it carries the reading load.
+ */
+
+:root {
+  --orange: #e8620c;
+  --orange-dark: #c04f08;
+  --orange-tint: #fdf1e7;
+  --orange-line: #f6c9a4;
+
+  --navy: #0b2545;
+  --navy-mid: #1d3f6b;
+  --navy-soft: #5a7196;
+  --navy-tint: #eef2f7;
+  --navy-line: #ccd7e5;
+
+  --white: #ffffff;
+  --paper: #f7f9fc;
+
+  --error: #b3261e;
+  --error-tint: #fdecea;
+  --warn: #8a5a00;
+  --warn-tint: #fff6e0;
+  --ok: #1a6b3c;
+  --ok-tint: #eaf6ee;
+
+  --radius: 6px;
+  --radius-lg: 10px;
+  --gap: 12px;
+  --shadow: 0 1px 2px rgb(11 37 69 / 8%), 0 4px 12px rgb(11 37 69 / 6%);
+
+  --font: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--navy);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.4em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+a {
+  color: var(--navy-mid);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--white);
+  border: 1px solid var(--navy-line);
+  border-radius: var(--radius);
+  padding: 5px 7px;
+  width: 100%;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 1px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--navy-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.btn {
+  border: 1px solid var(--navy-line);
+  background: var(--white);
+  color: var(--navy);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--navy-soft);
+}
+
+.btn-primary {
+  background: var(--orange);
+  border-color: var(--orange-dark);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--orange-dark);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--navy-soft);
+}
+
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

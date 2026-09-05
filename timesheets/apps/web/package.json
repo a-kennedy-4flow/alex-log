@@ -1,0 +1,33 @@
+{
+  "name": "@timesheets/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@tanstack/vue-query": "^5.102.8",
+    "@tanstack/vue-router": "^1.170.29",
+    "@tanstack/vue-table": "^8.21.3",
+    "vue": "^3.5.22",
+    "vue-i18n": "^11.4.10",
+    "@timesheets/core": "workspace:*",
+    "@timesheets/fixtures": "workspace:*",
+    "@timesheets/workbook-reader": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.7",
+    "vue-tsc": "^3.1.1",
+    "vitest": "^3.2.4",
+    "jsdom": "^26.1.0",
+    "@vue/test-utils": "^2.4.6"
+  }
+}

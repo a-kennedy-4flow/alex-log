@@ -1,0 +1,11 @@
+packages:
+  - apps/*
+  - packages/*
+  - tools/*
+  - infra
+
+# esbuild fetches its platform binary in a postinstall step. vue-demi picks the
+# Vue 2 or Vue 3 entry point in one. Both are required.
+allowBuilds:
+  esbuild: true
+  vue-demi: true

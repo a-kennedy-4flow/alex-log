@@ -1,0 +1,208 @@
+{
+  "source": {
+    "workbook": "Kennedy.Alexander_2026_08_projecttracker_DE.xlsm",
+    "projectListUpdated": "last update: 27.08.2026",
+    "projectListFile": "4flow_Projectnumbers.xlsm",
+    "projectListPath": "X:\\finance\\Projektnummernliste"
+  },
+  "entities": [
+    {
+      "country": "Group",
+      "entity": "00_Group"
+    },
+    {
+      "country": "Germany",
+      "entity": "01_AG"
+    },
+    {
+      "country": "Germany",
+      "entity": "02_GmbH"
+    },
+    {
+      "country": "Belgium",
+      "entity": "03_BVBA"
+    },
+    {
+      "country": null,
+      "entity": "04_HK"
+    },
+    {
+      "country": "China",
+      "entity": "05_SHG"
+    },
+    {
+      "country": "USA",
+      "entity": "07_Inc"
+    },
+    {
+      "country": "Hungary",
+      "entity": "08_Kft"
+    },
+    {
+      "country": "Brazil",
+      "entity": "09_Ltda"
+    },
+    {
+      "country": null,
+      "entity": "99_Several entities"
+    },
+    {
+      "country": "Czech Republic",
+      "entity": "02_GmbH"
+    },
+    {
+      "country": "Austria",
+      "entity": "10_Austria"
+    },
+    {
+      "country": "France",
+      "entity": "11_SAS"
+    },
+    {
+      "country": null,
+      "entity": "12_Control Tower GmbH"
+    },
+    {
+      "country": "Spain",
+      "entity": "13_Spain"
+    },
+    {
+      "country": "India",
+      "entity": "17_India"
+    }
+  ],
+  "locations": [
+    {
+      "code": "01_DE_Berlin",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Berlin"
+    },
+    {
+      "code": "01_DE_Duesseldorf",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Duesseldorf"
+    },
+    {
+      "code": "01_DE_Hamburg",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Hamburg"
+    },
+    {
+      "code": "01_DE_Munich",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Munich"
+    },
+    {
+      "code": "01_DE_Ruesselsheim / Bad Nauheim",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Ruesselsheim / Bad Nauheim"
+    },
+    {
+      "code": "01_DE_Stuttgart / Heidelberg",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Stuttgart / Heidelberg"
+    },
+    {
+      "code": "01_DE_Eisenach",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Eisenach"
+    },
+    {
+      "code": "01_DE_Dresden",
+      "entityNo": "01",
+      "countryCode": "DE",
+      "city": "Dresden"
+    },
+    {
+      "code": "02_CZ_Pilsen",
+      "entityNo": "02",
+      "countryCode": "CZ",
+      "city": "Pilsen"
+    },
+    {
+      "code": "04_BE_Westerlo",
+      "entityNo": "04",
+      "countryCode": "BE",
+      "city": "Westerlo"
+    },
+    {
+      "code": "05_CN_Shanghai / Changzhou / Beijing",
+      "entityNo": "05",
+      "countryCode": "CN",
+      "city": "Shanghai / Changzhou / Beijing"
+    },
+    {
+      "code": "07_US_Detroit / Atlanta",
+      "entityNo": "07",
+      "countryCode": "US",
+      "city": "Detroit / Atlanta"
+    },
+    {
+      "code": "08_HU_Budapest / Szentgotthárd",
+      "entityNo": "08",
+      "countryCode": "HU",
+      "city": "Budapest / Szentgotthárd"
+    },
+    {
+      "code": "09_BR_Campinas / Sao Paulo",
+      "entityNo": "09",
+      "countryCode": "BR",
+      "city": "Campinas / Sao Paulo"
+    },
+    {
+      "code": "10_AT_Vienna",
+      "entityNo": "10",
+      "countryCode": "AT",
+      "city": "Vienna"
+    },
+    {
+      "code": "11_FR_Paris / France other locations",
+      "entityNo": "11",
+      "countryCode": "FR",
+      "city": "Paris / France other locations"
+    },
+    {
+      "code": "11_FR_Metz / Mulhouse",
+      "entityNo": "11",
+      "countryCode": "FR",
+      "city": "Metz / Mulhouse"
+    },
+    {
+      "code": "13_ES_Zaragoza / Figueruelas",
+      "entityNo": "13",
+      "countryCode": "ES",
+      "city": "Zaragoza / Figueruelas"
+    },
+    {
+      "code": "13_ES_Vigo",
+      "entityNo": "13",
+      "countryCode": "ES",
+      "city": "Vigo"
+    },
+    {
+      "code": "13_ES_Madrid",
+      "entityNo": "13",
+      "countryCode": "ES",
+      "city": "Madrid"
+    },
+    {
+      "code": "13_ES_Barcelona",
+      "entityNo": "13",
+      "countryCode": "ES",
+      "city": "Barcelona"
+    },
+    {
+      "code": "17_IN_Bangalore",
+      "entityNo": "17",
+      "countryCode": "IN",
+      "city": "Bangalore"
+    }
+  ]
+}

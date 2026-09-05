@@ -1,0 +1,435 @@
+{
+  "/Timesheets": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/BackofficeGroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BackofficeGroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:71:5)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/ApiUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:180:5)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/SiteUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SiteUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:181:5)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/UserPoolId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:182:5)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/UserPoolClientId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolClientId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:183:5)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/TableName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TableName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:184:5)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "....pnpm...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/Timesheets/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "....pnpm...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/Timesheets/Table/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TableCD117FA1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Table2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:44:19)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/UserPool/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPool6BA7E5F2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new UserPool2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:57:22)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/ApiLogs/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiLogs3D05D88B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new LogGroup2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:114:17)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/ApiFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiFunctionCE271BD4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:104:21)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiF5A9A8A7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new HttpApi2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:121:17)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/SiteBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SiteBucket397A1860"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:160:24)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/Site/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SiteE53D7754"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:167:26)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "....pnpm, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/Timesheets/UserPool/WebClient/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolWebClient4C9370B0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addClient in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:78:29)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/UserPool/Domain/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolDomainD0EA232A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addDomain in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:90:14)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/ApiFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiFunctionServiceRole52B9747B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:104:21)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/DefaultStage/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiDefaultStage3EEB07D6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new HttpApi2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:121:17)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/ANY--api--{proxy+}/ApiIntegration-Permission": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiANYapiproxyApiIntegrationPermission37A64BBC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../home/alex/repos/alex-log/timesheets/node_modules/.pnpm/aws-cdk-lib@2.267.0_constructs@10.8.1/node_modules/aws-cdk-lib/aws-apigatewayv2/lib/http/api.js:1:96 in .pnpm...",
+        "Array.map (:)",
+        "...WrappedClass.<anonymous> in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:144:9)"
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/ANY--api--{proxy+}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiANYapiproxy20978A2B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../home/alex/repos/alex-log/timesheets/node_modules/.pnpm/aws-cdk-lib@2.267.0_constructs@10.8.1/node_modules/aws-cdk-lib/aws-apigatewayv2/lib/http/api.js:1:96 in .pnpm...",
+        "Array.map (:)",
+        "...WrappedClass.<anonymous> in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:144:9)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/CognitoAuthorizer/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiCognitoAuthorizer935FA0F6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../home/alex/repos/alex-log/timesheets/node_modules/.pnpm/aws-cdk-lib@2.267.0_constructs@10.8.1/node_modules/aws-cdk-lib/aws-apigatewayv2/lib/http/api.js:1:96 in .pnpm...",
+        "Array.map (:)",
+        "...WrappedClass.<anonymous> in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:144:9)"
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/GET--api--health/ApiIntegration-Permission": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiGETapihealthApiIntegrationPermissionEB51FC48"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../home/alex/repos/alex-log/timesheets/node_modules/.pnpm/aws-cdk-lib@2.267.0_constructs@10.8.1/node_modules/aws-cdk-lib/aws-apigatewayv2/lib/http/api.js:1:96 in .pnpm...",
+        "Array.map (:)",
+        "...WrappedClass.<anonymous> in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:152:9)"
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/GET--api--health/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiGETapihealth7FA5887F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../home/alex/repos/alex-log/timesheets/node_modules/.pnpm/aws-cdk-lib@2.267.0_constructs@10.8.1/node_modules/aws-cdk-lib/aws-apigatewayv2/lib/http/api.js:1:96 in .pnpm...",
+        "Array.map (:)",
+        "...WrappedClass.<anonymous> in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:152:9)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/Timesheets/SiteBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SiteBucketPolicy3AC1D0F8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:160:24)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)"
+      ]
+    }
+  ],
+  "/Timesheets/ApiFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiFunctionServiceRoleDefaultPolicy20A32B8D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "....pnpm...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/Timesheets/HttpApi/ANY--api--{proxy+}/ApiIntegration/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HttpApiANYapiproxyApiIntegrationE4FFE0AC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../home/alex/repos/alex-log/timesheets/node_modules/.pnpm/aws-cdk-lib@2.267.0_constructs@10.8.1/node_modules/aws-cdk-lib/aws-apigatewayv2/lib/http/api.js:1:96 in .pnpm...",
+        "Array.map (:)",
+        "...WrappedClass.<anonymous> in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:144:9)"
+      ]
+    }
+  ],
+  "/Timesheets/Site/Origin1/S3OriginAccessControl/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SiteOrigin1S3OriginAccessControl278A1C77"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in .pnpm...",
+        "new TimesheetsStack (/home/alex/repos/alex-log/timesheets/infra/lib/timesheets-stack.ts:167:26)",
+        "<anonymous> (/home/alex/repos/alex-log/timesheets/infra/bin/app.ts:13:1)",
+        "...node internals..."
+      ]
+    }
+  ]
+}

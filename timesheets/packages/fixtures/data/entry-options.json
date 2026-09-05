@@ -1,0 +1,55 @@
+{
+  "source": {
+    "workbook": "Kennedy.Alexander_2026_08_projecttracker_DE.xlsm",
+    "projectListUpdated": "last update: 27.08.2026",
+    "projectListFile": "4flow_Projectnumbers.xlsm",
+    "projectListPath": "X:\\finance\\Projektnummernliste"
+  },
+  "absenceTypes": [
+    {
+      "label": "Vacation or sickness",
+      "projectNo": "99983209",
+      "businessLineKey": "overhead",
+      "objectKey": "na",
+      "specRange": "spec_overhead_na"
+    },
+    {
+      "label": "Other absence",
+      "projectNo": "99983409",
+      "businessLineKey": "overhead",
+      "objectKey": "na",
+      "specRange": "spec_overhead_na"
+    }
+  ],
+  "timeValues": [
+    0.5,
+    1
+  ],
+  "businessLines": [
+    {
+      "name": "consulting",
+      "key": "consulting",
+      "count": 1783
+    },
+    {
+      "name": "software",
+      "key": "software",
+      "count": 706
+    },
+    {
+      "name": "management",
+      "key": "management",
+      "count": 578
+    },
+    {
+      "name": "Corporate Services",
+      "key": "CorporateServices",
+      "count": 44
+    },
+    {
+      "name": "research",
+      "key": "research",
+      "count": 38
+    }
+  ]
+}
