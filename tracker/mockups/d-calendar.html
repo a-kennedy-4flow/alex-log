@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — variant D — Calendar board</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF;
+  --r:16px; --r-sm:10px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:var(--smart-blue);background:var(--warm-grey)}
+button,select{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.area{max-width:1420px;margin:0 auto;padding:0 32px}
+
+/* A brand moment carries the month. The key shape holds the figure. */
+.hero{background:var(--smart-blue);color:var(--white);padding:26px 0 44px;position:relative;overflow:hidden}
+.hero .bar{display:flex;align-items:center;gap:18px;margin-bottom:40px}
+.mark{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.mark em{font-style:normal;color:var(--orange)}
+.hero nav{display:flex;gap:4px;margin-left:10px}
+.hero nav a{text-decoration:none;color:#B7C6D0;padding:9px 16px;border-radius:999px}
+.hero nav a:hover{background:rgb(255 255 255 / 8%);color:var(--white)}
+.hero nav a.on{background:var(--white);color:var(--smart-blue);font-weight:700}
+.hero .who{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:14px;color:#B7C6D0}
+.hero .who button{background:none;border:1px solid rgb(255 255 255 / 25%);color:var(--white);border-radius:999px;padding:7px 15px;cursor:pointer}
+
+.headline{display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
+.headline h1{font-size:60px;margin:0;line-height:.95;letter-spacing:-.02em;font-weight:700}
+.tags{display:flex;gap:8px;padding-bottom:8px}
+.tag{border-radius:999px;padding:7px 17px;font-size:14px;background:rgb(255 255 255 / 12%);color:var(--white)}
+.tag.solid{background:var(--orange);color:var(--smart-blue);font-weight:700}
+/* The figure sits inside the key shape. One rounded corner is squared off. */
+.keyshape{
+  margin-left:auto;background:var(--white);color:var(--smart-blue);
+  border-radius:var(--r) var(--r) var(--r) 0;padding:18px 30px;text-align:right;
+}
+.keyshape .big{font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.keyshape .of{color:var(--grey);font-size:20px}
+.keyshape .lab{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin-bottom:6px}
+.keyshape .track{height:7px;border-radius:999px;background:var(--warm-grey);overflow:hidden;margin-top:10px}
+.keyshape .track i{display:block;height:100%;width:93%;background:var(--orange)}
+
+/* The toolbar rides the boundary between the hero and the board. */
+.tools{
+  background:var(--white);border-radius:var(--r);margin-top:-24px;position:relative;z-index:2;
+  padding:16px 22px;display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;
+}
+.field{display:grid;gap:4px}
+.field span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.field select{background:var(--warm-grey);border:0;border-radius:var(--r-sm);padding:10px 13px;min-width:140px;color:inherit}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto;align-items:center}
+#legend{display:flex;gap:6px;flex-wrap:wrap}
+.legend .lab{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin-right:2px}
+
+/* The board. Seven columns and one cell a day. */
+.board{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin:22px 0 0}
+.board .head{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);padding:0 4px 2px;font-weight:700}
+.cell{
+  background:var(--white);border-radius:var(--r-sm);min-height:112px;padding:10px 11px;
+  display:flex;flex-direction:column;gap:7px;position:relative;
+}
+.cell.blank{background:none}
+.cell.off{background:rgb(255 255 255 / 45%)}
+.cell .top{display:flex;align-items:baseline;gap:7px}
+.cell .d{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.cell.off .d{color:var(--grey)}
+.cell .lab{font-size:11px;color:var(--grey);line-height:1.25}
+.chips{display:grid;gap:5px}
+.chip{
+  display:flex;align-items:center;gap:7px;border-radius:999px;padding:5px 10px;font-size:12px;
+  background:var(--warm-grey);color:var(--smart-blue);
+}
+.chip b{font-weight:700;font-variant-numeric:tabular-nums}
+.chip i{margin-left:auto;font-style:normal;font-weight:700}
+.chip-blue{background:var(--smart-blue);color:var(--white)}
+.chip-bright{background:#E0EFFF}
+.chip-grey{background:var(--warm-grey)}
+.chip-orange{background:#FFE4D9}
+.chip-pink{background:var(--pink)}
+/* A working day with room left says so rather than sitting silent. */
+.cell.free .add{
+  border:1px dashed #C9BFB7;background:none;color:var(--grey);border-radius:var(--r-sm);
+  padding:6px 0;cursor:pointer;font-size:15px;margin-top:auto;
+}
+.cell.free .add:hover{border-color:var(--orange);color:var(--orange)}
+
+.strips{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
+.card{background:var(--white);border-radius:var(--r);padding:22px 24px}
+.card h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin:0 0 14px;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{text-align:left;color:var(--grey);font-weight:400;font-size:13px;padding:0 8px 7px;border-bottom:1px solid rgb(0 126 255 / 20%)}
+td{padding:7px 8px;border-bottom:1px solid rgb(0 126 255 / 20%)}
+tr:last-child td{border-bottom:none}
+.r{text-align:right;font-variant-numeric:tabular-nums}
+tfoot td{border-bottom:none;color:var(--grey)}
+tfoot tr.grand td{font-weight:700;color:var(--smart-blue);border-top:2px solid var(--bright-blue)}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:13px}
+.checks li{display:flex;gap:10px;font-size:14px}
+.checks .badge{flex:none;width:22px;height:22px;border-radius:7px;background:var(--warm-grey);display:grid;place-items:center;font-weight:700;font-size:13px}
+.checks .rows{display:block;color:var(--grey);font-size:13px;margin-top:2px}
+.weeks{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.weeks li{display:flex;align-items:center;gap:11px;font-size:14px}
+.weeks .l{color:var(--grey);width:46px}
+.weeks .bar{flex:1;height:8px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.weeks .bar i{display:block;height:100%;background:var(--bright-blue)}
+.weeks .d{width:30px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.weeks li.none .d{color:#C9BFB7;font-weight:400}
+
+.download{
+  margin-top:16px;background:var(--smart-blue);color:var(--white);border-radius:var(--r);
+  padding:26px 30px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+}
+.download .fn{font-variant-numeric:tabular-nums;font-size:15px}
+.download .fn span{display:block;color:#7E93A1;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.download p{margin:0;color:#B7C6D0;font-size:14px}
+.primary{border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:999px;padding:15px 30px;font-size:16px;cursor:pointer;margin-left:auto}
+.primary:hover{background:#FF6A2E}
+footer{color:var(--grey);font-size:14px;padding:30px 0 60px;max-width:82ch}
+footer b{color:var(--smart-blue)}
+@media (max-width:1100px){.board{grid-template-columns:repeat(2,1fr)}.board .head{display:none}.strips{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#FFFFFF"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#" class="on">Month view</a><a href="#">Quick fill</a><a href="#">My settings</a><a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+    <div class="headline">
+      <h1>May 2026</h1>
+      <div class="tags">
+        <span class="tag">DE_BERLIN</span>
+        <span class="tag">80 per cent</span>
+        <span class="tag solid">1 day to go</span>
+      </div>
+      <div class="keyshape">
+        <span class="lab">Booked</span>
+        <span class="big">13.5</span> <span class="of">/ 14.5</span>
+        <div class="track"><i></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="area">
+  <div class="tools">
+    <label class="field"><span>Year</span><select><option>2026</option></select></label>
+    <label class="field"><span>Month</span><select><option>May</option></select></label>
+    <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+    <label class="field"><span>Language</span><select><option>English</option></select></label>
+    <div class="legend"><span class="lab">Legend</span><span id="legend"></span></div>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <div class="strips">
+    <section class="card">
+      <h2>By calendar week</h2>
+      <ul class="weeks" id="weeks"></ul>
+    </section>
+    <section class="card">
+      <h2>By cost centre</h2>
+      <table>
+        <thead><tr><th>Cost centre</th><th>Customer</th><th class="r">Days</th></tr></thead>
+        <tbody id="byCentre"></tbody>
+        <tfoot>
+          <tr><td colspan="2">Vacation or sickness</td><td class="r">1</td></tr>
+          <tr class="grand"><td colspan="2">Total</td><td class="r">13.5 / 14.5</td></tr>
+        </tfoot>
+      </table>
+    </section>
+    <section class="card">
+      <h2>Checks</h2>
+      <ul class="checks" id="checks"></ul>
+    </section>
+  </div>
+
+  <div class="download">
+    <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+    <p>Download the tracker then email it to software.projecttracker@4flow.com.</p>
+    <button type="button" class="primary">Download the tracker</button>
+  </div>
+
+  <footer>
+    <b>Variant D — Calendar board.</b> The table is gone. A month is a calendar so the month is drawn as one.
+    A free working day shows a dashed control rather than sitting silent. That is where the missing day is found.
+    Each cost centre takes one chip fill. The palette holds five so five is the limit before the chips stop separating.
+    Two chip fills are tints mixed from Bright Blue and Vibrant Orange. The deck forbids inventing a shade. A brand owner has to approve those two.
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+renderCalendar('#board')
+const most = Math.max(...TS.byWeek.map((w) => w.total))
+document.querySelector('#weeks').innerHTML = TS.byWeek
+  .map((w) => `<li class="${w.total ? '' : 'none'}"><span class="l">CW ${w.week}</span><span class="bar"><i style="width:${most ? (w.total / most) * 100 : 0}%"></i></span><span class="d">${w.total || '—'}</span></li>`)
+  .join('')
+document.querySelector('#byCentre').innerHTML = TS.byCentre
+  .map((r) => `<tr><td class="num">${r.id}</td><td>${r.customer}</td><td class="r">${r.days}</td></tr>`)
+  .join('')
+document.querySelector('#checks').innerHTML = TS.checks
+  .map((c) => `<li><span class="badge">?</span><span>${c.text}<span class="rows">${c.rows}</span></span></li>`)
+  .join('')
+document.querySelector('#legend').innerHTML = Object.entries(TS.centres)
+  .map(([id, c]) => `<span class="chip ${CHIP[id]}" title="${c.title}"><b class="num">${id}</b></span>`)
+  .join(' ')
+</script>
+</body>
+</html>

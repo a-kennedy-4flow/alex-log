@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — variant E — Guided split</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF;
+  --r:16px; --r-sm:10px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:var(--smart-blue);background:var(--white)}
+button,select,input{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+/* One column. The month is decided from the top down. */
+.area{max-width:880px;margin:0 auto;padding:0 28px}
+header.top{border-bottom:1px solid var(--warm-grey)}
+header.top .area{display:flex;align-items:center;gap:16px;height:64px}
+.mark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px}
+.mark em{font-style:normal;color:var(--orange)}
+nav{display:flex;gap:2px;margin-left:12px}
+nav a{text-decoration:none;color:var(--smart-blue);padding:8px 13px;border-radius:999px;font-size:14px;white-space:nowrap}
+nav a:hover{background:var(--warm-grey)}
+nav a.on{background:var(--smart-blue);color:var(--white)}
+.who{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--grey);white-space:nowrap}
+.who button{border:1px solid var(--warm-grey);background:var(--white);color:var(--smart-blue);border-radius:999px;padding:7px 15px;cursor:pointer}
+
+.intro{padding:52px 0 10px}
+.intro h1{font-size:44px;margin:0 0 10px;line-height:1.05;letter-spacing:-.01em}
+.intro p{margin:0;color:var(--grey);font-size:19px;max-width:52ch}
+.pills{display:flex;gap:8px;margin-top:20px}
+.pill{border-radius:999px;padding:7px 17px;font-size:14px;background:var(--warm-grey)}
+
+/* Numbered steps. One decision at a time. */
+.step{padding:44px 0;border-top:1px solid var(--warm-grey);margin-top:38px}
+.step .no{
+  display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;
+  background:var(--orange);color:var(--smart-blue);font-weight:700;font-size:18px;margin-bottom:16px;
+}
+.step h2{font-size:27px;margin:0 0 6px;line-height:1.15}
+.step .lede{color:var(--grey);margin:0 0 26px;max-width:58ch}
+
+/* The split. One bar carries the whole month. */
+.split-bar{display:flex;height:52px;border-radius:var(--r-sm);overflow:hidden;margin-bottom:8px}
+.split-bar span{display:grid;place-items:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.s-blue{background:var(--smart-blue);color:var(--white)}
+.s-bright{background:#E0EFFF;color:var(--smart-blue)}
+.s-grey{background:var(--warm-grey);color:var(--smart-blue)}
+.s-orange{background:#FFE4D9;color:var(--smart-blue)}
+.s-pink{background:var(--pink);color:var(--smart-blue)}
+.s-free{background:repeating-linear-gradient(45deg,#FAF7F5,#FAF7F5 6px,#F0EAE5 6px,#F0EAE5 12px);color:var(--grey)}
+.scale{display:flex;justify-content:space-between;color:var(--grey);font-size:13px;margin-bottom:26px}
+
+.rows{display:grid;gap:2px}
+.row{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--warm-grey)}
+.row .swatch{width:14px;height:14px;border-radius:4px;flex:none}
+.row .name{flex:1;min-width:0}
+.row .name b{display:block;font-variant-numeric:tabular-nums}
+.row .name span{color:var(--grey);font-size:14px}
+.stepper{display:flex;align-items:center;gap:0;border:1px solid var(--warm-grey);border-radius:999px;overflow:hidden}
+.stepper button{border:0;background:var(--white);color:var(--smart-blue);width:38px;height:38px;cursor:pointer;font-size:18px}
+.stepper button:hover{background:var(--warm-grey)}
+.stepper .v{width:58px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.row.free{color:var(--grey)}
+.row.free .name b{color:var(--orange)}
+.add{
+  margin-top:18px;border:1px dashed #D8CEC6;background:none;color:var(--smart-blue);
+  border-radius:999px;padding:11px 22px;cursor:pointer;
+}
+.add:hover{border-color:var(--orange);color:var(--orange)}
+
+/* The month is the read back rather than the thing being edited. */
+.mini{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:20px}
+.mini .head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);text-align:center;padding-bottom:2px}
+.mini .cell{
+  aspect-ratio:1;border-radius:var(--r-sm);background:var(--white);padding:6px;
+  box-shadow:inset 0 0 0 1px var(--warm-grey);display:flex;flex-direction:column;gap:3px;
+}
+.mini .cell.blank{background:none;box-shadow:none}
+.mini .cell.off{background:var(--warm-grey);box-shadow:none}
+.mini .cell .d{font-size:12px;font-variant-numeric:tabular-nums;color:var(--grey)}
+.mini .cell.on .d{color:var(--smart-blue);font-weight:700}
+.mini .bars{display:grid;gap:3px;margin-top:auto}
+.mini .bars i{display:block;height:9px;border-radius:999px}
+.mini .cell.gap{background:#FFF1EA;box-shadow:inset 0 0 0 1px var(--orange)}
+.mini .cell.gap .d{color:var(--orange);font-weight:700}
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;color:var(--grey);font-size:14px}
+.legend-row span{display:flex;align-items:center;gap:7px}
+.legend-row i{width:13px;height:13px;border-radius:4px;display:block}
+.open{border:1px solid var(--warm-grey);background:var(--white);color:var(--smart-blue);border-radius:999px;padding:11px 22px;cursor:pointer;margin-top:22px}
+.open:hover{border-color:var(--bright-blue)}
+
+.checks{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:14px}
+.checks li{display:flex;gap:12px}
+.checks .badge{flex:none;width:24px;height:24px;border-radius:8px;background:var(--warm-grey);display:grid;place-items:center;font-weight:700;font-size:13px}
+.checks .rows-note{display:block;color:var(--grey);font-size:14px;margin-top:2px}
+.fn{background:var(--warm-grey);border-radius:var(--r-sm);padding:14px 18px;font-variant-numeric:tabular-nums;font-size:15px;margin-bottom:22px}
+.fn span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin-bottom:4px;font-variant-numeric:normal}
+.primary{border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:999px;padding:17px 34px;font-size:17px;cursor:pointer}
+.primary:hover{background:#FF6A2E}
+.after{color:var(--grey);font-size:15px;margin:14px 0 0}
+footer{color:var(--grey);font-size:15px;padding:44px 0 70px;border-top:1px solid var(--warm-grey);margin-top:44px}
+footer b{color:var(--smart-blue)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <span class="mark">
+      <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+      </svg>
+      <span>4<em>flow</em></span>
+    </span>
+    <nav><a href="#" class="on">Month view</a><a href="#">Quick fill</a><a href="#">My settings</a><a href="#">Cost centres</a></nav>
+    <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="intro">
+    <h1>May 2026</h1>
+    <p>Split your month across cost centres. The days place themselves. You only open the grid when a day needs changing.</p>
+    <div class="pills">
+      <span class="pill">DE_BERLIN</span>
+      <span class="pill">18 working days</span>
+      <span class="pill">14.5 day target</span>
+    </div>
+  </div>
+
+  <section class="step">
+    <span class="no">1</span>
+    <h2>Split the month</h2>
+    <p class="lede">Give each cost centre its days. The bar is your whole target.</p>
+    <div class="split-bar" id="bar"></div>
+    <div class="scale"><span>0</span><span>14.5 days</span></div>
+    <div class="rows" id="rows"></div>
+    <button type="button" class="add">+ Add a cost centre</button>
+  </section>
+
+  <section class="step">
+    <span class="no">2</span>
+    <h2>Check the month</h2>
+    <p class="lede">This is what the split produced. Non-working days were skipped. An unfilled working day is marked.</p>
+    <div class="mini" id="mini"></div>
+    <div class="legend-row" id="legend"></div>
+    <button type="button" class="open">Open the day grid</button>
+  </section>
+
+  <section class="step">
+    <span class="no">3</span>
+    <h2>Download and send</h2>
+    <p class="lede">Two things are worth a look first.</p>
+    <ul class="checks" id="checks"></ul>
+    <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+    <button type="button" class="primary">Download the tracker</button>
+    <p class="after">Then email it to software.projecttracker@4flow.com.</p>
+  </section>
+
+  <footer>
+    <b>Variant E — Guided split.</b> The grid is not the front door. The month is decided by splitting it and the grid opens only to correct a day.
+    One column and one decision at a time. Numbered steps replace the panels.
+    The 4flow rule this leans on is the fifth. Design for the situation. Filling a month is a live task rather than a document.
+    The trade is density. Everything A shows at once is behind a step here.
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+const alloc = allocation()
+const FILL = { 4100782: 's-blue', 4100915: 's-bright', 3000112: 's-grey', 2000045: 's-orange', 1002341: 's-pink' }
+const SWATCH = { 4100782: '#00263C', 4100915: '#E0EFFF', 3000112: '#EEE6E0', 2000045: '#FFE4D9', 1002341: '#FFA0F5' }
+
+document.querySelector('#bar').innerHTML =
+  alloc.rows.map((r) => `<span class="${FILL[r.id]}" style="flex:${r.days}">${r.days}</span>`).join('') +
+  `<span class="s-free" style="flex:${alloc.free}">${alloc.free}</span>`
+
+document.querySelector('#rows').innerHTML =
+  alloc.rows
+    .map(
+      (r) => `<div class="row">
+        <span class="swatch" style="background:${SWATCH[r.id]}"></span>
+        <span class="name"><b>${r.id}</b><span>${r.title} — ${r.customer}</span></span>
+        <span class="stepper"><button type="button">−</button><span class="v">${r.days}</span><button type="button">+</button></span>
+      </div>`,
+    )
+    .join('') +
+  `<div class="row free">
+     <span class="swatch" style="background:#F0EAE5"></span>
+     <span class="name"><b>${alloc.free} unassigned</b><span>Give this away before you download.</span></span>
+   </div>`
+
+const cells = calendarCells()
+document.querySelector('#mini').innerHTML =
+  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => `<div class="head">${d}</div>`).join('') +
+  cells
+    .map((day) => {
+      if (!day) return '<div class="cell blank"></div>'
+      const gap = !day.nonWorking && day.total < 1
+      const cls = day.nonWorking ? 'off' : gap ? 'gap' : 'on'
+      const bars = day.entries
+        .filter(Boolean)
+        .map((e) => `<i style="background:${SWATCH[e.id]};${e.days === 0.5 ? 'width:50%' : ''}"></i>`)
+        .join('')
+      return `<div class="cell ${cls}"><span class="d">${day.day}</span><span class="bars">${bars}</span></div>`
+    })
+    .join('')
+
+document.querySelector('#legend').innerHTML =
+  alloc.rows.map((r) => `<span><i style="background:${SWATCH[r.id]}"></i>${r.id}</span>`).join('') +
+  '<span><i style="background:#FFF1EA;box-shadow:inset 0 0 0 1px #FF4D06"></i>Nothing booked</span>' +
+  '<span><i style="background:#EEE6E0"></i>Non-working day</span>'
+
+document.querySelector('#checks').innerHTML = TS.checks
+  .map((c) => `<li><span class="badge">?</span><span>${c.text}<span class="rows-note">${c.rows}</span></span></li>`)
+  .join('')
+</script>
+</body>
+</html>

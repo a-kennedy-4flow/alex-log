@@ -1,0 +1,26 @@
+{
+  "name": "@tracker/infra",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "./clean.sh",
+    "assemble": "./clean.sh && pnpm --filter @tracker/api bundle",
+    "synth": "pnpm run assemble && cdk synth",
+    "diff": "pnpm run assemble && cdk diff",
+    "deploy": "pnpm run assemble && cdk deploy",
+    "deploy:all": "pnpm run assemble && cdk deploy --all",
+    "deploy:site": "./deploy-site.sh",
+    "verify:auth": "./verify-auth.sh",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@tracker/api": "workspace:*",
+    "@types/node": "^22.10.2",
+    "aws-cdk": "^2.1140.0",
+    "aws-cdk-lib": "^2.219.0",
+    "constructs": "^10.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  }
+}

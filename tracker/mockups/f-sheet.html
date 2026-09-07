@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — variant F — Warm sheet</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF;
+  --r:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.45;
+  color:var(--smart-blue);background:var(--warm-grey);
+}
+button,select,input{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.area{max-width:1400px;margin:0 auto;padding:0 28px}
+
+/* The bar is B placed on the warm canvas. The tabs are A squared to the one radius. */
+header.top{padding:20px 0 0}
+header.top .bar{display:flex;align-items:center;gap:18px;background:var(--white);border-radius:var(--r);padding:12px 20px}
+.mark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.mark em{font-style:normal;color:var(--orange)}
+nav{display:flex;gap:2px;margin-left:10px}
+nav a{text-decoration:none;color:var(--smart-blue);padding:7px 14px;border-radius:var(--r)}
+nav a:hover{background:var(--warm-grey)}
+nav a.on{background:var(--smart-blue);color:var(--white)}
+.who{margin-left:auto;display:flex;align-items:center;gap:12px;color:var(--grey);font-size:13px}
+.who button{border:1px solid var(--warm-grey);background:var(--white);color:var(--smart-blue);border-radius:var(--r);padding:6px 14px;cursor:pointer}
+
+.title{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:26px 0 18px}
+.title h1{font-size:30px;margin:0;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.pill{background:var(--smart-blue);color:var(--white);border-radius:var(--r);padding:5px 14px;font-size:13px}
+.pill.light{background:var(--white);color:var(--smart-blue)}
+.title p{margin:0 0 0 auto;color:var(--grey)}
+
+/* One white sheet rather than a card per section. That is the blend. */
+.sheet{background:var(--white);border-radius:var(--r);overflow:hidden}
+.sheet .pad{padding:22px 26px}
+
+.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;padding-bottom:18px;border-bottom:1px solid var(--warm-grey)}
+.field{display:grid;gap:3px}
+.field span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.field select{background:var(--warm-grey);border:0;border-radius:var(--r);padding:9px 12px;min-width:140px;color:inherit}
+
+/* A stat strip. Figures read left to right in one line. */
+.stats{display:flex;margin:0 0 0 auto}
+.stat{padding:0 22px;border-left:1px solid var(--warm-grey);text-align:right}
+.stat:first-child{border-left:none}
+.stat dt{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin:0}
+.stat dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat dd.off{color:var(--orange)}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start;margin-top:20px}
+
+/* The grid keeps A density. Bright Blue draws internal lines only. */
+.grid{overflow:auto;max-height:720px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+thead th{
+  position:sticky;top:0;background:var(--white);text-align:left;padding:9px 10px;
+  font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);
+  border-bottom:2px solid var(--bright-blue);white-space:nowrap;
+}
+tbody td{padding:6px 10px;border-bottom:1px solid rgb(0 126 255 / 22%);vertical-align:middle}
+tr.day-start td{border-top:1px solid rgb(0 126 255 / 22%)}
+/* Grey text sits on white only. It falls to 3.7 on Warm Grey. */
+tr.week-break td{
+  background:var(--warm-grey);font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--smart-blue);padding:5px 10px;border-bottom:none;
+}
+tr.non-working td{background:#FAF7F5;color:var(--smart-blue)}
+tr.non-working .c-day,tr.non-working .flag{color:var(--smart-blue)}
+tr.empty .ph{color:#D6CFC9}
+.num{font-variant-numeric:tabular-nums}
+.c-date{white-space:nowrap;font-weight:700}
+.c-date .flag{display:block;font-size:11px;font-weight:400;color:var(--grey)}
+.c-day{color:var(--grey);width:52px}
+.c-cc{min-width:230px}
+.c-cc .cc-title{display:block;font-size:12px;color:var(--grey)}
+.c-days{text-align:right;width:60px;font-weight:700}
+.c-loc{white-space:nowrap;color:var(--grey);font-size:12px}
+.c-tasks{min-width:120px}
+.c-act{width:34px}
+tr.absence .c-cc .num{color:var(--grey)}
+.icon{border:0;background:none;color:var(--grey);cursor:pointer;border-radius:6px;padding:1px 6px;line-height:1.2}
+.icon:hover{background:var(--warm-grey);color:var(--smart-blue)}
+
+/* The aside is A placement carrying the B figure. */
+aside{display:grid;gap:22px;position:sticky;top:22px}
+aside h2,.summaries h2{
+  font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);
+  margin:0 0 10px;padding-bottom:7px;border-bottom:2px solid var(--bright-blue);
+}
+.figure{display:flex;align-items:baseline;gap:7px;margin:0 0 12px}
+.figure .big{font-size:44px;font-weight:700;line-height:.95;font-variant-numeric:tabular-nums}
+.figure .of{font-size:21px;color:var(--grey)}
+.figure .unit{color:var(--grey);font-size:13px}
+.track{height:10px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.track .fill{height:100%;background:var(--orange);width:93%;border-radius:999px}
+.say{margin:12px 0 0;font-size:14px}
+.weeks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:7px}
+.weeks li{display:flex;align-items:center;gap:10px}
+.weeks .lab{font-size:12px;color:var(--grey);width:42px}
+.weeks .bar{flex:1;height:7px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.weeks .bar i{display:block;height:100%;background:var(--bright-blue);border-radius:999px}
+.weeks .d{width:28px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:13px}
+.weeks li.none .d{color:#D6CFC9;font-weight:400}
+.foot{color:var(--grey);font-size:12px;margin:12px 0 0}
+
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.checks li{display:flex;gap:9px;font-size:13px}
+.checks .badge{
+  flex:none;width:20px;height:20px;border-radius:6px;background:var(--warm-grey);
+  display:grid;place-items:center;font-weight:700;font-size:12px;
+}
+.checks .rows{display:block;color:var(--grey);font-size:12px;margin-top:2px}
+
+.recent{display:flex;flex-wrap:wrap;gap:7px}
+.tag{border:0;background:var(--warm-grey);color:var(--smart-blue);border-radius:var(--r);padding:6px 13px;font-size:12px;cursor:pointer;font-variant-numeric:tabular-nums}
+.tag:hover{background:var(--bright-blue);color:var(--white)}
+
+/* A rule divides the sheet where B would have started a new card. */
+.summaries{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px;padding-top:26px;border-top:1px solid var(--warm-grey)}
+.summaries table{font-size:13px}
+.summaries th{position:static;border-bottom:1px solid rgb(0 126 255 / 22%);color:var(--grey);text-transform:none;letter-spacing:0;font-size:12px;padding:0 8px 6px}
+.summaries td{padding:5px 8px;border-bottom:1px solid rgb(0 126 255 / 22%)}
+.r{text-align:right;font-variant-numeric:tabular-nums}
+.summaries tfoot td{border-bottom:none;color:var(--grey)}
+.summaries tfoot tr.grand td{font-weight:700;color:var(--smart-blue);border-top:2px solid var(--bright-blue)}
+
+/* The download closes the sheet rather than standing away from it. */
+.download{
+  background:var(--smart-blue);color:var(--white);padding:24px 26px;
+  display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+}
+.download .fn{font-variant-numeric:tabular-nums;font-size:14px}
+.download .fn span{display:block;color:#7E93A1;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.download p{margin:0;color:#B7C6D0;font-size:13px}
+.primary{border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:var(--r);padding:13px 26px;font-size:15px;cursor:pointer;margin-left:auto}
+.primary:hover{background:#FF6A2E}
+
+footer{color:var(--grey);font-size:13px;padding:28px 0 60px;max-width:82ch}
+footer b{color:var(--smart-blue)}
+@media (max-width:1180px){.cols{grid-template-columns:1fr}.summaries{grid-template-columns:1fr}aside{position:static}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#" class="on">Month view</a><a href="#">Quick fill</a><a href="#">My settings</a><a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Fill your month then download the tracker to email.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <div class="controls">
+        <label class="field"><span>Year</span><select><option>2026</option></select></label>
+        <label class="field"><span>Month</span><select><option>May</option></select></label>
+        <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+        <label class="field"><span>Language</span><select><option>English</option></select></label>
+        <dl class="stats">
+          <div class="stat"><dt>Working days</dt><dd>18</dd></div>
+          <div class="stat"><dt>Target</dt><dd>14.5</dd></div>
+          <div class="stat"><dt>Booked</dt><dd class="off">13.5</dd></div>
+        </dl>
+      </div>
+
+      <div class="cols">
+        <div class="grid">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Day</th><th>Cost centre</th><th>Specification</th>
+                <th class="r">Days</th><th>Location</th><th>Tasks</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+
+        <aside>
+          <section>
+            <h2>This month</h2>
+            <div class="figure"><span class="big">13.5</span><span class="of">/ 14.5</span><span class="unit">days</span></div>
+            <div class="track"><div class="fill"></div></div>
+            <p class="say">1 day to go.</p>
+            <ul class="weeks" id="weeks"></ul>
+            <p class="foot">18 working days at your location.</p>
+          </section>
+
+          <section>
+            <h2>Checks</h2>
+            <ul class="checks" id="checks"></ul>
+          </section>
+
+          <section>
+            <h2>Your cost centres</h2>
+            <div class="recent" id="recent"></div>
+            <p class="foot">Click one to book it on the next free day.</p>
+          </section>
+        </aside>
+      </div>
+
+      <div class="summaries">
+        <section>
+          <h2>By cost centre</h2>
+          <table>
+            <thead><tr><th>Cost centre</th><th>Customer</th><th>Business line</th><th class="r">Days</th></tr></thead>
+            <tbody id="byCentre"></tbody>
+            <tfoot>
+              <tr><td colspan="3">Vacation or sickness</td><td class="r">1</td></tr>
+              <tr><td colspan="3">Other absences</td><td class="r">0</td></tr>
+              <tr class="grand"><td colspan="3">Total</td><td class="r">13.5 / 14.5</td></tr>
+            </tfoot>
+          </table>
+        </section>
+        <section>
+          <h2>By calendar week</h2>
+          <table>
+            <thead><tr><th>CW</th><th class="r">On working days</th><th class="r">On non-working days</th><th class="r">Total</th></tr></thead>
+            <tbody id="byWeek"></tbody>
+            <tfoot><tr class="grand"><td>Total</td><td class="r">13.5</td><td class="r">0</td><td class="r">13.5</td></tr></tfoot>
+          </table>
+        </section>
+      </div>
+    </div>
+
+    <div class="download">
+      <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+      <p>Download the tracker then email it to software.projecttracker@4flow.com.</p>
+      <button type="button" class="primary">Download the tracker</button>
+    </div>
+  </div>
+
+  <footer>
+    <b>Variant F — Warm sheet. A crossed with B.</b> Warm Grey is the canvas from B. The work sits on one white sheet rather than on a card per section.
+    Row height and type size come from A so the month still reads in one screen. The corner radius is one value everywhere.
+    The headline figure and the week bars come from B. The stat strip and the sticky aside come from A.
+    A rule divides the sheet where B would have started a new card. The download is the last band of the sheet rather than a separate panel.
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+renderGrid('#rows')
+const most = Math.max(...TS.byWeek.map((w) => w.total))
+document.querySelector('#weeks').innerHTML = TS.byWeek
+  .map((w) => `<li class="${w.total ? '' : 'none'}"><span class="lab">CW ${w.week}</span><span class="bar"><i style="width:${most ? (w.total / most) * 100 : 0}%"></i></span><span class="d">${w.total || '—'}</span></li>`)
+  .join('')
+document.querySelector('#checks').innerHTML = TS.checks
+  .map((c) => `<li><span class="badge">?</span><span>${c.text}<span class="rows">${c.rows}</span></span></li>`)
+  .join('')
+document.querySelector('#recent').innerHTML = Object.entries(TS.centres)
+  .map(([id, c]) => `<button type="button" class="tag" title="${c.title}">${id}</button>`)
+  .join('')
+document.querySelector('#byCentre').innerHTML = TS.byCentre
+  .map((r) => `<tr><td class="num">${r.id}</td><td>${r.customer}</td><td>${r.line}</td><td class="r">${r.days}</td></tr>`)
+  .join('')
+document.querySelector('#byWeek').innerHTML = TS.byWeek
+  .map((w) => `<tr><td class="num">${w.week}</td><td class="r">${w.working}</td><td class="r">${w.nonWorking}</td><td class="r">${w.total}</td></tr>`)
+  .join('')
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — ten marks</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF; --r:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:var(--smart-blue);background:var(--white)}
+.area{max-width:1240px;margin:0 auto;padding:0 32px}
+header{background:var(--smart-blue);color:var(--white);padding:56px 0 50px}
+header h1{font-size:40px;margin:0 0 12px;line-height:1.1}
+header p{margin:0;max-width:74ch;color:#B7C6D0;font-size:18px}
+header .rule{height:5px;width:88px;background:var(--orange);border-radius:999px;margin-top:24px}
+section{padding:48px 0}
+section+section{border-top:1px solid var(--warm-grey)}
+h2{font-size:26px;margin:0 0 8px}
+.lede{color:var(--grey);max-width:80ch;margin:0 0 28px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(226px,1fr));gap:18px}
+.card{margin:0;border:1px solid var(--warm-grey);border-radius:var(--r);overflow:hidden}
+.card.chosen{border:2px solid var(--orange)}
+.card.chosen figcaption b{color:var(--orange)}
+.stage{height:150px;display:grid;place-items:center;background:var(--white);border-bottom:1px solid var(--warm-grey)}
+.grounds{display:flex}
+.g{flex:1;height:62px;display:grid;place-items:center}
+.g.white{background:var(--white)}
+.g.warm{background:var(--warm-grey)}
+.g.blue{background:var(--smart-blue)}
+.dark svg,svg.dark{color:var(--white)}
+.ladder{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--warm-grey);background:#FCFBFA}
+.ladder em{font-style:normal;color:var(--grey);font-size:12px;margin-left:auto}
+figcaption{padding:14px 16px 16px;border-top:1px solid var(--warm-grey)}
+figcaption b{display:block;font-size:16px}
+figcaption span{display:block;color:var(--grey);font-size:14px;margin:3px 0 8px}
+code{font-family:"Courier New",monospace;background:var(--warm-grey);padding:2px 7px;border-radius:5px;font-size:12px}
+
+.strip{display:flex;flex-wrap:wrap;gap:26px;align-items:center;border-radius:var(--r);padding:26px 28px}
+.strip.on-blue{background:var(--smart-blue)}
+.strip.on-warm{background:var(--warm-grey)}
+.strip.on-white{background:var(--white);border:1px solid var(--warm-grey)}
+
+.locks{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.lock{display:flex;align-items:center;gap:11px;border:1px solid var(--warm-grey);border-radius:var(--r);padding:16px 18px}
+.word{font-size:23px;font-weight:700;letter-spacing:-.015em}
+.lock.small .word{font-size:18px}
+.word em{font-style:normal;color:var(--orange)}
+
+ul.rules{list-style:none;padding:0;margin:0;max-width:82ch}
+ul.rules li{position:relative;padding:11px 0 11px 28px;border-bottom:1px solid var(--warm-grey)}
+ul.rules li:last-child{border-bottom:none}
+ul.rules li::before{content:"";position:absolute;left:5px;top:20px;width:8px;height:8px;border-radius:50%;background:var(--bright-blue)}
+.note{border-radius:var(--r);padding:16px 20px;background:#FFF1EA;border-left:6px solid var(--orange);max-width:82ch;margin-top:24px}
+.note strong{display:block;margin-bottom:4px}
+.note p{margin:0;font-size:15px}
+.sw{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+.sw i{display:block;width:48px;height:48px;border-radius:10px}
+footer{background:var(--smart-blue);color:#B7C6D0;padding:34px 0;font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="area">
+    <h1>Tracker</h1>
+    <p>Twenty seven marks around time and tracking. One SVG each. The primary shape takes currentColor so a single file works on a light or a dark background.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<div class="area">
+
+<section>
+  <h2>The twenty seven</h2>
+  <div class="note" style="margin:0 0 24px">
+    <strong>Number 12 is the one in use</strong>
+    <p>Bubble stopwatch is wired into the application as the header mark and the favicon. The other twenty six stay here for a later A and B test. Nothing is deleted.</p>
+  </div>
+  <p class="lede">Each card shows the mark large then on the three grounds it has to survive then at 24 and 16 px. A mark that dies at 16 px cannot be a favicon.</p>
+  <p class="lede">Numbers 13 to 15 come from 4flow.com rather than from the deck. The site leans on connected pathways with nodes and on chevrons as progression indicators and on horizontal flow patterns. Numbers 16 to 21 are permutations of marks already here. Numbers 22 to 24 riff on the Roman four. Numbers 25 to 27 are the plain symbols for flowing and for tracking.</p>
+  <div class="grid">
+{{CARDS}}
+  </div>
+</section>
+
+<section>
+  <h2>Reversed</h2>
+  <p class="lede">Smart Blue becomes white. Vibrant Orange does not move. Orange holds 4.7 to 1 against Smart Blue so the accent survives the flip.</p>
+  <div class="strip on-blue dark">
+{{REVERSED}}
+  </div>
+</section>
+
+<section>
+  <h2>At favicon size</h2>
+  <p class="lede">16 px on both grounds. Nineteen hold. Half day and Month grid and Progress ring and Split bars and Monogram T and Day done and Marked day and Bubbles and Chevrons and Flow arc and Half day stacked and Three bubbles and Ring check and Tally four and Four o clock and Numeral IV and Wave and Pulse and Map pin all survive. Eight do not. Stopwatch and Hourglass and Connected dots and Lane nodes lose their detail. So does every bubble pair with something set inside it. Bubble stopwatch and Bubble stopwatch reversed and Bubble check and Bubble four all reduce to a blob.</p>
+  <div class="strip on-white">
+{{TINY}}
+  </div>
+  <div class="strip on-blue dark" style="margin-top:14px">
+{{TINY}}
+  </div>
+</section>
+
+<section>
+  <h2>Lockups</h2>
+  <p class="lede">Arial bold is the brand font so the wordmark needs no licence and renders anywhere.</p>
+  <div class="locks">
+{{LOCKUPS}}
+  </div>
+  <h3 style="margin:30px 0 12px;font-size:18px">With the parent brand</h3>
+  <div class="locks">
+{{LOCKUPS_FULL}}
+  </div>
+</section>
+
+<section>
+  <h2>What these obey</h2>
+  <ul class="rules">
+    <li>Theme colours only. Smart Blue and Vibrant Orange and nothing else.</li>
+    <li>Rounded corners throughout. That is the softer and more human look the deck asks for.</li>
+    <li>One accent per mark. The orange marks the thing being tracked.</li>
+    <li>A 64 unit square with a 6 unit margin so every mark sits on the same optical size.</li>
+    <li>No gradient and no shadow and no stroke below 5 units.</li>
+  </ul>
+  <div class="sw">
+    <i style="background:#00263C"></i><i style="background:#FF4D06"></i><i style="background:#EEE6E0"></i><i style="background:#FFFFFF;box-shadow:inset 0 0 0 1px #EEE6E0"></i>
+  </div>
+
+  <div class="note">
+    <strong>Numbers 4 and 11 and 12 and 17 and 19 need Marketing before they go anywhere</strong>
+    <p>All five reuse the 4flow connected circles. Number 11 is that element on its own. The deck says never to recreate it by hand and to take the ready-made version. A product mark derived from it is a brand decision rather than a design one. Number 11 is also the closest of the nineteen to the parent logo so it risks reading as 4flow rather than as Tracker.</p>
+  </div>
+
+  <div class="note">
+    <strong>A bubble pair will not hold anything inside it</strong>
+    <p>Numbers 12 and 19 and 20 and 21 all set something into one of the two bubbles. All four die at 16 px while the plain pair at 11 and the plain trio at 17 both survive. The pair is already two shapes. A third shape inside one of them is one more than the form carries. Number 21 is the busiest of the twenty seven because it holds a crown and a hand and a numeral at once.</p>
+  </div>
+
+  <div class="note">
+    <strong>Number 19 settles where the crown goes</strong>
+    <p>Only the back bubble has a clear top edge. Putting the dial on the front bubble forces the crown out to 1 o clock at an angle where it reads as a tail rather than as a button. Number 12 keeps the crown upright at 12 and stays the stronger of the two. The permutation was worth building to prove it.</p>
+  </div>
+  <div class="note">
+    <strong>The deck does not govern a product mark</strong>
+    <p>It governs presentations. Colour and corner language carry across. A logo does not. Marketing wants one week of notice for a specific illustration so treat that as the lead time here too.</p>
+  </div>
+</section>
+
+</div>
+
+<footer><div class="area">Twenty seven SVG files sit beside this page. Nothing in the application was renamed.</div></footer>
+
+</body>
+</html>

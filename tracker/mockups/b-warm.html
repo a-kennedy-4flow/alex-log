@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — variant B — Warm</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF;
+  --r:18px; --r-sm:10px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;
+  color:var(--smart-blue);background:var(--warm-grey);
+}
+.area{max-width:1400px;margin:0 auto;padding:0 32px}
+button,select,input{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+/* A brand moment at the top. The connected circles are the 4flow element. */
+header.hero{padding:22px 0 0}
+header.hero .bar{
+  display:flex;align-items:center;gap:18px;background:var(--white);
+  border-radius:var(--r);padding:14px 22px;
+}
+.mark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px}
+.mark em{font-style:normal;color:var(--orange)}
+nav{display:flex;gap:4px;margin-left:10px}
+nav a{text-decoration:none;color:var(--smart-blue);padding:9px 16px;border-radius:999px}
+nav a:hover{background:var(--warm-grey)}
+nav a.on{background:var(--smart-blue);color:var(--white)}
+.who{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--grey)}
+.who button{border:1px solid var(--warm-grey);background:var(--white);color:var(--smart-blue);border-radius:999px;padding:8px 16px;cursor:pointer}
+
+.title{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;padding:34px 0 22px}
+.title h1{font-size:38px;margin:0;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;background:var(--smart-blue);color:var(--white);
+  border-radius:999px;padding:7px 18px;font-size:14px;
+}
+.pill.light{background:var(--white);color:var(--smart-blue)}
+.title p{margin:0 0 4px auto;color:var(--grey);max-width:40ch;text-align:right}
+
+.card{background:var(--white);border-radius:var(--r);padding:24px 26px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin:0 0 16px;font-weight:700}
+
+.controls{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;margin-bottom:18px}
+.field{display:grid;gap:5px}
+.field span{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.field select{
+  background:var(--warm-grey);border:0;border-radius:var(--r-sm);padding:11px 14px;min-width:150px;color:inherit;
+}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}
+
+/* The grid keeps its own card. It scrolls inside the rounded corner. */
+.grid{padding:0;overflow:hidden}
+.grid .scroll{overflow:auto;max-height:760px;padding:0 8px 8px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+thead th{
+  position:sticky;top:0;background:var(--white);text-align:left;padding:18px 12px 11px;
+  font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);
+  border-bottom:2px solid var(--bright-blue);white-space:nowrap;
+}
+tbody td{padding:8px 12px;border-bottom:1px solid rgb(0 126 255 / 20%)}
+tr.week-break td{
+  border-bottom:none;padding:20px 12px 6px;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--grey);font-weight:700;
+}
+tr.non-working td{background:#FAF7F5;color:var(--grey)}
+tr.empty .ph{color:#D6CFC9}
+.num{font-variant-numeric:tabular-nums}
+.c-date{white-space:nowrap;font-weight:700}
+.c-date .flag{display:block;font-size:12px;font-weight:400;color:var(--grey)}
+.c-day{color:var(--grey);width:56px}
+.c-cc{min-width:240px}
+.c-cc .cc-title{display:block;font-size:13px;color:var(--grey)}
+.c-days{text-align:right;width:64px;font-weight:700}
+.c-loc,.c-tasks{color:var(--grey);font-size:13px}
+.c-act{width:38px}
+.icon{border:0;background:none;color:var(--grey);cursor:pointer;border-radius:8px;padding:2px 7px}
+.icon:hover{background:var(--warm-grey);color:var(--smart-blue)}
+tr.absence .c-cc .num{color:var(--grey)}
+
+aside{display:grid;gap:22px;position:sticky;top:22px}
+
+/* The headline figure carries the month. */
+.progress .figure{display:flex;align-items:baseline;gap:8px;margin:0 0 16px}
+.progress .big{font-size:56px;font-weight:700;line-height:.95;font-variant-numeric:tabular-nums}
+.progress .of{font-size:24px;color:var(--grey)}
+.progress .unit{color:var(--grey);font-size:14px}
+.track{height:12px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.track .fill{height:100%;background:var(--orange);width:93%;border-radius:999px}
+.progress .say{margin:14px 0 0;font-size:15px}
+.weeks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px}
+.weeks li{display:flex;align-items:center;gap:12px}
+.weeks .lab{font-size:13px;color:var(--grey);width:44px}
+.weeks .bar{flex:1;height:8px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.weeks .bar i{display:block;height:100%;background:var(--bright-blue);border-radius:999px}
+.weeks .d{width:30px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:14px}
+.weeks li.none .d{color:#D6CFC9;font-weight:400}
+.foot{color:var(--grey);font-size:13px;margin:14px 0 0}
+
+.checks{padding:0;margin:0;list-style:none;display:grid;gap:14px}
+.checks li{display:flex;gap:11px;font-size:14px}
+.checks .badge{
+  flex:none;width:24px;height:24px;border-radius:8px;background:var(--warm-grey);
+  display:grid;place-items:center;font-weight:700;font-size:13px;
+}
+.checks .rows{display:block;color:var(--grey);font-size:13px;margin-top:3px}
+
+.recent{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  border:0;background:var(--warm-grey);color:var(--smart-blue);border-radius:999px;
+  padding:8px 16px;font-size:13px;cursor:pointer;font-variant-numeric:tabular-nums;
+}
+.tag:hover{background:var(--bright-blue);color:var(--white)}
+
+.summaries{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+.summaries th{
+  position:static;padding:0 10px 8px;color:var(--grey);font-size:13px;text-transform:none;
+  letter-spacing:0;border-bottom:1px solid rgb(0 126 255 / 20%);
+}
+.summaries td{padding:8px 10px}
+.r{text-align:right;font-variant-numeric:tabular-nums}
+.summaries tfoot td{border-bottom:none;color:var(--grey)}
+.summaries tfoot tr.grand td{font-weight:700;color:var(--smart-blue);border-top:2px solid var(--bright-blue)}
+
+/* The download closes the page as its own brand moment. */
+.download{
+  margin-top:22px;background:var(--smart-blue);color:var(--white);border-radius:var(--r);
+  padding:30px 34px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+.download h2{color:#9FB2BE;margin-bottom:10px}
+.download .fn{font-variant-numeric:tabular-nums;font-size:15px}
+.download p{margin:8px 0 0;color:#9FB2BE;font-size:14px}
+.primary{
+  border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;
+  border-radius:999px;padding:16px 32px;font-size:16px;cursor:pointer;margin-left:auto;
+}
+.primary:hover{background:#FF6A2E}
+
+footer{color:var(--grey);font-size:14px;padding:34px 0 64px;max-width:80ch}
+footer b{color:var(--smart-blue)}
+@media (max-width:1180px){.cols{grid-template-columns:1fr}.summaries{grid-template-columns:1fr}aside{position:static}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/>
+          <circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#" class="on">Month view</a>
+        <a href="#">Quick fill</a>
+        <a href="#">My settings</a>
+        <a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Fill your month then download the tracker to email.</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <section class="card" style="margin-bottom:22px">
+        <div class="controls" style="margin:0">
+          <label class="field"><span>Year</span><select><option>2026</option></select></label>
+          <label class="field"><span>Month</span><select><option>May</option></select></label>
+          <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+          <label class="field"><span>Target</span><select><option>14.5</option></select></label>
+          <label class="field"><span>Language</span><select><option>English</option></select></label>
+        </div>
+      </section>
+
+      <section class="card grid">
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Day</th><th>Cost centre</th><th>Specification</th>
+                <th class="r">Days</th><th>Location</th><th>Tasks</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <section class="card progress">
+        <h2>This month</h2>
+        <div class="figure"><span class="big">13.5</span><span class="of">/ 14.5</span><span class="unit">days</span></div>
+        <div class="track"><div class="fill"></div></div>
+        <p class="say">1 day to go.</p>
+        <ul class="weeks" id="weeks"></ul>
+        <p class="foot">18 working days at your location.</p>
+      </section>
+
+      <section class="card">
+        <h2>Checks</h2>
+        <ul class="checks" id="checks"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Your cost centres</h2>
+        <div class="recent" id="recent"></div>
+        <p class="foot">Click one to book it on the next free day.</p>
+      </section>
+    </aside>
+  </div>
+
+  <div class="summaries">
+    <section class="card">
+      <h2>By cost centre</h2>
+      <table>
+        <thead><tr><th>Cost centre</th><th>Customer</th><th>Business line</th><th class="r">Days</th></tr></thead>
+        <tbody id="byCentre"></tbody>
+        <tfoot>
+          <tr><td colspan="3">Vacation or sickness</td><td class="r">1</td></tr>
+          <tr><td colspan="3">Other absences</td><td class="r">0</td></tr>
+          <tr class="grand"><td colspan="3">Total</td><td class="r">13.5 / 14.5</td></tr>
+        </tfoot>
+      </table>
+    </section>
+    <section class="card">
+      <h2>By calendar week</h2>
+      <table>
+        <thead><tr><th>CW</th><th class="r">On working days</th><th class="r">On non-working days</th><th class="r">Total</th></tr></thead>
+        <tbody id="byWeek"></tbody>
+        <tfoot><tr class="grand"><td>Total</td><td class="r">13.5</td><td class="r">0</td><td class="r">13.5</td></tr></tfoot>
+      </table>
+    </section>
+  </div>
+
+  <div class="download">
+    <div>
+      <h2>Download</h2>
+      <div class="fn">20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+      <p>Download the tracker then email it to software.projecttracker@4flow.com.</p>
+    </div>
+    <button type="button" class="primary">Download the tracker</button>
+  </div>
+
+  <footer>
+    <b>Variant B — Warm.</b> The warm layout from the deck. Warm Grey is the canvas. White cards float on it.
+    The corner radius is one value everywhere so the boxes match. That is what Correct corners does to a deck.
+    The connected circles appear once as the mark. Tags carry the location and the contract.
+    Bright Blue draws the week bars and the internal table lines. Vibrant Orange carries the progress fill and the download only.
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+renderGrid('#rows')
+const most = Math.max(...TS.byWeek.map((w) => w.total))
+document.querySelector('#weeks').innerHTML = TS.byWeek
+  .map((w) => `<li class="${w.total ? '' : 'none'}"><span class="lab">CW ${w.week}</span><span class="bar"><i style="width:${most ? (w.total / most) * 100 : 0}%"></i></span><span class="d">${w.total || '—'}</span></li>`)
+  .join('')
+document.querySelector('#checks').innerHTML = TS.checks
+  .map((c) => `<li><span class="badge">?</span><span>${c.text}<span class="rows">${c.rows}</span></span></li>`)
+  .join('')
+document.querySelector('#recent').innerHTML = Object.entries(TS.centres)
+  .map(([id, c]) => `<button type="button" class="tag" title="${c.title}">${id}</button>`)
+  .join('')
+document.querySelector('#byCentre').innerHTML = TS.byCentre
+  .map((r) => `<tr><td class="num">${r.id}</td><td>${r.customer}</td><td>${r.line}</td><td class="r">${r.days}</td></tr>`)
+  .join('')
+document.querySelector('#byWeek').innerHTML = TS.byWeek
+  .map((w) => `<tr><td class="num">${w.week}</td><td class="r">${w.working}</td><td class="r">${w.nonWorking}</td><td class="r">${w.total}</td></tr>`)
+  .join('')
+</script>
+</body>
+</html>

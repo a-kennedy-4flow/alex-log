@@ -1,0 +1,13 @@
+{
+  "name": "@tracker/extract-fixtures",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node extract.mjs"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "@tracker/workbook-reader": "workspace:*"
+  }
+}

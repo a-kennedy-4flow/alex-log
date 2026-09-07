@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PowerPoint at 4flow — design rules</title>
+<style>
+  :root{
+    --smart-blue:#00263C;
+    --warm-grey:#EEE6E0;
+    --vibrant-orange:#FF4D06;
+    --bright-blue:#007EFF;
+    --bold-pink:#FFA0F5;
+    --grey:#757575;
+    --white:#FFFFFF;
+    --radius:14px;
+    --measure:78ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:17px;
+    line-height:1.55;
+    color:var(--smart-blue);
+    background:var(--white);
+  }
+  header.hero{
+    background:var(--smart-blue);
+    color:var(--white);
+    padding:64px 32px 56px;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+  .hero .tag{
+    display:inline-block;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:999px;
+    padding:5px 16px;
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .hero h1{font-size:44px;line-height:1.1;margin:0 0 14px;font-weight:700}
+  .hero p{margin:0;max-width:var(--measure);color:#CBD6DE;font-size:19px}
+  .hero .rule{height:5px;width:88px;background:var(--vibrant-orange);border-radius:999px;margin:26px 0 0}
+
+  nav.toc{
+    position:sticky;top:0;z-index:10;
+    background:var(--warm-grey);
+    border-bottom:1px solid #DDD1C7;
+  }
+  nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:4px;margin:0 auto;padding:10px 32px;max-width:1080px}
+  nav.toc a{
+    display:block;padding:6px 12px;border-radius:999px;
+    text-decoration:none;color:var(--smart-blue);font-size:14px;
+  }
+  nav.toc a:hover{background:var(--white)}
+
+  main{padding:8px 32px 90px}
+  section{padding:52px 0 8px;border-top:1px solid var(--warm-grey)}
+  section:first-of-type{border-top:none}
+  h2{font-size:29px;margin:0 0 6px;line-height:1.2}
+  h2 .num{color:var(--vibrant-orange);margin-right:12px;font-variant-numeric:tabular-nums}
+  .lede{color:var(--grey);margin:0 0 26px;max-width:var(--measure);font-size:18px}
+  h3{font-size:19px;margin:30px 0 10px}
+
+  ul.rules{list-style:none;padding:0;margin:0;max-width:var(--measure)}
+  ul.rules li{
+    position:relative;padding:11px 0 11px 30px;border-bottom:1px solid var(--warm-grey);
+  }
+  ul.rules li:last-child{border-bottom:none}
+  ul.rules li::before{
+    content:"";position:absolute;left:6px;top:20px;
+    width:8px;height:8px;border-radius:50%;background:var(--bright-blue);
+  }
+  ul.rules li b{font-weight:700}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:8px}
+  .card{
+    background:var(--warm-grey);border-radius:var(--radius);padding:22px 24px;
+  }
+  .card h4{margin:0 0 8px;font-size:17px}
+  .card p,.card li{margin:0 0 8px;font-size:16px}
+  .card ol{margin:0;padding-left:20px}
+  .card ol li{margin-bottom:5px}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+  .do,.dont{border-radius:var(--radius);padding:20px 22px}
+  .do{background:var(--warm-grey);border-left:6px solid var(--bright-blue)}
+  .dont{background:#F5F5F5;border-left:6px solid var(--grey)}
+  .do h4,.dont h4{margin:0 0 8px;font-size:16px;text-transform:uppercase;letter-spacing:.06em}
+  .do h4{color:var(--bright-blue)}
+  .dont h4{color:var(--grey)}
+  .do p,.dont p{margin:0 0 8px;font-size:16px}
+  .do p:last-child,.dont p:last-child{margin-bottom:0}
+
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;margin:6px 0 26px}
+  .sw{border-radius:var(--radius);overflow:hidden;border:1px solid var(--warm-grey)}
+  .sw .chip{height:88px}
+  .sw .meta{padding:12px 14px;background:var(--white)}
+  .sw .name{font-weight:700;font-size:15px;display:block}
+  .sw .hex{font-family:"Courier New",monospace;font-size:13px;color:var(--grey)}
+  .sw .use{font-size:14px;color:var(--grey);display:block;margin-top:5px}
+
+  .note{
+    border-radius:var(--radius);padding:16px 20px;margin:22px 0 0;
+    background:#FFF1EA;border-left:6px solid var(--vibrant-orange);max-width:var(--measure);
+  }
+  .note strong{display:block;margin-bottom:4px}
+  .note p{margin:0;font-size:16px}
+
+  code{font-family:"Courier New",monospace;background:var(--warm-grey);padding:2px 6px;border-radius:5px;font-size:15px}
+
+  ul.check{list-style:none;padding:0;margin:0;max-width:var(--measure)}
+  ul.check li{
+    position:relative;padding:12px 0 12px 40px;border-bottom:1px solid var(--warm-grey);
+  }
+  ul.check li::before{
+    content:"";position:absolute;left:6px;top:14px;width:19px;height:19px;
+    border:2px solid var(--smart-blue);border-radius:5px;
+  }
+  ul.check li:last-child{border-bottom:none}
+
+  table{border-collapse:collapse;width:100%;max-width:var(--measure);margin-top:10px;font-size:16px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--bright-blue)}
+  th{color:var(--bright-blue);font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+  tr:last-child td{border-bottom:none}
+
+  footer{background:var(--smart-blue);color:var(--white);padding:44px 32px}
+  footer a{color:var(--bright-blue)}
+  footer p{margin:0 0 8px;max-width:var(--measure)}
+  footer .small{color:#9FB2BE;font-size:14px;margin-top:22px}
+
+  @media (max-width:720px){
+    .split{grid-template-columns:1fr}
+    .hero h1{font-size:32px}
+    main,header.hero,footer{padding-left:20px;padding-right:20px}
+    nav.toc ul{padding-left:20px;padding-right:20px}
+  }
+  @media print{
+    nav.toc{display:none}
+    body{font-size:12pt}
+    section{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">PowerPoint master 7.0</span>
+    <h1>PowerPoint at 4flow</h1>
+    <p>The design rules taken from the master 7.0 training deck. Every rule below comes from that deck.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<nav class="toc">
+  <ul>
+    <li><a href="#five">The five</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#covers">Covers</a></li>
+    <li><a href="#migrate">Old decks</a></li>
+    <li><a href="#fonts">Fonts</a></li>
+    <li><a href="#shapes">Shapes</a></li>
+    <li><a href="#colours">Colours</a></li>
+    <li><a href="#images">Images</a></li>
+    <li><a href="#icons">Icons</a></li>
+    <li><a href="#charts">Charts</a></li>
+    <li><a href="#tables">Tables</a></li>
+    <li><a href="#ribbon">Ribbon</a></li>
+    <li><a href="#standards">Standards</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+<section id="five">
+  <h2><span class="num">01</span>The five rules</h2>
+  <p class="lede">Remember these five if you remember nothing else.</p>
+  <ul class="rules">
+    <li><b>Start with what already exists.</b> Use the master and the slide design templates before you build anything from scratch.</li>
+    <li><b>Keep content inside the design area.</b> Use the placeholders. Use the alignment tools. Keep spacing even.</li>
+    <li><b>Make slides easy to scan.</b> Give each slide one clear headline. Show a visible hierarchy. Add only the detail the situation needs.</li>
+    <li><b>Design for the situation.</b> A live presentation wants larger text and fewer details. A deck for distribution can explain more.</li>
+    <li><b>Use the 4flow system.</b> That means the templates and the theme colours and the rounded corners and the approved images and the ready-made icons and the ribbon tool.</li>
+  </ul>
+</section>
+
+<section id="setup">
+  <h2><span class="num">02</span>Setup</h2>
+  <p class="lede">Do this once. It takes five minutes.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>Pin the master</h4>
+      <ol>
+        <li>Save the <code>.potx</code> file to Documents → Custom Office Templates.</li>
+        <li>Create that folder yourself if it is missing.</li>
+        <li>Open Home or File → New.</li>
+        <li>Click More themes.</li>
+        <li>Find the 4flow template under Custom Office Templates.</li>
+        <li>Click the pin icon.</li>
+      </ol>
+      <p style="margin-top:10px">Open the <code>.potx</code> once and restart PowerPoint if the template does not appear.</p>
+    </div>
+    <div class="card">
+      <h4>Set the default theme</h4>
+      <ol>
+        <li>Open the <code>.potx</code> file.</li>
+        <li>Go to Design.</li>
+        <li>Open the full Themes gallery.</li>
+        <li>Click Save Current Theme at the bottom.</li>
+        <li>Save it as 4flow Master 7.0.</li>
+        <li>Right-click the theme under Custom.</li>
+        <li>Select Set as Default Theme.</li>
+        <li>Restart PowerPoint.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h4>What each one gives you</h4>
+      <p>The pinned template gives quick access to the full master with every layout.</p>
+      <p>The default theme controls the colours and fonts of a new blank presentation.</p>
+      <p>The same theme file carries the 4flow palette into Excel.</p>
+    </div>
+  </div>
+</section>
+
+<section id="templates">
+  <h2><span class="num">03</span>Start from a template</h2>
+  <p class="lede">Slide design templates 2.0 holds over 100 on-brand layouts.</p>
+  <ul class="rules">
+    <li>Numbers and comparisons and charts and processes and timelines and quotes and case studies are all covered.</li>
+    <li>Pick the layout closest to what you need. Swap the text.</li>
+    <li>Never rebuild from a blank slide unless it is unavoidable. Because a) rebuilding drifts the deck off brand and b) it costs you time.</li>
+    <li>The templates live on the hive.</li>
+  </ul>
+  <h3>Choosing white or warm</h3>
+  <p class="lede" style="margin-bottom:0">White and warm layouts are built to work together. Choose by the purpose of the slide.</p>
+  <div class="split">
+    <div class="do">
+      <h4>Use white</h4>
+      <p>Text-heavy slides.</p>
+      <p>Functional slides.</p>
+      <p>Send-out slides that must read without a speaker.</p>
+    </div>
+    <div class="do" style="border-left-color:var(--vibrant-orange)">
+      <h4 style="color:var(--vibrant-orange)">Use warm</h4>
+      <p>Designed slides and brand moments.</p>
+      <p>Section dividers.</p>
+      <p>Storytelling that should feel distinctive.</p>
+    </div>
+  </div>
+</section>
+
+<section id="covers">
+  <h2><span class="num">04</span>Covers and dividers and customer branding</h2>
+  <ul class="rules">
+    <li><b>Cover tag.</b> Put the event name or the project name or the customer context in the tag. Write it as <code>4flow x Nike</code>.</li>
+    <li><b>Cover image.</b> Drag the image onto the key shape placeholder. It then fills the 4flow key shape.</li>
+    <li><b>Subtitle.</b> The subtitle placeholder also takes a date.</li>
+    <li><b>Section dividers.</b> Use them to structure a long deck instead of repeating the full agenda. Put the section topic in the big headline. Repeat the tag so the reader keeps orientation.</li>
+    <li><b>Customer logos.</b> Add them in Slide Master view. Never place them by hand on each slide.</li>
+    <li><b>Logo position.</b> Put the customer logo near the 4flow logo. Roughly 1 cm to its left. Adjust for the size of the logo.</li>
+  </ul>
+</section>
+
+<section id="migrate">
+  <h2><span class="num">05</span>Moving an old deck across</h2>
+  <p class="lede">Copy the slides. Never apply the master.</p>
+  <div class="split">
+    <div class="do">
+      <h4>Do</h4>
+      <p>Start a fresh deck from the new master.</p>
+      <p>Copy your existing slides into it.</p>
+      <p>The colours were matched closely to the old master so a transferred deck should still feel familiar.</p>
+    </div>
+    <div class="dont">
+      <h4>Do not</h4>
+      <p>Do not apply the new master to an existing file.</p>
+      <p>Because a) the old masters stay in the file and b) formatting breaks and c) it creates more cleanup rather than less.</p>
+    </div>
+  </div>
+  <div class="note">
+    <strong>No transfer is fully automatic</strong>
+    <p>Positioning and sizing and colour always need manual cleanup afterwards.</p>
+  </div>
+</section>
+
+<section id="fonts">
+  <h2><span class="num">06</span>Fonts</h2>
+  <p class="lede">Arial is the standard font. The master already uses it on every layout.</p>
+  <ul class="rules">
+    <li>Use Arial. Because it renders reliably on almost every customer device. A missing font breaks the layout.</li>
+    <li>Use the predefined placeholders and styles.</li>
+    <li>Default text starts at 18 pt. It goes down to 11 pt.</li>
+    <li>Never go below 14 pt for a live presentation.</li>
+    <li>11 pt works selectively in a deck for distribution.</li>
+    <li>Use the standard round bullets from the master.</li>
+    <li>A bullet always takes the colour of its text.</li>
+  </ul>
+</section>
+
+<section id="shapes">
+  <h2><span class="num">07</span>Shapes</h2>
+  <p class="lede">Rounded corners give the softer and more human look.</p>
+  <h3>Rounded corners</h3>
+  <ul class="rules">
+    <li>Use rounded rectangles. Use rounded image corners.</li>
+    <li>A box works filled or as an outline only. Corners stay consistent either way.</li>
+    <li>PowerPoint scales the corner radius to the size of each shape. Similar boxes then look inconsistent.</li>
+    <li>Click <b>Correct corners</b> in the 4flow ribbon to fix it. It applies the standard radius across the whole presentation.</li>
+    <li>Insert shapes with <b>4f shapes</b>. They arrive in the right sizes with the correct radius already set.</li>
+  </ul>
+  <h3>Connected shapes and masks and tags</h3>
+  <ul class="rules">
+    <li>The connected circles are a strong branding element. Never rebuild them by hand. Take the ready-made version from the slide design templates.</li>
+    <li>Use a connected-circle mask for a branded image crop. Place the mask over the image. Crop the image so nothing extends past the mask edge.</li>
+    <li>The masks are editable shapes. Recolour them directly in PowerPoint.</li>
+    <li>Use the pill-shaped tag as a short label or a descriptor or an orientation marker. It guides the reader without a heavy text block.</li>
+    <li>Insert a tag with <b>4f shapes</b> to get the right sizing.</li>
+  </ul>
+</section>
+
+<section id="colours">
+  <h2><span class="num">08</span>Colours</h2>
+  <p class="lede">Use the defined theme colours. Never make your own shade. Never take an automatic PowerPoint variant.</p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#00263C"></div><div class="meta"><span class="name">Smart Blue</span><span class="hex">#00263C</span><span class="use">Text and structure.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#EEE6E0"></div><div class="meta"><span class="name">Warm Grey</span><span class="hex">#EEE6E0</span><span class="use">Calm and clarity.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #EEE6E0"></div><div class="meta"><span class="name">White</span><span class="hex">#FFFFFF</span><span class="use">Calm and clarity.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FF4D06"></div><div class="meta"><span class="name">Vibrant Orange</span><span class="hex">#FF4D06</span><span class="use">Strong brand emphasis.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#007EFF"></div><div class="meta"><span class="name">Bright Blue</span><span class="hex">#007EFF</span><span class="use">Charts and selected highlights.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FFA0F5"></div><div class="meta"><span class="name">Bold Pink</span><span class="hex">#FFA0F5</span><span class="use">A rare accent only.</span></div></div>
+  </div>
+  <h3>Rule of thumb</h3>
+  <ul class="rules">
+    <li>Start with Smart Blue and Warm Grey and White.</li>
+    <li>Add Orange only where the emphasis is positive or is a brand moment.</li>
+    <li>Use Bright Blue and Pink selectively.</li>
+    <li>Fewer colours make the stronger slide.</li>
+  </ul>
+  <div class="note">
+    <strong>The colour slots moved</strong>
+    <p>The palette sits in a new order. An old slide copied into this master shifts each colour to the same slot in the new palette. Reassign those colours by hand.</p>
+  </div>
+</section>
+
+<section id="images">
+  <h2><span class="num">09</span>Images</h2>
+  <p class="lede">Choose a photograph with people in it whenever you can.</p>
+  <ul class="rules">
+    <li>An image supports the message. It never fills space.</li>
+    <li>People images build trust and atmosphere. They show openness and respect and authenticity and partnership.</li>
+    <li>Use an industry shot to connect with the world of the customer.</li>
+    <li>Use a detail shot to make a product or a process or a technology tangible.</li>
+    <li>Reach for a 4flow people image when the picture is there mainly for visual emphasis.</li>
+    <li>Use only 4flow images or client-approved visuals or properly licensed external assets. Never take a random image from the web.</li>
+    <li>Ask Marketing for a specific image or an industry visual or a clean detail shot.</li>
+  </ul>
+  <h3>Rounded image corners</h3>
+  <div class="cards">
+    <div class="card">
+      <ol>
+        <li>Insert the image and select it.</li>
+        <li>Crop to Shape → Rounded Rectangle.</li>
+        <li>Click Correct corners.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="icons">
+  <h2><span class="num">10</span>Icons and illustrations</h2>
+  <ul class="rules">
+    <li>Use the custom 4flow icon set. Never use a generic icon.</li>
+    <li>Icons ship as SVG so you can scale and recolour them in PowerPoint.</li>
+    <li>Recolour an icon only in a defined 4flow brand colour.</li>
+    <li>Add an icon only where it explains or structures the content.</li>
+    <li>Illustrations come in isometric and flat styles. They use thin lines and technical shapes to explain a concept rather than draw a literal object.</li>
+    <li>Use an illustration only where there is enough space for it to work. It supports a bigger idea. It never fills a small gap.</li>
+    <li>Ask Marketing at least one week ahead for a specific illustration.</li>
+  </ul>
+  <div class="note">
+    <strong>In development</strong>
+    <p>An AI-based icon generator and a searchable icon database are both being built. An initial icon set is already available to download.</p>
+  </div>
+</section>
+
+<section id="charts">
+  <h2><span class="num">11</span>Charts</h2>
+  <ul class="rules">
+    <li>Use a standard PowerPoint chart for clear data. It already carries the 4flow palette.</li>
+    <li>A standard chart needs no manual colour or shape adjustment.</li>
+    <li>Use a chart or infographic template when the message needs visual storytelling. Timelines and milestones and percentages and comparisons all have one.</li>
+    <li>Never redesign a chart from scratch where a 4flow template already fits.</li>
+  </ul>
+</section>
+
+<section id="tables">
+  <h2><span class="num">12</span>Tables</h2>
+  <p class="lede">Keep a table light. A table structures information. It is not a heavy grid.</p>
+  <ul class="rules">
+    <li>Use Bright Blue for internal lines only.</li>
+    <li>Leave off the outer border. The table then feels lighter and more open.</li>
+    <li>Set text in Bright Blue or Dark Blue.</li>
+    <li>Set backgrounds in Warm Grey or Dark Blue or White.</li>
+    <li>Use Bright Blue for a divider or a highlight.</li>
+    <li>Never build a custom table style from scratch. Copy a table from the slide design templates and adjust the text styling.</li>
+  </ul>
+</section>
+
+<section id="ribbon">
+  <h2><span class="num">13</span>The 4flow ribbon</h2>
+  <p class="lede">The ribbon holds the shortcuts that keep a deck on standard.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>Shapes and alignment</h4>
+      <p>Create and style shapes.</p>
+      <p>Insert a ready-made tag or rounded rectangle.</p>
+      <p>Correct the corners of every rounded rectangle in the deck.</p>
+      <p>Align and rotate and mirror objects.</p>
+      <p>Dock a shape to another. Group. Match sizes.</p>
+      <p>Bring an object to the front or the back.</p>
+    </div>
+    <div class="card">
+      <h4>Helpful tools</h4>
+      <p>Search and replace text.</p>
+      <p>Toggle the design area.</p>
+      <p>Crop an image or a shape.</p>
+      <p>Zoom.</p>
+      <p>Slice a shape equally.</p>
+      <p>Multiply shapes into a grid.</p>
+      <p>Change the spell check language.</p>
+    </div>
+    <div class="card">
+      <h4>Agenda tool</h4>
+      <p>Edit the agenda in one place. Update every agenda slide at once.</p>
+      <ol>
+        <li>Go to the 4flow tab. Click Agenda → Add agenda.</li>
+        <li>Add one agenda slide per main section.</li>
+        <li>Press Tab for a sub-level.</li>
+        <li>Edit the active agenda line on its own slide.</li>
+        <li>Use Change Color to match the deck or to sharpen the hierarchy.</li>
+        <li>Click Update Agenda to push the change everywhere.</li>
+        <li>Use Next Agenda to jump to the next agenda slide.</li>
+      </ol>
+      <p style="margin-top:10px">The tool runs only in the 4flow master. Agenda numbers navigate during presentation mode.</p>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Alignment and spacing</strong>
+    <p>Align every object to the design area. Keep equal distances between related elements. Never place content by eye.</p>
+  </div>
+  <p class="lede" style="margin-top:20px;margin-bottom:0">Correct corners works on rounded rectangles only.</p>
+</section>
+
+<section id="standards">
+  <h2><span class="num">14</span>Standards</h2>
+  <h3>Abbreviations</h3>
+  <ul class="rules">
+    <li>Use only a common abbreviation. Explain any other one in a legend or a footnote.</li>
+  </ul>
+  <h3>Bullet points</h3>
+  <ul class="rules">
+    <li>A short phrase or a keyword takes no punctuation at the end.</li>
+    <li>Punctuate only where the whole bullet list forms one complete sentence. The last bullet then ends with a full stop.</li>
+  </ul>
+  <h3>Images and graphics</h3>
+  <ul class="rules">
+    <li>Use a visual only where it supports the message.</li>
+    <li>Use 4flow-created visuals or approved client material or external assets licensed for commercial use.</li>
+    <li>Translate all text inside a graphic to the language of the presentation.</li>
+    <li>A screenshot of 4flow software stays in English always.</li>
+  </ul>
+  <h3>File names</h3>
+  <ul class="rules">
+    <li>Use the format <code>YYYYMMDD_Client_Project_Type_Version</code>.</li>
+    <li>Project takes either the project number or a short project name.</li>
+    <li>Examples are <code>20101231_MAN_1234567_SteerCo_v1</code> and <code>20101231_MAN_Optimization_SteerCo_v1</code>.</li>
+  </ul>
+  <h3>Dates</h3>
+  <table>
+    <tr><th>Where</th><th>Format</th><th>Example</th></tr>
+    <tr><td>German presentation</td><td>DD.MM.YYYY</td><td><code>01.07.2020</code></td></tr>
+    <tr><td>English presentation</td><td>Month D, YYYY</td><td><code>August 5, 2026</code></td></tr>
+    <tr><td>File name</td><td>YYYYMMDD</td><td><code>20260805</code></td></tr>
+  </table>
+  <p class="lede" style="margin-top:10px">A file name sorts correctly only in YYYYMMDD.</p>
+</section>
+
+<section id="checklist">
+  <h2><span class="num">15</span>Checklist</h2>
+  <p class="lede">Run this before you send a deck.</p>
+  <ul class="check">
+    <li>Started from the 4flow master 7.0 or from the slide design templates.</li>
+    <li>All content sits inside the design area.</li>
+    <li>Arial throughout with the predefined text placeholders.</li>
+    <li>Nothing below 14 pt in a live presentation.</li>
+    <li>Only defined 4flow theme colours. No automatic PowerPoint shade.</li>
+    <li>Rounded rectangles used. Correct corners clicked.</li>
+    <li>A people image wherever the visual is there for atmosphere or emphasis.</li>
+    <li>Image and chart and table and infographic templates used rather than rebuilt.</li>
+    <li>Tables light. Bright Blue on internal lines only. No outer border.</li>
+    <li>Old slides copied into a fresh master file. The master was never applied to the old file.</li>
+    <li>Agenda slides built with the agenda tool.</li>
+    <li>Alignment and spacing and colours and images and corners checked for consistency.</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Questions and feedback</strong></p>
+    <p>Wieslaw Heler — Marketing Manager Design — 4flow SE — <a href="mailto:w.heler@4flow.com">w.heler@4flow.com</a></p>
+    <p style="margin-top:18px"><strong>On the hive</strong></p>
+    <p>PowerPoint Kit. Slide design templates. Icon generator. Image gallery. 4flow brand strategy.</p>
+    <p class="small">Taken from the PowerPoint at 4flow training deck for master 7.0. The deck marks the icon generator as coming soon. It marks the image gallery and the brand strategy as usable work in progress. The deck gives no link for the image gallery.</p>
+  </div>
+</footer>
+
+</body>
+</html>

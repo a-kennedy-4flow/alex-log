@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" color="#00263C" role="img" aria-label="Tracker — Bubble four">
+  <rect x="20" y="5" width="8" height="8" rx="4" fill="currentColor"/><circle cx="24" cy="26" r="16" fill="currentColor"/><path d="M24 26 35 20" fill="none" stroke="#FF4D06" stroke-width="5" stroke-linecap="round"/><circle cx="40" cy="42" r="16" fill="#FF4D06"/><path d="M44 32 44 52M44 32 32 46 50 46" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

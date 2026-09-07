@@ -1,0 +1,1 @@
+2026-09-05T20:51:38Z  python3 corrected the portal address then added the OAuth 2.0 reasoning to the doc  ->  The portal is 4flow.awsapps.com. The reason SAML is the only option is now written down.

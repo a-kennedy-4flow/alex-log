@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — the 4flow mockups</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF; --r:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:var(--smart-blue);background:var(--white)}
+.area{max-width:1320px;margin:0 auto;padding:0 32px}
+header{background:var(--smart-blue);color:var(--white);padding:56px 0 50px}
+header h1{font-size:40px;margin:0 0 12px;line-height:1.1}
+header p{margin:0;max-width:74ch;color:#B7C6D0;font-size:18px}
+header .rule{height:5px;width:88px;background:var(--orange);border-radius:999px;margin-top:24px}
+h2{font-size:26px;margin:0 0 8px}
+h3.dh{font-size:18px;margin:34px 0 6px}
+p.dl{color:var(--grey);margin:0 0 18px;max-width:78ch}
+.lede{color:var(--grey);max-width:78ch;margin:0 0 26px}
+section{padding:46px 0}
+section+section{border-top:1px solid var(--warm-grey)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card{border:1px solid var(--warm-grey);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.card.won{border:2px solid var(--orange)}
+.card.won .kind::after{content:" \00b7 chosen";color:var(--orange);font-weight:700}
+.shot{height:230px;overflow:hidden;position:relative;background:var(--warm-grey);border-bottom:1px solid var(--warm-grey)}
+.shot iframe{width:1500px;height:1150px;border:0;transform:scale(.28);transform-origin:0 0;pointer-events:none}
+.card .body{padding:20px 22px;display:flex;flex-direction:column;flex:1}
+.card h3{margin:0 0 4px;font-size:19px}
+.card .kind{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin:0 0 10px}
+.card p{margin:0 0 14px;font-size:15px}
+.card ul{margin:0 0 18px;padding-left:18px;font-size:14px;color:var(--grey)}
+.card ul li{margin-bottom:4px}
+.open{
+  margin-top:auto;display:inline-block;text-align:center;text-decoration:none;
+  background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:10px;padding:12px 20px;
+}
+.open:hover{background:#FF6A2E}
+
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid rgb(0 126 255 / 22%);vertical-align:top}
+th{color:var(--grey);font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--bright-blue)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:700;white-space:nowrap}
+
+ul.rules{list-style:none;padding:0;margin:0;max-width:80ch}
+ul.rules li{position:relative;padding:10px 0 10px 28px;border-bottom:1px solid var(--warm-grey)}
+ul.rules li:last-child{border-bottom:none}
+ul.rules li::before{content:"";position:absolute;left:5px;top:19px;width:8px;height:8px;border-radius:50%;background:var(--bright-blue)}
+.note{border-radius:var(--r);padding:16px 20px;background:#FFF1EA;border-left:6px solid var(--orange);max-width:80ch;margin-top:22px}
+.note strong{display:block;margin-bottom:4px}
+.note p{margin:0;font-size:15px}
+code{font-family:"Courier New",monospace;background:var(--warm-grey);padding:2px 6px;border-radius:5px;font-size:14px}
+.sw{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 8px}
+.sw i{display:block;width:52px;height:52px;border-radius:10px}
+footer{background:var(--smart-blue);color:#B7C6D0;padding:34px 0;font-size:14px;margin-top:20px}
+@media (max-width:980px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="area">
+    <h1>Tracker in the 4flow design</h1>
+    <p>Seven mockups of the same month. May 2026 in DE_BERLIN. One dataset drives all of them so nothing but the design differs. Three further pages take the Jira screen.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<div class="area">
+
+<section>
+  <h2>The seven</h2>
+  <p class="lede">A and B and C keep one layout and change the surface. D and E change the layout. F and G cross a surface with a layout. Read them as two questions rather than seven options. The first is which surface. The second is whether the month should be a table at all.</p>
+  <div class="cards">
+
+    <div class="card">
+      <div class="shot"><iframe src="a-white.html" title="Variant A preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>A — White</h3>
+        <p class="kind">Functional · send-out</p>
+        <p>Density first. No card and no shadow. The type and the line weight do all the work.</p>
+        <ul>
+          <li>Whole month visible with least scrolling</li>
+          <li>Reads without a speaker</li>
+          <li>Prints closest to the tracker itself</li>
+        </ul>
+        <a class="open" href="a-white.html">Open A</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="b-warm.html" title="Variant B preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>B — Warm</h3>
+        <p class="kind">Designed · brand moment</p>
+        <p>Warm Grey canvas. White cards on it. One corner radius everywhere. The most 4flow of the three.</p>
+        <ul>
+          <li>Connected circles as the mark</li>
+          <li>Tags carry location and contract</li>
+          <li>Largest figures and most air</li>
+        </ul>
+        <a class="open" href="b-warm.html">Open B</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="c-blue.html" title="Variant C preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>C — Blue frame</h3>
+        <p class="kind">Tool · daily use</p>
+        <p>Smart Blue holds the chrome. White holds the work. The month total and the download never scroll away.</p>
+        <ul>
+          <li>Fixed rail with the running total</li>
+          <li>Docked download bar</li>
+          <li>Bold Pink used once for absence</li>
+        </ul>
+        <a class="open" href="c-blue.html">Open C</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="d-calendar.html" title="Variant D preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>D — Calendar board</h3>
+        <p class="kind">Structural · month as a month</p>
+        <p>The table is gone. Seven columns and one cell a day. A free working day carries a control instead of sitting silent.</p>
+        <ul>
+          <li>The missing day is visible at a glance</li>
+          <li>Cost centres read as coloured chips</li>
+          <li>Brand moment header with the key shape</li>
+        </ul>
+        <a class="open" href="d-calendar.html">Open D</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="e-flow.html" title="Variant E preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>E — Guided split</h3>
+        <p class="kind">Structural · one decision at a time</p>
+        <p>The grid is not the front door. Split the month across cost centres and the days place themselves.</p>
+        <ul>
+          <li>Three numbered steps in one column</li>
+          <li>The grid opens only to correct a day</li>
+          <li>Least on screen of the seven</li>
+        </ul>
+        <a class="open" href="e-flow.html">Open E</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="f-sheet.html" title="Variant F preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>F — Warm sheet</h3>
+        <p class="kind">A crossed with B</p>
+        <p>A density on the B canvas. One white sheet holds every section rather than a card per section.</p>
+        <ul>
+          <li>Warm Grey canvas with the B mark and pills</li>
+          <li>A row height so the month still reads in one screen</li>
+          <li>The download is the last band of the sheet</li>
+        </ul>
+        <a class="open" href="f-sheet.html">Open F</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="g-board.html" title="Variant G preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>G — Warm board</h3>
+        <p class="kind">B crossed with D</p>
+        <p>The D calendar board with the B rail beside it. The Smart Blue hero is dropped to pay for the rail.</p>
+        <ul>
+          <li>Chips on the board and rows in the summary</li>
+          <li>Figure and checks stay put while the board scrolls</li>
+          <li>The key shape squares one corner of the figure card</li>
+        </ul>
+        <a class="open" href="g-board.html">Open G</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="note">
+    <strong>The previews are live pages scaled down</strong>
+    <p>Some browsers block a local page inside a local frame. Use the buttons if a preview stays blank.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The two decisions</h2>
+  <p class="lede">F is the design. The board is its second view. Both questions are answered. Decision 1 took option A. Decision 2 took option B. The pages that lost are kept because a decision is only readable beside what it beat. All six share one shell so only the option differs.</p>
+
+  <h3 class="dh">Decision 1 — how a board cell is edited</h3>
+  <p class="dl">A cell has no room for the fields a grid row carries. These three differ in the editing alone. Option A wins because it is the only one that holds the whole row without taking width from the board. It costs a focus trap with an edge flip.</p>
+  <div class="cards">
+    <div class="card won">
+      <div class="shot"><iframe src="d1-popover.html" title="A — Popover on the cell preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>A — Popover on the cell</h3>
+        <p class="kind">Decision 1 · option A</p>
+        <p>The day opens where it sits. The month stays whole behind it.</p>
+        <ul>
+          <li>Every field a grid row carries fits</li>
+          <li>Costs a layer above the board</li>
+          <li>Near the sheet edge it has to flip its side</li>
+        </ul>
+        <a class="open" href="d1-popover.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="d1-rail.html" title="B — Detail rail preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>B — Detail rail</h3>
+        <p class="kind">Decision 1 · option B</p>
+        <p>The day opens beside the board. Nothing ever covers the month.</p>
+        <ul>
+          <li>No open state to manage</li>
+          <li>Costs 340 px of width</li>
+          <li>The cost centre list drops off the page</li>
+        </ul>
+        <a class="open" href="d1-rail.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="d1-minimal.html" title="C — Two fields in the cell preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>C — Two fields in the cell</h3>
+        <p class="kind">Decision 1 · option C</p>
+        <p>A free day takes a cost centre with a day value in place.</p>
+        <ul>
+          <li>Specification and location fall to defaults</li>
+          <li>The board is the fast path rather than the editor</li>
+          <li>Costs a trip to the grid to type a task</li>
+        </ul>
+        <a class="open" href="d1-minimal.html">Open it</a>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="dh">Decision 2 — how one cost centre is told from another</h3>
+  <p class="dl">The theme holds five usable fills. Two of those five have to be mixed. These three differ in the chip alone. Option B wins because it separates five cost centres without inventing a shade. It costs the Vibrant Orange reservation on the fifth line.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="shot"><iframe src="d2-fills.html" title="A — Five fills preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>A — Five fills</h3>
+        <p class="kind">Decision 2 · option A</p>
+        <p>Each cost centre takes its own fill. Read at a glance.</p>
+        <ul>
+          <li>Two fills are mixed tints that need approval</li>
+          <li>Five is the limit before they stop separating</li>
+          <li>A sixth cost centre has no fill left</li>
+        </ul>
+        <a class="open" href="d2-fills.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card won">
+      <div class="shot"><iframe src="d2-edge.html" title="B — A line down the edge preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>B — A line down the edge</h3>
+        <p class="kind">Decision 2 · option B</p>
+        <p>The chip stays Warm Grey. A 4 px theme line names the centre.</p>
+        <ul>
+          <li>No shade invented so nothing needs approval</li>
+          <li>Bright Blue is allowed because a line carries no text</li>
+          <li>Spends the Vibrant Orange reservation</li>
+        </ul>
+        <a class="open" href="d2-edge.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="d2-neutral.html" title="C — No colour preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>C — No colour</h3>
+        <p class="kind">Decision 2 · option C</p>
+        <p>Every chip is Warm Grey. The number is the only difference.</p>
+        <ul>
+          <li>Nothing needs approval</li>
+          <li>Any number of cost centres fits</li>
+          <li>Two centres in one week look alike until read</li>
+        </ul>
+        <a class="open" href="d2-neutral.html">Open it</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Decision 3 is closed</strong>
+    <p>Bright Blue reaches 3.87 to 1 on white so it draws lines and never carries text. Every mockup on this page was corrected to obey that. Grey carries the small headings at 4.61 to 1. Grey also sits on white alone because it falls to 3.74 on Warm Grey.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The Jira screen</h2>
+  <p class="lede">One page reading last month out of Jira. A list of the tickets then a group by Workday ID with the hours summed then the days with each Workday ID rounded up to the nearest half day. A button copies the result into the month. H1 is the design. It wins because it is the only one of the three that holds all three tables at the full width. It costs the summaries their place on screen while the hours above them are typed and a stat strip in the sheet head pays that. H2 and H3 are kept because a decision is only readable beside what it beat. The seven tickets are the real ones read from <code>4flow.atlassian.net</code> on 2026-09-07. The hours are not. See <code>../docs/jira.md</code> and <code>../docs/todo-jira-option-a.md</code>.</p>
+  <div class="cards">
+
+    <div class="card won">
+      <div class="shot"><iframe src="h1-stacked.html" title="H1 stacked preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>H1 — Stacked</h3>
+        <p class="kind">Jira screen · layout 1</p>
+        <p>Three tables down one sheet. The literal shape of the request.</p>
+        <ul>
+          <li>Reading order is the working order</li>
+          <li>Every table keeps the full width</li>
+          <li>Costs the summaries their place while hours are typed</li>
+        </ul>
+        <a class="open" href="h1-stacked.html">Open H1</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="h2-rail.html" title="H2 rail preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>H2 — Rail</h3>
+        <p class="kind">Jira screen · layout 2</p>
+        <p>Tickets take the width. Both summaries ride a sticky rail with the button.</p>
+        <ul>
+          <li>Typing an hour moves a figure that stays put</li>
+          <li>Costs the ticket table 340 px</li>
+          <li>Two tables in a rail is a tight fit</li>
+        </ul>
+        <a class="open" href="h2-rail.html">Open H2</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="h3-steps.html" title="H3 steps preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>H3 — Steps</h3>
+        <p class="kind">Jira screen · layout 3</p>
+        <p>Three numbered steps. Step 2 carries the way out of typing hours at all.</p>
+        <ul>
+          <li>Only layout offering the percentage split</li>
+          <li>Nothing competes with the step being worked on</li>
+          <li>Costs two scrolls to see the whole answer</li>
+        </ul>
+        <a class="open" href="h3-steps.html">Open H3</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="note">
+    <strong>Jira cannot say how long anything took</strong>
+    <p>The site holds no worklog for this user in August 2026 and <code>timespent</code> is empty on all seven tickets. So the hours column is typed by the user on every row today. Five of the seven resolution dates also fall inside two minutes on 13 August because they were closed in one bulk action. A resolution date records when a ticket was closed and not when the work happened. Jira supplies the text and the project. The judgement stays with the user.</p>
+  </div>
+  <div class="note">
+    <strong>Rounding up runs per Workday ID</strong>
+    <p>Fifty hours is 6.25 days. Rounding each Workday ID up to the nearest half day on its own books 6.5. That gap grows with the number of Workday IDs so both figures are on the page. The target for August at an 80 per cent contract is 16.8 days so the fill covers part of the month and says so.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What differs</h2>
+  <p class="lede">The first three answer the surface question. D and E answer the structure question. F and G take one answer to each.</p>
+  <table>
+    <tr><th>Variant</th><th>Structure</th><th>Canvas and chrome</th><th>Where the month total lives</th><th>Costs you</th></tr>
+    <tr><td>A — White</td><td>Table</td><td>White. No card and no shadow.</td><td>Stat strip and sticky aside</td><td>Looks least designed</td></tr>
+    <tr><td>B — Warm</td><td>Table</td><td>Warm Grey with white cards at 18 px</td><td>Large figure in a sticky card</td><td>Most scrolling per screen</td></tr>
+    <tr><td>C — Blue frame</td><td>Table</td><td>White work inside a Smart Blue frame</td><td>Fixed rail. Never scrolls away.</td><td>Rail eats 250 px of width</td></tr>
+    <tr><td>D — Calendar board</td><td>Calendar</td><td>Warm Grey with white day cells</td><td>Key shape in the hero</td><td>No room for tasks or specification text</td></tr>
+    <tr><td>E — Guided split</td><td>Steps</td><td>White. One 880 px column.</td><td>Step 1 is the total</td><td>Per day control needs a second screen</td></tr>
+    <tr><td>F — Warm sheet</td><td>Table</td><td>Warm Grey with one white sheet at 14 px</td><td>Figure in a sticky aside</td><td>The sheet cannot break across a print page</td></tr>
+    <tr><td>G — Warm board</td><td>Calendar</td><td>Warm Grey with white cards and white day cells</td><td>Figure in a sticky rail</td><td>The rail costs the board 340 px of width</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>What all seven obey</h2>
+  <ul class="rules">
+    <li>Arial only. Nothing below 13 px.</li>
+    <li>Theme colours only. No shade was invented.</li>
+    <li>One corner radius per mockup applied to every box. That is what <b>Correct corners</b> does to a deck.</li>
+    <li>Bright Blue on internal table lines only. No outer border on any table.</li>
+    <li>Vibrant Orange reserved for the primary action and the one figure that is off target.</li>
+    <li>Content sits inside a design area with a held margin.</li>
+    <li>Every figure is tabular so columns of numbers line up.</li>
+  </ul>
+  <div class="sw" style="margin-top:26px">
+    <i style="background:#00263C"></i><i style="background:#EEE6E0"></i><i style="background:#FFFFFF;box-shadow:inset 0 0 0 1px #EEE6E0"></i>
+    <i style="background:#FF4D06"></i><i style="background:#007EFF"></i><i style="background:#FFA0F5"></i><i style="background:#757575"></i>
+  </div>
+  <p class="lede" style="margin:0">Read from <code>ppt/theme/theme1.xml</code> in the training deck. Not sampled from a screenshot.</p>
+
+  <div class="note">
+    <strong>The palette cannot colour code</strong>
+    <p>D and E give each cost centre a fill. The theme holds five usable ones so five cost centres is the limit before the fills stop separating. Two of those five are tints mixed from Bright Blue and Vibrant Orange. The deck forbids inventing a shade so a brand owner has to approve them. A and B and C and F avoid the problem by never colouring a cost centre. Decision 2 above puts the three ways out side by side.</p>
+  </div>
+
+  <div class="note">
+    <strong>One brand rule fights accessibility</strong>
+    <p>White on Vibrant Orange reaches only 3.3 to 1. Body text needs 4.5 to 1. Smart Blue on that same orange reaches 4.7 to 1. So every primary button here sets dark text on orange. Bright Blue on white reaches 3.9 to 1 which is why it draws lines and never carries text.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Files</h2>
+  <ul class="rules">
+    <li><code>data.js</code> — the shared May 2026 dataset and the grid renderer.</li>
+    <li><code>a-white.html</code> and <code>b-warm.html</code> and <code>c-blue.html</code> — one layout in three surfaces.</li>
+    <li><code>d-calendar.html</code> and <code>e-flow.html</code> — two different layouts.</li>
+    <li><code>f-sheet.html</code> and <code>g-board.html</code> — the two crosses.</li>
+    <li><code>f-board.css</code> and <code>f-board.js</code> — the F sheet carrying the board. Shared by the six decision pages.</li>
+    <li><code>build-decisions.py</code> — emits <code>d1-*.html</code> and <code>d2-*.html</code> from one shell.</li>
+    <li><code>h-jira.css</code> — the Jira screen styles. Shared by the three layouts.</li>
+    <li><code>h1-stacked.html</code> and <code>h2-rail.html</code> and <code>h3-steps.html</code> — three layouts of that screen.</li>
+    <li><code>build-jira.py</code> — emits those three. Every figure on them is computed by the rounding rule rather than typed.</li>
+    <li><code>teardown.sh</code> — removes the whole folder so the next experiment starts clean.</li>
+    <li><code>../powerpoint-design-guidelines.html</code> — the rules these were built against.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>
+  <div class="area">Mockups only. No component in the Vue application was changed.</div>
+</footer>
+
+</body>
+</html>

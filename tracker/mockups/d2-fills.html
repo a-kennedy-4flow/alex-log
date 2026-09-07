@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — decision 2 option A — five fills</title>
+<link rel="stylesheet" href="f-board.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#" class="on">Month view</a><a href="#">Quick fill</a><a href="#">My settings</a><a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Decision 2. Each cost centre takes a fill.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <div class="controls">
+        <label class="field"><span>Year</span><select><option>2026</option></select></label>
+        <label class="field"><span>Month</span><select><option>May</option></select></label>
+        <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+        <div class="field">
+          <span>View</span>
+          <div class="views">
+            <button type="button">Grid</button><button type="button" class="on">Board</button>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Working days</dt><dd>18</dd></div>
+          <div class="stat"><dt>Target</dt><dd>14.5</dd></div>
+          <div class="stat"><dt>Booked</dt><dd class="off">13.5</dd></div>
+        </dl>
+      </div>
+
+      <div class="cols">
+        <div class="fills">
+          <div class="legend"><span class="lab">Legend</span><span id="legend"></span></div>
+          <div class="board" id="board"></div>
+
+        </div>
+        <aside>
+          <section>
+            <h2>This month</h2>
+            <div class="figure"><span class="big">13.5</span><span class="of">/ 14.5</span><span class="unit">days</span></div>
+            <div class="track"><div class="fill"></div></div>
+            <ul class="weeks" id="weeks"></ul>
+            <p class="foot">18 working days at your location.</p>
+          </section>
+          <section>
+            <h2>Checks</h2>
+            <ul class="checks" id="checks"></ul>
+          </section>
+          <section>
+            <h2>Your cost centres</h2>
+            <div class="recent" id="recent"></div>
+            <p class="foot">Click one to book it on the next free day.</p>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <div class="download">
+      <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+      <p>Download the tracker then email it to software.projecttracker@4flow.com.</p>
+      <button type="button" class="primary">Download the tracker</button>
+    </div>
+  </div>
+
+  <footer><b>Decision 2 option A. Five fills.</b> A cost centre is read at a glance and the number confirms it.
+    Two of the five are tints mixed from Bright Blue and Vibrant Orange. The deck forbids inventing a shade.
+    A brand owner has to approve those two before this ships. Five is the limit before the fills stop separating.
+    A sixth cost centre in one month has no fill left to take.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="f-board.js"></script>
+<script>
+const POP = `<label class="ed"><span>Cost centre</span><select><option>3000112 — Product development</option></select></label><label class="ed"><span>Specification</span><select><option>Development</option></select></label><div class="two"><label class="ed"><span>Days</span><select><option>0.5</option><option>1</option></select></label><label class="ed"><span>Location</span><select><option>DE_BERLIN</option></select></label></div><label class="ed"><span>Tasks</span><input type="text" value="Release 2.4"></label>`
+renderBoard('#board', addControl)
+fillAside()
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — Jira screen — H2 rail</title>
+<link rel="stylesheet" href="f-board.css">
+<link rel="stylesheet" href="h-jira.css">
+<style>
+/* The rail is narrower than the board rail because it holds two tables. */
+.cols{grid-template-columns:minmax(0,1fr) 340px}
+</style>
+</head>
+<body class="edge">
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#">Month view</a><a href="#">Quick fill</a><a href="#" class="on">Jira</a><a href="#">My settings</a><a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>Jira — August 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>The tickets take the width. Both summaries ride a sticky rail.</p>
+  </div>
+
+  <div class="cols">
+    <div class="sheet">
+      <div class="band">
+        <h2>Closed last month</h2>
+        <p class="sub">Read as you. Type the hours you spent on each one and
+        watch the rail.</p>
+        <table>
+  <thead>
+    <tr>
+      <th class="key">Ticket</th><th>Summary and epic</th><th>Closed</th>
+      <th>Workday ID</th><th class="num">Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td class="key">PLRS-1141</td>
+        <td class="sum">Add TO/Load identification or subsequent emails, not just the first one<br><span class="src">User group feedback/Additional Scope</span></td>
+        <td>26 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100782">4100782</span></span></td>
+        <td class="num"><input class="hrs" value="14" aria-label="Hours on PLRS-1141"><span class="src">typed</span></td>
+      </tr>
+      <tr>
+        <td class="key">PLRS-1115</td>
+        <td class="sum">Set up roles throughout the front and backend.<br><span class="src">no epic</span></td>
+        <td>13 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100782">4100782</span></span></td>
+        <td class="num"><input class="hrs" value="11" aria-label="Hours on PLRS-1115"><span class="src">typed</span></td>
+      </tr>
+      <tr>
+        <td class="key">PLRS-995</td>
+        <td class="sum">Bring frontend in line with date time recommendations<br><span class="src">Release 2 technical tasks</span></td>
+        <td>13 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100782">4100782</span></span></td>
+        <td class="num"><input class="hrs" value="9" aria-label="Hours on PLRS-995"><span class="src">typed</span></td>
+      </tr>
+      <tr>
+        <td class="key">PLRS-1099</td>
+        <td class="sum">Add ability to customize reopen status (when a new email comes into a closed ticket)<br><span class="src">Customization Abilities</span></td>
+        <td>13 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100782">4100782</span></span></td>
+        <td class="num"><input class="hrs" value="6" aria-label="Hours on PLRS-1099"><span class="src">typed</span></td>
+      </tr>
+      <tr>
+        <td class="key">PLRS-1117</td>
+        <td class="sum">Email templates page should not kill the preview just because the subject is missing.<br><span class="src">no epic</span></td>
+        <td>13 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100782">4100782</span></span></td>
+        <td class="num"><input class="hrs" value="5" aria-label="Hours on PLRS-1117"><span class="src">typed</span></td>
+      </tr>
+      <tr>
+        <td class="key">PLRS-1116</td>
+        <td class="sum">Add role requirements to openapi documention<br><span class="src">Release 2 technical tasks</span></td>
+        <td>13 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100782">4100782</span></span></td>
+        <td class="num"><input class="hrs" value="3" aria-label="Hours on PLRS-1116"><span class="src">typed</span></td>
+      </tr>
+      <tr>
+        <td class="key">DEVH-4887</td>
+        <td class="sum">Create WebProxy 4FL-APP-167v<br><span class="src">no epic</span></td>
+        <td>13 Aug</td>
+        <td><span class="wid"><span class="chip cc-4100915">4100915</span></span></td>
+        <td class="num"><input class="hrs" value="2" aria-label="Hours on DEVH-4887"><span class="src">typed</span></td>
+      </tr>
+    <tr class="total">
+      <td class="lab" colspan="4">7 tickets closed in August 2026</td>
+      <td class="num">50 h</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div class="band"><div class="note">
+  <strong>No hours came from Jira</strong>
+  <p>The site holds no worklog for this user in August 2026 and every ticket has
+  an empty <code>timespent</code>. So every figure above was typed here. A value
+  read from a worklog would say so instead.</p>
+</div></div>
+    </div>
+    <aside>
+      <div class="box">
+        <h2>Grouped by Workday ID</h2>
+        <table>
+  <thead>
+    <tr><th class="key">Workday ID</th><th>Title</th><th class="num">Tickets</th><th class="num">Hours</th></tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td class="key"><span class="chip cc-4100782">4100782</span></td>
+        <td>LP Polaris build</td>
+        <td class="num">6</td>
+        <td class="num">48 h</td>
+      </tr>
+      <tr>
+        <td class="key"><span class="chip cc-4100915">4100915</span></td>
+        <td>Team DevOps platform</td>
+        <td class="num">1</td>
+        <td class="num">2 h</td>
+      </tr>
+    <tr class="total">
+      <td class="lab" colspan="2">Total</td>
+      <td class="num">7</td>
+      <td class="num">50 h</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div class="box">
+        <h2>Days to book</h2>
+        <table>
+  <thead>
+    <tr>
+      <th class="key">Workday ID</th><th class="num">Hours</th>
+      <th class="num">True days</th><th class="num">Booked days</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td class="key"><span class="chip cc-4100782">4100782</span></td>
+        <td class="num">48 h</td>
+        <td class="num">6</td>
+        <td class="num"><b>6</b></td>
+      </tr>
+      <tr>
+        <td class="key"><span class="chip cc-4100915">4100915</span></td>
+        <td class="num">2 h</td>
+        <td class="num">0.25</td>
+        <td class="num"><b>0.5</b></td>
+      </tr>
+    <tr class="total">
+      <td class="lab">Total</td>
+      <td class="num">50 h</td>
+      <td class="num">6.25</td>
+      <td class="num">6.5</td>
+    </tr>
+  </tbody>
+</table>
+        <p class="foot">6.25 days worked and
+        6.5 booked. Rounding up runs per Workday ID.</p>
+        <p class="foot">6.5 of 16.8 days for August.</p>
+        <button type="button" class="primary">Fill the month timesheet</button>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <b>H2 — Rail.</b> Typing an hour moves a figure that never scrolls away. It costs the ticket table 320 px. The seven tickets are the real ones read from
+    <b>4flow.atlassian.net</b> on 2026-09-07. The hours are not. That site holds
+    no worklogs so a user types them. Mockup only. No component in the Vue
+    application was changed.
+  </footer>
+</div>
+
+</body>
+</html>

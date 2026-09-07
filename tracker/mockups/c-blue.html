@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — variant C — Blue frame</title>
+<style>
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF;
+  --rail:250px; --r:12px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;
+  color:var(--smart-blue);background:var(--white);
+}
+button,select,input{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+/* The frame is Smart Blue. The work happens on white. */
+.rail{
+  position:fixed;inset:0 auto 0 0;width:var(--rail);background:var(--smart-blue);color:var(--white);
+  padding:26px 20px;display:flex;flex-direction:column;gap:30px;
+}
+.mark{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.mark em{font-style:normal;color:var(--orange)}
+.rail nav{display:grid;gap:3px}
+.rail nav a{
+  text-decoration:none;color:#B7C6D0;padding:11px 14px;border-radius:var(--r);display:flex;gap:10px;align-items:center;
+}
+.rail nav a:hover{background:rgb(255 255 255 / 8%);color:var(--white)}
+.rail nav a.on{background:var(--white);color:var(--smart-blue);font-weight:700}
+.rail nav a .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);opacity:0}
+.rail nav a.on .dot{opacity:1}
+
+.rail .month{margin-top:auto;border-top:1px solid rgb(255 255 255 / 15%);padding-top:22px}
+.rail .month h2{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#7E93A1;margin:0 0 12px;font-weight:700}
+.rail .figure{display:flex;align-items:baseline;gap:6px}
+.rail .big{font-size:40px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.rail .of{color:#7E93A1;font-size:18px}
+.rail .track{height:8px;border-radius:999px;background:rgb(255 255 255 / 15%);overflow:hidden;margin:14px 0 10px}
+.rail .track i{display:block;height:100%;width:93%;background:var(--orange)}
+.rail .say{margin:0;font-size:13px;color:#B7C6D0}
+.rail .who{display:flex;align-items:center;gap:10px;font-size:13px;color:#B7C6D0;margin-top:22px}
+.rail .who button{
+  background:none;border:1px solid rgb(255 255 255 / 25%);color:var(--white);
+  border-radius:999px;padding:6px 14px;cursor:pointer;margin-left:auto;
+}
+
+.work{margin-left:var(--rail);padding:0 34px 132px;max-width:1400px}
+.head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:30px 0 20px}
+.head h1{font-size:30px;margin:0;font-weight:700;line-height:1.1}
+.chip{
+  display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:6px 15px;font-size:13px;
+  background:var(--warm-grey);color:var(--smart-blue);
+}
+/* Bold Pink is the rare accent. It marks absence and nothing else. */
+.chip.rare{background:var(--pink)}
+.head p{margin:0 0 3px auto;color:var(--grey)}
+
+.strip{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;padding:0 0 20px;border-bottom:1px solid var(--warm-grey)}
+.field{display:grid;gap:4px}
+.field span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.field select{background:var(--warm-grey);border:0;border-radius:var(--r);padding:10px 13px;min-width:140px;color:inherit}
+.tiles{display:flex;gap:10px;margin-left:auto}
+.tile{background:var(--warm-grey);border-radius:var(--r);padding:10px 18px;text-align:right;min-width:110px}
+.tile dt{margin:0;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.tile dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.tile.flag{background:#FFE9DF}
+.tile.flag dd{color:var(--orange)}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;align-items:start;margin-top:22px}
+
+.grid{overflow:auto;max-height:660px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+thead th{
+  position:sticky;top:0;background:var(--white);text-align:left;padding:10px;
+  font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);
+  border-bottom:2px solid var(--bright-blue);white-space:nowrap;
+}
+tbody td{padding:7px 10px;border-bottom:1px solid rgb(0 126 255 / 20%)}
+tr.week-break td{
+  border-bottom:none;padding:16px 10px 5px;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--grey);font-weight:700;
+}
+tr.non-working td{background:#FAFAFA;color:var(--grey)}
+tr.empty .ph{color:#D0D0D0}
+tr.absence td{background:#FFF6FE}
+tr.absence .c-days{color:var(--smart-blue)}
+.num{font-variant-numeric:tabular-nums}
+.c-date{white-space:nowrap;font-weight:700}
+.c-date .flag{display:block;font-size:11px;font-weight:400;color:var(--grey)}
+.c-day{color:var(--grey);width:52px}
+.c-cc{min-width:230px}
+.c-cc .cc-title{display:block;font-size:12px;color:var(--grey)}
+.c-days{text-align:right;width:60px;font-weight:700}
+.c-loc,.c-tasks{color:var(--grey);font-size:12px}
+.c-act{width:34px}
+.icon{border:0;background:none;color:var(--grey);cursor:pointer;border-radius:7px;padding:1px 6px}
+.icon:hover{background:var(--warm-grey);color:var(--smart-blue)}
+
+aside{display:grid;gap:26px;position:sticky;top:22px}
+aside h2{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin:0 0 12px;padding-bottom:7px;border-bottom:2px solid var(--bright-blue)}
+.checks{padding:0;margin:0;list-style:none;display:grid;gap:12px}
+.checks li{display:flex;gap:10px;font-size:13px}
+.checks .badge{flex:none;width:21px;height:21px;border-radius:7px;background:var(--warm-grey);display:grid;place-items:center;font-weight:700;font-size:12px}
+.checks .rows{display:block;color:var(--grey);font-size:12px;margin-top:2px}
+.recent{display:flex;flex-wrap:wrap;gap:7px}
+.tag{border:0;background:var(--warm-grey);color:var(--smart-blue);border-radius:999px;padding:7px 14px;font-size:12px;cursor:pointer;font-variant-numeric:tabular-nums}
+.tag:hover{background:var(--bright-blue);color:var(--white)}
+.weeks{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.weeks li{display:flex;align-items:center;gap:10px;font-size:13px}
+.weeks .lab{color:var(--grey);width:44px}
+.weeks .bar{flex:1;height:7px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.weeks .bar i{display:block;height:100%;background:var(--bright-blue)}
+.weeks .d{width:28px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.weeks li.none .d{color:#D0D0D0;font-weight:400}
+.foot{color:var(--grey);font-size:12px;margin:12px 0 0}
+
+.summaries{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:34px}
+.summaries h2{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin:0 0 12px;padding-bottom:7px;border-bottom:2px solid var(--bright-blue)}
+.summaries th{position:static;padding:0 9px 7px;color:var(--grey);font-size:12px;text-transform:none;letter-spacing:0;border-bottom:1px solid rgb(0 126 255 / 20%)}
+.summaries td{padding:7px 9px}
+.r{text-align:right;font-variant-numeric:tabular-nums}
+.summaries tfoot td{border-bottom:none;color:var(--grey)}
+.summaries tfoot tr.grand td{font-weight:700;color:var(--smart-blue);border-top:2px solid var(--bright-blue)}
+
+/* The action bar stays in view. The download is never hunted for. */
+.dock{
+  position:fixed;left:var(--rail);right:0;bottom:0;background:var(--smart-blue);color:var(--white);
+  padding:16px 34px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+}
+.dock .fn{font-variant-numeric:tabular-nums;font-size:13px}
+.dock .fn span{display:block;color:#7E93A1;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.dock .note{margin:0;color:#B7C6D0;font-size:13px}
+.primary{
+  border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;
+  border-radius:var(--r);padding:13px 26px;font-size:15px;cursor:pointer;margin-left:auto;
+}
+.primary:hover{background:#FF6A2E}
+
+footer{color:var(--grey);font-size:13px;padding:32px 0 0;max-width:80ch}
+footer b{color:var(--smart-blue)}
+@media (max-width:1180px){
+  .rail{position:static;width:auto}
+  .work{margin-left:0}
+  .dock{left:0;position:static}
+  .cols,.summaries{grid-template-columns:1fr}
+  aside{position:static}
+}
+</style>
+</head>
+<body>
+
+<div class="rail">
+  <span class="mark">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+      <circle cx="9" cy="9" r="8" fill="#FFFFFF"/>
+      <circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+    </svg>
+    <span>4<em>flow</em></span>
+  </span>
+  <nav>
+    <a href="#" class="on"><span class="dot"></span>Month view</a>
+    <a href="#"><span class="dot"></span>Quick fill</a>
+    <a href="#"><span class="dot"></span>My settings</a>
+    <a href="#"><span class="dot"></span>Cost centres</a>
+  </nav>
+  <div class="month">
+    <h2>This month</h2>
+    <div class="figure"><span class="big">13.5</span><span class="of">/ 14.5</span></div>
+    <div class="track"><i></i></div>
+    <p class="say">1 day to go. 18 working days at your location.</p>
+    <ul class="weeks" id="weeks" style="margin-top:16px"></ul>
+    <div class="who">
+      <span>Alexander Kennedy</span>
+      <button type="button">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<div class="work">
+  <div class="head">
+    <h1>May 2026</h1>
+    <span class="chip">DE_BERLIN</span>
+    <span class="chip rare">1 day vacation</span>
+    <p>Fill your month then download the tracker to email.</p>
+  </div>
+
+  <div class="strip">
+    <label class="field"><span>Year</span><select><option>2026</option></select></label>
+    <label class="field"><span>Month</span><select><option>May</option></select></label>
+    <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+    <label class="field"><span>Language</span><select><option>English</option></select></label>
+    <dl class="tiles">
+      <div class="tile"><dt>Working days</dt><dd>18</dd></div>
+      <div class="tile"><dt>Target</dt><dd>14.5</dd></div>
+      <div class="tile flag"><dt>Booked</dt><dd>13.5</dd></div>
+    </dl>
+  </div>
+
+  <div class="cols">
+    <div class="grid">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th><th>Day</th><th>Cost centre</th><th>Specification</th>
+            <th class="r">Days</th><th>Location</th><th>Tasks</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <aside>
+      <section>
+        <h2>Checks</h2>
+        <ul class="checks" id="checks"></ul>
+      </section>
+      <section>
+        <h2>Your cost centres</h2>
+        <div class="recent" id="recent"></div>
+        <p class="foot">Click one to book it on the next free day.</p>
+      </section>
+    </aside>
+  </div>
+
+  <div class="summaries">
+    <section>
+      <h2>By cost centre</h2>
+      <table>
+        <thead><tr><th>Cost centre</th><th>Customer</th><th>Business line</th><th class="r">Days</th></tr></thead>
+        <tbody id="byCentre"></tbody>
+        <tfoot>
+          <tr><td colspan="3">Vacation or sickness</td><td class="r">1</td></tr>
+          <tr><td colspan="3">Other absences</td><td class="r">0</td></tr>
+          <tr class="grand"><td colspan="3">Total</td><td class="r">13.5 / 14.5</td></tr>
+        </tfoot>
+      </table>
+    </section>
+    <section>
+      <h2>By calendar week</h2>
+      <table>
+        <thead><tr><th>CW</th><th class="r">On working days</th><th class="r">On non-working days</th><th class="r">Total</th></tr></thead>
+        <tbody id="byWeek"></tbody>
+        <tfoot><tr class="grand"><td>Total</td><td class="r">13.5</td><td class="r">0</td><td class="r">13.5</td></tr></tfoot>
+      </table>
+    </section>
+  </div>
+
+  <footer>
+    <b>Variant C — Blue frame.</b> Smart Blue holds the navigation and the action bar. White holds the work.
+    The month figure lives in the rail so it never scrolls away. The download docks to the bottom for the same reason.
+    Bold Pink appears once. It marks the absence rows and nothing else. That is the rare accent the deck asks for.
+    Bright Blue carries the internal table lines and the week bars.
+  </footer>
+</div>
+
+<div class="dock">
+  <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+  <p class="note">Email it to software.projecttracker@4flow.com once it downloads.</p>
+  <button type="button" class="primary">Download the tracker</button>
+</div>
+
+<script src="data.js"></script>
+<script>
+renderGrid('#rows')
+const most = Math.max(...TS.byWeek.map((w) => w.total))
+document.querySelector('#weeks').innerHTML = TS.byWeek
+  .map((w) => `<li class="${w.total ? '' : 'none'}"><span class="lab">CW ${w.week}</span><span class="bar"><i style="width:${most ? (w.total / most) * 100 : 0}%"></i></span><span class="d">${w.total || '—'}</span></li>`)
+  .join('')
+document.querySelector('#checks').innerHTML = TS.checks
+  .map((c) => `<li><span class="badge">?</span><span>${c.text}<span class="rows">${c.rows}</span></span></li>`)
+  .join('')
+document.querySelector('#recent').innerHTML = Object.keys(TS.centres)
+  .map((id) => `<button type="button" class="tag">${id}</button>`)
+  .join('')
+document.querySelector('#byCentre').innerHTML = TS.byCentre
+  .map((r) => `<tr><td class="num">${r.id}</td><td>${r.customer}</td><td>${r.line}</td><td class="r">${r.days}</td></tr>`)
+  .join('')
+document.querySelector('#byWeek').innerHTML = TS.byWeek
+  .map((w) => `<tr><td class="num">${w.week}</td><td class="r">${w.working}</td><td class="r">${w.nonWorking}</td><td class="r">${w.total}</td></tr>`)
+  .join('')
+</script>
+</body>
+</html>

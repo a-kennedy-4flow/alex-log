@@ -1,0 +1,166 @@
+/*
+ * The F sheet carrying the board. Shared by every decision mockup.
+ *
+ * Because a) a decision is only readable when one thing differs. b) six copies
+ * of one shell drift apart. c) the three chip options belong in one place so
+ * they can be compared line by line.
+ *
+ * Two contrast rules hold everywhere here. Bright Blue draws lines and never
+ * carries text because it reaches 3.87 to 1 on white. Grey text sits on white
+ * alone because it falls to 3.74 on Warm Grey.
+ */
+
+:root{
+  --smart-blue:#00263C; --warm-grey:#EEE6E0; --orange:#FF4D06;
+  --bright-blue:#007EFF; --pink:#FFA0F5; --grey:#757575; --white:#FFFFFF;
+  --tint:#FAF7F5; --r:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.45;
+  color:var(--smart-blue);background:var(--warm-grey);
+}
+button,select,input{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.area{max-width:1400px;margin:0 auto;padding:0 28px}
+
+header.top{padding:20px 0 0}
+header.top .bar{display:flex;align-items:center;gap:18px;background:var(--white);border-radius:var(--r);padding:12px 20px}
+.mark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.mark em{font-style:normal;color:var(--orange)}
+nav{display:flex;gap:2px;margin-left:10px}
+nav a{text-decoration:none;color:var(--smart-blue);padding:7px 14px;border-radius:var(--r)}
+nav a:hover{background:var(--warm-grey)}
+nav a.on{background:var(--smart-blue);color:var(--white)}
+.who{margin-left:auto;display:flex;align-items:center;gap:12px;color:var(--grey);font-size:13px}
+.who button{border:1px solid var(--warm-grey);background:var(--white);color:var(--smart-blue);border-radius:var(--r);padding:6px 14px;cursor:pointer}
+
+.title{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:26px 0 18px}
+.title h1{font-size:30px;margin:0;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.pill{background:var(--smart-blue);color:var(--white);border-radius:var(--r);padding:5px 14px;font-size:13px}
+.pill.light{background:var(--white);color:var(--smart-blue)}
+.title p{margin:0 0 0 auto;color:var(--grey)}
+
+.sheet{background:var(--white);border-radius:var(--r);overflow:hidden}
+.sheet .pad{padding:22px 26px}
+
+.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;padding-bottom:18px;border-bottom:1px solid var(--warm-grey)}
+.field{display:grid;gap:3px}
+.field span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.field select{background:var(--warm-grey);border:0;border-radius:var(--r);padding:9px 12px;min-width:130px;color:inherit}
+
+/* The view switch. Both views edit one month so they share the route. */
+.views{display:flex;gap:2px;background:var(--warm-grey);border-radius:var(--r);padding:3px}
+.views button{border:0;background:none;color:var(--smart-blue);border-radius:calc(var(--r) - 3px);padding:7px 15px;font-size:13px}
+.views button.on{background:var(--white);font-weight:700}
+
+.stats{display:flex;margin:0 0 0 auto}
+.stat{padding:0 20px;border-left:1px solid var(--warm-grey);text-align:right}
+.stat:first-child{border-left:none}
+.stat dt{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin:0}
+.stat dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat dd.off{color:var(--orange)}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start;margin-top:20px}
+
+/* The board. Line weight divides the cells because F carries no card. */
+.board{
+  display:grid;grid-template-columns:repeat(7,1fr);margin-top:2px;
+  border-top:1px solid var(--warm-grey);border-left:1px solid var(--warm-grey);
+}
+.board .head{
+  font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);font-weight:700;
+  padding:7px 9px;border-right:1px solid var(--warm-grey);border-bottom:2px solid var(--bright-blue);
+}
+.cell{
+  border-right:1px solid var(--warm-grey);border-bottom:1px solid var(--warm-grey);
+  min-height:108px;padding:9px 10px;display:flex;flex-direction:column;gap:6px;position:relative;
+}
+.cell.blank{background:var(--tint)}
+.cell.off{background:var(--tint)}
+.cell .top{display:flex;align-items:baseline;gap:7px}
+.cell .d{font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
+/* Weight recedes a non-working day. Colour cannot because Grey fails on a tint. */
+.cell.off .d{font-weight:400}
+.cell .lab{font-size:11px;line-height:1.25}
+.chips{display:grid;gap:5px}
+.chip{
+  display:flex;align-items:center;gap:7px;border-radius:var(--r);padding:4px 9px;font-size:12px;
+  background:var(--warm-grey);color:var(--smart-blue);
+}
+.chip b{font-weight:700;font-variant-numeric:tabular-nums}
+.chip i{margin-left:auto;font-style:normal;font-weight:700}
+.cell .add{
+  border:1px dashed #C9BFB7;background:none;color:var(--grey);border-radius:var(--r);
+  padding:5px 0;cursor:pointer;font-size:15px;margin-top:auto;
+}
+.cell .add:hover{border-color:var(--orange);color:var(--orange)}
+
+/*
+ * Decision 2. The three chip options. A page picks one by naming it on the
+ * board so nothing else has to change.
+ */
+
+/* Option A. Five fills. Two are tints mixed from Bright Blue and Vibrant Orange. */
+.fills .cc-4100782{background:var(--smart-blue);color:var(--white)}
+.fills .cc-4100915{background:#E0EFFF}
+.fills .cc-3000112{background:var(--warm-grey)}
+.fills .cc-2000045{background:#FFE4D9}
+.fills .cc-1002341{background:var(--pink)}
+
+/* Option B. One neutral chip with a theme line down its edge. No shade invented. */
+.edge .chip{background:var(--warm-grey);border-left:4px solid var(--grey);border-radius:0 var(--r) var(--r) 0}
+.edge .cc-4100782{border-left-color:var(--smart-blue)}
+.edge .cc-4100915{border-left-color:var(--bright-blue)}
+.edge .cc-3000112{border-left-color:var(--grey)}
+.edge .cc-2000045{border-left-color:var(--orange)}
+.edge .cc-1002341{border-left-color:var(--pink)}
+
+/* Option C. No colour at all. The number carries the identity. */
+.neutral .chip{background:var(--warm-grey)}
+
+.legend{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:14px 0 4px}
+#legend{display:flex;gap:7px;flex-wrap:wrap}
+.legend .lab{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.legend .chip{font-size:11px;padding:3px 9px}
+
+aside{display:grid;gap:22px;position:sticky;top:22px}
+aside h2{
+  font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);
+  margin:0 0 10px;padding-bottom:7px;border-bottom:2px solid var(--bright-blue);
+}
+.figure{display:flex;align-items:baseline;gap:7px;margin:0 0 12px}
+.figure .big{font-size:44px;font-weight:700;line-height:.95;font-variant-numeric:tabular-nums}
+.figure .of{font-size:21px;color:var(--grey)}
+.figure .unit{color:var(--grey);font-size:13px}
+.track{height:10px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.track .fill{height:100%;background:var(--orange);width:93%;border-radius:999px}
+.weeks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:7px}
+.weeks li{display:flex;align-items:center;gap:10px}
+.weeks .lab{font-size:12px;color:var(--grey);width:42px}
+.weeks .bar{flex:1;height:7px;border-radius:999px;background:var(--warm-grey);overflow:hidden}
+.weeks .bar i{display:block;height:100%;background:var(--bright-blue);border-radius:999px}
+.weeks .d{width:28px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:13px}
+.weeks li.none .d{color:#B9AEA6;font-weight:400}
+.foot{color:var(--grey);font-size:12px;margin:12px 0 0}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.checks li{display:flex;gap:9px;font-size:13px}
+.checks .badge{
+  flex:none;width:20px;height:20px;border-radius:6px;background:var(--warm-grey);
+  display:grid;place-items:center;font-weight:700;font-size:12px;
+}
+.checks .rows{display:block;color:var(--grey);font-size:12px;margin-top:2px}
+.recent{display:flex;flex-wrap:wrap;gap:7px}
+.tag{border:0;background:var(--warm-grey);color:var(--smart-blue);border-radius:var(--r);padding:6px 13px;font-size:12px;cursor:pointer;font-variant-numeric:tabular-nums}
+.tag:hover{background:var(--smart-blue);color:var(--white)}
+
+.download{background:var(--smart-blue);color:var(--white);padding:24px 26px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:26px}
+.download .fn{font-variant-numeric:tabular-nums;font-size:14px}
+.download .fn span{display:block;color:#7E93A1;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.download p{margin:0;color:#B7C6D0;font-size:13px}
+.primary{border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:var(--r);padding:13px 26px;font-size:15px;cursor:pointer;margin-left:auto}
+.primary:hover{background:#FF6A2E}
+
+footer{color:var(--grey);font-size:13px;padding:26px 0 60px;max-width:84ch}
+footer b{color:var(--smart-blue)}
+@media (max-width:1180px){.cols{grid-template-columns:1fr}aside{position:static}}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — decision 1 option B — detail rail</title>
+<link rel="stylesheet" href="f-board.css">
+<style>
+.cols{grid-template-columns:minmax(0,1fr) 340px}
+/* The chosen day carries the outline. Vibrant Orange marks one thing at a time. */
+.cell.sel{outline:2px solid var(--orange);outline-offset:-2px}
+.ed{display:grid;gap:3px;margin-bottom:10px}
+.ed span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.ed select,.ed input{
+  width:100%;background:var(--warm-grey);border:0;border-radius:var(--r);padding:8px 11px;color:inherit;
+}
+.acts{display:flex;gap:8px;margin-top:14px}
+.ghost{flex:1;border:1px solid var(--warm-grey);background:none;color:var(--smart-blue);border-radius:var(--r);padding:9px 0;cursor:pointer}
+.save{flex:1;border:0;background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:var(--r);padding:9px 0;cursor:pointer}
+.rail h2{margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#" class="on">Month view</a><a href="#">Quick fill</a><a href="#">My settings</a><a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Decision 1. A rail beside the board holds the day.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <div class="controls">
+        <label class="field"><span>Year</span><select><option>2026</option></select></label>
+        <label class="field"><span>Month</span><select><option>May</option></select></label>
+        <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+        <div class="field">
+          <span>View</span>
+          <div class="views">
+            <button type="button">Grid</button><button type="button" class="on">Board</button>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Working days</dt><dd>18</dd></div>
+          <div class="stat"><dt>Target</dt><dd>14.5</dd></div>
+          <div class="stat"><dt>Booked</dt><dd class="off">13.5</dd></div>
+        </dl>
+      </div>
+
+      <div class="cols">
+        <div class="edge">
+          <div class="legend"><span class="lab">Legend</span><span id="legend"></span></div>
+          <div class="board" id="board"></div>
+
+        </div>
+        <aside class="rail">
+          <section>
+            <h2>Wednesday 20 May</h2>
+            <label class="ed"><span>Cost centre</span><select><option>4100915 — Transport optimisation</option></select></label>
+            <label class="ed"><span>Specification</span><select><option>Analysis</option></select></label>
+            <label class="ed"><span>Days</span><select><option>1</option><option>0.5</option></select></label>
+            <label class="ed"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+            <label class="ed"><span>Tasks</span><input type="text" value="Lane costing"></label>
+            <div class="acts">
+              <button type="button" class="ghost">Split the day</button>
+              <button type="button" class="save">Save</button>
+            </div>
+          </section>
+          <section>
+            <h2>This month</h2>
+            <div class="figure"><span class="big">13.5</span><span class="of">/ 14.5</span><span class="unit">days</span></div>
+            <div class="track"><div class="fill"></div></div>
+            <p class="foot">1 day to go. 18 working days at your location.</p>
+          </section>
+          <section>
+            <h2>Checks</h2>
+            <ul class="checks" id="checks"></ul>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <div class="download">
+      <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+      <p>Download the tracker then email it to software.projecttracker@4flow.com.</p>
+      <button type="button" class="primary">Download the tracker</button>
+    </div>
+  </div>
+
+  <footer><b>Decision 1 option B. A detail rail.</b> The day opens beside the board. Nothing ever covers the month.
+    The rail is always there so there is no open state to manage. It costs 340 px of width.
+    The checks move under the rail and the cost centre list drops off the page.
+    The chip treatment is held at decision 2 option B so only the editing differs across these three.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="f-board.js"></script>
+<script>
+const POP = `<label class="ed"><span>Cost centre</span><select><option>3000112 — Product development</option></select></label><label class="ed"><span>Specification</span><select><option>Development</option></select></label><div class="two"><label class="ed"><span>Days</span><select><option>0.5</option><option>1</option></select></label><label class="ed"><span>Location</span><select><option>DE_BERLIN</option></select></label></div><label class="ed"><span>Tasks</span><input type="text" value="Release 2.4"></label>`
+renderBoard('#board', addControl)
+document.querySelector('[data-day="20"]').classList.add('sel')
+fillAside()
+</script>
+</body>
+</html>

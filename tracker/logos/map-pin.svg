@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" color="#00263C" role="img" aria-label="Tracker — Map pin">
+  <path d="M32 8a16 16 0 0 1 16 16c0 11-16 32-16 32S16 35 16 24A16 16 0 0 1 32 8Z" fill="currentColor"/><circle cx="32" cy="24" r="6.5" fill="#FF4D06"/>
+</svg>

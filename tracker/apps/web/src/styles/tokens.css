@@ -1,0 +1,280 @@
+/*
+ * The theme palette. Six colours and white.
+ *
+ * Two rules hold everywhere. Bright Blue draws lines and never carries text
+ * because it reaches 3.87 to 1 on white. Grey text sits on white alone because
+ * it falls to 3.74 on Warm Grey.
+ *
+ * Vibrant Orange fills and never carries small text. Because a) white on it
+ * reaches 3.32 to 1. b) body text needs 4.5 to 1. c) Smart Blue on it reaches
+ * 4.70 to 1 so the primary button reads that way round.
+ *
+ * A hex outside this file fails the colour check in
+ * `src/__tests__/colour.test.ts`. Add a shade here or not at all.
+ */
+
+:root {
+  --smart-blue: #00263c;
+  --warm-grey: #eee6e0;
+  --orange: #ff4d06;
+  --bright-blue: #007eff;
+  --pink: #ffa0f5;
+  --grey: #757575;
+  --white: #ffffff;
+
+  /* Shades of a theme colour. Each one has a job no theme colour can take. */
+
+  /* A non-working day. Warm Grey lightened so the tint reads under a cell. */
+  --tint: #faf7f5;
+  /* A dashed edge on white. It carries no text so it need clear no ratio. */
+  --dash: #c9bfb7;
+  /* Text on the Smart Blue band. 4.90 to 1 for the label and 8.94 for the body. */
+  --on-blue-label: #7e93a1;
+  --on-blue-body: #b7c6d0;
+  /* The primary button under the pointer. Smart Blue on it reaches 5.48 to 1. */
+  --orange-hover: #ff6a2e;
+  /* The cell being edited. Smart Blue on it reaches 14.69 to 1. */
+  --open: #fff6f2;
+  /* A working day past the target. Bright Blue washed so it is not the Warm
+     Grey of a non-working day. Smart Blue on it reaches 14.33 to 1. */
+  --past-target: #edf6ff;
+
+  /* Bright Blue at a weight that divides a row without drawing the eye. */
+  --line: rgb(0 126 255 / 22%);
+
+  /* F applies one radius to every box. */
+  --radius: 14px;
+  --gap: 12px;
+
+  /* The deck allows Arial alone. */
+  --font: Arial, Helvetica, sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--warm-grey);
+  color: var(--smart-blue);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.4em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+a {
+  color: var(--smart-blue);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--warm-grey);
+  /*
+   * Transparent rather than absent. A control reads as flat at rest and a state
+   * can still colour its edge without the box changing size.
+   */
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 7px 10px;
+  width: 100%;
+}
+
+/*
+ * No spinner on a number field.
+ *
+ * A browser draws two arrows inside the right edge of the box. Every number
+ * field here is right aligned so the arrows sit on top of the value. Chrome
+ * only draws them on hover so the figure appears to change as the pointer
+ * crosses it.
+ *
+ * Nothing is lost. The up and down keys still step the value because that
+ * belongs to the input and not to the arrows. Every one of these fields also
+ * sits beside the figure it changes so a pointer only user has the value in
+ * front of them either way.
+ */
+input[type='number'] {
+  appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+/*
+ * One white surface carries a page. A section of it is a band rather than a
+ * card so F carries neither a border nor a shadow.
+ */
+.sheet {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* A band that carries its own padding. The sheet itself carries none. */
+.pad {
+  padding: 22px 26px;
+}
+
+/*
+ * The page layout. Both editing pages take it so the two cannot drift.
+ *
+ * A section carries its own surface rather than sharing one with the page. So
+ * the gap between two sections is the Warm Grey canvas showing through and the
+ * order of them reads without a rule to divide one from the next.
+ */
+.stack {
+  display: grid;
+  gap: var(--gap);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* The aside is about the month as a whole so it stays put while it scrolls. */
+.split > aside {
+  display: grid;
+  gap: var(--gap);
+  position: sticky;
+  top: var(--gap);
+}
+
+/* Below this the month needs the whole width so the aside goes above it. */
+@media (max-width: 1200px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .split > aside {
+    position: static;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* A rule divides one band from the next. */
+.band {
+  border-top: 1px solid var(--warm-grey);
+}
+
+.btn {
+  border: 1px solid var(--warm-grey);
+  background: var(--white);
+  color: var(--smart-blue);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--warm-grey);
+}
+
+.btn-primary {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--smart-blue);
+  font-weight: 700;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--orange-hover);
+  border-color: var(--orange-hover);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Grey holds to white. Smart Blue carries the same job on any other ground. */
+.muted {
+  color: var(--grey);
+}
+
+/* A small heading. Grey over the Bright Blue rule. */
+.eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid var(--bright-blue);
+}
+
+.pill {
+  background: var(--smart-blue);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 5px 14px;
+  font-size: 13px;
+}
+
+.pill.light {
+  background: var(--warm-grey);
+  color: var(--smart-blue);
+}
+
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

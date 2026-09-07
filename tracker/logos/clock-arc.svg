@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" color="#00263C" role="img" aria-label="Tracker — Progress ring">
+  <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="7" opacity=".28"/><path d="M32 12a20 20 0 1 1-17.32 10" fill="none" stroke="#FF4D06" stroke-width="7" stroke-linecap="round"/>
+</svg>

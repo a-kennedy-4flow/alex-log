@@ -1,0 +1,40 @@
+{
+  "name": "tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "4flow Tracker. Timesheet management and submission.",
+  "type": "module",
+  "license": "ISC",
+  "scripts": {
+    "dev": "pnpm --filter @tracker/web dev",
+    "dev:api": "pnpm --filter @tracker/api dev",
+    "build": "pnpm --filter @tracker/web typecheck && pnpm --filter @tracker/web build",
+    "typecheck": "pnpm -r --no-bail typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "pnpm -r --no-bail test",
+    "fixtures": "pnpm --filter @tracker/extract-fixtures start",
+    "bundle": "pnpm --filter @tracker/api bundle",
+    "synth": "pnpm --filter @tracker/infra synth",
+    "diff": "pnpm --filter @tracker/infra diff",
+    "deploy": "pnpm --filter @tracker/infra deploy",
+    "deploy:all": "pnpm --filter @tracker/infra deploy:all"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.10.0",
+      "onFail": "download"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-vue": "^10.10.0",
+    "globals": "^17.12.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.69.0",
+    "vue-eslint-parser": "^10.4.1"
+  }
+}
