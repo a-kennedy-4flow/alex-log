@@ -181,6 +181,16 @@ button:focus-visible,
   align-items: start;
 }
 
+/* The month box. It holds the view switch then the grid or the board so the
+   control sits on the surface it acts on. The two views carry no surface of
+   their own. Only the month page has this box. */
+.split > .month {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+
 /* The aside is about the month as a whole so it stays put while it scrolls. */
 .split > aside {
   display: grid;

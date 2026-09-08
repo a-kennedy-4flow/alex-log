@@ -106,6 +106,17 @@ describe('the two editing pages', () => {
   })
 })
 
+describe('the cost centre panel', () => {
+  it('is fixed to the viewport rather than to the cell it opens in', () => {
+    // The month grid scrolls under `overflow: auto` and that clips an absolute
+    // panel. jsdom lays out nothing so only the file shows this.
+    const picker = readFileSync(join(ROOT, 'src/components/CostCentrePicker.vue'), 'utf8')
+    const panel = picker.slice(picker.indexOf('.panel {'), picker.indexOf('.results {'))
+    expect(panel).toContain('position: fixed')
+    expect(panel).toContain('max-height: var(--panel-room)')
+  })
+})
+
 describe('a section that stands alone', () => {
   it('carries the surface and its padding together', () => {
     // `.sheet` is the surface and `.pad` is what puts space inside it. One

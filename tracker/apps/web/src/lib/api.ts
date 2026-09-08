@@ -78,6 +78,12 @@ export interface StoredSheet {
   /** Tracker cell B8 for this month alone. Null defers to the contract. */
   adjustedWorkDays: number | null
   updatedAt: string
+  /**
+   * When the workbook was last downloaded. It survives a later edit so the
+   * monthly reminder stays muted once a month has been sent. A month whose
+   * `updatedAt` is later than this was edited after its download.
+   */
+  exportedAt: string | null
 }
 
 export interface SheetInput {

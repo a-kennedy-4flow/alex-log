@@ -37,6 +37,10 @@ const es: Messages = {
     workPercentDays: 'Son {days} de {working} días laborables este mes.',
     save: 'Guardar',
     saved: 'Guardado',
+    saving: 'Guardando',
+    saveFailed: 'No guardado',
+    saveFailedHint: 'El cambio queda en este navegador. Solo se pierde si borra sus datos.',
+    retry: 'Reintentar',
     hoursPerDay: 'Jornada laboral',
     hoursPerDayHint: 'Cuántas horas trabaja al día. Define qué significa medio día cuando la página de Jira lee horas. Déjelo vacío para ocho.',
     jira: 'Jira',
@@ -158,6 +162,8 @@ const es: Messages = {
     button: 'Descargar el tracker',
     blocked: 'Corrija los errores de arriba para descargar.',
     filename: 'Nombre del archivo',
+    sent: 'Descargado el {at}.',
+    changed: 'Modificado desde la descarga del {at}. Descárguelo de nuevo.',
   },
   picker: {
     search: 'Buscar por número o título o cliente',
@@ -354,6 +360,30 @@ const es: Messages = {
     shareTotal: 'Las partes suman {total}.',
     unlink: 'Desconectar Jira',
     retry: 'Intentar de nuevo',
+  },
+  privacy: {
+    title: 'Privacidad',
+    intro: 'Qué guarda este servicio sobre usted y durante cuánto tiempo.',
+    logs: {
+      title: 'Registros de acceso',
+      body: 'Una petición a este servicio se registra un mes como máximo. Después se borra el registro.',
+    },
+    store: {
+      title: 'Sus hojas de horas',
+      body: 'Guardamos sus últimos seis meses. Un mes más antiguo se borra solo.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'No guardamos ninguna copia de su Jira. Solo leemos los tickets que usted nos indica. Lo leído se conserva hasta un día para que la pantalla abra sin espera. Desaparece cuando desconecta Jira.',
+    },
+    use: {
+      title: 'Para qué la usamos',
+      body: 'Usamos sus datos para rellenar su hoja de horas. Enviamos el recordatorio mensual si usted lo activa. No los usamos para nada más.',
+    },
+    erase: {
+      title: 'Borrado de sus datos',
+      body: 'Todo lo que guardamos sobre usted se borra con su cuenta.',
+    },
   },
   common: {
     none: 'Ninguna',

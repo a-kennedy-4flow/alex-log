@@ -5,12 +5,19 @@
 import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useQuery } from '@tanstack/vue-query'
-import { Link, Outlet } from '@tanstack/vue-router'
+import { Link, Outlet, useLocation } from '@tanstack/vue-router'
 
 import { setCatalogue } from '@tracker/core'
 import { loadCatalogue } from '@tracker/fixtures'
 import { ApiError, api, usingApi } from '@/lib/api'
-import { loadHistory, loadProfileFromApi, profileComplete } from '@/composables/useTimesheet'
+import {
+  loadHistory,
+  loadProfileFromApi,
+  month,
+  openMonth,
+  profileComplete,
+  year,
+} from '@/composables/useTimesheet'
 import AdminUpload from '@/components/AdminUpload.vue'
 import DevUserSwitch from '@/components/DevUserSwitch.vue'
 import SetupWizard from '@/components/SetupWizard.vue'
@@ -32,6 +39,12 @@ const projects = useQuery({
   queryFn: async () => {
     setCatalogue(usingApi ? await api.catalogue() : await loadCatalogue())
     await loadProfileFromApi()
+    // The open month is read here rather than on the first change of period.
+    // Because a) the month is written as it is edited so an unread grid would
+    // store an empty month over a real one. b) the location the calendar is
+    // built from arrives with the profile. c) the grid is what the first page
+    // renders.
+    openMonth(year.value, month.value)
     await loadHistory()
     return true
   },
@@ -39,6 +52,13 @@ const projects = useQuery({
 })
 
 const ready = computed(() => projects.isSuccess.value)
+
+// The privacy notice renders before the catalogue does. Because a) it is fixed
+// text that reads neither the catalogue nor the profile. b) an empty deployment
+// answers 503 until backoffice uploads a workbook. c) a notice nobody can reach
+// in that state is not a notice.
+const path = useLocation({ select: (location) => location.pathname })
+const ungated = computed(() => path.value === '/privacy')
 
 // The wizard is told when to decide rather than working it out for itself. The
 // profile has landed by the time the catalogue query settles. Because a) the
@@ -111,7 +131,8 @@ watch(wizardOpen, (open) => {
     </header>
 
     <main>
-      <p v-if="projects.isPending.value" class="sheet pad muted">{{ t('picker.loading') }}</p>
+      <Outlet v-if="ungated" />
+      <p v-else-if="projects.isPending.value" class="sheet pad muted">{{ t('picker.loading') }}</p>
       <Outlet v-else-if="ready" />
       <template v-else-if="catalogueMissing">
         <div v-if="isBackoffice()" class="bootstrap">
@@ -125,14 +146,34 @@ watch(wizardOpen, (open) => {
       </p>
     </main>
 
+    <footer>
+      <Link to="/privacy">{{ t('privacy.title') }}</Link>
+    </footer>
+
     <TourOverlay />
     <SetupWizard v-if="ready && wizardOpen" />
   </div>
 </template>
 
 <style scoped>
+/* The notice is reached from here rather than from the bar. A row of working
+   screens is not where somebody looks for it. */
+footer {
+  margin-top: 26px;
+  font-size: 12px;
+}
+
+footer :deep(a) {
+  color: var(--smart-blue);
+  text-decoration: none;
+}
+
+footer :deep(a:hover) {
+  text-decoration: underline;
+}
+
 .shell {
-  max-width: 1400px;
+  max-width: 80vw;
   margin: 0 auto;
   padding: 20px 28px 60px;
 }

@@ -4,6 +4,8 @@
 // same way on both sides.
 
 export * from './types'
+export * from './dev'
+export * from './jira-scopes'
 export * from './locales'
 export * from './calendar'
 export * from './catalogue'

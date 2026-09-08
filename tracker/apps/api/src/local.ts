@@ -18,6 +18,8 @@ declare global {
 
 import { MemoryRepository } from './repository'
 import { createDevServer } from './dev-server'
+import { DEV_JIRA_CLIENT_ID } from '@tracker/core'
+
 import { FakeJira, PlainCipher } from './jira-fake'
 
 const PORT = Number(process.env.PORT ?? 8787)
@@ -37,7 +39,7 @@ const server = createDevServer(
     jira: new FakeJira(),
     cipher: new PlainCipher(),
     now,
-    clientId: 'dev-client-id',
+    clientId: DEV_JIRA_CLIENT_ID,
     redirectUri: 'http://localhost:5173/jira/callback',
   },
 )

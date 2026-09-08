@@ -12,6 +12,7 @@
 import {
   buildMonth,
   catalogue,
+  exportLocation,
   hasErrors,
   isLocale,
   offeredWorkdayIds,
@@ -349,6 +350,7 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
           return problem(400, 'adjustedWorkDays must be a number between 0 and 31')
         }
       }
+      const stored = await deps.repository.getSheet(caller.sub, period)
       const sheet: StoredSheet = {
         year,
         month,
@@ -356,9 +358,12 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
         halfDays,
         adjustedWorkDays: (override as number | undefined) ?? null,
         updatedAt: deps.now().toISOString(),
-        // An edit invalidates whatever was downloaded before it. The month is
-        // owed again so the reminder must be free to name it.
-        exportedAt: null,
+        // The download mutes the reminder for that month and a later edit does
+        // not unmute it. Because a) the month is written on every edit now so
+        // clearing this would unmute a month the user has already sent. b) an
+        // `updatedAt` later than this already says the month was changed after
+        // its download. c) the screen is where that belongs and not the inbox.
+        exportedAt: stored?.exportedAt ?? null,
       }
       await deps.repository.putSheet(caller.sub, period, sheet)
       return json(200, sheet)
@@ -369,7 +374,9 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
       const sheet = await deps.repository.getSheet(caller.sub, period)
       if (!sheet) return problem(404, 'no sheet saved for that month')
       const profile = await requireProfile(deps, caller)
-      const location = sheet.location || profile.location
+      // The same rule the export panel names the file with. `filename.ts` holds
+      // it so the screen and this cannot drift apart.
+      const location = exportLocation(sheet.location, profile.location)
       if (!location) return problem(400, 'set your location before exporting')
 
       const workingDays = buildMonth(sheet.year, sheet.month, location).filter(

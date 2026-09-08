@@ -37,6 +37,10 @@ const ptBR: Messages = {
     workPercentDays: 'São {days} de {working} dias úteis neste mês.',
     save: 'Salvar',
     saved: 'Salvo',
+    saving: 'Salvando',
+    saveFailed: 'Não salvo',
+    saveFailedHint: 'A alteração fica neste navegador. Só se perde se você limpar os dados dele.',
+    retry: 'Tentar de novo',
     hoursPerDay: 'Jornada de trabalho',
     hoursPerDayHint: 'Quantas horas você trabalha por dia. Define o que significa meio dia quando a página do Jira lê horas. Deixe vazio para oito.',
     jira: 'Jira',
@@ -158,6 +162,8 @@ const ptBR: Messages = {
     button: 'Baixar o tracker',
     blocked: 'Corrija os erros acima para baixar.',
     filename: 'Nome do arquivo',
+    sent: 'Baixado em {at}.',
+    changed: 'Alterado desde o download em {at}. Baixe novamente.',
   },
   picker: {
     search: 'Buscar por número ou título ou cliente',
@@ -354,6 +360,30 @@ const ptBR: Messages = {
     shareTotal: 'As partes somam {total}.',
     unlink: 'Desconectar o Jira',
     retry: 'Tentar de novo',
+  },
+  privacy: {
+    title: 'Privacidade',
+    intro: 'O que este serviço guarda sobre você e por quanto tempo.',
+    logs: {
+      title: 'Registros de acesso',
+      body: 'Uma requisição a este serviço é registrada por no máximo um mês. O registro é apagado depois disso.',
+    },
+    store: {
+      title: 'Suas folhas de horas',
+      body: 'Guardamos seus últimos seis meses. Um mês mais antigo se apaga sozinho.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'Não guardamos nenhuma cópia do seu Jira. Lemos apenas os chamados que você indicar. O que lemos fica por até um dia para a tela abrir sem espera. Some quando você desconecta o Jira.',
+    },
+    use: {
+      title: 'O que fazemos com eles',
+      body: 'Usamos seus dados para preencher sua folha de horas. Enviamos o lembrete mensal quando você o ativa. Não os usamos para mais nada.',
+    },
+    erase: {
+      title: 'Exclusão dos seus dados',
+      body: 'Tudo o que guardamos sobre você é apagado junto com sua conta.',
+    },
   },
   common: {
     none: 'Nenhuma',

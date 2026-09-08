@@ -80,11 +80,56 @@ The older `/rest/api/3/search` is withdrawn. Paging is by `nextPageToken`.
 Name the fields. The default set returns thirteen fields including three blocks
 of avatar URLs.
 
-    "fields": ["summary", "project", "resolutiondate", "parent"]
+    "fields": ["summary", "project", "resolutiondate", "parent", "worklog",
+               "<internal cost center>", "<cost center specification>"]
 
 `parent` is worth carrying. Column M takes the ticket summary so the epic is
 never written to a timesheet. The screen shows it under each summary as context.
-A ticket key alone says nothing about which piece of work it belonged to.
+A ticket key alone says nothing about which piece of work it belonged to. The
+parent key is carried beside the summary so the screen can link to it.
+
+`worklog` rides along rather than costing a call of its own. See `Where the
+hours come from`.
+
+### The second query
+
+A month is two searches rather than one.
+
+    worklogAuthor = currentUser()
+    AND worklogDate >= "2026-08-01"
+    AND worklogDate <  "2026-09-01"
+
+Neither set contains the other. A ticket closed this month may have been worked
+in the one before it. A ticket worked all month may still be open. So both are
+read and the union is what the screen receives. The closed set is taken first so
+a ticket in both keeps its resolution date.
+
+### The two cost centre fields
+
+`Internal Cost Center` and `Cost Center Specification` are custom fields. They
+are matched by name against `/rest/api/3/field` rather than by id. Because a) a
+custom field id differs per Atlassian site so an id in the source would serve
+one deployment. b) `read:field:jira` is already granted. c) the names are
+business terms that outlive any one field.
+
+The lookup runs once per container. A site holding neither field costs that one
+call and nothing else.
+
+A 4flow ticket rarely carries either field. The epic above it carries them for
+everything beneath. So the parent chain is walked up to five deep and the ticket
+the value came from is returned beside it. A user has to know a figure is
+inherited before booking against it.
+
+The walk is one search per depth rather than one call per ticket.
+
+    key in (PLRS-900,PLRS-901,DEVH-4000)
+
+So forty tickets under three epics cost one call. A site holding neither field
+is not walked at all.
+
+A value arrives as a number on one site and as a select option on another and as
+a list of options on a third. All three state the same fact so all three are
+read to one string. Blank is nothing rather than an answer.
 
 ## The join to a tracker user
 
@@ -116,9 +161,49 @@ needs somebody to fill it.
 **The user remembers their own.** The first time a `PLRS` ticket is booked the
 choice is written to the profile. Every later month proposes it.
 
-The third costs nothing and works on the first day. The first is the only one
-that helps a new starter. They are not exclusive. Build the third and add the
-first when backoffice asks.
+The second and the third are both built. The second wins.
+
+### The order the screen resolves in
+
+1. A choice made on the screen. It is the one answer a person made on purpose.
+2. The Jira `Internal Cost Center` converted through the catalogue.
+3. The project map on the profile.
+
+Jira beats the profile map. Because a) a cost centre is per ticket and the map
+is per project so Jira is the finer answer. b) an epic carries one for
+everything beneath it so a whole release books correctly with nobody typing. c)
+the map stays the answer for a project Jira says nothing about.
+
+### The conversion
+
+`workdayIdForCostCentre` in `packages/core/src/catalogue.ts` does it. Three keys
+are tried in order against the shipped project list.
+
+| Key | Example | Answer |
+| --- | --- | --- |
+| `costCentre` | `99980100` | `10100` |
+| `projectNo` | `99980100` | `10100` |
+| the Workday ID itself | `7713022` | `7713022` |
+
+The list carries 1873 distinct cost centres and every one of them resolves.
+Eight name more than one Workday ID. The first row wins because XLOOKUP in the
+tracker also returns the first match.
+
+`0` and blank are absence rather than a value. 1276 rows carry a cost centre of
+`0` and the picker already skips it.
+
+The index is built from every row rather than from the deduplicated ones. The
+350 repeated Workday IDs differ only in cost centre and project number so
+building it from the kept rows would lose exactly the numbers it exists to find.
+
+A number the catalogue never heard of converts to nothing. The profile map then
+answers. Nothing is guessed.
+
+### Where it runs
+
+In the browser rather than in the Jira function. That function never loads the
+catalogue and `lambda.ts` keeps it that way. So the answer the API returns
+carries the Jira cost centre unconverted and `useJira.ts` converts it.
 
 ## The screen
 
@@ -191,14 +276,29 @@ needs no arithmetic the user has to trust. c) `lib/distribute.ts` already takes
 one. The hours path is kept and tested because it is what a site with worklogs
 would use.
 
-Reading worklogs is not free. A JQL search returns issues rather than the
-worklogs under them. `fields=worklog` returns the first twenty per issue and no
-more. So a full read costs one further call per issue. Send that only for an
-issue the worklog JQL already named. Because that query returned nothing here
-the cost today is zero calls.
+Reading worklogs is nearly free. `fields=worklog` returns the first twenty per
+issue with the count of all of them. Twenty covers almost every ticket of a
+month so almost every ticket is answered by the search that found it. Only a
+ticket holding more costs a call of its own and `MAX_WORKLOG_READS` bounds how
+many of those one month may make.
 
-A list that leaves `worklog` out skips both that query and the account lookup.
-So a deployment reading only a custom field costs one call for a whole month.
+Jira inlines the oldest worklogs first. So a ticket holding more than twenty is
+never read from its inline set. Reading it would report the wrong days.
+
+`worklog` in `JIRA_HOURS_FIELDS` now decides where the hours figure comes from
+and nothing else. The worklog search and the account lookup both run either way.
+Because a) the day breakdown is what the screen shows. b) the union of the two
+searches decides which tickets a month holds at all. c) a worklog carries its
+author so this user hours cannot be told from anybody else without the account.
+
+### The day breakdown
+
+Every ticket carries the hours this user logged against it keyed by day.
+
+    "days": { "2026-08-03": 3.5, "2026-08-04": 4 }
+
+A worklog somebody else wrote is dropped. So is one outside the month. A shared
+ticket would otherwise report the whole team hours as one person own.
 
 The screen still offers the hours mode. It books the rounded hours where a
 worklog supplied any. On this site it books nothing so the share is the path.
@@ -253,9 +353,82 @@ Option D replaces the first route with a write from Jira.
 ## Option A. The API holds a per user consent
 
 One OAuth 2.0 3LO app is registered at `developer.atlassian.com`. It is granted
-`read:jira-work` and `read:jira-user`. The authorize URL asks for
-`offline_access` as well. That third value is not a Jira scope so the console
-does not list it. It is what makes Atlassian return a refresh token.
+the eighteen granular scopes of the table below. The authorize URL asks for
+`offline_access` as well. That value is not a Jira scope so the console does not
+list it. It is what makes Atlassian return a refresh token.
+
+### The scopes
+
+Granular rather than classic. Atlassian recommends classic and is overruled
+here. Because a) `read:jira-work` also grants every attachment and comment this
+app never reads. b) three calls fix the granular list so it cannot drift. c) the
+consent screen then names what is read.
+
+The tracker makes four calls. Each row says which of them the Jira REST API
+lists the scope against.
+
+| Scope | What needs it |
+| --- | --- |
+| `read:issue-meta:jira` | nothing today |
+| `read:issue:jira` | nothing today |
+| `read:issue.property:jira` | nothing today |
+| `read:issue-details:jira` | the JQL search |
+| `read:issue.time-tracking:jira` | nothing today |
+| `read:field:jira` | the JQL search then the field lookup |
+| `read:field.default-value:jira` | the JQL search |
+| `read:field.option:jira` | the JQL search |
+| `read:user:jira` | `myself` then the worklog read |
+| `read:application-role:jira` | `myself` |
+| `read:avatar:jira` | `myself` then the worklog read then the field lookup |
+| `read:group:jira` | `myself` then the JQL search then the worklog read |
+| `read:issue-worklog:jira` | the worklog read |
+| `read:issue-worklog.property:jira` | the worklog read |
+| `read:project-role:jira` | the worklog read |
+| `read:field-configuration:jira` | the field lookup |
+| `read:project:jira` | the field lookup |
+| `read:project-category:jira` | the field lookup |
+
+Fourteen are required. The four that read a single issue by key and its
+properties and the site time tracking configuration are called by nothing. A
+parent is read through a `key in (...)` search rather than by key so the cost
+centre walk did not change that. They are granted so the consent screen never
+has to be shown twice. Drop them from `packages/core/src/jira-scopes.ts` and
+from the console to shorten it.
+
+The table is derived rather than reasoned about. `ENDPOINT_SCOPES` in
+`packages/core/src/jira-scopes.ts` holds what the REST API lists per call and a
+test asserts the grant covers all of it. Because the last three rows were learnt
+from a 401 in production instead.
+
+A scope list is taken whole for the endpoint that lists it. Three of the five on
+`/rest/api/3/field` are named after a project rather than a field. So reading
+the name of a call and picking the scope that looks like it is how a grant ends
+up short.
+
+Atlassian answers a token short of a scope with 401 rather than 403. The client
+reads a 401 as a token that has gone. So the screen says the connection has
+expired and offers a relink. A relink cannot add a scope so it succeeds and the
+next read fails the same way. Nothing in that loop names the fault. The log line
+is the only thing that does.
+
+`avatar` and `group` and `project-role` and `application-role` look unrelated to
+a timesheet. They are the expansions Jira attaches to a user it returns. A
+worklog carries its author so reading one reads a user.
+
+The authorize URL is then this.
+
+    https://auth.atlassian.com/authorize
+      ?audience=api.atlassian.com
+      &client_id=wJiihW00HOrSowAzpyBcDjWOj7vUMAXz
+      &scope=read%3Aissue-meta%3Ajira%20read%3Aissue%3Ajira%20read%3Aissue.property%3Ajira%20read%3Aissue-details%3Ajira%20read%3Aissue.time-tracking%3Ajira%20read%3Afield%3Ajira%20read%3Afield.default-value%3Ajira%20read%3Afield.option%3Ajira%20read%3Auser%3Ajira%20read%3Aapplication-role%3Ajira%20read%3Aavatar%3Ajira%20read%3Agroup%3Ajira%20read%3Aissue-worklog%3Ajira%20read%3Aissue-worklog.property%3Ajira%20read%3Aproject-role%3Ajira%20read%3Afield-configuration%3Ajira%20read%3Aproject%3Ajira%20read%3Aproject-category%3Ajira%20offline_access
+      &redirect_uri=https%3A%2F%2Ftracker.4flow.io%2Fjira%2Fcallback
+      &state=<one value bound to this user>
+      &response_type=code
+      &prompt=consent
+
+The console generates that URL without `offline_access`. Appending it is the one
+edit. A refresh token carries the scopes it was granted so a user linked under
+the classic pair consents again.
 
 Consent is offered on the profile page. The browser is sent to
 `auth.atlassian.com/authorize`. That URL carries `audience=api.atlassian.com`
@@ -312,12 +485,45 @@ A token response sometimes carries no refresh token at all. Write the stored
 token only when the response carries one. Because writing null over a working
 token ends the link as surely as a race does.
 
+A fifth rule was added after the first deployment. Only a refusal that names
+`invalid_grant` ends a link. That is what Atlassian answers for a refresh token
+which has been spent or revoked. Every other reason on that grant is the client
+id and the client secret being rejected so the stored token was never at fault.
+Deleting the link then costs the user a consent that fails the same way. The
+screen is told 502 with the reason and no relink is offered. `refusedTheTracker`
+in `apps/api/src/jira.ts` holds the test.
+
+This was found the hard way. A container that started before the client secret
+was corrected holds the old one for its whole life. Every hour it wiped a
+working link and the screen asked the user to connect again. A relink through a
+newer container then succeeded which made the fault look intermittent rather
+than deployed.
+
 The monthly reminder gains the ticket list. That is the strongest argument for
 this option. `reminder.ts` already runs on a schedule and already reads every
 user.
 
 A user who never consents sees the panel offer to link. A revoked consent
 returns 401 and the stored token is dropped on the spot.
+
+A refusal on the exchange is a different thing. The token endpoint returns 400
+or 401 for a code already spent. It returns the same for a wrong client secret.
+It returns the same again for a redirect the developer console never registered.
+None of those is a consent that lapsed because the exchange is the call that
+would create one. So the body is read for `error` and `error_description` and
+the answer is 400 carrying that reason. The screen prints it under
+`jira.consentFailed` and offers no relink. Every refusal is logged either way
+because the status alone tells nobody which of the three it was.
+
+`access_denied: Unauthorized` on the screen is that reason and it means the
+exchange rather than the consent. A code came back so the scopes and the app
+approval and the access rules are all settled. Atlassian is refusing the client
+credentials.
+
+The usual cause is the secret. CDK creates `tracker/jira` with a random
+password of its own so an unfilled secret reads as a filled one. Put the console
+value in it and force new containers. `secretReader` holds what it read for the
+life of the container so a retry alone proves nothing.
 
 Ask the Atlassian administrator to confirm one thing. External app access rules
 must permit a customer OAuth app to read Jira. An administrator can block that
@@ -425,7 +631,8 @@ Do not start either until it is answered.
 
 1. Do external app access rules on the site permit a customer OAuth app. The app
    is registered as of 2026-09-07. Registering one proves nothing about the
-   rules. The first consent that completes is the proof.
+   rules. The first consent that completes is the proof. `docs/jira-admin.md` is
+   the request to send to the administrator.
 2. Which Workday ID does `PLRS` book against. Which does `DEVH` book against.
 3. Should a ticket completed in a project the user cannot book be hidden or
    shown unmapped.

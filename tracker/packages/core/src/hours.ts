@@ -75,10 +75,33 @@ export const DEFAULT_HOURS_FIELDS = ['worklog', 'timespent']
  */
 export interface CompletedTicket extends TicketHours {
   projectKey: string
-  /** When the ticket was closed. Not when the work happened. */
+  /** When the ticket was closed. Empty on a ticket that was worked and left open. */
   resolvedAt: string
+  /** The epic key. Null when the ticket has no parent. */
+  parentKey: string | null
   /** The epic summary. Shown as context and never written to a timesheet. */
   parentSummary: string | null
+  /**
+   * The Jira `Internal Cost Center`.
+   *
+   * Null when neither the ticket nor any ancestor of it carries one. It is
+   * carried rather than booked against. Because a) the Workday ID still comes
+   * from the per user project map. b) a Jira cost centre is a string Jira owns
+   * and nothing has checked it against the catalogue. c) showing it is what
+   * tells a user whether the map they typed agrees with Jira.
+   */
+  costCentre: string | null
+  /** The ticket the cost centre was read from. The ticket itself or an ancestor. */
+  costCentreFrom: string | null
+  /** The Jira `Cost Center Specification`. Resolved up the same chain. */
+  costCentreSpecification: string | null
+  /**
+   * Hours this user logged per day keyed `yyyy-mm-dd`.
+   *
+   * Only days inside the period appear and only worklogs this user wrote. Empty
+   * where the user logged nothing against the ticket in the month.
+   */
+  days: Record<string, number>
   hoursSource: HoursSource
 }
 

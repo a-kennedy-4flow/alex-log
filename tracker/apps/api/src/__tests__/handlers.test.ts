@@ -274,6 +274,31 @@ describe('timesheets', () => {
     expect(JSON.parse((await call('GET', '/api/timesheets', { caller: OTHER })).body).sheets)
       .toEqual([])
   })
+
+  it('keeps the download marker through a later edit', async () => {
+    const body = {
+      location: complete.location,
+      halfDays: halfDaysOf(complete),
+      adjustedWorkDays: complete.adjustedWorkDays,
+    }
+    await call('PUT', `/api/timesheets/${period}`, { body })
+    expect(JSON.parse((await call('GET', `/api/timesheets/${period}`)).body).exportedAt).toBe(null)
+
+    await call('POST', `/api/timesheets/${period}/export`)
+    expect(JSON.parse((await call('GET', `/api/timesheets/${period}`)).body).exportedAt)
+      .toBe(NOW.toISOString())
+
+    // The month is written on every edit now so clearing the marker here would
+    // unmute the reminder for a month the user has already sent.
+    const later = new Date('2026-09-02T10:00:00.000Z')
+    deps.now = () => later
+    const stored = JSON.parse((await call('PUT', `/api/timesheets/${period}`, { body })).body)
+    expect(stored.exportedAt).toBe(NOW.toISOString())
+
+    // Sent then changed is read as the comparison rather than as a third field.
+    expect(stored.updatedAt).toBe(later.toISOString())
+    expect(stored.updatedAt > stored.exportedAt).toBe(true)
+  })
 })
 
 describe('the check route', () => {
@@ -319,6 +344,21 @@ describe('the export', () => {
     await call('PUT', '/api/me', {
       body: { location: complete.location },
     })
+  })
+
+  it('names the workbook for the month rather than for the profile', async () => {
+    // The stored month wins. A move to another office must not rename every
+    // month already worked. The export panel shows the same name.
+    await call('PUT', `/api/timesheets/${period}`, {
+      body: {
+        location: '02_CZ_Pilsen',
+        halfDays: halfDaysOf(complete),
+        adjustedWorkDays: complete.adjustedWorkDays,
+      },
+    })
+    const response = await call('POST', `/api/timesheets/${period}/export`)
+    expect(response.status).toBe(200)
+    expect(response.headers['content-disposition']).toContain('projecttracker_CZ.xlsm')
   })
 
   it('returns a workbook for a clean month', async () => {

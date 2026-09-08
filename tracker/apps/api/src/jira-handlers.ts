@@ -17,11 +17,12 @@ import type { CompletedTicket } from '@tracker/core'
 
 import { json, problem, type ApiRequest, type ApiResponse, type Caller } from './handlers'
 import { JiraThrottledRefresh, accessTokenFor, linkFrom, type TokenDeps } from './jira-tokens'
-import { JiraThrottled, JiraUnauthorised } from './jira'
+import { JiraThrottled, JiraUnauthorised, refusedTheTracker } from './jira'
 import {
   PERIOD,
   TICKET_CACHE_CLOSED_MS,
   TICKET_CACHE_CURRENT_MS,
+  TICKET_CACHE_VERSION,
   type StoredJiraLink,
 } from './repository'
 
@@ -53,6 +54,10 @@ function cacheWindow(period: string, now: Date): number {
 function cacheIsFresh(link: StoredJiraLink, period: string, now: Date): boolean {
   const cache = link.cache
   if (!cache || cache.period !== period) return false
+  // A cache written against an older ticket shape is not stale so much as the
+  // wrong shape. Reading it would hand the screen a row missing its cost centre
+  // and its days.
+  if (cache.version !== TICKET_CACHE_VERSION) return false
   return now.getTime() - Date.parse(cache.fetchedAt) < cacheWindow(period, now)
 }
 
@@ -105,7 +110,11 @@ async function readTickets(
   if (current) {
     await deps.repository.putJiraLinkIfUnchanged(
       caller.sub,
-      { ...current, cache: { period, fetchedAt, tickets }, generation: current.generation + 1 },
+      {
+        ...current,
+        cache: { period, fetchedAt, version: TICKET_CACHE_VERSION, tickets },
+        generation: current.generation + 1,
+      },
       current.generation,
     )
   }
@@ -175,6 +184,33 @@ export async function jiraResponse(
     return await handleJira(request, deps)
   } catch (error) {
     if (error instanceof JiraUnauthorised) {
+      // Every refusal leaves a line. Because a) a wrong secret and a redirect
+      // the console never registered read the same from the screen. b) this is
+      // the one place every refusal passes through. c) the 409 said nothing so
+      // nine invocations answered it and left no trace.
+      console.error('Atlassian refused a credential', {
+        route: `${request.method} ${request.path}`,
+        status: error.refusal?.status ?? null,
+        grant: error.refusal?.grant ?? null,
+        reason: error.refusal?.reason ?? error.message,
+      })
+      // A refused exchange is not a consent that lapsed. There was none to
+      // lapse. It is the deployment being wrong so the reason is carried out
+      // rather than replaced and nothing offers a relink that would fail again.
+      if (error.refusal?.grant === 'authorization_code') {
+        // The reason alone. `jira.consentFailed` on the screen already supplies
+        // the sentence around it.
+        return problem(400, error.refusal.reason, { linked: false, relink: false })
+      }
+      // A refresh Atlassian refused for any reason but `invalid_grant` is the
+      // deployment being wrong. The link is still there and a relink would ask
+      // the same question and be told the same thing. So it is not offered.
+      if (refusedTheTracker(error.refusal)) {
+        return problem(502, `Jira refused the tracker credentials. ${error.refusal?.reason}`, {
+          linked: true,
+          relink: false,
+        })
+      }
       return problem(409, 'the Jira consent is no longer valid', { linked: false, relink: true })
     }
     if (error instanceof JiraThrottledRefresh || error instanceof JiraThrottled) {

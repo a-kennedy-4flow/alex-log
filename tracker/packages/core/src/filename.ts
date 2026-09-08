@@ -29,6 +29,26 @@ export function regionOf(locationCode: string | null): string {
   return code.toUpperCase().replace(/[^A-Z0-9]+/g, '') || 'UNKNOWN'
 }
 
+/**
+ * The location an export is named and built for.
+ *
+ * The stored month wins over the profile. Because a) the workbook is built for
+ * the month rather than for wherever the person sits today. b) a month worked
+ * in Warsaw keeps its Polish bank holidays after a move to Berlin. c) the
+ * screen names the file before the download happens so both sides have to
+ * answer this the same way or the name on the screen is not the name that
+ * arrives.
+ *
+ * An empty stored location is absence rather than a location. That is what a
+ * month saved before the profile carried one holds.
+ */
+export function exportLocation(
+  sheetLocation: string | null,
+  profileLocation: string | null,
+): string | null {
+  return (sheetLocation || null) ?? profileLocation ?? null
+}
+
 export interface FilenameParts {
   firstName: string
   lastName: string

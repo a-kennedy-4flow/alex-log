@@ -8,13 +8,30 @@
 // `4flow.atlassian.net` on 2026-09-07 with the JQL in `docs/jira.md`. Every
 // hours figure is zero because that site holds no worklogs. So the double shows
 // what a linked user actually sees rather than a convenient fiction.
+//
+// The parent key and the two cost centre fields and the day breakdown all read
+// as absent here. Not because the site holds none but because that capture
+// never asked for them. A test about any of the three stubs `fetch` behind
+// `AtlassianJira` instead. `__tests__/jira.test.ts` does exactly that.
 
 import { NO_HOURS_SOURCE, type CompletedTicket } from '@tracker/core'
 
 import type { Cipher } from './jira-tokens'
 import type { Jira, TokenSet } from './jira'
 
-const AUGUST: Omit<CompletedTicket, 'workdayId' | 'hours' | 'hoursSource'>[] = [
+type FakeTicket = Omit<
+  CompletedTicket,
+  | 'workdayId'
+  | 'hours'
+  | 'hoursSource'
+  | 'parentKey'
+  | 'costCentre'
+  | 'costCentreFrom'
+  | 'costCentreSpecification'
+  | 'days'
+>
+
+const AUGUST: FakeTicket[] = [
   {
     key: 'PLRS-1141',
     summary: 'Add TO/Load identification or subsequent emails, not just the first one',
@@ -98,6 +115,11 @@ export class FakeJira implements Jira {
     if (period !== this.period) return []
     return AUGUST.map((ticket) => ({
       ...ticket,
+      parentKey: null,
+      costCentre: null,
+      costCentreFrom: null,
+      costCentreSpecification: null,
+      days: {},
       workdayId: null,
       hours: 0,
       // No field answered. That is what every row of the real site reads.

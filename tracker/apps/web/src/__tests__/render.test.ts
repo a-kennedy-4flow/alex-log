@@ -25,6 +25,7 @@ import {
   issues,
   month,
   monthOverride,
+  openLocation,
   openMonth,
   profile,
   profileComplete,
@@ -43,6 +44,8 @@ import TourOverlay from '@/components/TourOverlay.vue'
 import SetupForm from '@/components/SetupForm.vue'
 import SetupWizard from '@/components/SetupWizard.vue'
 import PeriodBar from '@/components/PeriodBar.vue'
+import SimplePage from '@/pages/SimplePage.vue'
+import ViewSwitch from '@/components/ViewSwitch.vue'
 import ValidationPanel from '@/components/ValidationPanel.vue'
 import ExportPanel from '@/components/ExportPanel.vue'
 import {
@@ -198,6 +201,32 @@ describe('the router tree', () => {
       expect(sheet.classes()).toContain('pad')
     }
   })
+
+  it('renders the privacy notice with every band it promises', async () => {
+    const router = createRouter({
+      routeTree,
+      history: createMemoryHistory({ initialEntries: ['/privacy'] }),
+    })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const wrapper = mount(Host, { global: { plugins } })
+    await router.load()
+    await flushPromises()
+    await flushPromises()
+    expect(wrapper.get('h1').text()).toBe('Privacy')
+    // The five things the notice states. A band lost in a rename is a promise
+    // the deployment stops making.
+    expect(wrapper.findAll('.sheet .eyebrow').map((band) => band.text())).toEqual([
+      'Access logs',
+      'Your timesheets',
+      'Jira',
+      'What we do with it',
+      'Deleting your data',
+    ])
+    // No band may render a missing key as its own path.
+    expect(wrapper.text()).not.toContain('privacy.')
+    // The footer is what leads here so it has to be on every screen.
+    expect(wrapper.get('footer a').attributes('href')).toBe('/privacy')
+  })
 })
 
 describe('the cost centre picker', () => {
@@ -259,6 +288,15 @@ describe('the cost centre picker', () => {
   it('closes on Escape without picking anything', async () => {
     const wrapper = await openPicker()
     await wrapper.find('.picker input[type="search"]').trigger('keydown', { key: 'Escape' })
+    await flushPromises()
+    expect(wrapper.find('.picker .panel').exists()).toBe(false)
+    expect(halfDays.value[0]?.workdayId).toBeNull()
+  })
+
+  it('closes on a press outside it without picking anything', async () => {
+    const wrapper = await openPicker()
+    expect(wrapper.find('.picker .panel').exists()).toBe(true)
+    document.body.dispatchEvent(new MouseEvent('pointerdown', { bubbles: true }))
     await flushPromises()
     expect(wrapper.find('.picker .panel').exists()).toBe(false)
     expect(halfDays.value[0]?.workdayId).toBeNull()
@@ -1062,6 +1100,22 @@ describe('a month with no office set', () => {
     profile.location = '01_DE_Berlin'
   })
 
+  it('names the file for the month rather than for the current office', async () => {
+    // The API names the workbook from the stored month location. The panel has
+    // to answer the same or the name on the screen is not the name that lands.
+    profile.location = '01_DE_Berlin'
+    openLocation.value = '02_CZ_Pilsen'
+    const moved = mount(ExportPanel, { global: { plugins } })
+    await flushPromises()
+    expect(moved.text()).toContain('projecttracker_CZ.xlsm')
+
+    // A month that stored none is named for wherever the person sits now.
+    openLocation.value = null
+    const fresh = mount(ExportPanel, { global: { plugins } })
+    await flushPromises()
+    expect(fresh.text()).toContain('projecttracker_DE.xlsm')
+  })
+
   it('marks the office field itself', async () => {
     profile.location = null
     await flushPromises()
@@ -1072,6 +1126,16 @@ describe('a month with no office set', () => {
     await flushPromises()
     const set = mount(PeriodBar, { global: { plugins } })
     expect(set.find('select.missing').exists()).toBe(false)
+  })
+
+  it('carries no save button', async () => {
+    const bar = mount(PeriodBar, { global: { plugins } })
+    await flushPromises()
+
+    // The month is written as it is edited so the bar reports rather than asks.
+    expect(bar.find('.save').exists()).toBe(false)
+    expect(bar.findAll('button').map((b) => b.text())).not.toContain('Save')
+    expect(bar.find('.state').exists()).toBe(true)
   })
 
   it('marks a missing entity as a warning in the settings', async () => {
@@ -1485,7 +1549,7 @@ describe('the view switch', () => {
   })
 
   it('survives a reload', async () => {
-    const wrapper = mount(PeriodBar, { global: { plugins } })
+    const wrapper = mount(ViewSwitch, { global: { plugins } })
     await wrapper.findAll('.views button')[1]!.trigger('click')
     await flushPromises()
     expect(localStorage.getItem('timesheets.view')).toBe('board')
@@ -1496,5 +1560,30 @@ describe('the view switch', () => {
     const reloaded = await import('@/composables/useView')
     expect(reloaded.view).not.toBe(view)
     expect(reloaded.view.value).toBe('board')
+  })
+
+  it('sits inside the month box above the view it names', async () => {
+    const wrapper = mount(MonthPage, { global: { plugins } })
+    await flushPromises()
+    const box = wrapper.get('.month.sheet.pad')
+    const children = [...box.element.children].map((el) => el.className)
+    expect(children[0]).toContain('switch')
+    expect(children[1]).toContain('grid-wrap')
+
+    // The box is the surface so the view inside it carries none of its own.
+    expect(wrapper.get('.grid-wrap').classes()).not.toContain('sheet')
+  })
+
+  it('stands with the month and not in the shared bar', async () => {
+    const bar = mount(PeriodBar, { global: { plugins } })
+    await flushPromises()
+    expect(bar.find('.views').exists()).toBe(false)
+  })
+
+  it('is absent from the quick fill', async () => {
+    const wrapper = mount(SimplePage, { global: { plugins } })
+    await flushPromises()
+    expect(wrapper.findComponent(ViewSwitch).exists()).toBe(false)
+    expect(wrapper.find('.views').exists()).toBe(false)
   })
 })

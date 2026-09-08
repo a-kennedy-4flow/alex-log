@@ -1,12 +1,16 @@
 <script setup lang="ts">
-// The head of the sheet. The period and the location and the view on the left.
-// The running figures on the right.
+// The head of the sheet. The period and the location on the left. The running
+// figures on the right.
+//
+// The view switch is not here. It stands with the month in `ViewSwitch.vue`
+// because this bar is carried by the quick fill too and that page draws neither
+// the grid nor the board.
 
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { catalogue } from '@tracker/core'
-import { LOCALES, monthName, type LocaleCode } from '@/i18n'
+import { LOCALES, monthName, shortTime, type LocaleCode } from '@/i18n'
 import {
   booked,
   chooseLocale,
@@ -14,23 +18,18 @@ import {
   month,
   monthOverride,
   profile,
+  retrySave,
   saveProfile,
-  saveSheet,
+  saveState,
+  savedAt,
   target,
   workingDays,
   year,
 } from '@/composables/useTimesheet'
-import { view, type MonthView } from '@/composables/useView'
-
 const { t, locale } = useI18n()
 
 const YEARS = [2024, 2025, 2026, 2027]
 const MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-
-const VIEWS: { value: MonthView; key: string }[] = [
-  { value: 'grid', key: 'view.grid' },
-  { value: 'board', key: 'view.board' },
-]
 
 const delta = computed(() => Math.round((booked.value - target.value) * 2) / 2)
 
@@ -49,6 +48,9 @@ function onLocaleChange(event: Event): void {
   chooseLocale((event.target as HTMLSelectElement).value as LocaleCode)
   void saveProfile()
 }
+
+// The clock time rather than the date because a save is minutes old at most.
+const savedTime = computed(() => (savedAt.value ? shortTime(locale.value, savedAt.value) : ''))
 </script>
 
 <template>
@@ -88,23 +90,17 @@ function onLocaleChange(event: Event): void {
       </select>
     </label>
 
-    <div class="field" data-tour="view">
-      <span id="view-label">{{ t('view.title') }}</span>
-      <div class="views" role="group" aria-labelledby="view-label">
-        <button
-          v-for="option in VIEWS"
-          :key="option.value"
-          type="button"
-          :class="{ on: view === option.value }"
-          :aria-pressed="view === option.value"
-          @click="view = option.value"
-        >
-          {{ t(option.key) }}
-        </button>
-      </div>
-    </div>
-
-    <button type="button" class="btn save" @click="saveSheet">{{ t('setup.save') }}</button>
+    <!-- Where the Save button stood. The month is written as it is edited so
+         the only thing left to say is whether the last edit landed. -->
+    <p class="state" :class="saveState" aria-live="polite">
+      <template v-if="saveState === 'saving'">{{ t('setup.saving') }}</template>
+      <template v-else-if="saveState === 'saved'">{{ t('setup.saved') }} {{ savedTime }}</template>
+      <template v-else-if="saveState === 'failed'">
+        <span class="failed">{{ t('setup.saveFailed') }}</span>
+        <button type="button" class="btn retry" @click="retrySave">{{ t('setup.retry') }}</button>
+        <span class="hint">{{ t('setup.saveFailedHint') }}</span>
+      </template>
+    </p>
 
     <dl class="stats">
       <div class="stat">
@@ -180,31 +176,37 @@ select.missing {
   background: var(--open);
 }
 
-/* The switch. Both views edit one month so they share the route. */
-.views {
-  display: flex;
-  gap: 2px;
-  background: var(--warm-grey);
-  border-radius: var(--radius);
-  padding: 3px;
-}
-
-.views button {
-  border: 0;
-  background: none;
-  color: var(--smart-blue);
-  border-radius: calc(var(--radius) - 3px);
-  padding: 7px 15px;
-  font-size: 13px;
-}
-
-.views button.on {
-  background: var(--white);
-  font-weight: 700;
-}
-
-.save {
+/* The save state sits where the button did so the eye lands where it looked
+   before. It holds its height so the bar does not jump as the state changes. */
+.state {
   align-self: flex-end;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 9px;
+  min-height: 17px;
+  font-size: 13px;
+  color: var(--grey);
+}
+
+/*
+ * Vibrant Orange on white reaches 3.32 to 1 which is short of the 4.5 to 1 that
+ * 13px needs. So a failure is carried by the word and not by the colour and the
+ * text stays the body one.
+ */
+.state .failed {
+  font-weight: 700;
+  color: var(--smart-blue);
+}
+
+.state .hint {
+  flex-basis: 100%;
+}
+
+.retry {
+  padding: 2px 10px;
+  font-size: 12px;
 }
 
 /* The figures read left to right in one line. */

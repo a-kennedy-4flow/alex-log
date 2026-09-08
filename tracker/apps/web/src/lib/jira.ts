@@ -10,21 +10,13 @@
 
 import { ref } from 'vue'
 
+import { CONSENT_SCOPES, DEV_JIRA_CLIENT_ID, DEV_JIRA_CODE } from '@tracker/core'
 import { api } from '@/lib/api'
 
 export const JIRA_CALLBACK_PATH = '/jira/callback'
 
 const STATE_KEY = 'tracker.jira.state'
 const RETURN_KEY = 'tracker.jira.return'
-
-/**
- * The scopes asked for.
- *
- * `offline_access` is the one the developer console never puts in the URL it
- * generates. Without it Atlassian returns an access token good for an hour and
- * no refresh token at all. Every later month would then ask for consent again.
- */
-const SCOPES = ['read:jira-work', 'read:jira-user', 'offline_access']
 
 /**
  * Why the last consent failed. Held rather than thrown because a) the shell has
@@ -34,6 +26,34 @@ const SCOPES = ['read:jira-work', 'read:jira-user', 'offline_access']
  */
 export const consentError = ref<string | null>(null)
 
+/**
+ * Where a press on the consent button sends the browser.
+ *
+ * It is separate from `startLink` so a test can read it. Navigation is the one
+ * thing jsdom refuses to do.
+ */
+export function consentUrl(clientId: string, redirectUri: string, state: string): string {
+  // The local API owns no Atlassian app so its client id is refused by a real
+  // consent screen. The callback is entered directly instead and `FakeJira`
+  // grants the token. `import.meta.env.DEV` keeps this out of a built bundle.
+  if (import.meta.env.DEV && clientId === DEV_JIRA_CLIENT_ID) {
+    return `${JIRA_CALLBACK_PATH}?code=${DEV_JIRA_CODE}&state=${state}`
+  }
+
+  const query = new URLSearchParams({
+    audience: 'api.atlassian.com',
+    client_id: clientId,
+    scope: CONSENT_SCOPES.join(' '),
+    redirect_uri: redirectUri,
+    state,
+    response_type: 'code',
+    // Required. `consent` is its only documented value so the screen is shown
+    // on every authorize call. Under this design that is once per user.
+    prompt: 'consent',
+  })
+  return `https://auth.atlassian.com/authorize?${query.toString()}`
+}
+
 /** Sends the user to Atlassian. It does not return. */
 export function startLink(clientId: string, redirectUri: string, returnTo: string): void {
   consentError.value = null
@@ -42,19 +62,7 @@ export function startLink(clientId: string, redirectUri: string, returnTo: strin
   // keep because there is no PKCE on this flow.
   sessionStorage.setItem(STATE_KEY, state)
   sessionStorage.setItem(RETURN_KEY, returnTo)
-
-  const query = new URLSearchParams({
-    audience: 'api.atlassian.com',
-    client_id: clientId,
-    scope: SCOPES.join(' '),
-    redirect_uri: redirectUri,
-    state,
-    response_type: 'code',
-    // Required. `consent` is its only documented value so the screen is shown
-    // on every authorize call. Under this design that is once per user.
-    prompt: 'consent',
-  })
-  location.assign(`https://auth.atlassian.com/authorize?${query.toString()}`)
+  location.assign(consentUrl(clientId, redirectUri, state))
 }
 
 /**

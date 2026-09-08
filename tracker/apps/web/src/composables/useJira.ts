@@ -20,6 +20,7 @@ import {
   hoursTotals,
   tasksFor,
   targetDays,
+  workdayIdForCostCentre,
   workingDayCount,
   type Allocation,
   type CompletedTicket,
@@ -114,9 +115,26 @@ export async function choosePeriod(next: string): Promise<void> {
   await loadMonth()
 }
 
-/** The Workday ID a ticket books against. The screen choice wins over the profile. */
+/**
+ * The Workday ID a ticket books against.
+ *
+ * Three answers in order. A choice made on this screen. The Jira cost centre
+ * converted through the catalogue. The project map on the profile.
+ *
+ * Jira beats the profile map. Because a) the cost centre is per ticket and the
+ * map is per project so Jira is the finer answer. b) an epic carries one for
+ * everything beneath it so a whole release books correctly without anybody
+ * typing. c) the map stays as the answer for a project Jira says nothing about.
+ *
+ * A choice still beats both. It is the one answer a person made on purpose.
+ */
 export function workdayIdOf(ticket: CompletedTicket): string | null {
-  return chosenProjects[ticket.projectKey] ?? ticket.workdayId ?? null
+  return (
+    chosenProjects[ticket.projectKey] ??
+    workdayIdForCostCentre(ticket.costCentre) ??
+    ticket.workdayId ??
+    null
+  )
 }
 
 /** What the arithmetic uses. Only a worklog or `timespent` ever fills it. */

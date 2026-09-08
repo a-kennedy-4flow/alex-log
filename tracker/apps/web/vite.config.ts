@@ -7,7 +7,10 @@ export default defineConfig({
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
-  server: { port: 5173 },
+  // Strict because the Atlassian callback and the Cognito callback are both
+  // registered against 5173. A silent move to 5174 breaks each of them with no
+  // sign of why.
+  server: { port: 5173, strictPort: true },
   test: {
     // The i18n module reads localStorage and navigator when it loads so the
     // tests need a DOM even for the pure logic files.

@@ -5,7 +5,7 @@
 // is driven from the keyboard. Typing narrows it and Enter takes the highlighted
 // row so a cost centre can be entered without reaching for the mouse.
 
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type { Project } from '@tracker/core'
@@ -20,9 +20,21 @@ const { t } = useI18n()
 const open = ref(false)
 const query = ref('')
 const active = ref(0)
+const root = ref<HTMLDivElement | null>(null)
+const trigger = ref<HTMLButtonElement | null>(null)
 const input = ref<HTMLInputElement | null>(null)
 const list = ref<HTMLUListElement | null>(null)
 const RESULT_LIMIT = 60
+
+/** The trigger box in viewport coordinates. Null while the panel is shut. */
+const anchor = ref<DOMRect | null>(null)
+
+/** The space kept between the trigger and the panel. */
+const GAP = 2
+/** The space kept from every viewport edge. */
+const EDGE = 8
+/** Under this much room below the trigger the panel opens upwards instead. */
+const ROOM = 220
 
 const selected = computed(() => findProject(props.modelValue))
 
@@ -59,17 +71,77 @@ function clear(): void {
   query.value = ''
 }
 
+function measure(): void {
+  anchor.value = open.value ? (trigger.value?.getBoundingClientRect() ?? null) : null
+}
+
+/**
+ * Where the panel is drawn.
+ *
+ * The panel is fixed to the viewport rather than positioned inside the cell.
+ * Because a) the month grid scrolls under `overflow: auto` and that clips an
+ * absolute panel. b) a fixed box takes its containing block from the viewport
+ * so no ancestor overflow can reach it.
+ *
+ * The cost is that nothing moves the panel with the page. `measure` runs again
+ * on a scroll and on a resize to pay it.
+ */
+const place = computed(() => {
+  const box = anchor.value
+  if (!box) return null
+  const width = Math.min(600, window.innerWidth * 0.84)
+  const below = window.innerHeight - box.bottom - GAP - EDGE
+  const above = box.top - GAP - EDGE
+  const downwards = below >= ROOM || below >= above
+  return {
+    left: Math.max(EDGE, Math.min(box.left, window.innerWidth - width - EDGE)),
+    top: downwards ? box.bottom + GAP : undefined,
+    bottom: downwards ? undefined : window.innerHeight - box.top + GAP,
+    width,
+    /** What the panel may take. The results list shrinks to fit inside it. */
+    room: Math.max(downwards ? below : above, ROOM),
+  }
+})
+
+/** Shuts the panel on a press outside it. */
+function onPressOutside(event: Event): void {
+  const target = event.target
+  if (target instanceof Node && root.value?.contains(target)) return
+  open.value = false
+}
+
+function listen(): void {
+  document.addEventListener('pointerdown', onPressOutside)
+  // A scroll does not bubble so the listener has to capture. The panel follows
+  // a scroll of the month grid as well as one of the page.
+  window.addEventListener('scroll', measure, true)
+  window.addEventListener('resize', measure)
+}
+
+function unlisten(): void {
+  document.removeEventListener('pointerdown', onPressOutside)
+  window.removeEventListener('scroll', measure, true)
+  window.removeEventListener('resize', measure)
+}
+
 // A narrower list can be shorter than the highlight so it moves back to the top.
 watch(results, () => {
   active.value = 0
 })
 
 watch(open, async (isOpen) => {
-  if (!isOpen) return
+  if (!isOpen) {
+    unlisten()
+    return
+  }
+  measure()
+  listen()
   active.value = 0
   await nextTick()
   input.value?.focus()
 })
+
+onBeforeUnmount(unlisten)
 
 async function move(step: number): Promise<void> {
   const count = results.value.length
@@ -111,8 +183,9 @@ function onTriggerKeydown(event: KeyboardEvent): void {
 </script>
 
 <template>
-  <div class="picker">
+  <div ref="root" class="picker">
     <button
+      ref="trigger"
       type="button"
       class="trigger"
       :class="{ invalid: props.invalid, empty: !label }"
@@ -124,7 +197,18 @@ function onTriggerKeydown(event: KeyboardEvent): void {
       <span v-else class="placeholder">{{ t('grid.pickCostCentre') }}</span>
     </button>
 
-    <div v-if="open" class="panel" @keydown="onKeydown">
+    <div
+      v-if="open && place"
+      class="panel"
+      :style="{
+        left: `${place.left}px`,
+        top: place.top === undefined ? undefined : `${place.top}px`,
+        bottom: place.bottom === undefined ? undefined : `${place.bottom}px`,
+        width: `${place.width}px`,
+        '--panel-room': `${place.room}px`,
+      }"
+      @keydown="onKeydown"
+    >
       <input
         ref="input"
         v-model="query"
@@ -199,11 +283,11 @@ function onTriggerKeydown(event: KeyboardEvent): void {
 }
 
 .panel {
-  position: absolute;
+  position: fixed;
   z-index: 20;
-  top: calc(100% + 2px);
-  left: 0;
-  width: min(600px, 84vw);
+  display: flex;
+  flex-direction: column;
+  max-height: var(--panel-room);
   background: var(--white);
   border: 1px solid var(--smart-blue);
   border-radius: var(--radius);
@@ -215,6 +299,10 @@ function onTriggerKeydown(event: KeyboardEvent): void {
   margin: 8px 0 0;
   padding: 0;
   max-height: 320px;
+  /* The search field and the footer keep their height so this is what gives
+     way when the panel is capped. A flex item will not shrink below its
+     content without it. */
+  min-height: 0;
   overflow-y: auto;
 }
 

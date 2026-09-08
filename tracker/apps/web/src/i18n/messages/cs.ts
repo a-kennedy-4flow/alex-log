@@ -37,6 +37,10 @@ const cs: Messages = {
     workPercentDays: 'To je {days} z {working} pracovních dnů tohoto měsíce.',
     save: 'Uložit',
     saved: 'Uloženo',
+    saving: 'Ukládání',
+    saveFailed: 'Neuloženo',
+    saveFailedHint: 'Úprava zůstává v tomto prohlížeči. Ztratí se jen když smažete jeho data.',
+    retry: 'Zkusit znovu',
     hoursPerDay: 'Pracovní den',
     hoursPerDayHint: 'Kolik hodin denně pracujete. Určuje co znamená půl dne když stránka Jira čte hodiny. Nechte prázdné pro osm.',
     jira: 'Jira',
@@ -158,6 +162,8 @@ const cs: Messages = {
     button: 'Stáhnout tracker',
     blocked: 'Opravte chyby výše a pak stáhněte.',
     filename: 'Název souboru',
+    sent: 'Staženo {at}.',
+    changed: 'Změněno od stažení {at}. Stáhněte jej znovu.',
   },
   picker: {
     search: 'Hledat podle čísla nebo názvu nebo zákazníka',
@@ -354,6 +360,30 @@ const cs: Messages = {
     shareTotal: 'Podíly dávají {total}.',
     unlink: 'Odpojit Jiru',
     retry: 'Zkusit znovu',
+  },
+  privacy: {
+    title: 'Soukromí',
+    intro: 'Co o vás tato služba uchovává a jak dlouho.',
+    logs: {
+      title: 'Protokoly přístupů',
+      body: 'Požadavek na tuto službu se protokoluje nejvýše jeden měsíc. Protokol se poté smaže.',
+    },
+    store: {
+      title: 'Vaše výkazy',
+      body: 'Uchováváme vašich posledních šest měsíců. Starší měsíc se smaže sám.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'Neuchováváme žádnou kopii vašeho Jira. Čteme pouze tikety které nám určíte. Přečtené držíme nejvýše jeden den aby se obrazovka otevřela bez čekání. Zmizí jakmile Jira odpojíte.',
+    },
+    use: {
+      title: 'K čemu je používáme',
+      body: 'Vaše údaje používáme k vyplnění výkazu. Měsíční připomínku posíláme pokud si ji zapnete. K ničemu jinému je nepoužíváme.',
+    },
+    erase: {
+      title: 'Smazání vašich údajů',
+      body: 'Vše co o vás uchováváme se smaže spolu s vaším účtem.',
+    },
   },
   common: {
     none: 'Žádné',

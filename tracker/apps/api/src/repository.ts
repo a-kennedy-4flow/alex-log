@@ -46,8 +46,19 @@ export interface StoredSheet {
 export interface StoredTickets {
   period: string
   fetchedAt: string
+  /**
+   * The shape the tickets were written in. A cache at any other version is
+   * discarded rather than read. Because a) the ticket gained the cost centre
+   * and the parent key and the per day hours. b) an older row carries none of
+   * them so the screen would read undefined. c) throwing one cache away costs
+   * one search.
+   */
+  version: number
   tickets: CompletedTicket[]
 }
+
+/** Raise this whenever `CompletedTicket` gains or loses a field. */
+export const TICKET_CACHE_VERSION = 2
 
 /**
  * What lets the tracker read Jira as one user.

@@ -39,6 +39,10 @@ const en = {
     workPercentDays: 'That is {days} of {working} working days this month.',
     save: 'Save',
     saved: 'Saved',
+    saving: 'Saving',
+    saveFailed: 'Not saved',
+    saveFailedHint: 'The edit is kept in this browser. It is lost only if you clear its data.',
+    retry: 'Try again',
     hoursPerDay: 'Working day',
     hoursPerDayHint: 'How many hours you work in a day. It sets what half a day means when the Jira page reads hours. Leave empty for eight.',
     jira: 'Jira',
@@ -159,6 +163,8 @@ const en = {
     button: 'Download the tracker',
     blocked: 'Fix the errors above to download.',
     filename: 'File name',
+    sent: 'Downloaded on {at}.',
+    changed: 'Changed since the download on {at}. Download it again.',
   },
   picker: {
     search: 'Search by number or title or customer',
@@ -355,6 +361,30 @@ const en = {
     shareTotal: 'The shares add to {total}.',
     unlink: 'Disconnect Jira',
     retry: 'Try again',
+  },
+  privacy: {
+    title: 'Privacy',
+    intro: 'What this service holds about you and for how long.',
+    logs: {
+      title: 'Access logs',
+      body: 'A request to this service is logged for one month at most. The log is then deleted.',
+    },
+    store: {
+      title: 'Your timesheets',
+      body: 'We store your last six months. An older month deletes itself.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'We keep no copy of your Jira. We read only the tickets you ask us to read. What we read is held for up to a day so the screen opens without waiting. It goes when you disconnect Jira.',
+    },
+    use: {
+      title: 'What we do with it',
+      body: 'We use your data to fill your timesheet. We send the monthly reminder when you switch it on. We use it for nothing else.',
+    },
+    erase: {
+      title: 'Deleting your data',
+      body: 'Everything we hold about you is deleted when your account is deleted.',
+    },
   },
   common: {
     none: 'None',

@@ -37,6 +37,10 @@ const de: Messages = {
     workPercentDays: 'Das sind {days} von {working} Arbeitstagen in diesem Monat.',
     save: 'Speichern',
     saved: 'Gespeichert',
+    saving: 'Wird gespeichert',
+    saveFailed: 'Nicht gespeichert',
+    saveFailedHint: 'Die Änderung liegt in diesem Browser. Sie geht nur verloren wenn Sie dessen Daten löschen.',
+    retry: 'Erneut versuchen',
     hoursPerDay: 'Arbeitstag',
     hoursPerDayHint: 'Wie viele Stunden Sie am Tag arbeiten. Das bestimmt was ein halber Tag bedeutet wenn die Jira Seite Stunden liest. Leer lassen für acht.',
     jira: 'Jira',
@@ -158,6 +162,8 @@ const de: Messages = {
     button: 'Tracker herunterladen',
     blocked: 'Beheben Sie die Fehler oben um herunterzuladen.',
     filename: 'Dateiname',
+    sent: 'Am {at} heruntergeladen.',
+    changed: 'Seit dem Download am {at} geändert. Laden Sie ihn erneut herunter.',
   },
   picker: {
     search: 'Suche nach Nummer oder Titel oder Kunde',
@@ -354,6 +360,30 @@ const de: Messages = {
     shareTotal: 'Die Anteile ergeben {total}.',
     unlink: 'Jira trennen',
     retry: 'Erneut versuchen',
+  },
+  privacy: {
+    title: 'Datenschutz',
+    intro: 'Was dieser Dienst über Sie speichert und wie lange.',
+    logs: {
+      title: 'Zugriffsprotokolle',
+      body: 'Eine Anfrage an diesen Dienst wird höchstens einen Monat protokolliert. Danach wird das Protokoll gelöscht.',
+    },
+    store: {
+      title: 'Ihre Zeiterfassung',
+      body: 'Wir speichern Ihre letzten sechs Monate. Ein älterer Monat löscht sich selbst.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'Wir behalten keine Kopie Ihres Jira. Wir lesen nur die Vorgänge die Sie uns nennen. Das Gelesene wird bis zu einem Tag vorgehalten damit die Ansicht ohne Wartezeit öffnet. Es entfällt sobald Sie Jira trennen.',
+    },
+    use: {
+      title: 'Wofür wir sie verwenden',
+      body: 'Wir verwenden Ihre Daten um Ihre Zeiterfassung zu füllen. Wir senden die monatliche Erinnerung wenn Sie sie einschalten. Sonst verwenden wir sie für nichts.',
+    },
+    erase: {
+      title: 'Löschung Ihrer Daten',
+      body: 'Alles was wir über Sie speichern wird mit Ihrem Konto gelöscht.',
+    },
   },
   common: {
     none: 'Keine',

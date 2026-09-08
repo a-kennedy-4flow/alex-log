@@ -70,3 +70,22 @@ export function shortDate(locale: string, date: string): string {
     new Date(`${date}T00:00:00Z`),
   )
 }
+
+/**
+ * Clock time for an instant in the active locale. Read in the zone the browser
+ * sits in because it is what the user just did rather than a date in the month.
+ */
+export function shortTime(locale: string, iso: string): string {
+  return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(
+    new Date(iso),
+  )
+}
+
+/** Day and month and year for an instant in the active locale. */
+export function longDate(locale: string, iso: string): string {
+  return new Intl.DateTimeFormat(locale, {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(new Date(iso))
+}

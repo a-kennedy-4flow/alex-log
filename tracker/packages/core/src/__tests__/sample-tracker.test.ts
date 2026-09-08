@@ -19,6 +19,7 @@ import {
   buildMonth,
   catalogue,
   exportFilename,
+  exportLocation,
   isoWeek,
   regionOf,
   setCatalogue,
@@ -151,6 +152,24 @@ describe.each(samples)('$workbook', (sample) => {
     })
     expect(name.startsWith(`${sample.lastName}.${sample.firstName}_${sample.year}_`)).toBe(true)
     expect(name.endsWith('.xlsm')).toBe(true)
+  })
+})
+
+describe('the location an export is named for', () => {
+  it('takes the stored month over the profile', () => {
+    // A move to Berlin must not rename every month worked in Pilsen.
+    expect(exportLocation('02_CZ_Pilsen', '01_DE_Berlin')).toBe('02_CZ_Pilsen')
+  })
+
+  it('falls back to the profile for a month that stored none', () => {
+    expect(exportLocation(null, '01_DE_Berlin')).toBe('01_DE_Berlin')
+    // Empty is what a month saved before the profile carried one holds.
+    expect(exportLocation('', '01_DE_Berlin')).toBe('01_DE_Berlin')
+  })
+
+  it('answers nothing where neither carries one', () => {
+    expect(exportLocation(null, null)).toBeNull()
+    expect(exportLocation('', null)).toBeNull()
   })
 })
 

@@ -37,6 +37,10 @@ const hu: Messages = {
     workPercentDays: 'Ez {days} nap a hónap {working} munkanapjából.',
     save: 'Mentés',
     saved: 'Elmentve',
+    saving: 'Mentés folyamatban',
+    saveFailed: 'Nincs elmentve',
+    saveFailedHint: 'A módosítás ebben a böngészőben marad. Csak akkor vész el ha törli az adatait.',
+    retry: 'Újra',
     hoursPerDay: 'Munkanap',
     hoursPerDayHint: 'Hány órát dolgozik naponta. Ez határozza meg mit jelent a fél nap amikor a Jira oldal órákat olvas. Hagyja üresen a nyolchoz.',
     jira: 'Jira',
@@ -158,6 +162,8 @@ const hu: Messages = {
     button: 'Tracker letöltése',
     blocked: 'A letöltéshez javítsa a fenti hibákat.',
     filename: 'Fájlnév',
+    sent: 'Letöltve {at} napon.',
+    changed: 'A {at} napi letöltés óta módosult. Töltse le újra.',
   },
   picker: {
     search: 'Keresés szám vagy megnevezés vagy ügyfél szerint',
@@ -354,6 +360,30 @@ const hu: Messages = {
     shareTotal: 'A részek összege {total}.',
     unlink: 'Jira szétkapcsolása',
     retry: 'Újra',
+  },
+  privacy: {
+    title: 'Adatvédelem',
+    intro: 'Mit tárol önről ez a szolgáltatás és meddig.',
+    logs: {
+      title: 'Hozzáférési naplók',
+      body: 'Egy kérést legfeljebb egy hónapig naplózunk. A napló ezután törlődik.',
+    },
+    store: {
+      title: 'Az ön jelenléti ívei',
+      body: 'Az utolsó hat hónapot tároljuk. Az ennél régebbi hónap magától törlődik.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'A Jiráról nem tartunk másolatot. Csak azokat a jegyeket olvassuk amelyeket megad. A beolvasottat legfeljebb egy napig tartjuk hogy a képernyő várakozás nélkül nyíljon. A Jira leválasztásakor megszűnik.',
+    },
+    use: {
+      title: 'Mire használjuk',
+      body: 'Az adatait a jelenléti ív kitöltésére használjuk. A havi emlékeztetőt akkor küldjük ha bekapcsolja. Másra nem használjuk.',
+    },
+    erase: {
+      title: 'Az adatai törlése',
+      body: 'Minden amit önről tárolunk a fiókjával együtt törlődik.',
+    },
   },
   common: {
     none: 'Nincs',

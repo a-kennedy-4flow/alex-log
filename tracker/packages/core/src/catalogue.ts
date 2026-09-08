@@ -83,7 +83,20 @@ export const EMPTY_CATALOGUE: CatalogueData = {
 export const catalogue: CatalogueData = { ...EMPTY_CATALOGUE }
 
 let byWorkdayId = new Map<string, Project>()
+let byCostCentre = new Map<string, Project>()
 let absenceLabels = new Set<string>()
+
+/**
+ * A cost centre or a project number as something to look up by.
+ *
+ * `0` and blank are absence rather than a value. 1276 rows carry a cost centre
+ * of `0` and the picker already skips it.
+ */
+function catalogueKeyOf(value: string | number | null | undefined): string | null {
+  if (value === null || value === undefined) return null
+  const text = String(value).trim()
+  return text === '' || text === '0' ? null : text
+}
 
 /** Absences are picked from the same dropdown so they need a project shape. */
 function absenceAsProject(absence: AbsenceType): Project {
@@ -182,6 +195,23 @@ export function setCatalogue(data: CatalogueInput): void {
   catalogue.duplicateProjectRows = dropped
   byWorkdayId = new Map(unique.map((p) => [p.workdayId, p]))
 
+  // Built from every row rather than from the deduplicated ones. The 350
+  // repeats differ only in cost centre and project number so building this from
+  // `unique` would lose exactly the values it exists to find.
+  //
+  // Two passes rather than one. A cost centre must beat a project number
+  // wherever one number is both, and a single pass would let whichever row came
+  // first decide that.
+  byCostCentre = new Map<string, Project>()
+  for (const project of projects) {
+    const key = catalogueKeyOf(project.costCentre)
+    if (key !== null && !byCostCentre.has(key)) byCostCentre.set(key, project)
+  }
+  for (const project of projects) {
+    const key = catalogueKeyOf(project.projectNo)
+    if (key !== null && !byCostCentre.has(key)) byCostCentre.set(key, project)
+  }
+
   // The counts are recomputed here rather than taken from the uploaded data.
   // Otherwise they would report the rows before deduplication and overstate
   // what the picker actually offers.
@@ -208,6 +238,30 @@ export function isAbsence(workdayId: string | null): boolean {
 export function findProject(workdayId: string | null): Project | null {
   if (!workdayId) return null
   return byWorkdayId.get(workdayId) ?? null
+}
+
+/**
+ * The Workday ID a Jira cost centre converts to.
+ *
+ * Jira holds the cost centre the business writes and the tracker books against
+ * a Workday ID. The catalogue is what joins the two. Three keys are tried in
+ * order. Because a) `Internal Cost Center` holds the cost centre on most
+ * tickets. b) the workbook carries a project number beside every cost centre
+ * and a site may write either. c) a field already holding the Workday ID then
+ * resolves without anybody editing 3149 rows.
+ *
+ * Eight cost centres name more than one Workday ID. The first row wins because
+ * XLOOKUP in the tracker also returns the first match.
+ *
+ * Null is a cost centre this catalogue does not know. The caller falls back to
+ * whatever mapped the ticket before. It never guesses.
+ */
+export function workdayIdForCostCentre(costCentre: string | number | null): string | null {
+  const key = catalogueKeyOf(costCentre)
+  if (key === null) return null
+  const project = byCostCentre.get(key)
+  if (project) return project.workdayId
+  return byWorkdayId.has(key) ? key : null
 }
 
 /** Mirrors tracker column Z. */

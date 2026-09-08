@@ -37,6 +37,10 @@ const zhCN: Messages = {
     workPercentDays: '本月 {working} 个工作日中的 {days} 天。',
     save: '保存',
     saved: '已保存',
+    saving: '保存中',
+    saveFailed: '未保存',
+    saveFailedHint: '该修改保留在此浏览器中。只有清除其数据才会丢失。',
+    retry: '重试',
     hoursPerDay: '工作日时长',
     hoursPerDayHint: '您每天工作多少小时。它决定 Jira 页面读取小时数时半天的含义。留空表示八小时。',
     jira: 'Jira',
@@ -154,6 +158,8 @@ const zhCN: Messages = {
     button: '下载记录表',
     blocked: '请先修正上方错误再下载。',
     filename: '文件名',
+    sent: '已于 {at} 下载。',
+    changed: '自 {at} 下载后已修改。请重新下载。',
   },
   picker: {
     search: '按编号或名称或客户搜索',
@@ -350,6 +356,30 @@ const zhCN: Messages = {
     shareTotal: '比例合计 {total}。',
     unlink: '断开 Jira',
     retry: '重试',
+  },
+  privacy: {
+    title: '隐私',
+    intro: '本服务保存您的哪些数据 以及保存多久。',
+    logs: {
+      title: '访问日志',
+      body: '对本服务的请求最多记录一个月。此后日志即被删除。',
+    },
+    store: {
+      title: '您的工时表',
+      body: '我们保存您最近六个月的工时表。更早的月份会自动删除。',
+    },
+    jira: {
+      title: 'Jira',
+      body: '我们不保存您 Jira 的副本。我们只读取您指定的工单。读取的内容最多保留一天 以便页面无需等待即可打开。断开 Jira 后即清除。',
+    },
+    use: {
+      title: '我们如何使用',
+      body: '我们用您的数据填写工时表。您开启后我们会发送每月提醒。除此之外不作他用。',
+    },
+    erase: {
+      title: '删除您的数据',
+      body: '我们保存的关于您的一切都会随账户一并删除。',
+    },
   },
   common: {
     none: '无',

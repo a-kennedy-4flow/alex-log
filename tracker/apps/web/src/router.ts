@@ -1,4 +1,4 @@
-// Routes are declared in code rather than generated from files. Five screens
+// Routes are declared in code rather than generated from files. Six screens
 // do not warrant a generator.
 //
 // `/jira/callback` is absent on purpose. `lib/jira.ts` handles it before the
@@ -12,6 +12,7 @@ import SimplePage from './pages/SimplePage.vue'
 import SetupPage from './pages/SetupPage.vue'
 import AdminPage from './pages/AdminPage.vue'
 import JiraPage from './pages/JiraPage.vue'
+import PrivacyPage from './pages/PrivacyPage.vue'
 
 const rootRoute = createRootRoute({ component: RootLayout })
 
@@ -39,6 +40,12 @@ const jiraRoute = createRoute({
   component: JiraPage,
 })
 
+const privacyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/privacy',
+  component: PrivacyPage,
+})
+
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin',
@@ -51,6 +58,7 @@ export const routeTree = rootRoute.addChildren([
   jiraRoute,
   setupRoute,
   adminRoute,
+  privacyRoute,
 ])
 
 export const router = createRouter({ routeTree })

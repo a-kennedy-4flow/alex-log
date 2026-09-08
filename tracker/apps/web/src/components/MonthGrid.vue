@@ -98,7 +98,7 @@ const weeks = computed(() => {
 </script>
 
 <template>
-  <div class="grid-wrap sheet pad" data-tour="grid">
+  <div class="grid-wrap" data-tour="grid">
     <table>
       <thead>
         <tr>

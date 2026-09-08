@@ -16,7 +16,7 @@ import {
   type Repository,
   type StoredJiraLink,
 } from './repository'
-import { JiraUnauthorised, type Jira, type TokenSet } from './jira'
+import { JiraUnauthorised, refusedTheTracker, type Jira, type TokenSet } from './jira'
 
 /** Turns a token into something a table export cannot use. */
 export interface Cipher {
@@ -149,6 +149,10 @@ async function refreshHolding(
     tokens = await deps.jira.refresh(await deps.cipher.decrypt(link.refresh))
   } catch (error) {
     if (!(error instanceof JiraUnauthorised)) throw error
+    // A refusal aimed at the tracker leaves the link alone. The stored token
+    // was never the thing Atlassian objected to and the previous one would be
+    // refused in the same breath.
+    if (refusedTheTracker(error.refusal)) throw error
     // Rule three. The stored token was already spent by a writer that overran
     // its claim. The one it replaced is reported to work for ten minutes.
     if (!previousIsWorthTrying(link, deps.now())) {

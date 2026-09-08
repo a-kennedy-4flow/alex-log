@@ -235,7 +235,7 @@ function longDate(date: string): string {
 </script>
 
 <template>
-  <div ref="board" class="wrap sheet pad" data-tour="board">
+  <div ref="board" class="wrap" data-tour="board">
     <div v-if="legend.length" class="legend">
       <span class="lab">{{ t('board.legend') }}</span>
       <span class="chips">

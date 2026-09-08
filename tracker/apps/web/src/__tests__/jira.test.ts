@@ -1,7 +1,16 @@
 // The Jira screen.
 //
-// The tickets are the real seven closed in August 2026. The hours are typed
-// because Jira holds none on that site. See `docs/jira.md`.
+// The tickets are two of the real seven closed in August 2026. The hours are
+// typed because Jira holds none on that site. See `docs/jira.md`.
+//
+// One of the two carries a cost centre inherited from its epic and the other
+// carries none. That is the pair the Jira client can produce so it is the pair
+// the screen is tested against.
+//
+// Neither cost centre is in the shipped catalogue so both tickets fall back to
+// the project map exactly as they did before the conversion existed. The
+// conversion itself is tested against real numbers in `the Workday ID a ticket
+// books against` below.
 //
 // Nothing here reaches the network. `@/lib/api` is replaced so the page sees an
 // answer of this file own making.
@@ -9,7 +18,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
 import type { CompletedTicket } from '@tracker/core'
-import { setCatalogue } from '@tracker/core'
+import { DEV_JIRA_CLIENT_ID, DEV_JIRA_CODE, setCatalogue } from '@tracker/core'
 import { loadCatalogue } from '@tracker/fixtures'
 
 const tickets: CompletedTicket[] = [
@@ -18,7 +27,12 @@ const tickets: CompletedTicket[] = [
     summary: 'Add TO/Load identification',
     projectKey: 'PLRS',
     resolvedAt: '2026-08-26T14:34:46.607+0200',
+    parentKey: 'PLRS-900',
     parentSummary: 'User group feedback',
+    costCentre: '4100782',
+    costCentreFrom: 'PLRS-900',
+    costCentreSpecification: null,
+    days: {},
     workdayId: '4100782',
     hours: 0,
     hoursSource: '',
@@ -28,7 +42,12 @@ const tickets: CompletedTicket[] = [
     summary: 'Create WebProxy 4FL-APP-167v',
     projectKey: 'DEVH',
     resolvedAt: '2026-08-13T10:49:44.964+0200',
+    parentKey: null,
     parentSummary: null,
+    costCentre: null,
+    costCentreFrom: null,
+    costCentreSpecification: null,
+    days: {},
     workdayId: '4100915',
     hours: 0,
     hoursSource: '',
@@ -163,6 +182,31 @@ describe('the last period', () => {
   })
 })
 
+describe('where the consent button sends the browser', () => {
+  it('asks Atlassian for every scope the app is granted', () => {
+    const url = new URL(
+      consent.consentUrl('wJiihW00HOrSowAzpyBcDjWOj7vUMAXz', 'https://tracker.4flow.io/jira/callback', 'state-1'),
+    )
+    expect(`${url.origin}${url.pathname}`).toBe('https://auth.atlassian.com/authorize')
+    const scope = url.searchParams.get('scope') ?? ''
+    expect(scope).toContain('read:issue-details:jira')
+    expect(scope).toContain('read:issue-worklog:jira')
+    // Without this one the consent buys an hour and no refresh token.
+    expect(scope).toContain('offline_access')
+    // A write scope must never appear.
+    expect(scope).not.toContain('write:')
+  })
+
+  it('skips Atlassian for the local double', () => {
+    // The local API owns no Atlassian app so a real consent screen refuses its
+    // client id. Nothing about the Jira page can be worked on if the press
+    // leaves the tab.
+    expect(consent.consentUrl(DEV_JIRA_CLIENT_ID, 'http://localhost:5173/jira/callback', 'state-1')).toBe(
+      `${consent.JIRA_CALLBACK_PATH}?code=${DEV_JIRA_CODE}&state=state-1`,
+    )
+  })
+})
+
 describe('the consent callback', () => {
   /** What `startLink` left behind before Atlassian took the tab. */
   function asked(state: string, back = '/jira'): void {
@@ -265,6 +309,46 @@ describe('the screen', () => {
     expect(jira.totals.value.trueDays).toBe(6.25)
     expect(jira.totals.value.roundedDays).toBe(6.5)
     expect(jira.groups.value).toHaveLength(2)
+  })
+})
+
+describe('the Workday ID a ticket books against', () => {
+  /** One ticket carrying only what the resolution reads. */
+  function ticketOf(over: Partial<CompletedTicket>): CompletedTicket {
+    return { ...(tickets[0] as CompletedTicket), ...over }
+  }
+
+  it('converts the Jira cost centre through the catalogue', () => {
+    const ticket = ticketOf({ costCentre: '99980200', workdayId: '4100782' })
+    expect(jira.workdayIdOf(ticket)).toBe('10200')
+  })
+
+  it('falls back to the project map where Jira carries no cost centre', () => {
+    expect(jira.workdayIdOf(ticketOf({ costCentre: null, workdayId: '4100782' }))).toBe('4100782')
+  })
+
+  it('falls back to the project map where the catalogue never heard the number', () => {
+    const ticket = ticketOf({ costCentre: '12345678', workdayId: '4100782' })
+    expect(jira.workdayIdOf(ticket)).toBe('4100782')
+  })
+
+  it('lets a choice made on the screen beat both', () => {
+    jira.chosenProjects['PLRS'] = '10300'
+    const ticket = ticketOf({ costCentre: '99980200', workdayId: '4100782' })
+    expect(jira.workdayIdOf(ticket)).toBe('10300')
+  })
+
+  it('books nothing where neither Jira nor the map answered', () => {
+    expect(jira.workdayIdOf(ticketOf({ costCentre: null, workdayId: null }))).toBeNull()
+  })
+
+  it('counts a ticket Jira mapped as mapped rather than offering a picker', async () => {
+    const page = mount(JiraPage, { global: { plugins } })
+    await flushPromises()
+    jira.tickets.value = [ticketOf({ costCentre: '99980200', workdayId: null })]
+    await flushPromises()
+    expect(jira.totals.value.unmapped).toEqual([])
+    expect(page.text()).toContain('10200')
   })
 })
 

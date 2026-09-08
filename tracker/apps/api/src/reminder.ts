@@ -89,8 +89,12 @@ export function reminderDate(year: number, month: number, location: string | nul
 }
 
 /**
- * How many tickets this user closed in the month. Null when there is nothing to
- * say.
+ * How many tickets this user touched in the month. Null when there is nothing
+ * to say.
+ *
+ * Closed or logged against. That is the union `Jira.completed` returns and it
+ * is what the screen lists. So the count in the message agrees with the page it
+ * links to.
  *
  * A failure here is never allowed to stop a reminder. Because a) the message
  * is the point and the count is an extra. b) Atlassian being down would

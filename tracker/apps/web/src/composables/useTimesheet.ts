@@ -1,12 +1,16 @@
 // The editor state. One month at a time for one user.
 //
 // The store is a module singleton so the month view and the quick fill and the
-// summary all read the same grid. Persistence is localStorage until the API
-// exists. Six months are kept.
+// summary all read the same grid.
+//
+// The month is written as it is edited. There is no Save button. Every edit is
+// debounced then stored. The download stays the one deliberate act. The mirror
+// in localStorage is written on every save even when the API is there so a
+// dropped connection costs nothing.
 
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 
-import { ApiError, api, usingApi } from '@/lib/api'
+import { ApiError, api, usingApi, type StoredSheet } from '@/lib/api'
 import { setLocale } from '@/i18n'
 
 import type { HalfDay, LocaleCode, Timesheet, UserProfile } from '@tracker/core'
@@ -15,6 +19,14 @@ import { absenceTotal, aggregateByProject, catalogue, aggregateByWeek, buildMont
 const HISTORY_MONTHS = 6
 const PROFILE_KEY = 'timesheets.profile'
 const SHEET_KEY = 'timesheets.sheet'
+
+/**
+ * How long an edit waits before it is written. Because a) a month is filled in
+ * runs of several rows so a wide window collapses a run into one write. b) the
+ * two flush points below cover a tab that closes inside the window. c) the
+ * interval is one constant to change.
+ */
+const AUTOSAVE_MS = 1000
 
 /* ---------- profile ---------- */
 
@@ -86,7 +98,11 @@ export const calendar = computed(() =>
 export const workingDays = computed(() => workingDayCount(calendar.value))
 
 /** The `yyyy-mm` key the API stores a month under. */
-export const period = computed(() => `${year.value}-${String(month.value).padStart(2, '0')}`)
+export function periodOf(y: number, m: number): string {
+  return `${y}-${String(m).padStart(2, '0')}`
+}
+
+export const period = computed(() => periodOf(year.value, month.value))
 
 /**
  * Tracker cell B8 for the open month. Null means the contract decides. Held
@@ -115,37 +131,229 @@ export const pastTarget = computed(() => daysPastTarget(calendar.value, target.v
 export const halfDays = ref<HalfDay[]>(emptyGrid(calendar.value))
 
 function sheetKey(y: number, m: number): string {
-  return `${SHEET_KEY}.${y}-${String(m).padStart(2, '0')}`
+  return `${SHEET_KEY}.${periodOf(y, m)}`
 }
 
-/** Writes the month. The API owns it once configured. */
-export async function saveSheet(): Promise<void> {
-  const sheet: Timesheet = {
+/**
+ * A month as it comes back off a store. The two times are what the API owns and
+ * the domain type does not name. Both are optional because a mirror written
+ * before they existed still has to read.
+ */
+export interface StoredMonth extends Timesheet {
+  updatedAt?: string
+  /** When the workbook was last downloaded. Null while the month is a draft. */
+  exportedAt?: string | null
+}
+
+/* ---------- the save state ---------- */
+
+export type SaveState = 'idle' | 'saving' | 'saved' | 'failed'
+
+/** What the period bar shows where the Save button stood. */
+export const saveState = ref<SaveState>('idle')
+
+/** When the last write landed. Null until one does. */
+export const savedAt = ref<string | null>(null)
+
+/** When the open month was last written. */
+export const updatedAt = ref<string | null>(null)
+
+/**
+ * When the open month was last downloaded. It survives every write so the
+ * monthly reminder stays muted once a month has been sent.
+ */
+export const exportedAt = ref<string | null>(null)
+
+/**
+ * The location the open month was stored against. Null for a month never saved.
+ *
+ * Held rather than dropped because the export is named for the month rather
+ * than for the profile. A move to another office leaves every earlier month
+ * named for the country it was worked in. `exportLocation` in core states the
+ * rule and the API applies the same one.
+ */
+export const openLocation = ref<string | null>(null)
+
+/**
+ * How the open month stands against its download. A month edited after its
+ * download reads as changed. Because a) the reminder is muted for that month so
+ * it chases nothing. b) the download is the only act that files the month. c)
+ * no third field is needed to see it.
+ */
+export const sentState = computed<'draft' | 'sent' | 'changed'>(() => {
+  if (!exportedAt.value) return 'draft'
+  return updatedAt.value !== null && updatedAt.value > exportedAt.value ? 'changed' : 'sent'
+})
+
+/* ---------- writing ---------- */
+
+/** The open grid as one value. Copied so a later edit cannot alter a queued write. */
+function currentSheet(): Timesheet {
+  return {
     year: year.value,
     month: month.value,
     location: profile.location ?? '',
-    halfDays: halfDays.value,
+    halfDays: halfDays.value.map((half) => ({ ...half })),
     adjustedWorkDays: monthOverride.value,
   }
-  if (usingApi) {
-    await api.putSheet(period.value, {
-      location: sheet.location,
-      halfDays: sheet.halfDays,
-      adjustedWorkDays: sheet.adjustedWorkDays,
-    })
-    await loadHistory()
+}
+
+function isOpen(sheet: Timesheet): boolean {
+  return sheet.year === year.value && sheet.month === month.value
+}
+
+function writeMirror(sheet: StoredMonth): void {
+  localStorage.setItem(sheetKey(sheet.year, sheet.month), JSON.stringify(sheet))
+  pruneHistory()
+}
+
+/**
+ * Writes one month. The mirror goes first and it goes whether or not the API is
+ * there. Because a) the month is filled over weeks so one dropped connection
+ * must not cost a day of entry. b) a tab closing during the PUT keeps the edit.
+ * c) the fallback path is the one `loadSheet` reads today.
+ */
+async function writeSheet(sheet: Timesheet): Promise<void> {
+  const at = new Date().toISOString()
+  writeMirror({ ...sheet, updatedAt: at, exportedAt: exportedAt.value })
+  if (!usingApi) {
+    if (isOpen(sheet)) updatedAt.value = at
     return
   }
-  localStorage.setItem(sheetKey(year.value, month.value), JSON.stringify(sheet))
-  pruneHistory()
+  if (isOpen(sheet)) openLocation.value = sheet.location || null
+  const stored = await api.putSheet(periodOf(sheet.year, sheet.month), {
+    location: sheet.location,
+    halfDays: sheet.halfDays,
+    adjustedWorkDays: sheet.adjustedWorkDays,
+  })
+  // The API owns both times and the sent marker survives the write. So the
+  // answer is read back rather than guessed from the browser clock.
+  writeMirror({ ...sheet, updatedAt: stored.updatedAt, exportedAt: stored.exportedAt ?? null })
+  if (isOpen(sheet)) {
+    updatedAt.value = stored.updatedAt
+    exportedAt.value = stored.exportedAt ?? null
+  }
+}
+
+/** The write in flight. Null when nothing is being written. */
+let inFlight: Promise<void> | null = null
+/** One save queued behind it. A third edit replaces this rather than queueing. */
+let trailing: Timesheet | null = null
+/** The write that failed. What the retry button sends again. */
+let lastFailure: Timesheet | null = null
+
+/**
+ * Runs the queued writes one after another. Two PUTs in flight can otherwise
+ * land in the wrong order and the older one would win.
+ */
+async function drain(first: Timesheet): Promise<void> {
+  try {
+    let next: Timesheet | null = first
+    while (next) {
+      const sheet: Timesheet = next
+      trailing = null
+      saveState.value = 'saving'
+      try {
+        await writeSheet(sheet)
+        lastFailure = null
+        savedAt.value = new Date().toISOString()
+        saveState.value = 'saved'
+      } catch (error) {
+        // The mirror already holds the edit so nothing is lost. The next edit
+        // sends the whole month again which is the retry.
+        lastFailure = sheet
+        saveState.value = 'failed'
+        console.error(error)
+      }
+      next = trailing
+    }
+  } finally {
+    inFlight = null
+  }
+}
+
+function queueWrite(sheet: Timesheet): Promise<void> {
+  if (inFlight) {
+    trailing = sheet
+    return inFlight
+  }
+  inFlight = drain(sheet)
+  return inFlight
+}
+
+/* ---------- the autosave ---------- */
+
+/** The edit waiting out the interval. It carries the month it belongs to. */
+let pendingWrite: Timesheet | null = null
+let timer: ReturnType<typeof setTimeout> | null = null
+
+/**
+ * How many loads are in flight. `openMonth` sets an empty grid then fills it
+ * from the API and the deep watcher fires on both writes. Without this the
+ * first would store an empty month over real data.
+ */
+let loads = 0
+
+async function endLoad(): Promise<void> {
+  // The watcher is queued rather than immediate so the tick is what lets the
+  // writes of this load pass it before the guard is dropped.
+  await nextTick()
+  loads = Math.max(0, loads - 1)
+}
+
+/** Writes the pending edit at once rather than waiting out the interval. */
+export async function flushSheet(): Promise<void> {
+  if (timer !== null) {
+    clearTimeout(timer)
+    timer = null
+  }
+  const sheet = pendingWrite
+  pendingWrite = null
+  if (!sheet) return
+  await queueWrite(sheet)
+}
+
+/** Sends the failed write again. A user who stops editing has no other way. */
+export async function retrySave(): Promise<void> {
+  if (pendingWrite) return flushSheet()
+  if (!lastFailure) return
+  await queueWrite(lastFailure)
+}
+
+// Every edit is stored. The snapshot is taken here rather than when the timer
+// fires so a flush after the period moved still writes the month that was
+// edited rather than the one now open.
+watch(
+  [halfDays, monthOverride],
+  () => {
+    if (loads > 0) return
+    pendingWrite = currentSheet()
+    if (timer !== null) clearTimeout(timer)
+    timer = setTimeout(() => void flushSheet(), AUTOSAVE_MS)
+  },
+  { deep: true },
+)
+
+// A closed tab must not cost the last edit. The mirror is written before the
+// PUT so the edit survives even when the tab goes before the answer.
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') void flushSheet()
+  })
+}
+
+/** Writes the month now and reloads the reference list. The manual flush. */
+export async function saveSheet(): Promise<void> {
+  pendingWrite = currentSheet()
+  await flushSheet()
   await loadHistory()
 }
 
-export function loadSheet(y: number, m: number): Timesheet | null {
+export function loadSheet(y: number, m: number): StoredMonth | null {
   const raw = localStorage.getItem(sheetKey(y, m))
   if (!raw) return null
   try {
-    return JSON.parse(raw) as Timesheet
+    return JSON.parse(raw) as StoredMonth
   } catch {
     return null
   }
@@ -177,31 +385,70 @@ export function savedMonths(): { year: number; month: number }[] {
   return out.sort((a, b) => b.year - a.year || b.month - a.month)
 }
 
+/** Puts a month on the screen. Null empties the grid. */
+function applySheet(sheet: StoredMonth | null): void {
+  halfDays.value = sheet ? sheet.halfDays : emptyGrid(calendar.value)
+  monthOverride.value = sheet?.adjustedWorkDays ?? null
+  updatedAt.value = sheet?.updatedAt ?? null
+  exportedAt.value = sheet?.exportedAt ?? null
+  openLocation.value = sheet?.location || null
+}
+
+/**
+ * The API copy wins unless the mirror was written after it. A newer mirror
+ * means a write never landed so it holds an edit the API never saw.
+ */
+function newer(mirror: StoredMonth | null, sheet: StoredSheet): StoredMonth {
+  if (!mirror?.updatedAt) return sheet
+  return mirror.updatedAt > sheet.updatedAt ? mirror : sheet
+}
+
 /** Rebuilds the grid for the current month keeping anything already saved. */
 export function openMonth(y: number, m: number): void {
+  loads++
   year.value = y
   month.value = m
+  const mirror = loadSheet(y, m)
   if (!usingApi) {
-    const saved = loadSheet(y, m)
-    halfDays.value = saved ? saved.halfDays : emptyGrid(calendar.value)
-    monthOverride.value = saved?.adjustedWorkDays ?? null
+    applySheet(mirror)
+    void endLoad()
     return
   }
-  halfDays.value = emptyGrid(calendar.value)
-  monthOverride.value = null
+  applySheet(null)
   void api
-    .getSheet(period.value)
+    .getSheet(periodOf(y, m))
     .then((sheet) => {
       // A slow answer for a month the user has already left is dropped.
-      if (period.value === `${sheet.year}-${String(sheet.month).padStart(2, '0')}`) {
-        halfDays.value = sheet.halfDays
-        monthOverride.value = sheet.adjustedWorkDays ?? null
-      }
+      if (period.value === periodOf(sheet.year, sheet.month)) applySheet(newer(mirror, sheet))
     })
     .catch((error: unknown) => {
-      // A month that was never saved is not a fault.
-      if (!(error instanceof ApiError) || error.status !== 404) console.error(error)
+      // A month that was never saved is not a fault. A mirror for one the API
+      // does not hold is an edit whose write never landed.
+      if (error instanceof ApiError && error.status === 404) {
+        if (mirror && period.value === periodOf(y, m)) applySheet(mirror)
+        return
+      }
+      console.error(error)
     })
+    .finally(() => void endLoad())
+}
+
+/**
+ * Reads the sent marker back after a download. The export writes it on the
+ * server so the browser has no other way to see it.
+ */
+export async function refreshSentState(): Promise<void> {
+  if (!usingApi) return
+  try {
+    const sheet = await api.getSheet(period.value)
+    if (period.value !== periodOf(sheet.year, sheet.month)) return
+    updatedAt.value = sheet.updatedAt
+    exportedAt.value = sheet.exportedAt ?? null
+  } catch (error) {
+    // The download already succeeded. A failed read only leaves the marker
+    // stale until the month is opened again.
+    console.error(error)
+  }
 }
 
 /** Reads the profile the API holds. Cognito owns the name and the email. */
@@ -249,8 +496,14 @@ export function projectMixOfPreviousSheet(): { workdayId: string; specification:
   return out
 }
 
-// A change of month or location rebuilds the calendar so the grid follows.
-watch([year, month], ([y, m]) => openMonth(y, m))
+// A change of month or location rebuilds the calendar so the grid follows. The
+// pending edit is written first because the rebuild would otherwise lose it.
+// The snapshot carries its own month so writing it after the period moved is
+// still the month that was edited.
+watch([year, month], ([y, m]) => {
+  void flushSheet()
+  openMonth(y, m)
+})
 watch(
   () => profile.location,
   () => {

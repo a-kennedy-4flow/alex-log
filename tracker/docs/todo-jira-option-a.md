@@ -13,7 +13,8 @@ it runs first.
 - [x] Ask the Atlassian administrator whether external app access rules permit a
       customer OAuth 2.0 app to read Jira. A site administrator can refuse this
       for the whole site. Stop here if the answer is no. Option C or option D is
-      then the only route.
+      then the only route. `docs/jira-admin.md` is the request to send. It names
+      the app and the approval and the way to check that it worked.
 - [x] Ask which Workday ID `PLRS` books against. Ask the same for `DEVH`. Two
       answers are enough to ship section 10 with real data.
 - [x] Decide who types the hours. Nobody. A configured list of fields is
@@ -30,13 +31,16 @@ it runs first.
 
 - [x] Register one OAuth 2.0 integration at `developer.atlassian.com`. Name it
       Tracker.
-- [x] Add the Jira API with two scopes. `read:jira-work` then `read:jira-user`.
+- [x] Add the Jira API with the fifteen granular scopes `docs/jira.md` lists.
       Nothing else. A write scope must never appear.
 - [x] Do not look for `offline_access` in that list. It is not a Jira scope and
       the console does not offer it. It belongs in the `scope` parameter of the
       authorize URL which section 8 builds.
-- [x] Take the classic scopes rather than the granular ones. Atlassian still
-      recommends it and `read:jira-work` covers a JQL search on its own.
+- [x] Take the granular scopes rather than the classic ones. Atlassian
+      recommends classic and is overruled. Because a) `read:jira-work` also
+      grants every attachment and comment this app never reads. b) three calls
+      fix the granular list so it cannot drift. c) the consent screen then names
+      what is read. It costs fifteen lines on that screen instead of two.
 - [x] Set the callback URL to `https://tracker.4flow.io/jira/callback`.
 - [x] Add a second callback for `http://localhost:5173/jira/callback`. Because
       the consent flow cannot be exercised on the dev server without one.
@@ -55,20 +59,20 @@ it runs first.
 | Client id | `wJiihW00HOrSowAzpyBcDjWOj7vUMAXz` |
 | Client secret | Secrets Manager at `tracker/jira`. Never here. |
 | Callback | `https://tracker.4flow.io/jira/callback` |
-| Scopes granted | `read:jira-work` then `read:jira-user` |
+| Scopes granted | the fifteen granular scopes of `docs/jira.md` |
 
 The console builds an authorize URL and it is wrong for this app. It carries the
-two granted scopes and no third one. `offline_access` is missing so Atlassian
-returns an access token good for one hour and no refresh token. Every month
-after the first would then ask the user to consent again and the reminder of
-section 11 could never run at all.
+granted scopes alone. `offline_access` is missing so Atlassian returns an access
+token good for one hour and no refresh token. Every month after the first would
+then ask the user to consent again. The reminder of section 11 could never run
+at all.
 
 This is the URL to build. The only change is `%20offline_access` on the scope.
 
     https://auth.atlassian.com/authorize
       ?audience=api.atlassian.com
       &client_id=wJiihW00HOrSowAzpyBcDjWOj7vUMAXz
-      &scope=read%3Ajira-work%20read%3Ajira-user%20offline_access
+      &scope=read%3Aissue-meta%3Ajira%20read%3Aissue%3Ajira%20read%3Aissue.property%3Ajira%20read%3Aissue-details%3Ajira%20read%3Aissue.time-tracking%3Ajira%20read%3Afield%3Ajira%20read%3Afield.default-value%3Ajira%20read%3Afield.option%3Ajira%20read%3Auser%3Ajira%20read%3Aapplication-role%3Ajira%20read%3Aavatar%3Ajira%20read%3Agroup%3Ajira%20read%3Aissue-worklog%3Ajira%20read%3Aissue-worklog.property%3Ajira%20read%3Aproject-role%3Ajira%20read%3Afield-configuration%3Ajira%20read%3Aproject%3Ajira%20read%3Aproject-category%3Ajira%20offline_access
       &redirect_uri=https%3A%2F%2Ftracker.4flow.io%2Fjira%2Fcallback
       &state=<one value bound to this user>
       &response_type=code
@@ -88,9 +92,26 @@ says why.
       the function runs.
 - [x] Give it a shorter timeout than `main`. It makes one outbound call and
       waits on Atlassian rather than on the browser.
-- [x] Add a Secrets Manager secret named `tracker/jira`. Create it empty and
-      fill it by hand. Because a secret written by CDK sits in the template and
-      in every CloudFormation event.
+- [x] Add a Secrets Manager secret named `tracker/jira`. Nothing writes a value
+      to it. Because a secret written by CDK sits in the template and in every
+      CloudFormation event.
+- [ ] Put the client secret in it by hand after the first deploy. CDK does not
+      leave it empty. A secret given no value is created with
+      `GenerateSecretString` so it holds a random password of its own.
+
+          aws secretsmanager put-secret-value --secret-id tracker/jira \
+            --secret-string '<the client secret from the console>'
+
+- [ ] Read it back and check it is the console value rather than the random one.
+      Because a) the random value reads as a filled secret. b) Atlassian answers
+      it with `access_denied: Unauthorized` which reads as a consent fault. c)
+      one command settles it.
+
+          aws secretsmanager get-secret-value --secret-id tracker/jira \
+            --query SecretString --output text | cut -c1-6
+
+- [ ] Force new containers after filling it. `secretReader` holds the value for
+      the life of the container so a retry can fail on a secret already fixed.
 - [x] Add a customer managed KMS key. It encrypts the refresh token field.
 - [x] Grant the secret and the key to the Jira function alone. The API role must
       gain neither. That is the whole reason the function is separate.
@@ -264,10 +285,10 @@ them with the rule of section 7. Every shade they use is already declared in
 - [x] Build the authorize URL there. It carries the client id and
       `audience=api.atlassian.com` and `response_type=code` and
       `prompt=consent` and a state value. All four are required.
-- [x] Put three values in its `scope` parameter. `read:jira-work` then
-      `read:jira-user` then `offline_access`. The third is what makes Atlassian
-      return a refresh token. Without it the consent buys one hour of access and
-      section 11 can never work.
+- [x] Put sixteen values in its `scope` parameter. The fifteen granted then
+      `offline_access`. The last is what makes Atlassian return a refresh token.
+      Without it the consent buys one hour of access. Section 11 can then never
+      work.
 - [x] Send no `code_challenge`. Atlassian Cloud supports no PKCE on this flow.
       A per application flag exists and Atlassian has to be asked to flip it.
       Nothing is gained by asking. Because the function holds the secret and

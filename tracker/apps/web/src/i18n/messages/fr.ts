@@ -37,6 +37,10 @@ const fr: Messages = {
     workPercentDays: 'Soit {days} des {working} jours ouvrés de ce mois.',
     save: 'Enregistrer',
     saved: 'Enregistré',
+    saving: 'Enregistrement',
+    saveFailed: 'Non enregistré',
+    saveFailedHint: 'La modification est conservée dans ce navigateur. Elle est perdue seulement si vous effacez ses données.',
+    retry: 'Réessayer',
     hoursPerDay: 'Journée de travail',
     hoursPerDayHint: 'Combien d heures vous travaillez par jour. Cela définit ce qu est une demi journée quand la page Jira lit des heures. Laissez vide pour huit.',
     jira: 'Jira',
@@ -158,6 +162,8 @@ const fr: Messages = {
     button: 'Télécharger le tracker',
     blocked: 'Corrigez les erreurs ci-dessus pour télécharger.',
     filename: 'Nom du fichier',
+    sent: 'Téléchargé le {at}.',
+    changed: 'Modifié depuis le téléchargement du {at}. Téléchargez-le à nouveau.',
   },
   picker: {
     search: 'Rechercher par numéro ou titre ou client',
@@ -354,6 +360,30 @@ const fr: Messages = {
     shareTotal: 'Les parts totalisent {total}.',
     unlink: 'Déconnecter Jira',
     retry: 'Réessayer',
+  },
+  privacy: {
+    title: 'Confidentialité',
+    intro: 'Ce que ce service conserve sur vous et pendant combien de temps.',
+    logs: {
+      title: 'Journaux d’accès',
+      body: 'Une requête vers ce service est journalisée un mois au maximum. Le journal est ensuite supprimé.',
+    },
+    store: {
+      title: 'Vos feuilles de temps',
+      body: 'Nous conservons vos six derniers mois. Un mois plus ancien se supprime de lui-même.',
+    },
+    jira: {
+      title: 'Jira',
+      body: 'Nous ne gardons aucune copie de votre Jira. Nous lisons uniquement les tickets que vous nous indiquez. Ce que nous lisons est conservé jusqu’à un jour pour que l’écran s’ouvre sans attente. Cela disparaît dès que vous déconnectez Jira.',
+    },
+    use: {
+      title: 'Ce que nous en faisons',
+      body: 'Nous utilisons vos données pour remplir votre feuille de temps. Nous envoyons le rappel mensuel si vous l’activez. Nous ne les utilisons pour rien d’autre.',
+    },
+    erase: {
+      title: 'Suppression de vos données',
+      body: 'Tout ce que nous conservons sur vous est supprimé avec votre compte.',
+    },
   },
   common: {
     none: 'Aucune',

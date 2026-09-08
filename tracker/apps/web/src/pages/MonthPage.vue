@@ -6,12 +6,17 @@
 // and a reader moving between them should see one design.
 //
 // The middle section is the grid or the board. Both edit one month so both sit
-// on this route and only that section changes. The space beside it carries the
-// progress and the reference list. Both stay in view while the month scrolls
-// because both are about the month as a whole.
+// on this route and only that section changes. The switch between them stands
+// inside the same box at the top. The box is the surface so the two views carry
+// none of their own. Because one box holds the switch and whichever view it
+// names a) the control sits on the thing it acts on and b) swapping the view
+// leaves the surface where it was. The space beside it carries the progress and the
+// reference list. Both stay in view while the month scrolls because both are
+// about the month as a whole.
 
 import PageTitle from '@/components/PageTitle.vue'
 import PeriodBar from '@/components/PeriodBar.vue'
+import ViewSwitch from '@/components/ViewSwitch.vue'
 import MonthGrid from '@/components/MonthGrid.vue'
 import MonthCalendar from '@/components/MonthCalendar.vue'
 import MonthProgress from '@/components/MonthProgress.vue'
@@ -37,8 +42,11 @@ onMounted(() => startUnlessSeen())
     <div class="stack">
       <PeriodBar />
       <div class="split">
-        <MonthGrid v-if="view === 'grid'" />
-        <MonthCalendar v-else />
+        <div class="month sheet pad">
+          <ViewSwitch />
+          <MonthGrid v-if="view === 'grid'" />
+          <MonthCalendar v-else />
+        </div>
         <aside>
           <MonthProgress />
           <RecentCostCentres />

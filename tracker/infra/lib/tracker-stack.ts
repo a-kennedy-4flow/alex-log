@@ -582,8 +582,14 @@ export class TrackerStack extends Stack {
     // gains neither. That is the same rule the reminder follows about
     // permission to send mail. See `docs/jira.md`.
 
-    // Created empty and filled by hand. Because a secret written by CDK sits in
-    // the template and in every CloudFormation event.
+    // Filled by hand. Because a secret written by CDK sits in the template and
+    // in every CloudFormation event.
+    //
+    // CDK does not leave it empty. A secret given no value of its own is
+    // created with `GenerateSecretString` so it holds a random password until
+    // somebody overwrites it. That value reads as a filled secret. Atlassian
+    // answers it with `access_denied` and the screen then blames the consent.
+    // `docs/jira.md` says how to tell.
     const jiraSecret = new secrets.Secret(this, 'JiraSecret', {
       secretName: 'tracker/jira',
       description: 'The client secret of the Tracker OAuth 2.0 app. Filled by hand.',
