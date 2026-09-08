@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vorlagensammlung Rehbrunn</title>
+<meta name="description" content="Dreissig einzelne Betriebsseiten als Vorlagen. Durchsehen nach Ansicht und Gruppe und Merkmal.">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f2f2f0; color: #16161a;
+         font: 16px/1.65 "Inter", "Segoe UI", system-ui, sans-serif; }
+  a { color: #8a2f1a; }
+  .in { max-width: 1280px; margin: 0 auto; padding: 0 26px; }
+  code, .fest { font-family: ui-monospace, "SF Mono", Consolas, monospace; }
+
+  .oberband { background: #16161a; color: #d6d5d0; font-size: 13px; }
+  .oberband .in { display: flex; justify-content: space-between; gap: 14px; padding: 10px 26px;
+                  flex-wrap: wrap; }
+  .oberband a { color: #f0a882; text-decoration: none; }
+
+  header { border-bottom: 2px solid #16161a; background: #fbfbf9; }
+  header .in { padding: 40px 26px 30px; display: grid; grid-template-columns: 1fr auto; gap: 26px;
+               align-items: end; }
+  @media (max-width: 820px) { header .in { grid-template-columns: 1fr; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #8a2f1a; }
+  h1 { margin: 10px 0 12px; font-size: clamp(34px, 7vw, 62px); line-height: 1; letter-spacing: -.035em; }
+  header p { margin: 0; max-width: 60ch; font-size: 18px; color: #4a4a48; }
+  .kennzahlen { display: flex; gap: 26px; flex-wrap: wrap; font-size: 13px; color: #6b6b68;
+                letter-spacing: .06em; text-transform: uppercase; }
+  .kennzahlen b { display: block; font-size: 28px; letter-spacing: -.02em; color: #16161a;
+                  text-transform: none; }
+
+  .werkzeuge { position: sticky; top: 0; z-index: 20; background: rgba(242,242,240,.96);
+               backdrop-filter: blur(8px); border-bottom: 1px solid #d8d8d4; }
+  .werkzeuge .in { padding: 14px 26px; display: grid; gap: 12px; }
+  .reihe { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .reihe > .schild { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #6b6b68;
+                     min-width: 96px; }
+  input[type="search"] { flex: 1 1 240px; min-width: 180px; padding: 10px 13px; font: inherit;
+                         border: 2px solid #16161a; background: #fff; border-radius: 0; }
+  input[type="search"]:focus-visible { outline: 3px solid #8a2f1a; outline-offset: 2px; }
+  select { padding: 9px 12px; font: inherit; border: 1px solid #b9b9b4; background: #fff; }
+  button { font: inherit; cursor: pointer; }
+  .knopf { padding: 8px 14px; border: 1px solid #b9b9b4; background: #fff; color: #33332f; font-size: 14px; }
+  .knopf[aria-pressed="true"] { background: #16161a; border-color: #16161a; color: #fff; }
+  .marke { padding: 7px 13px; border: 1px solid #cfcfc9; background: #fff; border-radius: 999px;
+           font-size: 13px; color: #4a4a46; }
+  .marke[aria-pressed="true"] { background: #8a2f1a; border-color: #8a2f1a; color: #fff; }
+  .zuruecksetzen { border: 0; background: none; color: #8a2f1a; text-decoration: underline; font-size: 14px; }
+
+  .ergebnis { padding: 22px 26px 60px; max-width: 1280px; margin: 0 auto; }
+  .treffer { margin: 0 0 16px; font-size: 14px; color: #6b6b68; }
+  .kopfzeile { display: none; }
+
+  #sammlung { display: grid; gap: 16px; }
+  #sammlung.ansicht-kacheln { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+  #sammlung.ansicht-liste, #sammlung.ansicht-tabelle { grid-template-columns: 1fr; gap: 0; }
+
+  .karte { display: block; background: #fff; border: 1px solid #dedeD8; text-decoration: none;
+           color: inherit; overflow: hidden; }
+  .karte:hover { border-color: #16161a; }
+  .karte:focus-visible { outline: 3px solid #8a2f1a; outline-offset: -3px; }
+  .karte .bild { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
+                 object-fit: cover; object-position: top; background: #ecece8;
+                 border-bottom: 1px solid #e6e6e0; }
+  .karte .streifen { height: 4px; }
+  .karte .leib { padding: 14px 16px 16px; }
+  .karte .name { display: block; font-size: 18px; font-weight: 650; letter-spacing: -.01em; }
+  .karte .gewerk { display: block; font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+                   color: #8a2f1a; margin-top: 3px; }
+  .karte .zahlen { display: block; margin-top: 10px; font-size: 12px; color: #6b6b68; }
+  /* Diese Zellen gehoeren allein in die Tabellenansicht. */
+  .karte .bereichzelle, .karte .zahl { display: none; }
+  .karte .muster { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .karte .muster span { font-size: 11px; letter-spacing: .04em; border: 1px solid #e0e0da;
+                        background: #f7f7f4; padding: 3px 8px; color: #4a4a46; }
+
+  /* Ansicht Liste */
+  .ansicht-liste .karte { display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+                          border-left: 0; border-right: 0; border-top: 0; }
+  .ansicht-liste .karte .bild { aspect-ratio: 4 / 3; height: 100%; min-height: 100%;
+                                object-position: top left; }
+  .ansicht-liste .karte .streifen { display: none; }
+  .ansicht-liste .karte .leib { padding: 14px 4px 14px 0; }
+  .ansicht-liste .karte .muster { margin-top: 8px; }
+  @media (max-width: 620px) { .ansicht-liste .karte { grid-template-columns: 88px 1fr; } }
+
+  /* Ansicht Tabelle */
+  .ansicht-tabelle .karte { display: grid;
+        grid-template-columns: minmax(190px, 1.4fr) 1fr 1fr minmax(150px, 1.2fr) 74px 74px;
+        gap: 14px; align-items: baseline; padding: 11px 12px; border: 0; border-bottom: 1px solid #e2e2dc; }
+  .ansicht-tabelle .karte .bild, .ansicht-tabelle .karte .streifen { display: none; }
+  .ansicht-tabelle .karte .leib { display: contents; }
+  .ansicht-tabelle .karte .name { font-size: 15px; }
+  .ansicht-tabelle .karte .gewerk { margin: 0; font-size: 12px; text-transform: none; letter-spacing: 0;
+                                    color: #4a4a46; }
+  .ansicht-tabelle .karte .bereichzelle { display: block; font-size: 13px; color: #4a4a46; }
+  .ansicht-tabelle .karte .zahlen { display: none; }
+  .ansicht-tabelle .karte .muster { margin: 0; }
+  .ansicht-tabelle .karte .zahl { display: block; font-size: 13px; text-align: right;
+                                  color: #4a4a46; font-variant-numeric: tabular-nums; }
+  .kopfzeile { grid-template-columns: minmax(190px, 1.4fr) 1fr 1fr minmax(150px, 1.2fr) 74px 74px;
+               gap: 14px; padding: 0 12px 8px; font-size: 11px; letter-spacing: .14em;
+               text-transform: uppercase; color: #6b6b68; border-bottom: 2px solid #16161a;
+               margin-bottom: 6px; }
+  .kopfzeile span:nth-child(5), .kopfzeile span:nth-child(6) { text-align: right; }
+  @media (max-width: 900px) {
+    .ansicht-tabelle .karte { grid-template-columns: 1fr 1fr; }
+    .kopfzeile { display: none !important; }
+  }
+
+  .gruppe { margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #16161a;
+            font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #16161a; }
+  .gruppe:first-child { margin-top: 0; }
+  .gruppe b { color: #8a2f1a; }
+  .leer { padding: 40px 0; color: #6b6b68; }
+
+  .fussnote { border-top: 2px solid #16161a; background: #fbfbf9; }
+  .fussnote .in { padding: 30px 26px; display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 26px; }
+  .fussnote h2 { margin: 0 0 8px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+                 color: #8a2f1a; }
+  .fussnote p { margin: 0; font-size: 15px; color: #4a4a48; }
+  .abschluss { font-size: 13px; color: #7a7a76; }
+  .abschluss .in { padding: 16px 26px 44px; }
+</style>
+</head>
+<body>
+<div class="oberband"><div class="in">
+  <span>Vorlagen zum Durchsehen &middot; jede Seite tr&auml;gt ihr eigenes Stilblatt</span>
+  <a href="bildvarianten.html">Bilder einbauen &rarr;</a>
+</div></div>
+
+<header>
+  <div class="in">
+    <div>
+      <p class="zeile">Vorlagensammlung</p>
+      <h1>Rehbrunn</h1>
+      <p>Dreissig einzelne Seiten. Keine teilt sich ein Stilblatt mit einer anderen. Diese Seite
+      ist zugleich das Gewerbeverzeichnis des Ortes und der Weg durch die Vorlagen.</p>
+    </div>
+    <div class="kennzahlen">
+      <div><b>30</b>Vorlagen</div>
+      <div><b>13</b>Muster</div>
+      <div><b>9324</b>Zeilen</div>
+    </div>
+  </div>
+</header>
+
+<div class="werkzeuge">
+  <div class="in">
+    <div class="reihe">
+      <span class="schild">Suche</span>
+      <input id="suche" type="search" placeholder="Name oder Gewerk oder Muster" aria-label="Vorlagen durchsuchen">
+      <button class="zuruecksetzen" id="zurueck" type="button">Alles zur&uuml;cksetzen</button>
+    </div>
+    <div class="reihe">
+      <span class="schild">Ansicht</span>
+      <button class="knopf" data-ansicht="kacheln" aria-pressed="true">Kacheln</button>
+      <button class="knopf" data-ansicht="liste" aria-pressed="false">Liste</button>
+      <button class="knopf" data-ansicht="tabelle" aria-pressed="false">Tabelle</button>
+      <span class="schild" style="margin-left:14px">Gruppe</span>
+      <select id="gruppe" aria-label="Gruppierung">
+        <option value="keine">ohne Gruppen</option>
+        <option value="bereich">nach Bereich</option>
+        <option value="muster">nach Navigationsmuster</option>
+        <option value="grundton">nach Grundton</option>
+        <option value="schrift">nach Schrift</option>
+      </select>
+      <span class="schild" style="margin-left:14px">Reihenfolge</span>
+      <select id="sortierung" aria-label="Sortierung">
+        <option value="name">Name von A bis Z</option>
+        <option value="zeilen-ab">l&auml;ngste Seite zuerst</option>
+        <option value="zeilen-auf">k&uuml;rzeste Seite zuerst</option>
+        <option value="bloecke-ab">meiste Bildpl&auml;tze zuerst</option>
+      </select>
+    </div>
+    <div class="reihe">
+      <span class="schild">Merkmale</span>
+      <button class="marke" data-merkmal="aufklappmenue" aria-pressed="false">Aufklappmen&uuml;</button>
+      <button class="marke" data-merkmal="bilder" aria-pressed="false">Bilder eingebaut</button>
+      <button class="marke" data-merkmal="fixleiste" aria-pressed="false">Festes Element</button>
+      <button class="marke" data-merkmal="filter" aria-pressed="false">Filter</button>
+      <button class="marke" data-merkmal="randpunkte" aria-pressed="false">Randnavigation</button>
+      <button class="marke" data-merkmal="rechner" aria-pressed="false">Rechner</button>
+      <button class="marke" data-merkmal="reiter" aria-pressed="false">Reiter</button>
+      <button class="marke" data-merkmal="schublade" aria-pressed="false">Schubladenmen&uuml;</button>
+      <button class="marke" data-merkmal="scrollmarke" aria-pressed="false">Scrollbeobachter</button>
+      <button class="marke" data-merkmal="seitenleiste" aria-pressed="false">Seitenleiste</button>
+      <button class="marke" data-merkmal="umschalter" aria-pressed="false">Umschalter</button>
+      <button class="marke" data-merkmal="ziehharmonika" aria-pressed="false">Ziehharmonika</button>
+      <button class="marke" data-merkmal="unterleiste" aria-pressed="false">Zweite Leiste</button>
+    </div>
+  </div>
+</div>
+
+<main class="ergebnis">
+  <p class="treffer" id="treffer">Alle 30 Vorlagen werden angezeigt.</p>
+  <div class="kopfzeile" id="kopfzeile" aria-hidden="true">
+    <span>Vorlage</span><span>Gewerk</span><span>Bereich</span><span>Muster</span>
+    <span>Zeilen</span><span>Pl&auml;tze</span>
+  </div>
+  <div id="sammlung" class="ansicht-kacheln">
+    <a class="karte" href="apotheke-am-lindenplatz/index.html"
+       data-name="Apotheke am Lindenplatz" data-bereich="Gesundheit"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="ziehharmonika seitenleiste scrollmarke bilder" data-zeilen="411" data-bloecke="10"
+       data-suche="apotheke am lindenplatz apotheke gesundheit lindenplatz 9 ziehharmonika seitenleiste scrollbeobachter bilder eingebaut">
+      <span class="streifen" style="background:#f6f8f9"></span>
+      <img class="bild" src="assets/aufnahmen/apotheke-am-lindenplatz.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Apotheke am Lindenplatz</span>
+        <span class="gewerk">Apotheke</span>
+        <span class="bereichzelle">Gesundheit</span>
+        <span class="muster"><span>Ziehharmonika</span><span>Seitenleiste</span><span>Scrollbeobachter</span><span>Bilder eingebaut</span></span>
+        <span class="zahl">411</span>
+        <span class="zahl">10</span>
+        <span class="zahlen">411 Zeilen &middot; 10 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="buchbinderei-halm/index.html"
+       data-name="Buchbinderei Halm" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="seitenleiste scrollmarke" data-zeilen="277" data-bloecke="6"
+       data-suche="buchbinderei halm buchbinderei handwerk schulstraße 4 seitenleiste scrollbeobachter">
+      <span class="streifen" style="background:#f4efe6"></span>
+      <img class="bild" src="assets/aufnahmen/buchbinderei-halm.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Buchbinderei Halm</span>
+        <span class="gewerk">Buchbinderei</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Seitenleiste</span><span>Scrollbeobachter</span></span>
+        <span class="zahl">277</span>
+        <span class="zahl">6</span>
+        <span class="zahlen">277 Zeilen &middot; 6 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="dachdeckerei-hufnagel/index.html"
+       data-name="Dachdeckerei Hufnagel" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="ziehharmonika" data-zeilen="261" data-bloecke="6"
+       data-suche="dachdeckerei hufnagel dachdecker handwerk am bahndamm 4 ziehharmonika">
+      <span class="streifen" style="background:#eef0f2"></span>
+      <img class="bild" src="assets/aufnahmen/dachdeckerei-hufnagel.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Dachdeckerei Hufnagel</span>
+        <span class="gewerk">Dachdecker</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Ziehharmonika</span></span>
+        <span class="zahl">261</span>
+        <span class="zahl">6</span>
+        <span class="zahlen">261 Zeilen &middot; 6 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="druckerei-falkenberg/index.html"
+       data-name="Druckerei Falkenberg" data-bereich="Handel und Dienstleistung"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="rechner" data-zeilen="326" data-bloecke="0"
+       data-suche="druckerei falkenberg druckerei handel und dienstleistung gewerbering 9 rechner">
+      <span class="streifen" style="background:#fdfdfc"></span>
+      <img class="bild" src="assets/aufnahmen/druckerei-falkenberg.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Druckerei Falkenberg</span>
+        <span class="gewerk">Druckerei</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Rechner</span></span>
+        <span class="zahl">326</span>
+        <span class="zahl">0</span>
+        <span class="zahlen">326 Zeilen &middot; 0 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="elektro-sauer/index.html"
+       data-name="Elektro Sauer" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="aufklappmenue" data-zeilen="312" data-bloecke="6"
+       data-suche="elektro sauer elektrofachbetrieb handwerk bahnhofstraße 5 aufklappmen&uuml;">
+      <span class="streifen" style="background:#fbfcfd"></span>
+      <img class="bild" src="assets/aufnahmen/elektro-sauer.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Elektro Sauer</span>
+        <span class="gewerk">Elektrofachbetrieb</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Aufklappmen&uuml;</span></span>
+        <span class="zahl">312</span>
+        <span class="zahl">6</span>
+        <span class="zahlen">312 Zeilen &middot; 6 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="fahrschule-kurvenreich/index.html"
+       data-name="Fahrschule Kurvenreich" data-bereich="Handel und Dienstleistung"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="ziehharmonika" data-zeilen="322" data-bloecke="4"
+       data-suche="fahrschule kurvenreich fahrschule handel und dienstleistung industriestraße 8 ziehharmonika">
+      <span class="streifen" style="background:#fffdf5"></span>
+      <img class="bild" src="assets/aufnahmen/fahrschule-kurvenreich.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Fahrschule Kurvenreich</span>
+        <span class="gewerk">Fahrschule</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Ziehharmonika</span></span>
+        <span class="zahl">322</span>
+        <span class="zahl">4</span>
+        <span class="zahlen">322 Zeilen &middot; 4 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="fotoatelier-lichtblick/index.html"
+       data-name="Fotoatelier Lichtblick" data-bereich="Handel und Dienstleistung"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="reiter ziehharmonika" data-zeilen="349" data-bloecke="20"
+       data-suche="fotoatelier lichtblick fotostudio handel und dienstleistung schulstraße 4 reiter ziehharmonika">
+      <span class="streifen" style="background:#ffffff"></span>
+      <img class="bild" src="assets/aufnahmen/fotoatelier-lichtblick.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Fotoatelier Lichtblick</span>
+        <span class="gewerk">Fotostudio</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Reiter</span><span>Ziehharmonika</span></span>
+        <span class="zahl">349</span>
+        <span class="zahl">20</span>
+        <span class="zahlen">349 Zeilen &middot; 20 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="galabau-erle/index.html"
+       data-name="Garten- und Landschaftsbau Erle" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="aufklappmenue filter" data-zeilen="324" data-bloecke="6"
+       data-suche="garten- und landschaftsbau erle galabau handwerk am bahndamm 12 aufklappmen&uuml; filter">
+      <span class="streifen" style="background:#f6f7f3"></span>
+      <img class="bild" src="assets/aufnahmen/galabau-erle.jpg" width="800" height="562"
+           loading="eager" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Garten- und Landschaftsbau Erle</span>
+        <span class="gewerk">Galabau</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Aufklappmen&uuml;</span><span>Filter</span></span>
+        <span class="zahl">324</span>
+        <span class="zahl">6</span>
+        <span class="zahlen">324 Zeilen &middot; 6 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="gasthaus-zur-alten-muehle/index.html"
+       data-name="Gasthaus Zur Alten Mühle" data-bereich="Essen und Trinken"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="aufklappmenue" data-zeilen="368" data-bloecke="3"
+       data-suche="gasthaus zur alten mühle gasthaus mit zimmern essen und trinken mühlweg 2 aufklappmen&uuml;">
+      <span class="streifen" style="background:#f3efe6"></span>
+      <img class="bild" src="assets/aufnahmen/gasthaus-zur-alten-muehle.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Gasthaus Zur Alten Mühle</span>
+        <span class="gewerk">Gasthaus mit Zimmern</span>
+        <span class="bereichzelle">Essen und Trinken</span>
+        <span class="muster"><span>Aufklappmen&uuml;</span></span>
+        <span class="zahl">368</span>
+        <span class="zahl">3</span>
+        <span class="zahlen">368 Zeilen &middot; 3 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="glaserei-sonnabend/index.html"
+       data-name="Glaserei Sonnabend" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="filter" data-zeilen="293" data-bloecke="12"
+       data-suche="glaserei sonnabend glaserei handwerk werkstraße 7 filter">
+      <span class="streifen" style="background:#f2f7f9"></span>
+      <img class="bild" src="assets/aufnahmen/glaserei-sonnabend.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Glaserei Sonnabend</span>
+        <span class="gewerk">Glaserei</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Filter</span></span>
+        <span class="zahl">293</span>
+        <span class="zahl">12</span>
+        <span class="zahlen">293 Zeilen &middot; 12 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="haustechnik-brandt/index.html"
+       data-name="Haustechnik Brandt" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="ziehharmonika scrollmarke unterleiste" data-zeilen="353" data-bloecke="4"
+       data-suche="haustechnik brandt sanitär und heizung handwerk gewerbering 3 ziehharmonika scrollbeobachter zweite leiste">
+      <span class="streifen" style="background:#f4f7f9"></span>
+      <img class="bild" src="assets/aufnahmen/haustechnik-brandt.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Haustechnik Brandt</span>
+        <span class="gewerk">Sanitär und Heizung</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Ziehharmonika</span><span>Scrollbeobachter</span><span>Zweite Leiste</span></span>
+        <span class="zahl">353</span>
+        <span class="zahl">4</span>
+        <span class="zahlen">353 Zeilen &middot; 4 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="hoerakustik-wieland/index.html"
+       data-name="Hörakustik Wieland" data-bereich="Gesundheit"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="ziehharmonika" data-zeilen="293" data-bloecke="0"
+       data-suche="hörakustik wieland hörakustik gesundheit marktstraße 3 ziehharmonika">
+      <span class="streifen" style="background:#fdfcf9"></span>
+      <img class="bild" src="assets/aufnahmen/hoerakustik-wieland.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Hörakustik Wieland</span>
+        <span class="gewerk">Hörakustik</span>
+        <span class="bereichzelle">Gesundheit</span>
+        <span class="muster"><span>Ziehharmonika</span></span>
+        <span class="zahl">293</span>
+        <span class="zahl">0</span>
+        <span class="zahlen">293 Zeilen &middot; 0 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="imkerei-sonnenwiese/index.html"
+       data-name="Imkerei Sonnenwiese" data-bereich="Essen und Trinken"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="reiter" data-zeilen="329" data-bloecke="7"
+       data-suche="imkerei sonnenwiese imkerei essen und trinken sonnenweg 18 reiter">
+      <span class="streifen" style="background:#fffdf4"></span>
+      <img class="bild" src="assets/aufnahmen/imkerei-sonnenwiese.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Imkerei Sonnenwiese</span>
+        <span class="gewerk">Imkerei</span>
+        <span class="bereichzelle">Essen und Trinken</span>
+        <span class="muster"><span>Reiter</span></span>
+        <span class="zahl">329</span>
+        <span class="zahl">7</span>
+        <span class="zahlen">329 Zeilen &middot; 7 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="kfz-meisterbetrieb-vogt/index.html"
+       data-name="Kfz-Meisterbetrieb Vogt" data-bereich="Handel und Dienstleistung"
+       data-grundton="dunkel" data-schrift="serifenlos"
+       data-merkmale="schublade" data-zeilen="274" data-bloecke="10"
+       data-suche="kfz-meisterbetrieb vogt autowerkstatt handel und dienstleistung industriestraße 14 schubladenmen&uuml;">
+      <span class="streifen" style="background:#14161a"></span>
+      <img class="bild" src="assets/aufnahmen/kfz-meisterbetrieb-vogt.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Kfz-Meisterbetrieb Vogt</span>
+        <span class="gewerk">Autowerkstatt</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Schubladenmen&uuml;</span></span>
+        <span class="zahl">274</span>
+        <span class="zahl">10</span>
+        <span class="zahlen">274 Zeilen &middot; 10 Bildpl&auml;tze &middot; Dunkler Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="konditorei-mohnblume/index.html"
+       data-name="Konditorei Mohnblume" data-bereich="Essen und Trinken"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="ziehharmonika scrollmarke" data-zeilen="323" data-bloecke="4"
+       data-suche="konditorei mohnblume konditorei und café essen und trinken lindenplatz 4 ziehharmonika scrollbeobachter">
+      <span class="streifen" style="background:#fff9f4"></span>
+      <img class="bild" src="assets/aufnahmen/konditorei-mohnblume.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Konditorei Mohnblume</span>
+        <span class="gewerk">Konditorei und Café</span>
+        <span class="bereichzelle">Essen und Trinken</span>
+        <span class="muster"><span>Ziehharmonika</span><span>Scrollbeobachter</span></span>
+        <span class="zahl">323</span>
+        <span class="zahl">4</span>
+        <span class="zahlen">323 Zeilen &middot; 4 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="malerwerkstatt-reindl/index.html"
+       data-name="Malerwerkstatt Reindl" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="umschalter" data-zeilen="282" data-bloecke="6"
+       data-suche="malerwerkstatt reindl malerbetrieb handwerk kirchgasse 11 umschalter">
+      <span class="streifen" style="background:#f7f4ef"></span>
+      <img class="bild" src="assets/aufnahmen/malerwerkstatt-reindl.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Malerwerkstatt Reindl</span>
+        <span class="gewerk">Malerbetrieb</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Umschalter</span></span>
+        <span class="zahl">282</span>
+        <span class="zahl">6</span>
+        <span class="zahlen">282 Zeilen &middot; 6 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="mosterei-bachtal/index.html"
+       data-name="Mosterei Bachtal" data-bereich="Essen und Trinken"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="ziehharmonika" data-zeilen="248" data-bloecke="0"
+       data-suche="mosterei bachtal mosterei essen und trinken talstraße 30 ziehharmonika">
+      <span class="streifen" style="background:#fbfdf7"></span>
+      <img class="bild" src="assets/aufnahmen/mosterei-bachtal.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Mosterei Bachtal</span>
+        <span class="gewerk">Mosterei</span>
+        <span class="bereichzelle">Essen und Trinken</span>
+        <span class="muster"><span>Ziehharmonika</span></span>
+        <span class="zahl">248</span>
+        <span class="zahl">0</span>
+        <span class="zahlen">248 Zeilen &middot; 0 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="musikhaus-cantabile/index.html"
+       data-name="Musikhaus Cantabile" data-bereich="Handel und Dienstleistung"
+       data-grundton="dunkel" data-schrift="serifen"
+       data-merkmale="reiter ziehharmonika" data-zeilen="327" data-bloecke="4"
+       data-suche="musikhaus cantabile musikhaus handel und dienstleistung kirchgasse 6 reiter ziehharmonika">
+      <span class="streifen" style="background:#14121a"></span>
+      <img class="bild" src="assets/aufnahmen/musikhaus-cantabile.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Musikhaus Cantabile</span>
+        <span class="gewerk">Musikhaus</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Reiter</span><span>Ziehharmonika</span></span>
+        <span class="zahl">327</span>
+        <span class="zahl">4</span>
+        <span class="zahlen">327 Zeilen &middot; 4 Bildpl&auml;tze &middot; Dunkler Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="ofenbau-hartmann/index.html"
+       data-name="Ofenbau Hartmann" data-bereich="Handwerk"
+       data-grundton="dunkel" data-schrift="serifen"
+       data-merkmale="aufklappmenue ziehharmonika" data-zeilen="314" data-bloecke="10"
+       data-suche="ofenbau hartmann ofen- und kaminbau handwerk hafnergasse 3 aufklappmen&uuml; ziehharmonika">
+      <span class="streifen" style="background:#1b1512"></span>
+      <img class="bild" src="assets/aufnahmen/ofenbau-hartmann.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Ofenbau Hartmann</span>
+        <span class="gewerk">Ofen- und Kaminbau</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Aufklappmen&uuml;</span><span>Ziehharmonika</span></span>
+        <span class="zahl">314</span>
+        <span class="zahl">10</span>
+        <span class="zahlen">314 Zeilen &middot; 10 Bildpl&auml;tze &middot; Dunkler Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="optik-sternberg/index.html"
+       data-name="Optik Sternberg" data-bereich="Gesundheit"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="reiter" data-zeilen="335" data-bloecke="8"
+       data-suche="optik sternberg augenoptik gesundheit marktstraße 17 reiter">
+      <span class="streifen" style="background:#ffffff"></span>
+      <img class="bild" src="assets/aufnahmen/optik-sternberg.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Optik Sternberg</span>
+        <span class="gewerk">Augenoptik</span>
+        <span class="bereichzelle">Gesundheit</span>
+        <span class="muster"><span>Reiter</span></span>
+        <span class="zahl">335</span>
+        <span class="zahl">8</span>
+        <span class="zahlen">335 Zeilen &middot; 8 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="physiotherapie-rehbrunn/index.html"
+       data-name="Physiotherapie Rehbrunn" data-bereich="Gesundheit"
+       data-grundton="dunkel" data-schrift="serifenlos"
+       data-merkmale="umschalter" data-zeilen="308" data-bloecke="4"
+       data-suche="physiotherapie rehbrunn physiotherapie gesundheit schulstraße 12 umschalter">
+      <span class="streifen" style="background:#101418"></span>
+      <img class="bild" src="assets/aufnahmen/physiotherapie-rehbrunn.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Physiotherapie Rehbrunn</span>
+        <span class="gewerk">Physiotherapie</span>
+        <span class="bereichzelle">Gesundheit</span>
+        <span class="muster"><span>Umschalter</span></span>
+        <span class="zahl">308</span>
+        <span class="zahl">4</span>
+        <span class="zahlen">308 Zeilen &middot; 4 Bildpl&auml;tze &middot; Dunkler Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="polsterei-seidel/index.html"
+       data-name="Polsterei Seidel" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="ziehharmonika" data-zeilen="309" data-bloecke="9"
+       data-suche="polsterei seidel polsterei handwerk gerbergasse 5 ziehharmonika">
+      <span class="streifen" style="background:#fbf7f7"></span>
+      <img class="bild" src="assets/aufnahmen/polsterei-seidel.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Polsterei Seidel</span>
+        <span class="gewerk">Polsterei</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Ziehharmonika</span></span>
+        <span class="zahl">309</span>
+        <span class="zahl">9</span>
+        <span class="zahlen">309 Zeilen &middot; 9 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="reisebuero-weitblick/index.html"
+       data-name="Reisebüro Weitblick" data-bereich="Handel und Dienstleistung"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="filter unterleiste" data-zeilen="321" data-bloecke="8"
+       data-suche="reisebüro weitblick reisebüro handel und dienstleistung bahnhofstraße 11 filter zweite leiste">
+      <span class="streifen" style="background:#f7fbfd"></span>
+      <img class="bild" src="assets/aufnahmen/reisebuero-weitblick.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Reisebüro Weitblick</span>
+        <span class="gewerk">Reisebüro</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Filter</span><span>Zweite Leiste</span></span>
+        <span class="zahl">321</span>
+        <span class="zahl">8</span>
+        <span class="zahlen">321 Zeilen &middot; 8 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="sanitaetshaus-kranich/index.html"
+       data-name="Sanitätshaus Kranich" data-bereich="Gesundheit"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="aufklappmenue" data-zeilen="361" data-bloecke="7"
+       data-suche="sanitätshaus kranich orthopädietechnik gesundheit bahnhofstraße 24 aufklappmen&uuml;">
+      <span class="streifen" style="background:#f7f9fa"></span>
+      <img class="bild" src="assets/aufnahmen/sanitaetshaus-kranich.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Sanitätshaus Kranich</span>
+        <span class="gewerk">Orthopädietechnik</span>
+        <span class="bereichzelle">Gesundheit</span>
+        <span class="muster"><span>Aufklappmen&uuml;</span></span>
+        <span class="zahl">361</span>
+        <span class="zahl">7</span>
+        <span class="zahlen">361 Zeilen &middot; 7 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="schlosserei-kranz/index.html"
+       data-name="Schlosserei Kranz" data-bereich="Handwerk"
+       data-grundton="dunkel" data-schrift="serifenlos"
+       data-merkmale="fixleiste" data-zeilen="265" data-bloecke="6"
+       data-suche="schlosserei kranz metallbau handwerk industriestraße 22 festes element">
+      <span class="streifen" style="background:#1a1c1e"></span>
+      <img class="bild" src="assets/aufnahmen/schlosserei-kranz.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Schlosserei Kranz</span>
+        <span class="gewerk">Metallbau</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Festes Element</span></span>
+        <span class="zahl">265</span>
+        <span class="zahl">6</span>
+        <span class="zahlen">265 Zeilen &middot; 6 Bildpl&auml;tze &middot; Dunkler Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="schreibwaren-ohlert/index.html"
+       data-name="Schreibwaren Ohlert" data-bereich="Handel und Dienstleistung"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="aufklappmenue filter" data-zeilen="309" data-bloecke="12"
+       data-suche="schreibwaren ohlert papeterie handel und dienstleistung marktstraße 12 aufklappmen&uuml; filter">
+      <span class="streifen" style="background:#fbfaf6"></span>
+      <img class="bild" src="assets/aufnahmen/schreibwaren-ohlert.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Schreibwaren Ohlert</span>
+        <span class="gewerk">Papeterie</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Aufklappmen&uuml;</span><span>Filter</span></span>
+        <span class="zahl">309</span>
+        <span class="zahl">12</span>
+        <span class="zahlen">309 Zeilen &middot; 12 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="steinmetz-aichinger/index.html"
+       data-name="Steinmetzbetrieb Aichinger" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="seitenleiste scrollmarke" data-zeilen="272" data-bloecke="13"
+       data-suche="steinmetzbetrieb aichinger steinmetz handwerk friedhofstraße 2 seitenleiste scrollbeobachter">
+      <span class="streifen" style="background:#efeeea"></span>
+      <img class="bild" src="assets/aufnahmen/steinmetz-aichinger.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Steinmetzbetrieb Aichinger</span>
+        <span class="gewerk">Steinmetz</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Seitenleiste</span><span>Scrollbeobachter</span></span>
+        <span class="zahl">272</span>
+        <span class="zahl">13</span>
+        <span class="zahlen">272 Zeilen &middot; 13 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="tierarztpraxis-ehlert/index.html"
+       data-name="Tierarztpraxis Ehlert" data-bereich="Gesundheit"
+       data-grundton="hell" data-schrift="serifenlos"
+       data-merkmale="ziehharmonika fixleiste" data-zeilen="283" data-bloecke="12"
+       data-suche="tierarztpraxis ehlert tierarztpraxis gesundheit am anger 6 ziehharmonika festes element">
+      <span class="streifen" style="background:#fbfaf7"></span>
+      <img class="bild" src="assets/aufnahmen/tierarztpraxis-ehlert.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Tierarztpraxis Ehlert</span>
+        <span class="gewerk">Tierarztpraxis</span>
+        <span class="bereichzelle">Gesundheit</span>
+        <span class="muster"><span>Ziehharmonika</span><span>Festes Element</span></span>
+        <span class="zahl">283</span>
+        <span class="zahl">12</span>
+        <span class="zahlen">283 Zeilen &middot; 12 Bildpl&auml;tze &middot; Heller Grund &middot; Serifenlos</span>
+      </span>
+    </a>
+    <a class="karte" href="tischlerei-bergmann/index.html"
+       data-name="Tischlerei Bergmann" data-bereich="Handwerk"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="seitenleiste scrollmarke" data-zeilen="322" data-bloecke="10"
+       data-suche="tischlerei bergmann tischlerei handwerk erlenweg 9 seitenleiste scrollbeobachter">
+      <span class="streifen" style="background:#f5f1ea"></span>
+      <img class="bild" src="assets/aufnahmen/tischlerei-bergmann.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Tischlerei Bergmann</span>
+        <span class="gewerk">Tischlerei</span>
+        <span class="bereichzelle">Handwerk</span>
+        <span class="muster"><span>Seitenleiste</span><span>Scrollbeobachter</span></span>
+        <span class="zahl">322</span>
+        <span class="zahl">10</span>
+        <span class="zahlen">322 Zeilen &middot; 10 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+    <a class="karte" href="uhrmacherei-pfeil/index.html"
+       data-name="Uhrmacherei Pfeil" data-bereich="Handel und Dienstleistung"
+       data-grundton="hell" data-schrift="serifen"
+       data-merkmale="randpunkte scrollmarke" data-zeilen="253" data-bloecke="0"
+       data-suche="uhrmacherei pfeil uhrmacher handel und dienstleistung marktstraße 9 randnavigation scrollbeobachter">
+      <span class="streifen" style="background:#f6f5f2"></span>
+      <img class="bild" src="assets/aufnahmen/uhrmacherei-pfeil.jpg" width="800" height="562"
+           loading="lazy" decoding="async" alt="">
+      <span class="leib">
+        <span class="name">Uhrmacherei Pfeil</span>
+        <span class="gewerk">Uhrmacher</span>
+        <span class="bereichzelle">Handel und Dienstleistung</span>
+        <span class="muster"><span>Randnavigation</span><span>Scrollbeobachter</span></span>
+        <span class="zahl">253</span>
+        <span class="zahl">0</span>
+        <span class="zahlen">253 Zeilen &middot; 0 Bildpl&auml;tze &middot; Heller Grund &middot; Serifen</span>
+      </span>
+    </a>
+  </div>
+  <p class="leer" id="leer" hidden>Keine Vorlage passt zu dieser Auswahl.</p>
+</main>
+
+<div class="fussnote">
+  <div class="in">
+    <div>
+      <h2>Was hier liegt</h2>
+      <p>Jede Vorlage ist eine vollst&auml;ndige Seite f&uuml;r einen erfundenen Betrieb. Rehbrunn
+      ist kein realer Ort.</p>
+    </div>
+    <div>
+      <h2>Vorschau</h2>
+      <p>Jede Kachel zeigt eine echte Bildschirmaufnahme der Seite. Neu aufgenommen wird mit
+      <code>python3 assets/aufnahmen.py</code>.</p>
+    </div>
+    <div>
+      <h2>Bilder</h2>
+      <p>Wie Abbildungen hineinkommen zeigt
+      <a href="bildvarianten.html">bildvarianten.html</a> an vier Wegen.</p>
+    </div>
+    <div>
+      <h2>Liste</h2>
+      <p>Die schlichte Aufz&auml;hlung aller Namen steht in
+      <a href="betriebe.md">betriebe.md</a>.</p>
+    </div>
+    <div>
+      <h2>Neu bauen</h2>
+      <p>Diese Seite entsteht aus den Vorlagen selbst. Der Aufruf lautet
+      <code>python3 assets/vorlagen.py</code>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="abschluss"><div class="in">Kein Aufbauschritt und keine Abh&auml;ngigkeit. Ohne JavaScript bleibt die Kachelansicht.</div></div>
+
+<script>
+const sammlung = document.getElementById('sammlung');
+const karten = [...sammlung.children];
+const treffer = document.getElementById('treffer');
+const leer = document.getElementById('leer');
+const kopfzeile = document.getElementById('kopfzeile');
+const suche = document.getElementById('suche');
+const gruppeWahl = document.getElementById('gruppe');
+const sortWahl = document.getElementById('sortierung');
+const ansichtKnoepfe = [...document.querySelectorAll('[data-ansicht]')];
+const merkmalKnoepfe = [...document.querySelectorAll('[data-merkmal]')];
+
+const NAMEN = {"ziehharmonika": "Ziehharmonika", "seitenleiste": "Seitenleiste", "scrollmarke": "Scrollbeobachter", "bilder": "Bilder eingebaut", "rechner": "Rechner", "aufklappmenue": "Aufklappmen&uuml;", "reiter": "Reiter", "filter": "Filter", "unterleiste": "Zweite Leiste", "schublade": "Schubladenmen&uuml;", "umschalter": "Umschalter", "fixleiste": "Festes Element", "randpunkte": "Randnavigation", "hell": "Heller Grund", "dunkel": "Dunkler Grund", "serifen": "Serifen", "serifenlos": "Serifenlos", "fest": "Nichtproportional"};
+let ansicht = 'kacheln';
+let merkmale = new Set();
+
+function passend() {
+  const wort = suche.value.trim().toLowerCase();
+  return karten.filter(karte => {
+    if (wort && !karte.dataset.suche.includes(wort)) return false;
+    for (const m of merkmale) {
+      if (!karte.dataset.merkmale.split(' ').includes(m)) return false;
+    }
+    return true;
+  });
+}
+
+function sortieren(liste) {
+  const art = sortWahl.value;
+  const kopie = [...liste];
+  if (art === 'name') kopie.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name, 'de'));
+  if (art === 'zeilen-ab') kopie.sort((a, b) => b.dataset.zeilen - a.dataset.zeilen);
+  if (art === 'zeilen-auf') kopie.sort((a, b) => a.dataset.zeilen - b.dataset.zeilen);
+  if (art === 'bloecke-ab') kopie.sort((a, b) => b.dataset.bloecke - a.dataset.bloecke);
+  return kopie;
+}
+
+function gruppenSchluessel(karte, art) {
+  if (art === 'bereich') return [karte.dataset.bereich];
+  if (art === 'grundton') return [NAMEN[karte.dataset.grundton]];
+  if (art === 'schrift') return [NAMEN[karte.dataset.schrift]];
+  if (art === 'muster') return karte.dataset.merkmale.split(' ').filter(Boolean).map(m => NAMEN[m] || m);
+  return ['alle'];
+}
+
+function zeichnen() {
+  const gefiltert = sortieren(passend());
+  sammlung.replaceChildren();
+  const art = gruppeWahl.value;
+
+  if (art === 'keine') {
+    for (const karte of gefiltert) sammlung.append(karte);
+  } else {
+    const gruppen = new Map();
+    for (const karte of gefiltert) {
+      for (const schluessel of gruppenSchluessel(karte, art)) {
+        if (!gruppen.has(schluessel)) gruppen.set(schluessel, []);
+        gruppen.get(schluessel).push(karte);
+      }
+    }
+    for (const schluessel of [...gruppen.keys()].sort((a, b) => a.localeCompare(b, 'de'))) {
+      const kopf = document.createElement('p');
+      kopf.className = 'gruppe';
+      kopf.innerHTML = schluessel + ' <b>' + gruppen.get(schluessel).length + '</b>';
+      kopf.style.gridColumn = '1 / -1';
+      sammlung.append(kopf);
+      for (const karte of gruppen.get(schluessel)) {
+        sammlung.append(art === 'muster' ? karte.cloneNode(true) : karte);
+      }
+    }
+  }
+
+  leer.hidden = gefiltert.length > 0;
+  kopfzeile.style.display = (ansicht === 'tabelle' && art === 'keine') ? 'grid' : 'none';
+  treffer.textContent = gefiltert.length === karten.length
+    ? `Alle ${karten.length} Vorlagen werden angezeigt.`
+    : `${gefiltert.length} von ${karten.length} Vorlagen passen zur Auswahl.`;
+}
+
+suche.addEventListener('input', zeichnen);
+gruppeWahl.addEventListener('change', zeichnen);
+sortWahl.addEventListener('change', zeichnen);
+
+for (const knopf of ansichtKnoepfe) {
+  knopf.addEventListener('click', () => {
+    ansicht = knopf.dataset.ansicht;
+    for (const anderer of ansichtKnoepfe) anderer.setAttribute('aria-pressed', String(anderer === knopf));
+    sammlung.className = 'ansicht-' + ansicht;
+    zeichnen();
+  });
+}
+
+for (const knopf of merkmalKnoepfe) {
+  knopf.addEventListener('click', () => {
+    const m = knopf.dataset.merkmal;
+    if (merkmale.has(m)) merkmale.delete(m); else merkmale.add(m);
+    knopf.setAttribute('aria-pressed', String(merkmale.has(m)));
+    zeichnen();
+  });
+}
+
+document.getElementById('zurueck').addEventListener('click', () => {
+  suche.value = '';
+  merkmale.clear();
+  for (const knopf of merkmalKnoepfe) knopf.setAttribute('aria-pressed', 'false');
+  gruppeWahl.value = 'keine';
+  sortWahl.value = 'name';
+  zeichnen();
+});
+
+zeichnen();
+</script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ofenbau Hartmann &middot; Rehbrunn</title>
+<meta name="description" content="Ofen- und Kaminbau Hartmann in Rehbrunn. Kachelofen und Grundofen und Schornsteinanschluss.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: #1b1512; color: #f2e9e0;
+         font: 17px/1.72 "Vollkorn", Georgia, serif; }
+  a { color: #e08a3c; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 40; background: #1b1512; border-bottom: 1px solid #33251d; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 66px; flex-wrap: wrap; }
+  .marke { font-size: 21px; font-weight: 600; }
+  nav.haupt > ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0;
+                   font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  nav.haupt > ul > li { position: relative; }
+  nav.haupt a { display: block; padding: 10px 14px; color: #d8c6b6; text-decoration: none; border-radius: 6px; }
+  nav.haupt li:hover > a, nav.haupt li:focus-within > a { background: #2b201a; color: #e08a3c; }
+  nav.haupt ul ul { position: absolute; top: 100%; left: 0; min-width: 220px; background: #2b201a;
+                    border: 1px solid #3d2d24; border-radius: 8px; list-style: none; margin: 0; padding: 6px;
+                    display: none; z-index: 50; box-shadow: 0 14px 30px rgba(0,0,0,.4); }
+  nav.haupt li:hover > ul, nav.haupt li:focus-within > ul { display: block; }
+  nav.haupt ul ul a { font-size: 14px; padding: 8px 12px; }
+  @media (max-width: 880px) {
+    nav.haupt > ul { flex-wrap: wrap; }
+    nav.haupt ul ul { position: static; display: block; box-shadow: none; background: transparent;
+                      border: 0; padding: 0 0 0 12px; }
+  }
+  .buehne { padding: 58px 0 48px;
+            background: radial-gradient(circle at 80% 30%, rgba(224,138,60,.22), transparent 60%); }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #e08a3c; }
+  h1 { margin: 14px 0 16px; font-size: clamp(33px, 6.8vw, 56px); line-height: 1.05; font-weight: 600;
+       max-width: 20ch; }
+  .buehne p { margin: 0 0 26px; font-size: 20px; max-width: 50ch; color: #d6c6b8; }
+  .kacheln { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+  .kacheln div { aspect-ratio: 1; border-radius: 4px; border: 1px solid rgba(255,255,255,.12); }
+  section { padding: 50px 0; border-top: 1px solid #33251d; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); font-weight: 600; }
+  .unter { margin: 0 0 22px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #e08a3c; }
+  p { margin: 0 0 16px; max-width: 68ch; color: #e6dbd0; }
+  .oefen { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .ofen { background: #241b16; border: 1px solid #3a2b22; border-radius: 10px; padding: 20px 22px; }
+  .ofen h3 { margin: 0 0 8px; font-size: 21px; font-weight: 600; }
+  .ofen p { margin: 0 0 12px; font-size: 16px; color: #c9b8aa; }
+  .ofen .preis { font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; color: #e08a3c; }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #b39c8a;
+       padding: 0 10px 12px 0; border-bottom: 1px solid #43332a; }
+  td { padding: 13px 10px 13px 0; border-bottom: 1px solid #2c211b; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: #f0b075; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  details { border: 1px solid #3a2b22; border-radius: 10px; background: #241b16; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 15px 20px; font-size: 19px; font-weight: 600; list-style: none;
+            display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: #e08a3c; }
+  details[open] summary::after { content: "\2212"; }
+  details .txt { padding: 0 20px 18px; }
+  details p { margin: 0 0 12px; font-size: 16px; }
+  details p:last-child { margin: 0; }
+  .warm { border-left: 4px solid #e08a3c; background: #241b16; padding: 18px 22px; }
+  .warm p { margin: 0; }
+  address { font-style: normal; color: #e6dbd0; }
+  footer { border-top: 1px solid #33251d; font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px;
+           color: #c0ac9c; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #e08a3c; }
+  footer a { color: #d8c6b6; }
+  .ende { border-top: 1px solid #2c211b; font-size: 13px; color: #96826f; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Ofenbau Hartmann</span>
+    <nav class="haupt" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#oefen" aria-haspopup="true">&Ouml;fen &#9662;</a>
+          <ul>
+            <li><a href="#oefen">Kachelofen</a></li>
+            <li><a href="#oefen">Grundofen</a></li>
+            <li><a href="#oefen">Kaminofen</a></li>
+            <li><a href="#oefen">Herd mit Backfach</a></li>
+          </ul>
+        </li>
+        <li><a href="#planung" aria-haspopup="true">Planung &#9662;</a>
+          <ul>
+            <li><a href="#planung">Heizlast</a></li>
+            <li><a href="#schornstein">Schornstein</a></li>
+            <li><a href="#recht">Vorschriften</a></li>
+          </ul>
+        </li>
+        <li><a href="#wartung">Wartung</a></li>
+        <li><a href="#fragen">Fragen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="buehne">
+    <p class="zeile">Ofen- und Luftheizungsbau</p>
+    <h1>Ein gemauerter Ofen h&auml;lt die W&auml;rme bis zum Morgen</h1>
+    <p>Wir setzen &Ouml;fen aus Schamotte und Kacheln. Jeder Ofen wird f&uuml;r seinen Raum
+    berechnet und nicht aus dem Regal genommen.</p>
+    <div class="kacheln" aria-hidden="true">
+      <div style="background:#2e6b5e"></div><div style="background:#8c4a2f"></div>
+      <div style="background:#d9c7a8"></div><div style="background:#3f5470"></div>
+      <div style="background:#6b6f4a"></div><div style="background:#a8763c"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="oefen">
+    <p class="unter">&Ouml;fen</p>
+    <h2>Vier Bauarten</h2>
+    <div class="oefen">
+      <div class="ofen">
+        <h3>Kachelofen</h3>
+        <p>Speicherofen mit Kachelmantel. H&auml;lt zw&ouml;lf Stunden warm und wird zweimal am
+        Tag beschickt.</p>
+        <p class="preis">ab 9500 &euro;</p>
+      </div>
+      <div class="ofen">
+        <h3>Grundofen</h3>
+        <p>Ganz aus Schamotte gemauert und verputzt. Die l&auml;ngste Speicherzeit und die
+        ruhigste W&auml;rme.</p>
+        <p class="preis">ab 12000 &euro;</p>
+      </div>
+      <div class="ofen">
+        <h3>Kaminofen</h3>
+        <p>Fertiger Ofen aus Stahl oder Speckstein. Schnell warm und schnell wieder kalt.</p>
+        <p class="preis">ab 3200 &euro; mit Anschluss</p>
+      </div>
+      <div class="ofen">
+        <h3>Herd mit Backfach</h3>
+        <p>Kochen und Backen und Heizen in einem. In alten H&auml;usern noch immer die beste
+        L&ouml;sung.</p>
+        <p class="preis">ab 7800 &euro;</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="planung">
+    <p class="unter">Planung</p>
+    <h2>Erst rechnen und dann bauen</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir berechnen die Heizlast des Raums und die Speichermasse des Ofens. Ein zu
+        gro&szlig;er Ofen macht den Raum unertr&auml;glich hei&szlig; und wird deshalb zu klein
+        befeuert. Genau das rußt den Schornstein zu.</p>
+        <p>Der Entwurf entsteht mit Ihnen zusammen. Kacheln w&auml;hlen Sie aus dem Musterraum
+        oder wir lassen sie bei einer Hafnerei in Oberfranken brennen.</p>
+      </div>
+      <table>
+        <tr><th>Schritt</th><th class="r">Dauer</th></tr>
+        <tr><td>Ortstermin und Aufma&szlig;</td><td class="r">2 Stunden</td></tr>
+        <tr><td>Berechnung und Entwurf</td><td class="r">2 Wochen</td></tr>
+        <tr><td>Kacheln brennen lassen</td><td class="r">6 bis 10 Wochen</td></tr>
+        <tr><td>Aufbau vor Ort</td><td class="r">5 bis 12 Tage</td></tr>
+        <tr><td>Trocknen bis zum ersten Feuer</td><td class="r">3 Wochen</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="schornstein">
+    <p class="unter">Schornstein</p>
+    <h2>Ohne Zug kein Ofen</h2>
+    <p>Vor jedem Angebot pr&uuml;fen wir den Schornstein mit dem Bezirksschornsteinfeger. Ein
+    alter Zug l&auml;sst sich meist mit einem Edelstahlrohr ert&uuml;chtigen. Fehlt ein
+    Schornstein bauen wir einen an die Au&szlig;enwand.</p>
+    <table>
+      <tr><th>Ma&szlig;nahme</th><th class="r">Richtwert</th></tr>
+      <tr><td>Zug pr&uuml;fen und messen</td><td class="r">140 &euro;</td></tr>
+      <tr><td>Edelstahlrohr einziehen</td><td class="r">ab 1900 &euro;</td></tr>
+      <tr><td>Neuer Au&szlig;enschornstein</td><td class="r">ab 5800 &euro;</td></tr>
+      <tr><td>Zuluftleitung von au&szlig;en</td><td class="r">ab 620 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="recht">
+    <p class="unter">Vorschriften</p>
+    <h2>Was der Gesetzgeber verlangt</h2>
+    <div class="warm">
+      <p>Jede Feuerst&auml;tte muss vom Bezirksschornsteinfeger abgenommen werden. Neue
+      &Ouml;fen m&uuml;ssen die Grenzwerte der zweiten Stufe einhalten. Wir bauen nur
+      Ger&auml;te die das erf&uuml;llen und melden die Anlage f&uuml;r Sie an.</p>
+    </div>
+  </section>
+
+  <section id="wartung">
+    <p class="unter">Wartung</p>
+    <h2>Alle zwei Jahre einmal ansehen</h2>
+    <table>
+      <tr><th>Leistung</th><th>Zeitpunkt</th><th class="r">Preis</th></tr>
+      <tr><td>Sichtpr&uuml;fung und Dichtungen</td><td>alle zwei Jahre</td><td class="r">120 &euro;</td></tr>
+      <tr><td>Schamotte tauschen</td><td>nach Bedarf</td><td class="r">ab 280 &euro;</td></tr>
+      <tr><td>Kachel ersetzen</td><td>nach Bruch</td><td class="r">ab 190 &euro;</td></tr>
+      <tr><td>Ofent&uuml;r neu abdichten</td><td>alle f&uuml;nf Jahre</td><td class="r">90 &euro;</td></tr>
+      <tr><td>Ofen abbauen und entsorgen</td><td>&mdash;</td><td class="r">ab 850 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Was Bauherren wissen wollen</h2>
+    <details open>
+      <summary>Wie heize ich richtig an?</summary>
+      <div class="txt">
+        <p>Von oben. Das Feuer brennt dann nach unten durch und raucht kaum. Wir zeigen es bei
+        der &Uuml;bergabe und legen eine Anleitung dazu.</p>
+        <p>Nehmen Sie trockenes Holz mit h&ouml;chstens achtzehn Prozent Feuchte. Alles andere
+        rußt und heizt schlecht.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Wie viel Holz brauche ich im Jahr?</summary>
+      <div class="txt">
+        <p>Ein Kachelofen als Zusatzheizung braucht drei bis f&uuml;nf Raummeter. Als
+        Hauptheizung sind es acht bis zw&ouml;lf. Das h&auml;ngt stark vom Haus ab.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Passt ein Ofen in ein gut ged&auml;mmtes Haus?</summary>
+      <div class="txt">
+        <p>Ja aber klein. In einem Neubau reicht oft ein Ofen mit geringer Leistung und
+        externer Zuluft. Sonst wird es im Wohnzimmer zu hei&szlig;.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Kann ich meinen alten Ofen behalten?</summary>
+      <div class="txt">
+        <p>Handwerklich gesetzte Grund&ouml;fen sind meist von der Austauschpflicht
+        ausgenommen. Bei Ger&auml;ten mit Typenschild pr&uuml;fen wir das Baujahr und die
+        Werte.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">07:30 &ndash; 16:00</td></tr>
+        <tr><td>Musterraum</td><td class="r">Freitag 14:00 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">nach Vereinbarung</td></tr>
+        <tr><td>Beratung vor Ort</td><td class="r">auch abends</td></tr>
+      </table>
+      <div>
+        <address>
+          Ofenbau Hartmann<br>
+          Hafnergasse 3<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817251
+        </address>
+        <p style="margin-top:14px">Der Musterraum liegt neben der Werkstatt im Hof. Kommen Sie
+        am besten am Freitagnachmittag. Dann ist der Ofen im Schauraum an.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Ofenbau</h3>Hafnergasse 3<br>97845 Rehbrunn<br>0152 28817251</div>
+    <div><h3>Themen</h3><a href="#oefen">&Ouml;fen</a><br><a href="#schornstein">Schornstein</a><br><a href="#wartung">Wartung</a></div>
+    <div><h3>Betrieb</h3>Inhaber L. Hartmann<br>Ofen- und Luftheizungsbauermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

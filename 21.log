@@ -1,0 +1,19 @@
+This log records every shell command run while making the month autosave and retiring the Save button.
+Format is UTC timestamp then command then one sentence on the result.
+2026-09-08T08:51:17Z	cat tracker/docs/todo-autosave.md	Seven sections of which section 1 is already decided so the build starts at the store.
+2026-09-08T08:51:17Z	cat tracker/apps/web/src/composables/useTimesheet.ts	saveSheet at line 122 reloads the history on every write and no watcher stores the grid.
+2026-09-08T08:54:59Z	grep -rn "openMonth|usingApi|exportedAt" apps/web/src apps/api/src	Nothing opens the current month on first render so the guard alone would not stop an empty grid overwriting a stored month.
+2026-09-08T08:56:07Z	python3 edit of apps/web/src/composables/useTimesheet.ts	saveSheet is split into writeSheet and a manual flush and a 3000ms deep watcher stores every edit behind a load guard.
+2026-09-08T08:59:06Z	python3 edit of apps/web/src/lib/api.ts and apps/api/src/handlers.ts	StoredSheet carries exportedAt in the browser and the PUT keeps whatever is stored rather than nulling it.
+2026-09-08T08:59:06Z	python3 edit of the eight files under apps/web/src/i18n/messages	saving and saveFailed and saveFailedHint and retry joined setup and sent and changed joined exportPanel.
+2026-09-08T08:59:06Z	python3 edit of PeriodBar.vue and ExportPanel.vue and App.vue	The Save button is a save state and the export flushes rather than saves and the shell opens the month once the profile lands.
+2026-09-08T08:59:06Z	pnpm --filter @tracker/web typecheck	Clean so all eight locales hold against en.
+2026-09-08T09:03:06Z	python3 wrote apps/web/src/__tests__/autosave.test.ts	Nine tests hold the debounce and the load guard and the flush on a month change and the one trailing save and the failure path.
+2026-09-08T09:03:06Z	python3 edit of handlers.test.ts and render.test.ts	The PUT keeps the download marker through a later edit and the period bar carries no save button.
+2026-09-08T09:03:06Z	pnpm -r --no-bail test	All 189 web tests and all 119 api tests pass alongside the packages.
+2026-09-08T09:03:06Z	pnpm lint	eslint passed clean.
+2026-09-08T09:08:06Z	pnpm dev:api then a throwaway jsdom harness against http://localhost:8787	A month filled to three days then reloaded with the mirror cleared read five days back off the API after a second session.
+2026-09-08T09:08:06Z	same harness for the export	The download set exportedAt and a later edit kept it while the month read as sent then changed.
+2026-09-08T09:08:06Z	rm apps/web/src/__tests__/live-dev-api.test.ts and killed the dev api	The harness needs a running server so it is not left in the suite.
+2026-09-08T09:10:44Z	python3 rewrite of tracker/docs/todo-autosave.md	Every box in all seven sections is ticked and each line keeps its task and carries what was built.
+2026-09-08T09:10:44Z	pnpm typecheck then pnpm lint then pnpm test	All eight projects typecheck and eslint is clean and 487 tests pass.

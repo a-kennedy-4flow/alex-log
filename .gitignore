@@ -1,2 +1,7 @@
 *venv*
 *node_modules*
+website/.serve.pids
+__pycache__/
+dist/
+*.tsbuildinfo
+cdk.out/

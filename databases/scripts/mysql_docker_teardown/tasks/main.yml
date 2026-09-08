@@ -11,17 +11,18 @@
     mysql_teardown_default_stacks:
       - network: mysql-async
         nodes: [mysql-async-1, mysql-async-2, mysql-async-3]
-        extras: []
+        extras: [pmm-client-async]
       - network: mysql-sp
         nodes: [mysql-sp-1, mysql-sp-2, mysql-sp-3]
-        extras: [proxysql-sp, orchestrator-sp]
+        extras: [proxysql-sp, orchestrator-sp, pmm-client-sp]
       - network: mysql-mp
         nodes: [mysql-mp-1, mysql-mp-2, mysql-mp-3]
-        extras: [proxysql-mp, orchestrator-mp]
+        extras: [proxysql-mp, orchestrator-mp, pmm-client-mp]
 
-# The routers and the observers come first. A network cannot go while anything
-# is still attached to it.
-- name: Remove the routers and the observers
+# The routers and the observers and the PMM clients come first. A network cannot
+# go while anything is still attached to it. The PMM server is left running
+# because it is standalone. Remove it with the pmm-teardown tag.
+- name: Remove the routers and the observers and the clients
   community.docker.docker_container:
     name: "{{ item }}"
     state: absent

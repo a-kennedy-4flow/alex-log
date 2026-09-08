@@ -1,0 +1,107 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+#
+# The first block below is backfilled. Those commands ran before this log
+# was opened. Timestamps for them are the time of backfill not the time of
+# the command.
+
+2026-09-01T14:10:00Z  find timesheets -type f  ->  Found three files only. One xlsm one package.json one readme.md.
+2026-09-01T14:10:00Z  cat timesheets/readme.md timesheets/package.json  ->  Read the spec sketch. Vue 3 SPA on Lambda and DynamoDB. pnpm project with no dependencies yet.
+2026-09-01T14:10:00Z  unzip Name.Firstname_2026_04_projecttracker_nn.xlsm  ->  Extracted the OOXML parts. Found five worksheets a 217 KB vbaProject.bin pivot tables and slicers.
+2026-09-01T14:10:00Z  find repo -iname '*.xls*'  ->  Confirmed no xlsx sample exists. The xlsm is the only spreadsheet in timesheets.
+2026-09-01T14:10:00Z  python3 dump.py sheet1.xml  ->  Dumped the Tracker sheet. Entry grid runs rows 5 to 66 at two rows per day.
+2026-09-01T14:10:00Z  python3 grid.py sheet1.xml E,H,I,J,K,L,M 4 105  ->  Read the sample entries and the summary blocks at rows 70 to 88 and 92 to 102.
+2026-09-01T14:10:00Z  python3 grid.py sheet4.xml (holidays)  ->  Listed 22 locations each with its own bank holiday date column.
+2026-09-01T14:10:00Z  python3 grid.py sheet5.xml (parameters)  ->  Read the lookup tables. Time entry is limited to 0.5 or 1.
+2026-09-01T14:10:00Z  grep dataValidation sheet1.xml  ->  Confirmed the specification dropdown depends on business line and cost centre.
+2026-09-01T14:10:00Z  grep definedName workbook.xml  ->  Listed the named ranges including varTarget and the spec_ dropdown sources.
+2026-09-01T14:10:00Z  grep Target externalLinks/_rels  ->  Found the project list source path X:\finance\Projektnummernliste.
+2026-09-01T14:16:23Z  cat -n timesheets/readme.md  ->  Re-read the spec after the user edit. Unit is now days per month and the download is now xlsm.
+2026-09-01T14:16:46Z  cat >> timesheets/readme.md (open questions heredoc)  ->  Appended 31 open questions under headed sections. Three earlier questions dropped because the user edit settled them.
+2026-09-01T14:32:16Z  grep Z5/AA5/AB5/AC5 formulas in sheet1.xml  ->  Recovered the dropdown rule. Range name is spec_<businessline>_<cc|proj|na>.
+2026-09-01T14:32:17Z  pnpm config get registry then curl registry.npmjs.org  ->  Checked the registry is reachable before scaffolding.
+2026-09-01T14:32:31Z  mkdir apps/web tools/extract-fixtures then write pnpm-workspace.yaml and two package.json files  ->  Created the pnpm workspace. Root package.json now private with dev build typecheck fixtures scripts.
+2026-09-01T14:33:44Z  pnpm install  ->  Installed the workspace. fflate is the only dependency so far.
+2026-09-01T14:34:06Z  node tools/extract-fixtures/extract.mjs  ->  Ran the fixture extractor against the shipped workbook.
+2026-09-01T14:34:18Z  node -e cross-check projects.json against specifications.json  ->  Compared every specRange a project needs with the ranges that resolved.
+2026-09-01T14:35:26Z  python3 patch of readme.md open questions  ->  Recorded that the export is a new workbook with no VBA and no contextual data. Q1 and Q2 marked settled.
+2026-09-01T14:36:16Z  curl registry for the TanStack Vue packages  ->  Confirmed vue-router vue-query vue-table vue-virtual all publish a Vue adapter.
+2026-09-01T14:36:21Z  write apps/web/package.json then pnpm install  ->  Installed Vue 3 with Vite and the three TanStack libraries and vue-i18n.
+2026-09-01T14:36:31Z  add onlyBuiltDependencies to pnpm-workspace.yaml then pnpm install  ->  Approved the esbuild and vue-demi postinstall scripts.
+2026-09-01T14:36:40Z  pnpm rebuild esbuild vue-demi  ->  Forced the two postinstall scripts to run.
+2026-09-01T14:37:13Z  write vite.config.ts tsconfig.json index.html  ->  Configured Vite with the @ alias and TypeScript in strict mode.
+2026-09-01T14:45:59Z  pin @tanstack/vue-table to ^8.21.3 and drop @tanstack/vue-virtual  ->  v9 is a rewrite with an atoms API. v8 has the stable API. Nothing needed the virtualiser.
+2026-09-01T14:48:16Z  write three page components under apps/web/src/pages  ->  Month view and quick view share the checks and the summary and the export panel.
+2026-09-01T14:48:52Z  pnpm --filter @timesheets/web typecheck  ->  First typecheck of the web app.
+2026-09-01T14:49:30Z  pnpm --filter @timesheets/web build  ->  Ran vue-tsc then the Vite production build.
+2026-09-01T14:50:02Z  add vitest to apps/web then pnpm install  ->  Added the test runner so the domain logic can be checked against the workbook.
+2026-09-01T14:50:29Z  extend extract.mjs with the filled sample then rerun it  ->  Emitted sample-tracker.json holding the entries and the values Excel cached.
+2026-09-01T14:51:18Z  pnpm --filter @timesheets/web test  ->  Ran the sample workbook tests against Excel's cached values.
+2026-09-01T14:51:50Z  patch aggregate.ts filledEntries and types.ts AggregateRow  ->  Totals now sum column K alone which is what Excel does. A missing cost centre is reported and not dropped.
+2026-09-01T14:52:36Z  scan src for NUL bytes then rewrite aggregate.ts  ->  One stray NUL sat where a space belonged in the grouping key. Replaced it.
+2026-09-01T14:53:04Z  pnpm --filter @timesheets/web test  ->  Reran after the filledEntries fix and the new invalid-sample test.
+2026-09-01T14:53:34Z  pnpm --filter @timesheets/web test  ->  Added the distribution tests and ran the suite.
+2026-09-01T14:53:46Z  pnpm --filter @timesheets/web build  ->  Typecheck and production build after the aggregate fix.
+2026-09-01T14:54:20Z  add jsdom and @vue/test-utils then pnpm install  ->  Needed to mount the components in a test.
+2026-09-01T14:54:27Z  add a test block to vite.config.ts using vitest/config  ->  Set the jsdom environment so components can mount.
+2026-09-01T14:54:56Z  pnpm --filter @timesheets/web test  ->  Added the mount tests for the grid and the router tree.
+2026-09-01T14:55:06Z  add src/test-setup.ts and wire setupFiles  ->  Stubbed window.scrollTo which jsdom lacks.
+2026-09-01T14:55:20Z  pnpm test then pnpm build from the workspace root  ->  Final green run of the suite and the production build.
+2026-09-01T14:55:37Z  append dist/ and *.tsbuildinfo to .gitignore  ->  node_modules was already ignored. Build output was not.
+2026-09-01T14:56:03Z  append the built-so-far section and questions 32 to 38 to readme.md  ->  Recorded the layout and the verification and the departures from the workbook.
+2026-09-01T17:07:34Z  add businessLines to extract.mjs then rerun it  ->  Emitted the five business lines with their project counts into entry-options.json.
+2026-09-01T17:10:13Z  pnpm test after the business line change  ->  Ran the suite with the new search ordering tests.
+2026-09-01T17:10:46Z  pnpm test then pnpm build  ->  Green after fixing the ordering test assumption.
+2026-09-01T17:11:01Z  pnpm --filter @timesheets/web dev --host in the background  ->  Restarted the dev server on port 5173.
+2026-09-01T17:11:29Z  kill 912185 and 912184  ->  Removed the orphan dev server left running by the previous session so port 5173 is free.
+2026-09-01T17:11:49Z  restart the dev server in the background  ->  The previous one took SIGTERM and exited.
+2026-09-01T17:11:52Z  restart dev server then probe it  ->  Serving on 5173 with the business line fixture in place.
+2026-09-01T17:11:58Z  typecheck and test after the business line change landed on disk  ->  Verified the change someone else made still compiles and passes.
+2026-09-01T17:12:39Z  pkill vite then start one dev server  ->  Two servers had spawned. One now listens on 5173.
+2026-09-01T17:18:15Z  move the domain layer to packages/core and the fixtures to packages/fixtures  ->  The backend must run the same validation so the logic cannot live inside the web app.
+2026-09-01T17:18:27Z  write package.json for core and fixtures  ->  Both resolve through the workspace so no build step is needed between them.
+2026-09-01T17:21:08Z  rewrite extract.mjs to scan every workbook then run it  ->  Catalogue now comes from the newest project list. One sample fixture per workbook.
+2026-09-01T17:24:36Z  add packages/* to the workspace then pnpm install  ->  Linked core and fixtures into the web app.
+2026-09-01T17:26:30Z  restructure into packages then run both suites and the build  ->  core 48 tests and web 6 tests pass. Build clean.
+2026-09-01T17:28:03Z  split fixture samples into their own export then run everything  ->  Test oracles no longer reach the browser bundle.
+2026-09-01T17:30:48Z  create packages/xlsm-writer with the workbook builder  ->  Writes a fresh macro enabled package holding values only.
+2026-09-01T17:35:41Z  create apps/api with the handlers and the Lambda adapter  ->  Routes run against a repository interface so nothing in them knows about AWS.
+2026-09-01T17:38:29Z  add the CDK stack under infra then pnpm install  ->  DynamoDB and Lambda and HTTP API with a Cognito authorizer plus CloudFront for the SPA. Not deployed.
+2026-09-01T17:45:24Z  run every package test suite  ->  Full sweep after wiring the frontend to the API.
+2026-09-01T17:46:20Z  append the backend section and questions 39 to 42 to readme.md  ->  Recorded the routes and the storage and what is verified.
+2026-09-01T17:46:55Z  move the generated workbook into timesheets/generated  ->  The extractor scans the top level only so a generated file would otherwise be read as an input.
+2026-09-01T17:59:01Z  fix the picker search ranking and dedupe and keyboard then run everything  ->  Id prefix now outranks a substring. Enter takes the highlighted row.
+2026-09-01T17:59:45Z  append the picker section and question 43 to readme.md  ->  Recorded the ranking rule and the deduplication and the missing names.
+2026-09-01T18:13:40Z  add balanceDay and wire it into fill and clear then run everything  ->  One filled row takes the whole day. A second row halves both.
+2026-09-01T18:13:51Z  append the days column section to readme.md  ->  Recorded the sharing rule and when it does not run.
+2026-09-01T18:37:09Z  add the default specification and its marker then run everything  ->  A cost centre pick now fills the first allowed specification and marks it as provisional.
+2026-09-01T18:37:55Z  append the specification column section to readme.md  ->  Recorded the default rule and the three visual states.
+2026-09-01T18:48:51Z  group the CW column by week and drop the specification placeholder and auto spread the quick fill shares and move the contract to a percentage with a per month override  ->  All suites green.
+2026-09-01T18:49:25Z  append the four sections to readme.md  ->  Recorded the week grouping and the placeholder removal and the share spreading and the target precedence.
+2026-09-01T19:00:06Z  spread part time days across weeks and gate the second row and add the dev user switch  ->  All suites green.
+2026-09-01T19:00:33Z  append the part time and second row and user switch sections to readme.md  ->  Recorded the week level spread and the row gating and the stand in identity.
+2026-09-01T19:37:18Z  echo the requested CORS headers back and close the socket on reload  ->  The allow list had drifted behind the client and the watch reload could not rebind the port.
+2026-09-01T19:41:37Z  split dev-server.ts out of local.ts and add an over the wire test suite  ->  Eleven tests drive real HTTP. Reinstating the old allow list makes two of them fail.
+2026-09-01T19:42:48Z  append the backoffice and wire testing sections to readme.md  ->  Recorded that backoffice has one route and no screen. Added question 44.
+2026-09-01T19:57:42Z  add packages/workbook-reader and the admin page then point the extractor at the shared parser  ->  One parser now serves the browser upload and the fixture tool.
+2026-09-01T20:01:07Z  append the admin page section to readme.md and settle question 44  ->  Recorded that the workbook is parsed in the browser and why.
+2026-09-02T10:17:11Z  hide the lower row of a day until the upper one is filled  ->  The rowspans now follow the rows on show. Removed the lock prop and its string.
+2026-09-02T10:17:23Z  update the second row section of readme.md  ->  Hidden rather than locked.
+2026-09-02T10:22:49Z  copy takes the nearest filled row above rather than the row directly above  ->  One pass builds the source for every row. Reinstating the old lookup fails two tests.
+2026-09-02T10:22:58Z  append the copy arrow section to readme.md  ->  Recorded the nearest filled rule and what the copy carries.
+2026-09-02T10:32:00Z  add the progress panel and the reference list beside the grid  ->  Two column layout with a sticky aside. bookNextFree skips a day that already holds a full day.
+2026-09-02T10:36:04Z  enable enableAutoUnmount in the web test setup  ->  Abandoned components kept their watchers so the suite slowed with each test and one timed out.
+2026-09-02T10:36:17Z  append the beside the grid section to readme.md  ->  Recorded the progress bar and the reference list and the full day rule.
+2026-09-02T10:48:50Z  the lower row now appears only when the upper is set to a half  ->  Replaced the auto split with spareOfDay and dayValueFor and dayIsSplit. Added a per test reset.
+2026-09-02T10:49:03Z  update the days and second row sections of readme.md  ->  The split is now asked for rather than inferred.
+2026-09-02T11:08:51Z  append the tour section to readme.md  ->  Recorded the anchors and why the steps resolve at start.
+2026-09-02T11:17:46Z  report a missing office and entity from validate and mark the fields  ->  The download button was disabled with no message because the panel had no case for it.
+2026-09-02T11:20:18Z  fix the check route tests and add office coverage to the api  ->  A profile with no entity now warns so those tests set one.
+2026-09-02T11:21:12Z  append the missing settings section to readme.md  ->  Recorded why the rule belongs in validate.
+2026-09-02T11:26:45Z  a cost centre with no list of its own starts blank and may stay blank  ->  One that names a list still starts on the first and offers no blank. Renamed unverified to hasOwnList.
+2026-09-02T11:26:56Z  update the specification section of readme.md  ->  Recorded both behaviours and the departure from cell O3.
+2026-09-02T11:31:47Z  key working weekends by location in the catalogue and the reader  ->  One shared list made a Chinese make-up day a Berlin working day.
+2026-09-02T11:32:17Z  append the working weekend section to readme.md and add question 45  ->  Recorded the evidence for attaching the column to Shanghai.

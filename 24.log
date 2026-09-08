@@ -1,0 +1,63 @@
+Log 24. Answering what Atlassian granular OAuth scopes the tracker Jira integration would need.
+2026-09-08T10:05:13Z cat memory files and grep -l jira | found tracker app with Jira OAuth integration.
+2026-09-08T10:05:25Z cat tracker/docs/jira.md | doc names classic scopes read:jira-work and read:jira-user.
+2026-09-08T10:06:20Z curl swagger-v3.v3.json | downloaded the Jira v3 OpenAPI spec 2.4 MB to the scratchpad.
+2026-09-08T10:06:42Z jq scopes for myself and search-jql and worklog | spec labels classic Current and granular Beta.
+2026-09-08T10:07:30Z curl scopes-for-oauth-2-3LO page and grep the scope table | every candidate granular scope exists and classic is the documented recommendation.
+2026-09-08T10:08:04Z grep -A3 code scope names in scopes.md | read the consent screen wording of each candidate scope.
+2026-09-08T10:08:04Z curl oauth-2-3lo-apps page and grep granular | the page states no rule about combining classic with granular.
+2026-09-08T10:08:04Z sed -n 255,350p tracker/apps/api/src/jira.ts | confirmed only three endpoints are called and two of them only when JIRA_HOURS_FIELDS names worklog.
+2026-09-08T10:12:38Z grep for the Jira client id and scope assertions | located every place the authorize URL is built or asserted.
+2026-09-08T10:13:17Z python3 rewrite of SCOPES in tracker/apps/web/src/lib/jira.ts | fifteen granular scopes plus offline_access now build the authorize URL.
+2026-09-08T10:13:24Z python3 rewrite of the header comment in tracker/apps/api/src/jira.ts | it no longer names the two withdrawn classic scopes.
+2026-09-08T10:14:12Z jq which endpoints list the four extra granular scopes | none of the three calls needs read:issue:jira or read:issue.property:jira or read:issue.time-tracking:jira.
+2026-09-08T10:14:44Z python3 rewrite of the option A scope paragraph in tracker/docs/jira.md | added the scope table and the granular authorize URL.
+2026-09-08T10:15:04Z python3 rewrite of five scope passages in tracker/docs/todo-jira-option-a.md | the checklist now records the granular grant.
+2026-09-08T10:15:21Z pnpm --filter @tracker/web test and typecheck | started the checks after the scope change.
+2026-09-08T10:21:57Z cat apps/web/src/components/CostCentrePicker.vue | reading the picker before changing its dismissal and stacking.
+2026-09-08T10:25:43Z python3 rewrite of apps/web/src/components/CostCentrePicker.vue | the panel is fixed to the viewport and closes on a press outside.
+2026-09-08T10:26:04Z python3 added a click away test to render.test.ts and a fixed panel test to styles.test.ts | both guard the change.
+2026-09-08T10:26:09Z pnpm --filter @tracker/web test then typecheck then eslint | verifying the picker change.
+2026-09-08T10:26:45Z pnpm typecheck and eslint on the picker | both clean and the only failing test is the pre-existing autosave one.
+2026-09-08T10:27:27Z python3 correction of two comments | one overstated what fixed positioning does about stacking.
+2026-09-08T10:29:32Z grep for the unauthorised message across the tracker | tracing which layer produces it.
+2026-09-08T10:30:56Z cat the two web env files | checking which API the SPA talks to.
+2026-09-08T10:31:59Z grep problem and reasonOf and finishLink and useJira | no tracker string contains the word unauthorised so it is passed through from Atlassian or from API Gateway.
+2026-09-08T10:31:59Z sed the local server and FakeJira wiring | the local API answers with a double and a client id of dev-client-id.
+2026-09-08T10:31:59Z sed the JiraFunction block of infra/lib/tracker-stack.ts | the log group is CDK named so a lookup is needed to tail it.
+2026-09-08T10:35:46Z grep the four remaining scope titles out of scopes.md | needed the consent screen wording for the admin request.
+2026-09-08T10:36:31Z wrote tracker/docs/jira-admin.md | the request to forward to the Atlassian administrator.
+2026-09-08T10:36:49Z python3 linked docs/jira-admin.md from the open question and from the checklist | the request is reachable from both Jira documents.
+2026-09-08T10:57:41Z ss -ltnp and pgrep for the tracker dev processes | checking what is actually running.
+2026-09-08T10:58:18Z pnpm dev:api in the background | starting the local API on 8787.
+2026-09-08T10:58:36Z curl the three local Jira routes with the dev headers | proving the API side end to end.
+2026-09-08T10:59:39Z wrote packages/core/src/dev.ts and exported it | one home for the two strings the local double needs.
+2026-09-08T10:59:58Z python3 edits to lib/jira.ts and local.ts and vite.config.ts | the local consent skips Atlassian and the dev port is now strict.
+2026-09-08T11:00:15Z python3 added two consentUrl tests to apps/web/src/__tests__/jira.test.ts | one guards the scope list and one guards the local path.
+2026-09-08T11:00:40Z pnpm -r typecheck and eslint on the changed files | verifying the local consent change across every package.
+2026-09-08T11:01:21Z curl the local Jira routes again after the restart | proving the double still links and answers.
+2026-09-08T11:01:30Z pnpm --filter @tracker/web dev with the strict port | showing the failure the silent move to 5174 used to hide.
+2026-09-08T12:54:57Z grep for how the Jira client secret is read | tracing the exchange credentials.
+2026-09-08T12:56:26Z grep aws-cdk-lib for the Secret default generateSecretString | checking whether CDK leaves a new secret empty.
+2026-09-08T12:57:30Z python3 corrected the secret passages in the stack and both Jira documents | CDK fills a new secret with a random password rather than leaving it empty.
+2026-09-08T14:16:14Z cat apps/api/src/jira-tokens.ts | reading the refresh owner before judging the failure.
+2026-09-08T14:17:28Z grep the Jira parts of apps/api/src/repository.ts | reading the claim and the conditional write.
+2026-09-08T14:19:37Z python3 split a refusal aimed at the tracker from a dead refresh token | the link is no longer deleted when the client secret is what Atlassian refused.
+2026-09-08T14:19:55Z python3 added four rotation tests | they cover a dead token and a stale secret and the claim release.
+2026-09-08T14:20:12Z python3 recorded the fifth rotation rule in docs/jira.md | the stale container loop is written down.
+2026-09-08T14:20:48Z python3 widened the refusedTheTracker parameter to accept null | the refusal field is Refusal or null.
+2026-09-08T14:21:19Z pnpm -r test after the refusal split | the whole suite except the pre-existing autosave failure.
+2026-09-08T14:27:47Z grep for the rest/api/3/field call | the log names an endpoint I had not read.
+2026-09-08T14:28:05Z jq the swagger for GET /rest/api/3/field | checking what that endpoint actually requires.
+2026-09-08T14:29:13Z jq the granular scopes of all four endpoints the client now calls | the field endpoint lists three scopes the grant does not hold.
+2026-09-08T14:29:35Z wrote packages/core/src/jira-scopes.ts | the grant and the per endpoint requirement now sit together.
+2026-09-08T14:29:52Z wrote packages/core/src/__tests__/jira-scopes.test.ts | a missing scope is now a failing test rather than a 401.
+2026-09-08T14:30:28Z python3 made a refusal of the field call non fatal | a missing scope on an optional read no longer reads as an expired connection.
+2026-09-08T14:30:41Z python3 added a test for a refused field call | the month survives it.
+2026-09-08T14:31:30Z python3 rebuilt the authorize URL from the core list and updated the scope tables | eighteen scopes and four calls.
+2026-09-08T14:32:15Z python3 regenerated the scope table in docs/jira.md from ENDPOINT_SCOPES | the attributions are now the published ones.
+2026-09-08T14:32:27Z python3 updated docs/jira-admin.md | eighteen scopes and the fourth call.
+2026-09-08T14:32:33Z pnpm -r typecheck and eslint and the full suite | final check of the scope work.
+2026-09-08T14:36:49Z cat apps/web/src/__tests__/autosave.test.ts | reading the failing test.
+2026-09-08T14:38:13Z python3 exported AUTOSAVE_MS and pointed the autosave test at it | the test advanced exactly one interval so the first write had already gone.
+2026-09-08T14:39:04Z pnpm typecheck and eslint and the full suite | confirming the autosave fix.

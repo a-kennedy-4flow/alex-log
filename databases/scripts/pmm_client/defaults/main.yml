@@ -1,0 +1,24 @@
+---
+# Defaults rather than set_fact for the reason given in pmm_server.
+# One client serves one cluster so every stack overrides the name and the nodes.
+
+pmm_client_image: percona/pmm-client:3.9.0
+pmm_client_name: pmm-client
+pmm_client_network: bridge
+pmm_client_pmm_network: pmm
+pmm_client_server_name: pmm-server
+pmm_client_server_address: pmm-server:8443
+pmm_client_admin_user: admin
+pmm_client_admin_password: password
+pmm_client_nodes: []
+pmm_client_cluster: ""
+pmm_client_environment: demo
+pmm_client_root_password: password
+pmm_client_monitor_user: pmm
+pmm_client_monitor_password: pmm
+# Set to the router container of a routed design to monitor it as well.
+# The role skips it when the container is not there so one play serves both the
+# plain stack and the routed one.
+pmm_client_proxysql_name: ""
+pmm_client_proxysql_admin_user: radmin
+pmm_client_proxysql_admin_password: radmin

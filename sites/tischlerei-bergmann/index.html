@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tischlerei Bergmann &middot; Rehbrunn</title>
+<meta name="description" content="Tischlerei Bergmann in Rehbrunn. M&ouml;bel nach Ma&szlig; und Innenausbau und Fenster aus Massivholz.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; background: #f5f1ea; color: #241d16;
+         font: 17px/1.72 "Lora", Georgia, serif; }
+  a { color: #7b4a20; }
+  .oben { background: #241d16; color: #ded4c6; font-size: 13px;
+          font-family: "Segoe UI", system-ui, sans-serif; }
+  .oben .in { max-width: 1160px; margin: 0 auto; padding: 10px 24px; display: flex;
+              justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .oben a { color: #d3a86a; text-decoration: none; }
+  .kopf { background: #fffdf9; border-bottom: 1px solid #e2d9c9; }
+  .kopf .in { max-width: 1160px; margin: 0 auto; padding: 40px 24px 34px; }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #7b4a20; }
+  h1 { margin: 12px 0 14px; font-size: clamp(34px, 6.6vw, 56px); line-height: 1.05; font-weight: 500; }
+  .kopf p { margin: 0; font-size: 20px; max-width: 56ch; color: #4a3f33; }
+  .jahre { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 26px;
+           font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; color: #6b5c4a; }
+  .jahre b { display: block; font-size: 26px; color: #241d16; font-family: inherit; }
+  .raster { max-width: 1160px; margin: 0 auto; padding: 34px 24px 60px;
+            display: grid; grid-template-columns: 250px 1fr; gap: 46px; align-items: start; }
+  @media (max-width: 940px) { .raster { grid-template-columns: 1fr; gap: 22px; } }
+  nav.inhalt { position: sticky; top: 24px; font-family: "Segoe UI", system-ui, sans-serif; }
+  @media (max-width: 940px) { nav.inhalt { position: static; } }
+  nav.inhalt p { margin: 0 0 14px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+                 color: #8a7a66; }
+  nav.inhalt ol { list-style: none; margin: 0; padding: 0; counter-reset: k; }
+  nav.inhalt li { counter-increment: k; }
+  nav.inhalt a { display: grid; grid-template-columns: 30px 1fr; gap: 6px; padding: 9px 0;
+                 color: #4a3f33; text-decoration: none; font-size: 15px; border-top: 1px solid #e2d9c9; }
+  nav.inhalt a::before { content: counter(k, decimal-leading-zero); color: #b09a78; }
+  nav.inhalt a:hover { color: #7b4a20; }
+  nav.inhalt a.aktiv { color: #7b4a20; font-weight: 600; }
+  nav.inhalt .zurueck { margin-top: 20px; font-size: 14px; }
+  section { padding: 0 0 46px; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); font-weight: 500; }
+  .unter { margin: 0 0 20px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #7b4a20; }
+  p { margin: 0 0 18px; max-width: 68ch; }
+  .holz { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; }
+  .holz div { border: 1px solid #e2d9c9; background: #fffdf9; }
+  .holz .flaeche { height: 74px; }
+  .holz .txt { padding: 10px 12px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; }
+  .holz b { display: block; font-size: 15px; }
+  .holz span { color: #7a6b58; }
+  .werke { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .werk { background: #fffdf9; border: 1px solid #e2d9c9; padding: 22px 24px; }
+  .werk h3 { margin: 0 0 8px; font-size: 20px; font-weight: 500; }
+  .werk p { margin: 0 0 12px; font-size: 16px; color: #55483a; }
+  .werk .preis { font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; color: #7b4a20; }
+  .ablauf { list-style: none; margin: 0; padding: 0; border-left: 2px solid #d3c4ab; }
+  .ablauf li { position: relative; padding: 0 0 26px 26px; }
+  .ablauf li::before { content: ""; position: absolute; left: -7px; top: 9px; width: 12px; height: 12px;
+                       background: #7b4a20; border-radius: 50%; }
+  .ablauf b { display: block; font-size: 19px; }
+  .ablauf span { font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; color: #5b4e3f; }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8a7a66;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #241d16; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #e7dfd0; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 700px) { .zwei { grid-template-columns: 1fr; gap: 16px; } }
+  .zitat { border-left: 4px solid #b08d52; padding: 6px 0 6px 20px; font-size: 20px; font-style: italic;
+           color: #3d3227; max-width: 60ch; }
+  address { font-style: normal; }
+  footer { background: #241d16; color: #ded4c6; font-family: "Segoe UI", system-ui, sans-serif;
+           font-size: 15px; }
+  footer .in { max-width: 1160px; margin: 0 auto; padding: 40px 24px; display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #d3a86a; }
+  footer a { color: #ded4c6; }
+  .ende { border-top: 1px solid #3c332a; font-size: 13px; color: #a1927f; }
+  .ende .in { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="oben"><div class="in">
+  <span>Werkstatt und Ausstellung am Erlenweg</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<div class="kopf"><div class="in">
+  <p class="zeile">Tischlerei und Innenausbau</p>
+  <h1>Tischlerei Bergmann</h1>
+  <p>Wir bauen was der Schrank im Baumarkt nicht kann. Krumme W&auml;nde und alte Balken und
+  Ma&szlig;e die es nirgends gibt.</p>
+  <div class="jahre">
+    <div><b>1931</b>gegr&uuml;ndet</div>
+    <div><b>3.</b>Generation</div>
+    <div><b>6</b>Beschäftigte</div>
+    <div><b>2</b>Auszubildende</div>
+  </div>
+</div></div>
+
+<div class="raster">
+  <nav class="inhalt" aria-label="Inhalt dieser Seite">
+    <p>Inhalt</p>
+    <ol>
+      <li><a href="#werkstatt" class="aktiv">Die Werkstatt</a></li>
+      <li><a href="#moebel">M&ouml;bel nach Ma&szlig;</a></li>
+      <li><a href="#innenausbau">Innenausbau</a></li>
+      <li><a href="#fenster">Fenster und T&uuml;ren</a></li>
+      <li><a href="#hoelzer">Unsere H&ouml;lzer</a></li>
+      <li><a href="#ablauf">Vom Ma&szlig; zum M&ouml;bel</a></li>
+      <li><a href="#preise">Was es kostet</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ol>
+    <div class="zurueck"><a href="../index.html">&larr; Verzeichnis</a></div>
+  </nav>
+
+  <main>
+    <section id="werkstatt">
+      <p class="unter">Die Werkstatt</p>
+      <h2>Vierhundert Quadratmeter am Ortsrand</h2>
+      <p>Die Halle steht seit 1962 am Erlenweg. Vorne liegt die Bankraum mit sechs
+      Hobelb&auml;nken. Hinten stehen die Maschinen und das Holzlager. Wir trocknen einen Teil
+      des Holzes selbst und lagern es zwei Jahre.</p>
+      <p>Mein Gro&szlig;vater hat den Betrieb gegr&uuml;ndet. Mein Vater hat die Halle gebaut.
+      Ich habe die CNC dazugestellt und den Rest so gelassen wie er war.</p>
+      <div class="zitat">Eine Schublade l&auml;uft dreißig Jahre oder sie l&auml;uft gar nicht.
+      Dazwischen gibt es nichts.</div>
+    </section>
+
+    <section id="moebel">
+      <p class="unter">M&ouml;bel nach Ma&szlig;</p>
+      <h2>Einzelst&uuml;cke f&uuml;r Ihren Raum</h2>
+      <div class="werke">
+        <div class="werk">
+          <h3>Einbauschrank</h3>
+          <p>Vom Boden bis zur Decke und in jede Schr&auml;ge hinein. Fronten in Furnier oder lackiert.</p>
+          <p class="preis">ab 2400 &euro; je laufendem Meter</p>
+        </div>
+        <div class="werk">
+          <h3>Tische</h3>
+          <p>Massivholz mit Gratleisten. Auch als Auszugstisch f&uuml;r zw&ouml;lf Personen.</p>
+          <p class="preis">ab 1600 &euro;</p>
+        </div>
+        <div class="werk">
+          <h3>K&uuml;chen</h3>
+          <p>Korpus und Fronten aus dem eigenen Haus. Ger&auml;te bringen Sie mit oder wir bestellen sie.</p>
+          <p class="preis">ab 9000 &euro;</p>
+        </div>
+        <div class="werk">
+          <h3>Betten</h3>
+          <p>Ohne Metall verbunden. Auf Wunsch zerlegbar f&uuml;r den Umzug.</p>
+          <p class="preis">ab 1900 &euro;</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="innenausbau">
+      <p class="unter">Innenausbau</p>
+      <h2>Wenn der Raum das M&ouml;bel wird</h2>
+      <p>Wir bauen Treppen und Decken und Einbauten in Altbauten. Bei denkmalgesch&uuml;tzten
+      H&auml;usern arbeiten wir nach Absprache mit der Beh&ouml;rde. Alte Profile fr&auml;sen
+      wir nach.</p>
+      <table>
+        <tr><th>Arbeit</th><th>Dauer</th><th class="r">Hinweis</th></tr>
+        <tr><td>Treppe aus Eiche</td><td>sechs Wochen</td><td class="r">mit Aufma&szlig; vor Ort</td></tr>
+        <tr><td>Deckenverkleidung</td><td>zwei Wochen</td><td class="r">Fichte oder L&auml;rche</td></tr>
+        <tr><td>Wandvert&auml;felung</td><td>drei Wochen</td><td class="r">nach altem Vorbild</td></tr>
+        <tr><td>Ladeneinrichtung</td><td>nach Umfang</td><td class="r">Montage nachts m&ouml;glich</td></tr>
+      </table>
+    </section>
+
+    <section id="fenster">
+      <p class="unter">Fenster und T&uuml;ren</p>
+      <h2>Reparieren statt austauschen</h2>
+      <p>Ein altes Kastenfenster h&auml;lt l&auml;nger als jedes neue Element. Wir setzen
+      Fl&uuml;gel neu ein und tauschen morsche Teile und dichten nach. Das ist oft die
+      H&auml;lfte des Preises eines Neubaus.</p>
+      <div class="zwei">
+        <div>
+          <ul class="ablauf">
+            <li><b>Aufma&szlig;</b><span>Wir kommen ins Haus und pr&uuml;fen den Zustand.</span></li>
+            <li><b>Ausbau</b><span>Der Fl&uuml;gel geht in die Werkstatt. Die &Ouml;ffnung wird zugesetzt.</span></li>
+            <li><b>Instandsetzung</b><span>Neue St&uuml;cke einleimen und schleifen und streichen.</span></li>
+            <li><b>Einbau</b><span>Zur&uuml;ck ins Haus und neu justiert.</span></li>
+          </ul>
+        </div>
+        <div>
+          <table>
+            <tr><th>Leistung</th><th class="r">Preis</th></tr>
+            <tr><td>Fenster aufarbeiten</td><td class="r">ab 420 &euro;</td></tr>
+            <tr><td>Neues Holzfenster</td><td class="r">ab 980 &euro;</td></tr>
+            <tr><td>Haust&uuml;r aufarbeiten</td><td class="r">ab 1200 &euro;</td></tr>
+            <tr><td>Zimmert&uuml;r nach Ma&szlig;</td><td class="r">ab 690 &euro;</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="hoelzer">
+      <p class="unter">H&ouml;lzer</p>
+      <h2>Was wir am Lager haben</h2>
+      <div class="holz">
+        <div><div class="flaeche" style="background:repeating-linear-gradient(90deg,#c89b62 0 8px,#b98b52 8px 16px)"></div><div class="txt"><b>Eiche</b><span>hart und offenporig</span></div></div>
+        <div><div class="flaeche" style="background:repeating-linear-gradient(90deg,#e0c9a0 0 10px,#d4b88b 10px 20px)"></div><div class="txt"><b>Esche</b><span>elastisch und hell</span></div></div>
+        <div><div class="flaeche" style="background:repeating-linear-gradient(90deg,#f0dfc0 0 7px,#e5d0aa 7px 14px)"></div><div class="txt"><b>Ahorn</b><span>fein und ruhig</span></div></div>
+        <div><div class="flaeche" style="background:repeating-linear-gradient(90deg,#8a5a34 0 9px,#7a4c28 9px 18px)"></div><div class="txt"><b>Nussbaum</b><span>dunkel und teuer</span></div></div>
+        <div><div class="flaeche" style="background:repeating-linear-gradient(90deg,#dcc59a 0 12px,#c9ae7f 12px 24px)"></div><div class="txt"><b>L&auml;rche</b><span>f&uuml;r au&szlig;en</span></div></div>
+        <div><div class="flaeche" style="background:repeating-linear-gradient(90deg,#e8dbc0 0 11px,#dcc9a8 11px 22px)"></div><div class="txt"><b>Fichte</b><span>leicht und g&uuml;nstig</span></div></div>
+      </div>
+      <p style="margin-top:20px">Das Holz stammt aus dem Forst des Landkreises. Tropenholz
+      verarbeiten wir nicht. Furnier kaufen wir bei einem H&auml;ndler in Unterfranken.</p>
+    </section>
+
+    <section id="ablauf">
+      <p class="unter">Ablauf</p>
+      <h2>Vom Ma&szlig; zum M&ouml;bel</h2>
+      <ul class="ablauf">
+        <li><b>Erstes Gespr&auml;ch</b><span>Bei Ihnen zu Hause. Wir sehen den Raum und h&ouml;ren zu. Das kostet nichts.</span></li>
+        <li><b>Entwurf</b><span>Zeichnung mit Ma&szlig;en und Materialmuster. Zwei &Auml;nderungen sind enthalten.</span></li>
+        <li><b>Angebot</b><span>Fester Preis mit Lieferzeit. G&uuml;ltig sechs Wochen.</span></li>
+        <li><b>Bau</b><span>Sechs bis zw&ouml;lf Wochen je nach Auftragslage. Sie d&uuml;rfen zuschauen.</span></li>
+        <li><b>Montage</b><span>Wir bauen auf und r&auml;umen auf. Der Abfall f&auml;hrt mit uns zur&uuml;ck.</span></li>
+        <li><b>Nachschau</b><span>Nach einem Jahr ziehen wir T&uuml;ren und Schubk&auml;sten nach.</span></li>
+      </ul>
+    </section>
+
+    <section id="preise">
+      <p class="unter">Preise</p>
+      <h2>Womit Sie rechnen m&uuml;ssen</h2>
+      <table>
+        <tr><th>Posten</th><th class="r">Betrag</th></tr>
+        <tr><td>Stundensatz Werkstatt</td><td class="r">72 &euro;</td></tr>
+        <tr><td>Stundensatz Montage</td><td class="r">78 &euro;</td></tr>
+        <tr><td>Aufma&szlig; im Umkreis</td><td class="r">kostenfrei</td></tr>
+        <tr><td>Entwurf mit Zeichnung</td><td class="r">180 &euro; bei Auftrag verrechnet</td></tr>
+        <tr><td>Anfahrt je Kilometer</td><td class="r">0,80 &euro;</td></tr>
+        <tr><td>Kleinreparatur in der Werkstatt</td><td class="r">ab 45 &euro;</td></tr>
+      </table>
+    </section>
+
+    <section id="kontakt">
+      <p class="unter">Kontakt</p>
+      <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+      <div class="zwei">
+        <table>
+          <tr><th>Tag</th><th class="r">Zeit</th></tr>
+          <tr><td>Montag bis Donnerstag</td><td class="r">07:00 &ndash; 16:30</td></tr>
+          <tr><td>Freitag</td><td class="r">07:00 &ndash; 13:00</td></tr>
+          <tr><td>Ausstellung</td><td class="r">nach Vereinbarung</td></tr>
+          <tr><td>Samstag</td><td class="r">geschlossen</td></tr>
+        </table>
+        <div>
+          <address>
+            Tischlerei Bergmann<br>
+            Erlenweg 9<br>
+            97845 Rehbrunn<br>
+            Telefon 0152 28817162
+          </address>
+          <p style="margin-top:14px">Der Hof liegt am Ortsausgang Richtung Bachtal. Fahren Sie
+          bis zum blauen Tor und dann in den Hof. Parken direkt vor der Halle.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="in">
+    <div><h3>Tischlerei</h3>Erlenweg 9<br>97845 Rehbrunn<br>0152 28817162</div>
+    <div><h3>Themen</h3><a href="#moebel">M&ouml;bel</a><br><a href="#fenster">Fenster</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Betrieb</h3>Inhaber J. Bergmann<br>Tischlermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const teile = [...document.querySelectorAll('main section')];
+const punkte = new Map([...document.querySelectorAll('nav.inhalt a[href^="#"]')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const wacht = new IntersectionObserver(liste => {
+  for (const eintrag of liste) {
+    if (!eintrag.isIntersecting) continue;
+    const link = punkte.get(eintrag.target.id);
+    if (!link) continue;
+    for (const a of punkte.values()) a.classList.remove('aktiv');
+    link.classList.add('aktiv');
+  }
+}, { rootMargin: '-20px 0px -72% 0px' });
+for (const teil of teile) wacht.observe(teil);
+</script>
+</body>
+</html>

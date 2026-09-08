@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Druckerei Falkenberg &middot; Rehbrunn</title>
+<meta name="description" content="Druckerei Falkenberg in Rehbrunn. Offsetdruck und Digitaldruck und Buchdruck mit eigener Weiterverarbeitung.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+  body { margin: 0; background: #fdfdfc; color: #14161c;
+         font: 16px/1.7 "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+  a { color: #1f4ed8; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: #14161c; color: #f2f2f0; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 66px; flex-wrap: wrap; }
+  .marke { font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
+  .marke span { color: #f2c94c; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #c7c7c3; text-decoration: none; }
+  header nav a:hover { color: #fff; }
+  .buehne { padding: 58px 0 46px; border-bottom: 1px solid #e6e6e2; }
+  .buehne .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #1f4ed8; }
+  h1 { margin: 12px 0 16px; font-size: clamp(33px, 6.6vw, 56px); line-height: 1.03; letter-spacing: -.03em; }
+  .buehne p { margin: 0; font-size: 19px; color: #4b4f5c; max-width: 46ch; }
+  .cmyk { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .cmyk div { aspect-ratio: 1; border-radius: 6px; display: grid; place-content: center; color: #fff;
+              font-size: 22px; font-weight: 700; }
+  section { padding: 52px 0; border-bottom: 1px solid #ececeA; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 35px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #1f4ed8; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .verfahren { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .karte { border: 1px solid #e4e4e0; border-radius: 10px; padding: 20px 22px; }
+  .karte h3 { margin: 0 0 8px; font-size: 18px; }
+  .karte p { margin: 0 0 10px; font-size: 15px; color: #5b6070; }
+  .karte .wann { font-size: 14px; color: #1f4ed8; }
+  .rechner { border: 2px solid #14161c; border-radius: 14px; padding: 24px 26px; background: #fff; }
+  .felder { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+  .feld label { display: block; font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+                color: #5b6070; margin-bottom: 6px; }
+  .feld select, .feld input { width: 100%; font: inherit; padding: 11px 12px; border: 1px solid #d6d6d2;
+                              border-radius: 8px; background: #fbfbfa; color: #14161c; }
+  .ergebnis { margin-top: 22px; padding-top: 20px; border-top: 1px solid #e4e4e0; display: flex;
+              justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .ergebnis .zahl { font-size: 36px; font-weight: 700; letter-spacing: -.02em; }
+  .ergebnis .rand { font-size: 14px; color: #5b6070; max-width: 42ch; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #5b6070;
+       padding: 0 10px 12px 0; border-bottom: 2px solid #14161c; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #eeeeec; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 18px 46px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 32px; height: 32px;
+                         background: #f2c94c; color: #14161c; border-radius: 8px; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #5b6070; }
+  .hinweis { background: #f4f6ff; border-left: 4px solid #1f4ed8; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .hinweis p { margin: 0; font-size: 15px; }
+  address { font-style: normal; }
+  footer { background: #14161c; color: #c2c2be; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #f2c94c; }
+  footer a { color: #c2c2be; }
+  .ende { border-top: 1px solid #262932; font-size: 13px; color: #8b8e97; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Druckerei <span>Falkenberg</span></span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#verfahren">Verfahren</a></li>
+        <li><a href="#rechner">Preisrechner</a></li>
+        <li><a href="#papier">Papier</a></li>
+        <li><a href="#daten">Druckdaten</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Druckerei seit 1911</p>
+      <h1>Vom Bleisatz zur Digitalmaschine in einem Haus</h1>
+      <p>Wir drucken Visitenkarten und ganze B&uuml;cher. Die alte Tiegelpresse steht noch und
+      wird f&uuml;r Einladungen benutzt.</p>
+    </div>
+    <div class="cmyk" aria-hidden="true">
+      <div style="background:#00a0d8">C</div>
+      <div style="background:#d6006e">M</div>
+      <div style="background:#f2c94c;color:#14161c">Y</div>
+      <div style="background:#14161c">K</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="verfahren">
+    <p class="unter">Verfahren</p>
+    <h2>Drei Maschinen f&uuml;r drei Auflagen</h2>
+    <div class="verfahren">
+      <div class="karte">
+        <h3>Digitaldruck</h3>
+        <p>F&uuml;r kleine Auflagen und schnelle Termine. Ab einem St&uuml;ck sinnvoll.</p>
+        <p class="wann">1 bis 500 St&uuml;ck</p>
+      </div>
+      <div class="karte">
+        <h3>Offsetdruck</h3>
+        <p>Vier Farben im Bogen. Ab etwa f&uuml;nfhundert St&uuml;ck g&uuml;nstiger als digital.</p>
+        <p class="wann">ab 500 St&uuml;ck</p>
+      </div>
+      <div class="karte">
+        <h3>Buchdruck</h3>
+        <p>Tiegelpresse von 1954. Pr&auml;gung im Papier die man f&uuml;hlt.</p>
+        <p class="wann">50 bis 1000 St&uuml;ck</p>
+      </div>
+      <div class="karte">
+        <h3>Weiterverarbeitung</h3>
+        <p>Schneiden und Falzen und Heften im Haus. Klebebindung ebenso.</p>
+        <p class="wann">jede Auflage</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rechner">
+    <p class="unter">Preisrechner</p>
+    <h2>Was Ihr Auftrag ungef&auml;hr kostet</h2>
+    <p>W&auml;hlen Sie Produkt und Menge und Papier. Der Rechner nennt eine Hausnummer. Das
+    verbindliche Angebot machen wir nach Ihren Daten.</p>
+    <div class="rechner">
+      <div class="felder">
+        <div class="feld">
+          <label for="produkt">Produkt</label>
+          <select id="produkt">
+            <option value="200|0.09">Visitenkarten</option>
+            <option value="120|0.42">Flyer A5</option>
+            <option value="180|0.95">Brosch&uuml;re 16 Seiten</option>
+            <option value="260|2.60">Buch 96 Seiten</option>
+            <option value="150|1.40">Plakat A2</option>
+            <option value="220|0.75">Briefpapier</option>
+          </select>
+        </div>
+        <div class="feld">
+          <label for="menge">Menge</label>
+          <select id="menge">
+            <option value="50">50 St&uuml;ck</option>
+            <option value="100" selected>100 St&uuml;ck</option>
+            <option value="250">250 St&uuml;ck</option>
+            <option value="500">500 St&uuml;ck</option>
+            <option value="1000">1000 St&uuml;ck</option>
+          </select>
+        </div>
+        <div class="feld">
+          <label for="papier">Papier</label>
+          <select id="papier">
+            <option value="1">Bilderdruck matt</option>
+            <option value="1.25">Naturpapier</option>
+            <option value="1.6">B&uuml;ttenpapier</option>
+            <option value="1.15">Recycling</option>
+          </select>
+        </div>
+        <div class="feld">
+          <label for="extra">Veredelung</label>
+          <select id="extra">
+            <option value="0">keine</option>
+            <option value="45">Pr&auml;gung</option>
+            <option value="70">Folienkaschierung</option>
+            <option value="30">Rundecken</option>
+          </select>
+        </div>
+      </div>
+      <div class="ergebnis">
+        <div>
+          <div class="zahl" id="summe">&mdash;</div>
+          <div class="rand" id="hinweis">Alle Angaben ohne Umsatzsteuer und ohne Versand.</div>
+        </div>
+        <div class="rand">Die Rechnung ist eine Sch&auml;tzung aus Grundpreis und St&uuml;ckpreis
+        und Papierfaktor. Ab 250 St&uuml;ck rechnen wir mit Offset und das senkt den
+        St&uuml;ckpreis.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="papier">
+    <p class="unter">Papier</p>
+    <h2>Was am Lager liegt</h2>
+    <table>
+      <tr><th>Sorte</th><th>Grammatur</th><th>Geeignet f&uuml;r</th><th class="r">Faktor</th></tr>
+      <tr><td>Bilderdruck matt</td><td>90 bis 300 g</td><td>Flyer und Brosch&uuml;ren</td><td class="r">1,00</td></tr>
+      <tr><td>Naturpapier</td><td>100 bis 300 g</td><td>B&uuml;cher und Briefbogen</td><td class="r">1,25</td></tr>
+      <tr><td>Recycling</td><td>80 bis 250 g</td><td>alles im Alltag</td><td class="r">1,15</td></tr>
+      <tr><td>B&uuml;ttenpapier</td><td>200 bis 350 g</td><td>Einladungen und Urkunden</td><td class="r">1,60</td></tr>
+      <tr><td>Karton</td><td>bis 400 g</td><td>Visitenkarten und Anh&auml;nger</td><td class="r">1,30</td></tr>
+    </table>
+    <p style="margin-top:16px">Muster geben wir gern mit. Kommen Sie vorbei und fassen Sie das
+    Papier an. Am Bildschirm sieht jede Sorte gleich aus.</p>
+  </section>
+
+  <section id="daten">
+    <p class="unter">Druckdaten</p>
+    <h2>So kommen Ihre Dateien an</h2>
+    <div class="zwei">
+      <div>
+        <ol class="schritte">
+          <li><b>Format</b><span>PDF mit drei Millimeter Beschnitt an jeder Seite.</span></li>
+          <li><b>Farben</b><span>CMYK und keine RGB-Bilder. Sonderfarben nach HKS oder Pantone.</span></li>
+          <li><b>Aufl&ouml;sung</b><span>Dreihundert dpi bei Bildern. Bei Plakaten reichen hundertf&uuml;nfzig.</span></li>
+          <li><b>Schriften</b><span>Eingebettet oder in Pfade umgewandelt.</span></li>
+        </ol>
+      </div>
+      <div>
+        <div class="hinweis">
+          <p>Sie haben keine Druckdatei. Kein Problem. Wir setzen und gestalten im Haus. Eine
+          Setzstunde kostet fünfundsechzig Euro und die meisten Auftr&auml;ge brauchen ein bis
+          zwei.</p>
+        </div>
+        <table style="margin-top:18px">
+          <tr><th>Leistung</th><th class="r">Preis</th></tr>
+          <tr><td>Datenpr&uuml;fung</td><td class="r">kostenfrei</td></tr>
+          <tr><td>Kleine Korrektur</td><td class="r">18 &euro;</td></tr>
+          <tr><td>Satz je Stunde</td><td class="r">65 &euro;</td></tr>
+          <tr><td>Proof auf Papier</td><td class="r">28 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">08:00 &ndash; 17:00</td></tr>
+        <tr><td>Freitag</td><td class="r">08:00 &ndash; 14:00</td></tr>
+        <tr><td>Abholung nach Absprache</td><td class="r">bis 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">geschlossen</td></tr>
+      </table>
+      <div>
+        <address>
+          Druckerei Falkenberg<br>
+          Gewerbering 9<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817284
+        </address>
+        <p style="margin-top:14px">Die Halle liegt gegen&uuml;ber der Haustechnik Brandt. Fahren
+        Sie zur Rampe und klingeln Sie. Wir helfen beim Einladen gro&szlig;er Auflagen.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Druckerei</h3>Gewerbering 9<br>97845 Rehbrunn<br>0152 28817284</div>
+    <div><h3>Themen</h3><a href="#rechner">Preisrechner</a><br><a href="#papier">Papier</a><br><a href="#daten">Druckdaten</a></div>
+    <div><h3>Betrieb</h3>Inhaber H. Falkenberg<br>Drucker und Schriftsetzer<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const produkt = document.getElementById('produkt');
+const menge = document.getElementById('menge');
+const papier = document.getElementById('papier');
+const extra = document.getElementById('extra');
+const summe = document.getElementById('summe');
+const hinweis = document.getElementById('hinweis');
+
+function rechnen() {
+  const [grund, stueck] = produkt.value.split('|').map(Number);
+  const anzahl = Number(menge.value);
+  const faktor = Number(papier.value);
+  const zusatz = Number(extra.value);
+  const rabatt = anzahl >= 500 ? 0.72 : anzahl >= 250 ? 0.85 : 1;
+  const preis = grund + anzahl * stueck * faktor * rabatt + zusatz;
+  summe.textContent = preis.toFixed(2).replace('.', ',') + ' €';
+  hinweis.textContent = anzahl >= 250
+    ? 'Gerechnet im Offsetdruck. Ohne Umsatzsteuer und ohne Versand.'
+    : 'Gerechnet im Digitaldruck. Ohne Umsatzsteuer und ohne Versand.';
+}
+for (const feld of [produkt, menge, papier, extra]) feld.addEventListener('change', rechnen);
+rechnen();
+</script>
+</body>
+</html>

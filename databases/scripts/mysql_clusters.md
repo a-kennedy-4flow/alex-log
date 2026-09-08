@@ -42,6 +42,16 @@ ansible-playbook -i hosts mysql_clusters.yml --tags routed-multi
 ansible-playbook -i hosts mysql_clusters.yml --tags teardown
 ```
 
+Percona PMM is an add-on for a stack that is already built.
+
+```
+ansible-playbook -i hosts mysql_clusters.yml --tags pmm-server
+ansible-playbook -i hosts mysql_clusters.yml --tags pmm-async
+ansible-playbook -i hosts mysql_clusters.yml --tags pmm-single
+ansible-playbook -i hosts mysql_clusters.yml --tags pmm-multi
+ansible-playbook -i hosts mysql_clusters.yml --tags pmm-teardown
+```
+
 Every play is tagged `never` so nothing runs unless you name a design.
 Each play ends by printing the endpoints and the group membership.
 Every play is safe to re-run. A second run reports no changes.
@@ -202,6 +212,72 @@ A seeded instance appears immediately carrying the literal string `Unknown` as
 its version so counting rows or testing for a value both pass on a placeholder.
 Only a version starting with a digit means the poller has reached the instance.
 
+## Percona PMM
+
+One PMM server serves every design. One client serves one cluster. The server is
+standalone so a design teardown leaves it running. The metrics of a stack you have
+removed stay readable.
+
+| Client | Stack | Monitored | Networks |
+| --- | --- | --- | --- |
+| `pmm-client-async` | design A | three MySQL nodes | `mysql-async` and `pmm` |
+| `pmm-client-sp` | designs B and D | three MySQL members plus the router once design D has put one there | `mysql-sp` and `pmm` |
+| `pmm-client-mp` | designs C and E | three MySQL members plus the router once design E has put one there | `mysql-mp` and `pmm` |
+
+Every client tag builds the server first so one tag is enough on its own. Build the
+stack before you monitor it. Run the tag again after adding a router and the router
+joins the list.
+
+The web UI is on https://127.0.0.1:8443 as `admin` with the password `password`. It
+serves a certificate it signed itself so a browser warns once.
+
+A client is a single pmm-agent container that collects for every member of its
+cluster over the network. Because a) the MySQL image carries no agent and installing
+one would fork the image b) one agent collects for many remote services and c) an
+agent inside a disposable container is registered again on every rebuild.
+
+The monitoring account is created on the writable member and replication carries it
+to the rest. The query source is performance schema. Because a) a remote service has
+no slow log file the agent can read and b) the slow log is the default source.
+
+Ask a client what it monitors.
+
+```
+docker exec pmm-client-sp pmm-admin list
+```
+
+Ask the server how many members of each cluster report.
+
+```
+docker exec pmm-server curl -s -u admin:password \
+  --data-urlencode "query=count(count by (service_name,cluster) (mysql_up)) by (cluster)" \
+  http://127.0.0.1:8080/prometheus/api/v1/query
+```
+
+Ask query analytics for the statement count per service. Set the window to one that
+covers the traffic you generated.
+
+```
+docker exec pmm-server curl -s -u admin:password -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"period_start_from":"2026-08-19T08:00:00Z","period_start_to":"2026-08-19T12:00:00Z","group_by":"service_name","columns":["num_queries"],"order_by":"-num_queries","limit":10}' \
+  http://127.0.0.1:8080/v1/qan/metrics:getReport
+```
+
+## Backups
+
+One document per design covers how a single database is backed up and restored. The
+shared account and the tools and the rules that hold for every design are in
+[backups/readme.md](backups/readme.md).
+
+| Design | Document |
+| --- | --- |
+| A asynchronous | [backups/design_a_async.md](backups/design_a_async.md) |
+| B single primary | [backups/design_b_single_primary.md](backups/design_b_single_primary.md) |
+| C multi primary | [backups/design_c_multi_primary.md](backups/design_c_multi_primary.md) |
+| D routed single primary | [backups/design_d_routed_single_primary.md](backups/design_d_routed_single_primary.md) |
+| E routed multi primary | [backups/design_e_routed_multi_primary.md](backups/design_e_routed_multi_primary.md) |
+
 ## Settings worth knowing
 
 The image is pinned to `mysql:8.4`. Because a) it is an LTS release b) the replication
@@ -219,7 +295,7 @@ carries transactions stamped with the group name. Set it to false for anything t
 not a demo.
 
 Passwords default to `password` and `replication` and `app` and `monitor` and `radmin`
-and are plain text in the roles. That is deliberate for a demo. Use `ansible-vault` for
+and `pmm` and are plain text in the roles. That is deliberate for a demo. Use `ansible-vault` for
 anything else.
 
 ProxySQL is pinned to `proxysql/proxysql:3.0.10`. Because a) MySQL Router needs the
@@ -233,3 +309,23 @@ later starts. The container therefore runs with `--initial` so the rendered file
 `/var/tmp/mysql-demo/proxysql-*/proxysql.cnf` stays the single source of truth. The
 `admin` account only answers inside the container. `radmin` is the one that answers over
 the network.
+
+PMM is pinned to `3.9.0` for the server and for the client.
+
+`PMM_ADMIN_PASSWORD` has no effect on `percona/pmm-server:3.9.0`. A server started
+with it on an empty volume refuses `admin` on the first request its API ever sees.
+The role asks the API whether the password it wants is already in place and runs
+`change-admin-password` when the answer is not 200. A healthy re-run changes nothing.
+
+Grafana locks an account for five minutes after five refused logins. An agent
+started against the wrong password retries every five seconds so it locks the
+account it is trying to reach. The server therefore runs with
+`GF_SECURITY_DISABLE_BRUTE_FORCE_LOGIN_PROTECTION` set. Because a) the server holds
+nothing but demo metrics b) the account it protects is the only account there is and
+c) one wrong password would otherwise shut the web UI for five minutes.
+
+Each client keeps `pmm-agent.yaml` in a volume named after the client. A
+registration holds the node identity that every collected metric is stamped with.
+The `PMM_AGENT_SETUP` variable registers again on every container start so a restart
+would drop every service. The role registers with `pmm-admin config` instead and
+only when the agent reports itself disconnected.

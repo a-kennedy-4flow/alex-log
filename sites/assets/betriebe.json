@@ -1,0 +1,212 @@
+[
+  {
+    "slug": "konditorei-mohnblume",
+    "name": "Konditorei Mohnblume",
+    "gewerk": "Konditorei und Café",
+    "bereich": "Essen und Trinken",
+    "strasse": "Lindenplatz 4"
+  },
+  {
+    "slug": "gasthaus-zur-alten-muehle",
+    "name": "Gasthaus Zur Alten Mühle",
+    "gewerk": "Gasthaus mit Zimmern",
+    "bereich": "Essen und Trinken",
+    "strasse": "Mühlweg 2"
+  },
+  {
+    "slug": "apotheke-am-lindenplatz",
+    "name": "Apotheke am Lindenplatz",
+    "gewerk": "Apotheke",
+    "bereich": "Gesundheit",
+    "strasse": "Lindenplatz 9"
+  },
+  {
+    "slug": "optik-sternberg",
+    "name": "Optik Sternberg",
+    "gewerk": "Augenoptik",
+    "bereich": "Gesundheit",
+    "strasse": "Marktstraße 17"
+  },
+  {
+    "slug": "hoerakustik-wieland",
+    "name": "Hörakustik Wieland",
+    "gewerk": "Hörakustik",
+    "bereich": "Gesundheit",
+    "strasse": "Marktstraße 3"
+  },
+  {
+    "slug": "sanitaetshaus-kranich",
+    "name": "Sanitätshaus Kranich",
+    "gewerk": "Orthopädietechnik",
+    "bereich": "Gesundheit",
+    "strasse": "Bahnhofstraße 24"
+  },
+  {
+    "slug": "tierarztpraxis-ehlert",
+    "name": "Tierarztpraxis Ehlert",
+    "gewerk": "Tierarztpraxis",
+    "bereich": "Gesundheit",
+    "strasse": "Am Anger 6"
+  },
+  {
+    "slug": "physiotherapie-rehbrunn",
+    "name": "Physiotherapie Rehbrunn",
+    "gewerk": "Physiotherapie",
+    "bereich": "Gesundheit",
+    "strasse": "Schulstraße 12"
+  },
+  {
+    "slug": "fahrschule-kurvenreich",
+    "name": "Fahrschule Kurvenreich",
+    "gewerk": "Fahrschule",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Industriestraße 8"
+  },
+  {
+    "slug": "kfz-meisterbetrieb-vogt",
+    "name": "Kfz-Meisterbetrieb Vogt",
+    "gewerk": "Autowerkstatt",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Industriestraße 14"
+  },
+  {
+    "slug": "tischlerei-bergmann",
+    "name": "Tischlerei Bergmann",
+    "gewerk": "Tischlerei",
+    "bereich": "Handwerk",
+    "strasse": "Erlenweg 9"
+  },
+  {
+    "slug": "polsterei-seidel",
+    "name": "Polsterei Seidel",
+    "gewerk": "Polsterei",
+    "bereich": "Handwerk",
+    "strasse": "Gerbergasse 5"
+  },
+  {
+    "slug": "schlosserei-kranz",
+    "name": "Schlosserei Kranz",
+    "gewerk": "Metallbau",
+    "bereich": "Handwerk",
+    "strasse": "Industriestraße 22"
+  },
+  {
+    "slug": "elektro-sauer",
+    "name": "Elektro Sauer",
+    "gewerk": "Elektrofachbetrieb",
+    "bereich": "Handwerk",
+    "strasse": "Bahnhofstraße 5"
+  },
+  {
+    "slug": "haustechnik-brandt",
+    "name": "Haustechnik Brandt",
+    "gewerk": "Sanitär und Heizung",
+    "bereich": "Handwerk",
+    "strasse": "Gewerbering 3"
+  },
+  {
+    "slug": "malerwerkstatt-reindl",
+    "name": "Malerwerkstatt Reindl",
+    "gewerk": "Malerbetrieb",
+    "bereich": "Handwerk",
+    "strasse": "Kirchgasse 11"
+  },
+  {
+    "slug": "dachdeckerei-hufnagel",
+    "name": "Dachdeckerei Hufnagel",
+    "gewerk": "Dachdecker",
+    "bereich": "Handwerk",
+    "strasse": "Am Bahndamm 4"
+  },
+  {
+    "slug": "steinmetz-aichinger",
+    "name": "Steinmetzbetrieb Aichinger",
+    "gewerk": "Steinmetz",
+    "bereich": "Handwerk",
+    "strasse": "Friedhofstraße 2"
+  },
+  {
+    "slug": "glaserei-sonnabend",
+    "name": "Glaserei Sonnabend",
+    "gewerk": "Glaserei",
+    "bereich": "Handwerk",
+    "strasse": "Werkstraße 7"
+  },
+  {
+    "slug": "ofenbau-hartmann",
+    "name": "Ofenbau Hartmann",
+    "gewerk": "Ofen- und Kaminbau",
+    "bereich": "Handwerk",
+    "strasse": "Hafnergasse 3"
+  },
+  {
+    "slug": "uhrmacherei-pfeil",
+    "name": "Uhrmacherei Pfeil",
+    "gewerk": "Uhrmacher",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Marktstraße 9"
+  },
+  {
+    "slug": "fotoatelier-lichtblick",
+    "name": "Fotoatelier Lichtblick",
+    "gewerk": "Fotostudio",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Schulstraße 4"
+  },
+  {
+    "slug": "druckerei-falkenberg",
+    "name": "Druckerei Falkenberg",
+    "gewerk": "Druckerei",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Gewerbering 9"
+  },
+  {
+    "slug": "schreibwaren-ohlert",
+    "name": "Schreibwaren Ohlert",
+    "gewerk": "Papeterie",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Marktstraße 12"
+  },
+  {
+    "slug": "musikhaus-cantabile",
+    "name": "Musikhaus Cantabile",
+    "gewerk": "Musikhaus",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Kirchgasse 6"
+  },
+  {
+    "slug": "reisebuero-weitblick",
+    "name": "Reisebüro Weitblick",
+    "gewerk": "Reisebüro",
+    "bereich": "Handel und Dienstleistung",
+    "strasse": "Bahnhofstraße 11"
+  },
+  {
+    "slug": "buchbinderei-halm",
+    "name": "Buchbinderei Halm",
+    "gewerk": "Buchbinderei",
+    "bereich": "Handwerk",
+    "strasse": "Schulstraße 4"
+  },
+  {
+    "slug": "imkerei-sonnenwiese",
+    "name": "Imkerei Sonnenwiese",
+    "gewerk": "Imkerei",
+    "bereich": "Essen und Trinken",
+    "strasse": "Sonnenweg 18"
+  },
+  {
+    "slug": "mosterei-bachtal",
+    "name": "Mosterei Bachtal",
+    "gewerk": "Mosterei",
+    "bereich": "Essen und Trinken",
+    "strasse": "Talstraße 30"
+  },
+  {
+    "slug": "galabau-erle",
+    "name": "Garten- und Landschaftsbau Erle",
+    "gewerk": "Galabau",
+    "bereich": "Handwerk",
+    "strasse": "Am Bahndamm 12"
+  }
+]

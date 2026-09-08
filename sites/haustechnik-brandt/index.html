@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haustechnik Brandt &middot; Sanit&auml;r und Heizung in Rehbrunn</title>
+<meta name="description" content="Haustechnik Brandt in Rehbrunn. Bad und Heizung und W&auml;rmepumpe mit eigenem Notdienst.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 128px; }
+  body { margin: 0; background: #f4f7f9; color: #14202a;
+         font: 16px/1.7 "Source Sans 3", "Segoe UI", system-ui, sans-serif; }
+  a { color: #14708f; }
+  .in { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  header { background: #fff; border-bottom: 1px solid #dde5ea; position: sticky; top: 0; z-index: 40; }
+  header .in { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+               min-height: 72px; flex-wrap: wrap; }
+  .marke { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; }
+  .marke .tropfen { width: 34px; height: 34px; background: #14708f;
+                    border-radius: 50% 50% 50% 4px; transform: rotate(-45deg); }
+  .marke small { display: block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+                 color: #6b7f8b; font-weight: 400; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #33485a; text-decoration: none; }
+  header nav a:hover { color: #14708f; }
+  .unterleiste { background: #14202a; position: sticky; top: 72px; z-index: 35; }
+  .unterleiste .in { display: flex; gap: 6px; overflow-x: auto; padding-top: 8px; padding-bottom: 8px; }
+  .unterleiste a { color: #b7c6d1; text-decoration: none; font-size: 14px; padding: 8px 14px;
+                   border-radius: 999px; white-space: nowrap; }
+  .unterleiste a:hover { background: #22303d; color: #fff; }
+  .unterleiste a.aktiv { background: #14708f; color: #fff; }
+  .buehne { background: linear-gradient(160deg, #14708f, #0d4c62); color: #eaf6fa; }
+  .buehne .in { padding: 58px 24px 50px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px;
+                align-items: center; }
+  @media (max-width: 860px) { .buehne .in { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #a9dced; }
+  h1 { margin: 12px 0 16px; font-size: clamp(32px, 6.4vw, 54px); line-height: 1.05; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 48ch; }
+  .notiz { background: rgba(255,255,255,.12); border-radius: 12px; padding: 22px 24px; }
+  .notiz h3 { margin: 0 0 10px; font-size: 17px; }
+  .notiz p { margin: 0 0 12px; font-size: 15px; }
+  .notiz b { font-size: 20px; }
+  main section { padding: 52px 0; border-bottom: 1px solid #e2e9ee; }
+  h2 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 34px); }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #14708f; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .gitter { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .feld { background: #fff; border: 1px solid #dfe7ec; border-radius: 12px; padding: 20px 22px; }
+  .feld h3 { margin: 0 0 8px; font-size: 18px; }
+  .feld p { margin: 0; font-size: 15px; color: #55697a; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #6b7f8b;
+       padding: 12px; background: #eaf1f5; }
+  td { padding: 12px; border-top: 1px solid #e5ecf0; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 20px 50px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 34px; height: 34px;
+                         background: #14708f; color: #fff; border-radius: 50%; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { color: #55697a; font-size: 15px; }
+  .hinweis { background: #fff6e6; border-left: 5px solid #cf8a1e; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .hinweis p { margin: 0; font-size: 15px; }
+  details { background: #fff; border: 1px solid #dfe7ec; border-radius: 10px; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 14px 18px; font-weight: 600; }
+  details p { margin: 0 18px 16px; font-size: 15px; }
+  address { font-style: normal; }
+  footer { background: #14202a; color: #c2d1dc; font-size: 15px; }
+  footer .in { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #7fc7dd; }
+  footer a { color: #c2d1dc; }
+  .ende { border-top: 1px solid #263543; font-size: 13px; color: #8ba1b1; }
+  .ende .in { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="in">
+    <div class="marke">
+      <span class="tropfen" aria-hidden="true"></span>
+      <span>Haustechnik Brandt<small>Sanit&auml;r &middot; Heizung &middot; L&uuml;ftung</small></span>
+    </div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#bad">Bad</a></li>
+        <li><a href="#heizung">Heizung</a></li>
+        <li><a href="#notdienst">Notdienst</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="unterleiste">
+  <div class="in">
+    <a href="#bad" class="aktiv">Badsanierung</a>
+    <a href="#heizung">Heizungstausch</a>
+    <a href="#waermepumpe">W&auml;rmepumpe</a>
+    <a href="#wartung">Wartung</a>
+    <a href="#notdienst">Notdienst</a>
+    <a href="#foerderung">F&ouml;rderung</a>
+    <a href="#fragen">Fragen</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+</div>
+
+<div class="buehne">
+  <div class="in">
+    <div>
+      <p class="zeile">Meisterbetrieb seit 1988</p>
+      <h1>Ein Bad in zw&ouml;lf Werktagen</h1>
+      <p>Wir koordinieren Fliesenleger und Elektriker und Maler selbst. Sie haben einen
+      Ansprechpartner und einen Terminplan.</p>
+    </div>
+    <div class="notiz">
+      <h3>Rohrbruch oder Heizung aus</h3>
+      <p>Wir sind rund um die Uhr erreichbar. Der Bereitschaftsdienst wechselt w&ouml;chentlich.</p>
+      <b>0152 28817206</b>
+    </div>
+  </div>
+</div>
+
+<main class="in">
+  <section id="bad">
+    <p class="unter">Badsanierung</p>
+    <h2>Vom Aufma&szlig; bis zur letzten Fuge</h2>
+    <p>Ein komplettes Bad dauert bei uns zw&ouml;lf Werktage. Wir arbeiten mit festen Partnern
+    aus dem Ort. Die Wohnung bleibt bewohnbar weil wir jeden Abend aufr&auml;umen.</p>
+    <div class="zwei">
+      <ol class="schritte">
+        <li><b>Aufma&szlig; und Planung</b><span>Wir zeichnen das Bad in drei Varianten.</span></li>
+        <li><b>Auswahl</b><span>Sie w&auml;hlen Fliesen und Objekte in der Ausstellung.</span></li>
+        <li><b>Abbruch</b><span>Zwei Tage. Container steht vor dem Haus.</span></li>
+        <li><b>Rohbau</b><span>Leitungen und Abfluss und Vorwand.</span></li>
+        <li><b>Fliesen</b><span>Vier Tage mit Trockenzeit.</span></li>
+        <li><b>Montage</b><span>Objekte und Armaturen und Silikon.</span></li>
+      </ol>
+      <div>
+        <table>
+          <tr><th>Umfang</th><th class="r">Richtwert</th></tr>
+          <tr><td>Gäste-WC</td><td class="r">ab 7000 &euro;</td></tr>
+          <tr><td>Bad bis 8 Quadratmeter</td><td class="r">ab 19000 &euro;</td></tr>
+          <tr><td>Bad mit bodengleicher Dusche</td><td class="r">ab 23000 &euro;</td></tr>
+          <tr><td>Nur Dusche statt Wanne</td><td class="r">ab 6500 &euro;</td></tr>
+          <tr><td>Barrierefreier Umbau</td><td class="r">ab 21000 &euro;</td></tr>
+        </table>
+        <div class="hinweis" style="margin-top:18px">
+          <p>F&uuml;r den barrierefreien Umbau gibt es einen Zuschuss der Pflegekasse. Wir
+          helfen beim Antrag und warten die Zusage ab.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="heizung">
+    <p class="unter">Heizung</p>
+    <h2>Tausch und Instandsetzung</h2>
+    <p>Wir bauen Gas- und Pelletkessel und W&auml;rmepumpen. Vor jedem Angebot rechnen wir die
+    Heizlast. Ein zu gro&szlig;er Kessel kostet dauerhaft Geld.</p>
+    <div class="gitter">
+      <div class="feld"><h3>Gas-Brennwert</h3><p>Weiterhin sinnvoll bei gutem Bestand. Tausch an einem Tag.</p></div>
+      <div class="feld"><h3>Pellets</h3><p>F&uuml;r H&auml;user ohne Gasanschluss. Lager im Keller n&ouml;tig.</p></div>
+      <div class="feld"><h3>W&auml;rmepumpe</h3><p>Luft oder Erdsonde. Wir pr&uuml;fen die Vorlauftemperatur.</p></div>
+      <div class="feld"><h3>Fu&szlig;bodenheizung</h3><p>Auch nachtr&auml;glich als Fr&auml;ssystem im Estrich.</p></div>
+    </div>
+  </section>
+
+  <section id="waermepumpe">
+    <p class="unter">W&auml;rmepumpe</p>
+    <h2>Wann sie zu Ihrem Haus passt</h2>
+    <div class="zwei">
+      <div>
+        <p>Eine W&auml;rmepumpe arbeitet gut wenn die Vorlauftemperatur niedrig bleibt. Wir
+        messen das im Winter an einem kalten Tag. Erst danach geben wir ein Angebot ab.</p>
+        <p>Oft reicht schon der Tausch einzelner Heizk&ouml;rper. Das ist billiger als eine
+        neue Fu&szlig;bodenheizung im ganzen Haus.</p>
+      </div>
+      <table>
+        <tr><th>Pr&uuml;fpunkt</th><th class="r">Zielwert</th></tr>
+        <tr><td>Vorlauftemperatur am kalten Tag</td><td class="r">unter 55 Grad</td></tr>
+        <tr><td>Heizlast je Quadratmeter</td><td class="r">unter 80 Watt</td></tr>
+        <tr><td>Aufstellort mit Abstand zum Nachbarn</td><td class="r">mindestens 3 Meter</td></tr>
+        <tr><td>Z&auml;hlerschrank vorbereitet</td><td class="r">eigener Kreis</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="wartung">
+    <p class="unter">Wartung</p>
+    <h2>Einmal im Jahr und dann ist Ruhe</h2>
+    <table>
+      <tr><th>Leistung</th><th>Zeitpunkt</th><th class="r">Preis</th></tr>
+      <tr><td>Wartung Gasger&auml;t</td><td>Fr&uuml;hjahr oder Herbst</td><td class="r">169 &euro;</td></tr>
+      <tr><td>Wartung Pelletkessel</td><td>Sommer</td><td class="r">240 &euro;</td></tr>
+      <tr><td>Wartung W&auml;rmepumpe</td><td>Fr&uuml;hjahr</td><td class="r">190 &euro;</td></tr>
+      <tr><td>Trinkwasserpr&uuml;fung</td><td>nach Vorschrift</td><td class="r">ab 140 &euro;</td></tr>
+      <tr><td>Wartungsvertrag mit Vorrang im Notdienst</td><td>j&auml;hrlich</td><td class="r">plus 40 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="notdienst">
+    <p class="unter">Notdienst</p>
+    <h2>Was Sie zuerst tun sollten</h2>
+    <div class="zwei">
+      <div>
+        <ol class="schritte">
+          <li><b>Wasser abstellen</b><span>Der Haupthahn sitzt meist im Keller neben dem Z&auml;hler.</span></li>
+          <li><b>Strom pr&uuml;fen</b><span>Bei Wasser am Kessel die Sicherung ausschalten.</span></li>
+          <li><b>Anrufen</b><span>Beschreiben Sie was Sie sehen. Wir sagen ob wir sofort kommen.</span></li>
+          <li><b>Zugang sichern</b><span>Halten Sie den Weg zum Keller frei und einen Eimer bereit.</span></li>
+        </ol>
+      </div>
+      <div>
+        <div class="hinweis">
+          <p>Im Notdienst berechnen wir einen Zuschlag von achtzig Prozent auf den Stundensatz.
+          Zwischen 22 und 6 Uhr sind es hundert Prozent. Wir sagen das am Telefon.</p>
+        </div>
+        <table style="margin-top:18px">
+          <tr><th>Zeit</th><th class="r">Anfahrt in etwa</th></tr>
+          <tr><td>Werktags 07:00 bis 17:00</td><td class="r">60 Minuten</td></tr>
+          <tr><td>Abends</td><td class="r">90 Minuten</td></tr>
+          <tr><td>Wochenende</td><td class="r">90 Minuten</td></tr>
+          <tr><td>Nachts</td><td class="r">nur bei Wasserschaden</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="foerderung">
+    <p class="unter">F&ouml;rderung</p>
+    <h2>Antr&auml;ge geh&ouml;ren zur Arbeit</h2>
+    <p>F&uuml;r Heizungstausch und Effizienzma&szlig;nahmen gibt es Zusch&uuml;sse. Der Antrag
+    muss vor dem Auftrag gestellt sein. Wir bereiten die Unterlagen vor und arbeiten mit einem
+    Energieberater im Ort zusammen.</p>
+    <details open>
+      <summary>Wann muss der Antrag gestellt sein?</summary>
+      <p>Vor Beginn der Ma&szlig;nahme. Ein Vertrag mit aufschiebender Bedingung ist m&ouml;glich.
+      Das schreiben wir so in das Angebot.</p>
+    </details>
+    <details>
+      <summary>Wie lange dauert die Bewilligung?</summary>
+      <p>Meist vier bis acht Wochen. In dieser Zeit halten wir Ihren Termin frei.</p>
+    </details>
+    <details>
+      <summary>Was passiert bei einem Ausfall im Winter?</summary>
+      <p>Dann bauen wir eine Notheizung ein und beantragen danach. F&uuml;r diesen Fall gibt es
+      eine Ausnahmeregel.</p>
+    </details>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Kurz beantwortet</h2>
+    <details open>
+      <summary>Arbeiten Sie auch f&uuml;r Mieter?</summary>
+      <p>Ja. Bei Reparaturen brauchen wir aber die Zusage des Eigent&uuml;mers f&uuml;r die
+      Rechnung. Sonst geht die Rechnung an Sie.</p>
+    </details>
+    <details>
+      <summary>Bekomme ich einen Festpreis?</summary>
+      <p>Bei Bad und Heizung ja. Bei Reparaturen im Bestand nicht weil wir nicht sehen was
+      hinter der Wand liegt.</p>
+    </details>
+    <details>
+      <summary>Wie weit fahren Sie?</summary>
+      <p>Fünfundzwanzig Kilometer um Rehbrunn. Weiter nur bei gr&ouml;&szlig;eren Auftr&auml;gen.</p>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>B&uuml;rozeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">07:00 &ndash; 16:30</td></tr>
+        <tr><td>Freitag</td><td class="r">07:00 &ndash; 13:00</td></tr>
+        <tr><td>Ausstellung</td><td class="r">nach Vereinbarung</td></tr>
+        <tr><td>Notdienst</td><td class="r">durchgehend</td></tr>
+      </table>
+      <div>
+        <address>
+          Haustechnik Brandt<br>
+          Gewerbering 3<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817206
+        </address>
+        <p style="margin-top:14px">Das B&uuml;ro liegt im Gewerbering hinter der Tankstelle.
+        Die Ausstellung ist im ersten Stock. Ein Aufzug ist vorhanden.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div><h3>Haustechnik</h3>Gewerbering 3<br>97845 Rehbrunn<br>0152 28817206</div>
+    <div><h3>Themen</h3><a href="#bad">Bad</a><br><a href="#heizung">Heizung</a><br><a href="#notdienst">Notdienst</a></div>
+    <div><h3>Betrieb</h3>Inhaber D. Brandt<br>Installateur- und Heizungsbauermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const teile = [...document.querySelectorAll('main section')];
+const punkte = new Map([...document.querySelectorAll('.unterleiste a')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const wacht = new IntersectionObserver(liste => {
+  for (const eintrag of liste) {
+    if (!eintrag.isIntersecting) continue;
+    const link = punkte.get(eintrag.target.id);
+    if (!link) continue;
+    for (const a of punkte.values()) a.classList.remove('aktiv');
+    link.classList.add('aktiv');
+    link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+}, { rootMargin: '-130px 0px -70% 0px' });
+for (const teil of teile) wacht.observe(teil);
+</script>
+</body>
+</html>

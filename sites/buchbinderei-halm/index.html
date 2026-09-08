@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buchbinderei Halm &middot; Rehbrunn</title>
+<meta name="description" content="Buchbinderei Halm in Rehbrunn. Handeinband und Restaurierung und Kassetten nach Ma&szlig;.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; background: #f4efe6; color: #241f19;
+         font: 17px/1.78 "Alegreya", "Iowan Old Style", Georgia, serif; }
+  a { color: #7a3b2e; }
+  .buch { max-width: 1140px; margin: 0 auto; background: #fdfaf3; min-height: 100vh;
+          box-shadow: 0 0 0 1px #e2d9c8; display: grid; grid-template-columns: 260px 1fr; }
+  @media (max-width: 920px) { .buch { grid-template-columns: 1fr; } }
+  .ruecken { background: #7a3b2e; color: #f6ece0; padding: 34px 26px; position: sticky; top: 0;
+             align-self: start; }
+  @media (max-width: 920px) { .ruecken { position: static; } }
+  .ruecken .titel { font-size: 23px; line-height: 1.2; }
+  .ruecken .zunft { margin: 8px 0 28px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 11px;
+                    letter-spacing: .22em; text-transform: uppercase; color: #e0b8a4; }
+  .ruecken ol { list-style: none; margin: 0; padding: 0; counter-reset: k;
+                font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  .ruecken li { counter-increment: k; }
+  .ruecken a { display: grid; grid-template-columns: 28px 1fr; padding: 8px 0; color: #f0dccd;
+               text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .ruecken a::before { content: counter(k, decimal-leading-zero); color: #dfae98; font-size: 13px; }
+  .ruecken a:hover { color: #fff; }
+  .ruecken a.aktiv { color: #fff; font-weight: 600; }
+  .ruecken .zurueck { margin-top: 24px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; }
+  .ruecken .zurueck a { border: 0; color: #e0b8a4; padding: 0; display: inline; }
+  main { padding: 0 44px 60px; }
+  @media (max-width: 620px) { main { padding: 0 24px 46px; } }
+  .kopf { padding: 56px 0 40px; }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #7a3b2e; }
+  h1 { margin: 14px 0 18px; font-size: clamp(34px, 6.4vw, 56px); line-height: 1.06; font-weight: 500;
+       max-width: 18ch; }
+  .kopf p { margin: 0; font-size: 20px; max-width: 54ch; color: #4a4238; }
+  section { padding: 42px 0; border-top: 1px solid #e4dbc9; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 34px); font-weight: 500; }
+  .unter { margin: 0 0 20px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #7a3b2e; }
+  p { margin: 0 0 18px; max-width: 64ch; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 720px) { .zwei { grid-template-columns: 1fr; gap: 16px; } }
+  .bezuege { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+  .bezuege div { border: 1px solid #e0d6c2; background: #fff; }
+  .bezuege .probe { height: 80px; }
+  .bezuege .txt { padding: 10px 12px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; }
+  .bezuege b { display: block; font-size: 15px; }
+  .bezuege span { color: #7d7263; }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8a7f6c;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #241f19; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #e8dfcd; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .schritte { list-style: none; margin: 0; padding: 0; border-left: 2px solid #d8c3a8; }
+  .schritte li { position: relative; padding: 0 0 24px 24px; }
+  .schritte li::before { content: ""; position: absolute; left: -7px; top: 10px; width: 12px; height: 12px;
+                         border-radius: 50%; background: #7a3b2e; }
+  .schritte b { display: block; font-size: 19px; }
+  .schritte span { font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; color: #5d5445; }
+  .merk { border-left: 4px solid #c08a63; padding: 4px 0 4px 20px; font-size: 20px; font-style: italic;
+          color: #3c352c; max-width: 56ch; }
+  address { font-style: normal; }
+  .schluss { border-top: 1px solid #e4dbc9; margin-top: 36px; padding-top: 16px;
+             font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; color: #857b6a; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="buch">
+  <nav class="ruecken" aria-label="Inhalt">
+    <div class="titel">Buchbinderei<br>Halm</div>
+    <p class="zunft">Rehbrunn &middot; seit 1936</p>
+    <ol>
+      <li><a href="#werkstatt" class="aktiv">Die Werkstatt</a></li>
+      <li><a href="#einband">Handeinband</a></li>
+      <li><a href="#restaurierung">Restaurierung</a></li>
+      <li><a href="#kassetten">Kassetten</a></li>
+      <li><a href="#material">Bezugsmaterial</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#preise">Preise</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ol>
+    <p class="zurueck"><a href="../index.html">&larr; Gewerbeverzeichnis</a></p>
+  </nav>
+
+  <main>
+    <div class="kopf">
+      <p class="zeile">Handbuchbinderei</p>
+      <h1>B&uuml;cher werden hier gen&auml;ht und nicht geklebt</h1>
+      <p>Eine Fadenheftung h&auml;lt hundert Jahre. Eine Klebebindung f&auml;llt nach zwanzig
+      Jahren auseinander. Beides bieten wir an und wir sagen Ihnen offen wann welches passt.</p>
+    </div>
+
+    <section id="werkstatt">
+      <p class="unter">Die Werkstatt</p>
+      <h2>Zwei R&auml;ume und viel Papier</h2>
+      <p>Der Betrieb liegt im Erdgeschoss unter dem Fotoatelier. Vorne steht die Presse von
+      1936 und hinten die Schneidemaschine. Wir arbeiten zu zweit und bilden aus wenn sich
+      jemand findet.</p>
+      <p>Die meiste Arbeit kommt von Privatleuten und von zwei Archiven. Dazu kommen
+      Doktorarbeiten und Hochzeitsalben und Kirchenb&uuml;cher aus dem Landkreis.</p>
+      <div class="merk">Ein Buch ist ein Gebrauchsgegenstand. Es soll aufgeschlagen liegen
+      bleiben und nicht zuklappen.</div>
+    </section>
+
+    <section id="einband">
+      <p class="unter">Handeinband</p>
+      <h2>Vom Halbleinen bis zum Ganzleder</h2>
+      <div class="zwei">
+        <div>
+          <p>Ein Handeinband entsteht in etwa zw&ouml;lf Arbeitsschritten. Der Buchblock wird
+          gen&auml;ht und gerundet und abgepresst. Erst danach kommt die Decke.</p>
+          <p>Die Pr&auml;gung auf dem R&uuml;cken setzen wir mit Handstempeln und Blattgold.
+          Jede Zeile wird einzeln ausgerichtet.</p>
+        </div>
+        <table>
+          <tr><th>Einband</th><th class="r">Preis</th></tr>
+          <tr><td>Broschur mit Fadenheftung</td><td class="r">ab 48 &euro;</td></tr>
+          <tr><td>Halbleinen</td><td class="r">ab 95 &euro;</td></tr>
+          <tr><td>Ganzleinen</td><td class="r">ab 130 &euro;</td></tr>
+          <tr><td>Halbleder</td><td class="r">ab 280 &euro;</td></tr>
+          <tr><td>Ganzleder mit Handvergoldung</td><td class="r">ab 620 &euro;</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="restaurierung">
+      <p class="unter">Restaurierung</p>
+      <h2>Alte B&uuml;cher wieder benutzbar machen</h2>
+      <p>Wir sichern R&uuml;cken und erg&auml;nzen Fehlstellen mit Japanpapier. Alles was wir
+      tun soll umkehrbar sein. Wir kleben nichts fest was ein sp&auml;terer Kollege nicht
+      wieder l&ouml;sen kann.</p>
+      <table>
+        <tr><th>Arbeit</th><th>Dauer</th><th class="r">Preis</th></tr>
+        <tr><td>R&uuml;cken sichern</td><td>eine Woche</td><td class="r">ab 90 &euro;</td></tr>
+        <tr><td>Buchblock neu heften</td><td>drei Wochen</td><td class="r">ab 240 &euro;</td></tr>
+        <tr><td>Seiten mit Japanpapier schlie&szlig;en</td><td>nach Umfang</td><td class="r">ab 6 &euro; je Blatt</td></tr>
+        <tr><td>Lederdecke pflegen</td><td>drei Tage</td><td class="r">ab 60 &euro;</td></tr>
+        <tr><td>Gutachten f&uuml;r Archive</td><td>zwei Wochen</td><td class="r">ab 180 &euro;</td></tr>
+      </table>
+    </section>
+
+    <section id="kassetten">
+      <p class="unter">Kassetten</p>
+      <h2>Schutz nach Ma&szlig;</h2>
+      <div class="zwei">
+        <div>
+          <p>F&uuml;r empfindliche B&uuml;cher bauen wir Kassetten aus s&auml;urefreiem Karton.
+          Sie halten Licht und Staub ab und st&uuml;tzen den Einband. F&uuml;r Archive fertigen
+          wir sie in Serie.</p>
+        </div>
+        <table>
+          <tr><th>Art</th><th class="r">Preis</th></tr>
+          <tr><td>Schuber einfach</td><td class="r">ab 45 &euro;</td></tr>
+          <tr><td>Klappkassette</td><td class="r">ab 95 &euro;</td></tr>
+          <tr><td>Kassette mit Leder</td><td class="r">ab 190 &euro;</td></tr>
+          <tr><td>Serie ab zehn St&uuml;ck</td><td class="r">auf Anfrage</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="material">
+      <p class="unter">Bezugsmaterial</p>
+      <h2>Was im Regal liegt</h2>
+      <div class="bezuege">
+        <div><div class="probe" style="background:#7a3b2e"></div><div class="txt"><b>Ziegenleder</b><span>gen&auml;rbt</span></div></div>
+        <div><div class="probe" style="background:#2f4a3f"></div><div class="txt"><b>Buchleinen</b><span>zw&ouml;lf Farben</span></div></div>
+        <div><div class="probe" style="background:repeating-linear-gradient(115deg,#c9b48c 0 8px,#b8a077 8px 16px)"></div><div class="txt"><b>Kammmarmor</b><span>selbst gezogen</span></div></div>
+        <div><div class="probe" style="background:#3f4a6b"></div><div class="txt"><b>Kleisterpapier</b><span>von Hand</span></div></div>
+        <div><div class="probe" style="background:#d8cdb8"></div><div class="txt"><b>Japanpapier</b><span>f&uuml;r Reparatur</span></div></div>
+        <div><div class="probe" style="background:#8a6b2f"></div><div class="txt"><b>Blattgold</b><span>23 Karat</span></div></div>
+      </div>
+      <p style="margin-top:18px">Marmorpapier ziehen wir selbst im Trog. Jeder Bogen ist ein
+      Einzelst&uuml;ck. Wer m&ouml;chte darf beim Ziehen zusehen.</p>
+    </section>
+
+    <section id="ablauf">
+      <p class="unter">Ablauf</p>
+      <h2>Wie ein Auftrag l&auml;uft</h2>
+      <ul class="schritte">
+        <li><b>Vorlage</b><span>Bringen Sie das Buch oder den Stapel Papier vorbei.</span></li>
+        <li><b>Beratung</b><span>Wir zeigen Muster und besprechen Bezug und Pr&auml;gung.</span></li>
+        <li><b>Angebot</b><span>Schriftlich mit Preis und Termin. G&uuml;ltig acht Wochen.</span></li>
+        <li><b>Arbeit</b><span>Zwei bis sechs Wochen je nach Umfang und Auftragslage.</span></li>
+        <li><b>Abholung</b><span>Sie sehen das Ergebnis an bevor Sie zahlen.</span></li>
+      </ul>
+    </section>
+
+    <section id="preise">
+      <p class="unter">Preise</p>
+      <h2>H&auml;ufige Arbeiten</h2>
+      <table>
+        <tr><th>Arbeit</th><th class="r">Preis</th></tr>
+        <tr><td>Doktorarbeit in Ganzleinen</td><td class="r">ab 68 &euro;</td></tr>
+        <tr><td>Zeitschriftenjahrgang binden</td><td class="r">ab 85 &euro;</td></tr>
+        <tr><td>Fotoalbum nach Ma&szlig;</td><td class="r">ab 140 &euro;</td></tr>
+        <tr><td>Gästebuch mit Pr&auml;gung</td><td class="r">ab 160 &euro;</td></tr>
+        <tr><td>Notizbuch aus Restpapier</td><td class="r">22 &euro;</td></tr>
+        <tr><td>Pr&auml;gung je Zeile</td><td class="r">18 &euro;</td></tr>
+      </table>
+    </section>
+
+    <section id="kontakt">
+      <p class="unter">Kontakt</p>
+      <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+      <div class="zwei">
+        <table>
+          <tr><th>Tag</th><th class="r">Zeit</th></tr>
+          <tr><td>Dienstag bis Donnerstag</td><td class="r">09:00 &ndash; 16:00</td></tr>
+          <tr><td>Freitag</td><td class="r">09:00 &ndash; 13:00</td></tr>
+          <tr><td>Samstag</td><td class="r">nach Vereinbarung</td></tr>
+          <tr><td>Montag</td><td class="r">geschlossen</td></tr>
+        </table>
+        <div>
+          <address>
+            Buchbinderei Halm<br>
+            Schulstra&szlig;e 4<br>
+            97845 Rehbrunn<br>
+            Telefon 0152 28817328
+          </address>
+          <p style="margin-top:14px">Die Werkstatt liegt im Erdgeschoss. &Uuml;ber uns ist das
+          Fotoatelier Lichtblick. Bitte klingeln Sie zweimal weil die Presse laut ist.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="schluss">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</p>
+  </main>
+</div>
+
+<script>
+const teile = [...document.querySelectorAll('main section')];
+const punkte = new Map([...document.querySelectorAll('.ruecken a[href^="#"]')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const wacht = new IntersectionObserver(liste => {
+  for (const eintrag of liste) {
+    if (!eintrag.isIntersecting) continue;
+    const link = punkte.get(eintrag.target.id);
+    if (!link) continue;
+    for (const a of punkte.values()) a.classList.remove('aktiv');
+    link.classList.add('aktiv');
+  }
+}, { rootMargin: '-20px 0px -74% 0px' });
+for (const teil of teile) wacht.observe(teil);
+</script>
+</body>
+</html>

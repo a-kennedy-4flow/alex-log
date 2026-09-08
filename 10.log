@@ -1,0 +1,18 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-06T19:16:34Z  cat of the todo and the tokens and the log conventions  ->  The todo has five sections. The live palette is navy and orange. Logs run one to nine so this session writes ten.
+2026-09-06T19:19:59Z  heredoc rewrote apps/web/src/styles/tokens.css  ->  The palette is now the six theme colours with white and seven named shades. Radius is one value of 14px. Arial replaces Segoe UI.
+2026-09-06T19:21:41Z  sed remapped every legacy token across the vue files  ->  Navy and the three state colours are gone. Orange no longer carries small text because it reaches only 3.32 to 1 on white.
+2026-09-06T19:22:36Z  wrote apps/web/src/composables/useView.ts  ->  One ref holds grid or board. A watch persists it to localStorage the way the profile persists.
+2026-09-06T19:23:00Z  python3 edited packages/core/src/types.ts and calendar.ts  ->  holidayName was the ISO date so it is now the boolean holiday. rowToDay inverts trackerRow so the board can mark the day an issue points at.
+2026-09-06T19:24:10Z  wrote apps/web/src/composables/useRowEdit.ts  ->  The row editing rules move out of MonthGrid so the board writes a day the same way the grid does.
+2026-09-06T19:25:20Z  wrote apps/web/src/components/MonthCalendar.vue  ->  The board is a table of seven columns with a chip a booked half day and a popover on the cell. It holds no timesheet state.
+2026-09-06T19:27:06Z  python3 rewrote PeriodBar.vue and the MonthGrid styles  ->  PeriodBar is now the sheet head with the view switch and the stat strip. The grid header is Grey over a Bright Blue rule.
+2026-09-06T19:27:29Z  heredoc rewrote pages/MonthPage.vue  ->  The page is a title row then one sheet. The grid and the board share the middle band and the download closes the sheet.
+2026-09-06T19:30:22Z  python3 added the switch keys to all eight locales and the board steps to useTour  ->  The tour now carries both runs of steps and drops whichever view is not drawn.
+2026-09-06T19:37:48Z  wrote src/__tests__/colour.test.ts then proved it by injecting the old orange  ->  The check reads the palette out of tokens.css. It failed on the injected hex and it passes on what ships.
+2026-09-06T19:38:17Z  python3 ticked docs/todo-f-design-and-board-view.md and added the closing section  ->  Every box is ticked. The holiday name item is recorded as done another way because the workbook holds dates and no names.
+2026-09-06T19:39:34Z  pnpm -r test then pnpm typecheck then vite build  ->  325 tests pass across the five packages. Six typechecks pass. The bundle builds.

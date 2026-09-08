@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physiotherapie Rehbrunn</title>
+<meta name="description" content="Physiotherapie in Rehbrunn. Krankengymnastik und manuelle Therapie und Rehasport.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+  body { margin: 0; background: #101418; color: #eef1f4;
+         font: 17px/1.7 "Manrope", "Segoe UI", system-ui, sans-serif; }
+  a { color: #6ad3b4; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 18px 0; border-bottom: 1px solid #1e262d; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 flex-wrap: wrap; }
+  .marke { font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
+  .marke span { color: #6ad3b4; }
+  header nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #9fb0bd; text-decoration: none; }
+  header nav a:hover { color: #6ad3b4; }
+  .buehne { padding: 66px 0 50px; }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #6ad3b4; }
+  h1 { margin: 14px 0 18px; font-size: clamp(34px, 7vw, 62px); line-height: 1.02; letter-spacing: -.03em;
+       max-width: 18ch; }
+  .buehne p { margin: 0 0 26px; font-size: 20px; color: #b9c6d0; max-width: 52ch; }
+  .messwerte { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+  .messwerte div { border: 1px solid #222c34; border-radius: 14px; padding: 18px 20px; }
+  .messwerte b { display: block; font-size: 28px; letter-spacing: -.02em; }
+  .messwerte span { font-size: 14px; color: #91a2ae; }
+  section { padding: 54px 0; border-top: 1px solid #1e262d; }
+  h2 { margin: 0 0 8px; font-size: clamp(26px, 4.4vw, 38px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 24px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #6ad3b4; }
+  p { margin: 0 0 16px; max-width: 70ch; color: #ccd6de; }
+  .schalter { display: inline-flex; background: #171e24; border: 1px solid #232d35; border-radius: 999px;
+              padding: 5px; gap: 4px; flex-wrap: wrap; margin-bottom: 26px; }
+  .schalter button { font: inherit; font-size: 15px; padding: 10px 20px; border-radius: 999px;
+                     border: 0; background: transparent; color: #9fb0bd; cursor: pointer; }
+  .schalter button[aria-pressed="true"] { background: #6ad3b4; color: #0d1418; font-weight: 700; }
+  .tafel[hidden] { display: none; }
+  .tafel .kopfzeile { display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px; }
+  @media (max-width: 800px) { .tafel .kopfzeile { grid-template-columns: 1fr; gap: 18px; } }
+  .fakten { list-style: none; margin: 0; padding: 0; }
+  .fakten li { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0;
+               border-bottom: 1px solid #1e262d; font-size: 16px; }
+  .fakten b { color: #6ad3b4; white-space: nowrap; }
+  .gitter { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .feld { background: #161d23; border: 1px solid #222b33; border-radius: 16px; padding: 20px 22px; }
+  .feld h3 { margin: 0 0 8px; font-size: 19px; }
+  .feld p { margin: 0; font-size: 15px; color: #a9b8c3; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #8496a3;
+       padding: 0 10px 12px 0; border-bottom: 1px solid #2a343d; }
+  td { padding: 13px 10px 13px 0; border-bottom: 1px solid #1a222a; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: #6ad3b4; }
+  .ablauf { counter-reset: n; list-style: none; margin: 0; padding: 0; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .ablauf li { counter-increment: n; border-top: 2px solid #6ad3b4; padding-top: 14px; }
+  .ablauf li::before { content: counter(n, decimal-leading-zero); font-size: 13px; color: #6ad3b4;
+                       display: block; margin-bottom: 6px; letter-spacing: .1em; }
+  .ablauf b { display: block; margin-bottom: 4px; }
+  .ablauf span { font-size: 15px; color: #a9b8c3; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  address { font-style: normal; color: #ccd6de; }
+  footer { border-top: 1px solid #1e262d; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; font-size: 15px; color: #9fb0bd; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #6ad3b4; }
+  footer a { color: #cbd6de; }
+  .ende { border-top: 1px solid #1e262d; font-size: 13px; color: #74838f; }
+  .ende .wrap { display: block; padding: 16px 24px 44px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Physiotherapie <span>Rehbrunn</span></span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#therapie">Therapie</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kurse">Kurse</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="buehne">
+    <p class="zeile">Praxis f&uuml;r Physiotherapie</p>
+    <h1>Bewegung ist die Behandlung</h1>
+    <p>Wir arbeiten mit den H&auml;nden und mit &Uuml;bungen. Ger&auml;te setzen wir nur dort
+    ein wo sie etwas bringen.</p>
+    <div class="messwerte">
+      <div><b>6</b><span>Behandlungsr&auml;ume</span></div>
+      <div><b>30 min</b><span>Standardtermin</span></div>
+      <div><b>7</b><span>Therapeutinnen und Therapeuten</span></div>
+      <div><b>2 Wo.</b><span>&uuml;bliche Wartezeit</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="therapie">
+    <p class="unter">Therapie</p>
+    <h2>W&auml;hlen Sie einen Bereich</h2>
+    <div class="schalter" role="group" aria-label="Therapiebereiche">
+      <button aria-pressed="true" data-ziel="b1">Krankengymnastik</button>
+      <button aria-pressed="false" data-ziel="b2">Manuelle Therapie</button>
+      <button aria-pressed="false" data-ziel="b3">Lymphdrainage</button>
+      <button aria-pressed="false" data-ziel="b4">Ger&auml;tetraining</button>
+    </div>
+
+    <div class="tafel" id="b1">
+      <div class="kopfzeile">
+        <div>
+          <h3 style="margin-top:0">Krankengymnastik</h3>
+          <p>Die Grundlage jeder Behandlung. Wir pr&uuml;fen zuerst die Bewegung und die Kraft.
+          Danach bauen wir ein &Uuml;bungsprogramm auf. Sie bekommen es schriftlich mit nach
+          Hause.</p>
+          <p>H&auml;ufige Gr&uuml;nde sind R&uuml;ckenschmerz und Schulterprobleme und die Zeit
+          nach einer Operation.</p>
+        </div>
+        <ul class="fakten">
+          <li><span>Dauer</span><b>20 bis 30 Minuten</b></li>
+          <li><span>Rezept</span><b>meist sechs Einheiten</b></li>
+          <li><span>Hausbesuch</span><b>m&ouml;glich</b></li>
+          <li><span>Wartezeit</span><b>etwa zwei Wochen</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tafel" id="b2" hidden>
+      <div class="kopfzeile">
+        <div>
+          <h3 style="margin-top:0">Manuelle Therapie</h3>
+          <p>Gezielte Griffe an Gelenk und Muskel. Wir l&ouml;sen Blockaden und verbessern die
+          Beweglichkeit. Danach folgt immer eine &Uuml;bung damit das Ergebnis bleibt.</p>
+          <p>Vier Personen im Team haben die Zusatzausbildung. Sie brauchen daf&uuml;r ein
+          entsprechendes Rezept.</p>
+        </div>
+        <ul class="fakten">
+          <li><span>Dauer</span><b>20 bis 30 Minuten</b></li>
+          <li><span>Zusatzqualifikation</span><b>4 im Team</b></li>
+          <li><span>H&auml;ufig bei</span><b>Nacken und H&uuml;fte</b></li>
+          <li><span>Wartezeit</span><b>etwa drei Wochen</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tafel" id="b3" hidden>
+      <div class="kopfzeile">
+        <div>
+          <h3 style="margin-top:0">Manuelle Lymphdrainage</h3>
+          <p>Sanfte Griffe bewegen die Fl&uuml;ssigkeit im Gewebe. Wir behandeln nach
+          Operationen und bei chronischem Lymph&ouml;dem. Die Bandage geh&ouml;rt zur
+          Behandlung dazu.</p>
+          <p>Wir arbeiten eng mit dem Sanit&auml;tshaus Kranich zusammen. Kompression und
+          Therapie greifen ineinander.</p>
+        </div>
+        <ul class="fakten">
+          <li><span>Dauer</span><b>30 bis 60 Minuten</b></li>
+          <li><span>Mit Bandage</span><b>zus&auml;tzlich 15 Minuten</b></li>
+          <li><span>Rezept</span><b>MLD 30 oder MLD 45</b></li>
+          <li><span>Wartezeit</span><b>etwa eine Woche</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tafel" id="b4" hidden>
+      <div class="kopfzeile">
+        <div>
+          <h3 style="margin-top:0">Training an Ger&auml;ten</h3>
+          <p>Zw&ouml;lf Ger&auml;te stehen im hinteren Raum. Wir nutzen sie f&uuml;r den Aufbau
+          nach Verletzung und f&uuml;r den Rehasport. Sie trainieren nie ohne Anleitung.</p>
+          <p>Der Raum ist klein und das ist Absicht. Mehr als sechs Personen trainieren nie
+          gleichzeitig.</p>
+        </div>
+        <ul class="fakten">
+          <li><span>Ger&auml;te</span><b>12</b></li>
+          <li><span>Gruppe</span><b>h&ouml;chstens 6 Personen</b></li>
+          <li><span>Einheit</span><b>60 Minuten</b></li>
+          <li><span>Rehasport</span><b>auf Verordnung</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Vom Rezept bis zum letzten Termin</h2>
+    <ol class="ablauf">
+      <li><b>Anruf</b><span>Sie nennen die Verordnung und wir suchen die Termine gleich als Reihe.</span></li>
+      <li><b>Erstbefund</b><span>Der erste Termin dauert l&auml;nger. Wir messen und dokumentieren.</span></li>
+      <li><b>Behandlung</b><span>Sechs bis zehn Termine je nach Verordnung. Meist zweimal in der Woche.</span></li>
+      <li><b>Abschluss</b><span>Sie bekommen ein Programm f&uuml;r zu Hause und einen Bericht f&uuml;r die Praxis.</span></li>
+    </ol>
+  </section>
+
+  <section id="kurse">
+    <p class="unter">Kurse</p>
+    <h2>Feste Gruppen in der Woche</h2>
+    <div class="gitter">
+      <div class="feld"><h3>R&uuml;ckenschule</h3><p>Montag 18:00 &middot; acht Termine &middot; Kassenzuschuss m&ouml;glich</p></div>
+      <div class="feld"><h3>Rehasport Orthop&auml;die</h3><p>Dienstag und Donnerstag 17:00 &middot; auf Verordnung</p></div>
+      <div class="feld"><h3>Beckenboden</h3><p>Mittwoch 19:00 &middot; sechs Termine &middot; kleine Gruppe</p></div>
+      <div class="feld"><h3>Nordic Walking</h3><p>Samstag 09:00 &middot; Start am Sportplatz &middot; ganzj&auml;hrig</p></div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Selbstzahler und Zuzahlung</h2>
+    <p>Mit Rezept zahlen gesetzlich Versicherte zehn Prozent und zehn Euro je Verordnung. Wer
+    befreit ist zahlt nichts. Ohne Rezept gelten die folgenden Preise.</p>
+    <table>
+      <tr><th>Leistung</th><th>Dauer</th><th class="r">Preis</th></tr>
+      <tr><td>Krankengymnastik</td><td>25 Minuten</td><td class="r">42 &euro;</td></tr>
+      <tr><td>Manuelle Therapie</td><td>25 Minuten</td><td class="r">48 &euro;</td></tr>
+      <tr><td>Lymphdrainage</td><td>45 Minuten</td><td class="r">62 &euro;</td></tr>
+      <tr><td>Klassische Massage</td><td>20 Minuten</td><td class="r">34 &euro;</td></tr>
+      <tr><td>W&auml;rmepackung</td><td>15 Minuten</td><td class="r">14 &euro;</td></tr>
+      <tr><td>Trainingskarte zehn Einheiten</td><td>je 60 Minuten</td><td class="r">120 &euro;</td></tr>
+      <tr><td>Hausbesuch im Ort</td><td>zus&auml;tzlich</td><td class="r">18 &euro;</td></tr>
+    </table>
+    <p style="margin-top:18px">Termine sagen wir bis vierundzwanzig Stunden vorher kostenfrei
+    ab. Danach berechnen wir den Ausfall.</p>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">07:00 &ndash; 19:00</td></tr>
+        <tr><td>Freitag</td><td class="r">07:00 &ndash; 15:00</td></tr>
+        <tr><td>Telefonzeit</td><td class="r">08:00 &ndash; 12:00</td></tr>
+        <tr><td>Samstag und Sonntag</td><td class="r">geschlossen</td></tr>
+      </table>
+      <div>
+        <address>
+          Physiotherapie Rehbrunn<br>
+          Schulstra&szlig;e 12<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817129
+        </address>
+        <p style="margin-top:14px">Die Praxis liegt im Erdgeschoss des Ärztehauses. Vor dem
+        Haus gibt es zwanzig Parkpl&auml;tze. Der Zugang ist barrierefrei.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Praxis</h3>Schulstra&szlig;e 12<br>97845 Rehbrunn<br>0152 28817129</div>
+    <div><h3>Bereiche</h3><a href="#therapie">Therapie</a><br><a href="#kurse">Kurse</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Leitung</h3>K. Ruppert<br>Physiotherapeutin und Manualtherapeutin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const knoepfe = [...document.querySelectorAll('.schalter button')];
+for (const knopf of knoepfe) {
+  knopf.addEventListener('click', () => {
+    for (const anderer of knoepfe) {
+      const an = anderer === knopf;
+      anderer.setAttribute('aria-pressed', String(an));
+      document.getElementById(anderer.dataset.ziel).hidden = !an;
+    }
+  });
+}
+</script>
+</body>
+</html>

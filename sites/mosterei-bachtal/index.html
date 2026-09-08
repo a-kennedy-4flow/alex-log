@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosterei Bachtal &middot; Rehbrunn</title>
+<meta name="description" content="Mosterei Bachtal in Rehbrunn. Lohnmosten und eigener Saft aus Streuobst und Bag in Box.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+  body { margin: 0; background: #fbfdf7; color: #1e2a16;
+         font: 17px/1.7 "Merriweather Sans", "Segoe UI", system-ui, sans-serif; }
+  a { color: #4a7c1e; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: #4a7c1e; color: #f3f9ec; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 66px; flex-wrap: wrap; }
+  .marke { font-weight: 700; font-size: 20px; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #dcecc9; text-decoration: none; }
+  header nav a:hover { color: #fff; }
+  .buehne { background: #eef5e4; border-bottom: 1px solid #dbe8cb; }
+  .buehne .wrap { padding: 54px 24px 46px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 34px;
+                  align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #4a7c1e;
+           font-weight: 700; }
+  h1 { margin: 12px 0 16px; font-size: clamp(32px, 6.4vw, 54px); line-height: 1.05; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 46ch; color: #40502f; }
+  .aepfel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .aepfel div { aspect-ratio: 1; border-radius: 50% 50% 46% 46%; position: relative; }
+  .aepfel div::after { content: ""; position: absolute; top: -6px; left: 50%; width: 3px; height: 12px;
+                       background: #5a4326; transform: translateX(-50%) rotate(12deg); }
+  section { padding: 50px 0; border-bottom: 1px solid #e4ecd9; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 35px); }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #4a7c1e; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .strasse { list-style: none; margin: 0; padding: 0; display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 2px; background: #dbe8cb;
+             border: 1px solid #dbe8cb; }
+  .strasse li { background: #fff; padding: 20px; position: relative; }
+  .strasse .nr { display: block; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+                 color: #4a7c1e; margin-bottom: 8px; font-weight: 700; }
+  .strasse b { display: block; font-size: 18px; margin-bottom: 4px; }
+  .strasse span { font-size: 15px; color: #57664a; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #6b7a5d;
+       padding: 12px; background: #eef5e4; }
+  td { padding: 12px; border-top: 1px solid #e8efdf; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  details { background: #fff; border: 1px solid #dfe8d3; border-radius: 10px; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 15px 18px; font-weight: 700; }
+  details p { margin: 0 18px 16px; font-size: 16px; }
+  .kasten { background: #eef5e4; border-left: 5px solid #4a7c1e; padding: 18px 22px; border-radius: 0 10px 10px 0; }
+  .kasten p { margin: 0; }
+  address { font-style: normal; }
+  footer { background: #1e2a16; color: #cbd8bd; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #a7d17a; }
+  footer a { color: #cbd8bd; }
+  .ende { border-top: 1px solid #33422a; font-size: 13px; color: #94a586; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Mosterei Bachtal</span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#lohnmosten">Lohnmosten</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#saft">Eigener Saft</a></li>
+        <li><a href="#fragen">Fragen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Mosterei seit 1968</p>
+      <h1>Ihre &Auml;pfel kommen als Ihr Saft zur&uuml;ck</h1>
+      <p>Wir pressen im Herbst an sechs Tagen in der Woche. Ab hundert Kilogramm bekommen Sie
+      den Saft aus Ihren eigenen Fr&uuml;chten.</p>
+    </div>
+    <div class="aepfel" aria-hidden="true">
+      <div style="background:#c0392b"></div><div style="background:#d9a441"></div>
+      <div style="background:#8aa63c"></div><div style="background:#b8452f"></div>
+      <div style="background:#c9b23c"></div><div style="background:#6f8f33"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="lohnmosten">
+    <p class="unter">Lohnmosten</p>
+    <h2>Von der Wiese in die Kiste</h2>
+    <p>Bringen Sie die &Auml;pfel sauber und ohne Faulstellen. Gras und Bl&auml;tter d&uuml;rfen
+    dabei sein. Wir waschen und mahlen und pressen und pasteurisieren am selben Tag.</p>
+    <table>
+      <tr><th>Menge</th><th>Ergibt etwa</th><th class="r">Preis je Liter</th></tr>
+      <tr><td>100 bis 300 kg</td><td>65 bis 200 Liter</td><td class="r">0,95 &euro;</td></tr>
+      <tr><td>300 bis 600 kg</td><td>200 bis 400 Liter</td><td class="r">0,88 &euro;</td></tr>
+      <tr><td>&uuml;ber 600 kg</td><td>&uuml;ber 400 Liter</td><td class="r">0,82 &euro;</td></tr>
+      <tr><td>Beutel 5 Liter mit Karton</td><td>&mdash;</td><td class="r">1,60 &euro; je St&uuml;ck</td></tr>
+      <tr><td>Beutel 10 Liter mit Karton</td><td>&mdash;</td><td class="r">2,40 &euro; je St&uuml;ck</td></tr>
+    </table>
+    <div class="kasten" style="margin-top:20px">
+      <p>Aus hundert Kilogramm &Auml;pfeln werden etwa f&uuml;nfundsechzig Liter Saft. Bei sehr
+      trockenen Jahren sind es weniger. Wir wiegen vor Ihren Augen.</p>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Sechs Stationen an einem Tag</h2>
+    <ol class="strasse">
+      <li><span class="nr">Schritt 1</span><b>Annahme</b><span>Wiegen und Wartenummer ziehen. Meist geht es in einer Stunde weiter.</span></li>
+      <li><span class="nr">Schritt 2</span><b>Waschen</b><span>Die Fr&uuml;chte laufen durch die Waschrinne und &uuml;ber den Verleseband.</span></li>
+      <li><span class="nr">Schritt 3</span><b>Mahlen</b><span>Die M&uuml;hle macht Maische. Kerne und Schalen bleiben drin.</span></li>
+      <li><span class="nr">Schritt 4</span><b>Pressen</b><span>Bandpresse mit siebzig Prozent Ausbeute. Der Trester geht an die H&ouml;fe.</span></li>
+      <li><span class="nr">Schritt 5</span><b>Erhitzen</b><span>Kurz auf achtzig Grad. Das macht den Saft ein Jahr haltbar.</span></li>
+      <li><span class="nr">Schritt 6</span><b>Abf&uuml;llen</b><span>In Beutel mit Zapfhahn. Sie nehmen alles gleich mit.</span></li>
+    </ol>
+  </section>
+
+  <section id="saft">
+    <p class="unter">Eigener Saft</p>
+    <h2>Was im Laden steht</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir kaufen Streuobst von H&ouml;fen und Privatleuten aus dem Tal. Daraus entsteht
+        unser eigener Saft. Er ist naturtr&uuml;b und ohne Zucker und ohne Wasser.</p>
+        <p>Wer Obst abgibt bekommt Geld oder Saft im Tausch. Zwei Kisten &Auml;pfel ergeben
+        etwa einen Karton mit zehn Litern.</p>
+      </div>
+      <table>
+        <tr><th>Erzeugnis</th><th class="r">Preis</th></tr>
+        <tr><td>Apfelsaft 5 Liter</td><td class="r">9,50 &euro;</td></tr>
+        <tr><td>Apfelsaft 10 Liter</td><td class="r">17,00 &euro;</td></tr>
+        <tr><td>Apfel und Birne 5 Liter</td><td class="r">10,50 &euro;</td></tr>
+        <tr><td>Apfel und Holunder 5 Liter</td><td class="r">12,00 &euro;</td></tr>
+        <tr><td>Apfelsaft in der Flasche 0,7 l</td><td class="r">2,60 &euro;</td></tr>
+        <tr><td>Apfelessig 0,5 l</td><td class="r">5,40 &euro;</td></tr>
+        <tr><td>Obst ankaufen je 100 kg</td><td class="r">14,00 &euro;</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Was vor dem ersten Mal wichtig ist</h2>
+    <details open>
+      <summary>Muss ich einen Termin machen?</summary>
+      <p>Ab dreihundert Kilogramm ja. Darunter kommen Sie einfach vorbei. An Samstagen im
+      Oktober ist immer viel los und dann warten Sie eine Stunde.</p>
+    </details>
+    <details>
+      <summary>Wie lange h&auml;lt der Saft?</summary>
+      <p>Ungeöffnet etwa ein Jahr an einem k&uuml;hlen und dunklen Ort. Ge&ouml;ffnet steht der
+      Beutel drei Monate weil keine Luft hineinkommt.</p>
+    </details>
+    <details>
+      <summary>K&ouml;nnen auch Birnen und Quitten gepresst werden?</summary>
+      <p>Ja. Birnen mischen wir immer mit &Auml;pfeln weil reiner Birnensaft schwer zu pressen
+      ist. Quitten nehmen wir nur nach Absprache.</p>
+    </details>
+    <details>
+      <summary>Was passiert mit dem Trester?</summary>
+      <p>Er geht an die H&ouml;fe im Tal als Futter. Was &uuml;brig bleibt kommt in die
+      Biogasanlage. Weggeworfen wird nichts.</p>
+    </details>
+    <details>
+      <summary>Kann ich zusehen?</summary>
+      <p>Unbedingt. Die ganze Anlage ist von einem Steg aus einsehbar. Schulklassen kommen im
+      Oktober regelm&auml;&szlig;ig.</p>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>Saison und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Zeitraum</th><th class="r">Ge&ouml;ffnet</th></tr>
+        <tr><td>September bis November</td><td class="r">Montag bis Samstag 08:00 &ndash; 18:00</td></tr>
+        <tr><td>Dezember bis Februar</td><td class="r">Freitag 14:00 &ndash; 18:00</td></tr>
+        <tr><td>M&auml;rz bis August</td><td class="r">Saftverkauf nach Absprache</td></tr>
+        <tr><td>Terminpressung</td><td class="r">telefonisch</td></tr>
+      </table>
+      <div>
+        <address>
+          Mosterei Bachtal<br>
+          Talstra&szlig;e 30<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817340
+        </address>
+        <p style="margin-top:14px">Die Halle liegt an der Stra&szlig;e nach Bachtal am Bach.
+        Fahren Sie r&uuml;ckw&auml;rts an die Rampe. Kisten leihen wir kostenfrei aus.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Mosterei</h3>Talstra&szlig;e 30<br>97845 Rehbrunn<br>0152 28817340</div>
+    <div><h3>Themen</h3><a href="#lohnmosten">Lohnmosten</a><br><a href="#saft">Eigener Saft</a><br><a href="#fragen">Fragen</a></div>
+    <div><h3>Betrieb</h3>Inhaber K. Bachtal<br>Landwirt und Mostermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

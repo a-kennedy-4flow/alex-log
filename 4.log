@@ -1,0 +1,12 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-03T10:09:47Z  ls -a timesheets/ && tail 3.log  ->  A pnpm workspace with apps and packages. Session three ended on the working weekend column.
+2026-09-03T10:09:47Z  cat timesheets/package.json apps/web/package.json apps/api/package.json vite.config.ts  ->  dev runs vite on port 5173 and dev:api runs vite-node on 8787. The web app reaches the api through VITE_API_URL with no proxy.
+2026-09-03T10:09:47Z  ss -ltnp | grep -E '7685|8787|5173'  ->  Something already listens on 5173. Both 7685 and 8787 are free.
+2026-09-03T10:10:02Z  ps -p 14619 && pnpm --version  ->  The listener on 5173 belongs to the flagswitch repo so timesheets is not running. pnpm 11.10.0 with the workspace already installed.
+2026-09-03T10:10:29Z  PORT=8787 pnpm dev:api  ->  The api listens on 8787 with 3149 projects seeded from the fixtures.
+2026-09-03T10:10:29Z  VITE_API_URL=http://localhost:8787 pnpm --filter @timesheets/web dev --port 7685 --strictPort  ->  Vite 7.3.6 serves the site on 7685. strictPort so a clash fails rather than moving the port.
+2026-09-03T10:10:34Z  curl the health route and the site root  ->  Both answer 200.

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bildnisse f&uuml;r die Vorlagen</title>
+<meta name="description" content="Zw&ouml;lf Stile f&uuml;r gezeichnete Bildnisse im Vergleich. Gleiche vier Namen in jedem Stil.">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f4f4f2; color: #17171a;
+         font: 16px/1.65 "Inter", "Segoe UI", system-ui, sans-serif; }
+  a { color: #8a2f1a; }
+  .in { max-width: 1120px; margin: 0 auto; padding: 0 26px; }
+  header { background: #17171a; color: #eceae4; }
+  header .in { padding: 42px 26px 36px; }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #e8a41c; }
+  h1 { margin: 12px 0 14px; font-size: clamp(30px, 6vw, 48px); line-height: 1.05; }
+  header p { margin: 0 0 8px; max-width: 66ch; font-size: 18px; color: #c4c1ba; }
+  header a { color: #eceae4; }
+  main .in { padding: 12px 26px 60px; }
+  section { padding: 28px 0; border-bottom: 1px solid #e0dfda; }
+  .kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+          flex-wrap: wrap; }
+  h2 { margin: 0; font-size: 22px; font-family: ui-monospace, Consolas, monospace; }
+  .urheber { margin: 2px 0 0; font-size: 14px; color: #6c6a64; }
+  .lizenz { margin: 0; text-align: right; font-size: 13px; font-weight: 700; color: #8a2f1a; }
+  .lizenz.gut { color: #1c6b3a; }
+  .lizenz span { display: block; font-weight: 400; color: #6c6a64; }
+  .reihe { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+           margin: 18px 0 12px; max-width: 620px; }
+  figure { margin: 0; }
+  .reihe img { width: 100%; height: auto; aspect-ratio: 1; background: #fff;
+               border: 1px solid #dedcd6; border-radius: 10px; }
+  figcaption { margin-top: 6px; font-size: 12px; color: #6c6a64; }
+  .satz { margin: 0; max-width: 70ch; color: #3d3c38; }
+  section.frei { background: #f8fbf6; box-shadow: -26px 0 0 #f8fbf6, 26px 0 0 #f8fbf6; }
+  .hinweis { background: #fff5e2; border-left: 5px solid #e8a41c; padding: 16px 20px;
+             border-radius: 0 10px 10px 0; margin: 26px 0; }
+  .hinweis p { margin: 0 0 8px; }
+  .hinweis p:last-child { margin: 0; }
+  code { font-family: ui-monospace, Consolas, monospace; background: #ecebe6; padding: 1px 5px; }
+  footer { background: #17171a; color: #b6b3ac; font-size: 14px; }
+  footer .in { padding: 26px 26px 46px; }
+  footer a { color: #eceae4; }
+</style>
+</head>
+<body>
+<header>
+  <div class="in">
+    <p class="zeile">Arbeitsblatt</p>
+    <h1>Bildnisse f&uuml;r Personen auf den Vorlagen</h1>
+    <p>Zw&ouml;lf Stile mit denselben vier Namen als Same. Gleicher Name ergibt immer dasselbe
+    Gesicht. Alles entsteht auf dem eigenen Rechner ohne Abruf aus dem Netz.</p>
+    <p><a href="index.html">&larr; Vorlagensammlung</a> &middot;
+       <a href="bildvarianten.html">Bilder einbauen</a></p>
+  </div>
+</header>
+
+<main>
+  <div class="in">
+    <div class="hinweis">
+      <p><strong>Gr&uuml;n hinterlegt sind die Stile unter CC0.</strong> Sie verlangen keine
+      Namensnennung. Alle &uuml;brigen stehen unter CC BY 4.0 und brauchen einen Hinweis auf den
+      Urheber auf jeder Seite die sie zeigt.</p>
+      <p>Erzeugt wird mit <code>python3 assets/bildnisse.py</code>. Ein anderer Stil kommt mit
+      <code>--stil notionists</code>. Grundlage ist DiceBear.</p>
+    </div>
+  <section class="frei">
+    <div class="kopf">
+      <div>
+        <h2>open-peeps</h2>
+        <p class="urheber">Pablo Stanley</p>
+      </div>
+      <p class="lizenz gut">CC0 1.0<span>keine Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/open-peeps-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/open-peeps-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/open-peeps-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/open-peeps-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Kraeftige Umrisse und Schultern. Frisur und Zubehoer unterscheiden die Leute deutlich.</p>
+  </section>
+  <section class="frei">
+    <div class="kopf">
+      <div>
+        <h2>notionists</h2>
+        <p class="urheber">Zoish</p>
+      </div>
+      <p class="lizenz gut">CC0 1.0<span>keine Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/notionists-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/notionists-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/notionists-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/notionists-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Feine Strichzeichnung ohne Farbe. Ruhig und zurueckhaltend.</p>
+  </section>
+  <section class="frei">
+    <div class="kopf">
+      <div>
+        <h2>lorelei</h2>
+        <p class="urheber">Lisa Wischofsky</p>
+      </div>
+      <p class="lizenz gut">CC0 1.0<span>keine Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/lorelei-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/lorelei-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/lorelei-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/lorelei-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Schwarzweiss und sehr grafisch. Wirkt eher als Illustration denn als Portraet.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>personas</h2>
+        <p class="urheber">Draftbit</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/personas-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/personas-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/personas-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/personas-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Flach und sachlich mit Kleidung in Farbe. Am naechsten am Personalfoto.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>micah</h2>
+        <p class="urheber">Micah Lanier</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/micah-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/micah-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/micah-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/micah-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Aufgeraeumt und freundlich. Brille und Frisur tragen die Unterscheidung.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>toon-head</h2>
+        <p class="urheber">Johan Melin</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/toon-head-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/toon-head-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/toon-head-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/toon-head-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Kopf und Schultern mit Baerten und Brillen. Sehr nah am Ratespiel.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>dylan</h2>
+        <p class="urheber">Natalia Spivak</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/dylan-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/dylan-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/dylan-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/dylan-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Farbige Kacheln hinter einfachen Gesichtern. Kommt der Spielkarte am naechsten.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>adventurer</h2>
+        <p class="urheber">Lisa Wischofsky</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/adventurer-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/adventurer-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/adventurer-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/adventurer-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Grosse Augen und viel Ausdruck. Eher verspielt.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>avataaars</h2>
+        <p class="urheber">Pablo Stanley</p>
+      </div>
+      <p class="lizenz">eigene Bedingungen<span>Bedingungen pruefen</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/avataaars-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/avataaars-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/avataaars-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/avataaars-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Der bekannte Klassiker. Muetzen und Turbane und Zungen sind moeglich.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>big-smile</h2>
+        <p class="urheber">Ashley Seo</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/big-smile-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/big-smile-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/big-smile-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/big-smile-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Breites Lachen und wenig Ernst. Fuer einen Betrieb zu albern.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>miniavs</h2>
+        <p class="urheber">Webpixels</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/miniavs-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/miniavs-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/miniavs-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/miniavs-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Kleine Bueste mit offenem Mund. Ordentlich aber gleichfoermig.</p>
+  </section>
+  <section>
+    <div class="kopf">
+      <div>
+        <h2>croodles</h2>
+        <p class="urheber">vijay verma</p>
+      </div>
+      <p class="lizenz">CC BY 4.0<span>Nennung noetig</span></p>
+    </div>
+    <div class="reihe"><figure><img src="assets/bildnisse/muster/croodles-silke-amend.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Dr. Silke Amend</figcaption></figure><figure><img src="assets/bildnisse/muster/croodles-jonas-weller.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Jonas Weller</figcaption></figure><figure><img src="assets/bildnisse/muster/croodles-petra-lind.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Petra Lind</figcaption></figure><figure><img src="assets/bildnisse/muster/croodles-mira-sahin.svg" width="704" height="704" loading="lazy" decoding="async" alt=""><figcaption>Mira Sahin</figcaption></figure></div>
+    <p class="satz">Gekritzelte Linien. Passt zu einer Skizze und nicht zu einem Team.</p>
+  </section>
+    <div class="hinweis">
+      <p><strong>Warum gezeichnete Gesichter und keine Fotos.</strong> Ein Foto eines echten
+      Menschen unter dem Namen einer erfundenen Angestellten w&auml;re irref&uuml;hrend. Die
+      &uuml;blichen Lizenzen f&uuml;r Bildmaterial verbieten genau das. Eine Zeichnung stellt
+      niemanden dar und l&ouml;st das Problem.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="in">Arbeitsblatt zur Sammlung. <a href="index.html">Zur&uuml;ck zur Vorlagensammlung</a>.
+  Bildnisse aus der Sammlung DiceBear.</div>
+</footer>
+</body>
+</html>

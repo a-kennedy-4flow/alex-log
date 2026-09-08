@@ -1,0 +1,47 @@
+---
+# Remove the monitoring stack. Kept apart from mysql_docker_teardown because the
+# server is standalone and outlives any one design. Removing a design leaves the
+# server up so the history of that design is still readable.
+
+- name: Define what to remove
+  ansible.builtin.set_fact:
+    pmm_teardown_clients: "{{ pmm_teardown_clients | default(pmm_teardown_default_clients) }}"
+    pmm_teardown_server: "{{ pmm_teardown_server | default('pmm-server') }}"
+    pmm_teardown_volume: "{{ pmm_teardown_volume | default('pmm-server-data') }}"
+    pmm_teardown_network: "{{ pmm_teardown_network | default('pmm') }}"
+  vars:
+    pmm_teardown_default_clients:
+      - pmm-client-async
+      - pmm-client-sp
+      - pmm-client-mp
+
+# The clients come first. A network cannot go while anything is attached to it.
+- name: Remove the clients
+  community.docker.docker_container:
+    name: "{{ item }}"
+    state: absent
+    force_kill: true
+  loop: "{{ pmm_teardown_clients }}"
+
+- name: Remove the agent configuration of each client
+  community.docker.docker_volume:
+    name: "{{ item }}-config"
+    state: absent
+  loop: "{{ pmm_teardown_clients }}"
+
+- name: Remove the server
+  community.docker.docker_container:
+    name: "{{ pmm_teardown_server }}"
+    state: absent
+    force_kill: true
+    keep_volumes: false
+
+- name: Remove the metrics history
+  community.docker.docker_volume:
+    name: "{{ pmm_teardown_volume }}"
+    state: absent
+
+- name: Remove the monitoring network
+  community.docker.docker_network:
+    name: "{{ pmm_teardown_network }}"
+    state: absent

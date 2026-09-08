@@ -1,0 +1,14 @@
+Session log for diagnosing the welcome wizard closing itself when a location is picked.
+2026-09-07T10:41:02Z  grep -ril "questionnair|welcome" over source files; ls; find -maxdepth 2 -type d  Two candidates came back. The ruhe site has a welcome section with no form. The tracker web app has a welcome string.
+2026-09-07T10:41:44Z  grep welcome in website/ruhe/index.html and tracker en.ts; find tracker/apps/web/src  The ruhe hit is static prose. The tracker app holds SetupWizard.vue and useWizard.ts so the wizard is there.
+2026-09-07T10:42:30Z  cat -n composables/useWizard.ts components/SetupWizard.vue  The open state is derived from profileComplete. The location select writes straight to the shared profile.
+2026-09-07T10:43:11Z  grep profileComplete suggestedEntity in useTimesheet.ts; grep wizardOpen across the app  profileComplete is location and entity both set. App.vue gates the wizard on wizardOpen with v-if.
+2026-09-07T10:44:05Z  sed the profile state and saveProfile and App.vue watch and the wizard tests  Root cause confirmed. The tests mount SetupWizard directly so the v-if gate is never exercised.
+2026-09-07T10:45:20Z  sed App.vue boot; cat useIdentity.ts; grep getProfile putProfile usingApi  The profile is fetched from the API inside the catalogue query so it has landed before the wizard can mount.
+2026-09-07T10:46:02Z  node count of fixture locations against implied entities  All 22 locations imply an entity so every location choice completes the profile and closes the wizard.
+2026-09-07T10:52:14Z  rewrote composables/useWizard.ts with a latched running ref and an armWizard entry point  The open reading no longer depends on the answers being collected.
+2026-09-07T10:56:40Z  python edit of App.vue to import armWizard and watch ready  The shell now arms the wizard when the catalogue query settles.
+2026-09-07T10:57:22Z  python edit of render.test.ts to arm in beforeEach and add two cases  One case holds the dialog open through the location answer. The other leaves a filled in profile alone.
+2026-09-07T11:00:12Z  pnpm vitest run in apps/web  All 121 tests pass with the latch in place.
+2026-09-07T11:01:05Z  reverted wizardOpen to the derived reading and ran the wizard block alone  The new case failed as it should so it pins the fault. The file was restored straight after.
+2026-09-07T11:02:40Z  pnpm typecheck in apps/web and pnpm lint at the tracker root  Both clean.

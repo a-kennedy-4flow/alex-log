@@ -1,0 +1,74 @@
+Rehbrunn demonstration sites.
+
+Rehbrunn is an invented German town. Every business in it is invented too.
+
+index.html is the Vorlagensammlung. It presents the thirty sites as a template library
+and serves as the town directory at the same time. Three views and five groupings and
+thirteen pattern filters and a search browse the same thirty cards.
+
+Each business has one folder holding a single index.html. The page carries its own style
+block so no two sites share a stylesheet. That is deliberate because the set exists to
+show thirty different designs.
+
+Pages run from 223 to 385 lines. Among the navigation patterns are dropdown menus and
+mega menus and tab panels and accordions and sticky sidebars and an off canvas menu and
+a price calculator.
+
+betriebe.md lists the businesses. Telephone numbers come from the range reserved for
+fiction.
+
+Scripts
+-------
+assets/vorlagen.py builds index.html. It reads every trader page and works out line
+count and image slots and ground tone and typeface and navigation patterns. Run
+`python3 assets/vorlagen.py` after changing a page. The trade data it starts from sits
+in assets/betriebe.json.
+
+assets/ecke.py puts the amber corner on every trader page. The corner marks the page as
+a template and links back to the library. Running it again refreshes the corner in
+place, so changing the wording or the size means editing the script and rerunning it.
+The library page and the image worksheet carry no corner because neither is a template.
+
+assets/aufnahmen.py takes a screenshot of every trader page and writes the preview
+thumbnails the library cards use. Run `python3 assets/aufnahmen.py` after a page
+changes, then rebuild the library. Two conditions apply because Firefox here is a snap
+package. No other Firefox may be running, and the browser profile must sit in a visible
+directory, so the script keeps it at ~/ff-aufnahme rather than under ~/.cache.
+
+assets/bildnisse.py draws the portraits for named people. It uses DiceBear, which runs
+locally and fetches nothing. The person's name is the seed, so the same name always gives
+the same face. Install it once with `pip install dicebear-core dicebear-styles`. The
+default style is open-peeps because it is CC0 and needs no credit line. `--stil personas`
+switches style, and bildnisse.html compares twelve of them.
+
+Facial hair is set per person in the LEUTE table rather than guessed from the name. A
+random beard on a woman named in the page reads as a bug.
+
+assets/bilder.py generates the placeholder images. Run `python3 assets/bilder.py` for
+all thirty businesses or name one to redo a single set. `--bildnisse 4` adds four
+numbered portraits for a team section.
+
+Previews
+--------
+Each card in the library shows a real screenshot of the page behind it, captured at
+1280 by 900 and stored at 800 pixels wide under assets/aufnahmen. The first eight load
+eagerly so the top of the library is never blank.
+
+Images
+------
+Each business gets a hero at 16 by 9 and a Tafel at 4 by 3 and a Bildnis in square. The
+colour family comes from the trade. Motif and scale and angle and light come from the
+slot so the images on one page differ from each other. A real photograph replaces the
+file of the same name and the page needs no change.
+
+bildvarianten.html compares four ways of adding images and shows the markup for each.
+bildnisse.html compares twelve portrait styles with the same four names and states the
+licence of each.
+
+The Apotheke am Lindenplatz is the worked example. It carries the generated images and a
+drawn mark and six drawn symbols and a drawn site plan.
+
+Placeholder images carry an empty alt attribute because they show nothing. Real
+photographs need a real description there.
+
+Open index.html in a browser. There is no build step and nothing to install.

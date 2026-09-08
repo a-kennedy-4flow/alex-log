@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanit&auml;tshaus Kranich &middot; Rehbrunn</title>
+<meta name="description" content="Sanit&auml;tshaus Kranich in Rehbrunn. Orthop&auml;dietechnik und Reha und Pflegehilfsmittel.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+  body { margin: 0; background: #f7f9fa; color: #17252c;
+         font: 16px/1.7 "Segoe UI", system-ui, sans-serif; }
+  a { color: #0d6b7d; }
+  .servicebalken { background: #17252c; color: #cbd9de; font-size: 13px; }
+  .servicebalken .in { max-width: 1180px; margin: 0 auto; padding: 9px 22px; display: flex;
+                       justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .servicebalken a { color: #7fd3e0; text-decoration: none; }
+  header { background: #fff; border-bottom: 1px solid #dde6ea; position: sticky; top: 0; z-index: 40; }
+  header .in { max-width: 1180px; margin: 0 auto; padding: 0 22px; display: flex; align-items: center;
+               justify-content: space-between; gap: 20px; min-height: 74px; flex-wrap: wrap; }
+  .marke { display: flex; align-items: center; gap: 12px; font-size: 21px; font-weight: 700; }
+  .marke .vogel { width: 38px; height: 38px; border-radius: 50% 50% 50% 6px; background: #0d6b7d; }
+  .marke small { display: block; font-size: 12px; font-weight: 400; letter-spacing: .16em;
+                 text-transform: uppercase; color: #6a7d85; }
+  nav.gross > ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+  nav.gross > ul > li { position: relative; }
+  nav.gross > ul > li > a { display: block; padding: 14px 16px; color: #17252c; text-decoration: none;
+                            font-size: 15px; border-radius: 8px 8px 0 0; }
+  nav.gross > ul > li:hover > a, nav.gross > ul > li:focus-within > a { background: #eaf3f5; color: #0d6b7d; }
+  .mega { position: absolute; left: 0; top: 100%; background: #fff; border: 1px solid #dde6ea;
+          border-radius: 0 10px 10px 10px; box-shadow: 0 18px 40px rgba(23,37,44,.16);
+          padding: 22px; display: none; grid-template-columns: repeat(3, minmax(180px, 1fr));
+          gap: 22px; width: max-content; max-width: 760px; z-index: 50; }
+  nav.gross li:hover > .mega, nav.gross li:focus-within > .mega { display: grid; }
+  .mega h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+             color: #0d6b7d; }
+  .mega ul { list-style: none; margin: 0; padding: 0; }
+  .mega a { display: block; padding: 6px 0; color: #2f4650; text-decoration: none; font-size: 15px; }
+  .mega a:hover { color: #0d6b7d; text-decoration: underline; }
+  @media (max-width: 980px) {
+    header .in { align-items: flex-start; padding-bottom: 12px; }
+    nav.gross > ul { flex-wrap: wrap; }
+    .mega { position: static; display: grid; box-shadow: none; border: 0; padding: 8px 0 14px;
+            grid-template-columns: 1fr 1fr; }
+  }
+  .buehne { background: linear-gradient(120deg, #0d6b7d, #0a4c59); color: #eaf7fa; }
+  .buehne .in { max-width: 1180px; margin: 0 auto; padding: 62px 22px 54px;
+                display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .buehne .in { grid-template-columns: 1fr; gap: 24px; } }
+  .buehne .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
+                   color: #9fdfe9; }
+  h1 { margin: 12px 0 16px; font-size: clamp(32px, 6vw, 52px); line-height: 1.08; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 50ch; }
+  .schnell { background: rgba(255,255,255,.1); border-radius: 14px; padding: 22px 24px; }
+  .schnell h3 { margin: 0 0 12px; font-size: 17px; }
+  .schnell ul { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .schnell li { padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+  .schnell a { color: #fff; }
+  main { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+  section { padding: 54px 0; border-bottom: 1px solid #e3ebee; }
+  h2 { margin: 0 0 6px; font-size: clamp(24px, 4vw, 34px); }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #0d6b7d; font-weight: 600; }
+  p { margin: 0 0 16px; max-width: 72ch; }
+  .karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .karte { background: #fff; border: 1px solid #dde6ea; border-radius: 12px; padding: 22px 24px; }
+  .karte h3 { margin: 0 0 8px; font-size: 19px; }
+  .karte p { margin: 0 0 12px; font-size: 15px; color: #4d626b; }
+  .karte ul { margin: 0; padding-left: 18px; font-size: 15px; color: #4d626b; }
+  .karte li { padding: 3px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #6a7d85;
+       padding: 12px; background: #eef4f6; }
+  td { padding: 12px; border-top: 1px solid #e3ebee; vertical-align: top; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schritte { counter-reset: s; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: s; padding: 0 0 22px 54px; position: relative; }
+  .schritte li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 36px; height: 36px;
+                         border-radius: 10px; background: #0d6b7d; color: #fff; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { color: #4d626b; font-size: 15px; }
+  .hinweis { background: #fff6e8; border-left: 4px solid #c2792b; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .hinweis p { margin: 0; font-size: 15px; }
+  address { font-style: normal; }
+  footer { background: #17252c; color: #c5d4da; font-size: 15px; }
+  footer .in { max-width: 1180px; margin: 0 auto; padding: 40px 22px; display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #7fd3e0; }
+  footer a { color: #c5d4da; }
+  .ende { border-top: 1px solid #2c3f48; font-size: 13px; color: #8ba0a9; }
+  .ende .in { display: block; padding: 16px 22px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="servicebalken"><div class="in">
+  <span>Hausbesuche im ganzen Landkreis &middot; Notruf Pflegebett 0152 28817096</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<header>
+  <div class="in">
+    <div class="marke">
+      <span class="vogel" aria-hidden="true"></span>
+      <span>Sanit&auml;tshaus Kranich<small>Orthop&auml;dietechnik</small></span>
+    </div>
+    <nav class="gross" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#orthopaedie" aria-haspopup="true">Orthop&auml;dietechnik &#9662;</a>
+          <div class="mega">
+            <div>
+              <h4>K&ouml;rper</h4>
+              <ul>
+                <li><a href="#orthopaedie">Bandagen</a></li>
+                <li><a href="#orthopaedie">Orthesen</a></li>
+                <li><a href="#orthopaedie">Korsett</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>F&uuml;&szlig;e</h4>
+              <ul>
+                <li><a href="#einlagen">Einlagen</a></li>
+                <li><a href="#einlagen">Schuhzurichtung</a></li>
+                <li><a href="#einlagen">Diabetesversorgung</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Kompression</h4>
+              <ul>
+                <li><a href="#kompression">Str&uuml;mpfe nach Ma&szlig;</a></li>
+                <li><a href="#kompression">Armversorgung</a></li>
+                <li><a href="#kompression">Anziehhilfen</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="#reha" aria-haspopup="true">Reha und Pflege &#9662;</a>
+          <div class="mega">
+            <div>
+              <h4>Mobilit&auml;t</h4>
+              <ul>
+                <li><a href="#reha">Rollatoren</a></li>
+                <li><a href="#reha">Rollst&uuml;hle</a></li>
+                <li><a href="#reha">Gehhilfen</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Zu Hause</h4>
+              <ul>
+                <li><a href="#reha">Pflegebetten</a></li>
+                <li><a href="#reha">Badhilfen</a></li>
+                <li><a href="#reha">Hausnotruf</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Verbrauch</h4>
+              <ul>
+                <li><a href="#pflegebox">Pflegebox</a></li>
+                <li><a href="#pflegebox">Inkontinenz</a></li>
+                <li><a href="#pflegebox">Desinfektion</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="in">
+    <div>
+      <p class="zeile">Seit 1979 in Rehbrunn</p>
+      <h1>Hilfsmittel sind nur gut wenn sie passen</h1>
+      <p>Wir messen selbst und wir bauen selbst. Unsere Werkstatt liegt im selben Haus wie die
+      Ausstellung.</p>
+    </div>
+    <div class="schnell">
+      <h3>Schnell zum Ziel</h3>
+      <ul>
+        <li><a href="#kompression">Kompressionsstr&uuml;mpfe anmessen</a></li>
+        <li><a href="#einlagen">Einlagen nach Fu&szlig;abdruck</a></li>
+        <li><a href="#reha">Rollator ausleihen</a></li>
+        <li><a href="#pflegebox">Pflegebox beantragen</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="orthopaedie">
+    <p class="unter">Orthop&auml;dietechnik</p>
+    <h2>Vom Rezept bis zur Anprobe</h2>
+    <p>Zwei Orthop&auml;dietechniker und eine Meisterin arbeiten in der Werkstatt. Wir fertigen
+    Orthesen und Korsette nach Gipsabdruck oder nach Scan. Die Anprobe erfolgt immer bei uns
+    im Haus.</p>
+    <div class="karten">
+      <div class="karte">
+        <h3>Bandagen</h3>
+        <p>Fertigware in allen g&auml;ngigen Gr&ouml;&szlig;en. Wir passen sie an und zeigen das Anlegen.</p>
+        <ul><li>Knie und Sprunggelenk</li><li>Handgelenk und Daumen</li><li>R&uuml;cken</li></ul>
+      </div>
+      <div class="karte">
+        <h3>Orthesen</h3>
+        <p>Nach Ma&szlig; gebaut. Lieferzeit zwei bis drei Wochen nach dem Abdruck.</p>
+        <ul><li>Unterschenkel</li><li>Hand und Arm</li><li>Nachtlagerung</li></ul>
+      </div>
+      <div class="karte">
+        <h3>Korsett</h3>
+        <p>Skoliosekorsett in Zusammenarbeit mit der Klinik in Weidenfeld.</p>
+        <ul><li>Scan statt Gips</li><li>Zwei Anproben</li><li>Kontrolle alle drei Monate</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="einlagen">
+    <p class="unter">Einlagen</p>
+    <h2>Fu&szlig;abdruck und Ganganalyse</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir nehmen den Abdruck im Schaum und messen den Druck auf der Platte. Daraus
+        entsteht eine Einlage f&uuml;r Ihren Schuh und f&uuml;r Ihre Belastung.</p>
+        <p>Sporteinlagen bauen wir h&auml;rter. Diabetesversorgungen bauen wir weich und ohne
+        N&auml;hte. Beides braucht rund eine Woche.</p>
+      </div>
+      <table>
+        <tr><th>Versorgung</th><th class="r">Preis</th></tr>
+        <tr><td>Alltagseinlage auf Rezept</td><td class="r">Kassenanteil ab 10 &euro;</td></tr>
+        <tr><td>Sporteinlage privat</td><td class="r">180 &euro;</td></tr>
+        <tr><td>Diabetesversorgung</td><td class="r">auf Rezept</td></tr>
+        <tr><td>Schuhzurichtung</td><td class="r">ab 95 &euro;</td></tr>
+        <tr><td>Ganganalyse ohne Kauf</td><td class="r">45 &euro;</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="kompression">
+    <p class="unter">Kompression</p>
+    <h2>Anmessen am fr&uuml;hen Morgen</h2>
+    <p>Beine schwellen im Lauf des Tages an. Deshalb messen wir Kompressionsstr&uuml;mpfe nur
+    bis elf Uhr. Bitte bringen Sie das Rezept und Ihre Versichertenkarte mit.</p>
+    <table>
+      <tr><th>Leistung</th><th>Dauer</th><th class="r">Hinweis</th></tr>
+      <tr><td>Serienstrumpf anmessen</td><td>20 Minuten</td><td class="r">meist vorr&auml;tig</td></tr>
+      <tr><td>Ma&szlig;anfertigung</td><td>30 Minuten</td><td class="r">Lieferung in acht Tagen</td></tr>
+      <tr><td>Armversorgung nach Lymph&ouml;dem</td><td>30 Minuten</td><td class="r">mit Rezept</td></tr>
+      <tr><td>Anziehhilfe erkl&auml;ren</td><td>15 Minuten</td><td class="r">kostenfrei</td></tr>
+    </table>
+  </section>
+
+  <section id="reha">
+    <p class="unter">Reha und Pflege</p>
+    <h2>Alles f&uuml;r zu Hause</h2>
+    <div class="karten">
+      <div class="karte"><h3>Rollatoren</h3><p>Sechs Modelle zum Probelaufen im Laden. Einstellung auf Ihre Gr&ouml;&szlig;e inklusive.</p></div>
+      <div class="karte"><h3>Rollst&uuml;hle</h3><p>Leihstuhl sofort. Anpassung nach Ma&szlig; mit Rezept.</p></div>
+      <div class="karte"><h3>Pflegebetten</h3><p>Lieferung und Aufbau innerhalb von zwei Werktagen. Auch am Wochenende.</p></div>
+      <div class="karte"><h3>Badhilfen</h3><p>Haltegriffe und Duschhocker und Badewannenlifter. Montage auf Wunsch.</p></div>
+    </div>
+    <div class="hinweis" style="margin-top:20px">
+      <p>Ein Leihrollator kostet f&uuml;r zwei Wochen nichts. Danach berechnen wir f&uuml;nf
+      Euro in der Woche.</p>
+    </div>
+  </section>
+
+  <section id="pflegebox">
+    <p class="unter">Pflegebox</p>
+    <h2>Monatliche Lieferung ohne Aufwand</h2>
+    <p>Bei anerkanntem Pflegegrad tr&auml;gt die Pflegekasse Verbrauchshilfsmittel bis zu
+    einem monatlichen Betrag. Wir stellen den Antrag und liefern die Box nach Hause.</p>
+    <ol class="schritte">
+      <li><b>Antrag</b><span>Wir f&uuml;llen ihn mit Ihnen aus. Sie unterschreiben einmal.</span></li>
+      <li><b>Zusage</b><span>Die Kasse antwortet meist innerhalb von zwei Wochen.</span></li>
+      <li><b>Auswahl</b><span>Sie stellen den Inhalt der Box selbst zusammen.</span></li>
+      <li><b>Lieferung</b><span>Jeden Monat frei Haus. &Auml;nderungen jederzeit m&ouml;glich.</span></li>
+    </ol>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>So arbeiten wir mit Ihrer Kasse</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir haben Vertr&auml;ge mit allen gesetzlichen Kassen. Der Papierkram bleibt bei
+        uns. Sie zahlen nur die gesetzliche Zuzahlung.</p>
+        <p>Bei Befreiung von der Zuzahlung bringen Sie bitte den Bescheid mit. Privatpatienten
+        bekommen eine Rechnung zum Einreichen.</p>
+      </div>
+      <div class="hinweis">
+        <p>Ohne Rezept d&uuml;rfen wir viele Hilfsmittel nicht auf Kassenkosten abgeben. Fragen
+        Sie in der Praxis nach der Diagnose und der Hilfsmittelnummer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">08:30 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:00 &ndash; 12:30</td></tr>
+        <tr><td>Anmessen Kompression</td><td class="r">bis 11:00</td></tr>
+        <tr><td>Werkstatt</td><td class="r">07:00 &ndash; 16:00</td></tr>
+      </table>
+      <div>
+        <address>
+          Sanit&auml;tshaus Kranich<br>
+          Bahnhofstra&szlig;e 24<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817096
+        </address>
+        <p style="margin-top:14px">Vor dem Haus liegen sechs Parkpl&auml;tze. Der Eingang ist
+        stufenlos und die T&uuml;r &ouml;ffnet automatisch. Ein Aufzug f&uuml;hrt zur
+        Anprobe.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div><h3>Sanit&auml;tshaus</h3>Bahnhofstra&szlig;e 24<br>97845 Rehbrunn<br>0152 28817096</div>
+    <div><h3>Bereiche</h3><a href="#orthopaedie">Orthop&auml;dietechnik</a><br><a href="#reha">Reha und Pflege</a><br><a href="#pflegebox">Pflegebox</a></div>
+    <div><h3>Betrieb</h3>Inhaberin B. Kranich<br>Orthop&auml;dietechnikermeisterin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

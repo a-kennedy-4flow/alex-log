@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uhrmacherei Pfeil &middot; Rehbrunn</title>
+<meta name="description" content="Uhrmacherei Pfeil in Rehbrunn. Revision und Reparatur von Armbanduhren und Gro&szlig;uhren.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+  body { margin: 0; background: #f6f5f2; color: #1d1c1a;
+         font: 17px/1.75 "EB Garamond", Garamond, Georgia, serif; }
+  a { color: #7a6222; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 26px; }
+  .band { border-bottom: 1px solid #e0ddd5; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; }
+  .band .wrap { display: flex; justify-content: space-between; gap: 14px; padding: 12px 26px; flex-wrap: wrap; }
+  .band a { text-decoration: none; }
+  .kopf { text-align: center; padding: 62px 0 44px; }
+  .zifferblatt { width: 92px; height: 92px; margin: 0 auto 24px; border-radius: 50%; border: 2px solid #1d1c1a;
+                 position: relative; background: #fffdf8; }
+  .zifferblatt::before, .zifferblatt::after { content: ""; position: absolute; background: #1d1c1a;
+                                              transform-origin: bottom center; left: 50%; bottom: 50%; }
+  .zifferblatt::before { width: 2px; height: 30px; transform: translateX(-50%) rotate(38deg); }
+  .zifferblatt::after { width: 2px; height: 20px; transform: translateX(-50%) rotate(-70deg); background: #7a6222; }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .34em; text-transform: uppercase; color: #7a6222; }
+  h1 { margin: 14px 0 14px; font-size: clamp(34px, 7vw, 54px); font-weight: 400; }
+  .kopf p { margin: 0 auto; font-size: 20px; max-width: 46ch; color: #45423c; }
+  .punkte { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 20;
+            display: grid; gap: 14px; }
+  @media (max-width: 1080px) { .punkte { display: none; } }
+  .punkte a { width: 11px; height: 11px; border-radius: 50%; border: 1px solid #8a8478; display: block;
+              position: relative; }
+  .punkte a.aktiv { background: #7a6222; border-color: #7a6222; }
+  .punkte span { position: absolute; right: 20px; top: -6px; white-space: nowrap; font-size: 12px;
+                 font-family: "Segoe UI", system-ui, sans-serif; color: #6b675e; opacity: 0;
+                 transition: opacity .2s; background: #f6f5f2; padding: 2px 6px; }
+  .punkte a:hover span, .punkte a.aktiv span { opacity: 1; }
+  section { padding: 48px 0; border-top: 1px solid #e0ddd5; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 34px); font-weight: 400; }
+  .unter { margin: 0 0 20px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .22em; text-transform: uppercase; color: #7a6222; }
+  p { margin: 0 0 18px; max-width: 64ch; }
+  .schritte { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .schritte li { counter-increment: s; display: grid; grid-template-columns: 56px 1fr; gap: 18px;
+                 padding: 16px 0; border-bottom: 1px solid #e8e5dd; }
+  .schritte li::before { content: counter(s, decimal-leading-zero); font-family: "Segoe UI", system-ui, sans-serif;
+                         font-size: 13px; color: #a49b83; padding-top: 5px; }
+  .schritte b { display: block; font-size: 19px; }
+  .schritte span { font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; color: #55514a; }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8a8478;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #1d1c1a; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #e8e5dd; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 700px) { .zwei { grid-template-columns: 1fr; gap: 16px; } }
+  .merk { border-left: 3px solid #c2a548; padding: 4px 0 4px 20px; font-size: 19px; max-width: 56ch;
+          color: #3a3731; }
+  .werkzeug { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0;
+              font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; }
+  .werkzeug li { border: 1px solid #ddd8cc; border-radius: 999px; padding: 7px 15px; background: #fffdf8; }
+  address { font-style: normal; }
+  footer { border-top: 1px solid #e0ddd5; font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px;
+           color: #6b675e; }
+  footer .wrap { padding: 34px 26px 50px; display: grid;
+                 grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; }
+  footer h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #1d1c1a; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="band"><div class="wrap">
+  <span>Werkstatt im Laden &middot; Sie d&uuml;rfen zusehen</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<nav class="punkte" aria-label="Abschnitte">
+  <a href="#haus" class="aktiv"><span>Das Haus</span></a>
+  <a href="#revision"><span>Revision</span></a>
+  <a href="#grossuhren"><span>Gro&szlig;uhren</span></a>
+  <a href="#preise"><span>Preise</span></a>
+  <a href="#werkzeug"><span>Werkzeug</span></a>
+  <a href="#kontakt"><span>Kontakt</span></a>
+</nav>
+
+<div class="wrap">
+  <div class="kopf">
+    <div class="zifferblatt" role="presentation"></div>
+    <p class="zeile">Uhrmachermeister seit 1962</p>
+    <h1>Uhrmacherei Pfeil</h1>
+    <p>Eine mechanische Uhr l&auml;uft ein Leben lang. Sie braucht nur alle f&uuml;nf Jahre
+    frisches &Ouml;l und eine ruhige Hand.</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="haus">
+    <p class="unter">Das Haus</p>
+    <h2>Ein Laden mit vier Quadratmetern Werkstatt</h2>
+    <p>Mein Vater hat den Laden 1962 er&ouml;ffnet. Ich sitze heute an derselben Werkbank am
+    Fenster. Kunden schauen mir dabei &uuml;ber die Schulter und das st&ouml;rt mich nicht.</p>
+    <p>Wir verkaufen keine neuen Uhren. Es gibt nur Reparatur und ein kleines Regal mit
+    gebrauchten St&uuml;cken aus Nachl&auml;ssen. Jedes davon ist von mir &uuml;berholt.</p>
+    <div class="merk">Wer eine Uhr wegwirft weil die Batterie leer ist hat nie eine gute Uhr
+    besessen.</div>
+  </section>
+
+  <section id="revision">
+    <p class="unter">Revision</p>
+    <h2>Was bei einer Komplettrevision passiert</h2>
+    <ol class="schritte">
+      <li><b>Eingang</b><span>Gangwerte messen und Zustand notieren und fotografieren.</span></li>
+      <li><b>Zerlegen</b><span>Das Werk wird vollst&auml;ndig auseinandergenommen.</span></li>
+      <li><b>Reinigen</b><span>Alle Teile im Ultraschall und im Reinigungsautomaten.</span></li>
+      <li><b>Pr&uuml;fen</b><span>Zapfen und Steine und Zugfeder unter dem Mikroskop.</span></li>
+      <li><b>&Ouml;len</b><span>Vier verschiedene &Ouml;le an genau festgelegten Punkten.</span></li>
+      <li><b>Regulieren</b><span>In f&uuml;nf Lagen &uuml;ber drei Tage eingestellt.</span></li>
+      <li><b>Dichtheit</b><span>Geh&auml;use pr&uuml;fen und Dichtungen erneuern.</span></li>
+      <li><b>R&uuml;ckgabe</b><span>Mit Messprotokoll und zw&ouml;lf Monaten Garantie.</span></li>
+    </ol>
+    <p style="margin-top:20px">Eine Revision dauert drei bis sechs Wochen. Fehlt ein Ersatzteil
+    kann es l&auml;nger dauern. Manche Teile fertige ich selbst auf der Drehbank.</p>
+  </section>
+
+  <section id="grossuhren">
+    <p class="unter">Gro&szlig;uhren</p>
+    <h2>Standuhr und Wanduhr und Turmuhr</h2>
+    <div class="zwei">
+      <div>
+        <p>Gro&szlig;uhren hole ich ab und bringe sie zur&uuml;ck. Eine Standuhr wird vor Ort
+        zerlegt und im Werkstattwagen transportiert. Das Pendel reist getrennt.</p>
+        <p>F&uuml;r zwei Kirchen im Landkreis warte ich die Turmuhren. Das geschieht zweimal im
+        Jahr und dauert jeweils einen halben Tag.</p>
+      </div>
+      <table>
+        <tr><th>Uhr</th><th class="r">Revision</th></tr>
+        <tr><td>Wanduhr mit Pendel</td><td class="r">ab 320 &euro;</td></tr>
+        <tr><td>Standuhr mit Schlagwerk</td><td class="r">ab 690 &euro;</td></tr>
+        <tr><td>Kuckucksuhr</td><td class="r">ab 240 &euro;</td></tr>
+        <tr><td>Turmuhr Wartung</td><td class="r">nach Vertrag</td></tr>
+        <tr><td>Abholung im Landkreis</td><td class="r">45 &euro;</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Armbanduhren</h2>
+    <table>
+      <tr><th>Leistung</th><th>Dauer</th><th class="r">Preis</th></tr>
+      <tr><td>Batterie wechseln</td><td>sofort</td><td class="r">12 &euro;</td></tr>
+      <tr><td>Batterie mit Dichtungstausch</td><td>20 Minuten</td><td class="r">28 &euro;</td></tr>
+      <tr><td>Glas ersetzen</td><td>eine Woche</td><td class="r">ab 65 &euro;</td></tr>
+      <tr><td>Band k&uuml;rzen</td><td>sofort</td><td class="r">10 &euro;</td></tr>
+      <tr><td>Revision Handaufzug</td><td>vier Wochen</td><td class="r">ab 290 &euro;</td></tr>
+      <tr><td>Revision Automatik</td><td>vier Wochen</td><td class="r">ab 360 &euro;</td></tr>
+      <tr><td>Revision Chronograph</td><td>sechs Wochen</td><td class="r">ab 620 &euro;</td></tr>
+      <tr><td>Kostenvoranschlag</td><td>eine Woche</td><td class="r">35 &euro;</td></tr>
+    </table>
+    <p style="margin-top:16px">Den Kostenvoranschlag rechne ich bei Auftrag an. Bei Uhren unter
+    hundert Euro Wert sage ich das offen und rate manchmal davon ab.</p>
+  </section>
+
+  <section id="werkzeug">
+    <p class="unter">Werkzeug</p>
+    <h2>Was auf der Bank liegt</h2>
+    <ul class="werkzeug">
+      <li>Drehbank von 1948</li><li>Zeitwaage</li><li>Reinigungsautomat</li>
+      <li>Mikroskop</li><li>Vakuumpr&uuml;fer</li><li>Poliermaschine</li>
+      <li>Sechs Sorten &Ouml;l</li><li>Ersatzteile aus f&uuml;nf Jahrzehnten</li>
+    </ul>
+    <p style="margin-top:20px">Die Drehbank stammt aus der Werkstatt meines Vaters. Damit
+    fertige ich Wellen und Zapfen f&uuml;r Uhren deren Hersteller es nicht mehr gibt.</p>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Dienstag bis Freitag</td><td class="r">09:00 &ndash; 12:30</td></tr>
+        <tr><td>Dienstag und Donnerstag</td><td class="r">14:30 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:00 &ndash; 12:00</td></tr>
+        <tr><td>Montag</td><td class="r">Werkstatt ohne Laden</td></tr>
+      </table>
+      <div>
+        <address>
+          Uhrmacherei Pfeil<br>
+          Marktstra&szlig;e 9<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817262
+        </address>
+        <p style="margin-top:14px">Der Laden liegt zwischen Optik Sternberg und der Sparkasse.
+        Zwei Stufen f&uuml;hren hinein. Wer schlecht zu Fu&szlig; ist klopft und ich komme
+        heraus.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Uhrmacherei</h3>Marktstra&szlig;e 9<br>97845 Rehbrunn<br>0152 28817262</div>
+    <div><h3>Themen</h3><a href="#revision">Revision</a><br><a href="#grossuhren">Gro&szlig;uhren</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Betrieb</h3>Inhaber G. Pfeil<br>Uhrmachermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+</footer>
+
+<script>
+const teile = [...document.querySelectorAll('main section')];
+const punkte = new Map([...document.querySelectorAll('.punkte a')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const wacht = new IntersectionObserver(liste => {
+  for (const eintrag of liste) {
+    if (!eintrag.isIntersecting) continue;
+    const link = punkte.get(eintrag.target.id);
+    if (!link) continue;
+    for (const a of punkte.values()) a.classList.remove('aktiv');
+    link.classList.add('aktiv');
+  }
+}, { rootMargin: '-30% 0px -60% 0px' });
+for (const teil of teile) wacht.observe(teil);
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+Log 25. Folding the bookmarklet Jira extraction into the tracker Jira request. One month per request. Parent column.
+2026-09-08T13:21:24Z cat tracker/JiraBookmartlet.js | listed the five REST calls and the fields each returns.
+2026-09-08T13:21:24Z ls tracker and grep for rest/api/3 | found the tracker app owns a real Jira client at tracker/apps/api/src/jira.ts.
+2026-09-08T13:26:00Z grep parentSummary across apps/web | JiraPage.vue already shows a parent so the new column belongs to the bookmarklet.
+2026-09-08T13:26:00Z git log on JiraBookmartlet.js | the file is untracked and has no build step so the encoded one liner is the source.
+2026-09-08T13:26:00Z python3 urllib unquote of the bookmarklet | decoded 16293 bytes to the scratchpad for editing.
+2026-09-08T13:26:00Z grep -o the percent codes | the stored form escapes only % and & and ' and = and [ and ] and ^ and backtick and { and | and }.
+2026-09-08T13:26:00Z wrote the scratchpad source with the month windows and the inline worklog field and the batched parent load and the parent column.
+2026-09-08T13:26:00Z node --check on the readable source and again on the collapsed one liner | both parse.
+2026-09-08T13:26:00Z python3 re-encoded and wrote tracker/JiraBookmartlet.js | round trip asserted and the file is still one line.
+2026-09-08T13:26:00Z grep for DAYS and MONTHS[ and the REST paths | no stale reference and the only per issue call left is the worklog overflow fallback.
+2026-09-08T13:28:05Z user redirected the work | the target is the tracker Jira integration and not the bookmarklet.
+2026-09-08T13:28:05Z cat apps/api/src/jira-handlers.ts and jira-fake.ts and packages/core/src/hours.ts | the route caches CompletedTicket per period on the link row.
+2026-09-08T13:28:05Z sed the SCOPES block of apps/web/src/lib/jira.ts | read:field:jira and read:issue-details:jira are already granted so a custom field needs no new scope.
+2026-09-08T13:28:05Z grep cost centre across core and docs | the tracker Workday ID is a catalogue cost centre or project so the Jira Internal Cost Center may map straight onto it.
+2026-09-08T13:38:28Z python3 extended CompletedTicket in packages/core/src/hours.ts | parentKey and costCentre and costCentreFrom and costCentreSpecification and days.
+2026-09-08T13:38:28Z python3 added TICKET_CACHE_VERSION to apps/api/src/repository.ts and the check in jira-handlers.ts | an older cache is discarded rather than read.
+2026-09-08T13:38:28Z python3 rewrote apps/api/src/jira.ts | worklog inline in the search and the batched parent walk and the two cost centre fields matched by name.
+2026-09-08T13:38:28Z python3 updated jira-fake.ts and the web fixtures | the double reports the new fields as absent because the capture never asked for them.
+2026-09-08T13:38:28Z pnpm -r typecheck | every package clean.
+2026-09-08T13:41:50Z rewrote the api jira test suite around a siteOf stub | 136 api tests pass including twenty new ones for the cost centre and the days and the union.
+2026-09-08T13:41:50Z pnpm -r test | only the pre-existing untracked autosave test fails and it is unrelated.
+2026-09-08T13:41:50Z pnpm exec eslint on the eight changed sources | clean.
+2026-09-08T13:41:50Z python3 updated docs/jira.md | the second query and the two cost centre fields and the day breakdown and the fourth endpoint in the scope table.
+2026-09-08T13:51:53Z user asked for the Workday ID to come from the Jira cost centre | the catalogue joins costCentre 99980100 to workdayId 10100.
+2026-09-08T13:51:53Z python3 analysed packages/fixtures/data/projects.json | 1873 distinct cost centres and 8 name two Workday IDs and 1276 rows carry 0.
+2026-09-08T13:51:53Z grep setCatalogue in apps/api/src/lambda.ts | the Jira function never loads the catalogue so the conversion belongs in the browser.
+2026-09-08T13:51:53Z python3 added workdayIdForCostCentre to packages/core/src/catalogue.ts | indexed from every row rather than the deduplicated ones.
+2026-09-08T13:51:53Z python3 rewrote workdayIdOf in apps/web/src/composables/useJira.ts | screen choice then Jira cost centre then the profile map.
+2026-09-08T13:51:53Z wrote packages/core/src/__tests__/cost-centre.test.ts and six web tests | 153 core and 199 web pass.
+2026-09-08T13:51:53Z python3 rewrote the join section of docs/jira.md and the ticketsThisMonth comment | the reminder count is now the union.
+2026-09-08T14:19:27Z grep filename across web and api | the panel built it from profile.location and the API from sheet.location or profile.location.
+2026-09-08T14:19:27Z sed applySheet in useTimesheet.ts | the stored month location was read and then dropped so the browser never held it.
+2026-09-08T14:19:27Z python3 added exportLocation to packages/core/src/filename.ts | one rule now used by handlers.ts and by ExportPanel.vue.
+2026-09-08T14:19:27Z python3 added openLocation to useTimesheet.ts | set on load and on write so the panel names the month it will actually send.
+2026-09-08T14:19:27Z added three core tests and one api test and one render test | 156 core and 137 api and 200 web pass.

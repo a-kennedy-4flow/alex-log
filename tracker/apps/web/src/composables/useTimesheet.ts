@@ -26,7 +26,14 @@ const SHEET_KEY = 'timesheets.sheet'
  * two flush points below cover a tab that closes inside the window. c) the
  * interval is one constant to change.
  */
-const AUTOSAVE_MS = 1000
+/**
+ * How long an edit waits before it is written.
+ *
+ * Exported so a test states the boundary rather than repeating the number. A
+ * test that repeated it passed at exactly one interval and proved the opposite
+ * of what it claimed.
+ */
+export const AUTOSAVE_MS = 1000
 
 /* ---------- profile ---------- */
 

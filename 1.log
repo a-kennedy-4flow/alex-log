@@ -1,0 +1,198 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+#
+# This log was requested part way through the session so it starts here rather
+# than at the first command. Earlier work built five MySQL cluster designs under
+# databases/scripts and an orchestrator image pushed to a local registry.
+2026-08-18T19:47:08Z | cat > 1.log <<HDR | Created this log with its description header.
+2026-08-18T19:47:08Z | ansible-playbook --syntax-check -i hosts mysql_clusters.yml | Syntax check passed for all six plays after wiring designs D and E in.
+2026-08-18T19:47:20Z | docker rm -f proxysql-sp orchestrator-sp | Removed the hand built prototype containers before testing the real roles.
+2026-08-18T19:47:39Z | ansible-playbook mysql_clusters.yml --tags teardown | Removed every stack so design D would be built from nothing.
+2026-08-18T19:49:07Z | ansible-playbook mysql_clusters.yml --tags routed-single | Built design D from scratch. See the run output for the result.
+2026-08-18T19:49:24Z | mysql -h proxysql-sp -P 6032 -u radmin -e "SELECT ... runtime_mysql_servers" | Read the routing table and confirmed one writer and three readers.
+2026-08-18T19:49:24Z | mysql -h proxysql-sp -P 6033 -u app demo -e "INSERT ...; SELECT @@hostname" | Confirmed the write went to the primary and the read went to a secondary.
+2026-08-18T19:49:24Z | orchestrator-client -c discover then -c topology | The discover action was refused as Unauthorized while the topology view still rendered.
+2026-08-18T19:49:56Z | docker stop mysql-sp-1 | Stopped the primary while a client kept writing through the router.
+2026-08-18T19:50:15Z | mysql -h proxysql-sp -P 6033 -e "SELECT who, COUNT(*) ... GROUP BY who" | Showed writes moving from the old primary to the newly elected one with no client change.
+2026-08-18T19:50:15Z | orchestrator-client -c topology -i mysql-sp-2:3306 | The read only observer drew the new primary and the surviving secondary.
+2026-08-18T19:50:43Z | ansible-playbook mysql_clusters.yml --tags teardown | Removed design D so design E would build from nothing.
+2026-08-18T19:51:51Z | ansible-playbook mysql_clusters.yml --tags routed-multi | Built design E from scratch with all three members writable behind the router.
+2026-08-18T19:52:04Z | mysql -h proxysql-mp -P 6032 -u radmin -e "SELECT ... runtime_mysql_servers" | Confirmed all three members sit in the writer hostgroup for design E.
+2026-08-18T19:52:06Z | 15 inserts via mysql -h proxysql-mp -P 6033 then GROUP BY who | Writes spread across all three primaries through the single endpoint.
+2026-08-18T19:52:29Z | docker stop mysql-mp-2 | Stopped one of the three primaries in design E.
+2026-08-18T19:52:42Z | 10 inserts with mysql-mp-2 down then read runtime_mysql_servers | All ten writes succeeded and the dead member was shunned out of the writer hostgroup.
+2026-08-18T19:53:13Z | ansible-playbook mysql_clusters.yml --tags routed-multi (second run) | Rerun rejoined the stopped member and reported the change count shown above.
+2026-08-18T19:53:52Z | ansible-playbook mysql_clusters.yml --tags routed-multi (third run) | Confirmed a healthy rerun of design E reports no changes.
+2026-08-18T19:54:14Z | python3 patch of the three roles then yaml parse check | Added a check before each account creation so a healthy rerun reports nothing.
+2026-08-18T19:54:40Z | ansible-playbook mysql_clusters.yml --tags routed-multi (fourth run) | Healthy rerun of design E now reports zero changes.
+2026-08-18T19:55:11Z | python3 update of mysql_clusters.md | Documented designs D and E and the read only observer.
+2026-08-18T19:55:28Z | python3 update of orchestrator/readme.md | Documented the read only mode and the discovery seeds.
+2026-08-18T19:55:45Z | ansible-playbook mysql_clusters.yml --tags teardown | Removed every stack leaving only the local registry running.
+2026-08-18T19:55:52Z | find . -maxdepth 3 -name "*.yml" and docker ps | Confirmed the final role layout and that no demo containers remain.
+2026-08-18T19:56:14Z | grep and append to MEMORY.md | Recorded the command logging requirement so it survives into later sessions.
+2026-08-18T20:02:39Z | grep AuthenticationMethod in go/config/config.go and go/http/httpbase.go | Checked what login the orchestrator web UI expects by default.
+2026-08-18T20:02:51Z | grep for auth settings in entrypoint.sh and the observer defaults | Confirmed no HTTP auth is configured and found the MySQL topology credentials.
+2026-08-18T20:04:34Z | docker ps and curl the registry catalog | Confirmed no demo stack is running and the orchestrator image is still in the local registry.
+2026-08-18T20:04:50Z | mysql -uroot -e "SELECT ... replication_group_members" on mysql-mp-1 | Found a healthy three member multi primary group already running that I did not start.
+2026-08-18T20:06:52Z | python3 rewrite of mysql_clusters.yml | Added the read only orchestrator to designs B and C using YAML anchors shared with D and E.
+2026-08-18T20:06:52Z | ansible-playbook --syntax-check -i hosts mysql_clusters.yml | Syntax check passed with the anchors in place.
+2026-08-18T20:07:58Z | ansible-playbook mysql_clusters.yml --tags multi | Added the observer to the already running design C stack. See output for the result.
+2026-08-18T20:08:12Z | orchestrator-client -c all-instances then -c topology on orchestrator-mp | The observer sees all three multi primary members and draws each as its own writable cluster.
+2026-08-18T20:08:13Z | orchestrator-client -c discover -i mysql-mp-1:3306 | The change was refused with Unauthorized which confirms read only.
+2026-08-18T20:08:28Z | ansible-playbook mysql_clusters.yml --tags multi (rerun) | Healthy rerun of design C with its observer reports the change count above.
+2026-08-18T20:09:43Z | ansible-playbook mysql_clusters.yml --tags single | Built design B with its own read only observer alongside the running design C.
+2026-08-18T20:09:44Z | orchestrator-client -c topology on orchestrator-sp | Design B draws as one tree with the primary at the root and group members marked.
+2026-08-18T20:09:44Z | docker ps filtered to orchestrator | Both observers run at once on their own ports without collision.
+2026-08-18T20:10:44Z | sleep 30 then orchestrator-client -c clusters and -c topology | Confirmed the placeholder rows were a timing artefact because design B now draws one correct tree.
+2026-08-18T20:11:00Z | python3 patch of orchestrator_observer/tasks/main.yml | Replaced the row count gate with a wait for a real poll so the play cannot return on placeholder data.
+2026-08-18T20:11:27Z | ansible-playbook mysql_clusters.yml --tags teardown | Cleared both stacks to test the new readiness gate from nothing.
+2026-08-18T20:20:25Z | ansible-playbook mysql_clusters.yml --tags single | Rebuilt design B from nothing to check the observer waits for a real poll.
+2026-08-18T20:20:26Z | orchestrator-client -c topology -i mysql-sp-1:3306 | The tree is fully populated the instant the play finishes with no placeholder rows.
+2026-08-18T20:20:38Z | orchestrator-client -c api -path instance/mysql-sp-1/3306 | Found the API prints pretty JSON so the Version key is followed by a space which my regex did not allow.
+2026-08-18T20:21:04Z | python3 patch then yaml check of the observer until condition | Replaced the regex with a guarded JSON parse of the Version field.
+2026-08-18T20:21:32Z | ansible-playbook mysql_clusters.yml --tags teardown | Cleared everything to test the corrected gate from nothing.
+2026-08-18T20:22:40Z | ansible-playbook mysql_clusters.yml --tags single | Design B built from nothing and the corrected poll gate passed.
+2026-08-18T20:22:40Z | orchestrator-client -c topology -i mysql-sp-1:3306 | Fully populated tree with no Unknown or nobinlog placeholders.
+2026-08-18T20:23:11Z | orchestrator-client api queries for Version IsUpToDate and group members per node | Gathered the real discovery state to explain the Unknown row.
+2026-08-18T20:23:23Z | orchestrator-client api queries via a shell function | Read the real per node discovery state to explain the Unknown row.
+2026-08-18T20:24:16Z | ansible-playbook mysql_clusters.yml --tags teardown | Cleared design B to sample discovery field by field from a cold start.
+2026-08-18T20:25:29Z | ansible-playbook mysql_clusters.yml --tags single | Rebuilt design B so the sampling starts the moment the play returns.
+2026-08-18T20:26:34Z | 10 second by second samples of Version ClusterName IsUpToDate and the topology head | Traced which field lags so the readiness gate can wait on the right one.
+2026-08-18T20:27:02Z | python3 patch of the observer gate to require a numeric version | Rejected the Unknown placeholder so the gate waits for a genuine poll.
+2026-08-18T20:27:23Z | ansible-playbook mysql_clusters.yml --tags teardown | Cleared design B for the final cold start test of the gate.
+2026-08-18T20:28:40Z | ansible-playbook mysql_clusters.yml --tags single | Rebuilt design B from nothing with the numeric version gate in place.
+2026-08-18T20:28:40Z | orchestrator-client -c topology -i mysql-sp-1:3306 | The tree was complete the instant the play returned with no placeholder row.
+2026-08-18T20:30:15Z | ansible-playbook mysql_clusters.yml --tags multi | Built design C with its observer alongside the running design B.
+2026-08-18T20:30:16Z | orchestrator-client -c topology for each mysql-mp node | Design C draws as three separate single node clusters because multi primary has no replication tree.
+2026-08-18T20:31:31Z | ansible-playbook reruns of tags single and multi | Both healthy reruns report the change counts above.
+2026-08-18T20:31:54Z | python3 update of mysql_clusters.md | Documented the observer on B and C and the difference in how each group draws.
+2026-08-18T20:32:05Z | docker ps | Left designs B and C running with an observer each because you were mid demo.
+2026-08-18T21:07:57Z | docker exec orchestrator-sp ls -la /usr/local/orchestrator | Listed the install tree to see whether the web resources shipped.
+2026-08-18T21:07:57Z | curl the web ui and grep for href and src | Listed the assets the page references.
+2026-08-18T21:08:09Z | docker ps | Found the demo stacks gone so I inspected the image directly instead.
+2026-08-18T21:08:10Z | docker run --rm --entrypoint sh on the orchestrator image to list /usr/local/orchestrator | Checked whether the web resources are present in the image at all.
+2026-08-18T21:08:24Z | grep for Static and resources paths in go/http and go/app | Found how orchestrator locates its web assets.
+2026-08-18T21:08:35Z | sed -n 100,120p go/app/http.go | Read the static file mount to see the URL prefix and the relative directory used.
+2026-08-18T21:08:35Z | curl http://127.0.0.1:6526/web/clusters and grep asset references | Listed what the page asks the browser to load.
+2026-08-18T21:08:51Z | curl the ui and grep for remote http asset references | Listed every asset the page fetches from the internet.
+2026-08-18T21:08:51Z | curl -o /dev/null -w for three local asset paths | Confirmed the locally served css and images return 200.
+2026-08-18T21:08:51Z | ls resources/public/css and js in the orchestrator repo | Checked whether a local copy of bootstrap exists to serve instead of the CDN.
+2026-08-18T21:09:10Z | curl --max-time 8 to cdn.jsdelivr.net bootstrap css | Tested whether this machine can reach the CDN the page depends on.
+2026-08-18T21:09:10Z | grep -rn cdn.jsdelivr.net in resources/templates | Located the two template lines that point at the CDN.
+2026-08-18T21:09:29Z | measured the declared integrity hash lengths and computed sha384 of both cdn files | Compared the template hashes against what the CDN actually serves.
+2026-08-18T21:12:08Z | python3 patch of orchestrator/Dockerfile | Added a vendoring stage that downloads Bootstrap and verifies its hash and rewrites the layout template.
+2026-08-18T21:13:52Z | ./build_and_push.sh | Rebuilt the image with Bootstrap vendored and pushed it to the local registry.
+2026-08-18T21:14:05Z | ansible-playbook mysql_clusters.yml --tags multi | Recreated the observer on the rebuilt image.
+2026-08-18T21:14:05Z | curl the ui then hash the locally served bootstrap files | Confirmed no CDN assets remain and the vendored files match the published hashes.
+2026-08-18T21:14:57Z | ansible-playbook mysql_clusters.yml --tags multi | Recreated the observer container on the rebuilt image.
+2026-08-18T21:14:57Z | curl the ui and hash the vendored bootstrap files | Verified the CDN references are gone and the local files serve with the published hashes.
+2026-08-18T21:15:30Z | cat > upstream-patch.md | Wrote the patch note with the evidence and both candidate fixes.
+2026-08-18T21:15:30Z | python3 update of orchestrator/readme.md | Documented the vendoring and pointed at the patch note.
+2026-08-18T21:15:49Z | grep and append to MEMORY.md | Indexed the pending upstream patch so it is not forgotten between sessions.
+2026-08-18T21:15:49Z | docker ps | Found design C running but the observer container absent which was wrong of me to record as still running.
+2026-08-18T21:16:00Z | docker ps -a and docker inspect for the orchestrator container | Checked whether the observer crashed or was removed.
+2026-08-18T21:16:18Z | grep -n "^## " orchestrator/readme.md | Confirmed the vendoring section landed in the right place in the readme.
+2026-08-18T21:16:30Z | python3 correction of an earlier line in this log | Corrected a line that claimed the observer was running when docker ps had already shown it gone.
+2026-08-18T21:18:59Z | mysql -uroot -e "SELECT @@default_storage_engine, @@disabled_storage_engines and engine support" | Checked what engine the clusters already use before planning any change.
+2026-08-19T08:31:26Z | find and cat of the scripts tree the playbook and the memory files | Read the existing role layout before adding a Percona PMM task.
+2026-08-19T08:32:33Z | docker ps and docker network ls | Checked which demo stacks are running before adding the PMM roles.
+2026-08-19T08:35:19Z | docker pull percona/pmm-server:3.9.0 and percona/pmm-client:3.9.0 | Both images pulled so the roles can be written against what the images actually accept.
+2026-08-19T08:39:53Z | mkdir the three pmm role trees then write pmm_server defaults and tasks | Created the standalone PMM server role.
+2026-08-19T08:41:02Z | wrote pmm_client defaults and tasks | Created the per cluster PMM client role with the router as an optional extra service.
+2026-08-19T08:41:59Z | python3 patch of mysql_clusters.yml and mysql_docker_teardown then yaml parse check | Added the five pmm plays and put the clients into the design teardown.
+2026-08-19T08:42:01Z | ansible-playbook --syntax-check -i hosts mysql_clusters.yml | Syntax check passed for all eleven plays.
+2026-08-19T08:43:29Z | ansible-playbook mysql_clusters.yml --tags single | Built design B from nothing so the PMM roles have a real cluster to attach to.
+2026-08-19T08:46:58Z | ansible-playbook mysql_clusters.yml --tags pmm-single | The server came up but the client failed the readiness gate saying pmm-agent is not set up.
+2026-08-19T08:47:15Z | docker logs pmm-client-sp then python3 patch of pmm_client/tasks/main.yml | The agent had no config file to write so setup refused. Added PMM_AGENT_CONFIG_FILE.
+2026-08-19T08:53:16Z | psql on the grafana database then DELETE FROM login_attempt then curl the version endpoint | Found the admin account locked by Grafana brute force protection after the agent retried bad credentials.
+2026-08-19T08:56:18Z | recreated pmm-server on a fresh volume with PMM_ADMIN_PASSWORD then probed the api once | The env var did not set the admin password so the first attempt ever was refused.
+2026-08-19T08:56:18Z | recreated pmm-server with GF_SECURITY_DISABLE_BRUTE_FORCE_LOGIN_PROTECTION then seven bad logins and one good | The good login still returned 200 so that setting removes the lockout.
+2026-08-19T08:57:43Z | python3 patch of pmm_server/tasks/main.yml | Replaced the ignored env var with a password probe and a reset and turned the lockout off.
+2026-08-19T09:01:30Z | ansible-playbook mysql_clusters.yml --tags pmm-single (cold start) | The server set its own password and the agent connected but the readiness gate read the wrong json field.
+2026-08-19T09:14:43Z | ansible-playbook mysql_clusters.yml --tags pmm-single (after the gate fix) | All three members of design B registered as MySQL services with their exporters running.
+2026-08-19T09:15:32Z | ansible-playbook mysql_clusters.yml --tags pmm-single (rerun with the collector gate) | Healthy rerun of the monitoring stack reports zero changes.
+2026-08-19T09:16:07Z | ansible-playbook mysql_clusters.yml --tags routed-single | Turned design B into design D so the router is there for PMM to find.
+2026-08-19T09:16:31Z | ansible-playbook mysql_clusters.yml --tags pmm-single (with the router present) | The router was found and registered as a ProxySQL service beside the three members.
+2026-08-19T09:17:54Z | ansible-playbook mysql_clusters.yml --tags routed-multi | Built design E beside the running design D so both clusters can be monitored at once.
+2026-08-19T09:18:31Z | ansible-playbook mysql_clusters.yml --tags pmm-multi | Second client registered the three writable members of design E and its router on the same server.
+2026-08-19T09:19:03Z | ansible-playbook mysql_clusters.yml --tags async | Built design A so the asynchronous variant of the client can be tested.
+2026-08-19T09:19:37Z | ansible-playbook mysql_clusters.yml --tags pmm-async | Third client registered the source and both replicas of design A.
+2026-08-19T09:20:32Z | curl the prometheus and qan endpoints on the server | Nine members report mysql_up and query analytics counted 23974 statements across nine services.
+2026-08-19T09:21:33Z | ansible-playbook mysql_clusters.yml --tags teardown then docker ps and network and volume listings | Every cluster and client went and the standalone server and its history stayed.
+2026-08-19T09:21:46Z | ansible-playbook mysql_clusters.yml --tags pmm-teardown | Removed the server and the metrics history and the monitoring network.
+2026-08-19T09:23:09Z | ansible-playbook mysql_clusters.yml --tags routed-single | Rebuilt design D from nothing for the final cold start test of the monitoring roles.
+2026-08-19T09:24:10Z | ansible-playbook mysql_clusters.yml --tags pmm-single (cold start with the final roles) | The server built itself and set its password and the client registered three members and the router with no manual step.
+2026-08-19T09:27:37Z | docker restart pmm-client-sp then pmm-admin list | A restart wiped every service because the agent re-registers its node on each start.
+2026-08-19T09:27:37Z | hand run of a client with a config volume then pmm-admin config then add mysql then docker restart | The service survived the restart so the role will persist the agent configuration.
+2026-08-19T09:27:48Z | rewrote pmm_client/tasks/main.yml and patched pmm_teardown for the config volumes | The client now keeps its registration in a volume and the teardown removes it.
+2026-08-19T09:28:37Z | ansible-playbook mysql_clusters.yml --tags pmm-single (rewritten client) | The client registered itself with pmm-admin config and added three members and the router.
+2026-08-19T09:29:10Z | docker restart pmm-client-sp then pmm-admin list | All four services survived the restart with the configuration volume in place.
+2026-08-19T09:31:29Z | removed the server and its volume then ansible-playbook mysql_clusters.yml --tags pmm-single | The client re-registered against the rebuilt server and re-added every service without being recreated.
+2026-08-19T09:31:59Z | python3 update of mysql_clusters.md and removal of an unused register in pmm_client | Documented the monitoring stack and the two PMM behaviours worth knowing.
+2026-08-19T09:32:27Z | ansible-playbook --syntax-check then --tags pmm-single once more | Syntax passed and the healthy rerun after the edits still reports zero changes.
+2026-08-19T09:32:55Z | docker exec pmm-admin list and a prometheus count query | Design D is monitored with three members reporting and its router registered.
+2026-08-19T09:33:19Z | git status --short | Three new roles and three edited files with design D left running under monitoring.
+2026-08-19T11:40:02Z | ls -R databases and cat mysql_clusters.md | Read the five designs and the monitoring notes before writing the backup documents.
+2026-08-19T11:40:02Z | cat mysql_clusters.yml and hosts and group_vars | Read the play order and the tags and confirmed group_vars carries nothing.
+2026-08-19T11:40:02Z | cat the four mysql role task files | Took the container names and host ports and accounts and the teardown list from the roles.
+2026-08-19T11:40:02Z | grep the proxysql_single_primary role | Read the hostgroup numbers and the app and radmin accounts and the client and admin ports.
+2026-08-19T11:40:02Z | head and tail 1.log and ls the repo root | Matched the existing log format before appending to it.
+2026-08-19T11:28:16Z | docker ps and volume ls and network ls | Designs D and E are running with their monitoring and design A is not built.
+2026-08-19T11:28:38Z | docker exec command -v mysqlbinlog mysqlpump xtrabackup and mysqlsh --version | The image carries mysqldump and mysqlsh 8.4.10 and none of the other three.
+2026-08-19T11:28:38Z | docker exec mysql -e replication_group_members on sp-2 and mp-1 | Both groups read OFFLINE because the members restarted with start-on-boot off.
+2026-08-19T11:29:17Z | ansible-playbook mysql_clusters.yml --tags routed-single | Design D came back with three changed tasks that rejoined the group.
+2026-08-19T11:29:48Z | ansible-playbook mysql_clusters.yml --tags routed-multi | Design E came back with its three members online.
+2026-08-19T11:30:17Z | ansible-playbook mysql_clusters.yml --tags async | Built design A from nothing so its backup commands could be tested.
+2026-08-19T11:30:44Z | docker exec mysql -e CREATE DATABASE demo and ledger with rows on async-1 and sp-1 and mp-1 | Seeded two schemas per stack so a single database backup can be shown.
+2026-08-19T11:31:10Z | docker exec mysql -e CREATE USER backup with SELECT SHOW VIEW EVENT TRIGGER LOCK TABLES RELOAD PROCESS REPLICATION CLIENT BACKUP_ADMIN | Created the backup account on the writable node of each stack.
+2026-08-19T11:31:38Z | docker exec mysqldump --single-transaction --set-gtid-purged=ON --databases demo on mysql-async-3 | The dump worked and mysqldump warned that a partial dump carries the GTIDs of every transaction.
+2026-08-19T11:31:58Z | docker run mysql:8.4 mysqlsh --uri backup:backup@mysql-async-3 -e util.dumpSchemas | The shell dumped the demo schema alone and it needed the password in the URI because MYSQL_PWD is ignored.
+2026-08-19T11:32:17Z | docker run --user $(id -u):$(id -g) mysqlsh util.dumpSchemas | The dump directory belongs to the host user when the container runs as that user.
+2026-08-19T11:32:38Z | docker run mysqlsh with HOME=/tmp | The shell needs a writable HOME before it will write a dump as the host user.
+2026-08-19T11:33:33Z | docker run mysql-verify then loaded demo-async.sql then SELECT @@GLOBAL.gtid_executed | The scratch server restored 40 rows and then claimed 21 transactions it never ran including the ledger writes.
+2026-08-19T11:33:45Z | docker exec mysql -uroot < demo-async.sql on mysql-sp-1 | Refused at line 24 with error 3911 saying GTID_PURGED cannot be updated while Group Replication runs.
+2026-08-19T11:34:11Z | docker exec mysqldump --set-gtid-purged=OFF --databases demo on mysql-sp-2 | The dump from the secondary carries no GTID_PURGED line.
+2026-08-19T11:34:22Z | docker exec mysql -ubackup < demo-sp.sql | Refused with error 1044 because the backup account holds no write rights.
+2026-08-19T11:34:34Z | docker exec mysql -uroot < demo-sp.sql on mysql-sp-1 then counted rows on all three | The restore through the primary reached both secondaries and left ledger untouched.
+2026-08-19T11:35:01Z | docker exec mysql -uroot < nopk.sql on mysql-mp-1 and mysql-sp-1 | Both group designs refused a table with no primary key with error 3098.
+2026-08-19T11:35:17Z | docker exec mysql -h proxysql-sp -P 6032 -u radmin -e SELECT runtime_mysql_servers on both routers | Design D lists one writer and design E lists three.
+2026-08-19T11:35:27Z | docker exec mysqldump -ubackup and -uapp through proxysql-sp on port 6033 | The router refused the backup account it does not know and the app account lacked PROCESS for tablespaces.
+2026-08-19T11:36:00Z | docker exec mysql -h proxysql-sp -P 6033 -u app -e SELECT @@hostname across ten sessions and inside a snapshot | Reads spread over all three members while a consistent snapshot pinned to the primary.
+2026-08-19T11:38:07Z | docker exec mysql -uapp -h proxysql-sp -P 6033 < demo-sp.sql then a probe table | The restore landed on all three members while the client printed a USE error and still exited 0.
+2026-08-19T11:38:07Z | piped the dump prefix plus SELECT DATABASE through proxysql-sp | ProxySQL refused with error 9006 saying the connection is locked to hostgroup 10 but trying to reach 11.
+2026-08-19T11:38:30Z | docker exec mysqldump on mysql-mp-3 then DROP DATABASE on mysql-mp-2 then restore on mysql-mp-1 | The multi primary cycle restored 40 rows to all three members.
+2026-08-19T11:38:52Z | docker exec DROP TABLE demo.t on mysql-mp-1 while mysql-mp-2 held an INSERT open | Both other members went to ERROR state and left the group so only mysql-mp-2 stayed online.
+2026-08-19T11:39:02Z | docker logs mysql-mp-1 | The applier hit error 1146 on the insert row event because the drop was ordered first so the member left the group and went read only.
+2026-08-19T11:40:12Z | docker exec mysql -e SET GTID_NEXT then BEGIN COMMIT on mysql-mp-1 and mysql-mp-3 | Injected the unappliable transaction as empty so the two members could rejoin.
+2026-08-19T11:40:58Z | ansible-playbook mysql_clusters.yml --tags routed-multi | Design E rejoined cleanly after the injection.
+2026-08-19T11:41:38Z | docker run --entrypoint sh percona/pmm-client:3.9.0 -c find mysqlbinlog | The pmm client image carries mysqlbinlog which the mysql image does not.
+2026-08-19T11:42:05Z | docker exec mysql -e GRANT REPLICATION SLAVE then docker run mysqlbinlog --read-from-remote-server | The remote read needs REPLICATION SLAVE and then prints the demo row events.
+2026-08-19T11:43:13Z | docker run mysqlbinlog --include-gtids :21 --skip-gtids piped into mysql-pitr | Replayed the post backup insert onto the restored dump for 45 rows with the drop excluded.
+2026-08-19T11:43:28Z | docker exec mysqldump on mysql-pitr then loaded into mysql-async-1 | The recovered table returned to the source and reached both replicas at 45 rows.
+2026-08-19T11:43:44Z | docker exec mysql -uroot demo < demo-t-recovered.sql on mysql-async-2 | The replica refused the restore with error 1290 because super_read_only is on.
+2026-08-19T11:43:59Z | docker stop mysql-async-3 then docker run alpine tar czf the data volume then docker start | The stopped member produced an 11 MB archive of its whole data directory.
+2026-08-19T11:44:36Z | docker run mysqlsh util.loadDump into mysql-pitr | The load needed local_infile ON in the target and then restored 40 rows.
+2026-08-19T11:45:33Z | docker run mysqlsh util.dumpSchemas on mysql-sp-2 then util.loadDump into mysql-sp-1 | The shell round trip restored the demo schema to all three members of design B.
+2026-08-19T11:45:33Z | docker rm -f mysql-pitr and mkdir backups | Removed the scratch server and made the directory for the six documents.
+2026-08-19T11:45:59Z | cat > backups/readme.md | Wrote the shared page holding the terms and the account and the rules common to five designs.
+2026-08-19T11:46:29Z | cat > backups/design_a_async.md | Wrote the asynchronous design document with the tested point in time recovery.
+2026-08-19T11:46:56Z | cat > backups/design_b_single_primary.md | Wrote the single primary document with the discovery queries and the three restore limits.
+2026-08-19T11:47:23Z | cat > backups/design_c_multi_primary.md | Wrote the multi primary document around the tested failure where a restore broke two members.
+2026-08-19T11:47:51Z | cat > backups/design_d_routed_single_primary.md | Wrote the routed single primary document around the three tested router hazards.
+2026-08-19T11:48:18Z | cat > backups/design_e_routed_multi_primary.md | Wrote the routed multi primary document with the drain procedure and the split session hazard.
+2026-08-19T11:48:37Z | docker exec mysql -h proxysql-mp -P 6032 -u radmin -e UPDATE mysql_servers SET status=OFFLINE_SOFT then eight sessions | The drained member took no traffic and the reader hostgroup vanished from the runtime table.
+2026-08-19T11:49:02Z | docker exec mysql -h proxysql-mp -P 6032 -u radmin -e UPDATE mysql_servers SET status=ONLINE then waited | The group replication monitor rebuilt both hostgroups within fifteen seconds.
+2026-08-19T11:49:26Z | docker exec mysql -h proxysql-sp -P 6032 -u radmin -e INSERT INTO mysql_users then mysqldump through the router then DELETE | The added account dumped through the router and the primary served it so the pinning stands.
+2026-08-19T11:49:26Z | python3 patch of design_d and design_e documents | Added the two router behaviours measured after the documents were first written.
+2026-08-19T11:49:35Z | python3 patch of mysql_clusters.md | Added the backups section linking the shared page and the five design documents.
+2026-08-19T11:50:18Z | python3 patch of backups/readme.md | Cut four restatements found on the review read.
+2026-08-19T11:50:39Z | python3 patch of design_a and design_b documents | Replaced a vague tool reference and cut an inventory of the metadata file.
+2026-08-19T11:51:13Z | python3 patch of design_b and design_c documents | Removed two restatements of the shared rules and corrected the primary key rule which applies to design B too.
+2026-08-19T11:51:57Z | docker exec mysql -e SERIALIZABLE insert and a cascading foreign key on mysql-mp-1 and mysql-sp-1 | Design C refused both with error 3098 while design B accepted both.
+2026-08-19T11:51:57Z | docker exec mysql -e SHOW TABLES FROM fkcheck then DROP DATABASE fkcheck | The cascading table was created on design C so the refusal lands on the write not the DDL.
+2026-08-19T11:52:25Z | ran the design B discovery and dump and restore commands and the design D writer query exactly as documented | Every documented command worked as written.
+2026-08-19T11:52:41Z | docker exec mysql -e replication_group_members and row counts on all nine members | Every stack is healthy and consistent after the testing.
+2026-08-19T11:52:41Z | git status --short | Six new documents under backups and one edited overview left the three stacks running.

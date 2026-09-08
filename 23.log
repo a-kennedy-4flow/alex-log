@@ -1,0 +1,24 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-08T09:34:16Z  find and grep for any path matching logo outside node_modules  ->  The marks live in tracker/logos.
+2026-09-08T09:34:16Z  ls of tracker/logos  ->  Twenty eight svg marks plus build.py and marks.json and index.html.
+2026-09-08T09:34:16Z  cat of tracker/logos/marks.json  ->  Read all twenty eight marks in gallery order.
+2026-09-08T09:34:16Z  grep of the enumerate block in tracker/logos/build.py  ->  The gallery numbers each card as i plus one over marks.json order so the numbering is one based.
+2026-09-08T09:34:16Z  grep of the card headings in tracker/logos/index.html  ->  Mark 12 is Bubble stopwatch and it carries the in use flag.
+2026-09-08T09:34:16Z  which for rsvg-convert and inkscape and magick and chromium and a python import of cairosvg  ->  Only ImageMagick convert is installed and cairosvg is absent.
+2026-09-08T09:34:16Z  cat of tracker/logos/bubble-watch.svg and convert -list delegate and -list format  ->  The mark uses currentColor with color set to the blue and the ImageMagick svg delegate points at rsvg-convert which is missing so only the internal MSVG renderer is available.
+2026-09-08T09:34:16Z  ls of the repo root logs and cat of 13.log  ->  Logs 1 to 22 exist so this session is 23.log and a past session already made mark 12 the logo in use.
+2026-09-08T09:37:42Z  convert of bubble-watch.svg and of a flattened copy plus histograms of both  ->  ImageMagick drops every currentColor shape so the raw render lost all the blue and only the flattened copy carried both colours.
+2026-09-08T09:37:42Z  convert at density 1536 and a read of the 1024 png  ->  The shapes are right but the small crown renders as a polygon.
+2026-09-08T09:37:42Z  sed of the crown rect into its exact equivalent circle then convert and cmp and compare -metric AE  ->  The two renders are byte identical so the faceting is the MSVG curve tessellation and not a rounded rect defect.
+2026-09-08T09:37:42Z  ls of node_modules and a find for resvg and sharp  ->  No javascript rasteriser is installed.
+2026-09-08T09:37:42Z  python imports of PIL and aggdraw and ldconfig for librsvg and libcairo  ->  PIL 10.2.0 is present and librsvg-2.so.2 and libcairo.so.2 are installed even though rsvg-convert is not.
+2026-09-08T09:37:42Z  python imports of gi and cairo and a find for the Rsvg typelib  ->  gi and pycairo and Rsvg-2.0.typelib are all present.
+2026-09-08T09:37:42Z  python Rsvg.Handle.render_document through gi  ->  Failed because gi._gi_cairo is missing so a cairo context cannot cross the gi boundary.
+2026-09-08T09:37:42Z  python GdkPixbuf.Pixbuf.get_formats  ->  The svg loader is present and it is backed by librsvg so it needs no cairo context.
+2026-09-08T09:37:42Z  python GdkPixbuf new_from_file_at_scale render of bubble-watch.svg at 1024 and a histogram  ->  librsvg resolved currentColor straight from the unmodified source and both brand colours came through on a transparent ground.
+2026-09-08T09:37:42Z  convert crops of the crown from the ImageMagick and librsvg renders appended side by side  ->  librsvg draws a clean circle where ImageMagick facets it so librsvg is the renderer to use.
+2026-09-08T09:37:42Z  python GdkPixbuf render into tracker/logos/bubble-watch.png at 1024 and identify and git check-ignore  ->  Wrote the final 1024 square png with an alpha channel and git is not ignoring it.

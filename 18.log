@@ -1,0 +1,42 @@
+This log records every shell command run while capping the quick fill at the target days and adding an absence button and shading the days past the target.
+Format is UTC timestamp then command then one sentence on the result.
+2026-09-07T14:23:15Z	ls tracker; grep -ril "cost center" tracker	Listed the tracker workspace and found the phrase only in a built bundle.
+2026-09-07T14:23:15Z	find apps/web/src packages -name "*.ts" -o -name "*.vue"	Listed the web sources so the grid and the quick fill could be located.
+2026-09-07T14:23:15Z	cat apps/web/src/components/RecentCostCentres.vue	The quick fill list is this component and it books through bookNextFree.
+2026-09-07T14:23:15Z	cat apps/web/src/composables/useTimesheet.ts	bookNextFree fills any free row so it runs past the target.
+2026-09-07T14:23:15Z	cat apps/web/src/components/MonthGrid.vue	The grid tints only non working rows so a row past the target has no mark.
+2026-09-07T14:23:15Z	cat apps/web/src/composables/useRowEdit.ts; grep isAbsence packages/core	The absence codes are held in the catalogue behind isAbsence.
+2026-09-07T14:30:42Z	appended daysPastTarget to packages/core/src/calendar.ts	The surplus working days are now a set of dates the views and the quick book can read.
+2026-09-07T14:31:02Z	python3 edit of apps/web/src/composables/useTimesheet.ts	pastTarget is exported and bookNextFree now stops at the target and caps the last half day.
+2026-09-07T14:32:05Z	python3 inserted notRequired and bookAbsence and full into all eight locale files	Every locale now carries the three new keys so the typecheck against en holds.
+2026-09-07T14:32:14Z	python3 added the --past-target shade to tokens.css and to colour.test.ts	The eighth shade is declared with its job and its ratio is now checked.
+2026-09-07T14:33:13Z	rewrote apps/web/src/components/RecentCostCentres.vue	The absences now have a square each and a refused click says the target is reached.
+2026-09-07T14:33:33Z	python3 edit of apps/web/src/components/MonthGrid.vue	A row past the target now carries the wash and the Not required flag.
+2026-09-07T14:33:51Z	python3 edit of apps/web/src/components/MonthCalendar.vue	The board cell of a day past the target now carries the same wash and label as the grid row.
+2026-09-07T14:34:01Z	python3 edit of apps/web/src/components/MonthProgress.vue	The progress panel now carries the legend for the wash whenever the month holds surplus days.
+2026-09-07T14:34:10Z	pnpm -r --no-bail test	starting the whole suite against the three changes
+2026-09-07T14:35:18Z	pnpm -r --no-bail test	All five web files and every package suite pass so nothing existing broke.
+2026-09-07T14:35:31Z	added five daysPastTarget cases to packages/core/src/__tests__/search.test.ts	The tail rule and the half day rule and the zero target are all covered.
+2026-09-07T14:36:02Z	added grid and board shading cases to apps/web/src/__tests__/render.test.ts	Both views are held to the same count of washed days.
+2026-09-07T14:36:57Z	added three reference list cases to apps/web/src/__tests__/render.test.ts	The target cap and the absence square and the half day cap are covered.
+2026-09-07T14:37:33Z	pnpm typecheck; pnpm lint	Eight projects typecheck clean and eslint reports nothing.
+2026-09-07T14:37:55Z	pnpm build	The web bundle builds so the new template and the new token compile.
+2026-09-07T14:38:04Z	python3 edit of docs/todo-f-design-and-board-view.md	The shade list now names the eighth shade and why it is Bright Blue.
+2026-09-07T14:41:54Z	added the one mark a square assertion to render.test.ts	A square is now held to exactly one character whatever the locale.
+2026-09-07T14:41:54Z	pnpm -r --no-bail test	Four hundred and forty one tests pass across the five projects.
+2026-09-07T14:41:54Z	pnpm lint	eslint reports nothing.
+2026-09-07T14:41:54Z	pnpm -r test; pnpm lint; pnpm typecheck	Four hundred and forty one tests pass and the lint and the typecheck are clean.
+2026-09-07T14:42:21Z	vitest run of a temporary dump test then rm of that file	The panel renders the Absence label with a V square and an O square each carrying the full name in its title.
+2026-09-07T14:49:00Z	cat apps/web/src/lib/jira.ts apps/web/src/router.ts	The consent lands on /jira/callback and no route declares it so only finishLink can move the address.
+2026-09-07T14:49:00Z	cat apps/web/src/main.ts; grep authEnabled apps/web/src/lib/auth.ts; cat apps/web/.env.development.local	finishLink is called only when authEnabled and the development build sets no pool so it never runs.
+2026-09-07T14:49:00Z	sed of node_modules/@tanstack/history/dist/esm/index.js	history.replace defers the write to the address bar to a microtask so finishLink reads the old path.
+2026-09-07T14:49:00Z	cat node_modules/@tanstack/vue-router/dist/esm/renderRouteNotFound.js	With no defaultNotFoundComponent the router draws the literal Not Found paragraph the user reported.
+2026-09-07T14:49:51Z	python3 edits of lib/jira.ts and main.ts and JiraPage.vue and the eight locales	finishLink now takes the address and runs outside the auth branch and a failure lands on the Jira screen.
+2026-09-07T14:52:59Z	added seven consent callback cases to apps/web/src/__tests__/jira.test.ts	The handed address and the state guard and the refusal wording are all covered.
+2026-09-07T14:52:59Z	edited apps/api/src/dev-server.ts and its test	DELETE now passes the local preflight so unlinking works against the development server.
+2026-09-07T14:52:59Z	pnpm -r test; pnpm typecheck; pnpm lint; pnpm build	Four hundred and forty eight tests pass and the typecheck and the lint and the build are clean.
+2026-09-07T15:03:17Z	added SettingRow and SettingSelect and SettingNumber and SettingValue and SettingJira then rewrote SetupForm.vue	Every question is now a row that owns one 38px control box.
+2026-09-07T15:07:23Z	removed the spinner rule from SettingNumber.vue and updated styles.test.ts	tokens.css owns that rule so the component no longer repeats it and the guarded file list names the new component.
+2026-09-07T15:07:23Z	added five settings field cases to render.test.ts and one height invariant to styles.test.ts	Nothing escapes the control box and an emptied number now reads as unanswered.
+2026-09-07T15:07:23Z	pnpm -r test; pnpm lint; pnpm typecheck; pnpm build	All suites pass and the lint and the typecheck and the build are clean.
+2026-09-07T15:08:05Z	vitest run of a temporary dump test then rm of that file	Every row renders as a label holding one lab and one control box and the Jira row renders as a div.

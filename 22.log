@@ -1,0 +1,22 @@
+Log 22. Adding a privacy policy page at /privacy.
+
+2026-09-08T09:28:59Z ls -a; cat package.json -- Listed the repo root and read the package manifest.
+2026-09-08T09:29:37Z ls src templates website sites; cat website/README.md website/serve.sh; ls tracker users utils ste -- Surveyed the repo. Found a tracker app and a website of three static design variants.
+2026-09-08T09:29:46Z ls tracker/apps tracker/packages; cat tracker/readme.md -- Identified the app as the 4flow Tracker. A Vue 3 SPA with a Lambda API.
+2026-09-08T09:29:46Z grep -ril jira . -- Confirmed the tracker has a Jira integration across the web and api apps.
+2026-09-08T09:29:53Z cat tracker/apps/web/src/router.ts; ls tracker/apps/web/src -- Read the router. Five routes declared in code. Pages live in src/pages.
+2026-09-08T09:30:04Z cat pages/JiraPage.vue pages/SetupPage.vue App.vue components/PageTitle.vue -- Read the page and shell conventions. Nav links live in App.vue. Every string comes from vue-i18n.
+2026-09-08T09:30:15Z cat i18n/index.ts main.ts SignedOut.vue -- Read the i18n setup and the mount. Eight locales ship. A signed out user never reaches the router.
+2026-09-08T09:30:23Z grep -n retention tracker/infra/lib/tracker-stack.ts; sed -n 1,120p tracker/docs/jira.md -- Confirmed one month log retention in the CDK stack and six months of timesheet history in the Jira design note.
+2026-09-08T09:30:44Z sed -n 15,200p tracker/apps/api/src/repository.ts -- Found StoredJiraLink.cache. Tickets read from Jira are stored for up to a day.
+2026-09-08T09:31:06Z grep -n path tracker/apps/api/src/handlers.ts -- Listed the API routes. No account deletion endpoint exists.
+2026-09-08T09:31:19Z sed -n 170,230p render.test.ts; sed -n 1,60p styles.test.ts -- Read the tests. The router tree test asserts four nav links so the privacy link must not go in the nav.
+2026-09-08T09:33:16Z cat > pages/PrivacyPage.vue -- Wrote the privacy page. Five bands driven by one list of key names.
+2026-09-08T09:33:30Z python3 patch router.ts -- Added the /privacy route to the router tree.
+2026-09-08T09:34:15Z python3 insert privacy block into i18n/messages/*.ts -- Added the privacy strings to all eight locales.
+2026-09-08T09:35:22Z python3 patch App.vue -- Added a footer link to the notice. The privacy route renders without the catalogue.
+2026-09-08T09:35:22Z python3 patch __tests__/render.test.ts -- Added a mount test for the privacy route.
+2026-09-08T09:35:47Z pnpm --filter @tracker/web typecheck -- Typecheck passed. All eight locales carry the new keys.
+2026-09-08T09:36:19Z pnpm --filter @tracker/web test -- 189 of 190 tests passed. The one failure is in autosave.test.ts against uncommitted useTimesheet work that predates this change.
+2026-09-08T09:36:28Z pnpm exec eslint <changed files> -- Lint clean.
+2026-09-08T09:36:43Z git status --porcelain tracker -- Done. Six files changed and one added.

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garten- und Landschaftsbau Erle &middot; Rehbrunn</title>
+<meta name="description" content="Garten- und Landschaftsbau Erle in Rehbrunn. Gartenplanung und Pflasterarbeiten und Pflege.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: #f6f7f3; color: #1c2419;
+         font: 16px/1.7 "Cabin", "Segoe UI", system-ui, sans-serif; }
+  a { color: #2f6b3f; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid #dfe4d9; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+                 min-height: 72px; flex-wrap: wrap; }
+  .marke { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; }
+  .marke .blatt { width: 32px; height: 32px; background: #2f6b3f; border-radius: 0 60% 0 60%; }
+  .marke small { display: block; font-size: 11px; font-weight: 400; letter-spacing: .18em;
+                 text-transform: uppercase; color: #6f7d68; }
+  nav.haupt > ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+  nav.haupt > ul > li { position: relative; }
+  nav.haupt > ul > li > a { display: block; padding: 13px 15px; color: #1c2419; text-decoration: none;
+                            font-size: 15px; }
+  nav.haupt > ul > li:hover > a, nav.haupt > ul > li:focus-within > a { background: #eef3ea; color: #2f6b3f; }
+  nav.haupt ul ul { position: absolute; top: 100%; left: 0; min-width: 230px; background: #fff;
+                    border: 1px solid #dfe4d9; border-radius: 0 10px 10px 10px; list-style: none;
+                    margin: 0; padding: 8px; display: none; z-index: 50;
+                    box-shadow: 0 14px 30px rgba(28,36,25,.14); }
+  nav.haupt li:hover > ul, nav.haupt li:focus-within > ul { display: block; }
+  nav.haupt ul ul a { display: block; padding: 8px 12px; color: #384433; text-decoration: none; font-size: 15px;
+                      border-radius: 6px; }
+  nav.haupt ul ul a:hover { background: #eef3ea; color: #2f6b3f; }
+  @media (max-width: 940px) {
+    header .wrap { align-items: flex-start; padding-bottom: 12px; }
+    nav.haupt > ul { flex-wrap: wrap; }
+    nav.haupt ul ul { position: static; display: block; box-shadow: none; border: 0; padding: 0 0 0 12px; }
+  }
+  .buehne { background: linear-gradient(150deg, #2f6b3f, #1c4227); color: #eef5ec; }
+  .buehne .wrap { padding: 60px 24px 52px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px;
+                  align-items: center; }
+  @media (max-width: 860px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #a8d6b2; }
+  h1 { margin: 12px 0 16px; font-size: clamp(32px, 6.4vw, 54px); line-height: 1.05; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 48ch; }
+  .saison { background: rgba(255,255,255,.1); border-radius: 14px; padding: 20px 22px; }
+  .saison h3 { margin: 0 0 12px; font-size: 17px; }
+  .saison ul { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .saison li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0;
+               border-bottom: 1px solid rgba(255,255,255,.16); }
+  section { padding: 52px 0; border-bottom: 1px solid #e2e7dc; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 35px); }
+  .unter { margin: 0 0 20px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #2f6b3f; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .filter button { font: inherit; font-size: 14px; padding: 9px 16px; border-radius: 8px;
+                   border: 1px solid #cfd8c8; background: #fff; color: #384433; cursor: pointer; }
+  .filter button[aria-pressed="true"] { background: #1c2419; border-color: #1c2419; color: #fff; }
+  .zaehler { margin: 0 0 16px; font-size: 14px; color: #6f7d68; }
+  .projekte { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;
+              list-style: none; margin: 0; padding: 0; }
+  .projekte li { background: #fff; border: 1px solid #dfe4d9; border-radius: 12px; overflow: hidden; }
+  .projekte .flaeche { height: 100px; }
+  .projekte .inhalt { padding: 18px 20px; }
+  .projekte b { display: block; font-size: 18px; }
+  .projekte .art { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #2f6b3f;
+                   margin: 3px 0 8px; }
+  .projekte p { margin: 0 0 8px; font-size: 15px; color: #55604f; }
+  .projekte .zahl { font-weight: 700; }
+  .leer { padding: 22px 0; color: #6f7d68; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #6f7d68;
+       padding: 12px; background: #eef3ea; }
+  td { padding: 12px; border-top: 1px solid #e6ebe1; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 18px 46px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 32px; height: 32px;
+                         background: #dbe8d6; color: #1c4227; border-radius: 8px; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #55604f; }
+  .kasten { background: #eef3ea; border-left: 5px solid #2f6b3f; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .kasten p { margin: 0; font-size: 15px; }
+  address { font-style: normal; }
+  footer { background: #1c2419; color: #c6d0c0; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #a8d6b2; }
+  footer a { color: #c6d0c0; }
+  .ende { border-top: 1px solid #303a2c; font-size: 13px; color: #8c9887; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <div class="marke">
+      <span class="blatt" aria-hidden="true"></span>
+      <span>Garten- und Landschaftsbau Erle<small>Meisterbetrieb seit 1997</small></span>
+    </div>
+    <nav class="haupt" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen" aria-haspopup="true">Leistungen &#9662;</a>
+          <ul>
+            <li><a href="#leistungen">Gartenplanung</a></li>
+            <li><a href="#leistungen">Pflaster und Mauern</a></li>
+            <li><a href="#leistungen">Rasen und Pflanzung</a></li>
+            <li><a href="#leistungen">Teich und Wasser</a></li>
+          </ul>
+        </li>
+        <li><a href="#projekte" aria-haspopup="true">Projekte &#9662;</a>
+          <ul>
+            <li><a href="#projekte">Hausgarten</a></li>
+            <li><a href="#projekte">Gewerbe</a></li>
+            <li><a href="#projekte">&Ouml;ffentlich</a></li>
+          </ul>
+        </li>
+        <li><a href="#pflege">Pflege</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Garten- und Landschaftsbau</p>
+      <h1>Ein Garten wird gebaut und danach gepflegt</h1>
+      <p>Wir planen und bauen und &uuml;bernehmen auf Wunsch die Pflege. So bleibt der Garten
+      auch im f&uuml;nften Jahr so wie er gedacht war.</p>
+    </div>
+    <div class="saison">
+      <h3>Gerade in Arbeit</h3>
+      <ul>
+        <li><span>Pflanzzeit Geh&ouml;lze</span><b>Oktober bis M&auml;rz</b></li>
+        <li><span>Pflasterarbeiten</span><b>ganzj&auml;hrig frostfrei</b></li>
+        <li><span>Rasen neu anlegen</span><b>April und September</b></li>
+        <li><span>Heckenschnitt</span><b>ab Oktober</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>Was wir ausf&uuml;hren</h2>
+    <table>
+      <tr><th>Leistung</th><th>Umfang</th><th class="r">Richtwert</th></tr>
+      <tr><td>Gartenplanung mit Zeichnung</td><td>zwei Termine und Plan</td><td class="r">ab 890 &euro;</td></tr>
+      <tr><td>Pflasterfl&auml;che Betonstein</td><td>je Quadratmeter</td><td class="r">ab 120 &euro;</td></tr>
+      <tr><td>Pflasterfl&auml;che Naturstein</td><td>je Quadratmeter</td><td class="r">ab 210 &euro;</td></tr>
+      <tr><td>Trockenmauer</td><td>je Quadratmeter Ansicht</td><td class="r">ab 380 &euro;</td></tr>
+      <tr><td>Rasen als Rollrasen</td><td>je Quadratmeter</td><td class="r">ab 18 &euro;</td></tr>
+      <tr><td>Hecke pflanzen</td><td>je Meter</td><td class="r">ab 45 &euro;</td></tr>
+      <tr><td>Teich mit Folie</td><td>ab 20 Quadratmeter</td><td class="r">ab 6800 &euro;</td></tr>
+      <tr><td>Bew&auml;sserung unterirdisch</td><td>je Quadratmeter</td><td class="r">ab 14 &euro;</td></tr>
+    </table>
+    <div class="kasten" style="margin-top:20px">
+      <p>Wir pflanzen bevorzugt heimische Arten. Sie kommen mit dem Boden und dem Klima hier
+      zurecht und ern&auml;hren Insekten. Schotterfl&auml;chen legen wir nicht an.</p>
+    </div>
+  </section>
+
+  <section id="projekte">
+    <p class="unter">Projekte</p>
+    <h2>Ausgef&uuml;hrte Arbeiten</h2>
+    <div class="filter" role="group" aria-label="Projekte filtern">
+      <button aria-pressed="true" data-art="alle">Alle</button>
+      <button aria-pressed="false" data-art="haus">Hausgarten</button>
+      <button aria-pressed="false" data-art="gewerbe">Gewerbe</button>
+      <button aria-pressed="false" data-art="oeffentlich">&Ouml;ffentlich</button>
+    </div>
+    <p class="zaehler" id="zaehler">Sechs Projekte werden angezeigt.</p>
+    <ul class="projekte" id="liste">
+      <li data-art="haus"><div class="flaeche" style="background:linear-gradient(120deg,#7aa06b,#4a6b45)"></div><div class="inhalt"><b>Hanggarten am Sonnenweg</b><span class="art">Hausgarten</span><p>Drei Terrassen mit Trockenmauern aus Muschelkalk und Staudenpflanzung.</p><span class="zahl">420 m&sup2; &middot; 2024</span></div></li>
+      <li data-art="haus"><div class="flaeche" style="background:linear-gradient(120deg,#9ab08a,#5d7a55)"></div><div class="inhalt"><b>Reihenhausgarten</b><span class="art">Hausgarten</span><p>Kleiner Garten mit Sitzplatz und Hochbeet und Wasserspiel.</p><span class="zahl">90 m&sup2; &middot; 2023</span></div></li>
+      <li data-art="gewerbe"><div class="flaeche" style="background:linear-gradient(120deg,#8a9a7a,#4d5c48)"></div><div class="inhalt"><b>Hof der Tischlerei Bergmann</b><span class="art">Gewerbe</span><p>Pflaster mit Schwerlastaufbau und Regenwasserversickerung.</p><span class="zahl">680 m&sup2; &middot; 2022</span></div></li>
+      <li data-art="gewerbe"><div class="flaeche" style="background:linear-gradient(120deg,#7f9673,#425538)"></div><div class="inhalt"><b>Freifl&auml;che Gewerbering</b><span class="art">Gewerbe</span><p>Bl&uuml;hfl&auml;chen statt Rasen. Pflege einmal im Jahr.</p><span class="zahl">1200 m&sup2; &middot; 2024</span></div></li>
+      <li data-art="oeffentlich"><div class="flaeche" style="background:linear-gradient(120deg,#6f8f5c,#3d5236)"></div><div class="inhalt"><b>Schulhof Rehbrunn</b><span class="art">&Ouml;ffentlich</span><p>Entsiegelung und Schattenb&auml;ume und Sitzstufen aus Beton.</p><span class="zahl">900 m&sup2; &middot; 2023</span></div></li>
+      <li data-art="oeffentlich"><div class="flaeche" style="background:linear-gradient(120deg,#87a06d,#4c6340)"></div><div class="inhalt"><b>Friedhofserweiterung</b><span class="art">&Ouml;ffentlich</span><p>Wege und Hecken und ein Feld f&uuml;r Baumbestattungen.</p><span class="zahl">2400 m&sup2; &middot; 2021</span></div></li>
+    </ul>
+    <p class="leer" id="leer" hidden>In diesem Bereich zeigen wir gerade nichts.</p>
+  </section>
+
+  <section id="pflege">
+    <p class="unter">Pflege</p>
+    <h2>Vertrag oder einzelne Eins&auml;tze</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir pflegen etwa achtzig G&auml;rten im Ort. Ein Vertrag legt fest wie oft wir kommen
+        und was wir tun. So kostet es nicht mehr als n&ouml;tig und der Garten sieht das ganze
+        Jahr ordentlich aus.</p>
+        <p>M&auml;hen und Schneiden und D&uuml;ngen richten sich nach der Pflanze und nicht nach
+        dem Kalender. Ein Termin f&auml;llt aus wenn er nicht n&ouml;tig ist.</p>
+      </div>
+      <table>
+        <tr><th>Leistung</th><th class="r">Preis</th></tr>
+        <tr><td>Stundensatz Fachkraft</td><td class="r">62 &euro;</td></tr>
+        <tr><td>Stundensatz Helfer</td><td class="r">48 &euro;</td></tr>
+        <tr><td>Rasen m&auml;hen bis 300 m&sup2;</td><td class="r">ab 65 &euro;</td></tr>
+        <tr><td>Hecke schneiden je Meter</td><td class="r">ab 9 &euro;</td></tr>
+        <tr><td>Gr&uuml;ngut entsorgen je Kubikmeter</td><td class="r">28 &euro;</td></tr>
+        <tr><td>Winterdienst je Einsatz</td><td class="r">ab 55 &euro;</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Von der Idee zur fertigen Fl&auml;che</h2>
+    <div class="zwei">
+      <ol class="schritte">
+        <li><b>Ortstermin</b><span>Wir sehen Boden und Licht und Zufahrt an. Kostet nichts.</span></li>
+        <li><b>Entwurf</b><span>Plan mit Pflanzliste und Materialmustern.</span></li>
+        <li><b>Angebot</b><span>Nach Positionen aufgeschl&uuml;sselt und ohne Pauschalen.</span></li>
+        <li><b>Bau</b><span>Ein Hausgarten dauert zwei bis vier Wochen.</span></li>
+        <li><b>&Uuml;bergabe</b><span>Rundgang mit Pflegeplan f&uuml;r das erste Jahr.</span></li>
+      </ol>
+      <div>
+        <p>Wir arbeiten mit sieben Leuten und zwei Baggern. In der Hauptsaison betr&auml;gt die
+        Wartezeit acht bis zw&ouml;lf Wochen. Pflasterarbeiten im Winter gehen schneller.</p>
+        <div class="kasten">
+          <p>Baustellen halten wir sauber. Am Freitagnachmittag ist der Weg frei und die
+          Ger&auml;te stehen zusammen. Ihre Nachbarn danken es Ihnen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>B&uuml;rozeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">07:00 &ndash; 16:30</td></tr>
+        <tr><td>Freitag</td><td class="r">07:00 &ndash; 13:00</td></tr>
+        <tr><td>B&uuml;ro besetzt</td><td class="r">08:00 &ndash; 12:00</td></tr>
+        <tr><td>Ortstermine</td><td class="r">auch am Abend</td></tr>
+      </table>
+      <div>
+        <address>
+          Garten- und Landschaftsbau Erle<br>
+          Am Bahndamm 12<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817351
+        </address>
+        <p style="margin-top:14px">Der Bauhof liegt neben der Dachdeckerei. Pflanzen k&ouml;nnen
+        Sie hier nicht kaufen. Daf&uuml;r ist die Baumschule in Bachtal zust&auml;ndig.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Galabau</h3>Am Bahndamm 12<br>97845 Rehbrunn<br>0152 28817351</div>
+    <div><h3>Themen</h3><a href="#leistungen">Leistungen</a><br><a href="#projekte">Projekte</a><br><a href="#pflege">Pflege</a></div>
+    <div><h3>Betrieb</h3>Inhaber M. Erle<br>Landschaftsg&auml;rtnermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const knoepfe = [...document.querySelectorAll('.filter button')];
+const eintraege = [...document.querySelectorAll('#liste li')];
+const zaehler = document.getElementById('zaehler');
+const leer = document.getElementById('leer');
+function filtern(art) {
+  let treffer = 0;
+  for (const eintrag of eintraege) {
+    const zeigen = art === 'alle' || eintrag.dataset.art === art;
+    eintrag.hidden = !zeigen;
+    if (zeigen) treffer++;
+  }
+  leer.hidden = treffer > 0;
+  zaehler.textContent = art === 'alle'
+    ? `${eintraege.length} Projekte werden angezeigt.`
+    : `${treffer} von ${eintraege.length} Projekten in diesem Bereich.`;
+}
+for (const knopf of knoepfe) {
+  knopf.addEventListener('click', () => {
+    for (const anderer of knoepfe) anderer.setAttribute('aria-pressed', String(anderer === knopf));
+    filtern(knopf.dataset.art);
+  });
+}
+</script>
+</body>
+</html>

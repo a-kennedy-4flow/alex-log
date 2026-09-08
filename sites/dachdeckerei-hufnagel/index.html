@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dachdeckerei Hufnagel &middot; Rehbrunn</title>
+<meta name="description" content="Dachdeckerei Hufnagel in Rehbrunn. Ziegeldach und Flachdach und Sturmschaden mit eigenem Ger&uuml;st.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: #eef0f2; color: #1c2226;
+         font: 16px/1.7 "Rubik", "Segoe UI", system-ui, sans-serif; }
+  a { color: #a8322c; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { background: #1c2226; color: #e8ebee; position: sticky; top: 0; z-index: 30; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 68px; flex-wrap: wrap; }
+  .marke { font-weight: 700; font-size: 20px; }
+  .marke small { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+                 color: #97a3ac; font-weight: 400; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #c3ccd3; text-decoration: none; }
+  header nav a:hover { color: #fff; }
+  .buehne { background: #a8322c; color: #fdeeed; position: relative; overflow: hidden; }
+  .buehne::after { content: ""; position: absolute; inset: auto 0 0; height: 26px;
+                   background: repeating-linear-gradient(90deg, #8f2620 0 40px, #a8322c 40px 80px); }
+  .buehne .wrap { padding: 58px 24px 60px; }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #f5c3c0; }
+  h1 { margin: 12px 0 16px; font-size: clamp(33px, 6.8vw, 56px); line-height: 1.03; max-width: 20ch; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 50ch; }
+  .zahlen { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;
+            margin-top: 30px; }
+  .zahlen div { background: rgba(0,0,0,.16); border-radius: 10px; padding: 16px 18px; font-size: 14px; }
+  .zahlen b { display: block; font-size: 26px; }
+  section { padding: 52px 0; border-bottom: 1px solid #dde1e5; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 35px); }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #a8322c; font-weight: 600; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .gitter { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .karte { background: #fff; border: 1px solid #dde1e5; border-radius: 10px; padding: 20px 22px; }
+  .karte h3 { margin: 0 0 8px; font-size: 18px; }
+  .karte p { margin: 0; font-size: 15px; color: #5a666e; }
+  .zeitstrahl { list-style: none; margin: 0; padding: 0; }
+  .zeitstrahl li { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 18px 0;
+                   border-top: 1px solid #dde1e5; }
+  @media (max-width: 620px) { .zeitstrahl li { grid-template-columns: 1fr; gap: 4px; } }
+  .zeitstrahl .phase { font-weight: 700; color: #a8322c; text-transform: uppercase; font-size: 13px;
+                       letter-spacing: .1em; padding-top: 3px; }
+  .zeitstrahl b { display: block; font-size: 18px; }
+  .zeitstrahl span { color: #5a666e; font-size: 15px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #5a666e;
+       padding: 12px; background: #e4e8eb; }
+  td { padding: 12px; border-top: 1px solid #e6eaed; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .warn { background: #fdecea; border-left: 5px solid #a8322c; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .warn p { margin: 0; }
+  details { background: #fff; border: 1px solid #dde1e5; border-radius: 10px; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 14px 18px; font-weight: 600; }
+  details p { margin: 0 18px 16px; font-size: 15px; }
+  address { font-style: normal; }
+  footer { background: #1c2226; color: #c3ccd3; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #f0a09b; }
+  footer a { color: #c3ccd3; }
+  .ende { border-top: 1px solid #2e363c; font-size: 13px; color: #8b959c; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <div class="marke">Dachdeckerei Hufnagel<small>Meisterbetrieb seit 1952</small></div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#sturm">Sturmschaden</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <p class="zeile">Dach und Fassade und Abdichtung</p>
+    <h1>Ein Dach h&auml;lt f&uuml;nfzig Jahre wenn es richtig gedeckt ist</h1>
+    <p>Wir decken neu und wir reparieren. Die kleine Reparatur ist uns genauso wichtig wie das
+    ganze Dach.</p>
+    <div class="zahlen">
+      <div><b>1952</b>gegr&uuml;ndet</div>
+      <div><b>8</b>Beschäftigte</div>
+      <div><b>eigen</b>Ger&uuml;st und Kran</div>
+      <div><b>48 h</b>bei Sturmschaden</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>Was wir decken und abdichten</h2>
+    <div class="gitter">
+      <div class="karte"><h3>Ziegeldach</h3><p>Ton und Beton in allen Formaten. Auch Biberschwanz im Altbau.</p></div>
+      <div class="karte"><h3>Schiefer</h3><p>Altdeutsche Deckung und Schuppen. Zwei Gesellen mit Erfahrung.</p></div>
+      <div class="karte"><h3>Flachdach</h3><p>Bitumen und Kunststoffbahn. Gef&auml;lled&auml;mmung nach Plan.</p></div>
+      <div class="karte"><h3>D&auml;mmung</h3><p>Zwischensparren und Aufsparren. Mit Luftdichtung und Protokoll.</p></div>
+      <div class="karte"><h3>Dachfenster</h3><p>Einbau und Austausch an einem Tag. Auch Ausstiege f&uuml;r den Kamin.</p></div>
+      <div class="karte"><h3>Spengler</h3><p>Rinnen und Kehlen und Kamineinfassungen aus Zink und Kupfer.</p></div>
+    </div>
+    <p style="margin-top:22px">Photovoltaik montieren wir mit Elektro Sauer zusammen. Wir
+    machen das Dach dicht und der Kollege macht den Strom.</p>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Ein Dach von der Anfrage bis zur Rinne</h2>
+    <ul class="zeitstrahl">
+      <li><span class="phase">Woche 0</span><div><b>Besichtigung</b><span>Wir steigen auf das Dach und sehen den Zustand von innen und au&szlig;en.</span></div></li>
+      <li><span class="phase">Woche 1</span><div><b>Angebot</b><span>Aufgeschl&uuml;sselt nach Ger&uuml;st und Abbruch und Material und Arbeit.</span></div></li>
+      <li><span class="phase">Woche 6</span><div><b>Ger&uuml;st</b><span>Steht zwei Tage vor dem Beginn. Der Bauherr braucht nichts zu tun.</span></div></li>
+      <li><span class="phase">Woche 6</span><div><b>Abdecken</b><span>Alte Ziegel herunter und Container voll. Ein Tag je hundert Quadratmeter.</span></div></li>
+      <li><span class="phase">Woche 7</span><div><b>Unterdach</b><span>Lattung und Folie. Wir decken abends immer regensicher ab.</span></div></li>
+      <li><span class="phase">Woche 7</span><div><b>Decken</b><span>Ziegel hoch und legen. Firstziegel trocken verlegt.</span></div></li>
+      <li><span class="phase">Woche 8</span><div><b>Spenglerarbeit</b><span>Rinne und Fallrohr und Anschl&uuml;sse.</span></div></li>
+      <li><span class="phase">Woche 8</span><div><b>Abnahme</b><span>Gemeinsam vom Ger&uuml;st aus. Dann kommt das Ger&uuml;st weg.</span></div></li>
+    </ul>
+  </section>
+
+  <section id="sturm">
+    <p class="unter">Sturmschaden</p>
+    <h2>Nach dem Sturm z&auml;hlt die Reihenfolge</h2>
+    <div class="zwei">
+      <div>
+        <p>Nach einem Sturm haben wir viele Anrufe an einem Tag. Wir fahren zuerst dorthin wo
+        Wasser ins Haus l&auml;uft. Danach kommen die losen Ziegel.</p>
+        <div class="warn">
+          <p>Steigen Sie nicht selbst auf das Dach. Machen Sie Fotos vom Boden aus und melden
+          Sie den Schaden Ihrer Versicherung noch am selben Tag.</p>
+        </div>
+      </div>
+      <div>
+        <table>
+          <tr><th>Fall</th><th class="r">Reaktion</th></tr>
+          <tr><td>Wasser l&auml;uft ins Haus</td><td class="r">am selben Tag</td></tr>
+          <tr><td>Ziegel gel&ouml;st und offen</td><td class="r">innerhalb 48 Stunden</td></tr>
+          <tr><td>Rinne abgerissen</td><td class="r">innerhalb einer Woche</td></tr>
+          <tr><td>Notabdeckung mit Plane</td><td class="r">ab 380 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Richtwerte f&uuml;r ein Einfamilienhaus</h2>
+    <table>
+      <tr><th>Arbeit</th><th>Umfang</th><th class="r">Richtwert</th></tr>
+      <tr><td>Dach neu decken mit Ziegel</td><td>150 Quadratmeter</td><td class="r">ab 24000 &euro;</td></tr>
+      <tr><td>Aufsparrend&auml;mmung dazu</td><td>150 Quadratmeter</td><td class="r">ab 14000 &euro;</td></tr>
+      <tr><td>Flachdach abdichten</td><td>60 Quadratmeter</td><td class="r">ab 9500 &euro;</td></tr>
+      <tr><td>Rinne und Fallrohr Zink</td><td>je Meter</td><td class="r">ab 78 &euro;</td></tr>
+      <tr><td>Dachfenster einbauen</td><td>je St&uuml;ck</td><td class="r">ab 1600 &euro;</td></tr>
+      <tr><td>Reparatur mit Hubsteiger</td><td>halber Tag</td><td class="r">ab 690 &euro;</td></tr>
+      <tr><td>Ger&uuml;st f&uuml;r vier Wochen</td><td>Einfamilienhaus</td><td class="r">ab 2200 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Kurz beantwortet</h2>
+    <details open>
+      <summary>Wie lange h&auml;lt ein Ziegeldach?</summary>
+      <p>Der Ziegel h&auml;lt oft achtzig Jahre. Die Lattung und die Folie darunter halten
+      f&uuml;nfzig. Deshalb ist das Unterdach meist der Grund f&uuml;r eine Neudeckung.</p>
+    </details>
+    <details>
+      <summary>K&ouml;nnen Sie im Winter arbeiten?</summary>
+      <p>Bis etwa minus f&uuml;nf Grad ja. Bei Schnee und Eis auf dem Dach nicht. Abdichtungen
+      brauchen Temperaturen &uuml;ber f&uuml;nf Grad.</p>
+    </details>
+    <details>
+      <summary>&Uuml;bernehmen Sie die Bauleitung?</summary>
+      <p>F&uuml;r das Dach ja. Bei Fassade und Fenster arbeiten wir mit den Kollegen im Ort
+      zusammen und stimmen die Termine ab.</p>
+    </details>
+    <details>
+      <summary>Wie sichern Sie das Dach gegen Regen?</summary>
+      <p>Wir decken nur so viel ab wie wir am Tag schaffen. Der Rest bleibt geschlossen. Planen
+      liegen immer auf dem Ger&uuml;st bereit.</p>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>B&uuml;rozeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">07:00 &ndash; 16:00</td></tr>
+        <tr><td>Freitag</td><td class="r">07:00 &ndash; 12:00</td></tr>
+        <tr><td>Telefonisch</td><td class="r">ab 06:30</td></tr>
+        <tr><td>Sturmschaden</td><td class="r">jederzeit</td></tr>
+      </table>
+      <div>
+        <address>
+          Dachdeckerei Hufnagel<br>
+          Am Bahndamm 4<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817228
+        </address>
+        <p style="margin-top:14px">Der Hof liegt hinter dem alten Lagerhaus. Das B&uuml;ro ist
+        vormittags besetzt. Nachmittags erreichen Sie uns mobil.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Dachdeckerei</h3>Am Bahndamm 4<br>97845 Rehbrunn<br>0152 28817228</div>
+    <div><h3>Themen</h3><a href="#ablauf">Ablauf</a><br><a href="#sturm">Sturmschaden</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Betrieb</h3>Inhaber W. Hufnagel<br>Dachdeckermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

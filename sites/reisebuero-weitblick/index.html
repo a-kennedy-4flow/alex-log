@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reiseb&uuml;ro Weitblick &middot; Rehbrunn</title>
+<meta name="description" content="Reiseb&uuml;ro Weitblick in Rehbrunn. Beratung und Buchung und Betreuung im Reisefall.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 118px; }
+  body { margin: 0; background: #f7fbfd; color: #10222c;
+         font: 16px/1.7 "Figtree", "Segoe UI", system-ui, sans-serif; }
+  a { color: #0f7a8c; }
+  .in { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .oben { background: #0f7a8c; color: #eafaff; font-size: 13px; }
+  .oben .in { display: flex; justify-content: space-between; gap: 14px; padding: 9px 24px; flex-wrap: wrap; }
+  .oben a { color: #fff; text-decoration: none; }
+  header { background: #fff; border-bottom: 1px solid #dceaee; position: sticky; top: 0; z-index: 30; }
+  header .in { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+               min-height: 72px; flex-wrap: wrap; }
+  .marke { font-size: 21px; font-weight: 700; }
+  .marke small { display: block; font-size: 11px; font-weight: 400; letter-spacing: .2em;
+                 text-transform: uppercase; color: #6b8792; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #2f5460; text-decoration: none; }
+  header nav a:hover { color: #0f7a8c; }
+  .unterband { background: #10222c; position: sticky; top: 72px; z-index: 25; }
+  .unterband .in { display: flex; gap: 6px; overflow-x: auto; padding: 8px 24px; }
+  .unterband a { color: #a9c3cc; text-decoration: none; font-size: 14px; padding: 7px 13px;
+                 border-radius: 999px; white-space: nowrap; }
+  .unterband a:hover { background: #1c3441; color: #fff; }
+  .buehne { background: linear-gradient(160deg, #cfeef5, #eef8fb); border-bottom: 1px solid #d5e8ed; }
+  .buehne .in { padding: 56px 24px 48px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px;
+                align-items: center; }
+  @media (max-width: 840px) { .buehne .in { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #0f7a8c;
+           font-weight: 700; }
+  h1 { margin: 12px 0 16px; font-size: clamp(32px, 6.4vw, 54px); line-height: 1.05; letter-spacing: -.02em; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 46ch; color: #2f5460; }
+  .koffer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .koffer div { background: #fff; border: 1px solid #d5e8ed; border-radius: 14px; padding: 18px 20px;
+                font-size: 14px; color: #4a6d78; }
+  .koffer b { display: block; font-size: 24px; color: #10222c; }
+  main section { padding: 50px 0; border-bottom: 1px solid #e2edf0; }
+  h2 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 34px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 20px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #0f7a8c; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .filter button { font: inherit; font-size: 14px; padding: 9px 16px; border-radius: 999px;
+                   border: 1px solid #c6dde3; background: #fff; color: #2f5460; cursor: pointer; }
+  .filter button[aria-pressed="true"] { background: #10222c; border-color: #10222c; color: #fff; }
+  .zaehler { margin: 0 0 16px; font-size: 14px; color: #6b8792; }
+  .ziele { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;
+           list-style: none; margin: 0; padding: 0; }
+  .ziele li { background: #fff; border: 1px solid #dceaee; border-radius: 14px; overflow: hidden; }
+  .ziele .streifen { height: 8px; }
+  .ziele .inhalt { padding: 18px 20px; }
+  .ziele b { display: block; font-size: 18px; }
+  .ziele .art { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #0f7a8c;
+                margin: 3px 0 8px; }
+  .ziele p { margin: 0 0 10px; font-size: 15px; color: #55707a; }
+  .ziele .preis { font-weight: 700; }
+  .leer { padding: 22px 0; color: #6b8792; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #6b8792;
+       padding: 12px; background: #eaf4f7; }
+  td { padding: 12px; border-top: 1px solid #e6f0f3; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 18px 46px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 32px; height: 32px;
+                         background: #cfeef5; color: #10222c; border-radius: 50%; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #55707a; }
+  .notiz { background: #10222c; color: #d8eaf0; border-radius: 14px; padding: 22px 24px; }
+  .notiz h3 { margin: 0 0 10px; font-size: 18px; }
+  .notiz p { margin: 0 0 10px; font-size: 15px; }
+  .notiz b { font-size: 19px; color: #7fd6e6; }
+  address { font-style: normal; }
+  footer { background: #10222c; color: #bdd2da; font-size: 15px; }
+  footer .in { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #7fd6e6; }
+  footer a { color: #bdd2da; }
+  .ende { border-top: 1px solid #223945; font-size: 13px; color: #87a2ac; }
+  .ende .in { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="oben"><div class="in">
+  <span>Im Reisefall erreichbar &middot; 0152 28817317</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<header>
+  <div class="in">
+    <div class="marke">Reiseb&uuml;ro Weitblick<small>Beratung seit 1992</small></div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#ziele">Reiseziele</a></li>
+        <li><a href="#beratung">Beratung</a></li>
+        <li><a href="#gruppen">Gruppen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="unterband">
+  <div class="in">
+    <a href="#ziele">Reiseziele</a>
+    <a href="#beratung">So beraten wir</a>
+    <a href="#gruppen">Gruppenreisen</a>
+    <a href="#service">Im Reisefall</a>
+    <a href="#kosten">Was kostet Beratung</a>
+    <a href="#kontakt">&Ouml;ffnungszeiten</a>
+  </div>
+</div>
+
+<div class="buehne">
+  <div class="in">
+    <div>
+      <p class="zeile">Reiseb&uuml;ro mit Beratung</p>
+      <h1>Ein Mensch der zur&uuml;ckruft wenn der Flug ausf&auml;llt</h1>
+      <p>Wir buchen was zu Ihnen passt. Und wir k&uuml;mmern uns wenn unterwegs etwas
+      schiefgeht.</p>
+    </div>
+    <div class="koffer">
+      <div><b>1992</b>im Ort</div>
+      <div><b>4</b>Beraterinnen</div>
+      <div><b>24 h</b>Erreichbarkeit im Reisefall</div>
+      <div><b>60+</b>Veranstalter</div>
+    </div>
+  </div>
+</div>
+
+<main class="in">
+  <section id="ziele">
+    <p class="unter">Reiseziele</p>
+    <h2>Was gerade nachgefragt wird</h2>
+    <div class="filter" role="group" aria-label="Reiseziele filtern">
+      <button aria-pressed="true" data-art="alle">Alle</button>
+      <button aria-pressed="false" data-art="strand">Strand</button>
+      <button aria-pressed="false" data-art="berg">Berge</button>
+      <button aria-pressed="false" data-art="stadt">St&auml;dte</button>
+      <button aria-pressed="false" data-art="fern">Fernreise</button>
+    </div>
+    <p class="zaehler" id="zaehler">Acht Vorschl&auml;ge werden angezeigt.</p>
+    <ul class="ziele" id="liste">
+      <li data-art="strand"><div class="streifen" style="background:#f0b429"></div><div class="inhalt"><b>Gardasee</b><span class="art">Strand und See</span><p>Mit dem eigenen Auto in sechs Stunden. Gute Wahl f&uuml;r Familien.</p><span class="preis">ab 540 &euro; die Woche</span></div></li>
+      <li data-art="strand"><div class="streifen" style="background:#2f9ec4"></div><div class="inhalt"><b>Kreta</b><span class="art">Strand</span><p>Flug ab N&uuml;rnberg. Halbpension im kleinen Haus statt Bettenburg.</p><span class="preis">ab 780 &euro;</span></div></li>
+      <li data-art="berg"><div class="streifen" style="background:#5b8c4a"></div><div class="inhalt"><b>S&uuml;dtirol</b><span class="art">Berge</span><p>Wandern von H&uuml;tte zu H&uuml;tte. Gep&auml;cktransport organisiert.</p><span class="preis">ab 620 &euro;</span></div></li>
+      <li data-art="berg"><div class="streifen" style="background:#7a93a8"></div><div class="inhalt"><b>Zillertal</b><span class="art">Berge</span><p>Skiwoche mit Bus ab Rehbrunn. Abfahrt Samstag f&uuml;nf Uhr.</p><span class="preis">ab 690 &euro;</span></div></li>
+      <li data-art="stadt"><div class="streifen" style="background:#b5523f"></div><div class="inhalt"><b>Prag</b><span class="art">Stadt</span><p>Vier Tage mit Bahn und Hotel in der Altstadt.</p><span class="preis">ab 340 &euro;</span></div></li>
+      <li data-art="stadt"><div class="streifen" style="background:#8c5ba8"></div><div class="inhalt"><b>Lissabon</b><span class="art">Stadt</span><p>Flug und Apartment. Beste Zeit ist April und Oktober.</p><span class="preis">ab 460 &euro;</span></div></li>
+      <li data-art="fern"><div class="streifen" style="background:#c48a2f"></div><div class="inhalt"><b>Namibia</b><span class="art">Fernreise</span><p>Mietwagenrundreise mit vorgebuchten Lodges. Drei Wochen.</p><span class="preis">ab 3200 &euro;</span></div></li>
+      <li data-art="fern"><div class="streifen" style="background:#3f7a6c"></div><div class="inhalt"><b>Japan</b><span class="art">Fernreise</span><p>Bahnpass und Hotels. Kirschbl&uuml;te ist lange im Voraus ausgebucht.</p><span class="preis">ab 2900 &euro;</span></div></li>
+    </ul>
+    <p class="leer" id="leer" hidden>Zu diesem Bereich haben wir gerade nichts im Schaufenster. Fragen Sie uns.</p>
+  </section>
+
+  <section id="beratung">
+    <p class="unter">Beratung</p>
+    <h2>Wie ein Gespr&auml;ch bei uns abl&auml;uft</h2>
+    <div class="zwei">
+      <ol class="schritte">
+        <li><b>Termin</b><span>Wir nehmen uns eine Stunde. Ohne Termin geht es auch aber dann warten Sie.</span></li>
+        <li><b>Fragen</b><span>Wir fragen nach Budget und Reisezeit und danach was Sie zuletzt gest&ouml;rt hat.</span></li>
+        <li><b>Vorschlag</b><span>Zwei oder drei Angebote schriftlich. Preise und Leistungen nebeneinander.</span></li>
+        <li><b>Buchung</b><span>Sie bekommen alle Unterlagen als Mappe. Auf Wunsch auch gedruckt.</span></li>
+      </ol>
+      <div>
+        <p>Wir verkaufen keine Reise die wir selbst nicht antreten w&uuml;rden. Manchmal raten
+        wir von einem Hotel ab obwohl es Provision br&auml;chte. Das kostet uns Umsatz und
+        bringt uns Kunden.</p>
+        <p>Alle Beraterinnen fahren jedes Jahr selbst an Ziele im Programm. Danach k&ouml;nnen
+        sie sagen wie weit der Strand wirklich entfernt liegt.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gruppen">
+    <p class="unter">Gruppen</p>
+    <h2>Vereine und Schulen und Firmen</h2>
+    <p>Wir organisieren Fahrten f&uuml;r Gruppen ab zw&ouml;lf Personen. Bus und Unterkunft und
+    Programm kommen aus einer Hand. Der Musikverein Rehbrunn f&auml;hrt seit sechzehn Jahren mit
+    uns.</p>
+    <table>
+      <tr><th>Fahrt</th><th>Gr&ouml;&szlig;e</th><th class="r">Richtwert je Person</th></tr>
+      <tr><td>Tagesfahrt mit Bus</td><td>ab 25 Personen</td><td class="r">ab 45 &euro;</td></tr>
+      <tr><td>Wochenende mit &Uuml;bernachtung</td><td>ab 20 Personen</td><td class="r">ab 190 &euro;</td></tr>
+      <tr><td>Klassenfahrt f&uuml;nf Tage</td><td>ab 20 Sch&uuml;ler</td><td class="r">ab 280 &euro;</td></tr>
+      <tr><td>Vereinsreise eine Woche</td><td>ab 30 Personen</td><td class="r">ab 640 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="service">
+    <p class="unter">Im Reisefall</p>
+    <h2>Wenn unterwegs etwas passiert</h2>
+    <div class="zwei">
+      <div>
+        <p>Bei Streik und Ausfall und Krankheit rufen Sie uns an. Wir sprechen mit dem
+        Veranstalter und mit der Fluggesellschaft. Sie m&uuml;ssen nicht in einer Warteschleife
+        h&auml;ngen w&auml;hrend Ihr Urlaub verstreicht.</p>
+        <p>Ansprüche nach der Fluggastrechteverordnung machen wir f&uuml;r Sie geltend. Das ist
+        f&uuml;r gebuchte Reisen kostenfrei.</p>
+      </div>
+      <div class="notiz">
+        <h3>Notfallnummer</h3>
+        <p>Rund um die Uhr besetzt f&uuml;r alle die bei uns gebucht haben.</p>
+        <b>0152 28817317</b>
+        <p style="margin-top:12px">Speichern Sie die Nummer vor der Abreise im Telefon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kosten">
+    <p class="unter">Kosten</p>
+    <h2>Was Beratung kostet</h2>
+    <table>
+      <tr><th>Leistung</th><th class="r">Preis</th></tr>
+      <tr><td>Beratung mit Buchung</td><td class="r">kostenfrei</td></tr>
+      <tr><td>Beratung ohne Buchung</td><td class="r">45 &euro; je Stunde</td></tr>
+      <tr><td>Individuelle Rundreise planen</td><td class="r">ab 120 &euro;</td></tr>
+      <tr><td>Umbuchung nach Wunsch</td><td class="r">25 &euro; plus Geb&uuml;hr</td></tr>
+      <tr><td>Visum beantragen</td><td class="r">ab 40 &euro;</td></tr>
+    </table>
+    <p style="margin-top:16px">Die Geb&uuml;hr f&uuml;r Beratung ohne Buchung rechnen wir an
+    sobald Sie doch bei uns buchen.</p>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">09:00 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:30 &ndash; 12:30</td></tr>
+        <tr><td>Termine</td><td class="r">auch abends</td></tr>
+        <tr><td>Notfallnummer</td><td class="r">durchgehend</td></tr>
+      </table>
+      <div>
+        <address>
+          Reiseb&uuml;ro Weitblick<br>
+          Bahnhofstra&szlig;e 11<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817317
+        </address>
+        <p style="margin-top:14px">Wir sitzen neben dem Sanit&auml;tshaus. Der Eingang ist
+        stufenlos. Parken k&ouml;nnen Sie am Bahnhofsvorplatz.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div><h3>Reiseb&uuml;ro</h3>Bahnhofstra&szlig;e 11<br>97845 Rehbrunn<br>0152 28817317</div>
+    <div><h3>Themen</h3><a href="#ziele">Reiseziele</a><br><a href="#gruppen">Gruppen</a><br><a href="#service">Im Reisefall</a></div>
+    <div><h3>Betrieb</h3>Inhaberin S. Weitblick<br>Reiseverkehrskauffrau<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const knoepfe = [...document.querySelectorAll('.filter button')];
+const eintraege = [...document.querySelectorAll('#liste li')];
+const zaehler = document.getElementById('zaehler');
+const leer = document.getElementById('leer');
+function filtern(art) {
+  let treffer = 0;
+  for (const eintrag of eintraege) {
+    const zeigen = art === 'alle' || eintrag.dataset.art === art;
+    eintrag.hidden = !zeigen;
+    if (zeigen) treffer++;
+  }
+  leer.hidden = treffer > 0;
+  zaehler.textContent = art === 'alle'
+    ? `${eintraege.length} Vorschläge werden angezeigt.`
+    : `${treffer} von ${eintraege.length} Vorschlägen in diesem Bereich.`;
+}
+for (const knopf of knoepfe) {
+  knopf.addEventListener('click', () => {
+    for (const anderer of knoepfe) anderer.setAttribute('aria-pressed', String(anderer === knopf));
+    filtern(knopf.dataset.art);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schlosserei Kranz &middot; Metallbau in Rehbrunn</title>
+<meta name="description" content="Schlosserei und Metallbau Kranz in Rehbrunn. Gel&auml;nder und Tore und Stahlbau nach Ma&szlig;.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+  body { margin: 0; background: #1a1c1e; color: #e6e8ea;
+         font: 16px/1.68 "Archivo", "Segoe UI", system-ui, sans-serif; }
+  a { color: #d94f2b; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: #1a1c1e; border-bottom: 1px solid #2e3236;
+           background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 6px, transparent 6px 12px); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 70px; flex-wrap: wrap; }
+  .marke { font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: .04em; }
+  .marke em { font-style: normal; color: #d94f2b; }
+  header nav ul { display: flex; gap: 16px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #b6bcc2; text-decoration: none; text-transform: uppercase; font-size: 13px;
+                 letter-spacing: .1em; }
+  header nav a:hover { color: #d94f2b; }
+  .buehne { border-bottom: 1px solid #2e3236; }
+  .buehne .wrap { padding: 64px 24px 54px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px;
+                  align-items: end; }
+  @media (max-width: 860px) { .buehne .wrap { grid-template-columns: 1fr; gap: 24px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #d94f2b; }
+  h1 { margin: 14px 0 16px; font-size: clamp(34px, 7vw, 62px); line-height: .98; letter-spacing: -.03em;
+       text-transform: uppercase; }
+  .buehne p { margin: 0; font-size: 19px; color: #a9b1b8; max-width: 46ch; }
+  .stahl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stahl div { border: 1px solid #33383d; padding: 16px; font-size: 13px; letter-spacing: .1em;
+               text-transform: uppercase; color: #8f979e; }
+  .stahl b { display: block; font-size: 24px; color: #e6e8ea; letter-spacing: -.01em;
+             text-transform: none; }
+  section { padding: 54px 0; border-bottom: 1px solid #262a2e; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); text-transform: uppercase; letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #d94f2b; }
+  p { margin: 0 0 16px; max-width: 70ch; color: #c2c8cd; }
+  .werke { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px;
+           background: #2e3236; border: 1px solid #2e3236; }
+  .werke article { background: #202326; padding: 22px 24px; }
+  .werke h3 { margin: 0 0 8px; font-size: 19px; }
+  .werke p { margin: 0 0 10px; font-size: 15px; color: #9ba3a9; }
+  .werke .preis { font-size: 14px; color: #d94f2b; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #8f979e;
+       padding: 0 10px 12px 0; border-bottom: 1px solid #3a4046; }
+  td { padding: 13px 10px 13px 0; border-bottom: 1px solid #262a2e; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: #f0a58c; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .liste { list-style: none; margin: 0; padding: 0; }
+  .liste li { padding: 11px 0 11px 26px; border-bottom: 1px solid #262a2e; position: relative;
+              font-size: 15px; color: #c2c8cd; }
+  .liste li::before { content: "\25aa"; position: absolute; left: 0; color: #d94f2b; }
+  .ablauf { counter-reset: n; list-style: none; margin: 0; padding: 0; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+  .ablauf li { counter-increment: n; border-top: 3px solid #d94f2b; padding-top: 14px; }
+  .ablauf li::before { content: "Schritt " counter(n); display: block; font-size: 12px; letter-spacing: .14em;
+                       text-transform: uppercase; color: #d94f2b; margin-bottom: 6px; }
+  .ablauf b { display: block; margin-bottom: 4px; }
+  .ablauf span { font-size: 15px; color: #9ba3a9; }
+  .kasten { border-left: 4px solid #d94f2b; background: #202326; padding: 18px 22px; }
+  .kasten p { margin: 0; }
+  address { font-style: normal; color: #c2c8cd; }
+  .hoch { position: fixed; right: 20px; bottom: 20px; background: #d94f2b; color: #fff; padding: 12px 16px;
+          border-radius: 6px; text-decoration: none; font-size: 13px; letter-spacing: .1em;
+          text-transform: uppercase; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; font-size: 15px; color: #a9b1b8; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #d94f2b; }
+  footer a { color: #d3d8dc; }
+  .ende { border-top: 1px solid #262a2e; font-size: 13px; color: #7d858c; }
+  .ende .wrap { display: block; padding: 16px 24px 44px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body id="oben">
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Schlosserei <em>Kranz</em></span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#gelaender">Gel&auml;nder</a></li>
+        <li><a href="#tore">Tore</a></li>
+        <li><a href="#reparatur">Reparatur</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Metallbau seit 1974</p>
+      <h1>Stahl h&auml;lt l&auml;nger als der Preisvergleich</h1>
+      <p>Wir schwei&szlig;en und kanten und montieren im eigenen Betrieb. Jedes St&uuml;ck
+      entsteht f&uuml;r ein bestimmtes Ma&szlig;.</p>
+    </div>
+    <div class="stahl">
+      <div><b>6</b>Beschäftigte</div>
+      <div><b>2</b>Schwei&szlig;fachkr&auml;fte</div>
+      <div><b>8 m</b>Abkantpresse</div>
+      <div><b>1974</b>gegr&uuml;ndet</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>Was aus der Halle kommt</h2>
+    <div class="werke">
+      <article><h3>Gel&auml;nder</h3><p>F&uuml;r Treppe und Balkon und Br&uuml;stung. Stahl verzinkt oder Edelstahl.</p><p class="preis">ab 220 &euro; je Meter</p></article>
+      <article><h3>Tore und Zäune</h3><p>Von Hand oder mit Antrieb. Auch als Schiebetor mit Bodenschiene.</p><p class="preis">ab 1400 &euro;</p></article>
+      <article><h3>Vord&auml;cher</h3><p>Stahlrahmen mit Glas oder Trapezblech. Statik im Haus gerechnet.</p><p class="preis">ab 1900 &euro;</p></article>
+      <article><h3>Stahlbau</h3><p>Tr&auml;ger und St&uuml;tzen f&uuml;r den Umbau. Montage mit eigenem Kran.</p><p class="preis">nach Aufwand</p></article>
+      <article><h3>Treppen</h3><p>Au&szlig;entreppe verzinkt oder Innentreppe mit Holzstufen.</p><p class="preis">ab 3200 &euro;</p></article>
+      <article><h3>Sonderbau</h3><p>Regale und Grillroste und ein Briefkasten der zum Haus passt.</p><p class="preis">nach Zeichnung</p></article>
+    </div>
+  </section>
+
+  <section id="gelaender">
+    <p class="unter">Gel&auml;nder</p>
+    <h2>Drei Ausf&uuml;hrungen im Vergleich</h2>
+    <table>
+      <tr><th>Ausf&uuml;hrung</th><th>Haltbarkeit au&szlig;en</th><th>Pflege</th><th class="r">Preis je Meter</th></tr>
+      <tr><td>Stahl feuerverzinkt</td><td>&uuml;ber 25 Jahre</td><td>keine</td><td class="r">ab 220 &euro;</td></tr>
+      <tr><td>Stahl verzinkt und beschichtet</td><td>&uuml;ber 25 Jahre</td><td>waschen</td><td class="r">ab 290 &euro;</td></tr>
+      <tr><td>Edelstahl geschliffen</td><td>dauerhaft</td><td>polieren</td><td class="r">ab 420 &euro;</td></tr>
+      <tr><td>Stahl lackiert innen</td><td>innen dauerhaft</td><td>keine</td><td class="r">ab 180 &euro;</td></tr>
+    </table>
+    <p style="margin-top:18px">Bei einem Balkon geben wir die Verzinkung au&szlig;er Haus. Das
+    dauert eine Woche l&auml;nger und h&auml;lt daf&uuml;r ein Leben lang.</p>
+  </section>
+
+  <section id="tore">
+    <p class="unter">Tore</p>
+    <h2>Antrieb und Sicherheit</h2>
+    <div class="zwei">
+      <div>
+        <p>Ein Tor mit Antrieb muss gepr&uuml;ft werden. Wir bauen Lichtschranke und
+        Kraftbegrenzung ein und dokumentieren die Abnahme. Das ist keine K&uuml;r sondern
+        Vorschrift.</p>
+        <ul class="liste">
+          <li>Schiebetor mit Zahnstange</li>
+          <li>Fl&uuml;geltor mit Unterflurantrieb</li>
+          <li>Sektionaltor f&uuml;r die Halle</li>
+          <li>Notentriegelung von au&szlig;en</li>
+          <li>Funk und Schl&uuml;sseltaster</li>
+        </ul>
+      </div>
+      <div>
+        <table>
+          <tr><th>Leistung</th><th class="r">Preis</th></tr>
+          <tr><td>Fl&uuml;geltor zwei Meter</td><td class="r">ab 1400 &euro;</td></tr>
+          <tr><td>Schiebetor vier Meter</td><td class="r">ab 3600 &euro;</td></tr>
+          <tr><td>Antrieb mit Montage</td><td class="r">ab 1900 &euro;</td></tr>
+          <tr><td>Jahrespr&uuml;fung Toranlage</td><td class="r">140 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="reparatur">
+    <p class="unter">Reparatur</p>
+    <h2>Kleine Arbeiten am Dienstag</h2>
+    <p>Dienstag halten wir f&uuml;r kurze Auftr&auml;ge frei. Bringen Sie das Teil bis zehn Uhr
+    und holen Sie es am Nachmittag. Gr&ouml;&szlig;ere Sachen nehmen wir in die Reihe auf.</p>
+    <div class="zwei">
+      <ul class="liste">
+        <li>Gebrochenes Scharnier schwei&szlig;en</li>
+        <li>Schlossblech nacharbeiten</li>
+        <li>Anh&auml;ngerdeichsel richten</li>
+        <li>Rasenm&auml;hergeh&auml;use flicken</li>
+        <li>Handlauf verl&auml;ngern</li>
+        <li>Fahrradst&auml;nder befestigen</li>
+      </ul>
+      <div class="kasten">
+        <p>Schwei&szlig;en an Alu und Edelstahl kostet mehr als an Baustahl. Der Grund ist das
+        Schutzgas und die l&auml;ngere Vorbereitung. Wir sagen den Preis vorher.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Vom Aufma&szlig; zur Montage</h2>
+    <ol class="ablauf">
+      <li><b>Aufma&szlig;</b><span>Wir messen vor Ort. Fotos allein reichen bei Stahl nicht.</span></li>
+      <li><b>Zeichnung</b><span>Sie bekommen eine Skizze mit allen Ma&szlig;en zur Freigabe.</span></li>
+      <li><b>Fertigung</b><span>Zuschnitt und Schwei&szlig;en und Oberfl&auml;che. Drei bis sechs Wochen.</span></li>
+      <li><b>Montage</b><span>Ein Tag f&uuml;r ein Gel&auml;nder. D&uuml;bel nach Untergrund gew&auml;hlt.</span></li>
+    </ol>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>Werkstattzeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">07:00 &ndash; 16:00</td></tr>
+        <tr><td>Freitag</td><td class="r">07:00 &ndash; 12:00</td></tr>
+        <tr><td>Kleinreparaturen</td><td class="r">Dienstag bis 10:00</td></tr>
+        <tr><td>Aufma&szlig; vor Ort</td><td class="r">nach Vereinbarung</td></tr>
+      </table>
+      <div>
+        <address>
+          Schlosserei Kranz<br>
+          Industriestra&szlig;e 22<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817184
+        </address>
+        <p style="margin-top:14px">Die Halle steht am Ende der Industriestra&szlig;e. Fahren Sie
+        auf den Hof und klingeln Sie an der Werkstatt. Das B&uuml;ro ist nicht immer besetzt.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Schlosserei</h3>Industriestra&szlig;e 22<br>97845 Rehbrunn<br>0152 28817184</div>
+    <div><h3>Themen</h3><a href="#gelaender">Gel&auml;nder</a><br><a href="#tore">Tore</a><br><a href="#reparatur">Reparatur</a></div>
+    <div><h3>Betrieb</h3>Inhaber P. Kranz<br>Metallbauermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<a class="hoch" href="#oben">Nach oben</a>
+</body>
+</html>

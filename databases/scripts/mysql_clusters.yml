@@ -9,6 +9,14 @@
 #   ansible-playbook -i hosts mysql_clusters.yml --tags routed-multi
 #   ansible-playbook -i hosts mysql_clusters.yml --tags teardown
 #
+# Percona PMM is an add-on you point at a stack that is already built.
+#
+#   ansible-playbook -i hosts mysql_clusters.yml --tags pmm-server
+#   ansible-playbook -i hosts mysql_clusters.yml --tags pmm-async
+#   ansible-playbook -i hosts mysql_clusters.yml --tags pmm-single
+#   ansible-playbook -i hosts mysql_clusters.yml --tags pmm-multi
+#   ansible-playbook -i hosts mysql_clusters.yml --tags pmm-teardown
+#
 # Each design owns a role and a fact namespace of its own. The stacks use
 # separate networks names and host ports so they can all run at once.
 #
@@ -16,6 +24,10 @@
 # Designs D and E are those same stacks with a ProxySQL router added. They reuse
 # the same networks and the same MySQL containers so running routed-single after
 # single adds the router to that stack rather than building a new one.
+
+# One PMM server serves every design and one PMM client serves one cluster. Each
+# pmm tag builds the server first so the tag is enough on its own. The server is
+# standalone and the design teardown leaves it running.
 
 - name: Design A - asynchronous source and two replicas
   hosts: localhost
@@ -88,6 +100,74 @@
     - role: orchestrator_observer
       vars: *observer_mp
 
+- name: The standalone PMM server
+  hosts: localhost
+  gather_facts: false
+  # Named by every pmm tag so a client tag builds its server first. This play
+  # comes before the client plays because Ansible runs plays in file order.
+  tags:
+    - never
+    - pmm-server
+    - pmm-async
+    - pmm-single
+    - pmm-multi
+  roles:
+    - pmm_server
+
+- name: Monitor the asynchronous stack of design A
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - pmm-async
+  roles:
+    - role: pmm_client
+      vars:
+        pmm_client_name: pmm-client-async
+        pmm_client_network: mysql-async
+        pmm_client_cluster: mysql-async
+        pmm_client_nodes:
+          - mysql-async-1
+          - mysql-async-2
+          - mysql-async-3
+
+- name: Monitor the single primary stack of designs B and D
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - pmm-single
+  roles:
+    - role: pmm_client
+      vars:
+        pmm_client_name: pmm-client-sp
+        pmm_client_network: mysql-sp
+        pmm_client_cluster: mysql-sp
+        pmm_client_nodes:
+          - mysql-sp-1
+          - mysql-sp-2
+          - mysql-sp-3
+        # Monitored as well once design D has put the router there.
+        pmm_client_proxysql_name: proxysql-sp
+
+- name: Monitor the multi primary stack of designs C and E
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - pmm-multi
+  roles:
+    - role: pmm_client
+      vars:
+        pmm_client_name: pmm-client-mp
+        pmm_client_network: mysql-mp
+        pmm_client_cluster: mysql-mp
+        pmm_client_nodes:
+          - mysql-mp-1
+          - mysql-mp-2
+          - mysql-mp-3
+        pmm_client_proxysql_name: proxysql-mp
+
 - name: Remove every design
   hosts: localhost
   gather_facts: false
@@ -96,3 +176,12 @@
     - teardown
   roles:
     - mysql_docker_teardown
+
+- name: Remove the monitoring stack
+  hosts: localhost
+  gather_facts: false
+  tags:
+    - never
+    - pmm-teardown
+  roles:
+    - pmm_teardown

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H&ouml;rakustik Wieland &middot; Rehbrunn</title>
+<meta name="description" content="H&ouml;rakustik Wieland in Rehbrunn. H&ouml;rtest und Anpassung und Geh&ouml;rschutz nach Ma&szlig;.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+  body { margin: 0; background: #fdfcf9; color: #201f1d;
+         font: 18px/1.75 "Source Serif Pro", Georgia, serif; }
+  a { color: #a35c00; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 26px; }
+  header.kopf { position: sticky; top: 0; z-index: 20; background: #fdfcf9; border-bottom: 2px solid #201f1d; }
+  header.kopf .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                      min-height: 74px; flex-wrap: wrap; }
+  .marke { font-size: 22px; font-weight: 600; }
+  .marke small { display: block; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+                 color: #7c7367; font-weight: 400; font-family: "Segoe UI", system-ui, sans-serif; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0;
+                  font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  header nav a { color: #4a453d; text-decoration: none; padding: 4px 0;
+                 border-bottom: 2px solid transparent; }
+  header nav a:hover { border-bottom-color: #a35c00; color: #a35c00; }
+  .welle { display: flex; align-items: flex-end; gap: 4px; height: 70px; margin: 34px 0 0; }
+  .welle i { flex: 1; background: linear-gradient(180deg, #d8a355, #a35c00); border-radius: 3px 3px 0 0; }
+  .buehne { padding: 60px 0 44px; }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #a35c00; }
+  h1 { margin: 14px 0 18px; font-size: clamp(34px, 7vw, 58px); line-height: 1.08; font-weight: 600; }
+  .buehne p { margin: 0; font-size: 21px; max-width: 48ch; color: #3d3830; }
+  section { padding: 50px 0; border-top: 1px solid #e6e1d6; }
+  h2 { margin: 0 0 6px; font-size: clamp(25px, 4.2vw, 36px); font-weight: 600; }
+  .unter { margin: 0 0 22px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #a35c00; }
+  p { margin: 0 0 18px; max-width: 68ch; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schild { background: #f3eee2; border-radius: 12px; padding: 22px 24px; }
+  .schild h3 { margin: 0 0 8px; font-size: 20px; }
+  .schild p { margin: 0; font-size: 16px; }
+  .stufen { list-style: none; margin: 0; padding: 0; }
+  .stufen li { display: grid; grid-template-columns: 74px 1fr; gap: 18px; padding: 16px 0;
+               border-bottom: 1px solid #e6e1d6; }
+  .stufen .dB { font-family: "Segoe UI", system-ui, sans-serif; font-weight: 700; color: #a35c00;
+                font-variant-numeric: tabular-nums; }
+  .stufen b { display: block; }
+  .stufen span { font-size: 16px; color: #5a5348; }
+  details { border: 1px solid #e0dacb; border-radius: 10px; margin-bottom: 12px; background: #fff; }
+  summary { cursor: pointer; padding: 16px 20px; font-size: 19px; font-weight: 600;
+            display: flex; justify-content: space-between; gap: 16px; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "\25be"; color: #a35c00; }
+  details[open] summary::after { transform: rotate(180deg); }
+  details .txt { padding: 0 20px 18px; }
+  details p { margin: 0 0 12px; font-size: 17px; }
+  details p:last-child { margin: 0; }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 16px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+       color: #7c7367; padding: 0 10px 10px 0; border-bottom: 2px solid #201f1d; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #ece7db; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .kasten { border-left: 5px solid #a35c00; background: #f7f2e6; padding: 18px 22px; }
+  .kasten p { margin: 0; }
+  address { font-style: normal; }
+  footer { background: #201f1d; color: #e2ddd2; font-family: "Segoe UI", system-ui, sans-serif;
+           font-size: 15px; }
+  footer .wrap { padding: 40px 26px; display: grid;
+                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+              color: #d8a355; }
+  footer a { color: #e2ddd2; }
+  .ende { border-top: 1px solid #3a3833; font-size: 13px; color: #9e968a; }
+  .ende .wrap { display: block; padding: 16px 26px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header class="kopf">
+  <div class="wrap">
+    <div class="marke">H&ouml;rakustik Wieland<small>Meisterbetrieb in Rehbrunn</small></div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#hoeren">H&ouml;ren</a></li>
+        <li><a href="#geraete">Ger&auml;te</a></li>
+        <li><a href="#schutz">Geh&ouml;rschutz</a></li>
+        <li><a href="#kosten">Kosten</a></li>
+        <li><a href="#fragen">Fragen</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="buehne">
+    <p class="zeile">H&ouml;rger&auml;te und Geh&ouml;rschutz</p>
+    <h1>Schlecht h&ouml;ren ist anstrengend. Wir &auml;ndern das in Ruhe.</h1>
+    <p>Der erste Termin dauert eine Stunde und kostet nichts. Sie gehen mit einem Ergebnis
+    heraus und nicht mit einem Vertrag.</p>
+    <div class="welle" role="presentation">
+      <i style="height:22%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:96%"></i>
+      <i style="height:74%"></i><i style="height:52%"></i><i style="height:80%"></i><i style="height:38%"></i>
+      <i style="height:60%"></i><i style="height:28%"></i><i style="height:44%"></i><i style="height:18%"></i>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="hoeren">
+    <p class="unter">H&ouml;ren</p>
+    <h2>Wann ein Test sinnvoll ist</h2>
+    <p>Ein H&ouml;rverlust kommt langsam. Die meisten Menschen merken ihn erst nach Jahren.
+    Angeh&ouml;rige bemerken ihn fr&uuml;her. Diese Zeichen sprechen f&uuml;r einen Test.</p>
+    <ul class="stufen">
+      <li><span class="dB">1</span><div><b>Der Fernseher wird lauter gestellt</b><span>Andere im Raum finden die Lautst&auml;rke unangenehm.</span></div></li>
+      <li><span class="dB">2</span><div><b>Gespr&auml;che im Lokal werden schwer</b><span>Bei Hintergrundger&auml;usch geht der Inhalt verloren.</span></div></li>
+      <li><span class="dB">3</span><div><b>Nachfragen h&auml;uft sich</b><span>Vor allem bei hellen Stimmen und am Telefon.</span></div></li>
+      <li><span class="dB">4</span><div><b>Klingel und Vogelstimmen fehlen</b><span>Hohe T&ouml;ne verschwinden zuerst.</span></div></li>
+    </ul>
+    <div class="zwei" style="margin-top:26px">
+      <div class="schild">
+        <h3>Der H&ouml;rtest</h3>
+        <p>Wir messen die Luftleitung und die Knochenleitung. Danach pr&uuml;fen wir das
+        Sprachverstehen mit und ohne St&ouml;rger&auml;usch. Die Kurve besprechen wir sofort.</p>
+      </div>
+      <div class="schild">
+        <h3>Der Weg zum Rezept</h3>
+        <p>F&uuml;r die Kassenleistung braucht es eine ohrenärztliche Verordnung. Wir schicken
+        Ihnen den Befund mit. Den Termin bekommen Sie meist innerhalb von zwei Wochen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="geraete">
+    <p class="unter">Ger&auml;te</p>
+    <h2>Vier Bauformen im Vergleich</h2>
+    <p>Wir arbeiten mit sechs Herstellern. Kein Hersteller zahlt uns eine Pr&auml;mie f&uuml;r
+    einen Abschluss. Sie testen jedes Ger&auml;t vierzehn Tage im Alltag.</p>
+    <table>
+      <tr><th>Bauform</th><th>Passt bei</th><th class="r">Zuzahlung ab</th></tr>
+      <tr><td>Hinter dem Ohr</td><td>jedem H&ouml;rverlust</td><td class="r">0 &euro;</td></tr>
+      <tr><td>Mit externem H&ouml;rer</td><td>leicht bis mittel</td><td class="r">0 &euro;</td></tr>
+      <tr><td>Im Ohr gefertigt</td><td>leicht bis mittel</td><td class="r">390 &euro;</td></tr>
+      <tr><td>Vollst&auml;ndig im Kanal</td><td>leichtem Verlust</td><td class="r">690 &euro;</td></tr>
+    </table>
+    <p style="margin-top:20px">Jedes Kassenger&auml;t ist digital und hat mehrere Programme. Es
+    gibt bei uns keine Ger&auml;te ohne St&ouml;rschallunterdr&uuml;ckung.</p>
+  </section>
+
+  <section id="schutz">
+    <p class="unter">Geh&ouml;rschutz</p>
+    <h2>Nach Ma&szlig; aus dem eigenen Labor</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir nehmen einen Abdruck und fertigen den Otoplastik daraus. Der Schutz sitzt dicht
+        und dr&uuml;ckt nicht. Filter tauschen wir jederzeit.</p>
+        <p>H&auml;ufig kommen Musiker und Handwerker und Schlafsuchende zu uns. F&uuml;r
+        Betriebe rechnen wir direkt mit der Berufsgenossenschaft ab.</p>
+      </div>
+      <table>
+        <tr><th>Art</th><th class="r">Preis</th></tr>
+        <tr><td>Schlafschutz</td><td class="r">120 &euro;</td></tr>
+        <tr><td>Musikerschutz mit Filter</td><td class="r">220 &euro;</td></tr>
+        <tr><td>Arbeitsschutz</td><td class="r">180 &euro;</td></tr>
+        <tr><td>Schwimmschutz</td><td class="r">95 &euro;</td></tr>
+        <tr><td>Filterwechsel</td><td class="r">18 &euro;</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="kosten">
+    <p class="unter">Kosten</p>
+    <h2>Was die Kasse tr&auml;gt</h2>
+    <div class="kasten">
+      <p>Die gesetzliche Kasse zahlt f&uuml;r ein Ger&auml;t pro Ohr einen Festbetrag. Dazu
+      kommt eine gesetzliche Zuzahlung von zehn Euro je Ger&auml;t. Ein Kassenger&auml;t
+      kostet Sie also zehn Euro je Ohr und sonst nichts.</p>
+    </div>
+    <table style="margin-top:22px">
+      <tr><th>Leistung</th><th class="r">Ihr Anteil</th></tr>
+      <tr><td>H&ouml;rtest und Beratung</td><td class="r">0 &euro;</td></tr>
+      <tr><td>Kassenger&auml;t je Ohr</td><td class="r">10 &euro;</td></tr>
+      <tr><td>Nachjustierung im Zeitraum</td><td class="r">0 &euro;</td></tr>
+      <tr><td>Reinigung und Wartung</td><td class="r">0 &euro;</td></tr>
+      <tr><td>Batterien f&uuml;r sechs Jahre</td><td class="r">0 &euro;</td></tr>
+      <tr><td>Reparatur nach Garantie</td><td class="r">ab 60 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Was G&auml;ste am Tresen fragen</h2>
+    <details open>
+      <summary>Sieht man mir das Ger&auml;t an?</summary>
+      <div class="txt">
+        <p>Kaum. Moderne Ger&auml;te sind sehr klein und verschwinden hinter der Ohrmuschel.
+        Wichtiger als die Gr&ouml;&szlig;e ist der Klang.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Wie lange dauert die Gew&ouml;hnung?</summary>
+      <div class="txt">
+        <p>Meist vier bis sechs Wochen. Das Gehirn muss vergessene Ger&auml;usche wieder
+        einordnen. Wir stellen in dieser Zeit mehrmals nach.</p>
+        <p>Kommen Sie in dieser Phase lieber einmal zu oft als zu selten.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Muss ich beide Ohren versorgen?</summary>
+      <div class="txt">
+        <p>Wenn beide Ohren betroffen sind ist die Antwort ja. Richtungsh&ouml;ren
+        funktioniert nur mit zwei Ohren. Die Kasse zahlt beide Seiten.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Was passiert bei einem Defekt?</summary>
+      <div class="txt">
+        <p>Kleine Reparaturen erledigen wir sofort im Labor. Muss das Ger&auml;t zum
+        Hersteller bekommen Sie ein Leihger&auml;t.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Kommen Sie auch ins Haus?</summary>
+      <div class="txt">
+        <p>Ja. Donnerstag ist unser Tag f&uuml;r Hausbesuche. Wir fahren auch in die
+        Pflegeeinrichtungen im Umkreis.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Mittwoch</td><td class="r">09:00 &ndash; 17:00</td></tr>
+        <tr><td>Donnerstag</td><td class="r">Hausbesuche</td></tr>
+        <tr><td>Freitag</td><td class="r">09:00 &ndash; 15:00</td></tr>
+        <tr><td>Samstag und Sonntag</td><td class="r">geschlossen</td></tr>
+      </table>
+      <div>
+        <address>
+          H&ouml;rakustik Wieland<br>
+          Marktstra&szlig;e 3<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817085
+        </address>
+        <p style="margin-top:14px">Der Laden liegt ebenerdig neben der Sparkasse. Vor der
+        T&uuml;r gibt es einen Behindertenparkplatz.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>H&ouml;rakustik Wieland</h3>Marktstra&szlig;e 3<br>97845 Rehbrunn<br>0152 28817085</div>
+    <div><h3>Themen</h3><a href="#hoeren">H&ouml;rtest</a><br><a href="#schutz">Geh&ouml;rschutz</a><br><a href="#kosten">Kosten</a></div>
+    <div><h3>Betrieb</h3>Inhaber M. Wieland<br>H&ouml;rakustikermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

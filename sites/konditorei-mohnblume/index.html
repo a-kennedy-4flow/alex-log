@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konditorei Mohnblume &middot; Rehbrunn</title>
+<meta name="description" content="Konditorei und Caf&eacute; in Rehbrunn. Torten auf Bestellung und Kuchen aus eigener Herstellung.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { margin: 0; background: #fff9f4; color: #3b2a24;
+         font: 17px/1.7 "Cormorant Garamond", Garamond, Georgia, serif; }
+  a { color: #a63d40; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 12px; top: 12px; background: #a63d40; color: #fff; padding: 10px 14px; z-index: 20; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 26px; }
+  nav.top { position: sticky; top: 0; z-index: 10; background: rgba(255,249,244,.96);
+            border-bottom: 1px solid #e8d9cc; backdrop-filter: blur(6px); }
+  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px;
+                  min-height: 64px; flex-wrap: wrap; }
+  .brand { font-size: 19px; letter-spacing: .04em; }
+  .brand span { color: #a63d40; }
+  nav.top ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap;
+               font-family: "Helvetica Neue", Arial, sans-serif; font-size: 13px;
+               letter-spacing: .12em; text-transform: uppercase; }
+  nav.top a { text-decoration: none; color: #6b5248; padding: 6px 0; border-bottom: 2px solid transparent; }
+  nav.top a:hover { color: #a63d40; }
+  nav.top a.here { color: #3b2a24; border-bottom-color: #a63d40; }
+  .hero { padding: 70px 0 54px; text-align: center; border-bottom: 1px solid #e8d9cc; }
+  .kicker { margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12px;
+            letter-spacing: .34em; text-transform: uppercase; color: #a63d40; }
+  h1 { margin: 14px 0 10px; font-size: clamp(38px, 8vw, 68px); font-weight: 500; line-height: 1.05; }
+  .hero p { margin: 0 auto; max-width: 52ch; font-size: 21px; }
+  .bloom { width: 60px; height: 60px; margin: 26px auto 0; border-radius: 50%;
+           background: radial-gradient(circle at 50% 50%, #3b2a24 0 18%, #a63d40 18% 100%); }
+  section { border-bottom: 1px solid #e8d9cc; padding: 54px 0; }
+  h2 { margin: 0 0 8px; font-size: clamp(26px, 4.4vw, 38px); font-weight: 500; }
+  .lead { margin: 0 0 26px; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 13px;
+          letter-spacing: .2em; text-transform: uppercase; color: #a63d40; }
+  p { margin: 0 0 18px; max-width: 68ch; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 22px; } }
+  .karte { list-style: none; margin: 0; padding: 0; }
+  .karte li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0;
+              border-bottom: 1px dotted #ddc9b9; }
+  .karte .fuell { flex: 1; border-bottom: 1px dotted #ddc9b9; transform: translateY(-5px); }
+  .karte .preis { color: #a63d40; font-variant-numeric: tabular-nums; }
+  .karte small { display: block; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 13px;
+                 color: #7a6156; }
+  .kacheln { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .kachel { background: #fff; border: 1px solid #eadbcd; border-radius: 4px; padding: 22px 24px; }
+  .kachel h3 { margin: 0 0 8px; font-size: 22px; font-weight: 500; }
+  .kachel p { margin: 0; font-size: 16px; color: #6b5248; }
+  .schritte { counter-reset: s; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: s; position: relative; padding: 0 0 26px 56px; }
+  .schritte li::before { content: counter(s); position: absolute; left: 0; top: -4px; width: 38px;
+                         height: 38px; border-radius: 50%; background: #a63d40; color: #fff;
+                         display: grid; place-content: center;
+                         font-family: "Helvetica Neue", Arial, sans-serif; font-size: 15px; }
+  .schritte b { display: block; font-size: 19px; }
+  .schritte span { color: #6b5248; }
+  details { border-bottom: 1px solid #e8d9cc; padding: 14px 0; }
+  summary { cursor: pointer; font-size: 19px; list-style: none; display: flex;
+            justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: #a63d40; }
+  details[open] summary::after { content: "\2212"; }
+  details p { margin: 12px 0 4px; color: #56423a; }
+  table.zeiten { width: 100%; border-collapse: collapse; font-family: "Helvetica Neue", Arial, sans-serif;
+                 font-size: 15px; }
+  table.zeiten th { text-align: left; font-weight: 500; color: #6b5248; padding: 9px 0; }
+  table.zeiten td { text-align: right; font-variant-numeric: tabular-nums; padding: 9px 0; }
+  table.zeiten tr + tr th, table.zeiten tr + tr td { border-top: 1px solid #eadbcd; }
+  .hinweis { background: #f6ebe1; border-left: 4px solid #a63d40; padding: 16px 20px; }
+  .hinweis p { margin: 0; }
+  address { font-style: normal; }
+  footer { background: #3b2a24; color: #f0e3d8; }
+  footer .wrap { padding: 40px 26px; display: grid;
+                 grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px;
+                 font-family: "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
+  footer h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+              color: #d7a9a2; font-weight: 600; }
+  footer a { color: #f0e3d8; }
+  .fuss { border-top: 1px solid #58433b; }
+  .fuss .wrap { padding: 16px 26px 40px; font-size: 13px; color: #c2ab9f; display: block; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<nav class="top" aria-label="Hauptnavigation">
+  <div class="wrap">
+    <span class="brand">Konditorei <span>Mohnblume</span></span>
+    <ul>
+      <li><a href="#haus">Das Haus</a></li>
+      <li><a href="#theke">Theke</a></li>
+      <li><a href="#torten">Torten</a></li>
+      <li><a href="#cafe">Caf&eacute;</a></li>
+      <li><a href="#fragen">Fragen</a></li>
+      <li><a href="#besuch">Besuch</a></li>
+      <li><a href="../index.html">Verzeichnis</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="inhalt">
+  <div class="hero">
+    <div class="wrap">
+      <p class="kicker">Konditorei und Caf&eacute; &middot; Rehbrunn</p>
+      <h1>Mohnblume</h1>
+      <p>Wir r&uuml;hren jede Creme selbst. Fertige Massen kommen uns nicht ins Haus.</p>
+      <div class="bloom" role="presentation"></div>
+    </div>
+  </div>
+
+  <section id="haus">
+    <div class="wrap">
+      <p class="lead">Das Haus</p>
+      <h2>Seit 1957 am Lindenplatz</h2>
+      <div class="zwei">
+        <div>
+          <p>Meine Gro&szlig;mutter hat die Konditorei nach dem Krieg er&ouml;ffnet. Der Marmortisch
+          von damals steht heute noch in der Backstube. Wir arbeiten zu dritt und backen jeden
+          Morgen ab vier Uhr.</p>
+          <p>Alle Torten entstehen hier im Haus. Wir kaufen keine Halbfertigware und wir
+          verwenden keine k&uuml;nstlichen Aromen. Die Sahne kommt vom Hof Bachtal. Die Eier
+          legen die H&uuml;hner der Familie Erle.</p>
+        </div>
+        <div>
+          <p>Im Sommer stehen sechs Tische unter den Linden. Im Winter sitzen unsere G&auml;ste
+          im hinteren Raum neben dem Ofen. Der Raum fasst vierundzwanzig Personen.</p>
+          <p>Wir schlie&szlig;en im August f&uuml;r drei Wochen. Den genauen Zeitraum h&auml;ngen
+          wir ab Juni an die T&uuml;r.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="theke">
+    <div class="wrap">
+      <p class="lead">Aus der Theke</p>
+      <h2>Was heute fertig ist</h2>
+      <div class="zwei">
+        <ul class="karte">
+          <li><span>Bienenstich<small>Frisch gef&uuml;llt ab neun Uhr</small></span><span class="fuell"></span><span class="preis">3,60 &euro;</span></li>
+          <li><span>Mohntorte<small>Unser Hausst&uuml;ck</small></span><span class="fuell"></span><span class="preis">3,90 &euro;</span></li>
+          <li><span>Streuselkuchen<small>Blechkuchen nach altem Rezept</small></span><span class="fuell"></span><span class="preis">2,80 &euro;</span></li>
+          <li><span>K&auml;sesahne<small>Nur Freitag und Samstag</small></span><span class="fuell"></span><span class="preis">4,10 &euro;</span></li>
+        </ul>
+        <ul class="karte">
+          <li><span>Nussecke<small>Mit dunkler Kuvert&uuml;re</small></span><span class="fuell"></span><span class="preis">2,40 &euro;</span></li>
+          <li><span>Windbeutel<small>Wird auf Zuruf gef&uuml;llt</small></span><span class="fuell"></span><span class="preis">3,20 &euro;</span></li>
+          <li><span>Pralinen aus der Vitrine<small>Preis je St&uuml;ck</small></span><span class="fuell"></span><span class="preis">1,10 &euro;</span></li>
+          <li><span>Baumkuchenspitzen<small>Ab Oktober</small></span><span class="fuell"></span><span class="preis">14,00 &euro; / 250 g</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="torten">
+    <div class="wrap">
+      <p class="lead">Auf Bestellung</p>
+      <h2>Torten f&uuml;r Ihren Anlass</h2>
+      <p>Eine Bestellung braucht f&uuml;nf Tage Vorlauf. Bei Hochzeitstorten sind es vier
+      Wochen. Wir besprechen jede Torte einmal pers&ouml;nlich an der Theke.</p>
+      <div class="kacheln">
+        <div class="kachel"><h3>Geburtstag</h3><p>Rund oder eckig. Ab acht Portionen. Der Schriftzug kostet nichts.</p></div>
+        <div class="kachel"><h3>Hochzeit</h3><p>Bis zu vier Etagen. Aufbau am Ort ist im Preis enthalten.</p></div>
+        <div class="kachel"><h3>Firmenfeier</h3><p>Blechkuchen f&uuml;r gro&szlig;e Runden. Lieferung ab dreißig Portionen.</p></div>
+        <div class="kachel"><h3>Ohne Zucker</h3><p>Zwei Rezepte mit Birkenzucker. Bitte drei Tage vorher fragen.</p></div>
+      </div>
+      <h2 style="margin-top:34px">So l&auml;uft eine Bestellung</h2>
+      <ol class="schritte">
+        <li><b>Gespr&auml;ch</b><span>Sie sagen uns Anlass und Personenzahl und Ihre Wunschf&uuml;llung.</span></li>
+        <li><b>Angebot</b><span>Wir nennen den Preis sofort. Er gilt vier Wochen.</span></li>
+        <li><b>Anzahlung</b><span>Ab hundert Euro nehmen wir dreißig Prozent im Voraus.</span></li>
+        <li><b>Abholung</b><span>Die Torte steht ab acht Uhr k&uuml;hl bereit. Lieferung im Umkreis von zehn Kilometern kostet acht Euro.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="cafe">
+    <div class="wrap">
+      <p class="lead">Caf&eacute;</p>
+      <h2>Kaffee und ein Platz am Fenster</h2>
+      <div class="zwei">
+        <div>
+          <ul class="karte">
+            <li><span>Tasse Kaffee</span><span class="fuell"></span><span class="preis">2,60 &euro;</span></li>
+            <li><span>Kaffee mit Sahne</span><span class="fuell"></span><span class="preis">3,10 &euro;</span></li>
+            <li><span>Kanne Tee</span><span class="fuell"></span><span class="preis">3,40 &euro;</span></li>
+            <li><span>Hei&szlig;e Schokolade</span><span class="fuell"></span><span class="preis">3,60 &euro;</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="hinweis">
+            <p>Wir haben kein WLAN und keine Steckdosen an den Tischen. Das ist Absicht. Zum
+            Arbeiten ist die Bibliothek gegen&uuml;ber besser geeignet.</p>
+          </div>
+          <p style="margin-top:18px">Hunde d&uuml;rfen mit hinein. Wasser stellen wir hin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fragen">
+    <div class="wrap">
+      <p class="lead">H&auml;ufige Fragen</p>
+      <h2>Kurz beantwortet</h2>
+      <details open>
+        <summary>Kann ich eine Torte am selben Tag bekommen?</summary>
+        <p>In der Regel nicht. Am Wochenende steht aber fast immer eine fertige Torte in der
+        K&uuml;hlvitrine. Ein Anruf am Morgen lohnt sich.</p>
+      </details>
+      <details>
+        <summary>Gibt es glutenfreies Geb&auml;ck?</summary>
+        <p>Ja. Zwei Kuchen backen wir glutenfrei. Unsere Backstube ist aber klein. Eine
+        Kontamination k&ouml;nnen wir nicht ausschlie&szlig;en.</p>
+      </details>
+      <details>
+        <summary>Nehmen Sie Karte?</summary>
+        <p>Ab f&uuml;nf Euro nehmen wir EC-Karte. Kreditkarten leider nicht.</p>
+      </details>
+      <details>
+        <summary>Bekomme ich das Rezept der Mohntorte?</summary>
+        <p>Nein. Der Mohn wird zweimal gemahlen und &uuml;ber Nacht in Milch eingeweicht. Mehr
+        verraten wir nicht.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="besuch">
+    <div class="wrap">
+      <p class="lead">Besuch</p>
+      <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+      <div class="zwei">
+        <table class="zeiten">
+          <tr><th>Dienstag bis Freitag</th><td>08:00 &ndash; 18:00</td></tr>
+          <tr><th>Samstag</th><td>07:30 &ndash; 17:00</td></tr>
+          <tr><th>Sonntag</th><td>13:00 &ndash; 18:00</td></tr>
+          <tr><th>Montag</th><td>Ruhetag</td></tr>
+          <tr><th>Feiertage</th><td>13:00 &ndash; 18:00</td></tr>
+        </table>
+        <div>
+          <address>
+            Konditorei Mohnblume<br>
+            Lindenplatz 4<br>
+            97845 Rehbrunn<br>
+            Telefon 0152 28817041
+          </address>
+          <p style="margin-top:16px">Der Bus 41 h&auml;lt direkt vor dem Haus. Hinter der Kirche
+          gibt es zw&ouml;lf Parkpl&auml;tze. Die ersten zwei Stunden sind frei.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Konditorei Mohnblume</h3>
+      Lindenplatz 4<br>97845 Rehbrunn<br>0152 28817041
+    </div>
+    <div>
+      <h3>Navigation</h3>
+      <a href="#haus">Das Haus</a><br>
+      <a href="#torten">Torten</a><br>
+      <a href="#besuch">Besuch</a><br>
+      <a href="../index.html">Gewerbeverzeichnis</a>
+    </div>
+    <div>
+      <h3>Impressum</h3>
+      Inhaberin Frau A. Mohnblume<br>
+      Handwerkskammer Rehbrunn<br>
+      Erfundener Betrieb
+    </div>
+  </div>
+  <div class="fuss"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const punkte = [...document.querySelectorAll('main section')];
+const links = new Map([...document.querySelectorAll('nav.top a[href^="#"]')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const beobachter = new IntersectionObserver(eintraege => {
+  for (const eintrag of eintraege) {
+    const link = links.get(eintrag.target.id);
+    if (link && eintrag.isIntersecting) {
+      for (const a of links.values()) a.classList.remove('here');
+      link.classList.add('here');
+    }
+  }
+}, { rootMargin: '-70px 0px -70% 0px' });
+for (const punkt of punkte) beobachter.observe(punkt);
+</script>
+</body>
+</html>

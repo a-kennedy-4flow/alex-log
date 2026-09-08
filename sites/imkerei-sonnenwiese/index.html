@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imkerei Sonnenwiese &middot; Rehbrunn</title>
+<meta name="description" content="Imkerei Sonnenwiese in Rehbrunn. Honig aus der Region und Ableger und Bienenpatenschaft.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: #fffdf4; color: #2a2313;
+         font: 17px/1.72 "Zilla Slab", Georgia, serif; }
+  a { color: #a86a08; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: #fffdf4; border-bottom: 2px solid #2a2313; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 64px; flex-wrap: wrap; }
+  .marke { font-weight: 700; font-size: 20px; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0;
+                  font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  header nav a { color: #574a2c; text-decoration: none; }
+  header nav a:hover { color: #a86a08; }
+  .waben { display: flex; height: 22px; }
+  .waben i { flex: 1; background: #f0b429;
+             clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); margin-right: 2px; }
+  .buehne { padding: 56px 0 44px; }
+  .buehne .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 34px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #a86a08; }
+  h1 { margin: 12px 0 16px; font-size: clamp(33px, 6.6vw, 56px); line-height: 1.04; }
+  .buehne p { margin: 0; font-size: 20px; max-width: 46ch; color: #4a4028; }
+  .glaeser { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .glas { border: 2px solid #2a2313; border-radius: 6px 6px 12px 12px; padding: 12px 10px;
+          text-align: center; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; }
+  .glas .deckel { height: 12px; background: #2a2313; margin: -12px -10px 10px; border-radius: 4px 4px 0 0; }
+  .glas .inhalt { height: 54px; border-radius: 4px; margin-bottom: 8px; }
+  section { padding: 50px 0; border-top: 2px solid #efe4c8; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); }
+  .unter { margin: 0 0 22px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #a86a08; }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  .jahr { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .jahr button { font: inherit; font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px;
+                 padding: 10px 18px; border: 2px solid #2a2313; background: #fff; color: #2a2313;
+                 border-radius: 999px; cursor: pointer; }
+  .jahr button[aria-selected="true"] { background: #f0b429; }
+  .tafel[hidden] { display: none; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #857547;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #2a2313; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #eee2c4; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .karte { border: 2px solid #2a2313; border-radius: 14px; padding: 20px 22px; background: #fff; }
+  .karte h3 { margin: 0 0 8px; font-size: 19px; }
+  .karte p { margin: 0; font-size: 16px; color: #5b5138; }
+  .honig { background: #fdf3d8; border-left: 5px solid #f0b429; padding: 18px 22px; }
+  .honig p { margin: 0; }
+  address { font-style: normal; }
+  footer { border-top: 2px solid #2a2313; font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px;
+           color: #6b5f3d; }
+  footer .wrap { padding: 36px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #2a2313; }
+  .ende { border-top: 1px solid #efe4c8; font-size: 13px; color: #8b7f5d; }
+  .ende .wrap { display: block; padding: 14px 24px 40px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Imkerei Sonnenwiese</span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#honig">Honig</a></li>
+        <li><a href="#jahr">Bienenjahr</a></li>
+        <li><a href="#voelker">V&ouml;lker</a></li>
+        <li><a href="#patenschaft">Patenschaft</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="waben" aria-hidden="true">
+  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+</div>
+
+<div class="wrap">
+  <div class="buehne">
+    <div>
+      <p class="zeile">Imkerei mit vierzig V&ouml;lkern</p>
+      <h1>Honig aus einem Umkreis von drei Kilometern</h1>
+      <p>Unsere V&ouml;lker stehen an der Streuobstwiese und am Waldrand. Wir schleudern nur
+      verdeckelte Waben und f&uuml;ttern nicht zu.</p>
+    </div>
+    <div class="glaeser">
+      <div class="glas"><div class="deckel"></div><div class="inhalt" style="background:#f6d78a"></div>Fr&uuml;hjahr</div>
+      <div class="glas"><div class="deckel"></div><div class="inhalt" style="background:#d99b2b"></div>Sommer</div>
+      <div class="glas"><div class="deckel"></div><div class="inhalt" style="background:#6b4318"></div>Wald</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="honig">
+    <p class="unter">Honig</p>
+    <h2>Drei Ernten im Jahr</h2>
+    <p>Jede Ernte schmeckt anders weil andere Pflanzen bl&uuml;hen. Wir mischen nichts und wir
+    erw&auml;rmen nichts &uuml;ber vierzig Grad. Kristallisierter Honig ist ein gutes Zeichen und
+    kein Fehler.</p>
+    <table>
+      <tr><th>Sorte</th><th>Erntezeit</th><th>Geschmack</th><th class="r">500 g</th></tr>
+      <tr><td>Fr&uuml;hjahrsbl&uuml;te</td><td>Mai</td><td>mild und cremig</td><td class="r">7,50 &euro;</td></tr>
+      <tr><td>Sommerbl&uuml;te</td><td>Juli</td><td>kr&auml;ftig und fl&uuml;ssig</td><td class="r">7,50 &euro;</td></tr>
+      <tr><td>Waldhonig</td><td>August</td><td>dunkel und malzig</td><td class="r">9,00 &euro;</td></tr>
+      <tr><td>Wabenhonig</td><td>Juni</td><td>im St&uuml;ck</td><td class="r">12,00 &euro;</td></tr>
+      <tr><td>Met aus eigenem Honig</td><td>Winter</td><td>trocken</td><td class="r">14,00 &euro;</td></tr>
+    </table>
+    <div class="honig" style="margin-top:20px">
+      <p>Gl&auml;ser nehmen wir sauber zur&uuml;ck. F&uuml;r jedes zur&uuml;ckgebrachte Glas
+      geben wir f&uuml;nfzig Cent auf den n&auml;chsten Kauf.</p>
+    </div>
+  </section>
+
+  <section id="jahr">
+    <p class="unter">Bienenjahr</p>
+    <h2>Was wann am Stand passiert</h2>
+    <div class="jahr" role="tablist" aria-label="Jahreszeiten">
+      <button role="tab" id="j1" aria-controls="s1" aria-selected="true">Fr&uuml;hjahr</button>
+      <button role="tab" id="j2" aria-controls="s2" aria-selected="false">Sommer</button>
+      <button role="tab" id="j3" aria-controls="s3" aria-selected="false">Herbst</button>
+      <button role="tab" id="j4" aria-controls="s4" aria-selected="false">Winter</button>
+    </div>
+
+    <div class="tafel" id="s1" role="tabpanel" aria-labelledby="j1">
+      <div class="zwei">
+        <div>
+          <p>Ab M&auml;rz wird kontrolliert. Wir sehen nach Futter und nach der K&ouml;nigin und
+          nach dem Brutnest. Die erste Tracht ist die Weide und danach kommen L&ouml;wenzahn und
+          Raps.</p>
+          <p>Ende April setzen wir die Honigr&auml;ume auf. Jetzt beginnt auch die Zeit der
+          Schw&auml;rme.</p>
+        </div>
+        <table>
+          <tr><th>Arbeit</th><th class="r">Zeitpunkt</th></tr>
+          <tr><td>Erste Durchsicht</td><td class="r">M&auml;rz</td></tr>
+          <tr><td>Honigraum aufsetzen</td><td class="r">April</td></tr>
+          <tr><td>Schwarmkontrolle</td><td class="r">alle neun Tage</td></tr>
+          <tr><td>Erste Schleuderung</td><td class="r">Ende Mai</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tafel" id="s2" role="tabpanel" aria-labelledby="j2" hidden>
+      <div class="zwei">
+        <div>
+          <p>Im Sommer tr&auml;gt die Linde und danach der Wald. Wir schleudern zweimal und
+          bilden Ableger aus starken V&ouml;lkern. Die neuen V&ouml;lker &uuml;berwintern
+          getrennt.</p>
+          <p>Nach der letzten Ernte beginnt sofort die Behandlung gegen die Varroamilbe. Das ist
+          die wichtigste Arbeit im ganzen Jahr.</p>
+        </div>
+        <table>
+          <tr><th>Arbeit</th><th class="r">Zeitpunkt</th></tr>
+          <tr><td>Zweite Schleuderung</td><td class="r">Juli</td></tr>
+          <tr><td>Ableger bilden</td><td class="r">Juni und Juli</td></tr>
+          <tr><td>Varroabehandlung</td><td class="r">ab Ende Juli</td></tr>
+          <tr><td>Auff&uuml;ttern</td><td class="r">August</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tafel" id="s3" role="tabpanel" aria-labelledby="j3" hidden>
+      <div class="zwei">
+        <div>
+          <p>Im Herbst wird es ruhig. Wir wiegen die V&ouml;lker und pr&uuml;fen den
+          Futtervorrat. Ein Volk braucht etwa achtzehn Kilogramm f&uuml;r den Winter.</p>
+          <p>M&auml;usegitter kommen vor die Fluglöcher. Danach bleiben die K&auml;sten
+          geschlossen.</p>
+        </div>
+        <table>
+          <tr><th>Arbeit</th><th class="r">Zeitpunkt</th></tr>
+          <tr><td>Futterkontrolle</td><td class="r">September</td></tr>
+          <tr><td>M&auml;usegitter</td><td class="r">Oktober</td></tr>
+          <tr><td>Waben einschmelzen</td><td class="r">Oktober</td></tr>
+          <tr><td>Restentmilbung</td><td class="r">November</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tafel" id="s4" role="tabpanel" aria-labelledby="j4" hidden>
+      <div class="zwei">
+        <div>
+          <p>Im Winter arbeiten wir in der Werkstatt. Rahmen werden gedrahtet und K&auml;sten
+          gereinigt. Am Stand h&ouml;ren wir nur kurz an der Wand ob das Volk brummt.</p>
+          <p>Jetzt entstehen auch Kerzen aus dem eigenen Wachs. Sie sind ab November im
+          Hofladen.</p>
+        </div>
+        <table>
+          <tr><th>Arbeit</th><th class="r">Zeitpunkt</th></tr>
+          <tr><td>Rahmen bauen</td><td class="r">Dezember</td></tr>
+          <tr><td>Kerzen gie&szlig;en</td><td class="r">November</td></tr>
+          <tr><td>Ger&auml;te reinigen</td><td class="r">Januar</td></tr>
+          <tr><td>Erste Reinigungsfl&uuml;ge</td><td class="r">Februar</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="voelker">
+    <p class="unter">V&ouml;lker</p>
+    <h2>Ableger und Bestäubung</h2>
+    <div class="karten">
+      <div class="karte"><h3>Ableger</h3><p>Ab Juni mit junger K&ouml;nigin und f&uuml;nf Waben. Nur an Imker aus der Umgebung.</p></div>
+      <div class="karte"><h3>Bestäubung</h3><p>Wir stellen V&ouml;lker in Obstanlagen. Zur Bl&uuml;te und f&uuml;r zwei Wochen.</p></div>
+      <div class="karte"><h3>Schwarmdienst</h3><p>Ein Schwarm h&auml;ngt in Ihrem Baum. Wir holen ihn kostenfrei.</p></div>
+      <div class="karte"><h3>Anf&auml;ngerhilfe</h3><p>Wer anfangen m&ouml;chte darf ein Jahr mitlaufen. Ohne Geb&uuml;hr.</p></div>
+    </div>
+    <table style="margin-top:20px">
+      <tr><th>Leistung</th><th class="r">Preis</th></tr>
+      <tr><td>Ableger auf f&uuml;nf Waben</td><td class="r">140 &euro;</td></tr>
+      <tr><td>Wirtschaftsvolk</td><td class="r">220 &euro;</td></tr>
+      <tr><td>Bestäubung je Volk und Saison</td><td class="r">90 &euro;</td></tr>
+      <tr><td>Schwarm einfangen</td><td class="r">kostenfrei</td></tr>
+    </table>
+  </section>
+
+  <section id="patenschaft">
+    <p class="unter">Patenschaft</p>
+    <h2>Ein Volk f&uuml;r ein Jahr</h2>
+    <div class="zwei">
+      <div>
+        <p>Eine Patenschaft kostet hundertzwanzig Euro im Jahr. Sie bekommen sechs Gl&auml;ser
+        Honig und d&uuml;rfen dreimal mit an den Stand. Schleier und Handschuhe stellen wir.</p>
+        <p>Viele Paten kommen zur Schleuderung im Mai. Kinder d&uuml;rfen die Kurbel drehen und
+        das schmeckt danach besser als jedes gekaufte Glas.</p>
+      </div>
+      <div class="honig">
+        <p>Betriebe im Ort nutzen die Patenschaft als Geschenk f&uuml;r Kunden. Wir etikettieren
+        die Gl&auml;ser dann mit Ihrem Namen. Ab zw&ouml;lf Gl&auml;sern ohne Aufpreis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>Hofladen und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Freitag</td><td class="r">15:00 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:00 &ndash; 12:00</td></tr>
+        <tr><td>Sonst</td><td class="r">Selbstbedienung mit Kasse</td></tr>
+        <tr><td>Am Stand</td><td class="r">nach Absprache</td></tr>
+      </table>
+      <div>
+        <address>
+          Imkerei Sonnenwiese<br>
+          Sonnenweg 18<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817339
+        </address>
+        <p style="margin-top:14px">Der Hofladen liegt am Ortsrand Richtung Erlenhof. Au&szlig;erhalb
+        der Zeiten steht der Honig im Regal neben der Kasse des Vertrauens.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Imkerei</h3>Sonnenweg 18<br>97845 Rehbrunn<br>0152 28817339</div>
+    <div><h3>Themen</h3><a href="#honig">Honig</a><br><a href="#jahr">Bienenjahr</a><br><a href="#patenschaft">Patenschaft</a></div>
+    <div><h3>Betrieb</h3>Inhaberin R. Sonnenwiese<br>Imkermeisterin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const reiter = [...document.querySelectorAll('[role="tab"]')];
+function zeige(aktiv) {
+  for (const knopf of reiter) {
+    const an = knopf === aktiv;
+    knopf.setAttribute('aria-selected', String(an));
+    document.getElementById(knopf.getAttribute('aria-controls')).hidden = !an;
+  }
+}
+for (const knopf of reiter) {
+  knopf.addEventListener('click', () => zeige(knopf));
+  knopf.addEventListener('keydown', e => {
+    const i = reiter.indexOf(knopf);
+    if (e.key === 'ArrowRight') { const n = reiter[(i + 1) % reiter.length]; n.focus(); zeige(n); }
+    if (e.key === 'ArrowLeft') { const n = reiter[(i - 1 + reiter.length) % reiter.length]; n.focus(); zeige(n); }
+  });
+}
+</script>
+</body>
+</html>

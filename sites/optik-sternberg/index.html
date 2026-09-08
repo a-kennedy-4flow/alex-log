@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optik Sternberg &middot; Augenoptik in Rehbrunn</title>
+<meta name="description" content="Augenoptik Sternberg in Rehbrunn. Brillen und Kontaktlinsen und Sehtest im eigenen Raum.">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #10131a;
+         font: 17px/1.65 "Inter", "Helvetica Neue", Arial, sans-serif; }
+  a { color: #2f5bd7; }
+  .band { background: #10131a; color: #d7dbe4; font-size: 13px; }
+  .band .in { max-width: 1120px; margin: 0 auto; padding: 10px 24px; display: flex;
+              justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .band a { color: #9db4ff; text-decoration: none; }
+  header.kopf { border-bottom: 1px solid #e6e8ee; position: sticky; top: 0; background: rgba(255,255,255,.94);
+                backdrop-filter: blur(8px); z-index: 20; }
+  header.kopf .in { max-width: 1120px; margin: 0 auto; padding: 0 24px; display: flex;
+                    align-items: center; justify-content: space-between; gap: 20px; min-height: 70px;
+                    flex-wrap: wrap; }
+  .marke { font-size: 21px; font-weight: 700; letter-spacing: -.02em; }
+  .marke i { font-style: normal; color: #2f5bd7; }
+  header.kopf nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header.kopf nav a { color: #3d4453; text-decoration: none; }
+  header.kopf nav a:hover { color: #2f5bd7; }
+  .knopf { background: #2f5bd7; color: #fff !important; padding: 10px 16px; border-radius: 8px;
+           text-decoration: none; font-size: 15px; }
+  .buehne { max-width: 1120px; margin: 0 auto; padding: 66px 24px 54px; display: grid;
+            grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: center; }
+  @media (max-width: 860px) { .buehne { grid-template-columns: 1fr; gap: 26px; } }
+  .buehne .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
+                   color: #2f5bd7; font-weight: 600; }
+  h1 { margin: 12px 0 16px; font-size: clamp(34px, 6.6vw, 58px); line-height: 1.05; letter-spacing: -.03em; }
+  .buehne p.gross { margin: 0 0 22px; font-size: 20px; color: #3d4453; max-width: 46ch; }
+  .glaeser { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .glas { aspect-ratio: 1.35; border-radius: 14px; display: grid; place-content: center;
+          font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #fff; }
+  .zahlband { border-top: 1px solid #e6e8ee; border-bottom: 1px solid #e6e8ee; background: #f7f8fb; }
+  .zahlband .in { max-width: 1120px; margin: 0 auto; padding: 26px 24px; display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 22px; }
+  .zahlband b { display: block; font-size: 30px; letter-spacing: -.02em; }
+  .zahlband span { font-size: 14px; color: #5b6373; }
+  main { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 56px 0; border-bottom: 1px solid #eef0f4; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4vw, 34px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #2f5bd7; font-weight: 600; }
+  p { margin: 0 0 16px; max-width: 70ch; color: #2b313d; }
+  .reiter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; border-bottom: 1px solid #e6e8ee;
+            padding-bottom: 14px; }
+  .reiter button { font: inherit; font-size: 15px; padding: 10px 18px; border-radius: 999px;
+                   border: 1px solid #dfe3eb; background: #fff; color: #3d4453; cursor: pointer; }
+  .reiter button[aria-selected="true"] { background: #10131a; border-color: #10131a; color: #fff; }
+  .tafel[hidden] { display: none; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 20px; } }
+  .preis { list-style: none; margin: 0; padding: 0; }
+  .preis li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0;
+              border-bottom: 1px solid #eef0f4; }
+  .preis b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .preis small { display: block; color: #5b6373; font-size: 14px; }
+  .kacheln { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .kachel { border: 1px solid #e6e8ee; border-radius: 14px; padding: 20px 22px; }
+  .kachel h3 { margin: 0 0 6px; font-size: 18px; }
+  .kachel p { margin: 0; font-size: 15px; color: #5b6373; }
+  .ablauf { counter-reset: n; list-style: none; margin: 0; padding: 0; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+  .ablauf li { counter-increment: n; border-top: 3px solid #2f5bd7; padding-top: 14px; }
+  .ablauf li::before { content: "Schritt 0" counter(n); display: block; font-size: 12px;
+                       letter-spacing: .16em; text-transform: uppercase; color: #2f5bd7; margin-bottom: 6px; }
+  .ablauf b { display: block; margin-bottom: 4px; }
+  .ablauf span { font-size: 15px; color: #5b6373; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #5b6373;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #10131a; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #eef0f4; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  address { font-style: normal; }
+  footer { background: #10131a; color: #c9cfda; }
+  footer .in { max-width: 1120px; margin: 0 auto; padding: 40px 24px; display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px; font-size: 15px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #9db4ff; }
+  footer a { color: #c9cfda; }
+  .ende { border-top: 1px solid #262c38; font-size: 13px; color: #808a9b; }
+  .ende .in { display: block; padding: 16px 24px 44px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="band"><div class="in">
+  <span>Sehtest ohne Termin bis 16 Uhr</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<header class="kopf">
+  <div class="in">
+    <span class="marke">Optik <i>Sternberg</i></span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#sehtest">Sehtest</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#werkstatt">Werkstatt</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="knopf" href="#kontakt">Termin vereinbaren</a>
+  </div>
+</header>
+
+<div class="buehne">
+  <div>
+    <p class="zeile">Augenoptik seit 1994</p>
+    <h1>Wir nehmen uns eine Stunde f&uuml;r Ihre Augen</h1>
+    <p class="gross">Kein Zehnminutentest zwischen T&uuml;r und Angel. Der Sehtest findet im
+    eigenen Raum statt und dauert bei uns rund f&uuml;nfundvierzig Minuten.</p>
+    <a class="knopf" href="#sehtest">So l&auml;uft der Sehtest</a>
+  </div>
+  <div class="glaeser">
+    <div class="glas" style="background:#2f5bd7">Einst&auml;rke</div>
+    <div class="glas" style="background:#10131a">Gleitsicht</div>
+    <div class="glas" style="background:#7a5cd6">Arbeitsplatz</div>
+    <div class="glas" style="background:#0f8a6a">Kinder</div>
+  </div>
+</div>
+
+<div class="zahlband">
+  <div class="in">
+    <div><b>1994</b><span>im Ort ansässig</span></div>
+    <div><b>45 min</b><span>Dauer eines Sehtests</span></div>
+    <div><b>2</b><span>Meisterinnen im Betrieb</span></div>
+    <div><b>3 Jahre</b><span>Garantie auf jede Fassung</span></div>
+  </div>
+</div>
+
+<main>
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>W&auml;hlen Sie einen Bereich</h2>
+    <div class="reiter" role="tablist" aria-label="Leistungsbereiche">
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="true">Brillen</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false">Kontaktlinsen</button>
+      <button role="tab" id="t3" aria-controls="p3" aria-selected="false">Kinder</button>
+      <button role="tab" id="t4" aria-controls="p4" aria-selected="false">Vergr&ouml;&szlig;erung</button>
+    </div>
+
+    <div class="tafel" id="p1" role="tabpanel" aria-labelledby="t1">
+      <div class="zwei">
+        <div>
+          <p>Wir f&uuml;hren rund vierhundert Fassungen. Der Schwerpunkt liegt auf Azetat und
+          Titan. Zwei kleine Manufakturen aus Bayern liefern uns Sonderanfertigungen.</p>
+          <p>Gl&auml;ser beziehen wir von zwei deutschen Herstellern. Wir schleifen die meisten
+          Einst&auml;rkengl&auml;ser selbst. Damit ist eine Brille oft am n&auml;chsten Tag
+          fertig.</p>
+        </div>
+        <ul class="preis">
+          <li><span>Einst&auml;rkenbrille komplett<small>Fassung und entspiegelte Gl&auml;ser</small></span><b>ab 189 &euro;</b></li>
+          <li><span>Gleitsichtbrille komplett<small>Mit Videozentrierung</small></span><b>ab 590 &euro;</b></li>
+          <li><span>Arbeitsplatzbrille<small>Auf Ihren Bildschirmabstand</small></span><b>ab 340 &euro;</b></li>
+          <li><span>Sonnenbrille in St&auml;rke</span><b>ab 220 &euro;</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tafel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+      <div class="zwei">
+        <div>
+          <p>Die Anpassung dauert zwei Termine. Beim ersten messen wir die Hornhaut und den
+          Tr&auml;nenfilm. Beim zweiten pr&uuml;fen wir den Sitz nach einer Woche Tragezeit.</p>
+          <p>Wir passen weiche Linsen und formstabile Linsen an. Nachtlinsen bieten wir nicht
+          an. Daf&uuml;r verweisen wir auf eine Kollegin in Weidenfeld.</p>
+        </div>
+        <ul class="preis">
+          <li><span>Erstanpassung weich<small>Zwei Termine und Probelinsen</small></span><b>75 &euro;</b></li>
+          <li><span>Erstanpassung formstabil</span><b>140 &euro;</b></li>
+          <li><span>Kontrolle im Jahr</span><b>35 &euro;</b></li>
+          <li><span>Monatslinsen im Abonnement</span><b>ab 19 &euro; im Monat</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tafel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+      <div class="zwei">
+        <div>
+          <p>Kinderaugen brauchen Zeit und Geduld. Wir messen ohne Druck und arbeiten eng mit
+          der Augenarztpraxis in Bachtal zusammen. Bei Verordnung rechnen wir direkt mit der
+          Kasse ab.</p>
+          <p>Kinderfassungen tauschen wir bis zum zw&ouml;lften Lebensjahr einmal kostenfrei
+          um. Ein Bruch am Spielplatz kostet also nichts.</p>
+        </div>
+        <ul class="preis">
+          <li><span>Kinderbrille auf Verordnung<small>Kassenanteil abgezogen</small></span><b>ab 39 &euro;</b></li>
+          <li><span>Sportband und Ersatzb&uuml;gel</span><b>ohne Aufpreis</b></li>
+          <li><span>Nachjustierung</span><b>immer kostenfrei</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tafel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+      <div class="zwei">
+        <div>
+          <p>Bei starker Sehminderung beraten wir zu vergr&ouml;&szlig;ernden Sehhilfen. Wir
+          f&uuml;hren Lupen und Bildschirmlesegeräte zum Ausprobieren. Der Termin dauert
+          mindestens eine Stunde.</p>
+          <p>Viele Hilfsmittel zahlt die Krankenkasse. Den Antrag f&uuml;llen wir gemeinsam
+          mit Ihnen aus.</p>
+        </div>
+        <ul class="preis">
+          <li><span>Beratung mit Erprobung</span><b>kostenfrei</b></li>
+          <li><span>Handlupe mit Licht</span><b>ab 48 &euro;</b></li>
+          <li><span>Lesegerät mit Bildschirm</span><b>ab 890 &euro;</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="sehtest">
+    <p class="unter">Sehtest</p>
+    <h2>Vier Schritte bis zum Wert</h2>
+    <ol class="ablauf">
+      <li><b>Gespr&auml;ch</b><span>Wof&uuml;r brauchen Sie die Brille. Beruf und Hobby geben den Ausschlag.</span></li>
+      <li><b>Messung</b><span>Objektiv am Ger&auml;t und danach subjektiv mit dem Messglas.</span></li>
+      <li><b>Vergleich</b><span>Wir pr&uuml;fen beide Augen im Zusammenspiel und in der Ferne und in der N&auml;he.</span></li>
+      <li><b>Ergebnis</b><span>Sie bekommen den Wert schriftlich. Auch ohne Kauf und ohne Kosten.</span></li>
+    </ol>
+    <p style="margin-top:22px">Ein Sehtest ersetzt keine augen&auml;rztliche Untersuchung. Bei
+    Auff&auml;lligkeiten schicken wir Sie in die Praxis. Das kommt etwa zwanzigmal im Jahr vor.</p>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Was einzelne Leistungen kosten</h2>
+    <table>
+      <tr><th>Leistung</th><th>Dauer</th><th class="r">Preis</th></tr>
+      <tr><td>Sehtest</td><td>45 Minuten</td><td class="r">kostenfrei</td></tr>
+      <tr><td>Videozentrierung</td><td>15 Minuten</td><td class="r">im Kauf enthalten</td></tr>
+      <tr><td>Reinigung im Ultraschall</td><td>10 Minuten</td><td class="r">kostenfrei</td></tr>
+      <tr><td>Neue Nasenpads</td><td>10 Minuten</td><td class="r">kostenfrei</td></tr>
+      <tr><td>B&uuml;gel l&ouml;ten</td><td>ein Werktag</td><td class="r">25 &euro;</td></tr>
+      <tr><td>Gl&auml;ser in alte Fassung</td><td>drei Werktage</td><td class="r">ab 95 &euro;</td></tr>
+      <tr><td>F&uuml;hrerscheingutachten</td><td>30 Minuten</td><td class="r">18 &euro;</td></tr>
+    </table>
+  </section>
+
+  <section id="werkstatt">
+    <p class="unter">Werkstatt</p>
+    <h2>Eigene Schleiferei im Haus</h2>
+    <div class="kacheln">
+      <div class="kachel"><h3>Randen</h3><p>Automat und Handarbeit. Auch randlose Bohrfassungen.</p></div>
+      <div class="kachel"><h3>Reparatur</h3><p>L&ouml;ten und Richten. Auch f&uuml;r Brillen aus anderen Gesch&auml;ften.</p></div>
+      <div class="kachel"><h3>Ersatzteile</h3><p>Ein Schubladenschrank voller B&uuml;gel und Schrauben aus dreißig Jahren.</p></div>
+      <div class="kachel"><h3>Notfall</h3><p>Kaputte Brille am Morgen. Ersatz am Nachmittag wenn die St&auml;rke bekannt ist.</p></div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">09:00 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:00 &ndash; 13:00</td></tr>
+        <tr><td>Mittwochnachmittag</td><td class="r">nur mit Termin</td></tr>
+        <tr><td>Sonntag</td><td class="r">geschlossen</td></tr>
+      </table>
+      <div>
+        <address>
+          Optik Sternberg<br>
+          Marktstra&szlig;e 17<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817074
+        </address>
+        <p style="margin-top:14px">Das Gesch&auml;ft liegt in der Fu&szlig;g&auml;ngerzone. Der
+        Eingang hat eine Rampe. Parken k&ouml;nnen Sie im Hof hinter der Marktstra&szlig;e.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div><h3>Optik Sternberg</h3>Marktstra&szlig;e 17<br>97845 Rehbrunn<br>0152 28817074</div>
+    <div><h3>Bereiche</h3><a href="#leistungen">Brillen</a><br><a href="#sehtest">Sehtest</a><br><a href="#werkstatt">Werkstatt</a></div>
+    <div><h3>Betrieb</h3>Inhaberin K. Sternberg<br>Augenoptikermeisterin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const reiter = [...document.querySelectorAll('[role="tab"]')];
+function zeige(aktiv) {
+  for (const knopf of reiter) {
+    const an = knopf === aktiv;
+    knopf.setAttribute('aria-selected', String(an));
+    document.getElementById(knopf.getAttribute('aria-controls')).hidden = !an;
+  }
+}
+for (const knopf of reiter) {
+  knopf.addEventListener('click', () => zeige(knopf));
+  knopf.addEventListener('keydown', e => {
+    const i = reiter.indexOf(knopf);
+    if (e.key === 'ArrowRight') { const n = reiter[(i + 1) % reiter.length]; n.focus(); zeige(n); }
+    if (e.key === 'ArrowLeft') { const n = reiter[(i - 1 + reiter.length) % reiter.length]; n.focus(); zeige(n); }
+  });
+}
+</script>
+</body>
+</html>

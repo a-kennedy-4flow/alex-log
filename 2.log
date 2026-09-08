@@ -1,0 +1,51 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+#
+# This session reads https://www.sanare-naturalis.de/ and builds three updated
+# designs of that site under website/.
+2026-08-24T21:39:10Z | cat > 2.log <<HDR | Created this log with its description header.
+2026-08-24T21:39:10Z | ls -la website/ | Found the website folder empty.
+2026-08-24T21:39:40Z | curl each page of sanare-naturalis.de into the scratchpad | Downloaded all ten pages of the live site.
+2026-08-24T21:42:43Z | curl images then python3 dimension probe then Read on twenty images | Downloaded 28 photographs and identified the logo the portrait and the hero banners.
+2026-08-24T21:42:43Z | cat > website/_build/content.py <<PY | Wrote the practice details the navigation the home copy and the biography.
+2026-08-24T21:43:38Z | cat >> website/_build/content.py (Therapien and Manuelle Therapien) | Added the therapy overview and the four manual treatments.
+2026-08-24T21:44:14Z | cat >> website/_build/content.py (Infusion and Faszien) | Added the two infusion treatments and the Bowen therapy.
+2026-08-24T21:45:30Z | cat >> website/_build/content.py (Wellness Ästhetik Aktuelles Impressum Kontakt) | Completed the content module and confirmed it imports.
+2026-08-24T21:46:18Z | cat > website/_build/util.py | Wrote the escaping helpers and the alt text table for all photographs.
+2026-08-24T21:48:16Z | cat > website/_build/design_klar.py (stylesheet and script) | Wrote the Klar design system and its finder script.
+2026-08-24T21:48:41Z | python3 patch of design_klar.py finder | Switched the finder to OR matching so a chosen symptom never empties the grid.
+2026-08-24T21:49:16Z | cat >> website/_build/design_klar.py (header footer shell card) | Added the shared page furniture for Klar.
+2026-08-24T21:50:16Z | cat >> website/_build/design_klar.py (page builders) | Completed the Klar design with ten page builders.
+2026-08-24T21:50:26Z | python3 -c build design_klar into website/klar | Rendered all ten Klar pages plus the stylesheet and the script.
+2026-08-24T21:51:04Z | python3 -m http.server 8080 in website/ | Started a preview server for screenshots.
+2026-08-24T21:51:16Z | chrome-headless-shell --screenshot of klar/index.html | Captured the Klar home page for review.
+2026-08-24T21:51:55Z | python3 edit of content.py and design_klar.py | Replaced the dated 3D renders with practice photographs and trimmed the hero spacing.
+2026-08-24T21:53:34Z | cat > website/_build/design_ruhe.py (stylesheet and script) | Wrote the Ruhe design system with the overlay header and the reveal observer.
+2026-08-24T21:54:07Z | cat >> website/_build/design_ruhe.py (header footer shell bands) | Added the Ruhe furniture and the five home page bands.
+2026-08-24T21:55:05Z | python3 build of design_ruhe and design_klar | Rendered the Ruhe design and rebuilt Klar with the new photographs.
+2026-08-24T21:55:18Z | chrome-headless-shell --screenshot of ruhe/index.html | Captured the Ruhe home page for review.
+2026-08-24T21:56:05Z | python3 edit of design_ruhe.py then rebuild | Replaced the inverted logo with a typographic wordmark and fixed the hero crop.
+2026-08-24T21:58:40Z | python3 reassignment of photographs then rebuild | Matched every photograph to the treatment it actually shows and corrected the alt text.
+2026-08-24T22:00:21Z | cat > website/_build/design_praxis.py (stylesheet and script) | Wrote the Praxis design system with the theme switch and the catalogue filter.
+2026-08-24T22:01:10Z | cat >> website/_build/design_praxis.py (furniture and booking panel) | Added the Praxis header footer call bar and the booking panel.
+2026-08-24T22:02:05Z | python3 build of design_praxis | Rendered all ten Praxis pages.
+2026-08-24T22:02:15Z | chrome-headless-shell --screenshot of praxis/index.html | Captured the Praxis home page for review.
+2026-08-24T22:02:56Z | sed data-theme=dark then chrome-headless-shell --screenshot | Checked the Praxis dark palette in a throwaway copy.
+2026-08-24T22:03:40Z | python3 website/_build/build.py | Rendered all three designs and the chooser page from one command.
+2026-08-24T22:03:59Z | cat > serve.sh and teardown.sh then python3 link check | Added the run and teardown scripts and verified every internal reference resolves.
+2026-08-24T22:04:29Z | python3 patch of the Praxis catalogue then rebuild | Gave each catalogue row an id so deep links open the right row.
+2026-08-24T22:04:45Z | chrome-headless-shell four screenshots of inner pages | Captured the chooser and one inner page of each design.
+2026-08-24T22:05:26Z | python3 contrast check of every text colour pair | Measured the contrast ratios across the three palettes.
+2026-08-24T22:06:12Z | python3 accent split then rebuild then recheck contrast | Every small text colour now reaches 4.5 to 1.
+2026-08-24T22:06:27Z | python3 darkening of the Klar accent then rebuild | The price chip now passes on its own tint.
+2026-08-24T22:07:22Z | cat > website/README.md | Wrote the notes covering the three designs and thirteen findings on the live site.
+2026-08-24T22:07:40Z | node --check on three scripts then python3 tag balance over thirty pages | Scripts parse and no page has an unbalanced tag.
+2026-08-24T22:08:40Z | ln -sfn ../assets into each design then restart serve.sh | Photographs now load when a design is served alone on its own port.
+2026-08-24T22:08:58Z | chrome-headless-shell two screenshots at 390 pixels wide | Captured Klar and Praxis on a phone width.
+2026-08-24T22:09:29Z | python3 media query fix then rebuild then three phone width captures | Trimmed the headers so nothing overflows at 390 pixels.
+2026-08-24T22:10:23Z | node test of the finder chips and the catalogue filter | Every chip and every category returns at least one result.
+2026-08-24T22:10:38Z | printf >> .gitignore then python3 usage audit | Ignored the pid file and listed the two unused stock renders.
+2026-08-24T22:10:54Z | python3 merge of the stray klar/2.log then rm | Folded the misplaced log lines back into 2.log in timestamp order.

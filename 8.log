@@ -1,0 +1,43 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-06T11:50:52Z  cat of the five mockups and data.js  ->  A and B share a table layout on two surfaces. D draws the month as a calendar board. All five read one dataset.
+2026-09-06T11:51:50Z  heredoc wrote tracker/mockups/f-sheet.html  ->  A density on the B canvas. One white sheet carries every section.
+2026-09-06T11:52:58Z  heredoc wrote tracker/mockups/g-board.html  ->  The D calendar board on the B canvas with the B rail beside it.
+2026-09-06T11:53:20Z  python tag parse of both new files then a node run of renderGrid and renderCalendar  ->  Both files parse with no unclosed tag. The grid and the board each total 13.5 which matches TS.booked.
+2026-09-06T11:54:09Z  python removed the duplicate say line from g-board.html  ->  The 1 day to go text now appears once as the orange pill.
+2026-09-06T11:54:30Z  python patch of tracker/mockups/index.html  ->  It stopped on the file list anchor because the indentation was four spaces not six. Nothing was written.
+2026-09-06T11:55:00Z  python patched tracker/mockups/index.html for ten edits  ->  The comparison page now carries seven variants with a row each in the table.
+2026-09-06T11:55:19Z  python parse of the three pages then a link check  ->  All parse clean. Every one of the seven variant links resolves to a file.
+2026-09-06T11:55:35Z  python corrected the stale count on the E card  ->  The E card now says least on screen of the seven.
+2026-09-06T11:55:45Z  grep of tracker/readme.md for mockup references  ->  The readme never names a mockup so it needs no edit.
+2026-09-06T12:00:03Z  find over tracker/apps and tracker/packages for source files  ->  The web app is Vue with 15 components and 4 pages. The core package holds the calendar rules.
+2026-09-06T12:00:03Z  cat of App.vue and MonthPage.vue and MonthGrid.vue  ->  MonthPage stacks PeriodBar then a split of MonthGrid and an aside then SummaryPanel then ExportPanel.
+2026-09-06T12:00:03Z  cat of tokens.css and packages/core/src/calendar.ts  ->  The live palette is navy 0b2545 with orange e8620c on Segoe UI. Neither is a theme colour. buildMonth returns holidayName as the ISO date rather than a name.
+2026-09-06T12:00:03Z  cat of router.ts and core types.ts  ->  Four routes exist. HalfDay carries date and half and five editable fields.
+2026-09-06T12:00:03Z  grep of useTimesheet.ts and useTour.ts and en.ts  ->  State persists to localStorage through a watch. The tour filters any step whose data-tour anchor is missing. Eight locale files carry the nav keys.
+2026-09-06T12:00:03Z  grep for the card class across the components  ->  Six components carry class card. Each one becomes a band of the F sheet.
+2026-09-06T12:00:35Z  heredoc wrote tracker/docs/todo-f-design-and-board-view.md  ->  Five groups of tasks plus three decisions that need Alex.
+2026-09-06T12:00:55Z  grep of the todo for commas and and-the chains then a python split of two sentences  ->  No comma anywhere. No sentence now chains two and-the clauses.
+2026-09-06T12:06:00Z  python computed WCAG ratios for thirteen theme pairs then grep found the bright blue text  ->  Bright Blue on white is 3.87 so it fails. Grey on white is 4.61 so it passes. Grey on Warm Grey is 3.74 so it fails too.
+2026-09-06T12:06:57Z  python moved twelve bright blue text uses to Grey then restored two borders it caught by substring  ->  Bright Blue now draws lines only. No mockup sets it as a text colour.
+2026-09-06T12:07:18Z  python moved the F week break and non-working text off Grey  ->  Those two sit on a tint where Grey reaches 3.7. They are Smart Blue now.
+2026-09-06T12:08:40Z  heredoc wrote tracker/mockups/f-board.css  ->  The F sheet with the board plus the three chip options in one place.
+2026-09-06T12:09:02Z  heredoc wrote tracker/mockups/f-board.js  ->  One renderer emits a cc class per chip so a page changes the look in CSS alone.
+2026-09-06T12:10:33Z  heredoc wrote build-decisions.py then ran it  ->  Six decision pages come from one shell so only the option differs.
+2026-09-06T12:10:52Z  python parse of the six decision pages then a grep audit of the two colour rules  ->  All six parse clean. No file sets Bright Blue as text. No file puts Grey on a tint.
+2026-09-06T12:12:19Z  python fixed the legend row then compacted the popover and rebuilt  ->  The legend chips sit in a row. The popover finishes inside the board rather than over the download band.
+2026-09-06T12:12:48Z  python stacked the two cell controls then rebuilt  ->  The cost centre select had truncated to Pick in an 85 px box. It now takes the cell width.
+2026-09-06T12:13:08Z  python moved the chip option class from the board to the column then rebuilt  ->  The legend chips now carry the same treatment as the board chips.
+2026-09-06T12:14:00Z  python added a decisions section to tracker/mockups/index.html  ->  Six option cards in two groups plus a note recording that decision 3 is closed.
+2026-09-06T12:14:23Z  python added a decisions section to tracker/mockups/index.html  ->  Six option cards in two groups plus a note recording that decision 3 is closed.
+2026-09-06T12:14:38Z  python updated tracker/docs/todo-f-design-and-board-view.md  ->  Decision 3 is ticked and closed. The other two now name the mockups that answer them.
+2026-09-06T12:14:49Z  python parsed every mockup then checked the index links  ->  Thirteen pages parse clean. Every link resolves. Bright Blue carries no text anywhere.
+2026-09-06T12:15:19Z  chromium screenshots of the six decision pages and the rebuilt index  ->  The popover finishes inside the board. The legends match their boards. The index carries both decision groups.
+2026-09-06T18:21:11Z  python recorded decision 1 option A and decision 2 option B in the todo  ->  The open questions became build tasks. The popover brings a focus trap and an edge flip with it.
+2026-09-06T18:21:31Z  python marked the two chosen options on tracker/mockups/index.html  ->  The winning card carries an orange border with a chosen label. The losing pages stay for the comparison.
+2026-09-06T18:22:20Z  heredocs wrote .claude/skills/ui-design/SKILL.md and contrast.py then ran both modes  ->  The skill holds the seven step process. The tool agrees with the ratios used across the mockups.
+2026-09-06T18:22:56Z  chromium screenshot of the rebuilt index then a parse of the skill frontmatter  ->  The two chosen cards carry the orange border. The skill frontmatter parses with seven sections.
+2026-09-06T18:23:26Z  python removed three commas from the skill prose then reran contrast.py  ->  The skill carries no comma. The tool still returns 4.70 for Smart Blue on Vibrant Orange.

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glaserei Sonnabend &middot; Rehbrunn</title>
+<meta name="description" content="Glaserei Sonnabend in Rehbrunn. Glas nach Ma&szlig; und Notverglasung und Bleiverglasung.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+  body { margin: 0; background: #f2f7f9; color: #10262e;
+         font: 16px/1.7 "Assistant", "Segoe UI", system-ui, sans-serif; }
+  a { color: #17798f; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: rgba(242,247,249,.92);
+           backdrop-filter: blur(8px); border-bottom: 1px solid #d5e3e8; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 66px; flex-wrap: wrap; }
+  .marke { font-weight: 700; font-size: 20px; }
+  .marke small { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+                 color: #63808a; font-weight: 400; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #2f505b; text-decoration: none; }
+  header nav a:hover { color: #17798f; }
+  .buehne { padding: 56px 0 46px; }
+  .buehne .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 34px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #17798f;
+           font-weight: 700; }
+  h1 { margin: 12px 0 16px; font-size: clamp(33px, 6.6vw, 54px); line-height: 1.05; letter-spacing: -.02em; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 46ch; color: #35545f; }
+  .scheiben { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .scheiben div { aspect-ratio: 1; border-radius: 8px; border: 1px solid #cfe0e6;
+                  background: linear-gradient(140deg, rgba(255,255,255,.9), rgba(160,205,220,.55)); }
+  .scheiben div:nth-child(2) { background: linear-gradient(140deg, rgba(255,255,255,.7), rgba(120,180,200,.6)); }
+  .scheiben div:nth-child(5) { background: linear-gradient(140deg, rgba(255,255,255,.95), rgba(200,225,235,.5)); }
+  section { padding: 50px 0; border-top: 1px solid #dce8ec; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 35px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #17798f; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .filter button { font: inherit; font-size: 14px; padding: 9px 16px; border-radius: 999px;
+                   border: 1px solid #bcd5dd; background: #fff; color: #2f505b; cursor: pointer; }
+  .filter button[aria-pressed="true"] { background: #10262e; border-color: #10262e; color: #fff; }
+  .suchzeile { margin: 0 0 18px; font-size: 14px; color: #63808a; }
+  .leistungen { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px;
+                list-style: none; margin: 0; padding: 0; }
+  .leistungen li { background: #fff; border: 1px solid #d9e6ea; border-radius: 12px; padding: 18px 20px; }
+  .leistungen b { display: block; font-size: 17px; }
+  .leistungen .art { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #17798f;
+                     margin: 4px 0 8px; }
+  .leistungen p { margin: 0 0 10px; font-size: 15px; color: #4e6b74; }
+  .leistungen .preis { font-weight: 700; }
+  .leer { padding: 24px 0; color: #63808a; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #63808a;
+       padding: 12px; background: #e6eff2; }
+  td { padding: 12px; border-top: 1px solid #e4edf0; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .notiz { background: #10262e; color: #d9edf3; border-radius: 14px; padding: 22px 24px; }
+  .notiz h3 { margin: 0 0 10px; font-size: 19px; }
+  .notiz p { margin: 0 0 10px; }
+  .notiz b { font-size: 20px; color: #7fd4e8; }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 18px 46px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 32px; height: 32px;
+                         background: #cfe6ec; color: #10262e; border-radius: 50%; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #4e6b74; }
+  address { font-style: normal; }
+  footer { background: #10262e; color: #bcd3da; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #7fd4e8; }
+  footer a { color: #bcd3da; }
+  .ende { border-top: 1px solid #24404a; font-size: 13px; color: #85a3ac; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <div class="marke">Glaserei Sonnabend<small>Glas nach Ma&szlig; seit 1966</small></div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#notdienst">Notdienst</a></li>
+        <li><a href="#blei">Bleiverglasung</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Glaserei und Fensterbau</p>
+      <h1>Jede Scheibe wird bei uns geschnitten</h1>
+      <p>Vom Bilderrahmen bis zur Ganzglast&uuml;r. Wir messen selbst und wir bauen selbst
+      ein.</p>
+    </div>
+    <div class="scheiben" aria-hidden="true">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>Filtern Sie nach Bereich</h2>
+    <div class="filter" role="group" aria-label="Leistungen filtern">
+      <button aria-pressed="true" data-art="alle">Alles</button>
+      <button aria-pressed="false" data-art="fenster">Fenster</button>
+      <button aria-pressed="false" data-art="innen">Innenausbau</button>
+      <button aria-pressed="false" data-art="reparatur">Reparatur</button>
+      <button aria-pressed="false" data-art="spiegel">Spiegel</button>
+    </div>
+    <p class="suchzeile" id="zaehler">Alle zw&ouml;lf Leistungen werden angezeigt.</p>
+    <ul class="leistungen" id="liste">
+      <li data-art="fenster"><b>Isolierglas tauschen</b><span class="art">Fenster</span><p>Beschlagene Scheibe im alten Rahmen. Der Rahmen bleibt.</p><span class="preis">ab 180 &euro; je Scheibe</span></li>
+      <li data-art="fenster"><b>Schallschutzglas</b><span class="art">Fenster</span><p>F&uuml;r H&auml;user an der Durchgangsstra&szlig;e. Bis 42 Dezibel D&auml;mmung.</p><span class="preis">ab 320 &euro; je m&sup2;</span></li>
+      <li data-art="fenster"><b>Sicherheitsglas</b><span class="art">Fenster</span><p>Verbundglas gegen Einbruch. Widerstandsklasse nach Bedarf.</p><span class="preis">ab 290 &euro; je m&sup2;</span></li>
+      <li data-art="innen"><b>Ganzglast&uuml;r</b><span class="art">Innenausbau</span><p>Mit Beschlag und Bohrungen nach Ma&szlig;. Klar oder satiniert.</p><span class="preis">ab 690 &euro;</span></li>
+      <li data-art="innen"><b>Duschabtrennung</b><span class="art">Innenausbau</span><p>Nach Aufma&szlig; auch f&uuml;r schiefe W&auml;nde. Mit Beschichtung.</p><span class="preis">ab 950 &euro;</span></li>
+      <li data-art="innen"><b>K&uuml;chenr&uuml;ckwand</b><span class="art">Innenausbau</span><p>Lackiertes Glas in Ihrem Farbton. Ausschnitte f&uuml;r Steckdosen.</p><span class="preis">ab 420 &euro;</span></li>
+      <li data-art="innen"><b>Glasregal</b><span class="art">Innenausbau</span><p>Zugeschnitten und die Kanten poliert. Halter im Sortiment.</p><span class="preis">ab 48 &euro;</span></li>
+      <li data-art="reparatur"><b>Notverglasung</b><span class="art">Reparatur</span><p>Bruch gesichert und mit Platte verschlossen. Glas folgt in Tagen.</p><span class="preis">ab 190 &euro;</span></li>
+      <li data-art="reparatur"><b>Kittfalz erneuern</b><span class="art">Reparatur</span><p>Am alten Kastenfenster mit Leinölkitt. Wie fr&uuml;her.</p><span class="preis">ab 95 &euro;</span></li>
+      <li data-art="reparatur"><b>Beschlag einstellen</b><span class="art">Reparatur</span><p>Fenster schleift oder zieht. Meist in zwanzig Minuten erledigt.</p><span class="preis">45 &euro;</span></li>
+      <li data-art="spiegel"><b>Spiegel nach Ma&szlig;</b><span class="art">Spiegel</span><p>Mit Facette oder poliert. Bohrungen nach Zeichnung.</p><span class="preis">ab 160 &euro; je m&sup2;</span></li>
+      <li data-art="spiegel"><b>Spiegel mit Licht</b><span class="art">Spiegel</span><p>Mit umlaufender Beleuchtung. Anschluss durch den Elektriker.</p><span class="preis">ab 480 &euro;</span></li>
+    </ul>
+    <p class="leer" id="leer" hidden>In diesem Bereich haben wir nichts eingetragen.</p>
+  </section>
+
+  <section id="notdienst">
+    <p class="unter">Notdienst</p>
+    <h2>Nach Einbruch oder Bruch</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir sichern die &Ouml;ffnung noch am selben Tag. Zuerst kommt die Platte und dann
+        das Ma&szlig;. Neues Glas ist meist nach zwei bis vier Tagen da.</p>
+        <ol class="schritte">
+          <li><b>Anruf</b><span>Sagen Sie uns Ma&szlig; und Stockwerk und ob es regnet.</span></li>
+          <li><b>Sicherung</b><span>Wir r&auml;umen die Scherben und setzen eine Platte ein.</span></li>
+          <li><b>Aufma&szlig;</b><span>Genaues Ma&szlig; f&uuml;r die Bestellung.</span></li>
+          <li><b>Einbau</b><span>Neue Scheibe und Abnahme mit Ihnen.</span></li>
+        </ol>
+      </div>
+      <div class="notiz">
+        <h3>Rund um die Uhr</h3>
+        <p>F&uuml;r Notverglasung sind wir immer erreichbar. Nach zwanzig Uhr und am Wochenende
+        berechnen wir einen Zuschlag.</p>
+        <b>0152 28817240</b>
+        <p style="margin-top:12px">F&uuml;r die Versicherung fotografieren wir den Schaden und
+        legen die Bilder der Rechnung bei.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="blei">
+    <p class="unter">Bleiverglasung</p>
+    <h2>Kirchenfenster und alte Haust&uuml;ren</h2>
+    <p>Wir l&ouml;ten Bleiverglasung von Hand und setzen alte Felder instand. F&uuml;r die
+    Kirche in Bachtal haben wir zwei Fenster ausgebaut und neu verbleit. Solche Arbeiten
+    dauern Monate und das ist auch richtig so.</p>
+    <table>
+      <tr><th>Arbeit</th><th>Dauer</th><th class="r">Preis</th></tr>
+      <tr><td>Neues Bleifeld nach Entwurf</td><td>vier Wochen</td><td class="r">ab 890 &euro; je m&sup2;</td></tr>
+      <tr><td>Altes Feld neu verbleien</td><td>sechs Wochen</td><td class="r">ab 1200 &euro; je m&sup2;</td></tr>
+      <tr><td>Einzelnes Glas ersetzen</td><td>zwei Wochen</td><td class="r">ab 140 &euro;</td></tr>
+      <tr><td>Schutzverglasung au&szlig;en</td><td>drei Wochen</td><td class="r">ab 320 &euro; je m&sup2;</td></tr>
+    </table>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Wie eine Bestellung l&auml;uft</h2>
+    <div class="zwei">
+      <ol class="schritte">
+        <li><b>Anfrage</b><span>Ma&szlig;e per Telefon oder Sie bringen die alte Scheibe mit.</span></li>
+        <li><b>Aufma&szlig;</b><span>Bei Einbau messen wir selbst. Das ist im Preis enthalten.</span></li>
+        <li><b>Zuschnitt</b><span>Einfaches Glas am selben Tag. Isolierglas in vier Tagen.</span></li>
+        <li><b>Einbau oder Abholung</b><span>Sie holen ab oder wir bauen ein.</span></li>
+      </ol>
+      <div>
+        <table>
+          <tr><th>Zusatzleistung</th><th class="r">Preis</th></tr>
+          <tr><td>Kanten schleifen und polieren</td><td class="r">ab 12 &euro; je Meter</td></tr>
+          <tr><td>Bohrung</td><td class="r">9 &euro; je St&uuml;ck</td></tr>
+          <tr><td>Facette</td><td class="r">ab 22 &euro; je Meter</td></tr>
+          <tr><td>Lieferung im Ort</td><td class="r">28 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">07:30 &ndash; 17:00</td></tr>
+        <tr><td>Samstag</td><td class="r">08:00 &ndash; 12:00</td></tr>
+        <tr><td>Mittagspause</td><td class="r">12:00 &ndash; 13:00</td></tr>
+        <tr><td>Notdienst</td><td class="r">durchgehend</td></tr>
+      </table>
+      <div>
+        <address>
+          Glaserei Sonnabend<br>
+          Werkstra&szlig;e 7<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817240
+        </address>
+        <p style="margin-top:14px">Fahren Sie bis zum Rolltor und hupen Sie kurz. Wir h&ouml;ren
+        in der Werkstatt nicht immer die Klingel.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Glaserei</h3>Werkstra&szlig;e 7<br>97845 Rehbrunn<br>0152 28817240</div>
+    <div><h3>Themen</h3><a href="#leistungen">Leistungen</a><br><a href="#blei">Bleiverglasung</a><br><a href="#notdienst">Notdienst</a></div>
+    <div><h3>Betrieb</h3>Inhaber E. Sonnabend<br>Glasermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const knoepfe = [...document.querySelectorAll('.filter button')];
+const eintraege = [...document.querySelectorAll('#liste li')];
+const zaehler = document.getElementById('zaehler');
+const leer = document.getElementById('leer');
+const woerter = ['null','eine','zwei','drei','vier','f&uuml;nf','sechs','sieben','acht','neun','zehn','elf','zw&ouml;lf'];
+function filtern(art) {
+  let sichtbar = 0;
+  for (const eintrag of eintraege) {
+    const zeigen = art === 'alle' || eintrag.dataset.art === art;
+    eintrag.hidden = !zeigen;
+    if (zeigen) sichtbar++;
+  }
+  leer.hidden = sichtbar > 0;
+  const zahl = woerter[sichtbar] || sichtbar;
+  zaehler.innerHTML = art === 'alle'
+    ? `Alle ${zahl} Leistungen werden angezeigt.`
+    : `${sichtbar === 1 ? 'Eine Leistung' : zahl + ' Leistungen'} in diesem Bereich.`;
+}
+for (const knopf of knoepfe) {
+  knopf.addEventListener('click', () => {
+    for (const anderer of knoepfe) anderer.setAttribute('aria-pressed', String(anderer === knopf));
+    filtern(knopf.dataset.art);
+  });
+}
+</script>
+</body>
+</html>

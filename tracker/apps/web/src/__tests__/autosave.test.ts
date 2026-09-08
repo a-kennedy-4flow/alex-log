@@ -102,6 +102,9 @@ const ExportPanel = (await import('@/components/ExportPanel.vue')).default
 
 const plugins = [i18n]
 
+/** The debounce the store holds. Read rather than repeated as a number here. */
+const { AUTOSAVE_MS } = store
+
 /**
  * Drains the microtask queue. Ten passes clears the deepest chain here which is
  * the load then the guard then the write.
@@ -159,7 +162,10 @@ describe('the autosave', () => {
 
   it('collapses two edits inside the interval into one write', async () => {
     edit()
-    await vi.advanceTimersByTimeAsync(1000)
+    // Half the interval. Advancing the whole of it fires the timer so the
+    // second edit would be a second write and the name of this test would be a
+    // lie. `AUTOSAVE_MS` is the number this has to stay under.
+    await vi.advanceTimersByTimeAsync(AUTOSAVE_MS / 2)
     edit()
     await vi.advanceTimersByTimeAsync(3000)
     await settle()

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schreibwaren Ohlert &middot; Rehbrunn</title>
+<meta name="description" content="Schreibwaren Ohlert in Rehbrunn. Papeterie und F&uuml;llhalter und Schulbedarf mit Reparaturdienst.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 128px; }
+  body { margin: 0; background: #fbfaf6; color: #22201c;
+         font: 17px/1.7 "Libre Franklin", "Segoe UI", system-ui, sans-serif; }
+  a { color: #1e5f52; }
+  .in { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .oben { background: #22201c; color: #ddd8ce; font-size: 13px; }
+  .oben .in { display: flex; justify-content: space-between; gap: 14px; padding: 9px 24px; flex-wrap: wrap; }
+  .oben a { color: #a8d5c8; text-decoration: none; }
+  header { background: #fff; border-bottom: 1px solid #e3ded2; position: sticky; top: 0; z-index: 40; }
+  header .in { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+               min-height: 74px; flex-wrap: wrap; }
+  .marke { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  .marke small { display: block; font-size: 11px; font-weight: 400; letter-spacing: .2em;
+                 text-transform: uppercase; color: #7d7666; }
+  nav.haupt > ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+  nav.haupt > ul > li { position: relative; }
+  nav.haupt > ul > li > a { display: block; padding: 13px 15px; color: #22201c; text-decoration: none;
+                            font-size: 15px; }
+  nav.haupt > ul > li:hover > a, nav.haupt > ul > li:focus-within > a { background: #eef3f1; color: #1e5f52; }
+  .mega { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e3ded2;
+          border-radius: 0 10px 10px 10px; padding: 22px; display: none;
+          grid-template-columns: repeat(3, minmax(170px, 1fr)); gap: 20px; width: max-content;
+          box-shadow: 0 16px 36px rgba(34,32,28,.14); z-index: 50; }
+  nav.haupt li:hover > .mega, nav.haupt li:focus-within > .mega { display: grid; }
+  .mega h4 { margin: 0 0 8px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #1e5f52; }
+  .mega ul { list-style: none; margin: 0; padding: 0; }
+  .mega a { display: block; padding: 6px 0; color: #453f36; text-decoration: none; font-size: 15px; }
+  .mega a:hover { color: #1e5f52; text-decoration: underline; }
+  @media (max-width: 980px) {
+    header .in { align-items: flex-start; padding-bottom: 12px; }
+    nav.haupt > ul { flex-wrap: wrap; }
+    .mega { position: static; display: grid; box-shadow: none; border: 0; padding: 6px 0 12px;
+            grid-template-columns: 1fr 1fr; }
+  }
+  .buehne { background: #eef3f1; border-bottom: 1px solid #dce6e2; }
+  .buehne .in { padding: 54px 24px 46px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px;
+                align-items: center; }
+  @media (max-width: 840px) { .buehne .in { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #1e5f52;
+           font-weight: 700; }
+  h1 { margin: 12px 0 16px; font-size: clamp(32px, 6.4vw, 54px); line-height: 1.05; letter-spacing: -.02em; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 46ch; color: #443f37; }
+  .stifte { display: flex; gap: 10px; align-items: flex-end; height: 150px; }
+  .stifte i { flex: 1; border-radius: 4px 4px 0 0; position: relative; }
+  .stifte i::before { content: ""; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+                      background: inherit; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  main section { padding: 50px 0; border-bottom: 1px solid #e8e3d8; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 35px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 20px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #1e5f52; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .suchfeld { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .suchfeld input { flex: 1 1 240px; padding: 12px 14px; font: inherit; border: 1px solid #d8d2c4;
+                    border-radius: 8px; background: #fff; }
+  .suchfeld input:focus-visible { outline: 3px solid #1e5f52; outline-offset: 1px; }
+  .zahlzeile { margin: 0 0 16px; font-size: 14px; color: #7d7666; }
+  .sortiment { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px;
+               list-style: none; margin: 0; padding: 0; }
+  .sortiment li { background: #fff; border: 1px solid #e6e1d5; border-radius: 10px; padding: 16px 18px; }
+  .sortiment b { display: block; font-size: 17px; }
+  .sortiment .gruppe { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #1e5f52;
+                       margin: 3px 0 8px; }
+  .sortiment p { margin: 0 0 8px; font-size: 15px; color: #5f594e; }
+  .sortiment .preis { font-weight: 700; }
+  .leer { padding: 22px 0; color: #7d7666; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #7d7666;
+       padding: 12px; background: #f0ece1; }
+  td { padding: 12px; border-top: 1px solid #eee9dd; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .notiz { background: #eef3f1; border-left: 4px solid #1e5f52; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .notiz p { margin: 0; font-size: 15px; }
+  address { font-style: normal; }
+  footer { background: #22201c; color: #cdc7bb; font-size: 15px; }
+  footer .in { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #a8d5c8; }
+  footer a { color: #cdc7bb; }
+  .ende { border-top: 1px solid #38352e; font-size: 13px; color: #948d80; }
+  .ende .in { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="oben"><div class="in">
+  <span>Schulliste abgeben und am n&auml;chsten Tag abholen</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<header>
+  <div class="in">
+    <div class="marke">Schreibwaren Ohlert<small>Papeterie seit 1954</small></div>
+    <nav class="haupt" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#sortiment" aria-haspopup="true">Sortiment &#9662;</a>
+          <div class="mega">
+            <div><h4>Schreiben</h4><ul>
+              <li><a href="#sortiment">F&uuml;llhalter</a></li>
+              <li><a href="#sortiment">Tinte</a></li>
+              <li><a href="#sortiment">Bleistifte</a></li>
+            </ul></div>
+            <div><h4>Papier</h4><ul>
+              <li><a href="#sortiment">Notizb&uuml;cher</a></li>
+              <li><a href="#sortiment">Briefpapier</a></li>
+              <li><a href="#sortiment">Karten</a></li>
+            </ul></div>
+            <div><h4>Schule</h4><ul>
+              <li><a href="#schule">Schullisten</a></li>
+              <li><a href="#sortiment">Hefte</a></li>
+              <li><a href="#sortiment">Zirkel und Lineal</a></li>
+            </ul></div>
+          </div>
+        </li>
+        <li><a href="#service" aria-haspopup="true">Service &#9662;</a>
+          <div class="mega">
+            <div><h4>Werkstatt</h4><ul>
+              <li><a href="#service">F&uuml;llhalter reparieren</a></li>
+              <li><a href="#service">Feder anpassen</a></li>
+            </ul></div>
+            <div><h4>Im Laden</h4><ul>
+              <li><a href="#service">Gravur</a></li>
+              <li><a href="#service">Geschenkverpackung</a></li>
+            </ul></div>
+            <div><h4>Bestellung</h4><ul>
+              <li><a href="#service">Besorgung ohne Aufpreis</a></li>
+              <li><a href="#schule">Schulpakete</a></li>
+            </ul></div>
+          </div>
+        </li>
+        <li><a href="#schule">Schule</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="in">
+    <div>
+      <p class="zeile">Papeterie und Schreibger&auml;te</p>
+      <h1>Ein Laden f&uuml;r Menschen die noch mit der Hand schreiben</h1>
+      <p>Wir f&uuml;hren zweiundvierzig Tinten und siebzehn Papiersorten. Und wir reparieren
+      F&uuml;llhalter die &auml;lter sind als wir.</p>
+    </div>
+    <div class="stifte" aria-hidden="true">
+      <i style="height:70%;background:#1e5f52"></i>
+      <i style="height:92%;background:#b23a2f"></i>
+      <i style="height:58%;background:#c9a227"></i>
+      <i style="height:80%;background:#3f5b8c"></i>
+      <i style="height:66%;background:#7a4a8c"></i>
+    </div>
+  </div>
+</div>
+
+<main class="in">
+  <section id="sortiment">
+    <p class="unter">Sortiment</p>
+    <h2>Suchen Sie im Regal</h2>
+    <div class="suchfeld">
+      <input id="suche" type="search" placeholder="Tinte oder Heft oder F&uuml;llhalter" aria-label="Sortiment durchsuchen">
+    </div>
+    <p class="zahlzeile" id="zeile">Zw&ouml;lf Eintr&auml;ge im Regal.</p>
+    <ul class="sortiment" id="regal">
+      <li data-text="füllhalter schreiben feder gold"><b>F&uuml;llhalter</b><span class="gruppe">Schreiben</span><p>Vierzehn Modelle zum Ausprobieren am Probetisch.</p><span class="preis">ab 28 &euro;</span></li>
+      <li data-text="tinte glas schreiben farbe"><b>Tinte im Glas</b><span class="gruppe">Schreiben</span><p>Zweiundvierzig Farben. Proben zum Testen liegen aus.</p><span class="preis">ab 9 &euro;</span></li>
+      <li data-text="bleistift zeichnen härte schreiben"><b>Bleistifte</b><span class="gruppe">Schreiben</span><p>Von 6H bis 8B. Auch als Set im Blechetui.</p><span class="preis">ab 1,60 &euro;</span></li>
+      <li data-text="kugelschreiber mine schreiben"><b>Kugelschreiber</b><span class="gruppe">Schreiben</span><p>Nachf&uuml;llbar und aus Metall. Minen f&uuml;hren wir dauerhaft.</p><span class="preis">ab 12 &euro;</span></li>
+      <li data-text="notizbuch papier heft gebunden"><b>Notizb&uuml;cher</b><span class="gruppe">Papier</span><p>Fadengeheftet und aufschlagbar. Blanko und liniert und kariert.</p><span class="preis">ab 14 &euro;</span></li>
+      <li data-text="briefpapier bogen umschlag papier"><b>Briefpapier</b><span class="gruppe">Papier</span><p>B&uuml;tten und Leinen. Umschl&auml;ge passend dazu.</p><span class="preis">ab 6 &euro;</span></li>
+      <li data-text="karten grusskarte papier klappkarte"><b>Gru&szlig;karten</b><span class="gruppe">Papier</span><p>Von der Druckerei Falkenberg im Ort gedruckt.</p><span class="preis">ab 3,20 &euro;</span></li>
+      <li data-text="kalender papier planer jahr"><b>Kalender</b><span class="gruppe">Papier</span><p>Ab September im Regal. Wochenplaner und Familienkalender.</p><span class="preis">ab 16 &euro;</span></li>
+      <li data-text="heft schule liniert kariert"><b>Schulhefte</b><span class="gruppe">Schule</span><p>Alle Lineaturen einzeln. Auch das seltene Rechenheft.</p><span class="preis">0,80 &euro;</span></li>
+      <li data-text="zirkel lineal geodreieck schule"><b>Zirkel und Lineal</b><span class="gruppe">Schule</span><p>Werkzeug das ein Schuljahr &uuml;bersteht.</p><span class="preis">ab 7 &euro;</span></li>
+      <li data-text="tornister ranzen schule tasche"><b>Schulranzen</b><span class="gruppe">Schule</span><p>Anprobe mit Gewicht. Wir stellen die Tr&auml;ger ein.</p><span class="preis">ab 189 &euro;</span></li>
+      <li data-text="farbe malen wasserfarbe künstler"><b>Malbedarf</b><span class="gruppe">K&uuml;nstler</span><p>Aquarell und Acryl und Papier bis 300 Gramm.</p><span class="preis">ab 4 &euro;</span></li>
+    </ul>
+    <p class="leer" id="leer" hidden>Dazu haben wir nichts im Regal. Fragen Sie uns und wir besorgen es.</p>
+  </section>
+
+  <section id="service">
+    <p class="unter">Service</p>
+    <h2>Werkstatt hinter dem Tresen</h2>
+    <div class="zwei">
+      <div>
+        <p>Ein F&uuml;llhalter ist kein Wegwerfartikel. Wir reinigen und richten Federn und
+        tauschen Konverter. Bei alten St&uuml;cken suchen wir Ersatzteile aus unserem
+        Schubladenschrank.</p>
+        <div class="notiz">
+          <p>Bringen Sie den Halter mit dem Papier auf dem Sie schreiben. Eine Feder wird auf
+          Hand und Papier eingestellt und nicht nach Katalog.</p>
+        </div>
+      </div>
+      <table>
+        <tr><th>Leistung</th><th class="r">Preis</th></tr>
+        <tr><td>F&uuml;llhalter reinigen</td><td class="r">12 &euro;</td></tr>
+        <tr><td>Feder richten und polieren</td><td class="r">35 &euro;</td></tr>
+        <tr><td>Feder auf Linksh&auml;nder anpassen</td><td class="r">45 &euro;</td></tr>
+        <tr><td>Gravur je Zeichen</td><td class="r">1,20 &euro;</td></tr>
+        <tr><td>Geschenkverpackung</td><td class="r">kostenfrei</td></tr>
+        <tr><td>Besorgung eines Artikels</td><td class="r">ohne Aufpreis</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="schule">
+    <p class="unter">Schule</p>
+    <h2>Schulliste abgeben und fertig</h2>
+    <p>Geben Sie die Liste der Schule bei uns ab. Wir packen alles zusammen und Sie holen das
+    Paket am n&auml;chsten Tag. Was nicht passt tauschen wir bis zu den Herbstferien um.</p>
+    <table>
+      <tr><th>Klasse</th><th>Umfang</th><th class="r">Richtwert</th></tr>
+      <tr><td>Erste Klasse</td><td>Hefte und Stifte und Umschl&auml;ge</td><td class="r">ab 68 &euro;</td></tr>
+      <tr><td>F&uuml;nfte Klasse</td><td>mit Zirkel und Ordner</td><td class="r">ab 95 &euro;</td></tr>
+      <tr><td>Oberstufe</td><td>Bl&ouml;cke und Ordner</td><td class="r">ab 52 &euro;</td></tr>
+      <tr><td>Nachbestellung im Jahr</td><td>einzelne Hefte</td><td class="r">nach Aufwand</td></tr>
+    </table>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">08:30 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">08:30 &ndash; 13:00</td></tr>
+        <tr><td>Im August</td><td class="r">auch Samstag bis 16:00</td></tr>
+        <tr><td>Sonntag</td><td class="r">geschlossen</td></tr>
+      </table>
+      <div>
+        <address>
+          Schreibwaren Ohlert<br>
+          Marktstra&szlig;e 12<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817295
+        </address>
+        <p style="margin-top:14px">Der Laden liegt mitten in der Marktstra&szlig;e. Vor der
+        T&uuml;r ist eine Stufe. Eine Rampe legen wir auf Zuruf aus.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div><h3>Schreibwaren</h3>Marktstra&szlig;e 12<br>97845 Rehbrunn<br>0152 28817295</div>
+    <div><h3>Themen</h3><a href="#sortiment">Sortiment</a><br><a href="#service">Werkstatt</a><br><a href="#schule">Schule</a></div>
+    <div><h3>Betrieb</h3>Inhaberin C. Ohlert<br>Papierfachh&auml;ndlerin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const feld = document.getElementById('suche');
+const eintraege = [...document.querySelectorAll('#regal li')];
+const zeile = document.getElementById('zeile');
+const leer = document.getElementById('leer');
+feld.addEventListener('input', () => {
+  const wort = feld.value.trim().toLowerCase();
+  let treffer = 0;
+  for (const eintrag of eintraege) {
+    const passt = wort === '' || eintrag.dataset.text.includes(wort);
+    eintrag.hidden = !passt;
+    if (passt) treffer++;
+  }
+  leer.hidden = treffer > 0;
+  zeile.textContent = wort === ''
+    ? 'Zwölf Einträge im Regal.'
+    : `${treffer} von ${eintraege.length} Einträgen passen zu Ihrer Suche.`;
+});
+</script>
+</body>
+</html>

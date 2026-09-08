@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fahrschule Kurvenreich &middot; Rehbrunn</title>
+<meta name="description" content="Fahrschule Kurvenreich in Rehbrunn. Klasse B und Anh&auml;nger und Motorrad mit festem Unterrichtsplan.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { margin: 0; background: #fffdf5; color: #1b1b1b;
+         font: 17px/1.65 "Barlow", "Segoe UI", system-ui, sans-serif; }
+  a { color: #1a56c4; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { background: #ffd21e; border-bottom: 4px solid #1b1b1b; position: sticky; top: 0; z-index: 30; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 74px; flex-wrap: wrap; }
+  .marke { font-size: 24px; font-weight: 800; letter-spacing: -.03em; text-transform: uppercase; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px;
+                  font-weight: 600; }
+  header nav a { color: #1b1b1b; text-decoration: none; }
+  header nav a:hover { text-decoration: underline; }
+  .buehne { padding: 56px 0 46px; border-bottom: 4px solid #1b1b1b; }
+  .buehne .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; font-weight: 700;
+           color: #1a56c4; }
+  h1 { margin: 12px 0 16px; font-size: clamp(34px, 7vw, 60px); line-height: 1; letter-spacing: -.03em;
+       text-transform: uppercase; }
+  .buehne p { margin: 0 0 20px; font-size: 20px; max-width: 46ch; }
+  .schild { border: 4px solid #1b1b1b; border-radius: 18px; padding: 22px 24px; background: #fff; }
+  .schild h3 { margin: 0 0 12px; font-size: 18px; text-transform: uppercase; letter-spacing: .04em; }
+  .schild ul { list-style: none; margin: 0; padding: 0; font-size: 16px; }
+  .schild li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0;
+               border-bottom: 1px dashed #c9c9c9; }
+  .schild b { font-variant-numeric: tabular-nums; }
+  section { padding: 52px 0; border-bottom: 2px solid #e6e2d3; }
+  h2 { margin: 0 0 6px; font-size: clamp(26px, 4.4vw, 38px); text-transform: uppercase;
+       letter-spacing: -.02em; }
+  .unter { margin: 0 0 24px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #1a56c4; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .weg { list-style: none; margin: 0; padding: 0; display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; }
+  .weg li { position: relative; padding: 30px 18px 22px; border-top: 6px solid #1b1b1b; }
+  .weg li + li { border-left: 2px dashed #d9d4c2; }
+  @media (max-width: 700px) { .weg li + li { border-left: 0; } }
+  .weg .nr { position: absolute; top: -19px; left: 18px; width: 32px; height: 32px; border-radius: 50%;
+             background: #ffd21e; border: 3px solid #1b1b1b; display: grid; place-content: center;
+             font-weight: 800; font-size: 15px; }
+  .weg b { display: block; margin-bottom: 6px; font-size: 18px; }
+  .weg span { font-size: 15px; color: #4d4d4d; }
+  .klassen { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .klasse { border: 3px solid #1b1b1b; border-radius: 16px; overflow: hidden; background: #fff; }
+  .klasse .kopf { background: #1b1b1b; color: #ffd21e; padding: 12px 18px; font-weight: 800;
+                  font-size: 22px; letter-spacing: .04em; }
+  .klasse .leib { padding: 16px 18px; }
+  .klasse p { margin: 0 0 10px; font-size: 15px; }
+  .klasse ul { margin: 0; padding-left: 18px; font-size: 15px; color: #4d4d4d; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+       padding: 12px; background: #1b1b1b; color: #ffd21e; }
+  td { padding: 12px; border-bottom: 1px solid #eae6d7; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .plan { list-style: none; margin: 0; padding: 0; }
+  .plan li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 12px 0;
+             border-bottom: 1px solid #e6e2d3; }
+  .plan .tag { font-weight: 700; }
+  details { border: 3px solid #1b1b1b; border-radius: 14px; background: #fff; margin-bottom: 12px; }
+  summary { cursor: pointer; padding: 14px 18px; font-weight: 700; }
+  details p { margin: 0 18px 16px; font-size: 16px; }
+  address { font-style: normal; }
+  footer { background: #1b1b1b; color: #f0eee4; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #ffd21e; }
+  footer a { color: #f0eee4; }
+  .ende { border-top: 1px solid #383838; font-size: 13px; color: #a5a196; }
+  .ende .wrap { display: block; padding: 16px 24px 40px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Fahrschule Kurvenreich</span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#weg">Ausbildungsweg</a></li>
+        <li><a href="#klassen">Klassen</a></li>
+        <li><a href="#unterricht">Unterricht</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#fragen">Fragen</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Fahrschule seit 1998</p>
+      <h1>In vier Monaten zum F&uuml;hrerschein</h1>
+      <p>Wir bilden in kleinen Gruppen aus. Der Theorieunterricht findet an festen Abenden
+      statt und niemand sitzt in einem Saal mit vierzig Leuten.</p>
+      <a href="#anmeldung" style="font-weight:700">Anmeldung und Unterlagen &rarr;</a>
+    </div>
+    <div class="schild">
+      <h3>Auf einen Blick</h3>
+      <ul>
+        <li><span>Bestehensquote Theorie</span><b>84 %</b></li>
+        <li><span>Bestehensquote Praxis</span><b>79 %</b></li>
+        <li><span>Fahrlehrer im Team</span><b>3</b></li>
+        <li><span>Fahrzeuge</span><b>4</b></li>
+        <li><span>Schnitt bis zur Pr&uuml;fung</span><b>16 Wochen</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="weg">
+    <p class="unter">Ausbildungsweg</p>
+    <h2>Sechs Stationen bis zum Schein</h2>
+    <ol class="weg">
+      <li><span class="nr">1</span><b>Anmeldung</b><span>Antrag ausf&uuml;llen und Sehtest und Passbild abgeben.</span></li>
+      <li><span class="nr">2</span><b>Theorie</b><span>Vierzehn Doppelstunden bei Klasse B ohne Vorbesitz.</span></li>
+      <li><span class="nr">3</span><b>Grundfahren</b><span>Erste Stunden auf dem &Uuml;bungsplatz und im Ort.</span></li>
+      <li><span class="nr">4</span><b>Theoriepr&uuml;fung</b><span>Am Pr&uuml;fungsort in Weidenfeld. Wir melden Sie an.</span></li>
+      <li><span class="nr">5</span><b>Sonderfahrten</b><span>&Uuml;berland und Autobahn und Nachtfahrt.</span></li>
+      <li><span class="nr">6</span><b>Praxispr&uuml;fung</b><span>Dauert f&uuml;nfundvierzig Minuten. Start bei uns am Hof.</span></li>
+    </ol>
+  </section>
+
+  <section id="klassen">
+    <p class="unter">Klassen</p>
+    <h2>Was wir ausbilden</h2>
+    <div class="klassen">
+      <div class="klasse">
+        <div class="kopf">B</div>
+        <div class="leib">
+          <p>Der Pkw-F&uuml;hrerschein. Ausbildung auf Schaltwagen oder auf Automatik.</p>
+          <ul><li>Ab 17 mit Begleitung</li><li>Automatik mit Schl&uuml;sselzahl 197</li><li>Vier Fahrzeuge</li></ul>
+        </div>
+      </div>
+      <div class="klasse">
+        <div class="kopf">BE</div>
+        <div class="leib">
+          <p>Anh&auml;nger &uuml;ber 750 Kilogramm. Kein Theorieunterricht n&ouml;tig.</p>
+          <ul><li>Meist vier Fahrstunden</li><li>Eigener Anh&auml;nger vorhanden</li><li>Pr&uuml;fung in Weidenfeld</li></ul>
+        </div>
+      </div>
+      <div class="klasse">
+        <div class="kopf">A</div>
+        <div class="leib">
+          <p>Motorrad in allen Stufen. Ausbildung von M&auml;rz bis Oktober.</p>
+          <ul><li>A1 und A2 und A</li><li>Zwei Maschinen</li><li>Funk in jedem Helm</li></ul>
+        </div>
+      </div>
+      <div class="klasse">
+        <div class="kopf">L</div>
+        <div class="leib">
+          <p>Traktor bis vierzig Stundenkilometer. Beliebt bei den H&ouml;fen im Umkreis.</p>
+          <ul><li>Ab 16 Jahren</li><li>Nur Theoriepr&uuml;fung</li><li>Kurs im Winter</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="unterricht">
+    <p class="unter">Unterricht</p>
+    <h2>Fester Plan in der Woche</h2>
+    <div class="zwei">
+      <div>
+        <p>Der Theorieunterricht l&auml;uft im Raum &uuml;ber dem B&uuml;ro. Zw&ouml;lf
+        Pl&auml;tze und eine Tafel und kein Beamer im Dauerbetrieb. Jeder Abend behandelt ein
+        Thema und ist in sich abgeschlossen.</p>
+        <ul class="plan">
+          <li><span class="tag">Montag</span><span>18:30 Grundstoff</span></li>
+          <li><span class="tag">Mittwoch</span><span>18:30 Grundstoff</span></li>
+          <li><span class="tag">Donnerstag</span><span>18:30 Zusatzstoff Klasse B</span></li>
+          <li><span class="tag">Samstag</span><span>09:00 Nachholtermin im Monat</span></li>
+        </ul>
+      </div>
+      <div>
+        <p>Fahrstunden vergeben wir von Montag bis Samstag. Wir holen Sie zu Hause ab wenn Sie
+        im Ort wohnen. F&uuml;r die Ortsteile treffen wir uns am Sportplatz.</p>
+        <p>Wer eine Stunde absagen muss meldet sich bis zum Vortag. Danach berechnen wir die
+        Stunde.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Was der F&uuml;hrerschein kostet</h2>
+    <p>Die Grundgeb&uuml;hr deckt Verwaltung und Theorie. Fahrstunden rechnen wir einzeln ab.
+    Amtliche Geb&uuml;hren zahlen Sie direkt an Beh&ouml;rde und Pr&uuml;forganisation.</p>
+    <table>
+      <tr><th>Posten</th><th class="r">Betrag</th></tr>
+      <tr><td>Grundgeb&uuml;hr Klasse B</td><td class="r">380 &euro;</td></tr>
+      <tr><td>Fahrstunde 45 Minuten</td><td class="r">62 &euro;</td></tr>
+      <tr><td>Sonderfahrt 45 Minuten</td><td class="r">72 &euro;</td></tr>
+      <tr><td>Vorstellung Theoriepr&uuml;fung</td><td class="r">120 &euro;</td></tr>
+      <tr><td>Vorstellung Praxispr&uuml;fung</td><td class="r">280 &euro;</td></tr>
+      <tr><td>Lernmaterial und App</td><td class="r">65 &euro;</td></tr>
+      <tr><td>Amtliche Geb&uuml;hren etwa</td><td class="r">180 &euro;</td></tr>
+    </table>
+    <p style="margin-top:16px">Ein durchschnittlicher F&uuml;hrerschein der Klasse B kostet bei
+    uns rund zweitausendvierhundert Euro. Wer wenig Stunden braucht zahlt weniger.</p>
+  </section>
+
+  <section id="anmeldung">
+    <p class="unter">Anmeldung</p>
+    <h2>Was Sie mitbringen</h2>
+    <div class="zwei">
+      <div>
+        <ul class="plan">
+          <li><span class="tag">Ausweis</span><span>Personalausweis oder Pass mit Meldebescheinigung</span></li>
+          <li><span class="tag">Passbild</span><span>Biometrisch und nicht &auml;lter als ein Jahr</span></li>
+          <li><span class="tag">Sehtest</span><span>Beim Optiker im Ort. G&uuml;ltig zwei Jahre</span></li>
+          <li><span class="tag">Erste Hilfe</span><span>Neun Unterrichtseinheiten. Kurs im Feuerwehrhaus</span></li>
+        </ul>
+      </div>
+      <div>
+        <p>Wir stellen den Antrag beim Landratsamt f&uuml;r Sie. Die Bearbeitung dauert vier
+        bis sechs Wochen. In dieser Zeit k&ouml;nnen Sie schon Theorie h&ouml;ren.</p>
+        <p>Unter achtzehn Jahren unterschreiben beide Erziehungsberechtigte. Das Formular
+        bekommen Sie im B&uuml;ro oder wir schicken es zu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Kurz beantwortet</h2>
+    <details open>
+      <summary>Wie viele Fahrstunden brauche ich?</summary>
+      <p>Zw&ouml;lf Sonderfahrten sind vorgeschrieben. Dazu kommen &Uuml;bungsstunden nach
+      Bedarf. Der Schnitt liegt bei uns bei zweiunddreißig Stunden insgesamt.</p>
+    </details>
+    <details>
+      <summary>Kann ich auf Automatik ausbilden?</summary>
+      <p>Ja. Mit der Schl&uuml;sselzahl 197 fahren Sie nach der Pr&uuml;fung trotzdem
+      Schaltwagen. Daf&uuml;r sind zehn Schaltstunden und eine Testfahrt n&ouml;tig.</p>
+    </details>
+    <details>
+      <summary>Was passiert wenn ich durchfalle?</summary>
+      <p>Nach zwei Wochen ist eine neue Pr&uuml;fung m&ouml;glich. Wir &uuml;ben vorher gezielt
+      das was schiefgegangen ist. Die Vorstellungsgeb&uuml;hr f&auml;llt erneut an.</p>
+    </details>
+    <details>
+      <summary>Bieten Sie Intensivkurse an?</summary>
+      <p>Zweimal im Jahr in den Ferien. Theorie in zwei Wochen und Pr&uuml;fung in der
+      dritten. Die Pl&auml;tze sind schnell weg.</p>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>B&uuml;rozeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">B&uuml;ro</th></tr>
+        <tr><td>Montag und Mittwoch</td><td class="r">16:00 &ndash; 18:30</td></tr>
+        <tr><td>Dienstag und Donnerstag</td><td class="r">10:00 &ndash; 12:00</td></tr>
+        <tr><td>Freitag</td><td class="r">nach Vereinbarung</td></tr>
+        <tr><td>Telefonisch</td><td class="r">t&auml;glich bis 20:00</td></tr>
+      </table>
+      <div>
+        <address>
+          Fahrschule Kurvenreich<br>
+          Industriestra&szlig;e 8<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817140
+        </address>
+        <p style="margin-top:14px">Der &Uuml;bungsplatz liegt hinter dem Geb&auml;ude. Parken
+        k&ouml;nnen Sie direkt am Hof. Die Bushaltestelle Industriestra&szlig;e liegt
+        gegen&uuml;ber.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Fahrschule</h3>Industriestra&szlig;e 8<br>97845 Rehbrunn<br>0152 28817140</div>
+    <div><h3>Themen</h3><a href="#weg">Ausbildungsweg</a><br><a href="#preise">Preise</a><br><a href="#anmeldung">Anmeldung</a></div>
+    <div><h3>Betrieb</h3>Inhaber R. Kurz<br>Fahrlehrer aller Klassen<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

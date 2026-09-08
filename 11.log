@@ -1,0 +1,21 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-07T07:51:29Z  cat of 10.log and ls of the log files  ->  Logs run one to ten in the repo root so this session writes eleven. The stray tracker/6.log duplicates a line already in the root 6.log.
+2026-09-07T07:52:44Z  vite build then grep of the bundle for fixture only strings  ->  01_DE_Duesseldorf and 00_Group and Projektnummernliste are all absent. Rollup folds usingApi to true from VITE_API_URL and drops the loadCatalogue branch. The claim that fixtures ship was wrong.
+2026-09-07T07:55:05Z  python3 rewrote the root and web and api and infra and fixtures manifests  ->  Root drops the unused esbuild and pins packageManager to pnpm@11.10.0. dev:api now points at the watching script. Infra bundles the Lambda itself so every cdk script stands alone.
+2026-09-07T07:57:15Z  credential_process probe against a bogus profile named in cdk.json  ->  cdk invoked the probe so the profile key in cdk.json is honoured. Admin now reaches synth and diff and deploy from one place instead of two deploy scripts only.
+2026-09-07T07:57:46Z  pnpm add -w -D of the eslint toolchain then removal of the packageManager field  ->  pnpm warned that packageManager and devEngines.packageManager disagree and ignored one. devEngines already pins pnpm so the added field was wrong and is gone.
+2026-09-07T07:59:43Z  wrote eslint.config.js then tuned it against the real tree  ->  436 problems became zero. The cosmetic vue layout rules are off and mockups are ignored. no-var is on and the dead directive in local.ts is gone.
+2026-09-07T08:02:19Z  pnpm typecheck then pnpm test then pnpm build then pnpm synth then pnpm dev:api  ->  Seven typechecks pass where six ran before. 325 tests pass. The web bundle hash is unchanged. Synth bundles the Lambda itself and dev:api now watches.
+2026-09-07T08:03:02Z  pnpm add -w -D @eslint/js@^9  ->  @eslint/js had resolved to 10 against eslint 9. Both are on 9.39.5 now and lint still exits clean.
+2026-09-07T08:04:06Z  final gate of lint and typecheck and test and build and synth  ->  All five exit zero. The only step that cannot be proved here is deploy because the Admin SSO session has expired.
+2026-09-07T09:05:11Z  pnpm dev:api and pnpm dev in the background then curl against every route  ->  Both servers are up. The catalogue seeds 3149 projects. A profile write persists and the dev identity headers give a separate profile. Every SPA module transforms 200.
+2026-09-07T09:10:14Z  python3 patched readProfile in handlers.ts then added five tests  ->  location and entity and businessLine are now checked against the live catalogue. The business line is matched on the name because that is what the workbook project rows carry and what the dropdown writes.
+2026-09-07T09:10:14Z  curl against the running dev server after the watch reload  ->  Consulting and CorporateServices and Berlin are all 400 now. Corporate Services and 01_DE_Berlin are 200. 68 api tests pass where 63 did.
+2026-09-07T09:15:08Z  read docs/identity-centre.md section 4 against the retained pool section  ->  Section 4 hardcoded eu-central-1_LdMfDNAOu which the same doc later calls the abandoned first pool. It now reads UserPoolId from the stack the way verify-auth.sh already does.
+2026-09-07T09:15:08Z  curl PUT /api/admin/catalogue with and without the dev group header  ->  403 without the group and 400 on the empty list with it. The gate is on the group and nothing else.
+2026-09-07T09:25:17Z  traced the catalogue gate in App.vue then patched the template and main.ts  ->  The Outlet sat behind a query that 503s on an empty deployment so the upload screen that ends the 503 was locked behind it. Backoffice now gets AdminUpload directly and everyone else gets a plain message.
+2026-09-07T09:25:17Z  wrote bootstrap.test.ts then reverted App.vue to check it bites  ->  Three tests fail against the old gate showing the raw 503 and pass against the new one. vue-query also retried the 503 three times so main.ts now retries only what carries no status.

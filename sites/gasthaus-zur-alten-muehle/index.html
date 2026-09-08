@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gasthaus Zur Alten M&uuml;hle &middot; Rehbrunn</title>
+<meta name="description" content="Gasthaus mit Fremdenzimmern in Rehbrunn. Regionale K&uuml;che und ein Saal f&uuml;r Feiern.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { margin: 0; background: #f3efe6; color: #2a2620;
+         font: 17px/1.7 "Bookman Old Style", Georgia, serif; }
+  a { color: #7c4a1e; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  .balken { background: #2a2620; color: #e8e1d2; font-size: 13px;
+            font-family: "Segoe UI", system-ui, sans-serif; }
+  .balken .wrap { display: flex; justify-content: space-between; gap: 16px; padding: 9px 24px;
+                  flex-wrap: wrap; }
+  .balken a { color: #d8b98c; text-decoration: none; }
+  nav.haupt { position: sticky; top: 0; z-index: 30; background: #7c4a1e; color: #fff8ec;
+              box-shadow: 0 2px 0 rgba(0,0,0,.15); }
+  nav.haupt .wrap { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+                    min-height: 66px; }
+  nav.haupt .name { font-size: 20px; letter-spacing: .04em; white-space: nowrap; }
+  nav.haupt > .wrap > ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0;
+                           font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  nav.haupt li { position: relative; }
+  nav.haupt a { display: block; padding: 12px 14px; color: #fff8ec; text-decoration: none; }
+  nav.haupt li:hover > a, nav.haupt a:focus-visible { background: #663c17; }
+  nav.haupt ul ul { position: absolute; left: 0; top: 100%; min-width: 232px; background: #663c17;
+                    list-style: none; margin: 0; padding: 6px 0; display: none;
+                    box-shadow: 0 8px 20px rgba(0,0,0,.25); z-index: 40; }
+  nav.haupt li:hover > ul, nav.haupt li:focus-within > ul { display: block; }
+  nav.haupt ul ul a { padding: 9px 16px; font-size: 14px; }
+  nav.haupt ul ul a:hover { background: #7c4a1e; }
+  nav.haupt .pfeil::after { content: " \25be"; opacity: .7; }
+  @media (max-width: 860px) {
+    nav.haupt .wrap { flex-direction: column; align-items: flex-start; padding-bottom: 10px; }
+    nav.haupt > .wrap > ul { flex-wrap: wrap; }
+    nav.haupt ul ul { position: static; display: block; box-shadow: none; background: transparent;
+                      padding: 0 0 0 14px; }
+  }
+  .kopf { background: linear-gradient(#5c4a33, #3a2f21); color: #f4ecdc; }
+  .kopf .wrap { padding: 76px 24px 60px; }
+  .kopf .zeile { font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+                 letter-spacing: .32em; text-transform: uppercase; color: #d8b98c; margin: 0; }
+  h1 { margin: 14px 0 16px; font-size: clamp(36px, 8vw, 66px); line-height: 1.02; font-weight: 500; }
+  .kopf p { margin: 0; font-size: 21px; max-width: 50ch; }
+  .marken { display: flex; gap: 26px; flex-wrap: wrap; margin-top: 34px;
+            font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; color: #d8b98c; }
+  section { padding: 58px 0; border-bottom: 1px solid #ddd5c4; }
+  section:nth-of-type(even) { background: #ede8dc; }
+  h2 { margin: 0 0 6px; font-size: clamp(26px, 4.4vw, 38px); font-weight: 500; }
+  .unter { margin: 0 0 26px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px;
+           letter-spacing: .2em; text-transform: uppercase; color: #7c4a1e; }
+  p { margin: 0 0 18px; max-width: 70ch; }
+  .speisen { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 780px) { .speisen { grid-template-columns: 1fr; gap: 22px; } }
+  .gericht { display: flex; align-items: baseline; gap: 10px; padding: 12px 0;
+             border-bottom: 1px dotted #c8bda6; }
+  .gericht .f { flex: 1; border-bottom: 1px dotted #c8bda6; transform: translateY(-5px); }
+  .gericht .p { font-variant-numeric: tabular-nums; color: #7c4a1e; white-space: nowrap; }
+  .gericht small { display: block; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px;
+                   color: #6d6355; }
+  .zimmer { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .zimmer article { background: #fffdf7; border: 1px solid #ddd5c4; padding: 22px 24px; }
+  .zimmer h3 { margin: 0 0 4px; font-size: 22px; font-weight: 500; }
+  .zimmer .preis { color: #7c4a1e; font-size: 19px; }
+  .zimmer ul { margin: 12px 0 0; padding-left: 18px; font-size: 15px;
+               font-family: "Segoe UI", system-ui, sans-serif; color: #5c5347; }
+  .zimmer li { padding: 3px 0; }
+  .saal { display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px; }
+  @media (max-width: 780px) { .saal { grid-template-columns: 1fr; gap: 20px; } }
+  .fakten { list-style: none; margin: 0; padding: 0;
+            font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  .fakten li { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0;
+               border-bottom: 1px solid #ddd5c4; }
+  .verlauf { list-style: none; margin: 0; padding: 0; border-left: 3px solid #c8a06a; }
+  .verlauf li { padding: 0 0 24px 24px; position: relative; }
+  .verlauf li::before { content: ""; position: absolute; left: -8px; top: 8px; width: 13px;
+                        height: 13px; border-radius: 50%; background: #7c4a1e; }
+  .verlauf b { display: block; font-size: 20px; }
+  .verlauf span { font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; color: #5c5347; }
+  table.zeit { width: 100%; border-collapse: collapse;
+               font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  table.zeit th { text-align: left; font-weight: 500; color: #6d6355; padding: 10px 0; }
+  table.zeit td { text-align: right; font-variant-numeric: tabular-nums; padding: 10px 0; }
+  table.zeit tr + tr th, table.zeit tr + tr td { border-top: 1px solid #ddd5c4; }
+  address { font-style: normal; }
+  footer { background: #2a2620; color: #e8e1d2;
+           font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; }
+  footer .wrap { padding: 42px 24px; display: grid;
+                 grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 26px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+              color: #d8b98c; }
+  footer a { color: #e8e1d2; }
+  .unten { border-top: 1px solid #453f36; font-size: 13px; color: #b3aa99; }
+  .unten .wrap { display: block; padding: 16px 24px 40px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="balken"><div class="wrap">
+  <span>Tischreservierung unter 0152 28817052</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<nav class="haupt" aria-label="Hauptnavigation">
+  <div class="wrap">
+    <span class="name">Zur Alten M&uuml;hle</span>
+    <ul>
+      <li><a href="#haus">Haus</a></li>
+      <li><a class="pfeil" href="#karte" aria-haspopup="true">Speisekarte</a>
+        <ul>
+          <li><a href="#vorspeisen">Vorspeisen</a></li>
+          <li><a href="#hauptgerichte">Hauptgerichte</a></li>
+          <li><a href="#nachtisch">Nachtisch</a></li>
+          <li><a href="#getraenke">Getr&auml;nke</a></li>
+        </ul>
+      </li>
+      <li><a class="pfeil" href="#zimmer" aria-haspopup="true">&Uuml;bernachten</a>
+        <ul>
+          <li><a href="#zimmer">Zimmer und Preise</a></li>
+          <li><a href="#fruehstueck">Fr&uuml;hst&uuml;ck</a></li>
+        </ul>
+      </li>
+      <li><a href="#saal">Saal</a></li>
+      <li><a href="#geschichte">Geschichte</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="kopf">
+  <div class="wrap">
+    <p class="zeile">Gasthaus mit Fremdenzimmern</p>
+    <h1>Zur Alten M&uuml;hle</h1>
+    <p>Wir kochen was die Jahreszeit hergibt. Die Karte h&auml;ngt seit dreißig Jahren an
+    derselben Tafel.</p>
+    <div class="marken">
+      <span>Neun Zimmer</span><span>Saal f&uuml;r achtzig Personen</span>
+      <span>Eigene Metzgerei im Ort</span><span>Ruhetag Montag</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="haus">
+    <div class="wrap">
+      <p class="unter">Das Haus</p>
+      <h2>M&uuml;hle seit 1614 und Wirtshaus seit 1889</h2>
+      <p>Das Wasserrad steht noch. Es mahlt kein Korn mehr und dreht sich nur f&uuml;r die
+      G&auml;ste. Im Erdgeschoss liegen die Gastst&auml;tte und die K&uuml;che. Dar&uuml;ber
+      liegen neun Zimmer.</p>
+      <p>Der Betrieb ist in vierter Generation in Familienhand. Am Herd steht Thomas Reiser.
+      Im Service arbeitet seine Schwester Anke. Zwei Auszubildende lernen bei uns das
+      Handwerk.</p>
+    </div>
+  </section>
+
+  <section id="karte">
+    <div class="wrap">
+      <p class="unter">Speisekarte</p>
+      <h2>K&uuml;che von 11:30 bis 21:00</h2>
+      <p>Warme K&uuml;che gibt es durchgehend. Nach 21 Uhr bekommen Sie noch eine Brotzeit.
+      Alle Preise verstehen sich in Euro und mit Bedienung.</p>
+
+      <h3 id="vorspeisen">Vorspeisen</h3>
+      <div class="speisen">
+        <div>
+          <div class="gericht"><span>Kartoffelsuppe mit Majoran<small>Auch ohne Speck m&ouml;glich</small></span><span class="f"></span><span class="p">5,80</span></div>
+          <div class="gericht"><span>Ger&auml;ucherte Forelle<small>Aus dem Teich am Bachtal</small></span><span class="f"></span><span class="p">9,40</span></div>
+        </div>
+        <div>
+          <div class="gericht"><span>Ochsenmaulsalat<small>Freitags frisch angesetzt</small></span><span class="f"></span><span class="p">8,20</span></div>
+          <div class="gericht"><span>Obatzda mit Brot<small>Vom eigenen Sauerteig</small></span><span class="f"></span><span class="p">7,60</span></div>
+        </div>
+      </div>
+
+      <h3 id="hauptgerichte" style="margin-top:30px">Hauptgerichte</h3>
+      <div class="speisen">
+        <div>
+          <div class="gericht"><span>Rinderrouladen<small>Mit Kn&ouml;del und Blaukraut</small></span><span class="f"></span><span class="p">21,50</span></div>
+          <div class="gericht"><span>Schweinebraten<small>Sonntags ab elf Uhr</small></span><span class="f"></span><span class="p">18,90</span></div>
+          <div class="gericht"><span>Wildragout<small>Von September bis Januar</small></span><span class="f"></span><span class="p">24,00</span></div>
+        </div>
+        <div>
+          <div class="gericht"><span>Kaspressknödel im Sud<small>Fleischlos</small></span><span class="f"></span><span class="p">14,80</span></div>
+          <div class="gericht"><span>Forelle blau<small>Ganz oder filetiert</small></span><span class="f"></span><span class="p">19,60</span></div>
+          <div class="gericht"><span>Schnitzel vom Kalb<small>Mit Bratkartoffeln</small></span><span class="f"></span><span class="p">23,40</span></div>
+        </div>
+      </div>
+
+      <h3 id="nachtisch" style="margin-top:30px">Nachtisch</h3>
+      <div class="speisen">
+        <div>
+          <div class="gericht"><span>Apfelk&uuml;chle mit Vanilleeis</span><span class="f"></span><span class="p">7,20</span></div>
+          <div class="gericht"><span>Topfenknödel</span><span class="f"></span><span class="p">6,80</span></div>
+        </div>
+        <div>
+          <div class="gericht"><span>Kaiserschmarrn f&uuml;r zwei</span><span class="f"></span><span class="p">13,50</span></div>
+          <div class="gericht"><span>K&auml;se vom Brett</span><span class="f"></span><span class="p">9,90</span></div>
+        </div>
+      </div>
+
+      <h3 id="getraenke" style="margin-top:30px">Getr&auml;nke</h3>
+      <div class="speisen">
+        <div>
+          <div class="gericht"><span>Helles vom Fass 0,5 l</span><span class="f"></span><span class="p">4,20</span></div>
+          <div class="gericht"><span>Apfelschorle 0,4 l<small>Saft von der Mosterei Bachtal</small></span><span class="f"></span><span class="p">3,60</span></div>
+        </div>
+        <div>
+          <div class="gericht"><span>Frankenwein im Viertel</span><span class="f"></span><span class="p">6,50</span></div>
+          <div class="gericht"><span>Obstbrand 2 cl<small>Aus der Brennerei im Nachbarort</small></span><span class="f"></span><span class="p">3,80</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zimmer">
+    <div class="wrap">
+      <p class="unter">&Uuml;bernachten</p>
+      <h2>Neun Zimmer unter dem Dach</h2>
+      <p>Die Zimmer sind einfach und sauber. Es gibt kein Fernsehger&auml;t und keine
+      Klimaanlage. Daf&uuml;r ist es nachts sehr still.</p>
+      <div class="zimmer">
+        <article>
+          <h3>Einzelzimmer</h3>
+          <p class="preis">58 &euro; pro Nacht</p>
+          <ul><li>Dusche und WC</li><li>Schreibtisch am Fenster</li><li>Blick auf den Hof</li></ul>
+        </article>
+        <article>
+          <h3>Doppelzimmer</h3>
+          <p class="preis">86 &euro; pro Nacht</p>
+          <ul><li>Zwei Betten oder ein Ehebett</li><li>Dusche und WC</li><li>Blick auf den Bach</li></ul>
+        </article>
+        <article>
+          <h3>Kammer im Giebel</h3>
+          <p class="preis">72 &euro; pro Nacht</p>
+          <ul><li>Balken und Dachschr&auml;ge</li><li>Badewanne</li><li>Nur &uuml;ber die Holztreppe</li></ul>
+        </article>
+      </div>
+      <p id="fruehstueck" style="margin-top:26px"><strong>Fr&uuml;hst&uuml;ck</strong> kostet
+      elf Euro und wird von sieben bis zehn Uhr serviert. Wanderer bekommen auf Wunsch ein
+      Paket f&uuml;r unterwegs.</p>
+    </div>
+  </section>
+
+  <section id="saal">
+    <div class="wrap">
+      <p class="unter">Feiern</p>
+      <h2>Der Saal im ersten Stock</h2>
+      <div class="saal">
+        <div>
+          <p>Der Saal liegt &uuml;ber der Gastst&auml;tte und hat einen eigenen Aufgang. Er
+          eignet sich f&uuml;r Hochzeiten und Geburtstage und Vereinsabende. Die Miete
+          entf&auml;llt ab vierzig Personen mit Essen.</p>
+          <p>Wir stellen ein Men&uuml; nach Ihrem Budget zusammen. Ein Buffet ist ab dreißig
+          Personen m&ouml;glich. Musik ist bis Mitternacht erlaubt.</p>
+        </div>
+        <ul class="fakten">
+          <li><span>Pl&auml;tze bestuhlt</span><b>80</b></li>
+          <li><span>Pl&auml;tze mit Tanzfl&auml;che</span><b>60</b></li>
+          <li><span>Saalmiete ohne Essen</span><b>180 &euro;</b></li>
+          <li><span>Men&uuml; ab</span><b>32 &euro;</b></li>
+          <li><span>Buffet ab</span><b>28 &euro;</b></li>
+          <li><span>Beamer und Leinwand</span><b>ohne Aufpreis</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="geschichte">
+    <div class="wrap">
+      <p class="unter">Geschichte</p>
+      <h2>Vier Jahrhunderte am Bach</h2>
+      <ul class="verlauf">
+        <li><b>1614</b><span>Die M&uuml;hle wird erstmals in einer Steuerliste genannt.</span></li>
+        <li><b>1889</b><span>Der M&uuml;ller Josef Reiser bekommt die Schankerlaubnis.</span></li>
+        <li><b>1931</b><span>Der Saal wird auf die Scheune gesetzt.</span></li>
+        <li><b>1974</b><span>Das Mahlwerk wird stillgelegt. Das Rad bleibt stehen.</span></li>
+        <li><b>2008</b><span>Umbau der Zimmer. Jedes bekommt ein eigenes Bad.</span></li>
+        <li><b>2021</b><span>Die K&uuml;che wird auf Holz und Induktion umgestellt.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <p class="unter">Kontakt</p>
+      <h2>Reservierung und Anfahrt</h2>
+      <div class="saal">
+        <table class="zeit">
+          <tr><th>Dienstag bis Donnerstag</th><td>11:30 &ndash; 22:00</td></tr>
+          <tr><th>Freitag und Samstag</th><td>11:30 &ndash; 23:30</td></tr>
+          <tr><th>Sonntag</th><td>11:00 &ndash; 20:00</td></tr>
+          <tr><th>Montag</th><td>Ruhetag</td></tr>
+          <tr><th>K&uuml;che</th><td>11:30 &ndash; 21:00</td></tr>
+        </table>
+        <div>
+          <address>
+            Gasthaus Zur Alten M&uuml;hle<br>
+            M&uuml;hlweg 2<br>
+            97845 Rehbrunn<br>
+            Telefon 0152 28817052
+          </address>
+          <p style="margin-top:16px">Von der Bundesstra&szlig;e kommend hinter der Br&uuml;cke
+          links. Zw&ouml;lf Parkpl&auml;tze liegen hinter dem Haus. Der Wanderweg nach
+          Bachtal beginnt am Hoftor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Gasthaus</h3>
+      M&uuml;hlweg 2<br>97845 Rehbrunn<br>0152 28817052
+    </div>
+    <div>
+      <h3>Karte</h3>
+      <a href="#vorspeisen">Vorspeisen</a><br>
+      <a href="#hauptgerichte">Hauptgerichte</a><br>
+      <a href="#getraenke">Getr&auml;nke</a>
+    </div>
+    <div>
+      <h3>Haus</h3>
+      <a href="#zimmer">Zimmer</a><br>
+      <a href="#saal">Saal</a><br>
+      <a href="#geschichte">Geschichte</a>
+    </div>
+    <div>
+      <h3>Impressum</h3>
+      Inhaber T. Reiser<br>
+      Gastst&auml;ttenerlaubnis Landratsamt<br>
+      Erfundener Betrieb
+    </div>
+  </div>
+  <div class="unten"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

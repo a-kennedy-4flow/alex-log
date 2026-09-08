@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Musikhaus Cantabile &middot; Rehbrunn</title>
+<meta name="description" content="Musikhaus Cantabile in Rehbrunn. Instrumente und Miete und Werkstatt und Unterricht.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+  body { margin: 0; background: #14121a; color: #efeaf4;
+         font: 17px/1.72 "Crimson Pro", Georgia, serif; }
+  a { color: #c9a0ff; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: #14121a; border-bottom: 1px solid #2b2635; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 66px; flex-wrap: wrap; }
+  .marke { font-size: 21px; font-weight: 600; letter-spacing: .02em; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0;
+                  font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  header nav a { color: #b8b0c6; text-decoration: none; }
+  header nav a:hover { color: #fff; }
+  .buehne { padding: 60px 0 46px; }
+  .buehne .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #c9a0ff; }
+  h1 { margin: 14px 0 16px; font-size: clamp(34px, 7vw, 58px); line-height: 1.04; font-weight: 600;
+       max-width: 18ch; }
+  .buehne p { margin: 0; font-size: 20px; color: #c5bdd3; max-width: 46ch; }
+  .tasten { display: flex; height: 150px; border-radius: 6px; overflow: hidden; }
+  .tasten i { flex: 1; background: #f4f1f8; border-right: 1px solid #14121a; position: relative; }
+  .tasten i.schwarz::after { content: ""; position: absolute; top: 0; right: -9px; width: 18px; height: 62%;
+                             background: #14121a; z-index: 2; }
+  section { padding: 52px 0; border-top: 1px solid #2b2635; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); font-weight: 600; }
+  .unter { margin: 0 0 22px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #c9a0ff; }
+  p { margin: 0 0 16px; max-width: 68ch; color: #dcd6e4; }
+  .reiter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .reiter button { font: inherit; font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px;
+                   padding: 10px 18px; border-radius: 8px; border: 1px solid #3a3348; background: transparent;
+                   color: #c5bdd3; cursor: pointer; }
+  .reiter button[aria-selected="true"] { background: #c9a0ff; border-color: #c9a0ff; color: #14121a;
+                                         font-weight: 600; }
+  .tafel[hidden] { display: none; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #9990ab;
+       padding: 0 10px 12px 0; border-bottom: 1px solid #362f45; }
+  td { padding: 13px 10px 13px 0; border-bottom: 1px solid #241f2e; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: #c9a0ff; }
+  .karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .karte { background: #1c1926; border: 1px solid #302a3d; border-radius: 12px; padding: 20px 22px; }
+  .karte h3 { margin: 0 0 8px; font-size: 20px; font-weight: 600; }
+  .karte p { margin: 0; font-size: 16px; color: #b8b0c6; }
+  details { background: #1c1926; border: 1px solid #302a3d; border-radius: 12px; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 15px 20px; font-size: 19px; font-weight: 600; }
+  details p { margin: 0 20px 16px; font-size: 16px; }
+  .merk { border-left: 3px solid #c9a0ff; padding: 4px 0 4px 20px; font-size: 20px; color: #e8e2f0;
+          max-width: 58ch; }
+  address { font-style: normal; color: #dcd6e4; }
+  footer { border-top: 1px solid #2b2635; font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px;
+           color: #b0a8bf; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #c9a0ff; }
+  footer a { color: #cfc8db; }
+  .ende { border-top: 1px solid #241f2e; font-size: 13px; color: #8b8399; }
+  .ende .wrap { display: block; padding: 16px 24px 44px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Musikhaus Cantabile</span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#abteilungen">Abteilungen</a></li>
+        <li><a href="#miete">Miete</a></li>
+        <li><a href="#werkstatt">Werkstatt</a></li>
+        <li><a href="#unterricht">Unterricht</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="buehne">
+    <div>
+      <p class="zeile">Instrumente und Noten seit 1978</p>
+      <h1>Ein Instrument muss man h&ouml;ren bevor man es kauft</h1>
+      <p>Bei uns d&uuml;rfen Sie jedes Instrument in Ruhe spielen. Wir haben zwei
+      schallged&auml;mmte R&auml;ume daf&uuml;r.</p>
+    </div>
+    <div class="tasten" aria-hidden="true">
+      <i class="schwarz"></i><i class="schwarz"></i><i></i><i class="schwarz"></i>
+      <i class="schwarz"></i><i class="schwarz"></i><i></i>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="abteilungen">
+    <p class="unter">Abteilungen</p>
+    <h2>Vier Bereiche im Haus</h2>
+    <div class="reiter" role="tablist" aria-label="Abteilungen">
+      <button role="tab" id="a1" aria-controls="t1" aria-selected="true">Streicher</button>
+      <button role="tab" id="a2" aria-controls="t2" aria-selected="false">Blasinstrumente</button>
+      <button role="tab" id="a3" aria-controls="t3" aria-selected="false">Tasten</button>
+      <button role="tab" id="a4" aria-controls="t4" aria-selected="false">Noten</button>
+    </div>
+
+    <div class="tafel" id="t1" role="tabpanel" aria-labelledby="a1">
+      <div class="zwei">
+        <div>
+          <p>Geigen und Bratschen und Celli in allen Gr&ouml;&szlig;en. F&uuml;r Kinder
+          f&uuml;hren wir Achtel bis Dreiviertel. Jedes Instrument wird von uns eingerichtet
+          bevor es das Haus verl&auml;sst.</p>
+          <p>Bogen bespannen wir selbst. Ein Neubezug dauert zwei Tage und kostet
+          f&uuml;nfundsiebzig Euro.</p>
+        </div>
+        <table>
+          <tr><th>Instrument</th><th class="r">Preis</th></tr>
+          <tr><td>Sch&uuml;lergeige eingerichtet</td><td class="r">ab 420 &euro;</td></tr>
+          <tr><td>Meistergeige</td><td class="r">ab 3800 &euro;</td></tr>
+          <tr><td>Cello f&uuml;r Anf&auml;nger</td><td class="r">ab 980 &euro;</td></tr>
+          <tr><td>Bogen neu bespannen</td><td class="r">75 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tafel" id="t2" role="tabpanel" aria-labelledby="a2" hidden>
+      <div class="zwei">
+        <div>
+          <p>Klarinetten und Fl&ouml;ten und Trompeten f&uuml;r die Kapellen im Landkreis. Wir
+          liefern an drei Musikvereine und kennen deren Stimmung und Anspruch.</p>
+          <p>Polster und Korken erneuern wir in der Werkstatt. Eine Generalüberholung dauert
+          zwei Wochen.</p>
+        </div>
+        <table>
+          <tr><th>Instrument</th><th class="r">Preis</th></tr>
+          <tr><td>Querfl&ouml;te Sch&uuml;lermodell</td><td class="r">ab 640 &euro;</td></tr>
+          <tr><td>Klarinette in B</td><td class="r">ab 890 &euro;</td></tr>
+          <tr><td>Trompete</td><td class="r">ab 720 &euro;</td></tr>
+          <tr><td>Generalüberholung</td><td class="r">ab 280 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tafel" id="t3" role="tabpanel" aria-labelledby="a3" hidden>
+      <div class="zwei">
+        <div>
+          <p>Im ersten Stock stehen acht Klaviere und zwei Fl&uuml;gel. Alle sind gestimmt und
+          spielbereit. Gebrauchte Instrumente kommen aus Nachl&auml;ssen und sind bei uns
+          überholt worden.</p>
+          <p>Stimmen und Regulieren geh&ouml;rt zu unserer Arbeit. Wir fahren im ganzen
+          Landkreis.</p>
+        </div>
+        <table>
+          <tr><th>Leistung</th><th class="r">Preis</th></tr>
+          <tr><td>Klavier gebraucht &uuml;berholt</td><td class="r">ab 2400 &euro;</td></tr>
+          <tr><td>Digitalpiano</td><td class="r">ab 780 &euro;</td></tr>
+          <tr><td>Stimmen im Haus</td><td class="r">120 &euro;</td></tr>
+          <tr><td>Transport im Ort</td><td class="r">ab 190 &euro;</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tafel" id="t4" role="tabpanel" aria-labelledby="a4" hidden>
+      <div class="zwei">
+        <div>
+          <p>Unser Notenlager f&uuml;llt einen ganzen Raum. Was nicht dasteht bestellen wir bis
+          zum n&auml;chsten Werktag. Vieles ist inzwischen nur noch als Nachdruck lieferbar und
+          auch das besorgen wir.</p>
+          <p>F&uuml;r Ch&ouml;re und Kapellen legen wir Sammelbestellungen an.</p>
+        </div>
+        <table>
+          <tr><th>Bereich</th><th class="r">Umfang</th></tr>
+          <tr><td>Klavier und Orgel</td><td class="r">rund 1200 Titel</td></tr>
+          <tr><td>Streicher</td><td class="r">rund 800 Titel</td></tr>
+          <tr><td>Blasmusik</td><td class="r">rund 600 Titel</td></tr>
+          <tr><td>Chor</td><td class="r">rund 400 Titel</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="miete">
+    <p class="unter">Miete</p>
+    <h2>Erst mieten und sp&auml;ter entscheiden</h2>
+    <p>Kinder wechseln die Instrumentengr&ouml;&szlig;e alle zwei Jahre. Deshalb vermieten wir
+    Sch&uuml;lerinstrumente monatlich. Die gezahlte Miete rechnen wir bis zu zw&ouml;lf Monate
+    auf einen sp&auml;teren Kauf an.</p>
+    <table>
+      <tr><th>Instrument</th><th>Monatsmiete</th><th class="r">Anrechnung</th></tr>
+      <tr><td>Geige in jeder Gr&ouml;&szlig;e</td><td>18 &euro;</td><td class="r">bis 12 Monate</td></tr>
+      <tr><td>Cello</td><td>32 &euro;</td><td class="r">bis 12 Monate</td></tr>
+      <tr><td>Querfl&ouml;te</td><td>24 &euro;</td><td class="r">bis 12 Monate</td></tr>
+      <tr><td>Klarinette</td><td>28 &euro;</td><td class="r">bis 12 Monate</td></tr>
+      <tr><td>Digitalpiano</td><td>35 &euro;</td><td class="r">bis 6 Monate</td></tr>
+    </table>
+    <div class="merk" style="margin-top:22px">Ein billiges Instrument aus dem Netz klingt
+    schlecht und h&auml;lt die Stimmung nicht. Kinder geben dann nicht wegen fehlender Lust
+    auf.</div>
+  </section>
+
+  <section id="werkstatt">
+    <p class="unter">Werkstatt</p>
+    <h2>Reparatur und Pflege</h2>
+    <div class="karten">
+      <div class="karte"><h3>Geigenbau</h3><p>Stimmstock setzen und Steg schneiden und Risse leimen.</p></div>
+      <div class="karte"><h3>Holzblas</h3><p>Polster und Korken und Mechanik einstellen.</p></div>
+      <div class="karte"><h3>Blechblas</h3><p>Beulen ausbeulen und Z&uuml;ge g&auml;ngig machen.</p></div>
+      <div class="karte"><h3>Klavier</h3><p>Stimmen und Regulieren und Hammerk&ouml;pfe abziehen.</p></div>
+    </div>
+  </section>
+
+  <section id="unterricht">
+    <p class="unter">Unterricht</p>
+    <h2>Vier Lehrkr&auml;fte im Haus</h2>
+    <details open>
+      <summary>Wie l&auml;uft eine Probestunde?</summary>
+      <p>Die erste Stunde ist kostenfrei und dauert dreißig Minuten. Ein Instrument stellen wir
+      f&uuml;r diese Stunde. Danach entscheiden Sie in Ruhe.</p>
+    </details>
+    <details>
+      <summary>Was kostet der Unterricht?</summary>
+      <p>Dreißig Minuten in der Woche kosten hundert Euro im Monat. Bei Geschwistern geben wir
+      zehn Prozent Nachlass. Ferien sind bereits eingerechnet.</p>
+    </details>
+    <details>
+      <summary>Ab welchem Alter ist Unterricht sinnvoll?</summary>
+      <p>Bei Streichern ab etwa f&uuml;nf Jahren. Bei Blasinstrumenten erst wenn die
+      Z&auml;hne gewechselt sind. Am Klavier geht es fast immer.</p>
+    </details>
+    <details>
+      <summary>Gibt es Unterricht f&uuml;r Erwachsene?</summary>
+      <p>Ja und wir haben davon mehr als man denkt. Viele fangen mit f&uuml;nfzig wieder an wo
+      sie mit vierzehn aufgeh&ouml;rt haben.</p>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Dienstag bis Freitag</td><td class="r">10:00 &ndash; 18:30</td></tr>
+        <tr><td>Samstag</td><td class="r">09:30 &ndash; 14:00</td></tr>
+        <tr><td>Unterricht</td><td class="r">14:00 &ndash; 20:00</td></tr>
+        <tr><td>Montag</td><td class="r">Werkstatt ohne Laden</td></tr>
+      </table>
+      <div>
+        <address>
+          Musikhaus Cantabile<br>
+          Kirchgasse 6<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817306
+        </address>
+        <p style="margin-top:14px">Der Laden liegt neben der Kirche. Die Klaviere stehen im
+        ersten Stock. Wer nicht gut zu Fu&szlig; ist bekommt einen Termin im Erdgeschoss.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Musikhaus</h3>Kirchgasse 6<br>97845 Rehbrunn<br>0152 28817306</div>
+    <div><h3>Themen</h3><a href="#miete">Miete</a><br><a href="#werkstatt">Werkstatt</a><br><a href="#unterricht">Unterricht</a></div>
+    <div><h3>Betrieb</h3>Inhaber V. Cantabile<br>Geigenbauer<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const reiter = [...document.querySelectorAll('[role="tab"]')];
+function zeige(aktiv) {
+  for (const knopf of reiter) {
+    const an = knopf === aktiv;
+    knopf.setAttribute('aria-selected', String(an));
+    document.getElementById(knopf.getAttribute('aria-controls')).hidden = !an;
+  }
+}
+for (const knopf of reiter) {
+  knopf.addEventListener('click', () => zeige(knopf));
+  knopf.addEventListener('keydown', e => {
+    const i = reiter.indexOf(knopf);
+    if (e.key === 'ArrowRight') { const n = reiter[(i + 1) % reiter.length]; n.focus(); zeige(n); }
+    if (e.key === 'ArrowLeft') { const n = reiter[(i - 1 + reiter.length) % reiter.length]; n.focus(); zeige(n); }
+  });
+}
+</script>
+</body>
+</html>

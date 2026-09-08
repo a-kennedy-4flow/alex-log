@@ -1,0 +1,11 @@
+---
+# Defaults rather than set_fact because a role default is re-evaluated on every
+# invocation. A fact set by an earlier play survives into the next one.
+
+pmm_server_image: percona/pmm-server:3.9.0
+pmm_server_name: pmm-server
+pmm_server_network: pmm
+pmm_server_volume: pmm-server-data
+pmm_server_web_port: 8443
+pmm_server_admin_user: admin
+pmm_server_admin_password: password

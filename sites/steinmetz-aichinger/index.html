@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steinmetzbetrieb Aichinger &middot; Rehbrunn</title>
+<meta name="description" content="Steinmetz Aichinger in Rehbrunn. Grabmale und Naturstein im Haus und Restaurierung.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; background: #efeeea; color: #23211d;
+         font: 17px/1.75 "Spectral", Georgia, serif; }
+  a { color: #6b6355; }
+  .raster { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 230px 1fr;
+            gap: 0; align-items: start; }
+  @media (max-width: 900px) { .raster { grid-template-columns: 1fr; } }
+  nav.seite { position: sticky; top: 0; height: 100vh; padding: 34px 26px; background: #23211d;
+              color: #e2ded4; display: flex; flex-direction: column; }
+  @media (max-width: 900px) { nav.seite { position: static; height: auto; } }
+  nav.seite .marke { font-size: 21px; line-height: 1.2; margin-bottom: 6px; }
+  nav.seite .zunft { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: #a49a86;
+                     font-family: "Segoe UI", system-ui, sans-serif; margin-bottom: 30px; }
+  nav.seite ol { list-style: none; margin: 0; padding: 0; counter-reset: r;
+                 font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
+  nav.seite li { counter-increment: r; }
+  nav.seite a { display: flex; gap: 12px; padding: 9px 0; color: #cfc9bb; text-decoration: none; }
+  nav.seite a::before { content: counter(r, upper-roman); width: 34px; color: #7d7565; font-size: 13px;
+                        letter-spacing: .05em; }
+  nav.seite a:hover { color: #fff; }
+  nav.seite a.aktiv { color: #fff; }
+  nav.seite a.aktiv::before { color: #c9a227; }
+  nav.seite .fuss { margin-top: auto; padding-top: 26px; font-size: 13px; color: #a49a86;
+                    font-family: "Segoe UI", system-ui, sans-serif; }
+  nav.seite .fuss a { display: inline; color: #c9a227; padding: 0; }
+  main { padding: 0 34px 60px; }
+  @media (max-width: 620px) { main { padding: 0 22px 50px; } }
+  .kopf { padding: 60px 0 44px; }
+  .zeile { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .3em; text-transform: uppercase; color: #8a7f68; }
+  h1 { margin: 14px 0 18px; font-size: clamp(34px, 6.4vw, 56px); line-height: 1.06; font-weight: 500;
+       max-width: 20ch; }
+  .kopf p { margin: 0; font-size: 20px; max-width: 52ch; color: #4b463d; }
+  section { padding: 44px 0; border-top: 1px solid #d9d5cb; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 34px); font-weight: 500; }
+  .unter { margin: 0 0 20px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px;
+           letter-spacing: .2em; text-transform: uppercase; color: #8a7f68; }
+  p { margin: 0 0 18px; max-width: 66ch; }
+  .steine { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+  .steine div { background: #fff; border: 1px solid #ded9cd; }
+  .steine .flaeche { height: 90px; }
+  .steine .txt { padding: 12px 14px; font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; }
+  .steine b { display: block; font-size: 15px; }
+  .steine span { color: #7b7365; }
+  .arbeiten { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .arbeit { background: #fff; border: 1px solid #ded9cd; padding: 20px 22px; }
+  .arbeit h3 { margin: 0 0 8px; font-size: 20px; font-weight: 500; }
+  .arbeit p { margin: 0 0 10px; font-size: 16px; color: #55503f; }
+  .arbeit .preis { font-family: "Segoe UI", system-ui, sans-serif; font-size: 14px; color: #8a6b1e; }
+  table { width: 100%; border-collapse: collapse; font-family: "Segoe UI", system-ui, sans-serif;
+          font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8a7f68;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #23211d; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #e3dfd4; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 700px) { .zwei { grid-template-columns: 1fr; gap: 16px; } }
+  .ruhe { border-left: 4px solid #c9a227; padding: 4px 0 4px 20px; font-size: 19px; color: #3d3931;
+          max-width: 58ch; }
+  address { font-style: normal; }
+  .schluss { border-top: 1px solid #d9d5cb; margin-top: 40px; padding-top: 18px;
+             font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; color: #7b7365; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="raster">
+  <nav class="seite" aria-label="Seitennavigation">
+    <div class="marke">Steinmetzbetrieb<br>Aichinger</div>
+    <div class="zunft">Rehbrunn &middot; seit 1908</div>
+    <ol>
+      <li><a href="#werkstatt" class="aktiv">Werkstatt</a></li>
+      <li><a href="#grabmale">Grabmale</a></li>
+      <li><a href="#schrift">Schrift</a></li>
+      <li><a href="#naturstein">Naturstein</a></li>
+      <li><a href="#restaurierung">Restaurierung</a></li>
+      <li><a href="#steine">Steinarten</a></li>
+      <li><a href="#preise">Preise</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ol>
+    <div class="fuss"><a href="../index.html">&larr; Gewerbeverzeichnis</a></div>
+  </nav>
+
+  <main>
+    <div class="kopf">
+      <p class="zeile">Steinmetz und Steinbildhauer</p>
+      <h1>Stein wird von Hand bearbeitet oder gar nicht</h1>
+      <p>Wir arbeiten in der vierten Generation am selben Platz. Die Schrift schlagen wir mit
+      Kn&uuml;pfel und Eisen. Gefr&auml;st wird nur dort wo es niemand sieht.</p>
+    </div>
+
+    <section id="werkstatt">
+      <p class="unter">Werkstatt</p>
+      <h2>Hof und Halle an der Friedhofstra&szlig;e</h2>
+      <p>Im Hof stehen die Rohbl&ouml;cke. In der Halle stehen S&auml;ge und Poliermaschine und
+      die B&auml;nke. Wir sind zu dritt und ein Lehrling ist im zweiten Jahr.</p>
+      <p>Wer kommen m&ouml;chte ruft kurz an. Wir zeigen gern was gerade auf der Bank liegt.
+      Kinder d&uuml;rfen mit dem Hammer auf einen Reststein schlagen.</p>
+      <div class="ruhe">Ein Grabmal steht dreißig Jahre. Es sollte dem Menschen entsprechen und
+      nicht dem Katalog.</div>
+    </section>
+
+    <section id="grabmale">
+      <p class="unter">Grabmale</p>
+      <h2>Entwurf nach Gespr&auml;ch</h2>
+      <p>Wir setzen uns mit Ihnen zusammen und zeichnen. Ein Entwurf braucht meist zwei
+      Termine. Die Friedhofsordnung gibt Ma&szlig;e und Steinarten vor und wir kennen sie f&uuml;r
+      jeden Friedhof im Landkreis.</p>
+      <div class="arbeiten">
+        <div class="arbeit"><h3>Urnenstein</h3><p>Kleines Format ab 40 mal 60 Zentimeter. Auch liegend.</p><p class="preis">ab 1400 &euro;</p></div>
+        <div class="arbeit"><h3>Einzelgrab</h3><p>Stehendes Mal mit Sockel und Einfassung.</p><p class="preis">ab 2900 &euro;</p></div>
+        <div class="arbeit"><h3>Doppelgrab</h3><p>Breites Mal f&uuml;r zwei Namen. Platz f&uuml;r sp&auml;tere Schrift.</p><p class="preis">ab 4200 &euro;</p></div>
+        <div class="arbeit"><h3>Findling</h3><p>Naturbelassen mit polierter Fl&auml;che f&uuml;r die Schrift.</p><p class="preis">ab 1900 &euro;</p></div>
+      </div>
+    </section>
+
+    <section id="schrift">
+      <p class="unter">Schrift</p>
+      <h2>Von Hand geschlagen oder gestrahlt</h2>
+      <div class="zwei">
+        <div>
+          <p>Handschrift wirkt lebendig weil jede Kerbe etwas anders steht. Gestrahlte Schrift
+          ist gleichm&auml;&szlig;iger und g&uuml;nstiger. Beides h&auml;lt gleich lang.</p>
+          <p>Nachtr&auml;gliche Schrift bringen wir auf dem Friedhof an. Der Stein muss dazu
+          nicht in die Werkstatt.</p>
+        </div>
+        <table>
+          <tr><th>Ausf&uuml;hrung</th><th class="r">Preis je Zeichen</th></tr>
+          <tr><td>Gestrahlt und vertieft</td><td class="r">6,50 &euro;</td></tr>
+          <tr><td>Von Hand geschlagen</td><td class="r">14,00 &euro;</td></tr>
+          <tr><td>Mit Blattgold gefasst</td><td class="r">plus 5,00 &euro;</td></tr>
+          <tr><td>Ornament nach Entwurf</td><td class="r">ab 280 &euro;</td></tr>
+          <tr><td>Nachschrift auf dem Friedhof</td><td class="r">plus 190 &euro; Anfahrt</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="naturstein">
+      <p class="unter">Naturstein</p>
+      <h2>Auch f&uuml;r das Haus</h2>
+      <p>Wir fertigen Fensterb&auml;nke und Treppenstufen und Arbeitsplatten. Das Aufma&szlig;
+      nehmen wir selbst und schneiden nach Schablone. So passt der Stein auch in eine krumme
+      Nische.</p>
+      <table>
+        <tr><th>Bauteil</th><th>Material</th><th class="r">Preis</th></tr>
+        <tr><td>Fensterbank innen</td><td>Kalkstein</td><td class="r">ab 180 &euro; je Meter</td></tr>
+        <tr><td>Treppenstufe</td><td>Granit</td><td class="r">ab 260 &euro; je St&uuml;ck</td></tr>
+        <tr><td>Arbeitsplatte</td><td>Granit poliert</td><td class="r">ab 480 &euro; je Meter</td></tr>
+        <tr><td>Waschtisch nach Ma&szlig;</td><td>Marmor</td><td class="r">ab 950 &euro;</td></tr>
+        <tr><td>Bodenplatten verlegt</td><td>Sandstein</td><td class="r">ab 210 &euro; je m&sup2;</td></tr>
+      </table>
+    </section>
+
+    <section id="restaurierung">
+      <p class="unter">Restaurierung</p>
+      <h2>Alte Steine wieder lesbar machen</h2>
+      <p>Wir arbeiten f&uuml;r Kirchen und Gemeinden im Landkreis. Verwitterte Inschriften
+      werden dokumentiert und vorsichtig nachgearbeitet. Bei denkmalgesch&uuml;tzten Objekten
+      stimmen wir jeden Schritt mit der Beh&ouml;rde ab.</p>
+      <div class="arbeiten">
+        <div class="arbeit"><h3>Reinigung</h3><p>Mit Wasser und Druck unter zwei bar. Keine Chemie auf altem Sandstein.</p><p class="preis">ab 240 &euro;</p></div>
+        <div class="arbeit"><h3>Steinerg&auml;nzung</h3><p>Fehlstellen mit Vierung aus gleichem Stein. Kein Kunstharz.</p><p class="preis">ab 380 &euro;</p></div>
+        <div class="arbeit"><h3>Wiederaufrichten</h3><p>Umgefallene Male mit neuem Fundament sichern.</p><p class="preis">ab 520 &euro;</p></div>
+      </div>
+    </section>
+
+    <section id="steine">
+      <p class="unter">Steinarten</p>
+      <h2>Was wir am Hof liegen haben</h2>
+      <div class="steine">
+        <div><div class="flaeche" style="background:#8f8c86"></div><div class="txt"><b>Granit grau</b><span>hart und pflegeleicht</span></div></div>
+        <div><div class="flaeche" style="background:#c8b898"></div><div class="txt"><b>Sandstein</b><span>weich und regional</span></div></div>
+        <div><div class="flaeche" style="background:#e7e3da"></div><div class="txt"><b>Kalkstein</b><span>hell und ruhig</span></div></div>
+        <div><div class="flaeche" style="background:#3b3a38"></div><div class="txt"><b>Diabas</b><span>fast schwarz</span></div></div>
+        <div><div class="flaeche" style="background:#d6cfc4"></div><div class="txt"><b>Marmor</b><span>f&uuml;r innen</span></div></div>
+        <div><div class="flaeche" style="background:#7d5b46"></div><div class="txt"><b>Muschelkalk</b><span>aus dem Landkreis</span></div></div>
+      </div>
+      <p style="margin-top:18px">Stein aus &Uuml;bersee verarbeiten wir nur auf ausdr&uuml;cklichen
+      Wunsch. Wir bevorzugen Material aus Br&uuml;chen die wir kennen.</p>
+    </section>
+
+    <section id="preise">
+      <p class="unter">Preise</p>
+      <h2>Was zum Grabmal dazukommt</h2>
+      <table>
+        <tr><th>Posten</th><th class="r">Betrag</th></tr>
+        <tr><td>Fundament nach Friedhofsordnung</td><td class="r">ab 320 &euro;</td></tr>
+        <tr><td>Aufstellen mit Kran</td><td class="r">ab 280 &euro;</td></tr>
+        <tr><td>Standsicherheitspr&uuml;fung j&auml;hrlich</td><td class="r">45 &euro;</td></tr>
+        <tr><td>Reinigung und Imprägnierung</td><td class="r">ab 190 &euro;</td></tr>
+        <tr><td>Entwurf und Zeichnung</td><td class="r">bei Auftrag frei</td></tr>
+      </table>
+    </section>
+
+    <section id="kontakt">
+      <p class="unter">Kontakt</p>
+      <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+      <div class="zwei">
+        <table>
+          <tr><th>Tag</th><th class="r">Zeit</th></tr>
+          <tr><td>Montag bis Freitag</td><td class="r">08:00 &ndash; 16:30</td></tr>
+          <tr><td>Samstag</td><td class="r">09:00 &ndash; 12:00</td></tr>
+          <tr><td>Beratung</td><td class="r">auch abends nach Absprache</td></tr>
+          <tr><td>Trauerfall</td><td class="r">wir kommen zu Ihnen</td></tr>
+        </table>
+        <div>
+          <address>
+            Steinmetzbetrieb Aichinger<br>
+            Friedhofstra&szlig;e 2<br>
+            97845 Rehbrunn<br>
+            Telefon 0152 28817239
+          </address>
+          <p style="margin-top:14px">Der Hof liegt direkt gegen&uuml;ber dem Friedhofstor.
+          Fahren Sie in den Hof und stellen Sie das Auto neben den Bl&ouml;cken ab.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="schluss">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</p>
+  </main>
+</div>
+
+<script>
+const teile = [...document.querySelectorAll('main section')];
+const punkte = new Map([...document.querySelectorAll('nav.seite a[href^="#"]')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const wacht = new IntersectionObserver(liste => {
+  for (const eintrag of liste) {
+    if (!eintrag.isIntersecting) continue;
+    const link = punkte.get(eintrag.target.id);
+    if (!link) continue;
+    for (const a of punkte.values()) a.classList.remove('aktiv');
+    link.classList.add('aktiv');
+  }
+}, { rootMargin: '-20px 0px -74% 0px' });
+for (const teil of teile) wacht.observe(teil);
+</script>
+</body>
+</html>

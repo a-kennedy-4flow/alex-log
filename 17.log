@@ -1,0 +1,61 @@
+This log records every shell command run while designing the Jira Cloud integration options for the tracker app.
+Format is UTC timestamp then command then one sentence on the result.
+2026-09-07T11:21:34Z	cat memory files; ls repo and tracker	Read the grammar logging and variants rules and listed the tracker workspace.
+2026-09-07T11:22:23Z	cat tracker/readme.md; ls -R apps/api/src packages docs infra	Read the tracker specification and listed the workspace layout.
+2026-09-07T11:22:23Z	cat apps/api/src/cognito.ts; grep routes in handlers.ts	Found the Cognito directory and the eight API routes.
+2026-09-07T11:22:23Z	cat apps/api/src/repository.ts apps/api/src/lambda.ts	Confirmed one DynamoDB table keyed by Cognito sub and a JWT authorizer in front of the API.
+2026-09-07T11:23:13Z	Atlassian MCP getAccessibleAtlassianResources; atlassianUserInfo	Site is 4flow.atlassian.net with cloud id 792ba525 and the caller account id is a 712020 prefixed identity.
+2026-09-07T11:23:13Z	JQL assignee=currentUser() statusCategory=Done resolutiondate in August 2026	Returned seven issues across projects PLRS and DEVH.
+2026-09-07T11:23:13Z	JQL status changed to Done during August 2026; JQL worklogAuthor with worklogDate in August 2026	The changed form returned the same seven issues and the worklog form returned nothing so no hours are logged in Jira.
+2026-09-07T11:27:19Z	WebSearch on Atlassian rotating refresh tokens; WebSearch on Jira REST CORS; WebSearch on the withdrawn search endpoint	Confirmed ninety day rotating tokens and that cross origin calls work on api.atlassian.com and that the current endpoint is search/jql.
+2026-09-07T11:27:19Z	cat > tracker/docs/jira.md	Wrote the design with five options and the shared query and the recommendation.
+2026-09-07T11:27:48Z	grep for commas and for and-the chains in docs/jira.md; python3 rewrite of the item shape line	One banned and-the chain was found and replaced with a purpose statement and the only commas left are inside JQL and JSON.
+2026-09-07T11:28:07Z	grep -n docs/ readme.md	The readme keeps no index of the docs folder so no index line was needed.
+2026-09-07T11:47:41Z	cat apps/api/src/dynamo.ts; grep ttl; sed reminder.ts; grep CALLBACK_PATH	Confirmed the pk and sk layout and that time to live is written per sheet and that the auth callback is handled before the router mounts.
+2026-09-07T11:47:41Z	cat > tracker/docs/todo-jira-option-a.md	Wrote the ten section todo for option A in build order.
+2026-09-07T11:48:11Z	python3 sentence level check for and-the chains; python3 rewrite of the StoredJiraLink item	The per line check had missed one wrapped inventory sentence and it is now a purpose statement.
+2026-09-07T11:53:07Z	WebFetch of the Atlassian 3LO page for where offline_access is specified	The docs put offline_access in the scope parameter of the authorize URL rather than in the console scope list.
+2026-09-07T11:53:07Z	python3 edit of docs/todo-jira-option-a.md and docs/jira.md	Moved offline_access out of the console step and into the authorize URL step in both files.
+2026-09-07T11:56:20Z	WebSearch and WebFetch on Atlassian 3LO PKCE; WebFetch of the scopes page	Atlassian supports no PKCE and requires the client secret at the token endpoint and classic scopes remain the recommendation.
+2026-09-07T11:56:20Z	python3 edit of docs/jira.md and docs/todo-jira-option-a.md	Rewrote option B around a server side exchange and named the four required authorize parameters in both files.
+2026-09-07T12:04:05Z	python3 edit of docs/jira.md for the separate function and the screen and the hours	The design now names a third Lambda and the two tables and the three sources the hours column may take.
+2026-09-07T12:05:42Z	cat > tracker/docs/todo-jira-option-a.md	Rewrote the todo as twelve sections covering the separate function and the screen and the rounding rule.
+2026-09-07T12:09:50Z	cat > mockups/h-jira.css; cat > mockups/build-jira.py; python3 build-jira.py	Emitted three layouts of the Jira screen with fifty hours resolving to six and a half booked days against a target of 16.8.
+2026-09-07T12:09:50Z	python3 edit of mockups/index.html	Added the Jira screen section with the three cards and the two notes and listed the new files.
+2026-09-07T12:09:50Z	html.parser check of the four pages; grep for hex colours	No mismatched tag in any page and every hex is a theme colour or a shade already declared in tokens.css.
+2026-09-07T12:53:51Z	python3 edit of docs/todo-jira-option-a.md	Recorded H1 and the overwrite answer and the fifth page as taken and added the two items that pay for them.
+2026-09-07T12:54:12Z	python3 edit of mockups/index.html and docs/jira.md	Marked H1 as chosen in the index and recorded the overwrite rule in the design.
+2026-09-07T12:54:42Z	python3 edit of mockups/build-jira.py; python3 build-jira.py	H1 now carries a sticky stat strip in its head and the two beaten layouts are left untouched.
+2026-09-07T12:57:14Z	git log -S on the token; git ls-files on the todo	The docs folder is untracked so the pasted secret never reached a commit and no history needs rewriting.
+2026-09-07T12:57:14Z	python3 edit of docs/todo-jira-option-a.md	Cut the client secret out of the file and recorded the app id and client id and the corrected authorize URL.
+2026-09-07T12:57:37Z	python3 edit of docs/jira.md	Column M now takes the ticket summary and the four settled questions moved to a closed list.
+2026-09-07T13:01:59Z	WebFetch of the Atlassian refresh token page and of the invalid refresh token thread	A new refresh token is always returned and concurrent spends are the reported cause of an invalid token and an older token is reported to work for ten minutes.
+2026-09-07T13:01:59Z	python3 edit of docs/jira.md and docs/todo-jira-option-a.md	Added the four rules that guard rotation and the six tests that cover the race.
+2026-09-07T13:36:28Z	wrote packages/core/src/hours.ts and its tests; pnpm add client-kms client-secrets-manager	The rounding rule went in first with seventeen tests and the two AWS clients were added to the api package.
+2026-09-07T13:36:28Z	wrote apps/api/src/{jira,jira-tokens,jira-fake,kms,jira-handlers}.ts; extended repository.ts and dynamo.ts and lambda.ts and dev-server.ts and local.ts	The reader is a third Lambda with the four rotation guards and four routes behind the existing authorizer.
+2026-09-07T13:36:28Z	npx vitest run src/__tests__/jira.test.ts	One test caught the cache write using a stale generation so the ticket cache had never held anything.
+2026-09-07T13:36:28Z	edited infra/lib/tracker-stack.ts; npx cdk synth Tracker	The template carries the secret and the KMS key and three routes on lambda.jira.
+2026-09-07T13:36:28Z	wrote apps/web/src/{lib/jira.ts,composables/useJira.ts,pages/JiraPage.vue}; extended api.ts and router.ts and App.vue and main.ts and eight locale files	The H1 screen with the sticky strip and the two summary tables and the fill.
+2026-09-07T13:36:28Z	npx vitest run apps/web/src/__tests__/jira.test.ts	A test caught the fill racing the month watcher so the write now happens before the editor moves.
+2026-09-07T13:36:28Z	pnpm -r test; pnpm typecheck; pnpm exec eslint; pnpm build; pnpm --filter @tracker/api bundle	Four hundred and seven tests pass and every package typechecks and lints and builds.
+2026-09-07T14:00:52Z	read the decisions in docs/todo-jira-option-a.md	Three answers were waiting. No typed hours and a configurable field list and a half day derived from the working day.
+2026-09-07T14:00:52Z	edited packages/core/src/hours.ts and types.ts and every profile constructor	A half day is now the working day halved with hoursPerDay on the profile defaulting to eight.
+2026-09-07T14:00:52Z	edited apps/api/src/jira.ts and lambda.ts and infra/lib/tracker-stack.ts	The hours come from the ordered list JIRA_HOURS_FIELDS names rather than from a fixed pair.
+2026-09-07T14:00:52Z	edited apps/web/src/{composables/useJira.ts,pages/JiraPage.vue,components/SetupForm.vue} and eight locale files	The hours column is read only and the screen opens on the share and the settings carry the working day.
+2026-09-07T14:00:52Z	pnpm -r test; pnpm typecheck; pnpm exec eslint; pnpm build; npx cdk synth Tracker	Four hundred and twenty one tests pass and every check is clean.
+2026-09-07T14:13:00Z	grep for the link states in JiraPage.vue and for unlinkJira across apps/web	The null link state rendered the linked layout so no connect button appeared and the settings page had nothing at all.
+2026-09-07T14:13:00Z	edited useJira.ts and JiraPage.vue and SetupForm.vue and eight locale files	Added a waiting state and a failed state and the connect and disconnect buttons on both screens.
+2026-09-07T14:13:00Z	pnpm -r test; pnpm typecheck; pnpm exec eslint; pnpm build	Four hundred and twenty six tests pass with five new ones covering every connection state.
+2026-09-07T14:17:09Z	cat packages/core/src/filename.ts; python3 read of locations.json	The suffix was the entity stripped code so Berlin gave DE_BERLIN while the submitted workbook says DE.
+2026-09-07T14:17:09Z	edited packages/core/src/filename.ts and three test files and readme.md	regionOf now reads countryCode from the catalogue and question 39 is settled in favour of the real file.
+2026-09-07T14:17:09Z	pnpm -r test; pnpm typecheck; pnpm exec eslint; pnpm build	Four hundred and twenty nine tests pass and every one of the twenty two locations yields a two letter code.
+2026-09-07T14:56:28Z	grep for type=checkbox across apps/web	The reminder was a bare checkbox in the settings form and in the wizard.
+2026-09-07T14:56:28Z	wrote apps/web/src/components/ToggleSwitch.vue and moved both call sites to it	One checkbox with role switch styled as a track and a knob so the label click and the space key stay free.
+2026-09-07T14:56:28Z	wrote apps/web/src/__tests__/toggle.test.ts; pnpm exec eslint --fix	Five tests pin the switch role and the checkbox type and the single change event.
+2026-09-07T14:56:28Z	read SetupForm.vue after the user reordered the label	The hint became a sibling of the label so the row is now a two column grid with the hint spanning under both.
+2026-09-07T15:00:37Z	read PeriodBar.vue around the target override input	The field is 72px wide and right aligned at 22px so the browser spinner sits on top of the value.
+2026-09-07T15:00:37Z	edited apps/web/src/styles/tokens.css; wrote apps/web/src/__tests__/styles.test.ts	The spinner is dropped for every number field in one rule and three tests hold it there.
+2026-09-07T15:16:31Z	read MonthPage.vue and SimplePage.vue and every component root	The month view held one sheet for the whole page while the quick fill gave SimpleView its own and left four sections bare.
+2026-09-07T15:16:31Z	edited tokens.css; wrote PageTitle.vue; restructured both pages; surfaced seven component roots	One definition of stack and split now serves both pages and every section carries its own surface.
+2026-09-07T15:16:31Z	edited render.test.ts; extended styles.test.ts	The assertion that one sheet held the page is replaced by one that every section is its own and eleven tests hold the shared shape.
+2026-09-07T15:16:31Z	pnpm -r test; pnpm typecheck; pnpm exec eslint; pnpm build	Four hundred and sixty seven tests pass and the bundle crossed the 500 kB vite warning at 501.92 kB.

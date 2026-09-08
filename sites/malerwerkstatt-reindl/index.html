@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Malerwerkstatt Reindl &middot; Rehbrunn</title>
+<meta name="description" content="Malerwerkstatt Reindl in Rehbrunn. Anstrich und Putz und Farbberatung im eigenen Farbraum.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+  body { margin: 0; background: var(--papier, #f7f4ef); color: #1f1d1a;
+         font: 17px/1.7 "Work Sans", "Segoe UI", system-ui, sans-serif;
+         transition: background .35s ease; }
+  a { color: var(--ton, #a24b2c); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 30; background: #1f1d1a; color: #f4f1eb; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 66px; flex-wrap: wrap; }
+  .marke { font-weight: 700; font-size: 20px; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #cfc8bd; text-decoration: none; }
+  header nav a:hover { color: #fff; }
+  .buehne { padding: 60px 0 48px; }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
+           color: var(--ton, #a24b2c); font-weight: 600; }
+  h1 { margin: 12px 0 16px; font-size: clamp(34px, 7vw, 60px); line-height: 1.02; letter-spacing: -.02em;
+       max-width: 20ch; }
+  .buehne p { margin: 0 0 24px; font-size: 20px; max-width: 50ch; color: #443f38; }
+  .pinsel { display: flex; gap: 8px; height: 26px; }
+  .pinsel i { flex: 1; border-radius: 3px; }
+  section { padding: 52px 0; border-top: 1px solid #e0d9cd; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: var(--ton, #a24b2c); font-weight: 600; }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  .waehler { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+  .waehler button { font: inherit; cursor: pointer; border: 2px solid #1f1d1a; background: #fff;
+                    border-radius: 12px; padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+                    font-size: 15px; }
+  .waehler button[aria-pressed="true"] { background: #1f1d1a; color: #fff; }
+  .waehler .klecks { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(0,0,0,.25); }
+  .farbtafel { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .farbtafel div { border-radius: 14px; padding: 24px 20px; color: #fff; min-height: 128px;
+                   display: flex; flex-direction: column; justify-content: flex-end; }
+  .farbtafel b { display: block; font-size: 18px; }
+  .farbtafel span { font-size: 13px; opacity: .85; }
+  .welt { background: #fff; border: 1px solid #e2dbcf; border-radius: 16px; padding: 24px 26px;
+          margin-bottom: 26px; }
+  .welt h3 { margin: 0 0 8px; font-size: 21px; }
+  .welt p { margin: 0; }
+  .leistungen { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .karte { background: #fff; border: 1px solid #e2dbcf; border-radius: 14px; padding: 20px 22px; }
+  .karte h3 { margin: 0 0 8px; font-size: 18px; }
+  .karte p { margin: 0; font-size: 15px; color: #5c554b; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #7d7467;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #1f1d1a; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #e8e1d6; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 20px 48px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 32px; height: 32px;
+                         border: 2px solid #1f1d1a; border-radius: 8px; display: grid; place-content: center;
+                         font-weight: 700; font-size: 15px; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #5c554b; }
+  address { font-style: normal; }
+  footer { background: #1f1d1a; color: #d8d1c6; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #e0a184; }
+  footer a { color: #d8d1c6; }
+  .ende { border-top: 1px solid #3a352e; font-size: 13px; color: #9d968a; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Malerwerkstatt Reindl</span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#farben">Farbwelten</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="buehne">
+    <p class="zeile">Malerbetrieb in dritter Generation</p>
+    <h1>Farbe wirkt erst im Raum und nicht auf der F&auml;cherkarte</h1>
+    <p>Wir streichen gro&szlig;e Muster an Ihre Wand und lassen sie zwei Tage stehen. Erst
+    danach entscheiden Sie.</p>
+    <div class="pinsel" aria-hidden="true">
+      <i style="background:#a24b2c"></i><i style="background:#7a8b6a"></i><i style="background:#3f5b78"></i>
+      <i style="background:#d7c9a8"></i><i style="background:#8c6b8f"></i><i style="background:#1f1d1a"></i>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="farben">
+    <p class="unter">Farbwelten</p>
+    <h2>W&auml;hlen Sie eine Stimmung</h2>
+    <p>Die Seite wechselt mit Ihrer Auswahl den Grundton. So sehen Sie den Unterschied
+    zwischen einem warmen und einem k&uuml;hlen Raum sofort.</p>
+    <div class="waehler" role="group" aria-label="Farbwelten">
+      <button aria-pressed="true" data-ton="#a24b2c" data-papier="#f7f4ef" data-ziel="w1"><span class="klecks" style="background:#a24b2c"></span>Erdt&ouml;ne</button>
+      <button aria-pressed="false" data-ton="#3f5b78" data-papier="#eef2f6" data-ziel="w2"><span class="klecks" style="background:#3f5b78"></span>K&uuml;hles Blau</button>
+      <button aria-pressed="false" data-ton="#4f7a52" data-papier="#eef4ec" data-ziel="w3"><span class="klecks" style="background:#4f7a52"></span>Gr&uuml;n</button>
+      <button aria-pressed="false" data-ton="#8a6f2e" data-papier="#f6f2e6" data-ziel="w4"><span class="klecks" style="background:#8a6f2e"></span>Historisch</button>
+    </div>
+
+    <div class="welt" id="w1">
+      <h3>Erdt&ouml;ne</h3>
+      <p>Warm und ruhig und f&uuml;r Wohnr&auml;ume mit wenig Licht geeignet. Wir arbeiten
+      diese T&ouml;ne gern in Kalkfarbe aus. Die Oberfl&auml;che bleibt matt und lebendig.</p>
+    </div>
+    <div class="welt" id="w2" hidden>
+      <h3>K&uuml;hles Blau</h3>
+      <p>Passt in R&auml;ume nach S&uuml;den. Blau nimmt optisch Weite und beruhigt. In
+      Schlafzimmern ist es die h&auml;ufigste Wahl bei uns.</p>
+    </div>
+    <div class="welt" id="w3" hidden>
+      <h3>Gr&uuml;n</h3>
+      <p>Der Ton f&uuml;r Flure und Arbeitsr&auml;ume. Mit Leinöl gebunden wirkt er tiefer als
+      jede Dispersion. Wir mischen ihn selbst an.</p>
+    </div>
+    <div class="welt" id="w4" hidden>
+      <h3>Historisch</h3>
+      <p>F&uuml;r Altbauten und denkmalgesch&uuml;tzte H&auml;user. Wir legen alte Schichten
+      frei und stellen den Originalton nach. Das geh&ouml;rt zu unserer liebsten Arbeit.</p>
+    </div>
+
+    <div class="farbtafel">
+      <div style="background:#a24b2c"><b>Ziegelrot</b><span>Kalkfarbe matt</span></div>
+      <div style="background:#7a8b6a"><b>Salbei</b><span>Silikat innen</span></div>
+      <div style="background:#3f5b78"><b>Tiefblau</b><span>Leinölfarbe</span></div>
+      <div style="background:#8a6f2e"><b>Ocker</b><span>Sumpfkalk</span></div>
+    </div>
+  </section>
+
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>Was wir ausf&uuml;hren</h2>
+    <div class="leistungen">
+      <div class="karte"><h3>Innenanstrich</h3><p>Dispersion und Silikat und Kalk. Auf Wunsch mit Wohngiftpr&uuml;fung.</p></div>
+      <div class="karte"><h3>Fassade</h3><p>Anstrich und Rissbehandlung. Ger&uuml;st stellen wir mit dem Partner.</p></div>
+      <div class="karte"><h3>Putz</h3><p>Innenputz und Feinputz und Stuckerg&auml;nzung im Altbau.</p></div>
+      <div class="karte"><h3>Tapete</h3><p>Auch schwere Vliesware und Wandbilder. Alte Tapete entfernen wir mit.</p></div>
+      <div class="karte"><h3>Lack</h3><p>T&uuml;ren und Fenster und Heizk&ouml;rper. Spritzen in der Werkstatt.</p></div>
+      <div class="karte"><h3>Bodenbelag</h3><p>Linoleum und Kork. Parkett schleifen wir nicht selbst.</p></div>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Wie eine Wohnung abl&auml;uft</h2>
+    <div class="zwei">
+      <ol class="schritte">
+        <li><b>Besichtigung</b><span>Wir sehen den Untergrund an. Alte Leimfarbe &auml;ndert alles.</span></li>
+        <li><b>Muster</b><span>Zwei Quadratmeter je Ton direkt an die Wand.</span></li>
+        <li><b>Angebot</b><span>Nach Quadratmetern und nicht nach Bauchgef&uuml;hl.</span></li>
+        <li><b>Schutz</b><span>M&ouml;bel abdecken und B&ouml;den auslegen.</span></li>
+        <li><b>Ausf&uuml;hrung</b><span>Zwei Anstriche als Regel. Bei starkem Farbwechsel drei.</span></li>
+        <li><b>Abnahme</b><span>Gemeinsamer Rundgang bei Tageslicht.</span></li>
+      </ol>
+      <div>
+        <table>
+          <tr><th>Arbeit</th><th class="r">Dauer</th></tr>
+          <tr><td>Zimmer bis 20 Quadratmeter</td><td class="r">ein Tag</td></tr>
+          <tr><td>Wohnung mit drei Zimmern</td><td class="r">vier Tage</td></tr>
+          <tr><td>Treppenhaus</td><td class="r">drei Tage</td></tr>
+          <tr><td>Fassade Einfamilienhaus</td><td class="r">zwei Wochen</td></tr>
+        </table>
+        <p style="margin-top:16px">Wir arbeiten mit drei Gesellen und einem Lehrling. Bei
+        gro&szlig;en Auftr&auml;gen holen wir einen Kollegen aus Bachtal dazu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Richtwerte je Quadratmeter</h2>
+    <table>
+      <tr><th>Leistung</th><th class="r">Preis</th></tr>
+      <tr><td>Wand zweimal streichen</td><td class="r">ab 9 &euro; je m&sup2;</td></tr>
+      <tr><td>Decke zweimal streichen</td><td class="r">ab 11 &euro; je m&sup2;</td></tr>
+      <tr><td>Kalkfarbe auf Kalkputz</td><td class="r">ab 16 &euro; je m&sup2;</td></tr>
+      <tr><td>Tapete entfernen</td><td class="r">ab 6 &euro; je m&sup2;</td></tr>
+      <tr><td>Vliestapete kleben</td><td class="r">ab 14 &euro; je m&sup2;</td></tr>
+      <tr><td>T&uuml;r lackieren in der Werkstatt</td><td class="r">ab 180 &euro;</td></tr>
+      <tr><td>Farbberatung mit Musteranstrich</td><td class="r">120 &euro;</td></tr>
+    </table>
+    <p style="margin-top:16px">Die Beratung rechnen wir bei Auftrag an. Ger&uuml;st und
+    Container kommen bei Fassaden dazu.</p>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>Werkstattzeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">07:00 &ndash; 16:00</td></tr>
+        <tr><td>Farbraum</td><td class="r">Donnerstag 14:00 &ndash; 18:00</td></tr>
+        <tr><td>Beratung vor Ort</td><td class="r">nach Vereinbarung</td></tr>
+        <tr><td>Samstag und Sonntag</td><td class="r">geschlossen</td></tr>
+      </table>
+      <div>
+        <address>
+          Malerwerkstatt Reindl<br>
+          Kirchgasse 11<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817217
+        </address>
+        <p style="margin-top:14px">Die Werkstatt liegt im Hof hinter der Kirche. Der Farbraum
+        ist im Erdgeschoss. Parken k&ouml;nnen Sie am Kirchplatz.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Malerwerkstatt</h3>Kirchgasse 11<br>97845 Rehbrunn<br>0152 28817217</div>
+    <div><h3>Themen</h3><a href="#farben">Farbwelten</a><br><a href="#leistungen">Leistungen</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Betrieb</h3>Inhaberin T. Reindl<br>Malermeisterin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<script>
+const knoepfe = [...document.querySelectorAll('.waehler button')];
+for (const knopf of knoepfe) {
+  knopf.addEventListener('click', () => {
+    for (const anderer of knoepfe) {
+      const an = anderer === knopf;
+      anderer.setAttribute('aria-pressed', String(an));
+      document.getElementById(anderer.dataset.ziel).hidden = !an;
+    }
+    document.body.style.setProperty('--ton', knopf.dataset.ton);
+    document.body.style.setProperty('--papier', knopf.dataset.papier);
+  });
+}
+</script>
+</body>
+</html>

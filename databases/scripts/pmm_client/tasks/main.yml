@@ -1,0 +1,286 @@
+---
+# One PMM client per cluster. The client is a pmm-agent container on the cluster
+# network. It reaches every member over the network as a remote service rather
+# than running an agent inside each MySQL container. Because a) the MySQL image
+# holds no agent and installing one into it would fork the image b) one agent can
+# collect for many remote services and c) the demo containers are disposable and
+# an agent inside them would be re-registered on every rebuild.
+#
+# The client joins two networks. The cluster network reaches the members and the
+# pmm network reaches the server.
+#
+# This role expects the pmm_server role to have run first in the same play.
+
+- name: Check that the role was given something to monitor
+  ansible.builtin.assert:
+    that:
+      - pmm_client_nodes | length > 0
+    fail_msg: pmm_client_nodes must list the MySQL containers to monitor
+
+# Works for any of the designs. A group secondary and an asynchronous replica
+# both report super_read_only on. The writable one is where the account goes and
+# replication carries it to the rest.
+- name: Read the writable state of each node
+  community.docker.docker_container_exec:
+    container: "{{ item }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT @@global.super_read_only"
+    env:
+      MYSQL_PWD: "{{ pmm_client_root_password }}"
+  register: pmm_client_writable
+  changed_when: false
+  loop: "{{ pmm_client_nodes }}"
+  loop_control:
+    label: "{{ item }}"
+
+- name: Pick a writable node for the account
+  ansible.builtin.set_fact:
+    pmm_client_write_target: >-
+      {{ (pmm_client_writable.results
+          | selectattr('stdout', 'defined')
+          | selectattr('stdout', 'search', '^\s*0\s*$')
+          | map(attribute='item') | list | first) }}
+
+- name: Check for the monitoring account
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_write_target }}"
+    argv:
+      - mysql
+      - -uroot
+      - --skip-column-names
+      - --batch
+      - -e
+      - "SELECT COUNT(*) FROM mysql.user WHERE user = '{{ pmm_client_monitor_user }}'"
+    env:
+      MYSQL_PWD: "{{ pmm_client_root_password }}"
+  register: pmm_client_account_count
+  changed_when: false
+
+# The grants are the set PMM needs and no more. SELECT and PROCESS and
+# REPLICATION CLIENT feed the exporter. RELOAD lets it flush the statement
+# digests that QAN reads. BACKUP_ADMIN reports the log status on MySQL 8.
+# The connection limit keeps a broken agent from exhausting the server.
+- name: Create the monitoring account on {{ pmm_client_write_target }}
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_write_target }}"
+    argv:
+      - mysql
+      - -uroot
+      - -e
+      - >-
+        CREATE USER IF NOT EXISTS '{{ pmm_client_monitor_user }}'@'%'
+        IDENTIFIED BY '{{ pmm_client_monitor_password }}'
+        WITH MAX_USER_CONNECTIONS 10;
+        GRANT SELECT, PROCESS, REPLICATION CLIENT, RELOAD, BACKUP_ADMIN
+        ON *.* TO '{{ pmm_client_monitor_user }}'@'%';
+    env:
+      MYSQL_PWD: "{{ pmm_client_root_password }}"
+  when: pmm_client_account_count.stdout | trim | int == 0
+  no_log: true
+
+# The agent writes its identity and its service list to pmm-agent.yaml. That
+# file lives in a volume so a restart keeps the registration. Because a) an
+# agent that registers again is a new node and the services of the old one are
+# dropped with it b) the PMM_AGENT_SETUP variable registers again on every
+# container start and would empty the stack on any restart and c) the metrics
+# already collected are held against the node that collected them.
+- name: Create the agent configuration volume
+  community.docker.docker_volume:
+    name: "{{ pmm_client_name }}-config"
+    state: present
+
+- name: Start the PMM client
+  community.docker.docker_container:
+    name: "{{ pmm_client_name }}"
+    image: "{{ pmm_client_image }}"
+    state: started
+    restart_policy: unless-stopped
+    hostname: "{{ pmm_client_name }}"
+    networks:
+      - name: "{{ pmm_client_network }}"
+      - name: "{{ pmm_client_pmm_network }}"
+    networks_cli_compatible: true
+    volumes:
+      - "{{ pmm_client_name }}-config:/usr/local/percona/pmm/config"
+    env:
+      # The agent refuses to be configured unless it was started against a
+      # config file. The path is relative to /usr/local/percona/pmm.
+      PMM_AGENT_CONFIG_FILE: config/pmm-agent.yaml
+      # Restart the agent in place rather than exiting the container.
+      PMM_AGENT_SIDECAR: "1"
+      PMM_AGENT_SIDECAR_SLEEP: "5"
+
+# An agent that has never been configured answers with an error rather than a
+# status so the reply is only tested for being there at all. The failure is
+# ignored for the same reason.
+- name: Wait for the agent to answer
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - status
+      - --json
+  register: pmm_client_probe
+  changed_when: false
+  failed_when: false
+  until: pmm_client_probe.stdout | default('', true) | length > 0
+  retries: 24
+  delay: 5
+
+- name: Note whether the agent is already registered
+  ansible.builtin.set_fact:
+    pmm_client_registered_node: >-
+      {{ pmm_client_probe.stdout is search('pmm_agent_status')
+         and (pmm_client_probe.stdout | from_json).pmm_agent_status.connected
+             | default(false) | bool }}
+
+# --force drops any node already registered under this name along with its
+# services. It runs only on an agent that is not connected. Because a) a
+# connected agent is already the node this role wants b) forcing it again would
+# discard the services registered below and c) a server rebuilt from nothing has
+# no record of an agent that still holds a configuration file.
+- name: Register the agent with the server
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - config
+      - --server-url=https://{{ pmm_client_admin_user }}:{{ pmm_client_admin_password }}@{{ pmm_client_server_address }}
+      # The server serves a self signed certificate it generates on first boot.
+      - --server-insecure-tls
+      - --metrics-mode=push
+      - --force
+      - "{{ pmm_client_name }}"
+      - container
+      - "{{ pmm_client_name }}"
+  when: not pmm_client_registered_node | bool
+  no_log: true
+
+# A guarded parse rather than a search for the word connected. Because a) the
+# reply is a bare error string until the agent is registered b) a search would
+# match the field name in a reply that says false and c) from_json on that error
+# string parses to a string and reading a field off it fails the task outright.
+- name: Wait for the agent to reach the server
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - status
+      - --json
+  register: pmm_client_status
+  changed_when: false
+  until: >-
+    pmm_client_status.stdout is search('pmm_agent_status')
+    and (pmm_client_status.stdout | from_json).pmm_agent_status.connected
+        | default(false) | bool
+  retries: 30
+  delay: 5
+
+- name: Read the services already registered
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - list
+      - --json
+  register: pmm_client_list
+  changed_when: false
+
+- name: Note which services are missing
+  ansible.builtin.set_fact:
+    pmm_client_services: >-
+      {{ (pmm_client_list.stdout | from_json).service | default([], true)
+         | map(attribute='service_name') | list }}
+
+# Remote monitoring has no slow log file to read so the query source is
+# performance schema. The default is slowlog and it would find nothing.
+- name: Add each member that is not yet monitored
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - add
+      - mysql
+      - --host={{ item }}
+      - --port=3306
+      - --service-name={{ item }}
+      - --username={{ pmm_client_monitor_user }}
+      - --password={{ pmm_client_monitor_password }}
+      - --query-source=perfschema
+      - --cluster={{ pmm_client_cluster | default(pmm_client_network, true) }}
+      - --replication-set={{ pmm_client_cluster | default(pmm_client_network, true) }}
+      - --environment={{ pmm_client_environment }}
+  when: item not in pmm_client_services
+  loop: "{{ pmm_client_nodes }}"
+  loop_control:
+    label: "{{ item }}"
+
+- name: Look for the router of a routed design
+  community.docker.docker_container_info:
+    name: "{{ pmm_client_proxysql_name }}"
+  register: pmm_client_router
+  when: pmm_client_proxysql_name | length > 0
+
+- name: Add the router that is not yet monitored
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - add
+      - proxysql
+      - --host={{ pmm_client_proxysql_name }}
+      - --port=6032
+      - --service-name={{ pmm_client_proxysql_name }}
+      - --username={{ pmm_client_proxysql_admin_user }}
+      - --password={{ pmm_client_proxysql_admin_password }}
+      - --cluster={{ pmm_client_cluster | default(pmm_client_network, true) }}
+      - --environment={{ pmm_client_environment }}
+  when:
+    - pmm_client_proxysql_name | length > 0
+    - pmm_client_router.exists | default(false)
+    - pmm_client_proxysql_name not in pmm_client_services
+
+# A service is registered before its collectors are up. The agents pass through
+# Starting and Unknown for a few seconds so the play would otherwise return on a
+# service that is not yet collecting anything.
+- name: Wait for every collector to run
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - list
+      - --json
+  register: pmm_client_agents
+  changed_when: false
+  until: >-
+    pmm_client_agents.stdout is search('agent_type')
+    and ((pmm_client_agents.stdout | from_json).agent
+         | rejectattr('status', 'in', ['RUNNING', 'CONNECTED'])
+         | list | length) == 0
+  retries: 24
+  delay: 5
+
+- name: Read the final service list
+  community.docker.docker_container_exec:
+    container: "{{ pmm_client_name }}"
+    argv:
+      - pmm-admin
+      - list
+  register: pmm_client_final
+  changed_when: false
+
+- name: Report the client state
+  ansible.builtin.debug:
+    msg: "{{ [pmm_client_summary] + pmm_client_final.stdout.split('\n') }}"
+  vars:
+    pmm_client_summary: >-
+      {{ pmm_client_name }} is monitoring
+      {{ pmm_client_nodes | length }} members of
+      {{ pmm_client_cluster | default(pmm_client_network, true) }} for
+      {{ pmm_client_server_name }}. Read them on
+      https://127.0.0.1:{{ pmm_server_web_port | default(8443) }}.

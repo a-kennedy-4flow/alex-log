@@ -1,0 +1,20 @@
+Command log for the tracker security and login configuration review of 2026-09-07.
+One line per shell command. UTC timestamp then command then what happened.
+2026-09-07T09:40:47Z  cat memory/mandatory-grammar-rules.md memory/log-every-command-as-you-go.md  Read the writing rules and the logging rule.
+2026-09-07T09:40:47Z  ls -la; find tracker -type f | head -100  Listed the repo root and the first hundred tracker files.
+2026-09-07T09:40:47Z  cat > 16.log  Opened this log.
+2026-09-07T09:41:33Z  Agent tool x2 launched  Started one agent on infrastructure config and one on application auth code.
+2026-09-07T09:41:42Z  git log --oneline -3 -- tracker  No commits touch the tracker path because the directory is a staged rename from timesheets.
+2026-09-07T09:46:45Z  infra agent returned  Eleven findings on the CDK and deployment configuration. One high on the localhost callback URL.
+2026-09-07T09:49:23Z  app auth agent returned  Eleven findings on the application auth code. Dev bypass does not reach production.
+2026-09-07T09:49:23Z  review written up  Merged both agent reports into one ranked list for the user.
+2026-09-07T09:54:20Z  sed -n on tracker-stack.ts  Read the origin and client and CORS sections before editing.
+2026-09-07T09:55:19Z  grep -rn 5173 docs scripts env readme  Only the readme names the Vite port so nothing depends on the deployed pool trusting localhost.
+2026-09-07T09:55:28Z  python3 patch lib/tracker-stack.ts  Added the allowLocalOrigin prop and made the localhost origin conditional.
+2026-09-07T09:55:36Z  python3 patch bin/app.ts  Added the ALLOW_LOCAL_ORIGIN opt-in which defaults to off.
+2026-09-07T09:55:45Z  npx tsc --noEmit -p tsconfig.json  Infra typecheck passed.
+2026-09-07T09:56:04Z  pnpm run synth  Synth succeeded for all three stacks.
+2026-09-07T09:56:15Z  grep -c localhost cdk.out/*.template.json  Zero hits in all three templates so the default deploy no longer trusts localhost.
+2026-09-07T09:56:28Z  ALLOW_LOCAL_ORIGIN=1 npx cdk synth Tracker --output scratchpad  The opt-in still renders the three localhost entries so local work is not blocked.
+2026-09-07T09:56:46Z  pnpm exec eslint infra/lib/tracker-stack.ts infra/bin/app.ts  Lint clean on both changed files.
+2026-09-07T09:57:02Z  sed -n on the three changed regions  Reviewed the final state of both files. Work complete pending a deploy.

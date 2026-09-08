@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polsterei Seidel &middot; Rehbrunn</title>
+<meta name="description" content="Polsterei Seidel in Rehbrunn. Neu beziehen und aufpolstern und Stoffe aus dem Musterbuch.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: #fbf7f7; color: #2c1f24;
+         font: 17px/1.7 "Karla", "Segoe UI", system-ui, sans-serif; }
+  a { color: #9b3055; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  header { background: #2c1f24; color: #f4e9ec; position: sticky; top: 0; z-index: 30; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 68px; flex-wrap: wrap; }
+  .marke { font-size: 20px; font-weight: 700; letter-spacing: .01em; }
+  header nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #e3c9d2; text-decoration: none; }
+  header nav a:hover { color: #fff; }
+  .buehne { background: #f0dfe4; }
+  .buehne .wrap { padding: 58px 24px 50px; display: grid; grid-template-columns: 1.1fr .9fr;
+                  gap: 36px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #9b3055;
+           font-weight: 700; }
+  h1 { margin: 12px 0 16px; font-size: clamp(33px, 6.6vw, 56px); line-height: 1.04; letter-spacing: -.02em; }
+  .buehne p { margin: 0; font-size: 20px; max-width: 44ch; }
+  .knopfleiste { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .knopf { background: #9b3055; color: #fff; padding: 12px 20px; border-radius: 999px;
+           text-decoration: none; font-size: 15px; }
+  .knopf.hell { background: #fff; color: #9b3055; }
+  .sessel { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .sessel div { aspect-ratio: 1.2; border-radius: 16px 16px 6px 6px; }
+  section { padding: 54px 0; border-bottom: 1px solid #ecdfe3; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #9b3055; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  .vorher { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .fall { border: 1px solid #ecdfe3; border-radius: 16px; overflow: hidden; background: #fff; }
+  .fall .bilder { display: grid; grid-template-columns: 1fr 1fr; }
+  .fall .bild { aspect-ratio: 1.4; display: grid; place-content: center; font-size: 12px;
+                letter-spacing: .16em; text-transform: uppercase; color: #fff; }
+  .fall .txt { padding: 16px 18px; }
+  .fall h3 { margin: 0 0 6px; font-size: 18px; }
+  .fall p { margin: 0 0 8px; font-size: 15px; color: #6b5560; }
+  .fall .preis { font-size: 14px; color: #9b3055; font-weight: 700; }
+  .stoffe { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+  .stoffe div { border-radius: 10px; overflow: hidden; border: 1px solid #ecdfe3; background: #fff; }
+  .stoffe .probe { height: 76px; }
+  .stoffe .name { padding: 9px 11px; font-size: 13px; }
+  .stoffe b { display: block; }
+  .stoffe span { color: #7c6670; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8d7681;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #2c1f24; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #f0e6ea; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 740px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .schritte { counter-reset: s; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: s; padding: 0 0 20px 50px; position: relative; }
+  .schritte li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 34px; height: 34px;
+                         background: #f0dfe4; color: #9b3055; border-radius: 50%; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #6b5560; }
+  details { border: 1px solid #ecdfe3; border-radius: 12px; background: #fff; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 14px 18px; font-weight: 700; }
+  details p { margin: 0 18px 16px; font-size: 16px; }
+  address { font-style: normal; }
+  footer { background: #2c1f24; color: #e3d6da; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #e39ab3; }
+  footer a { color: #e3d6da; }
+  .ende { border-top: 1px solid #45333a; font-size: 13px; color: #a8939b; }
+  .ende .wrap { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <span class="marke">Polsterei Seidel</span>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#arbeiten">Arbeiten</a></li>
+        <li><a href="#stoffe">Stoffe</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#fragen">Fragen</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Polsterei und Raumausstattung</p>
+      <h1>Ein guter Sessel wird nicht entsorgt</h1>
+      <p>Wir bauen Polsterm&ouml;bel auf den Rahmen zur&uuml;ck und dann wieder auf. Das dauert
+      l&auml;nger als ein Neukauf und h&auml;lt daf&uuml;r dreißig Jahre.</p>
+      <div class="knopfleiste">
+        <a class="knopf" href="#ablauf">So arbeiten wir</a>
+        <a class="knopf hell" href="#preise">Preise ansehen</a>
+      </div>
+    </div>
+    <div class="sessel" aria-hidden="true">
+      <div style="background:#9b3055"></div>
+      <div style="background:#c9a227"></div>
+      <div style="background:#3f6b5c"></div>
+      <div style="background:#4b5b8c"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="arbeiten">
+    <p class="unter">Arbeiten</p>
+    <h2>Drei St&uuml;cke aus dem letzten Halbjahr</h2>
+    <div class="vorher">
+      <div class="fall">
+        <div class="bilder">
+          <div class="bild" style="background:#8c8378">vorher</div>
+          <div class="bild" style="background:#9b3055">nachher</div>
+        </div>
+        <div class="txt">
+          <h3>Ohrensessel von 1954</h3>
+          <p>Gurte gerissen und Federn durchgesessen. Neu gegurtet und mit Rosshaar aufgebaut.</p>
+          <p class="preis">1180 &euro; mit Stoff</p>
+        </div>
+      </div>
+      <div class="fall">
+        <div class="bilder">
+          <div class="bild" style="background:#7d7a70">vorher</div>
+          <div class="bild" style="background:#3f6b5c">nachher</div>
+        </div>
+        <div class="txt">
+          <h3>Eckbank aus der Gastst&auml;tte</h3>
+          <p>Kunstleder gerissen. Neuer Bezug in Wollstoff mit Fleckschutz.</p>
+          <p class="preis">2350 &euro; f&uuml;r vier Meter</p>
+        </div>
+      </div>
+      <div class="fall">
+        <div class="bilder">
+          <div class="bild" style="background:#8a8071">vorher</div>
+          <div class="bild" style="background:#c9a227">nachher</div>
+        </div>
+        <div class="txt">
+          <h3>Sechs St&uuml;hle vom Gro&szlig;vater</h3>
+          <p>Sitzfl&auml;chen erneuert und Rahmen nachgeleimt. Gestell blieb original.</p>
+          <p class="preis">95 &euro; je Stuhl</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stoffe">
+    <p class="unter">Stoffe</p>
+    <h2>Vierzig Musterb&uuml;cher im Laden</h2>
+    <p>Wir f&uuml;hren Stoffe von sieben Webereien. Sie k&ouml;nnen jedes Buch mit nach Hause
+    nehmen und im eigenen Licht ansehen. Muster ausleihen kostet nichts.</p>
+    <div class="stoffe">
+      <div><div class="probe" style="background:repeating-linear-gradient(45deg,#9b3055 0 8px,#87284a 8px 16px)"></div><div class="name"><b>Wollfilz</b><span>ab 68 &euro;/m</span></div></div>
+      <div><div class="probe" style="background:#3f6b5c"></div><div class="name"><b>Samt</b><span>ab 84 &euro;/m</span></div></div>
+      <div><div class="probe" style="background:repeating-linear-gradient(0deg,#c9a227 0 6px,#b8931f 6px 12px)"></div><div class="name"><b>Cord</b><span>ab 56 &euro;/m</span></div></div>
+      <div><div class="probe" style="background:#6b5f56"></div><div class="name"><b>Leinen</b><span>ab 62 &euro;/m</span></div></div>
+      <div><div class="probe" style="background:#4b5b8c"></div><div class="name"><b>Flachgewebe</b><span>ab 48 &euro;/m</span></div></div>
+      <div><div class="probe" style="background:#7d4a2e"></div><div class="name"><b>Leder</b><span>ab 165 &euro;/m&sup2;</span></div></div>
+    </div>
+    <p style="margin-top:20px">F&uuml;r Haushalte mit Katze empfehlen wir Flachgewebe. Samt und
+    Cord sehen sch&ouml;n aus und ziehen F&auml;den.</p>
+  </section>
+
+  <section id="ablauf">
+    <p class="unter">Ablauf</p>
+    <h2>Von der Abholung bis zur R&uuml;ckgabe</h2>
+    <div class="zwei">
+      <ol class="schritte">
+        <li><b>Ansehen</b><span>Schicken Sie ein Foto oder kommen Sie vorbei. Wir sch&auml;tzen grob.</span></li>
+        <li><b>Abholung</b><span>Wir holen im Umkreis von dreißig Kilometern selbst ab.</span></li>
+        <li><b>Zerlegen</b><span>Bezug ab und Polster raus. Erst dann sehen wir alles.</span></li>
+        <li><b>Festpreis</b><span>Jetzt bekommen Sie den endg&uuml;ltigen Preis. Sie entscheiden.</span></li>
+        <li><b>Aufbau</b><span>Gurte und Federn und Polster und Bezug. Alles von Hand.</span></li>
+        <li><b>Lieferung</b><span>Wir stellen das St&uuml;ck an seinen Platz zur&uuml;ck.</span></li>
+      </ol>
+      <div>
+        <table>
+          <tr><th>Schritt</th><th class="r">Dauer</th></tr>
+          <tr><td>Angebot nach Foto</td><td class="r">zwei Tage</td></tr>
+          <tr><td>Wartezeit bis Beginn</td><td class="r">vier bis acht Wochen</td></tr>
+          <tr><td>Stuhl neu beziehen</td><td class="r">zwei Tage</td></tr>
+          <tr><td>Sessel komplett</td><td class="r">eine Woche</td></tr>
+          <tr><td>Sofa komplett</td><td class="r">zwei Wochen</td></tr>
+        </table>
+        <p style="margin-top:16px">In der Wartezeit steht Ihr M&ouml;bel bei uns trocken im
+        Lager. Das kostet nichts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Richtwerte ohne Stoff</h2>
+    <table>
+      <tr><th>Arbeit</th><th class="r">Preis</th></tr>
+      <tr><td>Stuhlsitz neu beziehen</td><td class="r">ab 65 &euro;</td></tr>
+      <tr><td>Stuhl komplett aufpolstern</td><td class="r">ab 180 &euro;</td></tr>
+      <tr><td>Sessel neu beziehen</td><td class="r">ab 480 &euro;</td></tr>
+      <tr><td>Sessel klassisch aufbauen</td><td class="r">ab 890 &euro;</td></tr>
+      <tr><td>Zweisitzer</td><td class="r">ab 1100 &euro;</td></tr>
+      <tr><td>Dreisitzer</td><td class="r">ab 1450 &euro;</td></tr>
+      <tr><td>Kissen nach Ma&szlig;</td><td class="r">ab 45 &euro;</td></tr>
+      <tr><td>Abholung und Lieferung im Umkreis</td><td class="r">60 &euro;</td></tr>
+    </table>
+    <p style="margin-top:16px">Der Stoff kommt dazu. Ein Sessel braucht etwa vier Meter. Ein
+    Dreisitzer braucht zehn bis zw&ouml;lf Meter.</p>
+  </section>
+
+  <section id="fragen">
+    <p class="unter">H&auml;ufige Fragen</p>
+    <h2>Was G&auml;ste wissen wollen</h2>
+    <details open>
+      <summary>Lohnt sich das gegen&uuml;ber einem Neukauf?</summary>
+      <p>Bei einem alten Rahmen aus Massivholz fast immer. Bei einem verleimten Rahmen aus
+      Spanplatte selten. Wir sagen Ihnen ehrlich zu welcher Gruppe Ihr M&ouml;bel geh&ouml;rt.</p>
+    </details>
+    <details>
+      <summary>Arbeiten Sie noch mit Rosshaar?</summary>
+      <p>Ja. Bei klassischen St&uuml;cken bauen wir mit Rosshaar und Federkern auf. Bei
+      modernen St&uuml;cken nehmen wir Schaum in verschiedenen Dichten.</p>
+    </details>
+    <details>
+      <summary>K&ouml;nnen Sie meinen eigenen Stoff verarbeiten?</summary>
+      <p>Ja wenn er f&uuml;r M&ouml;bel geeignet ist. Vorhangstoff h&auml;lt der Belastung
+      nicht stand. Bringen Sie ein St&uuml;ck vorbei und wir pr&uuml;fen es.</p>
+    </details>
+    <details>
+      <summary>Machen Sie auch Autositze?</summary>
+      <p>Oldtimer ja und moderne Fahrzeuge nein. Bei Airbags in der Sitzwange d&uuml;rfen wir
+      nicht arbeiten.</p>
+    </details>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Dienstag bis Freitag</td><td class="r">09:00 &ndash; 17:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:00 &ndash; 12:00</td></tr>
+        <tr><td>Montag</td><td class="r">Werkstatt ohne Laden</td></tr>
+        <tr><td>Beratung zu Hause</td><td class="r">nach Vereinbarung</td></tr>
+      </table>
+      <div>
+        <address>
+          Polsterei Seidel<br>
+          Gerbergasse 5<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817173
+        </address>
+        <p style="margin-top:14px">Der Laden liegt in der Altstadt. Die Werkstatt liegt im Hof
+        dahinter. Zum Abladen d&uuml;rfen Sie in die Gasse fahren.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Polsterei</h3>Gerbergasse 5<br>97845 Rehbrunn<br>0152 28817173</div>
+    <div><h3>Themen</h3><a href="#arbeiten">Arbeiten</a><br><a href="#stoffe">Stoffe</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Betrieb</h3>Inhaberin M. Seidel<br>Raumausstattermeisterin<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

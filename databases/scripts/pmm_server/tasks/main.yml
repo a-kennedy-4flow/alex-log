@@ -1,0 +1,120 @@
+---
+# One PMM server for every design. It stands alone on its own network and it
+# outlives the demo stacks. Teardown of a design leaves it running so the
+# metrics history of the stack you just removed is still there to read.
+#
+# Terms used here:
+#   service    one monitored database as PMM records it
+#   node       the machine or container a service is reached from
+#   agent      the pmm-agent process that collects for a service
+#   QAN        query analytics. The per statement view built from performance schema
+
+- name: Create the monitoring network
+  community.docker.docker_network:
+    name: "{{ pmm_server_network }}"
+    driver: bridge
+    state: present
+
+# The server keeps its Postgres and VictoriaMetrics and ClickHouse data under
+# /srv. A named volume survives the container so history is not lost on a
+# rebuild. Docker copies the image contents into a new volume on first mount so
+# the uid the server runs as owns it.
+- name: Create the server data volume
+  community.docker.docker_volume:
+    name: "{{ pmm_server_volume }}"
+    state: present
+
+# The image carries its own healthcheck against /v1/server/readyz so none is
+# declared here. PMM_ADMIN_PASSWORD is not set because this image ignores it.
+# A container started with it on an empty volume refuses admin on the first
+# request the API ever sees. The password is set below instead.
+- name: Start the PMM server
+  community.docker.docker_container:
+    name: "{{ pmm_server_name }}"
+    image: "{{ pmm_server_image }}"
+    state: started
+    restart_policy: unless-stopped
+    hostname: "{{ pmm_server_name }}"
+    networks:
+      - name: "{{ pmm_server_network }}"
+    networks_cli_compatible: true
+    ports:
+      - "127.0.0.1:{{ pmm_server_web_port }}:8443"
+    volumes:
+      - "{{ pmm_server_volume }}:/srv"
+    env:
+      # Grafana locks the admin account for five minutes after five refused
+      # logins. An agent started against the wrong password retries every five
+      # seconds so it locks the account it is trying to reach and the web UI
+      # with it. The lockout is off here because a) the server holds nothing but
+      # demo metrics b) the account it protects is the only account there is and
+      # c) a locked account turns one wrong password into a dead stack.
+      GF_SECURITY_DISABLE_BRUTE_FORCE_LOGIN_PROTECTION: "true"
+      # A demo must not offer to upgrade itself and must not call home.
+      PMM_ENABLE_UPDATES: "false"
+      PMM_ENABLE_TELEMETRY: "false"
+      PERCONA_TELEMETRY_DISABLE: "1"
+
+# First start initialises Postgres and ClickHouse and the dashboards so this
+# takes a couple of minutes. A later start takes seconds.
+- name: Wait for the server to report healthy
+  community.docker.docker_container_info:
+    name: "{{ pmm_server_name }}"
+  register: pmm_server_health
+  until: pmm_server_health.container.State.Health.Status | default('starting') == 'healthy'
+  retries: 60
+  delay: 5
+
+# The first start leaves an admin password nobody knows. The API is asked
+# whether the password this role sets is already in place rather than the
+# password being set on every run. Because a) resetting it every run would
+# report a change on a healthy stack b) the reply is the only way to tell a
+# fresh server from one already set up and c) the reset needs grafana up and
+# the healthcheck above is what proves that.
+- name: Check whether the admin password is already set
+  community.docker.docker_container_exec:
+    container: "{{ pmm_server_name }}"
+    argv:
+      - curl
+      - -s
+      - -o
+      - /dev/null
+      - -w
+      - "%{http_code}"
+      - -u
+      - "{{ pmm_server_admin_user }}:{{ pmm_server_admin_password }}"
+      - http://127.0.0.1:8080/v1/server/version
+  register: pmm_server_auth
+  changed_when: false
+
+- name: Set the admin password
+  community.docker.docker_container_exec:
+    container: "{{ pmm_server_name }}"
+    argv:
+      - change-admin-password
+      - "{{ pmm_server_admin_password }}"
+  when: pmm_server_auth.stdout | trim != '200'
+  no_log: true
+
+- name: Read the server version
+  community.docker.docker_container_exec:
+    container: "{{ pmm_server_name }}"
+    argv:
+      - curl
+      - -s
+      - -u
+      - "{{ pmm_server_admin_user }}:{{ pmm_server_admin_password }}"
+      - http://127.0.0.1:8080/v1/server/version
+  register: pmm_server_version
+  changed_when: false
+  # A refused request answers with JSON that carries no version field. Reporting
+  # that as unknown would hide a password this role failed to set.
+  failed_when: (pmm_server_version.stdout | from_json).version is not defined
+
+- name: Report the server state
+  ansible.builtin.debug:
+    msg: >-
+      {{ pmm_server_name }} version
+      {{ (pmm_server_version.stdout | from_json).version }}
+      is up on https://127.0.0.1:{{ pmm_server_web_port }} as
+      {{ pmm_server_admin_user }}. It survives a design teardown.

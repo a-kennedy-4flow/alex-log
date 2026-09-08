@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elektro Sauer &middot; Rehbrunn</title>
+<meta name="description" content="Elektro Sauer in Rehbrunn. Fachgesch&auml;ft und Installation und Notdienst f&uuml;r Haustechnik.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+  body { margin: 0; background: #fbfcfd; color: #12212e;
+         font: 16px/1.7 "Roboto", "Segoe UI", system-ui, sans-serif; }
+  a { color: #0b5fa5; }
+  .notruf { background: #12212e; color: #ffd23f; font-size: 14px; }
+  .notruf .in { max-width: 1180px; margin: 0 auto; padding: 10px 24px; display: flex;
+                justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .notruf a { color: #fff; }
+  header { background: #ffd23f; position: sticky; top: 0; z-index: 40; }
+  header .in { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center;
+               justify-content: space-between; gap: 18px; min-height: 76px; flex-wrap: wrap; }
+  .marke { font-size: 23px; font-weight: 900; letter-spacing: -.02em; color: #12212e; }
+  .marke small { display: block; font-size: 11px; font-weight: 500; letter-spacing: .18em;
+                 text-transform: uppercase; color: #6b5c14; }
+  nav.haupt > ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+  nav.haupt > ul > li { position: relative; }
+  nav.haupt > ul > li > a { display: block; padding: 14px 16px; color: #12212e; text-decoration: none;
+                            font-weight: 600; font-size: 15px; }
+  nav.haupt > ul > li:hover > a, nav.haupt > ul > li:focus-within > a { background: #12212e; color: #ffd23f; }
+  .klapp { position: absolute; top: 100%; left: 0; background: #12212e; padding: 22px; display: none;
+           grid-template-columns: repeat(2, minmax(190px, 1fr)); gap: 20px; width: max-content;
+           box-shadow: 0 18px 40px rgba(0,0,0,.3); z-index: 50; }
+  nav.haupt li:hover > .klapp, nav.haupt li:focus-within > .klapp { display: grid; }
+  .klapp h4 { margin: 0 0 8px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+              color: #ffd23f; }
+  .klapp ul { list-style: none; margin: 0; padding: 0; }
+  .klapp a { display: block; padding: 6px 0; color: #dbe4ec; text-decoration: none; font-size: 15px; }
+  .klapp a:hover { color: #ffd23f; }
+  @media (max-width: 940px) {
+    header .in { align-items: flex-start; padding-bottom: 12px; }
+    nav.haupt > ul { flex-wrap: wrap; }
+    .klapp { position: static; display: grid; box-shadow: none; background: transparent; padding: 6px 0 12px; }
+    .klapp h4 { color: #6b5c14; }
+    .klapp a { color: #12212e; }
+  }
+  .buehne { background: #12212e; color: #e6eef6; }
+  .buehne .in { max-width: 1180px; margin: 0 auto; padding: 60px 24px 52px; display: grid;
+                grid-template-columns: 1.15fr .85fr; gap: 38px; align-items: center; }
+  @media (max-width: 860px) { .buehne .in { grid-template-columns: 1fr; gap: 24px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #ffd23f; }
+  h1 { margin: 12px 0 16px; font-size: clamp(33px, 6.6vw, 56px); line-height: 1.04; letter-spacing: -.02em; }
+  .buehne p { margin: 0; font-size: 19px; color: #b8c8d6; max-width: 48ch; }
+  .kachelbox { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .kachelbox div { background: rgba(255,255,255,.07); border-radius: 10px; padding: 16px 18px; font-size: 14px; }
+  .kachelbox b { display: block; font-size: 24px; color: #ffd23f; }
+  main { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 52px 0; border-bottom: 1px solid #e3e9ef; }
+  h2 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 34px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #0b5fa5; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .gitter { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .feld { border: 1px solid #dfe6ed; border-radius: 10px; padding: 20px 22px; background: #fff; }
+  .feld h3 { margin: 0 0 8px; font-size: 18px; }
+  .feld p { margin: 0; font-size: 15px; color: #506271; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #506271;
+       padding: 12px; background: #eef3f7; }
+  td { padding: 12px; border-top: 1px solid #e6ecf1; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  .warn { background: #fff6dd; border-left: 5px solid #d9a406; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .warn p { margin: 0; }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 20px 50px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 34px; height: 34px;
+                         background: #ffd23f; color: #12212e; border-radius: 8px; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { font-size: 15px; color: #506271; }
+  address { font-style: normal; }
+  footer { background: #12212e; color: #c3d2df; font-size: 15px; }
+  footer .in { max-width: 1180px; margin: 0 auto; padding: 40px 24px; display: grid;
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #ffd23f; }
+  footer a { color: #c3d2df; }
+  .ende { border-top: 1px solid #22364a; font-size: 13px; color: #8ba0b3; }
+  .ende .in { display: block; padding: 16px 24px 42px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<div class="notruf"><div class="in">
+  <span><b>Notdienst</b> bei Stromausfall und Wasser im Verteiler &middot; 0152 28817195</span>
+  <a href="../index.html">&larr; Gewerbeverzeichnis Rehbrunn</a>
+</div></div>
+
+<header>
+  <div class="in">
+    <div class="marke">Elektro Sauer<small>Fachgesch&auml;ft und Installation</small></div>
+    <nav class="haupt" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#laden" aria-haspopup="true">Fachgesch&auml;ft &#9662;</a>
+          <div class="klapp">
+            <div><h4>Ger&auml;te</h4><ul>
+              <li><a href="#laden">Waschmaschinen</a></li>
+              <li><a href="#laden">K&uuml;hlger&auml;te</a></li>
+              <li><a href="#laden">Herde und Backöfen</a></li>
+            </ul></div>
+            <div><h4>Kleines</h4><ul>
+              <li><a href="#laden">Leuchtmittel</a></li>
+              <li><a href="#laden">Kabel und Stecker</a></li>
+              <li><a href="#laden">Batterien</a></li>
+            </ul></div>
+          </div>
+        </li>
+        <li><a href="#installation" aria-haspopup="true">Installation &#9662;</a>
+          <div class="klapp">
+            <div><h4>Im Haus</h4><ul>
+              <li><a href="#installation">Neubau</a></li>
+              <li><a href="#installation">Altbausanierung</a></li>
+              <li><a href="#installation">Z&auml;hlerschrank</a></li>
+            </ul></div>
+            <div><h4>Technik</h4><ul>
+              <li><a href="#pv">Photovoltaik</a></li>
+              <li><a href="#pv">Wallbox</a></li>
+              <li><a href="#pruefung">E-Check</a></li>
+            </ul></div>
+          </div>
+        </li>
+        <li><a href="#pruefung">Pr&uuml;fung</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="in">
+    <div>
+      <p class="zeile">Meisterbetrieb seit 1961</p>
+      <h1>Laden vorne und Werkstatt hinten</h1>
+      <p>Wir verkaufen Ger&auml;te und schlie&szlig;en sie auch an. Das alte Ger&auml;t nehmen
+      wir gleich mit.</p>
+    </div>
+    <div class="kachelbox">
+      <div><b>3 Tage</b>bis zur Lieferung</div>
+      <div><b>24 h</b>Notdienst</div>
+      <div><b>9</b>Beschäftigte</div>
+      <div><b>1961</b>gegr&uuml;ndet</div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="laden">
+    <p class="unter">Fachgesch&auml;ft</p>
+    <h2>Ger&auml;te mit Anschluss und Abholung</h2>
+    <p>Im Laden stehen rund achtzig Gro&szlig;ger&auml;te. Wir liefern innerhalb von drei Tagen
+    und stellen das Ger&auml;t an seinen Platz. Anschluss und Entsorgung des Altger&auml;ts sind
+    im Preis enthalten.</p>
+    <div class="gitter">
+      <div class="feld"><h3>Waschen und Trocknen</h3><p>Vier Marken. Wir sagen Ihnen welche Trommel noch reparierbar ist.</p></div>
+      <div class="feld"><h3>K&uuml;hlen</h3><p>Vom Einbauger&auml;t bis zur Gefriertruhe f&uuml;r den Keller.</p></div>
+      <div class="feld"><h3>Kochen</h3><p>Induktion und Ceran und Gas. Einbau mit Ausschnitt in der Platte.</p></div>
+      <div class="feld"><h3>Kleinger&auml;te</h3><p>Staubsauger und Rasierer und Zubehör. Beutel f&uuml;hren wir f&uuml;r alte Modelle.</p></div>
+      <div class="feld"><h3>Leuchten</h3><p>Auch Fassungen und Leuchtmittel die es sonst nicht mehr gibt.</p></div>
+      <div class="feld"><h3>Reparatur</h3><p>Eigene Werkstatt. Wir sagen ehrlich wann sich das nicht mehr lohnt.</p></div>
+    </div>
+  </section>
+
+  <section id="installation">
+    <p class="unter">Installation</p>
+    <h2>Vom Neubau bis zur einzelnen Steckdose</h2>
+    <div class="zwei">
+      <div>
+        <p>Wir installieren komplette H&auml;user und einzelne Leitungen. In Altbauten
+        arbeiten wir mit Fr&auml;se und Sauger. Der Staub bleibt dort wo er entsteht.</p>
+        <ol class="schritte">
+          <li><b>Termin vor Ort</b><span>Wir sehen den Verteiler und die Leitungen an.</span></li>
+          <li><b>Angebot</b><span>Fester Preis f&uuml;r klar umrissene Arbeiten.</span></li>
+          <li><b>Ausf&uuml;hrung</b><span>Ein bis f&uuml;nf Tage je nach Umfang.</span></li>
+          <li><b>Abnahme</b><span>Messprotokoll und Übergabe an Sie oder an den Bauherrn.</span></li>
+        </ol>
+      </div>
+      <div>
+        <table>
+          <tr><th>Arbeit</th><th class="r">Richtwert</th></tr>
+          <tr><td>Steckdose setzen im Altbau</td><td class="r">ab 120 &euro;</td></tr>
+          <tr><td>Z&auml;hlerschrank erneuern</td><td class="r">ab 2400 &euro;</td></tr>
+          <tr><td>Wohnung komplett neu</td><td class="r">ab 9000 &euro;</td></tr>
+          <tr><td>Rauchmelder je St&uuml;ck</td><td class="r">45 &euro;</td></tr>
+          <tr><td>Au&szlig;ensteckdose</td><td class="r">ab 190 &euro;</td></tr>
+        </table>
+        <div class="warn" style="margin-top:18px">
+          <p>Arbeiten am Z&auml;hlerschrank d&uuml;rfen nur eingetragene Betriebe ausf&uuml;hren.
+          Wir sind beim Netzbetreiber eingetragen und melden die Anlage an.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pv">
+    <p class="unter">Photovoltaik und Wallbox</p>
+    <h2>Strom vom eigenen Dach</h2>
+    <p>Wir planen und montieren Anlagen bis dreißig Kilowatt. Ger&uuml;st und Anmeldung und
+    Inbetriebnahme &uuml;bernehmen wir. Speicher bauen wir nur wenn er sich rechnet.</p>
+    <table>
+      <tr><th>Leistung</th><th>Dauer</th><th class="r">Richtwert</th></tr>
+      <tr><td>Anlage 10 kWp auf Ziegeldach</td><td>zwei Tage</td><td class="r">ab 14000 &euro;</td></tr>
+      <tr><td>Speicher 8 kWh</td><td>ein Tag</td><td class="r">ab 6500 &euro;</td></tr>
+      <tr><td>Wallbox 11 kW mit Zuleitung</td><td>ein Tag</td><td class="r">ab 1600 &euro;</td></tr>
+      <tr><td>Anmeldung beim Netzbetreiber</td><td>&mdash;</td><td class="r">im Preis</td></tr>
+    </table>
+  </section>
+
+  <section id="pruefung">
+    <p class="unter">Pr&uuml;fung</p>
+    <h2>E-Check und Ger&auml;tepr&uuml;fung</h2>
+    <div class="zwei">
+      <div>
+        <p>Beim E-Check pr&uuml;fen wir die Anlage im Haus und messen jeden Stromkreis. Sie
+        bekommen ein Protokoll f&uuml;r die Versicherung. Bei Vermietung ist das oft
+        verlangt.</p>
+        <p>Betriebe lassen ihre Ger&auml;te regelm&auml;&szlig;ig pr&uuml;fen. Wir kommen
+        einmal im Jahr und pr&uuml;fen alles ortsver&auml;nderliche.</p>
+      </div>
+      <table>
+        <tr><th>Pr&uuml;fung</th><th class="r">Preis</th></tr>
+        <tr><td>E-Check Wohnung</td><td class="r">ab 190 &euro;</td></tr>
+        <tr><td>E-Check Haus</td><td class="r">ab 320 &euro;</td></tr>
+        <tr><td>Ger&auml;tepr&uuml;fung je Ger&auml;t</td><td class="r">6 &euro;</td></tr>
+        <tr><td>Leiterpr&uuml;fung Betrieb</td><td class="r">nach Aufwand</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Stundensatz und Anfahrt</h2>
+    <table>
+      <tr><th>Posten</th><th class="r">Betrag</th></tr>
+      <tr><td>Monteurstunde</td><td class="r">69 &euro;</td></tr>
+      <tr><td>Meisterstunde</td><td class="r">86 &euro;</td></tr>
+      <tr><td>Anfahrt im Ort</td><td class="r">25 &euro;</td></tr>
+      <tr><td>Anfahrt im Landkreis</td><td class="r">45 &euro;</td></tr>
+      <tr><td>Notdienst abends und am Wochenende</td><td class="r">Zuschlag 80 Prozent</td></tr>
+      <tr><td>Lieferung und Anschluss Gro&szlig;ger&auml;t</td><td class="r">im Kaufpreis</td></tr>
+    </table>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>&Ouml;ffnungszeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Laden</th></tr>
+        <tr><td>Montag bis Freitag</td><td class="r">08:00 &ndash; 18:00</td></tr>
+        <tr><td>Samstag</td><td class="r">09:00 &ndash; 13:00</td></tr>
+        <tr><td>Werkstatt</td><td class="r">07:00 &ndash; 16:00</td></tr>
+        <tr><td>Notdienst</td><td class="r">durchgehend</td></tr>
+      </table>
+      <div>
+        <address>
+          Elektro Sauer<br>
+          Bahnhofstra&szlig;e 5<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817195
+        </address>
+        <p style="margin-top:14px">Der Laden liegt gegen&uuml;ber vom Bahnhof. Vor dem Haus
+        stehen vier Kundenparkpl&auml;tze. Die Werkstatteinfahrt liegt in der Seitengasse.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <div><h3>Elektro Sauer</h3>Bahnhofstra&szlig;e 5<br>97845 Rehbrunn<br>0152 28817195</div>
+    <div><h3>Bereiche</h3><a href="#laden">Fachgesch&auml;ft</a><br><a href="#pv">Photovoltaik</a><br><a href="#pruefung">E-Check</a></div>
+    <div><h3>Betrieb</h3>Inhaber F. Sauer<br>Elektrotechnikermeister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="in">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

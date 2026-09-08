@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kfz-Meisterbetrieb Vogt &middot; Rehbrunn</title>
+<meta name="description" content="Freie Kfz-Werkstatt in Rehbrunn. Inspektion und HU und Unfallinstandsetzung f&uuml;r alle Marken.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { margin: 0; background: #14161a; color: #e9ecf0;
+         font: 16px/1.7 "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; }
+  a { color: #ff7a1a; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  header { position: sticky; top: 0; z-index: 40; background: #14161a; border-bottom: 1px solid #262a31; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+                 min-height: 72px; }
+  .marke { font-weight: 700; font-size: 19px; letter-spacing: .01em; }
+  .marke small { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+                 color: #8b95a3; font-weight: 400; }
+  #schub { display: none; }
+  .kippe { display: none; cursor: pointer; border: 1px solid #3a414b; border-radius: 8px;
+           padding: 10px 14px; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; }
+  nav.haupt ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  nav.haupt a { display: block; padding: 10px 14px; color: #cdd4dd; text-decoration: none; border-radius: 8px; }
+  nav.haupt a:hover { background: #1e2229; color: #ff7a1a; }
+  @media (max-width: 900px) {
+    .kippe { display: block; }
+    nav.haupt { position: fixed; inset: 0 0 0 35%; background: #1a1e24; transform: translateX(100%);
+                transition: transform .25s ease; padding: 90px 26px; z-index: 45;
+                border-left: 1px solid #2c323b; }
+    nav.haupt ul { flex-direction: column; gap: 2px; }
+    #schub:checked ~ nav.haupt { transform: translateX(0); }
+    #schub:checked ~ .schatten { display: block; }
+    .schatten { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 44; }
+  }
+  .buehne { border-bottom: 1px solid #262a31;
+            background: linear-gradient(120deg, #1b1f26 0%, #14161a 60%); }
+  .buehne .wrap { padding: 62px 24px 52px; }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #ff7a1a; }
+  h1 { margin: 14px 0 16px; font-size: clamp(34px, 7vw, 60px); line-height: 1.02; letter-spacing: -.03em;
+       max-width: 16ch; }
+  .buehne p { margin: 0 0 28px; font-size: 19px; color: #aab4c0; max-width: 52ch; }
+  .marken { display: flex; flex-wrap: wrap; gap: 10px; }
+  .marken span { border: 1px solid #333b45; border-radius: 999px; padding: 7px 14px; font-size: 14px;
+                 color: #9fa9b6; }
+  section { padding: 54px 0; border-bottom: 1px solid #1f242b; }
+  h2 { margin: 0 0 8px; font-size: clamp(25px, 4.2vw, 36px); letter-spacing: -.02em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #ff7a1a; }
+  p { margin: 0 0 16px; max-width: 70ch; color: #c3ccd6; }
+  .gitter { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .feld { border: 1px solid #262c34; border-radius: 12px; padding: 20px 22px; background: #181c22; }
+  .feld h3 { margin: 0 0 8px; font-size: 18px; }
+  .feld p { margin: 0; font-size: 15px; color: #98a3b0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8b95a3;
+       padding: 0 10px 12px 0; border-bottom: 1px solid #2b323a; }
+  td { padding: 13px 10px 13px 0; border-bottom: 1px solid #1e242b; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: #ff9b52; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 780px) { .zwei { grid-template-columns: 1fr; gap: 20px; } }
+  .schritte { counter-reset: n; list-style: none; margin: 0; padding: 0; }
+  .schritte li { counter-increment: n; padding: 0 0 22px 52px; position: relative; }
+  .schritte li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 34px; height: 34px;
+                         border: 2px solid #ff7a1a; color: #ff7a1a; border-radius: 8px; display: grid;
+                         place-content: center; font-weight: 700; }
+  .schritte b { display: block; }
+  .schritte span { color: #98a3b0; font-size: 15px; }
+  .hinweis { border-left: 4px solid #ff7a1a; background: #1c2027; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+  .hinweis p { margin: 0; }
+  address { font-style: normal; color: #c3ccd6; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; font-size: 15px; color: #9fa9b6; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #ff7a1a; }
+  footer a { color: #cdd4dd; }
+  .ende { border-top: 1px solid #1f242b; font-size: 13px; color: #78828e; }
+  .ende .wrap { display: block; padding: 16px 24px 44px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <div class="marke">Kfz-Meisterbetrieb Vogt<small>Freie Werkstatt f&uuml;r alle Marken</small></div>
+    <input type="checkbox" id="schub">
+    <label class="kippe" for="schub">Men&uuml;</label>
+    <nav class="haupt" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#hu">HU und AU</a></li>
+        <li><a href="#unfall">Unfall</a></li>
+        <li><a href="#reifen">Reifen</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+    <label class="schatten" for="schub" aria-hidden="true"></label>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <p class="zeile">Werkstatt seit 1986</p>
+    <h1>Wir sagen Ihnen was n&ouml;tig ist und was warten kann</h1>
+    <p>Vier Hebeb&uuml;hnen und ein Meister und drei Gesellen. Die Rechnung erkl&auml;ren wir
+    Ihnen Zeile f&uuml;r Zeile.</p>
+    <div class="marken">
+      <span>Volkswagen</span><span>Opel</span><span>Ford</span><span>Skoda</span>
+      <span>Renault</span><span>Toyota</span><span>Fiat</span><span>Wohnmobile bis 3,5 t</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="leistungen">
+    <p class="unter">Leistungen</p>
+    <h2>Alles au&szlig;er Karosseriebau am Oldtimer</h2>
+    <div class="gitter">
+      <div class="feld"><h3>Inspektion</h3><p>Nach Herstellervorgabe. Die Garantie bleibt erhalten.</p></div>
+      <div class="feld"><h3>Bremsen</h3><p>Scheiben und Bel&auml;ge und Leitungen. Bremsfl&uuml;ssigkeit alle zwei Jahre.</p></div>
+      <div class="feld"><h3>Fehlerdiagnose</h3><p>Auslesen an allen g&auml;ngigen Systemen. Auch bei Hybridfahrzeugen.</p></div>
+      <div class="feld"><h3>Klimaanlage</h3><p>Service mit beiden K&auml;ltemitteln. Lecksuche mit Kontrastmittel.</p></div>
+      <div class="feld"><h3>Zahnriemen</h3><p>Wechsel mit Wasserpumpe und Spannrolle. Termin nach Absprache.</p></div>
+      <div class="feld"><h3>Auspuff und Fahrwerk</h3><p>Sto&szlig;d&auml;mpfer und Federn und Achsvermessung.</p></div>
+    </div>
+    <p style="margin-top:22px">Ein Ersatzwagen steht f&uuml;r zwei Fahrzeuge bereit. Er kostet
+    zwanzig Euro am Tag mit hundert Freikilometern.</p>
+  </section>
+
+  <section id="hu">
+    <p class="unter">Hauptuntersuchung</p>
+    <h2>Pr&uuml;fer im Haus an jedem Dienstag</h2>
+    <div class="zwei">
+      <div>
+        <p>Die Pr&uuml;forganisation kommt jeden Dienstag zwischen acht und zw&ouml;lf Uhr.
+        Bringen Sie das Fahrzeug am Montag oder am Dienstagmorgen. Sie brauchen den Fahrzeugschein
+        und den letzten Bericht.</p>
+        <ol class="schritte">
+          <li><b>Vorabcheck</b><span>Wir pr&uuml;fen Licht und Bremsen und Rost. Das kostet nichts.</span></li>
+          <li><b>M&auml;ngel beheben</b><span>Kleine Sachen erledigen wir sofort. Gro&szlig;e besprechen wir.</span></li>
+          <li><b>Vorf&uuml;hrung</b><span>Wir stellen das Fahrzeug dem Pr&uuml;fer vor.</span></li>
+          <li><b>Plakette</b><span>Sie holen das Auto am Nachmittag mit neuer Plakette ab.</span></li>
+        </ol>
+      </div>
+      <div>
+        <table>
+          <tr><th>Leistung</th><th class="r">Preis</th></tr>
+          <tr><td>HU f&uuml;r Pkw</td><td class="r">139 &euro;</td></tr>
+          <tr><td>AU als Teil der HU</td><td class="r">im Preis</td></tr>
+          <tr><td>HU f&uuml;r Anh&auml;nger</td><td class="r">69 &euro;</td></tr>
+          <tr><td>HU f&uuml;r Motorrad</td><td class="r">89 &euro;</td></tr>
+          <tr><td>Vorabcheck</td><td class="r">kostenfrei</td></tr>
+          <tr><td>Nachpr&uuml;fung</td><td class="r">39 &euro;</td></tr>
+        </table>
+        <div class="hinweis" style="margin-top:18px">
+          <p>Ist die Plakette mehr als zwei Monate abgelaufen wird die Pr&uuml;fung teurer.
+          Der Pr&uuml;fer muss dann erweitert pr&uuml;fen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="unfall">
+    <p class="unter">Unfall</p>
+    <h2>Wir &uuml;bernehmen den Papierkram</h2>
+    <p>Nach einem Unfall haben Sie die freie Werkstattwahl. Wir rechnen direkt mit der
+    gegnerischen Versicherung ab. Ein Gutachter kommt am n&auml;chsten Werktag ins Haus.</p>
+    <div class="gitter">
+      <div class="feld"><h3>Abschleppen</h3><p>Partner im Ort. Rund um die Uhr erreichbar.</p></div>
+      <div class="feld"><h3>Gutachten</h3><p>Unabh&auml;ngiger Sachverst&auml;ndiger. Sie w&auml;hlen ihn selbst.</p></div>
+      <div class="feld"><h3>Instandsetzung</h3><p>Blech und Lack &uuml;ber unseren Partnerbetrieb in Weidenfeld.</p></div>
+      <div class="feld"><h3>Mietwagen</h3><p>Auf Kosten der Gegenseite wenn die Haftung klar ist.</p></div>
+    </div>
+  </section>
+
+  <section id="reifen">
+    <p class="unter">Reifen</p>
+    <h2>Wechsel und Einlagerung</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Leistung</th><th class="r">Preis</th></tr>
+        <tr><td>R&auml;der wechseln</td><td class="r">32 &euro;</td></tr>
+        <tr><td>Reifen auf Felge ziehen je Rad</td><td class="r">18 &euro;</td></tr>
+        <tr><td>Auswuchten je Rad</td><td class="r">9 &euro;</td></tr>
+        <tr><td>Einlagerung f&uuml;r ein halbes Jahr</td><td class="r">45 &euro;</td></tr>
+        <tr><td>Reifendrucksensor anlernen</td><td class="r">15 &euro;</td></tr>
+      </table>
+      <div>
+        <p>Im Oktober und im April wird es eng. Reservieren Sie fr&uuml;h einen Termin. Wer
+        einlagert bekommt den Wechsel vorrangig.</p>
+        <p>Wir lagern die R&auml;der trocken und gewaschen. Der Zustand wird bei der Annahme
+        notiert und auf den Beleg geschrieben.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <p class="unter">Preise</p>
+    <h2>Stundensatz und Pauschalen</h2>
+    <table>
+      <tr><th>Posten</th><th class="r">Betrag</th></tr>
+      <tr><td>Arbeitswert je Stunde</td><td class="r">78 &euro;</td></tr>
+      <tr><td>Diagnose je angefangene halbe Stunde</td><td class="r">45 &euro;</td></tr>
+      <tr><td>&Ouml;lwechsel mit Filter</td><td class="r">ab 110 &euro;</td></tr>
+      <tr><td>Klimaservice</td><td class="r">ab 129 &euro;</td></tr>
+      <tr><td>Achsvermessung</td><td class="r">95 &euro;</td></tr>
+      <tr><td>Ersatzwagen je Tag</td><td class="r">20 &euro;</td></tr>
+      <tr><td>Kostenvoranschlag</td><td class="r">kostenfrei</td></tr>
+    </table>
+    <p style="margin-top:16px">Ab dreihundert Euro rufen wir vor der Arbeit an. Ohne Ihre
+    Zusage bauen wir nichts ein.</p>
+  </section>
+
+  <section id="kontakt">
+    <p class="unter">Kontakt</p>
+    <h2>Werkstattzeiten und Anfahrt</h2>
+    <div class="zwei">
+      <table>
+        <tr><th>Tag</th><th class="r">Zeit</th></tr>
+        <tr><td>Montag bis Donnerstag</td><td class="r">07:30 &ndash; 17:30</td></tr>
+        <tr><td>Freitag</td><td class="r">07:30 &ndash; 15:00</td></tr>
+        <tr><td>Annahme</td><td class="r">ab 07:00</td></tr>
+        <tr><td>Schl&uuml;sselkasten</td><td class="r">jederzeit</td></tr>
+      </table>
+      <div>
+        <address>
+          Kfz-Meisterbetrieb Vogt<br>
+          Industriestra&szlig;e 14<br>
+          97845 Rehbrunn<br>
+          Telefon 0152 28817151
+        </address>
+        <p style="margin-top:14px">Die Einfahrt liegt hinter dem Gewerbehof. Wer fr&uuml;h
+        bringt wirft den Schl&uuml;ssel in den Kasten neben dem Tor. Wir rufen dann an.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Werkstatt</h3>Industriestra&szlig;e 14<br>97845 Rehbrunn<br>0152 28817151</div>
+    <div><h3>Themen</h3><a href="#hu">HU und AU</a><br><a href="#reifen">Reifen</a><br><a href="#preise">Preise</a></div>
+    <div><h3>Betrieb</h3>Inhaber S. Vogt<br>Kfz-Techniker-Meister<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-05T20:27:49Z  find over timesheets then cat of the CDK stack and the readme  ->  The stack already declares a Cognito user pool with a JWT authorizer. Nothing federates yet.
+2026-09-05T20:27:49Z  cat of lambda.ts and api.ts and useDevUser.ts  ->  The API reads Cognito claims. The SPA sends dev headers and holds no token.
+2026-09-05T20:27:49Z  cat of the three memory files then head 5.log  ->  Logging continues in a new 6.log at the repo root.
+2026-09-05T20:27:56Z  aws sts get-caller-identity --profile Admin  ->  The Admin profile is a live Identity Center session with AdministratorAccess on 517025126224.
+2026-09-05T20:28:09Z  aws cloudformation describe-stacks  ->  The Timesheets stack reached CREATE_COMPLETE at 20:10 today.
+2026-09-05T20:28:33Z  aws cloudformation describe-stacks --stack-name Timesheets and aws sso-admin list-instances  ->  The site is d3by4a7gt3noyq.cloudfront.net and the pool is eu-central-1_LdMfDNAOu. The Identity Center instance is owned by account 699987295789 and not by this one.
+2026-09-05T20:28:59Z  aws sso-admin list-applications and aws identitystore list-users  ->  This account may read the identity store. It may not manage applications on the instance. The portal tile needs account 699987295789.
+2026-09-05T20:29:39Z  aws cognito-idp describe-user-pool and list-identity-providers and describe-user-pool-client  ->  The pool has the 4flow-timesheets domain and no identity provider. The client still points at localhost and allows COGNITO only.
+2026-09-05T20:30:56Z  WebFetch of the Cognito SAML and Identity Center attribute mapping pages  ->  Entity ID is urn:amazon:cognito:sp:eu-central-1_LdMfDNAOu. Identity Center has no group attribute to map.
+2026-09-05T20:33:18Z  aws s3 ls on the site bucket then aws identitystore list-groups  ->  The site bucket is empty. Identity Center already carries toro_ groups for another application.
+2026-09-05T20:34:06Z  cat of vite.config and the i18n index and the dev switch  ->  The SPA has eight locales and no sign in code at all.
+2026-09-05T20:35:50Z  aws cognito-idp describe-user-pool for the schema then list-users  ->  email is immutable and the pool holds no users. A mapped immutable attribute fails SAML sign in so the pool is replaced now.
+2026-09-05T20:35:50Z  heredoc rewrote infra/lib/timesheets-stack.ts  ->  The SAML provider is optional. email is now mutable. The callback is the CloudFront domain rather than a placeholder.
+2026-09-05T20:35:59Z  heredoc rewrote infra/bin/app.ts  ->  SAML_METADATA_URL replaces the CALLBACK_URLS variable.
+2026-09-05T20:36:55Z  heredoc wrote apps/web/src/lib/auth.ts  ->  PKCE authorization code flow against the hosted sign in. No token outlives the tab.
+2026-09-05T20:37:36Z  heredoc wrote useIdentity.ts then python3 moved isBackoffice out of useDevUser  ->  The screens now read one identity. The token feeds it when a pool is configured.
+2026-09-05T20:38:12Z  python3 inserted an auth block into all eight message files  ->  Every locale carries the sign in wording so the typecheck against the English base still passes.
+2026-09-05T20:38:28Z  heredocs wrote SignedOut.vue and rewrote main.ts  ->  Mounting waits for the token. A failed callback lands on one screen with one control.
+2026-09-05T20:39:19Z  python3 moved the address bar reset out of auth.ts into main.ts  ->  The router owns its own history so a raw replaceState would have left it on the callback path.
+2026-09-05T20:39:34Z  python3 put the signed in name and a sign out control into App.vue  ->  The dev switch renders only where no pool is configured.
+2026-09-05T20:39:56Z  heredoc wrote infra/deploy-site.sh then python3 added the deploy:site script  ->  The SPA is built from the stack outputs then synced with the shell held uncached.
+2026-09-05T20:40:25Z  pnpm typecheck on web and infra then python3 dropped an unused const  ->  The web app is clean. The stack now compiles.
+2026-09-05T20:40:53Z  pnpm -r test  ->  All 246 tests pass across the seven packages.
+2026-09-05T20:41:03Z  pnpm --filter @timesheets/api bundle then npx cdk synth  ->  The bundle is 262 kB and the template renders with no error.
+2026-09-05T20:43:22Z  npx cdk deploy --profile Admin  ->  Refused by the sandbox. The deploy is left for the operator to run.
+2026-09-05T20:43:25Z  python3 taught the stack to take the metadata as a file as well as a URL  ->  Identity Center offers the document both ways so neither blocks the deploy.
+2026-09-05T20:44:15Z  heredoc wrote docs/identity-centre.md  ->  The request to the Identity Center administrator is one page with every value and every mapping.
+2026-09-05T20:44:53Z  heredoc wrote apps/web/src/__tests__/auth.test.ts  ->  The callback guard is covered along with the claim reading.
+2026-09-05T20:45:41Z  python3 corrected four stale passages in readme.md  ->  The readme no longer says nothing is deployed and no longer says auth is missing.
+2026-09-05T20:46:58Z  python3 switched the bearer from the access token to the ID token  ->  A Cognito access token carries no email and no audience so the handler would have seen empty claims.
+2026-09-05T20:47:24Z  python3 rewrote one comment that chained two and the clauses  ->  The remaining occurrences are single clauses and are allowed.
+2026-09-05T20:47:54Z  pnpm -r test then npx cdk synth  ->  271 tests pass and the template renders. The deploy itself is left to the operator.
+2026-09-05T20:42:00Z  npx cdk diff --profile Admin run three times  ->  The change set reports the pool as an in place update rather than a replacement. Logged late because the batch holding this line was refused before it ran.
+2026-09-05T20:51:38Z  WebFetch of the Identity Center customer managed application pages  ->  The OAuth 2.0 application type needs a trusted token issuer of its own and carries no login scopes. SAML is the only way in.
+2026-09-05T21:01:35Z  curl of the Identity Center metadata then python3 parsed it  ->  The document is public and carries a signing certificate and a persistent name identifier and a logout endpoint.
+2026-09-05T21:01:35Z  python3 folded the returned URLs into a section of their own  ->  The metadata URL is the only one needed. The other three are read out of it.
+2026-09-05T21:03:45Z  python3 pinned ExplicitAuthFlows through the escape hatch then synthesised  ->  Dropping the property would have let Cognito restore the SRP flow by default.
+2026-09-05T21:04:02Z  pnpm -r test  ->  271 tests still pass with the federated client in place.
+2026-09-05T21:12:18Z  aws cloudformation describe-stacks and describe-stack-events  ->  The update failed on the pool schema and the rollback failed the same way. The stack sits in UPDATE_ROLLBACK_FAILED and nothing federated was created.
+2026-09-05T21:13:02Z  python3 renamed the pool construct and moved the domain prefix  ->  A pool schema is create only so the fix is a second pool rather than an edit.
+2026-09-05T21:14:46Z  python3 pinned the region in bin/app.ts then updated the doc and ran the suite  ->  A synth without a profile had built a us-east-1 ACS URL. The doc now records the rebuild and the two changed fields.
+2026-09-05T21:27:47Z  aws cloudformation describe-stacks and list-user-pools and describe-user-pool-domain  ->  The stack is deleting. The old pool survives on its retain policy. Both domain prefixes are free so the original one can be taken back.
+2026-09-05T21:28:47Z  python3 reclaimed the original domain prefix then rewrote the doc for a rebuilt stack  ->  The ACS URL is unchanged. The audience and the start URL both move with the new stack.
+2026-09-05T21:29:41Z  heredoc wrote infra/verify-auth.sh and added the verify:auth script  ->  One read only pass over the pool and the provider and the client and the site.
+2026-09-05T21:30:12Z  background poll on the stack delete  ->  The stack is gone. The old pool and table and bucket remain on their retain policies and collide with nothing.
+2026-09-05T21:30:46Z  heredoc wrote docs/identity-centre-request.md then python3 cut the steps out of the long doc  ->  The other account gets one short page. The long doc keeps the reasoning and the values.
+2026-09-05T21:40:21Z  curl of the two discovery URLs then rewrote verify-auth.sh and ran it  ->  The hosted domain has no discovery document so the old check would have failed a healthy stack. A piped verdict also lost every count it made.
+2026-09-05T21:41:56Z  curl of the live bundle to a file then md5 against the local build  ->  The two are identical. The earlier miss was my own check reading a large file through a shell variable.
+2026-09-05T21:41:56Z  python3 added a bundle check to verify-auth.sh then filled the request doc  ->  Eighteen checks pass. The page for the other account now carries the real values.
+2026-09-05T21:42:46Z  python3 corrected the audience in the request doc  ->  An opaque identifier had been pasted where the urn prefixed entity id belongs.
+2026-09-05T21:48:56Z  curl of an OPTIONS preflight then WebFetch of the API Gateway CORS page  ->  The proxy route used ANY so the preflight reached the authorizer and came back 401.
+2026-09-05T21:48:56Z  python3 narrowed the proxy route to GET and PUT and POST then added a preflight check to verify-auth.sh  ->  An unmatched OPTIONS is answered by the API itself.
+2026-09-05T21:50:52Z  python3 unguarded the metadata URL then npx cdk diff and pnpm -r test  ->  The diff now swaps the routes and leaves the provider alone. All tests pass.
+2026-09-06T11:13:43Z  sed rewrote the package scope in 39 files then git mv renamed the stack file  ->  The scope is @tracker. The CloudFormation stack id is untouched.
+2026-09-06T11:14:32Z  sed rebranded the mockups and the readme then git mv timesheets tracker  ->  The project directory is now tracker. The API routes and the domain wording keep the word timesheet.
+2026-09-06T11:16:03Z  pnpm install then typecheck then sed fixed the title assertion in render.test.ts  ->  One test pinned the old title. All 271 pass again.
+2026-09-06T11:53:16Z  heredoc wrote lib/dns-stack.ts and threaded a domain through the site stack then wrote docs/domain.md  ->  Two phases. The zone first then the certificate once the parent delegates.
+2026-09-06T11:59:47Z  python3 pinned tracker.4flow.io then dig checked the parent zone  ->  4flow.io is already on Route 53 and tracker.4flow.io is free.
+2026-09-06T12:08:08Z  python3 gave the api its own host and certificate then renamed the stack to Tracker  ->  Two certificates because CloudFront reads us-east-1 and a regional API reads its own region.
+2026-09-06T12:08:08Z  sed repointed deploy-site.sh and verify-auth.sh at the Tracker stack then updated three docs  ->  The scripts would otherwise have read the stack that is about to be deleted.
+2026-09-06T18:24:43Z  heredoc wrote lib/cost-stack.ts and docs/budget.md then tagged every stack  ->  A monthly and a daily budget in a stack of their own. The alert address has no default on purpose.
+2026-09-06T18:52:59Z  python3 pinned the budget at forty euro with alerts to a.kennedy@4flow.com  ->  The stack always synthesises now. A wrong currency fails the deploy rather than comparing silently.

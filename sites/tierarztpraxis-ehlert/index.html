@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tierarztpraxis Ehlert &middot; Rehbrunn</title>
+<meta name="description" content="Tierarztpraxis Ehlert in Rehbrunn. Sprechstunde und Chirurgie und Notdienst f&uuml;r Klein- und Gro&szlig;tiere.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body { margin: 0 0 68px; background: #fbfaf7; color: #23281f;
+         font: 17px/1.7 "Nunito Sans", "Segoe UI", system-ui, sans-serif; }
+  a { color: #3f7d3a; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { background: #fff; border-bottom: 1px solid #e4e6df; position: sticky; top: 0; z-index: 30; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+                 min-height: 76px; flex-wrap: wrap; }
+  .marke { font-size: 21px; font-weight: 800; letter-spacing: -.01em; }
+  .marke small { display: block; font-size: 12px; font-weight: 600; letter-spacing: .18em;
+                 text-transform: uppercase; color: #7d8a76; }
+  header nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  header nav a { color: #3c4638; text-decoration: none; }
+  header nav a:hover { color: #3f7d3a; }
+  .buehne { background: #eef3ea; border-bottom: 1px solid #e0e6da; }
+  .buehne .wrap { padding: 58px 24px 50px; display: grid; grid-template-columns: 1.2fr .8fr;
+                  gap: 36px; align-items: center; }
+  @media (max-width: 840px) { .buehne .wrap { grid-template-columns: 1fr; gap: 22px; } }
+  .zeile { margin: 0; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #3f7d3a;
+           font-weight: 700; }
+  h1 { margin: 12px 0 14px; font-size: clamp(32px, 6.4vw, 54px); line-height: 1.06; letter-spacing: -.02em; }
+  .buehne p { margin: 0; font-size: 19px; max-width: 46ch; color: #3c4638; }
+  .tiere { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tiere div { background: #fff; border: 1px solid #dfe5d9; border-radius: 14px; padding: 14px 10px;
+               text-align: center; font-size: 14px; }
+  .tiere b { display: block; font-size: 26px; }
+  main .wrap > section { padding: 52px 0; border-bottom: 1px solid #e7eae1; }
+  h2 { margin: 0 0 6px; font-size: clamp(25px, 4.2vw, 35px); letter-spacing: -.01em; }
+  .unter { margin: 0 0 22px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+           color: #3f7d3a; font-weight: 700; }
+  p { margin: 0 0 16px; max-width: 70ch; }
+  .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .zwei { grid-template-columns: 1fr; gap: 18px; } }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th { text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #7d8a76;
+       padding: 0 10px 10px 0; border-bottom: 2px solid #23281f; }
+  td { padding: 12px 10px 12px 0; border-bottom: 1px solid #eaece3; vertical-align: top; }
+  td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .karte { background: #fff; border: 1px solid #e4e6df; border-radius: 16px; padding: 20px 22px; }
+  .karte h3 { margin: 0 0 6px; font-size: 19px; }
+  .karte p { margin: 0; font-size: 15px; color: #5b6754; }
+  .plan { list-style: none; margin: 0; padding: 0; }
+  .plan li { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 12px 0;
+             border-bottom: 1px solid #eaece3; }
+  .plan .zeit { font-weight: 700; color: #3f7d3a; font-variant-numeric: tabular-nums; }
+  details { border: 1px solid #e4e6df; border-radius: 14px; background: #fff; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 15px 20px; font-weight: 700; }
+  details p { margin: 0 20px 16px; font-size: 16px; }
+  .warnung { background: #fdecec; border-left: 5px solid #b3241f; padding: 18px 22px; border-radius: 0 12px 12px 0; }
+  .warnung h3 { margin: 0 0 8px; font-size: 19px; color: #8f1c18; }
+  .warnung p { margin: 0; }
+  address { font-style: normal; }
+  .notleiste { position: fixed; left: 0; right: 0; bottom: 0; background: #b3241f; color: #fff;
+               z-index: 60; box-shadow: 0 -4px 16px rgba(0,0,0,.18); }
+  .notleiste .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px;
+                     padding: 12px 24px; flex-wrap: wrap; font-size: 15px; }
+  .notleiste b { font-size: 18px; }
+  .notleiste a { color: #fff; background: rgba(255,255,255,.16); padding: 8px 14px; border-radius: 8px;
+                 text-decoration: none; }
+  footer { background: #23281f; color: #d7dcd0; font-size: 15px; }
+  footer .wrap { padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 24px; }
+  footer h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #a8c79f; }
+  footer a { color: #d7dcd0; }
+  .ende { border-top: 1px solid #38402f; font-size: 13px; color: #97a08c; }
+  .ende .wrap { display: block; padding: 16px 24px 40px; }
+
+  /* ecke:anfang */
+  /* Ecke oben links. Weist die Seite als Vorlage aus. */
+  .vorlagenecke { position: fixed; top: 0; left: 0; width: 104px; height: 104px; z-index: 900;
+                  background: #e8a41c; color: #1a1a17; text-decoration: none;
+                  clip-path: polygon(0 0, 100% 0, 0 100%);
+                  box-shadow: 2px 2px 6px rgba(0,0,0,.28); }
+  .vorlagenecke:hover { background: #f5b52f; }
+  .vorlagenecke:focus-visible { outline: 3px solid #1a1a17; outline-offset: -6px; }
+  .vorlagenecke b { position: absolute; top: 22px; left: -32px; width: 148px; text-align: center;
+                    transform: rotate(-45deg); font: 700 11px/1 "Segoe UI", system-ui, sans-serif;
+                    letter-spacing: .16em; text-transform: uppercase; }
+  @media (max-width: 700px) {
+    .vorlagenecke { width: 84px; height: 84px; }
+    .vorlagenecke b { top: 16px; left: -38px; font-size: 10px; letter-spacing: .1em; }
+  }
+  @media print { .vorlagenecke { display: none; } }
+  /* ecke:ende */
+</style>
+</head>
+<body>
+<!-- ecke:anfang -->
+<a class="vorlagenecke" href="../index.html"
+   title="Diese Seite ist eine Vorlage aus der Sammlung Rehbrunn. Hier geht es zur&uuml;ck."
+   aria-label="Diese Seite ist eine Vorlage. Zur&uuml;ck zur Vorlagensammlung.">
+  <b>Vorlage</b>
+</a>
+<!-- ecke:ende -->
+<header>
+  <div class="wrap">
+    <div class="marke">Tierarztpraxis Ehlert<small>Rehbrunn &middot; seit 2003</small></div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#sprechstunde">Sprechstunde</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#hof">Hoftiere</a></li>
+        <li><a href="#kosten">Kosten</a></li>
+        <li><a href="#notfall">Notfall</a></li>
+        <li><a href="../index.html">Verzeichnis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="buehne">
+  <div class="wrap">
+    <div>
+      <p class="zeile">Praxis f&uuml;r Klein- und Gro&szlig;tiere</p>
+      <h1>Ihr Tier bleibt hier keine Nummer</h1>
+      <p>Wir nehmen uns zwanzig Minuten pro Termin. Bei einem Notfall kommen Sie sofort dran
+      und die anderen warten kurz.</p>
+    </div>
+    <div class="tiere">
+      <div><b>Hund</b>Sprechstunde</div>
+      <div><b>Katze</b>eigenes Wartezimmer</div>
+      <div><b>Nager</b>t&auml;glich</div>
+      <div><b>Pferd</b>im Stall</div>
+      <div><b>Rind</b>Bestandsbetreuung</div>
+      <div><b>Vogel</b>nach Absprache</div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <section id="sprechstunde">
+      <p class="unter">Sprechstunde</p>
+      <h2>Termine und offene Sprechzeit</h2>
+      <p>Wir arbeiten mit Terminen. Eine offene Sprechstunde halten wir am Morgen frei.
+      Bitte rufen Sie vorher an damit wir die Wartezeit kurz halten.</p>
+      <div class="zwei">
+        <table>
+          <tr><th>Tag</th><th>Termine</th><th class="r">Offene Zeit</th></tr>
+          <tr><td>Montag</td><td>09:00 &ndash; 12:00 und 15:00 &ndash; 18:00</td><td class="r">08:00 &ndash; 09:00</td></tr>
+          <tr><td>Dienstag</td><td>09:00 &ndash; 12:00</td><td class="r">08:00 &ndash; 09:00</td></tr>
+          <tr><td>Mittwoch</td><td>Operationstag</td><td class="r">keine</td></tr>
+          <tr><td>Donnerstag</td><td>09:00 &ndash; 12:00 und 15:00 &ndash; 18:00</td><td class="r">08:00 &ndash; 09:00</td></tr>
+          <tr><td>Freitag</td><td>09:00 &ndash; 14:00</td><td class="r">08:00 &ndash; 09:00</td></tr>
+          <tr><td>Samstag</td><td>nach Absprache</td><td class="r">keine</td></tr>
+        </table>
+        <div>
+          <div class="warnung">
+            <h3>Katzen zuerst</h3>
+            <p>Katzen haben ein eigenes Wartezimmer links vom Eingang. Bitte lassen Sie die Box
+            geschlossen. Ein Handtuch dar&uuml;ber nimmt viel Stress.</p>
+          </div>
+          <p style="margin-top:16px">Impftermine legen wir bevorzugt in die ruhige Zeit am
+          fr&uuml;hen Nachmittag. Rufen Sie an und wir suchen einen passenden Platz.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="leistungen">
+      <p class="unter">Leistungen</p>
+      <h2>Was wir im Haus machen</h2>
+      <div class="karten">
+        <div class="karte"><h3>Labor</h3><p>Blutbild und Organwerte in zwanzig Minuten. Kein Versand n&ouml;tig.</p></div>
+        <div class="karte"><h3>R&ouml;ntgen</h3><p>Digital mit sofortiger Beurteilung. Auch am Wachtier m&ouml;glich.</p></div>
+        <div class="karte"><h3>Ultraschall</h3><p>Bauch und Herz. Tr&auml;chtigkeitskontrolle ab Tag 25.</p></div>
+        <div class="karte"><h3>Chirurgie</h3><p>Weichteile und Kastration. Mittwoch ist Operationstag.</p></div>
+        <div class="karte"><h3>Zahnbehandlung</h3><p>Ultraschallreinigung und Extraktion in Narkose.</p></div>
+        <div class="karte"><h3>Station</h3><p>Vier Boxen f&uuml;r Tiere die einen Tag bleiben m&uuml;ssen.</p></div>
+      </div>
+      <p style="margin-top:22px">Was wir nicht selbst machen &uuml;berweisen wir an die Klinik
+      in Weidenfeld. Das betrifft Orthop&auml;die und komplizierte Bruchversorgung.</p>
+    </section>
+
+    <section id="hof">
+      <p class="unter">Hoftiere</p>
+      <h2>Bestandsbetreuung im Umkreis</h2>
+      <div class="zwei">
+        <div>
+          <p>Vormittags fahren wir Praxis und nachmittags H&ouml;fe. Wir betreuen elf Betriebe
+          zwischen Rehbrunn und Erlenhof. Dazu geh&ouml;ren Milchvieh und Mutterkuhherden und
+          drei Pferdeh&ouml;fe.</p>
+          <p>Bestandsbesuche planen wir feste Termine im Monat. Das senkt die Kosten und wir
+          sehen die Tiere regelm&auml;&szlig;ig.</p>
+        </div>
+        <ul class="plan">
+          <li><span class="zeit">Montag</span><span>Erlenhof und Bachtal</span></li>
+          <li><span class="zeit">Dienstag</span><span>Milchviehbetriebe</span></li>
+          <li><span class="zeit">Donnerstag</span><span>Pferdeh&ouml;fe und Impfungen</span></li>
+          <li><span class="zeit">Freitag</span><span>freie Fahrten und Nachkontrollen</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="kosten">
+      <p class="unter">Kosten</p>
+      <h2>Was h&auml;ufige Behandlungen kosten</h2>
+      <p>Wir rechnen nach der Geb&uuml;hrenordnung f&uuml;r Tier&auml;rzte ab. Im Notdienst
+      gilt ein gesetzlich festgelegter Zuschlag. Die folgenden Werte sind Anhaltspunkte.</p>
+      <table>
+        <tr><th>Leistung</th><th class="r">Richtwert</th></tr>
+        <tr><td>Allgemeine Untersuchung Hund</td><td class="r">ab 30 &euro;</td></tr>
+        <tr><td>Impfung Katze mit Untersuchung</td><td class="r">ab 55 &euro;</td></tr>
+        <tr><td>Blutbild im Haus</td><td class="r">ab 45 &euro;</td></tr>
+        <tr><td>Kastration Kater</td><td class="r">ab 120 &euro;</td></tr>
+        <tr><td>Kastration H&uuml;ndin</td><td class="r">ab 340 &euro;</td></tr>
+        <tr><td>Zahnsanierung mit Narkose</td><td class="r">ab 280 &euro;</td></tr>
+        <tr><td>Hausbesuch im Ort</td><td class="r">ab 40 &euro; zuz&uuml;glich Leistung</td></tr>
+      </table>
+    </section>
+
+    <section id="notfall">
+      <p class="unter">Notfall</p>
+      <h2>Was Sie sofort tun k&ouml;nnen</h2>
+      <div class="zwei">
+        <div>
+          <details open>
+            <summary>Vergiftungsverdacht</summary>
+            <p>Rufen Sie sofort an. Nehmen Sie die Verpackung mit. L&ouml;sen Sie kein
+            Erbrechen aus ohne R&uuml;cksprache.</p>
+          </details>
+          <details>
+            <summary>Magendrehung beim gro&szlig;en Hund</summary>
+            <p>Aufgeblähter Bauch und erfolgloses W&uuml;rgen sind Alarmzeichen. Das ist ein
+            Notfall f&uuml;r sofort. Fahren Sie direkt los und rufen Sie unterwegs an.</p>
+          </details>
+          <details>
+            <summary>Blutung</summary>
+            <p>Druckverband mit sauberem Tuch. Kein Abbinden. Das Tier ruhig halten und uns
+            anrufen.</p>
+          </details>
+          <details>
+            <summary>Hitzschlag</summary>
+            <p>In den Schatten bringen und die Pfoten mit lauwarmem Wasser k&uuml;hlen. Kein
+            Eiswasser. Danach sofort zu uns.</p>
+          </details>
+        </div>
+        <div>
+          <div class="warnung">
+            <h3>Nachts und am Wochenende</h3>
+            <p>Au&szlig;erhalb der Sprechzeit ist die Tierklinik Weidenfeld zust&auml;ndig. Der
+            Weg dorthin dauert etwa zwanzig Minuten. Rufen Sie vorher dort an.</p>
+          </div>
+          <p style="margin-top:16px"><strong>Praxis</strong> 0152 28817107<br>
+          <strong>Klinik Weidenfeld</strong> 0152 28817118</p>
+          <address>
+            Tierarztpraxis Ehlert<br>
+            Am Anger 6<br>
+            97845 Rehbrunn
+          </address>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Praxis</h3>Am Anger 6<br>97845 Rehbrunn<br>0152 28817107</div>
+    <div><h3>Bereiche</h3><a href="#sprechstunde">Sprechstunde</a><br><a href="#hof">Hoftiere</a><br><a href="#kosten">Kosten</a></div>
+    <div><h3>Team</h3>Dr. med. vet. H. Ehlert<br>Zwei Tiermedizinische Fachangestellte<br>Erfundener Betrieb</div>
+    <div><h3>Verzeichnis</h3><a href="../index.html">Alle Betriebe in Rehbrunn</a></div>
+  </div>
+  <div class="ende"><div class="wrap">Erfundener Betrieb. Eine von dreißig deutschen Beispielseiten.</div></div>
+</footer>
+
+<div class="notleiste">
+  <div class="wrap">
+    <span><b>Notfall</b> &middot; Rufen Sie immer zuerst an. Wir sagen Ihnen wohin Sie fahren.</span>
+    <a href="#notfall">Erste Hilfe und Nummern</a>
+  </div>
+</div>
+</body>
+</html>

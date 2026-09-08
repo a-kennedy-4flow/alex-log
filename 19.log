@@ -1,0 +1,24 @@
+This log records every shell command run while moving the grid and board switch out of the period bar into the month view.
+Format is UTC timestamp then command then one sentence on the result.
+2026-09-08T08:18:10Z	find tracker -name "*.vue"; grep -ril quickfill tracker	Listed the components and found no literal quickfill so the quick fill is SimpleView.
+2026-09-08T08:18:10Z	grep -rin board tracker/apps/web/src	The switch lives in PeriodBar and the choice is held by useView.
+2026-09-08T08:18:10Z	cat components/PeriodBar.vue composables/useView.ts	PeriodBar carries the switch markup and the views styles.
+2026-09-08T08:18:10Z	cat pages/MonthPage.vue pages/SimplePage.vue	Both pages mount PeriodBar which is why the quick fill shows the switch.
+2026-09-08T08:18:10Z	cat composables/useTour.ts components/PageTitle.vue	The month tour points at the view anchor so that attribute has to move too.
+2026-09-08T08:18:10Z	grep -n views __tests__/render.test.ts	Two tests click .views and one of them mounts PeriodBar.
+2026-09-08T08:18:22Z	wrote components/ViewSwitch.vue	The switch is now its own component carrying the view anchor and the views styles.
+2026-09-08T08:18:34Z	python3 edit of components/PeriodBar.vue	The switch markup and the views styles and the useView import are all gone from the bar.
+2026-09-08T08:18:46Z	python3 edit of pages/MonthPage.vue	The switch now sits in its own column above the grid or the board and the quick fill has none.
+2026-09-08T08:19:01Z	python3 edit of __tests__/render.test.ts	The reload test now mounts ViewSwitch and two new tests hold the switch out of the bar and out of the quick fill.
+2026-09-08T08:19:20Z	pnpm --filter @tracker/web typecheck	vue-tsc passed with no errors.
+2026-09-08T08:19:48Z	python3 moved the .month column from MonthPage.vue into styles/tokens.css	The editing pages declare no layout of their own so the column joins .split and .stack where the test expects it.
+2026-09-08T08:20:07Z	pnpm --filter @tracker/web test	All 178 tests pass including the two new ones.
+2026-09-08T08:20:16Z	pnpm lint	eslint passed clean.
+2026-09-08T08:20:27Z	git status --short; git diff --stat	Four files changed and ViewSwitch.vue is new.
+2026-09-08T08:23:26Z	python3 edit of MonthPage.vue and MonthGrid.vue and MonthCalendar.vue and tokens.css	The month box is now the one sheet holding the switch above the view and the two views carry no surface.
+2026-09-08T08:24:26Z	python3 added the box placement test then pnpm --filter @tracker/web test	The switch leads the box and the grid carries no surface and 179 tests pass.
+2026-09-08T08:24:35Z	pnpm lint	eslint passed clean.
+2026-09-08T08:44:37Z	wrote tracker/docs/todo-autosave.md then checked it for commas and for and-the chains	The autosave plan is 46 items in seven sections matching the other todo docs.
+2026-09-08T08:49:14Z	python3 edit of tracker/docs/todo-autosave.md	The exportedAt decision is recorded and the sent state gains an item because the reminder stays muted.
+2026-09-08T08:49:24Z	python3 corrected the justification under the sent state comparison	Reason b claimed a changed month is owed again which the muting decision contradicts.
+2026-09-08T08:50:27Z	python3 edit of tracker/docs/todo-autosave.md	The debounce is 3000ms and section 1 now carries no open decision.

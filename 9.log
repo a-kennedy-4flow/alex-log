@@ -1,0 +1,64 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-06T18:37:00Z  find and cat over tracker for the api and infra sources  ->  The app is one Lambda behind an HTTP API with a Cognito SAML pool and one DynamoDB table. No mail of any kind is set up.
+2026-09-06T18:37:00Z  cat of tracker-stack.ts and app.ts and docs/domain.md and docs/budget.md  ->  tracker.4flow.io is a delegated zone in our own account so a DKIM record needs no other team. The spend ceiling is 20 USD.
+2026-09-06T18:37:00Z  cat of repository.ts and dynamo.ts and handlers.ts  ->  A user is USER#<sub> with a PROFILE item and a SHEET#<yyyy-mm> item. Nothing records that a tracker was sent.
+2026-09-06T18:37:43Z  dig NS and DMARC and SPF and MX over 4flow.io and 4flow.com  ->  tracker.4flow.io is not delegated yet. 4flow.com is Exchange Online and its DMARC policy is p=none.
+2026-09-06T18:41:11Z  aws sts get-caller-identity --profile Admin  ->  The SSO session has expired so the four name servers cannot be read from here.
+2026-09-06T18:41:29Z  cat tracker/infra/package.json  ->  reading the aws-cdk-lib version to confirm ses.EmailIdentity is available
+2026-09-06T18:43:48Z  cat over SetupPage and SetupForm and router and useTour  ->  reading the first run flow before proposing a wizard
+2026-09-06T18:44:32Z  grep for LOCALES and ls of mockups and cat of lib/api.ts  ->  looking for an existing language picker
+2026-09-06T18:44:54Z  cat of types.ts and lambda.ts and local.ts and dev-server.ts  ->  reading the files the locale field and the reminder handler touch
+2026-09-06T18:45:57Z  ls of aws-cdk-lib for aws-scheduler and aws-ses  ->  checking which L2 constructs are available
+2026-09-06T18:46:05Z  ls infra/node_modules/aws-cdk-lib for the scheduler and ses modules  ->  see result
+2026-09-06T18:46:16Z  grep over the aws-cdk-lib type declarations for the scheduler and ses constructs  ->  confirming the exact construct names before writing the stack
+2026-09-06T18:46:33Z  heredoc wrote packages/core/src/locales.ts then python added it to the core index  ->  The eight languages now have one definition that both sides import.
+2026-09-06T18:46:44Z  python added locale and remindByEmail to UserProfile in core types  ->  The profile now carries the language and the reminder switch.
+2026-09-06T18:47:04Z  python added exportedAt and the reminder claim to repository.ts  ->  The interface now records that a month was downloaded and that a reminder was sent.
+2026-09-06T18:47:20Z  python implemented the reminder claim on DynamoRepository with a conditional put  ->  A second run for the same month writes nothing so no duplicate is sent.
+2026-09-06T18:47:40Z  python added the locale and reminder fields to the profile routes and made the export record exportedAt  ->  A download now marks the month as dealt with.
+2026-09-06T18:48:52Z  heredoc wrote apps/api/src/mail.ts  ->  The mailer interface and the reminder copy in eight languages are in place.
+2026-09-06T18:49:39Z  heredoc wrote apps/api/src/reminder.ts  ->  The run picks the third working day from the end per location and skips a month that was already downloaded.
+2026-09-06T18:50:05Z  heredoc wrote cognito.ts then python added the reminder export to lambda.ts  ->  One bundle now carries the API handler and the scheduled run.
+2026-09-06T18:50:14Z  python added the sesv2 and cognito clients to apps/api/package.json  ->  Both are marked external in the bundle so the Lambda runtime supplies them.
+2026-09-06T18:50:43Z  pnpm typecheck over core and api  ->  Both pass with the new locale field and the reminder module.
+2026-09-06T18:50:51Z  pnpm --filter @tracker/api test  ->  All 46 existing tests still pass after the schema change.
+2026-09-06T18:51:05Z  python listed the weekday dates of September and October 2026  ->  The third working day from the end of September 2026 is the date the test pins.
+2026-09-06T18:51:21Z  ls and rglob over packages/fixtures  ->  locating the holiday data the tests load
+2026-09-06T18:51:34Z  python inspected packages/fixtures/data/holidays.json  ->  reading its shape to pick a location whose holiday moves the reminder day
+2026-09-06T18:51:43Z  python searched the fixture holidays for a month whose tail holds one  ->  picking a concrete case for the location test
+2026-09-06T18:52:47Z  python rewrote the retry test to use two users then reran the api tests  ->  see output
+2026-09-06T18:53:09Z  grep over the aws-ses type declarations for EmailIdentity and ConfigurationSet  ->  confirming the property names before writing the stack
+2026-09-06T18:53:20Z  grep for SuppressionReasons and the Schedule props  ->  confirming the enum and the schedule fields
+2026-09-06T18:53:52Z  grep for TimeZone members and UserPool.grant and configurationSetName  ->  confirming the last three names the stack uses
+2026-09-06T18:54:10Z  python added the mail and scheduler imports and constants to tracker-stack.ts  ->  The sender name and the run hour are pinned beside the other fixed values.
+2026-09-06T18:54:55Z  python added the SES identity and the reminder function and the daily schedule to tracker-stack.ts then ran tsc  ->  The infra package typechecks.
+2026-09-06T18:55:07Z  pnpm --filter @tracker/api bundle  ->  The Lambda artefact now carries both handlers.
+2026-09-06T18:55:43Z  sed over the template around the SES identity  ->  CDK writes all three DKIM CNAMEs and the bounce MX and the DMARC record into our own zone.
+2026-09-06T18:56:38Z  tail and grep over the message catalogues  ->  finding where to insert the wizard keys in all eight files
+2026-09-06T18:57:19Z  python inserted the wizard and reminder keys into all eight message catalogues  ->  Every locale carries the same keys so the typecheck holds.
+2026-09-06T18:57:26Z  sed over de.ts  ->  checking the inserted keys sit inside the object
+2026-09-06T18:57:41Z  python pointed the frontend locale list at the core one  ->  The eight languages are now declared once.
+2026-09-06T18:57:52Z  sed over useTimesheet.ts and PeriodBar.vue  ->  finding the profile load and the language picker to wire the locale through
+2026-09-06T18:58:09Z  python wired the locale into the profile and made the month page picker save it  ->  A language change now reaches the API rather than the browser alone.
+2026-09-06T18:58:34Z  grep over tokens.css  ->  reading the variable and class names the wizard must reuse
+2026-09-06T18:58:45Z  heredoc wrote apps/web/src/composables/useWizard.ts  ->  The wizard opens for an incomplete profile and closes for good once answered or skipped.
+2026-09-06T18:59:09Z  python moved the entity suggestion into useTimesheet and pointed SetupForm at it  ->  The rule now has one definition instead of two.
+2026-09-06T18:59:42Z  heredoc wrote apps/web/src/components/SetupWizard.vue  ->  Four steps ask the language then the location then the contract then the reminder.
+2026-09-06T18:59:54Z  grep for startUnlessSeen  ->  checking whether the tour would open behind the wizard
+2026-09-06T19:00:17Z  python rendered the wizard from App.vue and stopped the tour opening behind it  ->  A new user sees the wizard first and the tour once it closes.
+2026-09-06T19:00:46Z  python added the language field and the reminder switch and the reopen button to SetupForm  ->  Every wizard answer is also editable on the settings page.
+2026-09-06T19:00:56Z  sed over SetupForm.vue  ->  checking the fields block closes in the right place
+2026-09-06T19:01:31Z  pnpm --filter @tracker/web typecheck  ->  The frontend typechecks with the new locale field and the wizard.
+2026-09-06T19:01:49Z  pnpm --filter @tracker/web test  ->  All 79 existing frontend tests still pass.
+2026-09-06T19:03:26Z  python appended the wizard tests to render.test.ts then ran the frontend suite  ->  Nine new tests pass and the total is 88.
+2026-09-06T19:04:28Z  pnpm -r typecheck and pnpm -r test over the whole workspace  ->  Six packages typecheck and 296 tests pass.
+2026-09-06T19:04:58Z  heredoc wrote tracker/docs/mail.md  ->  The sender and the schedule and the skip rules are written down beside the other operator docs.
+2026-09-06T19:05:14Z  python added the ReminderFunctionName output to the stack  ->  The manual invoke in docs/mail.md now resolves.
+2026-09-06T19:05:39Z  rebundled then synthesised and printed the reminder role policy  ->  see output
+2026-09-06T19:06:01Z  python widened the configuration set ARN to the partition then grepped the new prose for commas  ->  see output
+2026-09-06T19:06:51Z  python defaulted the reminder switch on read and made the skip rule explicit then added a test  ->  A profile saved before the field existed is reminded rather than silently muted.
+2026-09-06T19:08:03Z  full workspace typecheck and test and a final synth  ->  Six packages typecheck. Every suite passes. The template renders.

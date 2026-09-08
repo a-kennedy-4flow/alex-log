@@ -1,0 +1,51 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-07T09:04:37Z  cat of the two memory files for logging and grammar  ->  Both rules apply so this log is 13.log and the prose is plain British English.
+2026-09-07T09:04:37Z  ls of the repo root and cat of tracker/apps/api/build.mjs and package.json  ->  The bundle is esbuild ESM with a raw banner that declares createRequire.
+2026-09-07T09:04:37Z  head and tail of 12.log  ->  Confirmed the log line format.
+2026-09-07T09:04:46Z  ls of tracker/apps/api/dist and grep of createRequire in lambda.mjs  ->  The bundle declares createRequire twice because the banner text and an import esbuild hoisted from a dependency both use that name.
+2026-09-07T09:05:22Z  grep of require( in the bundle  ->  Nothing in the bundle calls the banner require so the banner is dead text.
+2026-09-07T09:05:22Z  grep of createRequire across tracker with unquoted --include globs  ->  zsh refused the glob so the search did not run. src holds ten TypeScript files and tsconfig covers src only.
+2026-09-07T09:05:22Z  grep of createRequire and banner across tracker with quoted globs  ->  Listed above.
+2026-09-07T09:05:38Z  node --check of dist/lambda.mjs  ->  Reproduced the Lambda failure locally as a parse error on the second createRequire.
+2026-09-07T09:05:59Z  heredoc write of apps/api/cjs-shim.mjs  ->  The require shim now lives in a bundled module that esbuild can rename.
+2026-09-07T09:05:59Z  python3 rewrite of build.mjs from banner to inject  ->  Replaced the raw banner with an injected shim.
+2026-09-07T09:06:05Z  node build.mjs  ->  Rebuilt dist/lambda.mjs with the injected shim.
+2026-09-07T09:06:05Z  node --check of the rebuilt dist/lambda.mjs  ->  The bundle parses.
+2026-09-07T09:06:16Z  node dynamic import of dist/lambda.mjs  ->  Load result above.
+2026-09-07T09:06:27Z  grep of process.env in apps/api/src  ->  The Lambda needs TABLE_NAME and MAIL_FROM plus whatever required() names at line 83.
+2026-09-07T09:06:34Z  node import of dist/lambda.mjs with TABLE_NAME set  ->  Load result above.
+2026-09-07T09:06:52Z  cat of tracker/package.json and infra/package.json and grep of the bundle path in tracker-stack.ts  ->  deploy runs assemble which rebundles so the fix reaches the Lambda through pnpm deploy.
+2026-09-07T09:06:54Z  pnpm --filter @tracker/api test  ->  Result above.
+2026-09-07T09:06:54Z  eslint of apps/api/cjs-shim.mjs and build.mjs  ->  Result above.
+2026-09-07T09:07:01Z  pnpm exec eslint of apps/api/cjs-shim.mjs and build.mjs  ->  Clean. The earlier npx run failed on the pnpm devEngines guard.
+2026-09-07T09:14:11Z  find of any path matching logo outside node_modules  ->  Result above.
+2026-09-07T09:14:17Z  ls of tracker/logos  ->  Result above.
+2026-09-07T09:14:17Z  head of tracker/apps/web/public/logo.svg  ->  Read the logo in use.
+2026-09-07T09:14:25Z  python3 dump of the head of tracker/logos/marks.json  ->  Result above.
+2026-09-07T09:14:34Z  python3 enumeration of marks.json  ->  Result above.
+2026-09-07T09:14:34Z  grep of numbering markers in tracker/logos/index.html  ->  Result above.
+2026-09-07T09:14:43Z  grep and awk of the bubble-watch card in index.html  ->  Result above.
+2026-09-07T09:14:50Z  grep and nl of the svg filenames in gallery order in index.html  ->  Result above.
+2026-09-07T09:15:02Z  cat of logos/flow-bubbles.svg and logos/bubble-watch.svg  ->  The logo in use is mark 11 flow-bubbles scaled to a 26 viewBox so mark 12 is the next one along.
+2026-09-07T09:15:02Z  grep of logo and favicon references across tracker  ->  Result above.
+2026-09-07T09:15:12Z  find of apps/web/src and grep of svg and mark and brand  ->  Result above.
+2026-09-07T09:15:17Z  grep of svg in src/App.vue with context  ->  Result above.
+2026-09-07T09:15:28Z  grep of the mark and brand and wordmark rules in src/App.vue  ->  Result above.
+2026-09-07T09:15:48Z  grep of the mark 11 geometry across tracker  ->  Result above.
+2026-09-07T09:15:48Z  git ls-files of apps/web/dist  ->  Result above.
+2026-09-07T09:16:02Z  heredoc write of apps/web/public/logo.svg  ->  The favicon is now mark 12 bubble-watch on the 64 viewBox of the source mark.
+2026-09-07T09:16:02Z  python3 rewrite of the header mark in apps/web/src/App.vue  ->  The header carries mark 12 with the token colours.
+2026-09-07T09:16:18Z  pnpm --filter @tracker/web test  ->  Result above.
+2026-09-07T09:16:26Z  eslint of App.vue and typecheck of the web app  ->  Result above.
+2026-09-07T09:16:41Z  python3 xml parse of apps/web/public/logo.svg and a which for a rasteriser  ->  The file is well formed. No rasteriser is installed so there is no PNG check.
+2026-09-07T09:16:41Z  git diff --stat of tracker/apps/web  ->  Two files changed.
+2026-09-07T09:16:53Z  git status and check-ignore and ls-files for the logo and App.vue  ->  Result above.
+2026-09-07T09:17:04Z  cat of the new logo.svg and grep of the App.vue mark hunk  ->  Both places now hold mark 12.
+2026-09-07T09:17:04Z  grep of build and sync and dist in tracker/infra/deploy-site.sh  ->  Result above.
+2026-09-07T09:17:13Z  grep of the Two circles comment in src/App.vue with context  ->  Result above.
+2026-09-07T09:17:21Z  python3 delete of the Two circles comment above .mark in src/App.vue  ->  The comment described mark 11 so it was wrong and it only restated the markup.
+2026-09-07T09:17:38Z  pnpm --filter @tracker/web test and eslint of App.vue after the comment deletion  ->  116 tests pass and eslint is clean.

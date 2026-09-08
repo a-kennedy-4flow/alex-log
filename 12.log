@@ -1,0 +1,23 @@
+# Command log
+#
+# Every shell command run by the agent in this session. One line per command
+# written as the command completes. Format is a UTC timestamp then the command
+# then one plain sentence saying what happened.
+2026-09-07T08:10:43Z  find and ls of tracker/infra and cat of cdk.json and 11.log  ->  One CDK app at tracker/infra with three stacks named Tracker and TrackerCost and TrackerDns. cdk.out holds six asset directories and a stale read lock.
+2026-09-07T08:13:05Z  python3 dump of Tracker and TrackerDns and TrackerCost templates  ->  Twenty seven resources in Tracker and one hosted zone in TrackerDns and two budgets in TrackerCost. Retain is set on the table and the bucket and the pool and the zone only.
+2026-09-07T08:13:05Z  head of the two __entrypoint__ asset directories  ->  Both are the cross region SSM export writer and reader custom resource handlers. Neither is named by any assets.json so both are orphans of an earlier synth.
+2026-09-07T08:13:43Z  pnpm synth into a scratch output then ps of the lock owner  ->  Synth refused because read.3171029.1.lock is held. PID 3171029 is a live cdk deploy --all so the lock is real and the earlier reading of it as stale was wrong.
+2026-09-07T08:15:32Z  npx cdk synth twice into scratch out1 and out2 then sha256 of every file  ->  All fifteen files match. Synth is byte for byte reproducible so the assembly is a pure function of the source.
+2026-09-07T08:15:32Z  git ls-files and git cat-file -s over tracker/infra/cdk.out  ->  Ten blobs totalling 418211 bytes are committed. They describe the dead Timesheets stack of twenty two resources not the Tracker stack of twenty seven.
+2026-09-07T08:15:32Z  ls of a clean synth against the working cdk.out  ->  A clean synth writes one asset directory. The working directory holds six plus a .cache so four are orphans that CDK never prunes.
+2026-09-07T08:37:59Z  appended cdk.out/ to .gitignore then git rm -r --cached -f of tracker/infra/cdk.out  ->  Zero cdk.out paths remain in the index and the twenty working tree files survive. check-ignore confirms the new rule catches them.
+2026-09-07T08:37:59Z  wrote infra/clean.sh then ran it  ->  It refused because a cdk deploy --all held a lock. The guard behaved as designed on its first run.
+2026-09-07T08:44:04Z  rewrote infra/package.json scripts through python3  ->  clean and assemble are new and the four cdk scripts share one assemble step so the bundle command is written once rather than four times.
+2026-09-07T08:44:04Z  edited lib/tracker-stack.ts for logging and headers and throttle and outputs  ->  Added SiteLogs bucket and SiteHeaders policy and ApiAccessLogs group. Price class is 100. The two duplicate outputs are now conditional on a custom domain.
+2026-09-07T08:44:04Z  read bin/app.ts  ->  delegated is now the literal true so the live build takes the custom domain branch. The CSP resolves to https://api.tracker.4flow.io rather than the execute-api wildcard.
+2026-09-07T08:44:04Z  npx cdk synth --output scratch twice for the domain and the no domain branch  ->  Both succeed. 56 resources with the domain and 31 without. Synth ran while a deploy held the lock so --output is the way to inspect without disturbing one.
+2026-09-07T08:44:04Z  sandbox run of clean.sh against a copied tree  ->  Deletes when no lock is present and refuses with exit 1 when one is. Both branches proved.
+2026-09-07T08:44:04Z  pnpm lint then typecheck then test then build  ->  Lint clean. Seven typechecks pass. 325 tests pass with 2 skipped. The web bundle hash is unchanged.
+2026-09-07T08:46:17Z  grep of absolute URLs in the built web bundle then cat of .env.production.local  ->  The file still names the dead Timesheets stack. A build from it would now be refused by the new connect-src rather than reaching a dead API quietly.
+2026-09-07T08:46:17Z  sed of infra/package.json to pnpm run assemble  ->  The explicit run form cannot collide with a future pnpm subcommand of that name.
+2026-09-07T08:59:03Z  WebFetch of the CreateApplication API reference and the set up your own SAML 2.0 application page  ->  Neither carries a logo or icon field. The API cannot create a SAML 2.0 customer managed application at all so the console is the only route and it asks for seven fields none of which is an image.

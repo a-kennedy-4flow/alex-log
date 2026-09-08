@@ -1,0 +1,14 @@
+This log records every shell command run while logging an Atlassian refusal and carrying its reason to the screen.
+Format is UTC timestamp then command then one sentence on the result.
+2026-09-08T08:22:03Z	grep -rn "consentFailed|no longer valid" tracker	The message is the app own and the reason is the 409 detail from jira-handlers.ts:178.
+2026-09-08T08:22:03Z	sed -n 150,230p apps/api/src/jira.ts	jira.ts:184 collapses 400 and 401 into one JiraUnauthorised and never reads the body.
+2026-09-08T08:22:03Z	aws logs filter-log-events Tracker-JiraLogs77EE0B00	The function ran nine times in four days and logged no error because the 409 path is silent.
+2026-09-08T08:22:03Z	grep -rn relink apps/web/src apps/api/src	Only loadMonth keys on the 409 so the link route may answer another status safely.
+2026-09-08T08:26:00Z	python3 edit of apps/api/src/jira.ts	The Refusal interface joins JiraUnauthorised and reasonOf reads error and error_description from the body.
+2026-09-08T08:26:00Z	python3 edit of apps/api/src/jira-handlers.ts	Every refusal now logs one line and a refused authorization_code answers 400 carrying the reason.
+2026-09-08T08:26:00Z	python3 edit of apps/api/src/__tests__/jira.test.ts	Six tests hold the reason and the grant and the log line and the 409 for a lapsed consent.
+2026-09-08T08:26:00Z	npx vitest run -t "refusal from Atlassian"	All six new tests pass.
+2026-09-08T08:26:00Z	python3 edit of docs/jira.md	The rotation section now separates a refused exchange from a consent that lapsed.
+2026-09-08T08:26:00Z	pnpm -r typecheck	Every one of the eight projects typechecked clean.
+2026-09-08T08:26:00Z	pnpm lint	eslint passed clean.
+2026-09-08T08:26:00Z	pnpm -r test	All 476 tests pass across the five suites.
