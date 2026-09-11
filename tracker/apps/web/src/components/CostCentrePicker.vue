@@ -11,6 +11,7 @@ import { useI18n } from 'vue-i18n'
 import type { Project } from '@tracker/core'
 import { findProject, isAbsence, labelOf, searchProjects } from '@tracker/core'
 import { profile } from '@/composables/useTimesheet'
+import { recentPicks, rememberPick } from '@/composables/useRecentPicks'
 
 const props = defineProps<{ modelValue: string | null; invalid?: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: string | null] }>()
@@ -29,12 +30,18 @@ const RESULT_LIMIT = 60
 /** The trigger box in viewport coordinates. Null while the panel is shut. */
 const anchor = ref<DOMRect | null>(null)
 
-/** The space kept between the trigger and the panel. */
-const GAP = 2
 /** The space kept from every viewport edge. */
 const EDGE = 8
 /** Under this much room below the trigger the panel opens upwards instead. */
 const ROOM = 220
+/**
+ * The narrowest the panel may be drawn.
+ *
+ * It takes the width of the trigger so it reads as that box growing. A grid
+ * cell is narrower than the two columns of a result row so the wider of the two
+ * wins.
+ */
+const MIN_WIDTH = 340
 
 const selected = computed(() => findProject(props.modelValue))
 
@@ -46,7 +53,14 @@ const label = computed(() => {
   return `${project.workdayId} ${labelOf(project)}`.trim()
 })
 
-const results = computed(() => searchProjects(query.value, RESULT_LIMIT, profile.businessLine))
+const results = computed(() =>
+  searchProjects(query.value, RESULT_LIMIT, profile.businessLine, recentPicks.value),
+)
+
+/** True for a row this user picked lately. Those lead the unfiltered list. */
+function isRecent(project: Project): boolean {
+  return recentPicks.value.includes(project.workdayId)
+}
 
 /** True for a row from the user own business line. Those break a rank tie. */
 function isPreferred(project: Project): boolean {
@@ -60,6 +74,7 @@ function kindOf(project: Project): string {
 
 function choose(project: Project | undefined): void {
   if (!project) return
+  rememberPick(project.workdayId)
   emit('update:modelValue', project.workdayId)
   open.value = false
   query.value = ''
@@ -76,29 +91,38 @@ function measure(): void {
 }
 
 /**
- * Where the panel is drawn.
+ * Where the open control is drawn.
  *
- * The panel is fixed to the viewport rather than positioned inside the cell.
- * Because a) the month grid scrolls under `overflow: auto` and that clips an
- * absolute panel. b) a fixed box takes its containing block from the viewport
- * so no ancestor overflow can reach it.
+ * It is fixed to the viewport rather than positioned inside the cell. Because
+ * a) the month grid scrolls under `overflow: auto` and that clips an absolute
+ * panel. b) a fixed box takes its containing block from the viewport so no
+ * ancestor overflow can reach it.
  *
- * The cost is that nothing moves the panel with the page. `measure` runs again
- * on a scroll and on a resize to pay it.
+ * It is anchored on the closed box rather than under it. The search field lands
+ * exactly where the trigger was and the options grow on from there, so the one
+ * box the user pressed is the box that opened. Anchoring under the trigger
+ * needs a panel wider than a grid cell to hold a result row, and that leaves a
+ * step where the two outlines meet.
+ *
+ * The cost is that nothing moves the control with the page. `measure` runs
+ * again on a scroll and on a resize to pay it.
  */
 const place = computed(() => {
   const box = anchor.value
   if (!box) return null
-  const width = Math.min(600, window.innerWidth * 0.84)
-  const below = window.innerHeight - box.bottom - GAP - EDGE
-  const above = box.top - GAP - EDGE
+  const width = Math.min(Math.max(box.width, MIN_WIDTH), window.innerWidth - EDGE * 2)
+  // Measured from the edge the control is anchored on so the trigger own height
+  // counts as room rather than against it.
+  const below = window.innerHeight - box.top - EDGE
+  const above = box.bottom - EDGE
   const downwards = below >= ROOM || below >= above
   return {
     left: Math.max(EDGE, Math.min(box.left, window.innerWidth - width - EDGE)),
-    top: downwards ? box.bottom + GAP : undefined,
-    bottom: downwards ? undefined : window.innerHeight - box.top + GAP,
+    top: downwards ? box.top : undefined,
+    bottom: downwards ? undefined : window.innerHeight - box.bottom,
     width,
-    /** What the panel may take. The results list shrinks to fit inside it. */
+    downwards,
+    /** What the control may take. The results list shrinks to fit inside it. */
     room: Math.max(downwards ? below : above, ROOM),
   }
 })
@@ -188,7 +212,7 @@ function onTriggerKeydown(event: KeyboardEvent): void {
       ref="trigger"
       type="button"
       class="trigger"
-      :class="{ invalid: props.invalid, empty: !label }"
+      :class="{ invalid: props.invalid, empty: !label, open }"
       :aria-expanded="open"
       @click="open = !open"
       @keydown="onTriggerKeydown"
@@ -221,13 +245,17 @@ function onTriggerKeydown(event: KeyboardEvent): void {
           <button
             type="button"
             :data-active="index === active"
-            :class="{ active: index === active, preferred: isPreferred(project) }"
+            :class="{
+              active: index === active,
+              preferred: isPreferred(project),
+            }"
             @click="choose(project)"
             @mousemove="active = index"
           >
             <span class="id num">{{ project.workdayId }}</span>
             <span class="title">{{ labelOf(project) }}</span>
             <span class="meta">
+              <span v-if="isRecent(project)" class="kind recent">{{ t('picker.recent') }}</span>
               <span class="kind">{{ kindOf(project) }}</span>
               <span v-if="project.businessLine" :class="{ mine: isPreferred(project) }">
                 {{ project.businessLine }}
@@ -277,6 +305,13 @@ function onTriggerKeydown(event: KeyboardEvent): void {
   background: var(--open);
 }
 
+/* The open control is drawn over this box and starts on the same edge. The
+   trigger keeps its space in the row so nothing shifts and gives up only what
+   it draws. */
+.trigger.open {
+  visibility: hidden;
+}
+
 
 .placeholder {
   color: var(--grey);
@@ -291,7 +326,28 @@ function onTriggerKeydown(event: KeyboardEvent): void {
   background: var(--white);
   border: 1px solid var(--smart-blue);
   border-radius: var(--radius);
-  padding: 10px;
+  /* No padding at the top. The search field is the box the trigger was and it
+     has to sit on the same edge. */
+  padding: 0 10px 10px;
+}
+
+/* The field the trigger became. It reaches both edges of the control so its
+   rule separates the field from the options rather than floating inside them.
+   The left padding is the panel padding plus the trigger padding so the text
+   does not move when the two swap. */
+.panel input[type='search'] {
+  width: calc(100% + 20px);
+  min-height: 30px;
+  margin: 0 -10px;
+  padding: 5px 17px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--warm-grey);
+  border-radius: 0;
+}
+
+.panel input[type='search']:focus {
+  outline: 0;
 }
 
 .results {
@@ -356,6 +412,14 @@ function onTriggerKeydown(event: KeyboardEvent): void {
   background: var(--warm-grey);
   border-radius: 3px;
   padding: 0 5px;
+}
+
+/* Why the row is where it is. The unfiltered list leads with these and the
+   order alone does not say so. */
+.kind.recent {
+  background: var(--open);
+  color: var(--smart-blue);
+  font-weight: 600;
 }
 
 .meta .mine {

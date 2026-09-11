@@ -49,6 +49,7 @@ function profileOf(over: Partial<UserProfile> = {}): UserProfile {
     remindByEmail: true,
     hoursPerDay: null,
     jiraProjects: {},
+    jiraTickets: {},
     ...over,
   }
 }

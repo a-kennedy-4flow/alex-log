@@ -29,8 +29,12 @@ const CALLER: Caller = {
 
 const CLIENT_ID = 'wJiihW00HOrSowAzpyBcDjWOj7vUMAXz'
 const REDIRECT = 'https://tracker.4flow.io/jira/callback'
+const SITE = 'https://4flow.atlassian.net'
 
-function profileOf(jiraProjects: Record<string, string> = {}): UserProfile {
+function profileOf(
+  jiraProjects: Record<string, string> = {},
+  jiraTickets: Record<string, string> = {},
+): UserProfile {
   return {
     email: CALLER.email,
     firstName: CALLER.firstName,
@@ -43,6 +47,7 @@ function profileOf(jiraProjects: Record<string, string> = {}): UserProfile {
     remindByEmail: true,
     hoursPerDay: null,
     jiraProjects,
+    jiraTickets,
   }
 }
 
@@ -54,6 +59,7 @@ function depsOf(over: Partial<JiraDeps> = {}): JiraDeps {
     now: () => new Date('2026-09-07T12:00:00Z'),
     clientId: CLIENT_ID,
     redirectUri: REDIRECT,
+    siteUrl: SITE,
     ...over,
   }
 }
@@ -96,6 +102,7 @@ describe('the routes', () => {
       linked: false,
       clientId: CLIENT_ID,
       redirectUri: REDIRECT,
+      siteUrl: SITE,
       accountId: null,
       linkedAt: null,
     })
@@ -164,6 +171,21 @@ describe('reading a month', () => {
     const devh = after.tickets.filter((t: { projectKey: string }) => t.projectKey === 'DEVH')
     expect(plrs.every((t: { workdayId: string }) => t.workdayId === '4100782')).toBe(true)
     expect(devh.every((t: { workdayId: null }) => t.workdayId === null)).toBe(true)
+  })
+
+  // One project is not one cost centre so a ticket carries an answer of its
+  // own. The screen writes it for a ticket no cost centre was found for.
+  it('lets a cost centre set against one ticket beat the project map', async () => {
+    const deps = depsOf()
+    await deps.repository.putJiraLink(CALLER.sub, linkOf())
+    await deps.repository.putProfile(
+      CALLER.sub,
+      profileOf({ PLRS: '4100782' }, { 'PLRS-1141': '10100' }),
+    )
+    const body = JSON.parse((await handleJira(get('/api/jira/completed/2026-08'), deps)).body)
+    const of = (key: string) => body.tickets.find((t: { key: string }) => t.key === key).workdayId
+    expect(of('PLRS-1141')).toBe('10100')
+    expect(of('PLRS-1099')).toBe('4100782')
   })
 
   it('serves a closed month from the cache without a second search', async () => {
@@ -574,10 +596,12 @@ function siteOf(site: {
 }) {
   const asked: string[][] = []
   const jqls: string[] = []
+  const paths: string[] = []
   const ok = (body: unknown) =>
     ({ ok: true, status: 200, json: async () => body }) as unknown as Response
   const fetching = (async (url: string, init?: RequestInit) => {
     const at = String(url)
+    paths.push(at)
     if (at.includes('/rest/api/3/myself')) return ok({ accountId: ACCOUNT })
     if (at.includes('/rest/api/3/field')) {
       if (site.fieldsRefused) {
@@ -598,18 +622,28 @@ function siteOf(site: {
     if (body.jql?.includes('worklogAuthor')) return ok({ issues: site.logged ?? [] })
     return ok({ issues: site.closed ?? [] })
   }) as unknown as typeof fetch
-  return { fetching, asked, jqls }
+  return { fetching, asked, jqls, paths }
 }
 
+/** @param asUser The dev only switch. Null is every deployment. */
 function clientOf(
   hoursFields: string[],
   site: Parameters<typeof siteOf>[0],
-): { jira: AtlassianJira; asked: string[][]; jqls: string[] } {
+  asUser: string | null = null,
+): { jira: AtlassianJira; asked: string[][]; jqls: string[]; paths: string[] } {
   const stub = siteOf(site)
   return {
-    jira: new AtlassianJira('client', async () => 'secret', 'cloud', stub.fetching, hoursFields),
+    jira: new AtlassianJira(
+      'client',
+      async () => 'secret',
+      'cloud',
+      stub.fetching,
+      hoursFields,
+      asUser,
+    ),
     asked: stub.asked,
     jqls: stub.jqls,
+    paths: stub.paths,
   }
 }
 
@@ -844,6 +878,153 @@ describe('the days a ticket was worked', () => {
   })
 })
 
+// A 4flow cost centre epic sits in `COMM` or `TMS` while the work sits in a
+// product project. So it is never on the parent chain of the ticket booking
+// against it. `docs/jira.md` calls that epic the specification ticket.
+describe('the specification ticket a link names', () => {
+  /** One link as a search carries it. Only one side of a link is ever filled. */
+  function linkTo(key: string) {
+    return [{ type: { name: 'implements' }, outwardIssue: { key } }]
+  }
+
+  it('asks Jira for the links with the rest of the fields', async () => {
+    const { jira, asked } = clientOf(['worklog'], { fields: COST_FIELDS, closed: [issueOf('PLRS-1')] })
+    await jira.completed('access', '2026-08')
+    expect(asked[0]).toContain('issuelinks')
+  })
+
+  it('takes the specification off the linked ticket and names it', async () => {
+    const { jira } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [issueOf('PLRS-1', { issuelinks: linkTo('COMM-23079') })],
+      parents: {
+        'COMM-23079': issueOf('COMM-23079', {
+          customfield_11501: '4s_Overheads_Concept_&_development',
+        }),
+      },
+    })
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.costCentreSpecification).toBe('4s_Overheads_Concept_&_development')
+    expect(ticket?.costCentreSpecificationFrom).toBe('COMM-23079')
+  })
+
+  it('takes the cost centre of that ticket too where the chain named none', async () => {
+    const { jira } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [issueOf('PLRS-1', { issuelinks: linkTo('COMM-23079') })],
+      parents: {
+        'COMM-23079': issueOf('COMM-23079', {
+          customfield_11500: 21111,
+          customfield_11501: '4s_Overheads_Product_operations',
+        }),
+      },
+    })
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.costCentre).toBe('21111')
+    expect(ticket?.costCentreFrom).toBe('COMM-23079')
+  })
+
+  it('keeps the cost centre the parent chain answered', async () => {
+    const { jira } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [
+        issueOf('PLRS-1', { customfield_11500: '4100782', issuelinks: linkTo('COMM-23079') }),
+      ],
+      parents: {
+        'COMM-23079': issueOf('COMM-23079', {
+          customfield_11500: 21111,
+          customfield_11501: '4s_Overheads_Other',
+        }),
+      },
+    })
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.costCentre).toBe('4100782')
+    expect(ticket?.costCentreSpecification).toBe('4s_Overheads_Other')
+  })
+
+  it('reads a link whichever end of it the ticket sits on', async () => {
+    const { jira } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [
+        issueOf('PLRS-1', {
+          issuelinks: [{ type: { name: 'implements' }, inwardIssue: { key: 'TMS-2346' } }],
+        }),
+      ],
+      parents: {
+        'TMS-2346': issueOf('TMS-2346', { customfield_11501: '4s_Overheads_Absence' }),
+      },
+    })
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.costCentreSpecification).toBe('4s_Overheads_Absence')
+  })
+
+  it('walks the parents of the linked ticket as well', async () => {
+    const { jira } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [issueOf('PLRS-1', { issuelinks: linkTo('ECLIPSE-613') })],
+      parents: {
+        'ECLIPSE-613': issueOf('ECLIPSE-613', { parent: { key: 'COMM-23079' } }),
+        'COMM-23079': issueOf('COMM-23079', { customfield_11501: '4s_changeRequest' }),
+      },
+    })
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.costCentreSpecification).toBe('4s_changeRequest')
+    expect(ticket?.costCentreSpecificationFrom).toBe('COMM-23079')
+  })
+
+  it('leaves the links alone where the parent chain already answered', async () => {
+    const { jira, jqls } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [
+        issueOf('PLRS-1', {
+          customfield_11501: '4s_Overheads_Other',
+          issuelinks: linkTo('COMM-23079'),
+        }),
+      ],
+    })
+    await jira.completed('access', '2026-08')
+    expect(jqls.filter((jql) => jql.startsWith('key in ('))).toEqual([])
+  })
+
+  it('asks for every link of the month in one search', async () => {
+    const { jira, jqls } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [
+        issueOf('PLRS-1', { issuelinks: linkTo('COMM-23079') }),
+        issueOf('PLRS-2', { issuelinks: linkTo('COMM-23080') }),
+      ],
+      parents: {
+        'COMM-23079': issueOf('COMM-23079', { customfield_11501: '4s_Overheads_Other' }),
+        'COMM-23080': issueOf('COMM-23080', { customfield_11501: '4s_Overheads_Absence' }),
+      },
+    })
+    await jira.completed('access', '2026-08')
+    expect(jqls.filter((jql) => jql.startsWith('key in ('))).toEqual([
+      'key in (COMM-23079,COMM-23080)',
+    ])
+  })
+
+  it('follows no link at all where the site has no specification field', async () => {
+    const { jira, jqls } = clientOf(['worklog'], {
+      fields: [{ id: 'customfield_11500', name: 'Internal Cost Center' }],
+      closed: [issueOf('PLRS-1', { issuelinks: linkTo('COMM-23079') })],
+    })
+    await jira.completed('access', '2026-08')
+    expect(jqls.filter((jql) => jql.startsWith('key in ('))).toEqual([])
+  })
+
+  it('answers nothing where no link carries one', async () => {
+    const { jira } = clientOf(['worklog'], {
+      fields: COST_FIELDS,
+      closed: [issueOf('PLRS-1', { issuelinks: linkTo('PLRS-944') })],
+      parents: { 'PLRS-944': issueOf('PLRS-944') },
+    })
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.costCentreSpecification).toBeNull()
+    expect(ticket?.costCentreSpecificationFrom).toBeNull()
+  })
+})
+
 describe('the cost centre', () => {
   it('finds both fields by name whatever id the site gave them', async () => {
     const { jira, asked } = clientOf(['worklog'], {
@@ -944,5 +1125,62 @@ describe('the cost centre', () => {
     // The parent still arrives. It rides on the ticket rather than on a walk.
     expect(ticket?.parentKey).toBe('PLRS-900')
     expect(ticket?.costCentre).toBeNull()
+  })
+})
+
+describe('reading the month of another account', () => {
+  // The switch `apps/api/src/local.ts` sets and no deployment can. It exists so
+  // the hours path and the cost centre path can be seen against an account that
+  // holds both. See `docs/jira.md`.
+  const OTHER = '712020:0cecee67-bb99-467b-b2f6-5664d8db8d5c'
+
+  it('names the account in both searches rather than the token owner', async () => {
+    const { jira, jqls } = clientOf(['worklog'], { closed: [issueOf('PLRS-1')] }, OTHER)
+    await jira.completed('access', '2026-08')
+    expect(jqls[0]).toContain(`assignee = "${OTHER}"`)
+    expect(jqls[1]).toContain(`worklogAuthor = "${OTHER}"`)
+    expect(jqls.join(' ')).not.toContain('currentUser()')
+  })
+
+  it('says currentUser with no switch set', async () => {
+    const { jira, jqls } = clientOf(['worklog'], { closed: [issueOf('PLRS-1')] })
+    await jira.completed('access', '2026-08')
+    expect(jqls[0]).toContain('assignee = currentUser()')
+    expect(jqls[1]).toContain('worklogAuthor = currentUser()')
+  })
+
+  it('asks nobody who the token belongs to', async () => {
+    // The account is already named so `/myself` would answer what is held. It
+    // would also answer the wrong account and every worklog would be dropped.
+    const { jira, paths } = clientOf(['worklog'], { closed: [issueOf('PLRS-1')] }, OTHER)
+    await jira.completed('access', '2026-08')
+    expect(paths.some((at) => at.includes('/rest/api/3/myself'))).toBe(false)
+  })
+
+  it('keeps the worklogs of the named account and drops the rest', async () => {
+    const { jira } = clientOf(
+      ['worklog'],
+      {
+        closed: [
+          issueOf('PLRS-1', {
+            worklog: {
+              total: 2,
+              worklogs: [logOf('2026-08-04T09:00:00.000+0200', 3, OTHER), logOf('2026-08-05T09:00:00.000+0200', 4)],
+            },
+          }),
+        ],
+      },
+      OTHER,
+    )
+    const [ticket] = await jira.completed('access', '2026-08')
+    expect(ticket?.days).toEqual({ '2026-08-04': 3 })
+    expect(ticket?.hours).toBe(3)
+  })
+
+  it('refuses anything that is not an account id', async () => {
+    // The value reaches JQL inside quotes. A quote in it would close the term.
+    const bad = () =>
+      new AtlassianJira('client', async () => 'secret', 'cloud', fetch, ['worklog'], `x" OR assignee = currentUser()`)
+    expect(bad).toThrow('is not an Atlassian account id')
   })
 })

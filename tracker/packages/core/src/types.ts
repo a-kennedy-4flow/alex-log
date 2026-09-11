@@ -66,6 +66,12 @@ export interface CatalogueSource {
   projectListUpdated: string | null
   projectListFile: string | null
   projectListPath: string | null
+  /**
+   * The 4s project numbers list laid over the project list of the tracker.
+   * Absent until one is uploaded. It names projects the tracker leaves blank so
+   * it never replaces the four fields above.
+   */
+  projectNumbers?: { workbook: string; listUpdated: string | null } | null
 }
 
 export interface BusinessLine {
@@ -165,6 +171,17 @@ export interface UserProfile {
    * moving this.
    */
   jiraProjects: Record<string, string>
+  /**
+   * One Jira ticket key to one Workday ID. Written when the user answers a
+   * ticket no cost centre could be found for.
+   *
+   * It sits beside the project map rather than replacing it. Because a) one
+   * project is not one cost centre so a project answer is a guess for the
+   * tickets of it Jira says nothing about. b) a ticket answer is a fact about
+   * that ticket. c) the two are read in that order and `resolveCostCentre`
+   * holds it.
+   */
+  jiraTickets: Record<string, string>
 }
 
 export interface TimesheetKey {

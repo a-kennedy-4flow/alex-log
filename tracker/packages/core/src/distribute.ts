@@ -70,6 +70,22 @@ function blank(date: string, half: 0 | 1): HalfDay {
 }
 
 /**
+ * True for a row holding nothing a user typed. The inverse of `blank`.
+ *
+ * The default marker is not read. It is set beside a specification and never on
+ * its own so a row carrying it alone would still be a row with nothing in it.
+ */
+export function rowIsEmpty(row: HalfDay): boolean {
+  return (
+    row.workdayId === null &&
+    row.specification === null &&
+    row.days === null &&
+    row.location === null &&
+    row.tasks === null
+  )
+}
+
+/**
  * How much of a day is still free.
  *
  * A day holds one day of work. The upper row is what the user sets so the lower

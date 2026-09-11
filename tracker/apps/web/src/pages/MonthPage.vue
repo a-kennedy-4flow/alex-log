@@ -6,30 +6,35 @@
 // and a reader moving between them should see one design.
 //
 // The middle section is the grid or the board. Both edit one month so both sit
-// on this route and only that section changes. The switch between them stands
-// inside the same box at the top. The box is the surface so the two views carry
-// none of their own. Because one box holds the switch and whichever view it
-// names a) the control sits on the thing it acts on and b) swapping the view
-// leaves the surface where it was. The space beside it carries the progress and the
-// reference list. Both stay in view while the month scrolls because both are
-// about the month as a whole.
+// on this route and only that section changes. The row at the top of the box
+// holds everything that reads or acts on the open month. The box is the surface
+// so neither view carries one of its own. Because one box holds that row and
+// whichever view it names a) each control sits on the thing it acts on and
+// b) swapping the view leaves the surface where it was. The space beside it
+// carries the progress and the reference list. Both stay in view while the
+// month scrolls because both are about the month as a whole.
 
 import PageTitle from '@/components/PageTitle.vue'
 import PeriodBar from '@/components/PeriodBar.vue'
 import ViewSwitch from '@/components/ViewSwitch.vue'
+import SaveState from '@/components/SaveState.vue'
+import MonthLegend from '@/components/MonthLegend.vue'
+import ClearMonth from '@/components/ClearMonth.vue'
 import MonthGrid from '@/components/MonthGrid.vue'
 import MonthCalendar from '@/components/MonthCalendar.vue'
 import MonthProgress from '@/components/MonthProgress.vue'
 import RecentCostCentres from '@/components/RecentCostCentres.vue'
 import ValidationPanel from '@/components/ValidationPanel.vue'
-import SummaryPanel from '@/components/SummaryPanel.vue'
+// The two aggregate tables sit below the grid and carry the table library with
+// them. They are fetched after the grid has painted.
+const SummaryPanel = defineAsyncComponent(() => import('@/components/SummaryPanel.vue'))
 import ExportPanel from '@/components/ExportPanel.vue'
 
 import { view } from '@/composables/useView'
 
 // The tour points at this page.
 import { setPage, startUnlessSeen } from '@/composables/useTour'
-import { onMounted } from 'vue'
+import { defineAsyncComponent, onMounted } from 'vue'
 
 setPage('month')
 onMounted(() => startUnlessSeen())
@@ -43,7 +48,16 @@ onMounted(() => startUnlessSeen())
       <PeriodBar />
       <div class="split">
         <div class="month sheet pad">
-          <ViewSwitch />
+          <div class="month-bar">
+            <SaveState />
+            <!-- The board is the only view drawing a line per cost centre so it
+                 is the only one with a line to name. -->
+            <MonthLegend v-if="view === 'board'" />
+            <div class="actions">
+              <ClearMonth />
+              <ViewSwitch />
+            </div>
+          </div>
           <MonthGrid v-if="view === 'grid'" />
           <MonthCalendar v-else />
         </div>

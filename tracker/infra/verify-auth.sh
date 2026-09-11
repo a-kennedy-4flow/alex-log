@@ -105,6 +105,11 @@ else: print(f"OK identity providers are {idps}")
 want=f"{site}/auth/callback"
 cbs=c.get("CallbackURLs") or []
 print(f"OK callback covers {want}" if want in cbs else f"NO callback list is {cbs} and misses {want}")
+# Cognito matches logout_uri against this list exactly. `lib/auth.ts` sends the
+# bare origin so a list without it refuses every sign out.
+out=f"{site}/"
+los=c.get("LogoutURLs") or []
+print(f"OK sign out covers {out}" if out in los else f"NO sign out list is {los} and misses {out}")
 flows=c.get("AllowedOAuthFlows") or []
 print("OK authorization code flow is on" if "code" in flows else f"NO OAuth flows are {flows}")
 scopes=set(c.get("AllowedOAuthScopes") or [])

@@ -13,7 +13,7 @@
 // Nothing here reads the catalogue either. The answer carries Workday IDs and
 // the browser resolves the titles from the catalogue it already holds.
 
-import type { CompletedTicket } from '@tracker/core'
+import type { CompletedTicket, CostCentreChoices } from '@tracker/core'
 
 import { json, problem, type ApiRequest, type ApiResponse, type Caller } from './handlers'
 import { JiraThrottledRefresh, accessTokenFor, linkFrom, type TokenDeps } from './jira-tokens'
@@ -39,6 +39,15 @@ export interface JiraDeps extends TokenDeps {
   clientId: string
   /** Where Atlassian sends the browser back to. */
   redirectUri: string
+  /**
+   * The Atlassian site a person browses. `https://4flow.atlassian.net`.
+   *
+   * It is answered rather than compiled into the browser bundle. Because a) the
+   * screen already takes its client id and its callback from this route. b) one
+   * deployment reads one site so the site belongs beside the cloud id. c) empty
+   * leaves the screen showing a ticket id it cannot link.
+   */
+  siteUrl: string
 }
 
 /** The period key of the month the clock is in. */
@@ -62,16 +71,22 @@ function cacheIsFresh(link: StoredJiraLink, period: string, now: Date): boolean 
 }
 
 /**
- * Fills in the Workday ID each ticket books against.
+ * Fills in the Workday ID a person has answered for each ticket.
  *
- * The map is per user and it is written when a row is mapped by hand on the
- * screen. A ticket whose project is not in it stays null so the screen can show
- * it unmapped. It is never hidden and never booked.
+ * Both maps are per user and both are written by hand on the screen. The ticket
+ * one is read first because one project is not one cost centre. A ticket in
+ * neither stays null so the screen can show it unanswered. It is never hidden
+ * and never booked.
+ *
+ * The Jira cost centre is not read here. It converts through the catalogue and
+ * this function never loads one. `resolveCostCentre` in core does that in the
+ * browser and it outranks the project map. So this field is the answer of last
+ * resort rather than the final one.
  */
-function mapped(tickets: CompletedTicket[], jiraProjects: Record<string, string>): CompletedTicket[] {
+function mapped(tickets: CompletedTicket[], choices: CostCentreChoices): CompletedTicket[] {
   return tickets.map((ticket) => ({
     ...ticket,
-    workdayId: jiraProjects[ticket.projectKey] ?? null,
+    workdayId: choices.tickets[ticket.key] ?? choices.projects[ticket.projectKey] ?? null,
   }))
 }
 
@@ -84,7 +99,10 @@ async function readTickets(
   if (!link) return problem(409, 'this user has not linked Jira', { linked: false })
 
   const profile = await deps.repository.getProfile(caller.sub)
-  const jiraProjects = profile?.jiraProjects ?? {}
+  const choices: CostCentreChoices = {
+    tickets: profile?.jiraTickets ?? {},
+    projects: profile?.jiraProjects ?? {},
+  }
   const now = deps.now()
 
   if (cacheIsFresh(link, period, now)) {
@@ -93,7 +111,7 @@ async function readTickets(
       period,
       fetchedAt: cache.fetchedAt,
       cached: true,
-      tickets: mapped(cache.tickets, jiraProjects),
+      tickets: mapped(cache.tickets, choices),
     })
   }
 
@@ -118,7 +136,7 @@ async function readTickets(
       current.generation,
     )
   }
-  return json(200, { period, fetchedAt, cached: false, tickets: mapped(tickets, jiraProjects) })
+  return json(200, { period, fetchedAt, cached: false, tickets: mapped(tickets, choices) })
 }
 
 export async function handleJira(request: ApiRequest, deps: JiraDeps): Promise<ApiResponse> {
@@ -135,6 +153,7 @@ export async function handleJira(request: ApiRequest, deps: JiraDeps): Promise<A
       linked: link !== null,
       clientId: deps.clientId,
       redirectUri: deps.redirectUri,
+      siteUrl: deps.siteUrl,
       accountId: link?.accountId ?? null,
       linkedAt: link?.linkedAt ?? null,
     })

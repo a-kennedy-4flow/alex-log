@@ -8,8 +8,9 @@ import { useI18n } from 'vue-i18n'
 import type { CalendarDay, HalfDay } from '@tracker/core'
 import { catalogue, dayTotals, dayOptionsFor, dayValueFor, trackerRow } from '@tracker/core'
 import { shortDate, weekdayName } from '@/i18n'
-import { calendar, clearRow, halfDays, pastTarget } from '@/composables/useTimesheet'
+import { calendar, halfDays, pastTarget } from '@/composables/useTimesheet'
 import {
+  clearHalf,
   incomplete,
   rowsOf,
   setDays,
@@ -199,7 +200,7 @@ const weeks = computed(() => {
                 type="button"
                 class="icon"
                 :title="t('grid.clearRow')"
-                @click="clearRow(entry)"
+                @click="clearHalf(entry)"
               >
                 ×
               </button>
@@ -223,18 +224,61 @@ const weeks = computed(() => {
 </template>
 
 <style scoped>
+/*
+ * The page scrolls the month rather than a box inside it.
+ *
+ * There is no height cap here. A cap put a second vertical scrollbar beside the
+ * one the page already draws and a month is 62 rows so both were always
+ * showing. The wrapper is left as a horizontal scroller alone because the nine
+ * columns hold 720px and the box beside the aside is narrower than that under
+ * 1425px. The aside moves above the month at 1200px so the grid fits again from
+ * there down to 1035px.
+ *
+ * `overflow-x` implies `overflow-y: auto` under the spec so the vertical axis
+ * is still technically a scrollport. It draws nothing because the box is now as
+ * tall as the table it holds.
+ */
 .grid-wrap {
-  overflow: auto;
-  max-height: 720px;
+  overflow-x: auto;
 }
 
+/*
+ * Fixed layout. A declared width is the width.
+ *
+ * The automatic algorithm reads a width as a hint. A cell that will not wrap
+ * sets its own column instead. The cost centre trigger holds up to 42
+ * characters on one line so that column took 309px of a 732px box. Nothing was
+ * left for the last two columns.
+ *
+ * The four columns with no width divide what the five leave. That is the fixed
+ * layout rule for a column with no width. Each of the four holds 119px at
+ * 1440px and 215px at 1920px. All four truncate at the narrow end. Because the
+ * picker panel and the specification list each show a whole label the truncated
+ * cell is never the only sight of one. A location is the column that gains most
+ * from a wide window because a code runs to 36 characters.
+ *
+ * `min-width` is what the wrapper scrolls. Under 720px a column holds its width
+ * and the box scrolls sideways.
+ */
 table {
+  table-layout: fixed;
   width: 100%;
+  min-width: 720px;
   border-collapse: collapse;
   font-size: 13px;
 }
 
-/* Grey over the Bright Blue rule. Bright Blue never carries the text itself. */
+/*
+ * Grey over the Bright Blue rule. Bright Blue never carries the text itself.
+ *
+ * The sticky is inert while the wrapper is a horizontal scroller. A header can
+ * only stick inside a scrollport and that box no longer scrolls down. It is
+ * kept because the day the nine columns fit the box the wrapper needs no
+ * overflow at all and the header then sticks to the page.
+ *
+ * The background and the z-index are not inert. A row under the header carries
+ * a tint and the header has to cover it.
+ */
 thead th {
   position: sticky;
   top: 0;
@@ -246,15 +290,25 @@ thead th {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 9px 10px;
+  padding: 9px 8px;
   border-bottom: 2px solid var(--bright-blue);
-  white-space: nowrap;
+  vertical-align: bottom;
 }
 
 td {
   padding: 3px 6px;
   border-bottom: 1px solid var(--line);
   vertical-align: middle;
+}
+
+/*
+ * A control here takes less padding than the same control on a form. The
+ * padding a field gives up is width its value shows instead. A location code
+ * runs to 36 characters so no width in this grid holds one whole.
+ */
+td select,
+td input {
+  padding: 5px 7px;
 }
 
 /* One tbody per calendar week so the week reads as a block. */
@@ -287,15 +341,19 @@ tr.overbooked .col-days select {
   background: var(--open);
 }
 
+/* 78px is what puts `Non-working` on one line under the date. */
 .col-date {
-  white-space: nowrap;
   font-weight: 700;
-  width: 92px;
+  width: 78px;
   padding-left: 8px;
 }
 
+.col-date .num {
+  white-space: nowrap;
+}
+
 .col-day {
-  width: 44px;
+  width: 40px;
 }
 
 /*
@@ -330,36 +388,54 @@ tr.overbooked .col-days select {
   line-height: 1.1;
 }
 
-.col-cc {
-  min-width: 230px;
-}
-
-.col-spec {
-  min-width: 210px;
-}
-
+/*
+ * A select carries 36px of padding and arrow before any text. `0.5` needs 19px
+ * of the rest so 68px is the width at which the half day reads as a half day.
+ * At 52px it read as `0.`
+ */
 .col-days {
-  width: 74px;
+  width: 68px;
 }
 
-.col-loc {
-  width: 150px;
-}
-
-.col-tasks {
-  min-width: 160px;
-}
-
+/*
+ * Clearing a row holds the right edge.
+ *
+ * The wrapper still scrolls sideways between 1200px and 1425px and again under
+ * 1035px. This column is the first to leave the box. Sticky pins it so the
+ * button is reachable at every width. The white is what a scrolled row passes
+ * under. A tinted row sets a background on every cell of itself so that state
+ * still wins here.
+ */
 .col-act {
-  width: 34px;
+  position: sticky;
+  right: 0;
+  z-index: 5;
+  width: 38px;
+  background: var(--white);
+  box-shadow: inset 1px 0 0 var(--line);
 }
 
-/* Grey holds to white so a flag on the non-working tint takes Smart Blue. */
+/*
+ * The header takes the same pin from `.col-act`. Because document order alone
+ * would put the body cells over it the z-index is raised past the rest of the
+ * header.
+ */
+thead th.col-act {
+  z-index: 11;
+}
+
+/*
+ * Grey holds to white so a flag on the non-working tint takes Smart Blue.
+ *
+ * The break is what holds the date column at 78px. `Arbeitswochenende` is one
+ * German flag of 17 characters. It needs 97px and it has 64px.
+ */
 .flag {
   display: block;
   font-size: 11px;
   font-weight: 400;
   color: var(--grey);
+  overflow-wrap: break-word;
 }
 
 tr.non-working .flag,

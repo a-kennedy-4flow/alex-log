@@ -17,6 +17,7 @@ import {
   distribute,
   emptyGrid,
   halvesPerAllocation,
+  rowIsEmpty,
   setCatalogue,
   spareOfDay,
   totalDays,
@@ -104,6 +105,28 @@ describe('the spread', () => {
     const grid = distribute(rows, days, 5)
     expect(totalDays(grid)).toBe(5)
     expect(grid.some((h) => h.days === 0.5)).toBe(true)
+  })
+})
+
+describe('an empty row', () => {
+  it('is what an empty grid is made of', () => {
+    expect(emptyGrid(days).every(rowIsEmpty)).toBe(true)
+  })
+
+  it('reads as filled for any one field a user can set', () => {
+    const fields = ['workdayId', 'specification', 'days', 'location', 'tasks'] as const
+    for (const field of fields) {
+      const row = emptyGrid(days.slice(0, 1))[0]!
+      // The value is only there to be something other than null.
+      row[field] = (field === 'days' ? 1 : 'x') as never
+      expect(rowIsEmpty(row)).toBe(false)
+    }
+  })
+
+  it('holds for the default marker because that is never set alone', () => {
+    const row = emptyGrid(days.slice(0, 1))[0]!
+    row.specificationIsDefault = true
+    expect(rowIsEmpty(row)).toBe(true)
   })
 })
 

@@ -117,6 +117,30 @@ async function ticketsThisMonth(
   }
 }
 
+/**
+ * How many profiles are read at once.
+ *
+ * The run screens the whole pool every morning and almost nobody is due. One
+ * read at a time made the run as long as the pool. Twenty five is well under
+ * what the table gives on demand.
+ */
+const READ_AT_ONCE = 25
+
+/** Runs `work` over `items` a few at a time. The answers keep their order. */
+async function mapWithLimit<T, R>(
+  items: T[],
+  limit: number,
+  work: (item: T) => Promise<R>,
+): Promise<R[]> {
+  const out: R[] = new Array(items.length)
+  let next = 0
+  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    for (let i = next++; i < items.length; i = next++) out[i] = await work(items[i]!)
+  })
+  await Promise.all(runners)
+  return out
+}
+
 export async function runReminders(deps: ReminderDeps): Promise<ReminderSummary> {
   const catalogue = await deps.repository.getCatalogue()
   // Without it the bank holidays are unknown so every date computed here would
@@ -132,13 +156,32 @@ export async function runReminders(deps: ReminderDeps): Promise<ReminderSummary>
   const users = await deps.directory.list()
   const summary: ReminderSummary = { considered: users.length, sent: 0, failed: 0 }
 
-  for (const user of users) {
-    const profile = await deps.repository.getProfile(user.sub)
+  // The month is built once per location rather than once per user. A pool of
+  // hundreds shares a handful of offices.
+  const byLocation = new Map<string, string[]>()
+  function workingAt(location: string | null): string[] {
+    const key = location ?? ''
+    let dates = byLocation.get(key)
+    if (!dates) {
+      dates = workingDates(year, month, location)
+      byLocation.set(key, dates)
+    }
+    return dates
+  }
+
+  // The screen runs a few at a time. The sends that follow stay one at a time
+  // so a claim is never taken for a message the next line fails to send.
+  const profiles = await mapWithLimit(users, READ_AT_ONCE, (user) =>
+    deps.repository.getProfile(user.sub),
+  )
+
+  for (const [index, user] of users.entries()) {
+    const profile = profiles[index] ?? null
     // Only an explicit refusal mutes a user. Anything else is opted in.
     if (profile?.remindByEmail === false) continue
 
     const location = profile?.location ?? null
-    const working = workingDates(year, month, location)
+    const working = workingAt(location)
     const due = working[working.length - WORKING_DAYS_LEFT] ?? working[0] ?? null
     if (due !== today) continue
 

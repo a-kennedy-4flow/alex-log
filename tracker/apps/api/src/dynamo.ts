@@ -69,6 +69,7 @@ export class DynamoRepository implements Repository {
       remindByEmail: profile.remindByEmail !== false,
       hoursPerDay: profile.hoursPerDay ?? null,
       jiraProjects: profile.jiraProjects ?? {},
+      jiraTickets: profile.jiraTickets ?? {},
     }
   }
 
@@ -122,6 +123,21 @@ export class DynamoRepository implements Repository {
       updatedAt: item.updatedAt as string,
       data: decompress(item.data as string),
     }
+  }
+
+  // Neither `version` nor `updatedAt` is a DynamoDB reserved word so the
+  // projection needs no alias.
+  async getCatalogueVersion(): Promise<{ version: string; updatedAt: string } | null> {
+    const result = await this.client.send(
+      new GetItemCommand({
+        TableName: this.table,
+        Key: marshall({ pk: CATALOGUE_PK, sk: CATALOGUE_SK }),
+        ProjectionExpression: 'version, updatedAt',
+      }),
+    )
+    if (!result.Item) return null
+    const row = unmarshall(result.Item)
+    return { version: row.version as string, updatedAt: row.updatedAt as string }
   }
 
   async claimReminder(sub: string, period: string, at: Date): Promise<boolean> {

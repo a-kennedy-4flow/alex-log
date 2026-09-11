@@ -39,6 +39,10 @@ const state = vi.hoisted(() => ({
   puts: [] as { period: string; booked: number }[],
   gets: [] as string[],
   exports: 0,
+  /** The name the panel handed the export. The download lands under it. */
+  exportName: '',
+  /** Every month the delivery button asked the API to send. */
+  emails: [] as string[],
   fail: false,
   /** Held open by a test that wants two writes to overlap. */
   gate: null as Promise<void> | null,
@@ -88,9 +92,16 @@ vi.mock('@/lib/api', () => ({
     },
     listSheets: () => Promise.resolve({ sheets: [] }),
     getProfile: () => Promise.reject(new FakeApiError(404, 'no profile')),
-    export: () => {
+    export: (_period: string, shown: string) => {
       state.exports++
-      return Promise.resolve({ filename: 'sheet.xlsm', blob: new Blob(['x']) })
+      state.exportName = shown
+      return Promise.resolve({ filename: shown, blob: new Blob(['x']) })
+    },
+    // The real one hands over no address. The API answers with the one on the
+    // token and the panel prints that.
+    emailTracker: (period: string) => {
+      state.emails.push(period)
+      return Promise.resolve({ to: 'name.firstname@4flow.com', filename: 'x.xlsm' })
     },
   },
 }))
@@ -143,6 +154,8 @@ beforeEach(async () => {
   state.puts.length = 0
   state.gets.length = 0
   state.exports = 0
+  state.exportName = ''
+  state.emails.length = 0
   state.fail = false
   state.gate = null
   state.exportedAt = null
@@ -289,19 +302,24 @@ describe('the sent marker', () => {
   })
 })
 
+/** Books the month out. The download button is disabled until something is. */
+function fillMonth(): void {
+  let n = 0
+  for (const day of store.calendar.value) {
+    if (n >= store.target.value) break
+    if (day.nonWorking) continue
+    const row = store.halfDays.value.find((half) => half.date === day.date && half.half === 0)!
+    row.workdayId = '24112'
+    row.specification = specificationsFor('24112').options[0] ?? null
+    row.days = 1
+    row.location = store.profile.location
+    n++
+  }
+}
+
 describe('the export', () => {
   it('runs without saving first', async () => {
-    let n = 0
-    for (const day of store.calendar.value) {
-      if (n >= store.target.value) break
-      if (day.nonWorking) continue
-      const row = store.halfDays.value.find((half) => half.date === day.date && half.half === 0)!
-      row.workdayId = '24112'
-      row.specification = specificationsFor('24112').options[0] ?? null
-      row.days = 1
-      row.location = store.profile.location
-      n++
-    }
+    fillMonth()
     await vi.advanceTimersByTimeAsync(3000)
     await settle()
     expect(state.puts).toHaveLength(1)
@@ -314,5 +332,79 @@ describe('the export', () => {
 
     expect(state.exports).toBe(1)
     expect(state.puts).toEqual([])
+  })
+
+  it('asks for the file under the name it shows', async () => {
+    // A cross origin response can hide the name the API sets. The panel hands
+    // its own name in so the file still lands under the name on the screen.
+    fillMonth()
+    await vi.advanceTimersByTimeAsync(3000)
+    await settle()
+
+    const panel = mount(ExportPanel, { global: { plugins } })
+    await settle()
+    await panel.get('button').trigger('click')
+    await settle()
+
+    expect(state.exportName).toBe(panel.get('p.num').text())
+    expect(state.exportName).toMatch(/_projecttracker_[A-Z]{2}\.xlsm$/)
+  })
+})
+
+describe('the delivery', () => {
+  it('is offered only once the month can be exported', async () => {
+    // Nothing is booked yet so neither way out is open.
+    const empty = mount(ExportPanel, { global: { plugins } })
+    await settle()
+    for (const button of empty.findAll('button')) {
+      expect(button.attributes('disabled')).toBeDefined()
+    }
+
+    fillMonth()
+    await vi.advanceTimersByTimeAsync(3000)
+    await settle()
+
+    const panel = mount(ExportPanel, { global: { plugins } })
+    await settle()
+    for (const button of panel.findAll('button')) {
+      expect(button.attributes('disabled')).toBeUndefined()
+    }
+  })
+
+  it('sends the month rather than downloading it', async () => {
+    fillMonth()
+    await vi.advanceTimersByTimeAsync(3000)
+    await settle()
+    state.puts.length = 0
+
+    const panel = mount(ExportPanel, { global: { plugins } })
+    await settle()
+    await panel.findAll('button')[1]!.trigger('click')
+    await settle()
+
+    expect(state.emails).toEqual([store.period.value])
+    expect(state.exports).toBe(0)
+    // The mailbox the API answered with. Nothing on the screen chose it.
+    expect(panel.text()).toContain('name.firstname@4flow.com')
+  })
+
+  it('flushes an edit still inside the interval first', async () => {
+    fillMonth()
+    await vi.advanceTimersByTimeAsync(3000)
+    await settle()
+    state.puts.length = 0
+
+    const panel = mount(ExportPanel, { global: { plugins } })
+    await settle()
+    edit(0.5)
+    // The watcher runs on the tick. Clicking before it leaves nothing pending
+    // and the test would prove nothing.
+    await settle()
+    await panel.findAll('button')[1]!.trigger('click')
+    await settle()
+
+    // The API sends what is stored so the edit has to land before the send.
+    expect(state.puts).toHaveLength(1)
+    expect(state.emails).toHaveLength(1)
   })
 })

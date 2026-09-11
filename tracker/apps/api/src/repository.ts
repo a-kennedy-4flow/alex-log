@@ -113,6 +113,15 @@ export interface Repository {
   putSheet(sub: string, period: string, sheet: StoredSheet): Promise<void>
   listSheets(sub: string): Promise<{ period: string; updatedAt: string }[]>
   getCatalogue(): Promise<StoredCatalogue | null>
+  /**
+   * The version and the date without the list itself.
+   *
+   * Read on every request that resolves against the catalogue. Because a) the
+   * stored blob is sixty kilobytes and over a megabyte once it is parsed. b) a
+   * warm container already holds the parsed copy. c) comparing the version is
+   * what tells it whether backoffice has replaced the list.
+   */
+  getCatalogueVersion(): Promise<{ version: string; updatedAt: string } | null>
   putCatalogue(entry: StoredCatalogue): Promise<void>
   /**
    * Records that the reminder for this month has been sent. False means one was
@@ -218,6 +227,11 @@ export class MemoryRepository implements Repository {
 
   async getCatalogue(): Promise<StoredCatalogue | null> {
     return this.catalogue
+  }
+
+  async getCatalogueVersion(): Promise<{ version: string; updatedAt: string } | null> {
+    if (!this.catalogue) return null
+    return { version: this.catalogue.version, updatedAt: this.catalogue.updatedAt }
   }
 
   async putCatalogue(entry: StoredCatalogue): Promise<void> {

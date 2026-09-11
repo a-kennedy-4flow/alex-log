@@ -12,7 +12,7 @@ import {
   daysFromHours,
   distribute,
   fitsMonth,
-  groupByWorkdayId,
+  groupByAllocation,
   hoursPerHalfDay,
   hoursPerMonth,
   hoursTotals,
@@ -29,13 +29,13 @@ const august = buildMonth(2026, 8, LOCATION)
 
 /** The seven real tickets closed in August 2026. The hours are not real. */
 const AUGUST: TicketHours[] = [
-  { key: 'PLRS-1141', summary: 'Add TO/Load identification', workdayId: '4100782', hours: 14 },
-  { key: 'PLRS-1115', summary: 'Set up roles', workdayId: '4100782', hours: 11 },
-  { key: 'PLRS-995', summary: 'Bring frontend in line', workdayId: '4100782', hours: 9 },
-  { key: 'PLRS-1099', summary: 'Customize reopen status', workdayId: '4100782', hours: 6 },
-  { key: 'PLRS-1117', summary: 'Email templates preview', workdayId: '4100782', hours: 5 },
-  { key: 'PLRS-1116', summary: 'Role requirements in openapi', workdayId: '4100782', hours: 3 },
-  { key: 'DEVH-4887', summary: 'Create WebProxy', workdayId: '4100915', hours: 2 },
+  { key: 'PLRS-1141', summary: 'Add TO/Load identification', workdayId: '4100782', specification: null, hours: 14 },
+  { key: 'PLRS-1115', summary: 'Set up roles', workdayId: '4100782', specification: null, hours: 11 },
+  { key: 'PLRS-995', summary: 'Bring frontend in line', workdayId: '4100782', specification: null, hours: 9 },
+  { key: 'PLRS-1099', summary: 'Customize reopen status', workdayId: '4100782', specification: null, hours: 6 },
+  { key: 'PLRS-1117', summary: 'Email templates preview', workdayId: '4100782', specification: null, hours: 5 },
+  { key: 'PLRS-1116', summary: 'Role requirements in openapi', workdayId: '4100782', specification: null, hours: 3 },
+  { key: 'DEVH-4887', summary: 'Create WebProxy', workdayId: '4100915', specification: null, hours: 2 },
 ]
 
 describe('daysFromHours', () => {
@@ -67,7 +67,7 @@ describe('daysFromHours', () => {
 })
 
 describe('grouping the month', () => {
-  const groups = groupByWorkdayId(AUGUST)
+  const groups = groupByAllocation(AUGUST)
   const totals = hoursTotals(AUGUST, groups)
 
   it('gathers the seven tickets under two Workday IDs', () => {
@@ -91,18 +91,18 @@ describe('grouping the month', () => {
 
   it('inflates by half a day for every group holding under half a day', () => {
     const thin: TicketHours[] = [
-      { key: 'A-1', summary: 'one', workdayId: '4100782', hours: 1 },
-      { key: 'B-1', summary: 'two', workdayId: '4100915', hours: 1 },
+      { key: 'A-1', summary: 'one', workdayId: '4100782', specification: null, hours: 1 },
+      { key: 'B-1', summary: 'two', workdayId: '4100915', specification: null, hours: 1 },
     ]
-    const groups = groupByWorkdayId(thin)
+    const groups = groupByAllocation(thin)
     const totals = hoursTotals(thin, groups)
     expect(totals.trueDays).toBe(0.25)
     expect(totals.roundedDays).toBe(1)
   })
 
   it('holds an unmapped ticket apart and books nothing for it', () => {
-    const mixed = [...AUGUST, { key: 'X-1', summary: 'no project', workdayId: null, hours: 8 }]
-    const groups = groupByWorkdayId(mixed)
+    const mixed = [...AUGUST, { key: 'X-1', summary: 'no project', workdayId: null, specification: null, hours: 8 }]
+    const groups = groupByAllocation(mixed)
     const totals = hoursTotals(mixed, groups)
     expect(groups).toHaveLength(2)
     expect(totals.unmapped.map((t) => t.key)).toEqual(['X-1'])
@@ -129,7 +129,7 @@ describe('fitsMonth', () => {
 })
 
 describe('the fill', () => {
-  const groups = groupByWorkdayId(AUGUST)
+  const groups = groupByAllocation(AUGUST)
   const totals = hoursTotals(AUGUST, groups)
   const grid = distribute(allocationsFromGroups(groups, LOCATION), august, totals.roundedDays)
 
@@ -185,18 +185,18 @@ describe('the working day', () => {
 
   it('books a six hour day user more days for the same hours', () => {
     const worked: TicketHours[] = [
-      { key: 'A-1', summary: 'one', workdayId: '4100782', hours: 24 },
+      { key: 'A-1', summary: 'one', workdayId: '4100782', specification: null, hours: 24 },
     ]
-    expect(groupByWorkdayId(worked, 8)[0]?.days).toBe(3)
-    expect(groupByWorkdayId(worked, 6)[0]?.days).toBe(4)
+    expect(groupByAllocation(worked, 8)[0]?.days).toBe(3)
+    expect(groupByAllocation(worked, 6)[0]?.days).toBe(4)
   })
 
   it('carries the day length through the totals', () => {
     const worked: TicketHours[] = [
-      { key: 'A-1', summary: 'one', workdayId: '4100782', hours: 12 },
+      { key: 'A-1', summary: 'one', workdayId: '4100782', specification: null, hours: 12 },
     ]
-    const groups = groupByWorkdayId(worked, 6)
+    const groups = groupByAllocation(worked, 6)
     expect(hoursTotals(worked, groups, 6).trueDays).toBe(2)
-    expect(hoursTotals(worked, groupByWorkdayId(worked, 8), 8).trueDays).toBe(1.5)
+    expect(hoursTotals(worked, groupByAllocation(worked, 8), 8).trueDays).toBe(1.5)
   })
 })

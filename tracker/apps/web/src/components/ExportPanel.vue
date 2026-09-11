@@ -1,6 +1,9 @@
 <script setup lang="ts">
-// The download. The page hands the user a file and the user emails it. The app
-// sends nothing.
+// The download.
+//
+// Two ways out and one workbook. The browser takes the file or the API sends it
+// to the mailbox the token names. The second is for a user who forwards it from
+// Outlook rather than attaching it by hand.
 //
 // The workbook is built by the API so the validation that guards it runs on a
 // server the browser cannot talk past. The API exports what is stored. The
@@ -8,14 +11,13 @@
 // edit still inside the autosave interval is written first and that is what the
 // flush does.
 //
-// The download is what files the month. It is also what mutes the monthly
-// reminder. So a month edited after its download is named here because it is
-// named nowhere else.
+// Either way out files the month. It is also what mutes the monthly reminder.
+// So a month edited after that is named here because it is named nowhere else.
 
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { exportFilename, exportLocation } from '@tracker/core'
+import { exportFilename, exportLocation, TRACKER_RECIPIENT } from '@tracker/core'
 import { ApiError, api, download, usingApi } from '@/lib/api'
 import { longDate } from '@/i18n'
 import {
@@ -35,10 +37,11 @@ import {
 
 const { t, locale } = useI18n()
 
-const RECIPIENT = 'software.projecttracker@4flow.com'
-
 const busy = ref(false)
+const sending = ref(false)
 const failure = ref<string | null>(null)
+/** The mailbox the last delivery reached. Null until one has. */
+const delivered = ref<string | null>(null)
 
 // The location comes from the stored month before the profile. The API names
 // the workbook the same way so what is shown here is what arrives.
@@ -60,24 +63,47 @@ const downloadedOn = computed(() =>
   exportedAt.value ? longDate(locale.value, exportedAt.value) : '',
 )
 
+function reasonOf(error: unknown): string {
+  return error instanceof ApiError
+    ? `${error.message}${error.codes.length ? ` (${error.codes.join(' ')})` : ''}`
+    : String(error)
+}
+
 async function run(): Promise<void> {
   busy.value = true
   failure.value = null
+  delivered.value = null
   try {
     // An edit still inside the autosave interval has not been written yet and
     // the API exports what is stored.
     await flushSheet()
-    const file = await api.export(period.value)
+    // The name on the screen is handed in so a hidden header cannot rename the
+    // file to something the user was never shown.
+    const file = await api.export(period.value, filename.value)
     download(file.filename, file.blob)
     // The export writes the sent marker on the server so it is read back.
     await refreshSentState()
   } catch (error) {
-    failure.value =
-      error instanceof ApiError
-        ? `${error.message}${error.codes.length ? ` (${error.codes.join(' ')})` : ''}`
-        : String(error)
+    failure.value = reasonOf(error)
   } finally {
     busy.value = false
+  }
+}
+
+async function send(): Promise<void> {
+  sending.value = true
+  failure.value = null
+  delivered.value = null
+  try {
+    await flushSheet()
+    // The address is never sent. The API answers with the one on the token so
+    // the panel names the mailbox the file actually reached.
+    delivered.value = (await api.emailTracker(period.value)).to
+    await refreshSentState()
+  } catch (error) {
+    failure.value = reasonOf(error)
+  } finally {
+    sending.value = false
   }
 }
 </script>
@@ -90,7 +116,7 @@ async function run(): Promise<void> {
     </div>
 
     <div class="say">
-      <p>{{ t('exportPanel.intro', { address: RECIPIENT }) }}</p>
+      <p>{{ t('exportPanel.intro', { address: TRACKER_RECIPIENT }) }}</p>
       <p v-if="failure" class="reason">{{ failure }}</p>
       <p v-else-if="blocked" class="reason">{{ t('exportPanel.blocked') }}</p>
       <p v-else-if="!usingApi" class="reason">
@@ -100,7 +126,8 @@ async function run(): Promise<void> {
       <p v-else-if="!halfDays.some((h) => h.days !== null)" class="reason">
         {{ t('grid.empty') }}
       </p>
-      <p v-if="sentState === 'changed'" class="reason">
+      <p v-if="delivered" class="sent">{{ t('exportPanel.delivered', { address: delivered }) }}</p>
+      <p v-else-if="sentState === 'changed'" class="reason">
         {{ t('exportPanel.changed', { at: downloadedOn }) }}
       </p>
       <p v-else-if="sentState === 'sent'" class="sent">
@@ -108,9 +135,14 @@ async function run(): Promise<void> {
       </p>
     </div>
 
-    <button type="button" class="primary" :disabled="!canDownload || busy" @click="run">
-      {{ busy ? '…' : t('exportPanel.button') }}
-    </button>
+    <div class="acts">
+      <button type="button" class="primary" :disabled="!canDownload || busy || sending" @click="run">
+        {{ busy ? '…' : t('exportPanel.button') }}
+      </button>
+      <button type="button" class="second" :disabled="!canDownload || busy || sending" @click="send">
+        {{ sending ? '…' : t('exportPanel.email') }}
+      </button>
+    </div>
   </section>
 </template>
 
@@ -157,8 +189,15 @@ async function run(): Promise<void> {
   margin-top: 4px;
 }
 
-.primary {
+/* The two ways out sit together rather than one per corner. */
+.acts {
   margin-left: auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.primary {
   border: 0;
   background: var(--orange);
   color: var(--smart-blue);
@@ -172,8 +211,25 @@ async function run(): Promise<void> {
   background: var(--orange-hover);
 }
 
-.primary:disabled {
+.primary:disabled,
+.second:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Outlined rather than filled. The download is the ordinary way out. */
+.second {
+  border: 1px solid var(--on-blue-body);
+  background: transparent;
+  color: var(--white);
+  font-weight: 700;
+  border-radius: var(--radius);
+  padding: 12px 22px;
+  font-size: 15px;
+}
+
+.second:hover:not(:disabled) {
+  background: var(--white);
+  color: var(--smart-blue);
 }
 </style>

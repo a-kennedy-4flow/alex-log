@@ -318,6 +318,20 @@ export function specificationIsRequired(workdayId: string | null): boolean {
   return specificationsFor(workdayId).hasOwnList
 }
 
+/** How many picks are remembered. Longer than this is a list nobody reads. */
+export const RECENT_LIMIT = 8
+
+/**
+ * The pick list with `workdayId` moved to the front.
+ *
+ * The caller holds the list and persists it. This is here rather than beside
+ * that store because the ordering it produces is the ordering `searchProjects`
+ * reads and one file should own both.
+ */
+export function withRecentPick(recent: readonly string[], workdayId: string): string[] {
+  return [workdayId, ...recent.filter((id) => id !== workdayId)].slice(0, RECENT_LIMIT)
+}
+
 /** What a row can be called. Most rows carry no name at all. */
 export function labelOf(project: Project): string {
   return (
@@ -337,6 +351,15 @@ export function labelOf(project: Project): string {
  * the first digits of their own cost centre.
  */
 const RANK = { exactId: 0, idPrefix: 1, absence: 2, idContains: 3, text: 4, none: 5 } as const
+
+/**
+ * Where a workday id sits in the list of what was picked last. Zero is the
+ * newest. A row nobody has picked sorts after every row somebody has.
+ */
+function recencyOf(workdayId: string, recent: readonly string[]): number {
+  const at = recent.indexOf(workdayId)
+  return at === -1 ? Number.MAX_SAFE_INTEGER : at
+}
 
 function rankOf(project: Project, q: string): number {
   const id = project.workdayId.toLowerCase()
@@ -362,31 +385,54 @@ export function searchProjects(
   query: string,
   limit = 50,
   preferredBusinessLine: string | null = null,
+  recent: readonly string[] = [],
 ): Project[] {
   const q = query.trim().toLowerCase()
   const mine = (p: Project): number =>
     preferredBusinessLine !== null && p.businessLine === preferredBusinessLine ? 0 : 1
 
   if (q === '') {
+    // What this user picked last leads. Because a) a month repeats the month
+    // before. b) the id is what the picker asks for and nobody remembers it.
+    // c) an absence reaches the front the same way rather than by a rule of its
+    // own once it has been picked once.
+    const picked: Project[] = []
+    for (const workdayId of recent) {
+      const project = byWorkdayId.get(workdayId)
+      if (project) picked.push(project)
+    }
+    const seen = new Set(picked.map((p) => p.workdayId))
     const absences: Project[] = []
     const preferred: Project[] = []
     const rest: Project[] = []
     for (const p of catalogue.projects) {
+      if (seen.has(p.workdayId)) continue
       if (isAbsence(p.workdayId)) absences.push(p)
       else if (mine(p) === 0) preferred.push(p)
       else rest.push(p)
     }
-    return [...absences, ...preferred, ...rest].slice(0, limit)
+    return [...picked, ...absences, ...preferred, ...rest].slice(0, limit)
   }
 
-  const scored: { project: Project; rank: number; own: number; order: number }[] = []
+  const scored: { project: Project; rank: number; seen: number; own: number; order: number }[] = []
   catalogue.projects.forEach((project, order) => {
     const rank = rankOf(project, q)
     if (rank === RANK.none) return
-    scored.push({ project, rank, own: mine(project), order })
+    scored.push({
+      project,
+      rank,
+      seen: recencyOf(project.workdayId, recent),
+      own: mine(project),
+      order,
+    })
   })
 
-  scored.sort((a, b) => a.rank - b.rank || a.own - b.own || a.order - b.order)
+  // Recency breaks a tie ahead of the business line and neither beats a better
+  // match. A recent row promoted over a closer one is what made the list read
+  // as though it had ignored what was typed.
+  scored.sort(
+    (a, b) => a.rank - b.rank || a.seen - b.seen || a.own - b.own || a.order - b.order,
+  )
   return scored.slice(0, limit).map((s) => s.project)
 }
 
@@ -401,4 +447,36 @@ export function defaultSpecificationFor(workdayId: string | null): string | null
   if (workdayId === null) return null
   const spec = specificationsFor(workdayId)
   return spec.hasOwnList ? (spec.options[0] ?? null) : null
+}
+
+/**
+ * The key a Jira label and a catalogue specification are compared on.
+ *
+ * Jira holds the specification as a label so it carries no space. One site
+ * writes `4s_Overheads_Concept_&_development` and another writes
+ * `4s_changeRequest` for what the workbook calls `4s_Change request`. Dropping
+ * every character that is not a letter or a digit collapses them onto one key.
+ * The 38 specifications the workbook holds stay distinct under it.
+ */
+function specificationKeyOf(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, '')
+}
+
+/**
+ * A Jira label read as one of the specifications a cost centre allows.
+ *
+ * Null where the label matches none of them. Such a label is reported rather
+ * than booked. Because a) the cost centre owns the list and a value outside it
+ * is not bookable. b) the field also holds a cost centre number somebody typed
+ * into the wrong box. c) guessing the nearest entry would book time against
+ * work nobody did.
+ */
+export function matchSpecification(
+  workdayId: string | null,
+  label: string | null,
+): string | null {
+  if (workdayId === null || label === null) return null
+  const wanted = specificationKeyOf(label)
+  if (wanted === '') return null
+  return specificationsFor(workdayId).options.find((o) => specificationKeyOf(o) === wanted) ?? null
 }

@@ -1,85 +1,147 @@
 <script setup lang="ts">
 // The backoffice screen.
 //
-// A tracker workbook is read in the browser and only the lists it holds are
-// sent. The file is 660 kB and the lists are about 1.3 MB of JSON so the Lambda
-// needs no spreadsheet parser.
+// A workbook is read in the browser and only the lists it holds are sent. A
+// tracker is 660 kB and its lists are about 1.3 MB of JSON so the Lambda needs
+// no spreadsheet parser.
 //
-// Each upload replaces everything. The screen therefore shows what was read and
-// what it would replace before anything is sent.
+// A tracker upload replaces everything so the screen shows what was read and
+// what it would replace before anything is sent. The 4s project numbers list
+// replaces nothing. It names the projects the tracker leaves blank so the
+// screen counts what it would name instead.
 
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { offeredWorkdayIds, setCatalogue } from '@tracker/core'
+import { offeredWorkdayIds, setCatalogue, type CatalogueInput } from '@tracker/core'
 import {
-  NotATracker,
-  readCatalogueFrom,
+  NotAnUpload,
+  mergeProjectNumbers,
+  readUploadFrom,
   toCatalogueInput,
-  type ParsedCatalogue,
+  type Upload,
 } from '@tracker/workbook-reader'
 import { ApiError, api, usingApi } from '@/lib/api'
 import { isBackoffice } from '@/composables/useIdentity'
 
 const { t } = useI18n()
 
-const parsed = ref<ParsedCatalogue | null>(null)
+const upload = ref<Upload | null>(null)
 const filename = ref('')
 const reading = ref(false)
 const sending = ref(false)
 const failure = ref<string | null>(null)
 const done = ref<string | null>(null)
 const dragging = ref(false)
+/** Whether a project number the catalogue has not got is added as bookable. */
+const addAbsent = ref(true)
 
-const current = ref<{ updatedAt: string; projects: number; workbook: string | null } | null>(null)
+/** The stored lists. A project numbers upload is laid over these. */
+const stored = ref<CatalogueInput | null>(null)
+
+const current = ref<{
+  updatedAt: string
+  projects: number
+  workbook: string | null
+  numbers: string | null
+} | null>(null)
 
 async function loadCurrent(): Promise<void> {
   if (!usingApi) return
   try {
-    const value = await api.catalogue()
+    // The route answers with its version and its date beside the lists. Both
+    // are dropped here. A copy of either inside the lists would win the spread
+    // the route serves them through and hand every reader a stale one.
+    const { version: _version, updatedAt, ...data } = await api.catalogue()
+    stored.value = data
     current.value = {
-      updatedAt: value.updatedAt,
-      projects: offeredWorkdayIds(value).length,
-      workbook: value.source?.workbook ?? null,
+      updatedAt,
+      projects: offeredWorkdayIds(data).length,
+      workbook: data.source?.workbook ?? null,
+      numbers: data.source?.projectNumbers?.workbook ?? null,
     }
   } catch {
     // Nothing uploaded yet is a fine state to be in.
+    stored.value = null
     current.value = null
   }
 }
 void loadCurrent()
 
+const catalogue = computed(() =>
+  upload.value?.kind === 'tracker' ? upload.value.catalogue : null,
+)
+const numbers = computed(() =>
+  upload.value?.kind === 'projectNumbers' ? upload.value.projectNumbers : null,
+)
+
+/** The 4s list laid over what is stored. Null until both are there. */
+const merged = computed(() => {
+  const list = numbers.value
+  const base = stored.value
+  if (list === null || base === null) return null
+  return mergeProjectNumbers(base, list, filename.value, addAbsent.value)
+})
+
+/** The body a send would put. Null when there is nothing to send. */
+const outgoing = computed<CatalogueInput | null>(() => {
+  const parsed = catalogue.value
+  if (parsed !== null) return toCatalogueInput(parsed, filename.value)
+  return merged.value?.data ?? null
+})
+
 /** What the picker will offer once this file is uploaded. */
 const offered = computed(() => {
-  const value = parsed.value
-  if (!value) return { kept: 0, dropped: 0 }
-  const kept = offeredWorkdayIds(toCatalogueInput(value, filename.value)).length
-  return { kept, dropped: value.projects.length + value.absenceTypes.length - kept }
+  const data = outgoing.value
+  if (!data) return { kept: 0, dropped: 0 }
+  const kept = offeredWorkdayIds(data).length
+  const rows = (data.projects?.length ?? 0) + (data.absenceTypes?.length ?? 0)
+  return { kept, dropped: rows - kept }
 })
 
 const summary = computed(() => {
-  const value = parsed.value
-  if (!value) return []
+  const list = numbers.value
+  if (list !== null) {
+    // The count of numbers read needs no catalogue. The other two are what the
+    // merge found so they wait for one.
+    const rows = [{ label: t('admin.numbersRead'), value: list.numbers.length }]
+    const report = merged.value?.report
+    if (report) {
+      rows.push({ label: t('admin.numbersNamed'), value: report.named })
+      rows.push({ label: t('admin.numbersAbsent'), value: report.absent })
+    }
+    return rows
+  }
+  const parsed = catalogue.value
+  if (parsed === null) return []
   return [
     { label: t('admin.projects'), value: offered.value.kept },
-    { label: t('admin.locations'), value: value.locations.length },
-    { label: t('admin.holidayLists'), value: Object.keys(value.holidays).length },
-    { label: t('admin.businessLines'), value: value.businessLines.length },
-    { label: t('admin.specRanges'), value: Object.keys(value.specifications).length },
+    { label: t('admin.locations'), value: parsed.locations.length },
+    { label: t('admin.holidayLists'), value: Object.keys(parsed.holidays).length },
+    { label: t('admin.businessLines'), value: parsed.businessLines.length },
+    { label: t('admin.specRanges'), value: Object.keys(parsed.specifications).length },
   ]
+})
+
+/** What the file says about when its own list was cut. */
+const cut = computed(() => {
+  const parsed = catalogue.value
+  if (parsed !== null) return parsed.source.projectListUpdated ?? ''
+  const date = numbers.value?.source.listUpdated
+  return date ? t('admin.numbersCut', { date }) : ''
 })
 
 async function read(file: File): Promise<void> {
   reading.value = true
   failure.value = null
   done.value = null
-  parsed.value = null
+  upload.value = null
   try {
     const bytes = new Uint8Array(await file.arrayBuffer())
-    parsed.value = readCatalogueFrom(bytes)
+    upload.value = readUploadFrom(bytes)
     filename.value = file.name
   } catch (error) {
-    failure.value = error instanceof NotATracker ? error.message : String(error)
+    failure.value = error instanceof NotAnUpload ? error.message : String(error)
   } finally {
     reading.value = false
   }
@@ -97,16 +159,20 @@ function onDrop(event: DragEvent): void {
 }
 
 async function send(): Promise<void> {
-  const value = parsed.value
-  if (!value) return
+  const data = outgoing.value
+  if (!data) return
   sending.value = true
   failure.value = null
   try {
-    const saved = await api.putCatalogue(toCatalogueInput(value, filename.value))
+    const report = merged.value?.report ?? null
+    const saved = await api.putCatalogue(data)
     // The browser holds a copy so the editor reflects the upload at once.
     setCatalogue(await api.catalogue())
-    done.value = t('admin.replaced', { projects: saved.projects })
-    parsed.value = null
+    done.value =
+      report === null
+        ? t('admin.replaced', { projects: saved.projects })
+        : t('admin.numbersApplied', { named: report.named, added: report.added })
+    upload.value = null
     await loadCurrent()
   } catch (error) {
     failure.value = error instanceof ApiError ? error.message : String(error)
@@ -132,6 +198,9 @@ async function send(): Promise<void> {
           <span v-if="current.workbook" class="muted">
             &middot; {{ t('admin.from', { workbook: current.workbook }) }}
           </span>
+          <span v-if="current.numbers" class="muted">
+            &middot; {{ t('admin.numbersFrom', { workbook: current.numbers }) }}
+          </span>
           <span class="muted">&middot; {{ current.updatedAt }}</span>
         </dd>
       </dl>
@@ -152,9 +221,12 @@ async function send(): Promise<void> {
       <p v-if="failure" class="failure">{{ failure }}</p>
       <p v-if="done" class="done">{{ done }}</p>
 
-      <div v-if="parsed" class="preview" data-tour="adminPreview">
+      <div v-if="upload" class="preview" data-tour="adminPreview">
         <h3>{{ filename }}</h3>
-        <p class="muted">{{ parsed.source.projectListUpdated }}</p>
+        <p class="muted">{{ cut }}</p>
+
+        <p v-if="numbers && !stored" class="warn">{{ t('admin.numbersNeedTracker') }}</p>
+
         <dl class="counts">
           <div v-for="row in summary" :key="row.label">
             <dt>{{ row.label }}</dt>
@@ -162,24 +234,43 @@ async function send(): Promise<void> {
           </div>
         </dl>
 
-        <p v-if="offered.dropped" class="muted note">
-          {{ t('admin.dropped', { count: offered.dropped }) }}
-        </p>
+        <template v-if="catalogue">
+          <p v-if="offered.dropped" class="muted note">
+            {{ t('admin.dropped', { count: offered.dropped }) }}
+          </p>
 
-        <p v-if="parsed.brokenSpecRanges.length" class="warn">
-          {{ t('admin.brokenRanges', { names: parsed.brokenSpecRanges.map((r) => r.name).join(' ') }) }}
-        </p>
+          <p v-if="catalogue.brokenSpecRanges.length" class="warn">
+            {{
+              t('admin.brokenRanges', {
+                names: catalogue.brokenSpecRanges.map((r) => r.name).join(' '),
+              })
+            }}
+          </p>
+        </template>
+
+        <template v-if="merged">
+          <label v-if="merged.report.absent" class="add">
+            <input v-model="addAbsent" type="checkbox" />
+            <span>{{ t('admin.numbersAdd', { count: merged.report.absent }) }}</span>
+          </label>
+
+          <p v-if="merged.report.known" class="muted note">
+            {{ t('admin.numbersKnown', { count: merged.report.known }) }}
+          </p>
+        </template>
 
         <footer>
-          <p class="muted note">{{ t('admin.replaceWarning') }}</p>
+          <p class="muted note">
+            {{ numbers ? t('admin.numbersWarning') : t('admin.replaceWarning') }}
+          </p>
           <button
             type="button"
             class="btn btn-primary"
             data-tour="adminReplace"
-            :disabled="sending || !usingApi"
+            :disabled="sending || !usingApi || !outgoing"
             @click="send"
           >
-            {{ sending ? '…' : t('admin.replace') }}
+            {{ sending ? '…' : numbers ? t('admin.numbersApply') : t('admin.replace') }}
           </button>
         </footer>
         <p v-if="!usingApi" class="muted note">{{ t('admin.needsApi') }}</p>
@@ -311,5 +402,17 @@ footer .btn-primary {
   border-radius: var(--radius);
   background: var(--warm-grey);
   color: var(--smart-blue);
+}
+
+.add {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.add input {
+  margin: 0;
 }
 </style>

@@ -14,7 +14,7 @@ import { ApiError, api, usingApi, type StoredSheet } from '@/lib/api'
 import { setLocale } from '@/i18n'
 
 import type { HalfDay, LocaleCode, Timesheet, UserProfile } from '@tracker/core'
-import { absenceTotal, aggregateByProject, catalogue, aggregateByWeek, buildMonth, dayValueFor, daysPastTarget, defaultSpecificationFor, emptyGrid, hasErrors, spareOfDay, targetDays, totalDays, validate, workingDayCount } from '@tracker/core'
+import { absenceTotal, aggregateByProject, catalogue, aggregateByWeek, buildMonth, dayValueFor, daysPastTarget, defaultSpecificationFor, emptyGrid, hasErrors, rowIsEmpty, spareOfDay, targetDays, totalDays, validate, workingDayCount } from '@tracker/core'
 
 const HISTORY_MONTHS = 6
 const PROFILE_KEY = 'timesheets.profile'
@@ -51,6 +51,7 @@ const DEFAULT_PROFILE: UserProfile = {
   remindByEmail: true,
   hoursPerDay: null,
   jiraProjects: {},
+  jiraTickets: {},
 }
 
 /**
@@ -464,16 +465,16 @@ export async function loadProfileFromApi(): Promise<void> {
   Object.assign(profile, await api.getProfile())
   // The stored answer wins over whatever the browser was guessed to prefer. It
   // is the same answer the monthly reminder is written in.
-  if (profile.locale) setLocale(profile.locale)
+  if (profile.locale) await setLocale(profile.locale)
 }
 
 /**
  * Switches the language and remembers the choice. The reminder is written by
  * the API so the answer has to reach the profile rather than the browser alone.
  */
-export function chooseLocale(code: LocaleCode): void {
+export async function chooseLocale(code: LocaleCode): Promise<void> {
   profile.locale = code
-  setLocale(code)
+  await setLocale(code)
 }
 
 export async function saveProfile(): Promise<void> {
@@ -549,6 +550,12 @@ export async function loadHistory(): Promise<void> {
   }
 }
 
+/** How many cost centres the reference list beside the grid holds. */
+const LIST_LENGTH = 12
+
+/** Months over which a booked day gives up half its weight in the order. */
+const HALF_LIFE_MONTHS = 2
+
 export interface CostCentreUse {
   workdayId: string
   specification: string | null
@@ -557,12 +564,30 @@ export interface CostCentreUse {
   /** How many months it appears in. */
   months: number
   lastUsed: string
+  /** The days discounted by the age of the month each was booked in. */
+  score: number
 }
 
 /**
- * The cost centres this user reaches for. Ordered by days booked so the one
- * they live on comes first. The open month counts too so a code picked a moment
- * ago is already on the list.
+ * What one day booked in the `YYYY-MM` period `key` is worth against the open
+ * period. A month ahead of the open one is held at the full day because a user
+ * reading back through the year still wants the codes they are on now.
+ */
+function weightOf(key: string, open: string): number {
+  const index = (p: string) => Number(p.slice(0, 4)) * 12 + Number(p.slice(5, 7))
+  const age = Math.max(0, index(open) - index(key))
+  return 0.5 ** (age / HALF_LIFE_MONTHS)
+}
+
+/**
+ * The cost centres this user reaches for. A day booked in the open month counts
+ * for a whole day and every HALF_LIFE_MONTHS back halves what a day is worth.
+ * Because a) the code wanted next is usually the code booked last. b) a code
+ * left months ago keeps its place while its days outweigh the newer ones. c) a
+ * cut off by date would drop a code that comes round once a quarter.
+ *
+ * The open month counts too so a code picked a moment ago is already on the
+ * list.
  */
 export const topCostCentres = computed<CostCentreUse[]>(() => {
   const seen = new Map<string, CostCentreUse>()
@@ -577,12 +602,14 @@ export const topCostCentres = computed<CostCentreUse[]>(() => {
   ]
 
   for (const { halfDays: rows, key } of months) {
+    const weight = weightOf(key, period.value)
     const inThisMonth = new Set<string>()
     for (const row of rows) {
       if (row.workdayId === null || row.days === null) continue
       const existing = seen.get(row.workdayId)
       if (existing) {
         existing.days += row.days
+        existing.score += row.days * weight
         if (key > existing.lastUsed) existing.lastUsed = key
       } else {
         seen.set(row.workdayId, {
@@ -591,6 +618,7 @@ export const topCostCentres = computed<CostCentreUse[]>(() => {
           days: row.days,
           months: 0,
           lastUsed: key,
+          score: row.days * weight,
         })
       }
       inThisMonth.add(row.workdayId)
@@ -602,8 +630,8 @@ export const topCostCentres = computed<CostCentreUse[]>(() => {
   }
 
   return [...seen.values()]
-    .sort((a, b) => b.days - a.days || b.lastUsed.localeCompare(a.lastUsed))
-    .slice(0, 5)
+    .sort((a, b) => b.score - a.score || b.lastUsed.localeCompare(a.lastUsed))
+    .slice(0, LIST_LENGTH)
 })
 
 /* ---------- derived ---------- */
@@ -637,8 +665,8 @@ export const rowsByDate = computed(() => {
 })
 
 /**
- * Empties one row. Emptying the upper row of a day takes the lower one with it
- * because the lower row is not reachable without it.
+ * Empties one row and nothing else. What emptying a row on screen means to the
+ * other half of the day is a rule of the editor rather than of the store.
  */
 export function clearRow(entry: HalfDay): void {
   entry.workdayId = null
@@ -647,9 +675,6 @@ export function clearRow(entry: HalfDay): void {
   entry.days = null
   entry.location = null
   entry.tasks = null
-  if (entry.half !== 0) return
-  const lower = (rowsByDate.value.get(entry.date) ?? [])[1]
-  if (lower && lower.workdayId !== null) clearRow(lower)
 }
 
 /**
@@ -691,6 +716,17 @@ export function bookNextFree(workdayId: string, specification: string | null): s
   return null
 }
 
+/**
+ * Empties every row of the open month.
+ *
+ * The target override is left where it is. Because a) it is a property of the
+ * month and not an entry in it. b) a user who set 12 days for a part month
+ * still wants 12 after emptying the rows. c) the period bar carries its own
+ * reset beside the figure.
+ */
 export function clearMonth(): void {
   halfDays.value = emptyGrid(calendar.value)
 }
+
+/** True while the month holds nothing to clear. */
+export const monthIsEmpty = computed(() => halfDays.value.every(rowIsEmpty))

@@ -5,8 +5,8 @@
 // a list beside the grid saves opening the picker and typing an id that is
 // already known.
 //
-// The absences sit apart on a square each. Because a) everyone books one where
-// a cost centre is booked by the few who own it. b) an absence carries no
+// The absences sit at the top on a square each. Because a) everyone books one
+// where a cost centre is booked by the few who own it. b) an absence carries no
 // number so a full width row would show an empty column. c) a square is the
 // smallest control that still holds a mark.
 
@@ -71,6 +71,24 @@ function book(at: 'list' | 'absence', workdayId: string, specification: string |
   <section class="sheet pad" data-tour="recent">
     <h2 class="eyebrow">{{ t('recent.title') }}</h2>
 
+    <div class="absence">
+      <span class="lab">{{ t('picker.absence') }}</span>
+      <button
+        v-for="absence in absences"
+        :key="absence.label"
+        type="button"
+        class="square"
+        :title="t('recent.bookAbsence', { name: absence.name })"
+        :aria-label="t('recent.bookAbsence', { name: absence.name })"
+        @click="book('absence', absence.label, null)"
+      >
+        {{ absence.mark }}
+      </button>
+      <span v-if="landed?.at === 'absence'" class="landed">
+        {{ t('recent.landed', { date: shortDate(locale, landed.date) }) }}
+      </span>
+    </div>
+
     <p v-if="topCostCentres.length === 0" class="muted empty">{{ t('recent.empty') }}</p>
 
     <ul v-else>
@@ -93,24 +111,6 @@ function book(at: 'list' | 'absence', workdayId: string, specification: string |
       </li>
     </ul>
 
-    <div class="absence">
-      <span class="lab">{{ t('picker.absence') }}</span>
-      <button
-        v-for="absence in absences"
-        :key="absence.label"
-        type="button"
-        class="square"
-        :title="t('recent.bookAbsence', { name: absence.name })"
-        :aria-label="t('recent.bookAbsence', { name: absence.name })"
-        @click="book('absence', absence.label, null)"
-      >
-        {{ absence.mark }}
-      </button>
-      <span v-if="landed?.at === 'absence'" class="landed">
-        {{ t('recent.landed', { date: shortDate(locale, landed.date) }) }}
-      </span>
-    </div>
-
     <p v-if="refused" class="full">{{ t('recent.full') }}</p>
 
     <p class="muted footnote">{{ t('recent.hint') }}</p>
@@ -127,12 +127,19 @@ h2 {
   font-size: 12px;
 }
 
+/* The list is taller than the panel it sits in so it scrolls on its own.
+   Because a) the aside is sticky and one taller than the window puts the checks
+   below it out of reach. b) the rows are a reference list so a part of one at
+   the boundary still says there is more under it. */
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   gap: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 li button {
@@ -186,14 +193,14 @@ li button:hover .meta {
   font-size: 11px;
 }
 
-/* The absences are a band of their own under the list. */
+/* The absences are a band of their own above the list. */
 .absence {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--warm-grey);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--warm-grey);
 }
 
 .absence .lab {

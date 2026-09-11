@@ -57,20 +57,37 @@ export function setDays(entry: HalfDay, value: 0.5 | 1 | null): void {
 }
 
 /**
- * Clearing the workday id drops the specification because the list changes.
- * Either way the day is shared again between the rows that remain filled.
+ * Empties one row of a day as the clear button does. A booking in the lower
+ * row moves up into the upper one when the upper one goes. Because a) the user
+ * asked for the row they were looking at to go rather than the whole day. b)
+ * the lower row is not on show without the upper one so a booking left behind
+ * there would ship unseen.
+ */
+export function clearHalf(entry: HalfDay): void {
+  clearRow(entry)
+  if (entry.half !== 0) return
+  const lower = rowsOf(entry.date)[1]
+  if (!lower || lower.workdayId === null) return
+  entry.workdayId = lower.workdayId
+  entry.specification = lower.specification
+  entry.specificationIsDefault = lower.specificationIsDefault
+  entry.days = lower.days
+  entry.location = lower.location
+  entry.tasks = lower.tasks
+  clearRow(lower)
+}
+
+/**
+ * Clearing the workday id empties the whole row because a specification and a
+ * day value without a cost centre are a part filled row. Either way the day is
+ * shared again between the rows that remain filled.
  */
 export function setWorkday(entry: HalfDay, value: string | null): void {
-  entry.workdayId = value
   if (value === null) {
-    entry.specification = null
-    entry.specificationIsDefault = false
-    entry.days = null
-    entry.location = null
-    entry.tasks = null
-    clearLower(entry)
+    clearHalf(entry)
     return
   }
+  entry.workdayId = value
   // A cost centre allows its own list so a specification from the last one may
   // no longer be on it. Either way the user is given a starting point.
   const options = specificationsFor(value).options

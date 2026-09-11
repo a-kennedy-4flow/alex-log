@@ -49,6 +49,14 @@ export interface TicketHours {
   summary: string
   /** Null until the project it came from is mapped. Such a ticket books nothing. */
   workdayId: string | null
+  /**
+   * Null until the Jira label is matched into the list the cost centre allows.
+   *
+   * Two tickets of one cost centre book different specifications so the pair
+   * decides the row rather than the Workday ID alone. `resolveSpecification`
+   * fills it in the browser for the same reason `workdayId` is filled there.
+   */
+  specification: string | null
   hours: number
 }
 
@@ -93,8 +101,16 @@ export interface CompletedTicket extends TicketHours {
   costCentre: string | null
   /** The ticket the cost centre was read from. The ticket itself or an ancestor. */
   costCentreFrom: string | null
-  /** The Jira `Cost Center Specification`. Resolved up the same chain. */
+  /**
+   * The Jira `Cost Center Specification`.
+   *
+   * A label rather than a specification the tracker knows. Jira holds no space
+   * in one so `matchSpecification` reads it into the workbook list. It is
+   * carried unmatched because the Jira function never loads the catalogue.
+   */
   costCentreSpecification: string | null
+  /** The specification ticket. The ticket itself or an ancestor or a link. */
+  costCentreSpecificationFrom: string | null
   /**
    * Hours this user logged per day keyed `yyyy-mm-dd`.
    *
@@ -105,8 +121,12 @@ export interface CompletedTicket extends TicketHours {
   hoursSource: HoursSource
 }
 
-export interface WorkdayGroup {
+export interface AllocationGroup {
   workdayId: string
+  /** Null where no ticket of the group resolved one. */
+  specification: string | null
+  /** The pair as one string. What the share editor and the table key on. */
+  key: string
   tickets: TicketHours[]
   hours: number
   /** The hours as days before rounding. */
@@ -137,21 +157,36 @@ export function daysFromHours(hours: number, hoursPerDay: number | null = null):
   return Math.ceil(hours / hoursPerHalfDay(hoursPerDay)) / 2
 }
 
+/** The pair one timesheet row holds. A tab joins them because neither can hold one. */
+export function allocationKeyOf(workdayId: string, specification: string | null): string {
+  return `${workdayId}\t${specification ?? ''}`
+}
+
 /**
  * Groups the tickets and rounds each group once.
  *
- * The order is by days descending then by Workday ID. A stable order matters
+ * The Workday ID and the specification group together rather than the Workday
+ * ID alone. Because a) a timesheet row holds both so a group holding two
+ * specifications could only book one of them. b) one 4flow cost centre runs
+ * concept work and product operations and training against the same number. c)
+ * the specification a group does not hold is the one nobody would notice was
+ * dropped.
+ *
+ * The order is by days descending then by the pair. A stable order matters
  * because the fill walks these groups and the screen lists them.
  */
-export function groupByWorkdayId(
+export function groupByAllocation(
   tickets: TicketHours[],
   hoursPerDay: number | null = null,
-): WorkdayGroup[] {
-  const byId = new Map<string, WorkdayGroup>()
+): AllocationGroup[] {
+  const byKey = new Map<string, AllocationGroup>()
   for (const ticket of tickets) {
     if (ticket.workdayId === null) continue
-    const group = byId.get(ticket.workdayId) ?? {
+    const key = allocationKeyOf(ticket.workdayId, ticket.specification)
+    const group = byKey.get(key) ?? {
       workdayId: ticket.workdayId,
+      specification: ticket.specification,
+      key,
       tickets: [],
       hours: 0,
       trueDays: 0,
@@ -159,20 +194,18 @@ export function groupByWorkdayId(
     }
     group.tickets.push(ticket)
     group.hours += Math.max(0, ticket.hours)
-    byId.set(ticket.workdayId, group)
+    byKey.set(key, group)
   }
-  for (const group of byId.values()) {
+  for (const group of byKey.values()) {
     group.trueDays = group.hours / (hoursPerHalfDay(hoursPerDay) * 2)
     group.days = daysFromHours(group.hours, hoursPerDay)
   }
-  return [...byId.values()].sort(
-    (a, b) => b.days - a.days || a.workdayId.localeCompare(b.workdayId),
-  )
+  return [...byKey.values()].sort((a, b) => b.days - a.days || a.key.localeCompare(b.key))
 }
 
 export function hoursTotals(
   tickets: TicketHours[],
-  groups: WorkdayGroup[],
+  groups: AllocationGroup[],
   hoursPerDay: number | null = null,
 ): HoursTotals {
   const hours = groups.reduce((sum, g) => sum + g.hours, 0)
@@ -207,14 +240,14 @@ export function fitsMonth(roundedDays: number, days: CalendarDay[]): boolean {
  * c) a second walker over the month is a second place for those rules to drift.
  */
 export function allocationsFromGroups(
-  groups: WorkdayGroup[],
+  groups: AllocationGroup[],
   location: string | null,
 ): Allocation[] {
   const total = groups.reduce((sum, g) => sum + g.days, 0)
   if (total <= 0) return []
   return groups.map((group) => ({
     workdayId: group.workdayId,
-    specification: defaultSpecificationFor(group.workdayId),
+    specification: group.specification ?? defaultSpecificationFor(group.workdayId),
     percent: (group.days / total) * 100,
     location,
     tasks: tasksFor(group),
@@ -228,6 +261,6 @@ export function allocationsFromGroups(
  * summaries are joined so nothing a user might search for is dropped. Decision
  * 4 of the todo took the ticket summary over the epic summary.
  */
-export function tasksFor(group: WorkdayGroup): string {
+export function tasksFor(group: AllocationGroup): string {
   return group.tickets.map((t) => `${t.key} ${t.summary}`).join('; ')
 }

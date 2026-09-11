@@ -128,7 +128,7 @@ function onWorkdayChange(row: Allocation, value: string | null): void {
 </script>
 
 <template>
-  <section class="sheet pad" data-tour="quickRows">
+  <section data-tour="quickRows">
     <h2>{{ t('simple.title') }}</h2>
     <p class="muted intro">{{ t('simple.intro') }}</p>
 

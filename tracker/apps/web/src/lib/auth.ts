@@ -25,11 +25,30 @@ const PROVIDER: string = import.meta.env.VITE_COGNITO_IDP ?? ''
 /** Sign in runs only where the pool is configured. The fixtures build has none. */
 export const authEnabled: boolean = DOMAIN !== '' && CLIENT_ID !== ''
 
+/**
+ * A built bundle naming no pool. The shell refuses to render for one rather
+ * than opening to anybody. Because a) a development build runs without a pool
+ * by design. b) `deploy-site.sh` writes the pool into the production
+ * environment file so a built bundle missing it was built before the stack
+ * existed. c) the API refuses every call such a shell makes so what renders is
+ * a broken screen with no gate on it.
+ */
+export const authMisconfigured: boolean = !authEnabled && !import.meta.env.DEV
+
 export const CALLBACK_PATH = '/auth/callback'
-const SIGNED_OUT = 'signedout'
 const VERIFIER_KEY = 'timesheets.pkce.verifier'
 const STATE_KEY = 'timesheets.pkce.state'
 const RETURN_KEY = 'timesheets.pkce.return'
+
+/**
+ * That the user signed out rather than arrived. It is held in the tab and not
+ * in the address. Because a) Cognito matches `logout_uri` against the
+ * registered sign out list exactly so a query string on it is refused. b) a
+ * marker in the address bar outlives the sign in that follows it and sends the
+ * next reload back to the signed out screen. c) no other tab has any use for
+ * it.
+ */
+const SIGNED_OUT_KEY = 'timesheets.signedout'
 
 /** Renewed a minute early so a request never carries an expired token. */
 const RENEW_MARGIN_MS = 60_000
@@ -123,6 +142,8 @@ async function exchange(body: Record<string, string>): Promise<Session> {
 
 /** Leaves the page. Nothing after the call runs. */
 export async function signIn(): Promise<void> {
+  // Asking for a sign in is what ends the signed out state.
+  sessionStorage.removeItem(SIGNED_OUT_KEY)
   const verifier = randomString()
   const state = randomString()
   sessionStorage.setItem(VERIFIER_KEY, verifier)
@@ -146,15 +167,17 @@ export async function signIn(): Promise<void> {
 /** Ends the Cognito session and the Identity Center session with it. */
 export function signOut(): void {
   session = null
+  sessionStorage.setItem(SIGNED_OUT_KEY, '1')
   const query = new URLSearchParams({
     client_id: CLIENT_ID,
-    logout_uri: `${location.origin}/?${SIGNED_OUT}=1`,
+    // The bare origin. That is what `logoutUrls` registers in the stack.
+    logout_uri: `${location.origin}/`,
   })
   location.assign(`${DOMAIN}/logout?${query.toString()}`)
 }
 
 export function signedOut(): boolean {
-  return new URLSearchParams(location.search).has(SIGNED_OUT)
+  return sessionStorage.getItem(SIGNED_OUT_KEY) !== null
 }
 
 /**
@@ -187,7 +210,9 @@ async function finishCallback(): Promise<boolean> {
     redirect_uri: location.origin + CALLBACK_PATH,
     code_verifier: verifier,
   })
-  returnTo = back === CALLBACK_PATH ? '/' : back
+  // A failed callback leaves the signed out screen on the callback path so the
+  // address stored from there carries a spent code. The path alone is compared.
+  returnTo = new URL(back, location.origin).pathname === CALLBACK_PATH ? '/' : back
   return true
 }
 

@@ -11,8 +11,11 @@ import { loadCatalogue } from '@tracker/fixtures'
 import { loadSamples, type Sample } from '@tracker/fixtures/samples'
 
 import { createDevServer, DEV_HEADERS } from '../dev-server'
+import { jiraPerRequest } from '../jira-dev'
+import { FakeJira, PlainCipher } from '../jira-fake'
 import { MemoryRepository, periodOf } from '../repository'
 import { resetCatalogueCache } from '../handlers'
+import { DEV_JIRA_AS_USER, DEV_JIRA_CLIENT_ID } from '@tracker/core'
 
 const ORIGIN = 'http://localhost:5173'
 
@@ -188,5 +191,83 @@ describe('the download over the wire', () => {
     // A zip starts with PK. Base64 leaking through would start with UEs.
     expect([bytes[0], bytes[1]]).toEqual([0x50, 0x4b])
     expect(bytes.length).toBeGreaterThan(4000)
+  })
+})
+
+// Reading the month of another Atlassian account. Development alone.
+//
+// The account is a header so the browser can change it without this server
+// restarting. A server of its own here because the one above registers no Jira
+// app at all which is how a deployment with none behaves.
+describe('the Jira account a header names', () => {
+  let jiraServer: Server
+  let at: string
+
+  beforeAll(async () => {
+    const repository = new MemoryRepository()
+    const now = () => new Date('2026-09-08T12:00:00.000Z')
+    jiraServer = createDevServer(
+      { repository, now },
+      // Null is the double answering. It serves one fixed month of one fixed
+      // account so it reads no other one.
+      jiraPerRequest(
+        {
+          repository,
+          jira: new FakeJira(),
+          cipher: new PlainCipher(),
+          now,
+          clientId: DEV_JIRA_CLIENT_ID,
+          redirectUri: 'http://localhost:5173/jira/callback',
+          siteUrl: 'https://4flow.atlassian.net',
+        },
+        null,
+      ),
+    )
+    await new Promise<void>((resolve) => jiraServer.listen(0, '127.0.0.1', resolve))
+    at = `http://127.0.0.1:${(jiraServer.address() as AddressInfo).port}`
+  })
+
+  afterAll(async () => {
+    await new Promise<void>((resolve) => jiraServer.close(() => resolve()))
+  })
+
+  it('answers the route as usual where no header names one', async () => {
+    const response = await fetch(`${at}/api/jira/link`, { headers: as('alex') })
+    expect(response.status).toBe(200)
+    const state = (await response.json()) as { clientId: string }
+    expect(state.clientId).toBe(DEV_JIRA_CLIENT_ID)
+  })
+
+  it('refuses an id no Atlassian account could have', async () => {
+    // The id reaches JQL inside quotes. Reading the consenting account instead
+    // would read as the header never having been sent.
+    const response = await fetch(`${at}/api/jira/link`, {
+      headers: { ...as('alex'), [DEV_JIRA_AS_USER]: 'alex" OR key = "X' },
+    })
+    expect(response.status).toBe(400)
+    const problem = (await response.json()) as { error: string }
+    expect(problem.error).toContain('not an Atlassian account id')
+  })
+
+  it('says so where the double is what would answer', async () => {
+    const response = await fetch(`${at}/api/jira/link`, {
+      headers: { ...as('alex'), [DEV_JIRA_AS_USER]: '712020:0cecee67' },
+    })
+    expect(response.status).toBe(400)
+    const problem = (await response.json()) as { error: string }
+    expect(problem.error).toContain('JIRA_CLIENT_SECRET')
+  })
+
+  it('allows the header on a preflight', async () => {
+    const response = await fetch(`${at}/api/jira/completed/2026-08`, {
+      method: 'OPTIONS',
+      headers: {
+        origin: ORIGIN,
+        'access-control-request-method': 'GET',
+        'access-control-request-headers': DEV_JIRA_AS_USER,
+      },
+    })
+    expect(response.status).toBe(204)
+    expect(response.headers.get('access-control-allow-headers')).toContain(DEV_JIRA_AS_USER)
   })
 })

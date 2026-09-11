@@ -28,6 +28,8 @@ type FakeTicket = Omit<
   | 'costCentre'
   | 'costCentreFrom'
   | 'costCentreSpecification'
+  | 'costCentreSpecificationFrom'
+  | 'specification'
   | 'days'
 >
 
@@ -119,8 +121,10 @@ export class FakeJira implements Jira {
       costCentre: null,
       costCentreFrom: null,
       costCentreSpecification: null,
+      costCentreSpecificationFrom: null,
       days: {},
       workdayId: null,
+      specification: null,
       hours: 0,
       // No field answered. That is what every row of the real site reads.
       hoursSource: NO_HOURS_SOURCE,

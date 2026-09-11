@@ -1,21 +1,35 @@
 // Sending mail.
 //
-// The reminder is the only message this application sends. It goes out from a
-// name we control so no other team owns any part of the delivery. See
-// `docs/mail.md`.
+// Two messages leave this application. The monthly reminder asks for a tracker.
+// The delivery carries one the user asked to be sent to their own mailbox. Both
+// go out from a name we control so no other team owns any part of the delivery.
+// See `docs/mail.md`.
 //
-// The client comes from the Lambda runtime rather than the bundle. That is the
-// same arrangement `dynamo.ts` already relies on.
+// The client comes from the Lambda runtime rather than the bundle. It is also
+// imported on the first send rather than on the first line. Because a) the API
+// function answers every route from this module now that it sends the delivery.
+// b) a static import resolves the client on every cold start. c) nobody presses
+// the button on most of them.
 
-import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2'
+import { randomUUID } from 'node:crypto'
 
-import { DEFAULT_LOCALE, type LocaleCode } from '@tracker/core'
+import type { SESv2Client } from '@aws-sdk/client-sesv2'
+
+import { DEFAULT_LOCALE, TRACKER_RECIPIENT, type LocaleCode } from '@tracker/core'
+
+export interface Attachment {
+  filename: string
+  contentType: string
+  bytes: Uint8Array
+}
 
 export interface Message {
   to: string
   subject: string
   text: string
   html: string
+  /** A message carrying one of these is sent as MIME rather than as fields. */
+  attachments?: Attachment[]
 }
 
 export interface Mailer {
@@ -31,28 +45,116 @@ export class MemoryMailer implements Mailer {
   }
 }
 
+/** The local server. Nothing leaves the process and the console says what would. */
+export class ConsoleMailer implements Mailer {
+  async send(message: Message): Promise<void> {
+    const files = (message.attachments ?? []).map((file) => file.filename).join(' ')
+    console.log(`mail       ${message.to} ${message.subject}${files ? ` + ${files}` : ''}`)
+  }
+}
+
+/* ---------- MIME ---------- */
+
+/** RFC 2047. Six of the eight subjects hold a month name that is not ASCII. */
+function encodeHeader(value: string): string {
+  const ascii = /^[\x20-\x7e]*$/.test(value)
+  return ascii ? value : `=?UTF-8?B?${Buffer.from(value, 'utf8').toString('base64')}?=`
+}
+
+/** Base64 at the line length SMTP accepts. */
+function wrap(value: string): string {
+  return (value.match(/.{1,76}/g) ?? []).join('\r\n')
+}
+
+/** RFC 2231. A quoted file name must be ASCII and a surname need not be. */
+function nameParams(filename: string): string {
+  const ascii = filename.replace(/[^\x20-\x7e]/g, '_')
+  const also = ascii === filename ? '' : `; filename*=UTF-8''${encodeURIComponent(filename)}`
+  return `filename="${ascii}"${also}`
+}
+
+/**
+ * The message as MIME. SES carries a file in a raw message and in no other.
+ *
+ * `multipart/mixed` holds the body and the files. The body is itself a
+ * `multipart/alternative` so a reader showing no HTML still has the text.
+ */
+export function rawMessage(from: string, message: Message): Buffer {
+  const mixed = `mixed_${randomUUID()}`
+  const alternative = `alt_${randomUUID()}`
+  const base64 = (value: string): string => wrap(Buffer.from(value, 'utf8').toString('base64'))
+
+  const lines = [
+    `From: ${from}`,
+    `To: ${message.to}`,
+    `Subject: ${encodeHeader(message.subject)}`,
+    'MIME-Version: 1.0',
+    `Content-Type: multipart/mixed; boundary="${mixed}"`,
+    '',
+    `--${mixed}`,
+    `Content-Type: multipart/alternative; boundary="${alternative}"`,
+    '',
+    `--${alternative}`,
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    base64(message.text),
+    `--${alternative}`,
+    'Content-Type: text/html; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    base64(message.html),
+    `--${alternative}--`,
+  ]
+
+  for (const file of message.attachments ?? []) {
+    lines.push(
+      `--${mixed}`,
+      `Content-Type: ${file.contentType}; ${nameParams(file.filename)}`,
+      'Content-Transfer-Encoding: base64',
+      `Content-Disposition: attachment; ${nameParams(file.filename)}`,
+      '',
+      wrap(Buffer.from(file.bytes).toString('base64')),
+    )
+  }
+
+  lines.push(`--${mixed}--`, '')
+  return Buffer.from(lines.join('\r\n'), 'utf8')
+}
+
 export class SesMailer implements Mailer {
+  /** Built on the first send and held for the life of the container. */
+  private client: SESv2Client | null
+
   constructor(
     private readonly from: string,
     private readonly configurationSet: string | undefined,
-    private readonly client: SESv2Client = new SESv2Client({}),
-  ) {}
+    /** The tests hand one in. A deployment lets the first send build it. */
+    client: SESv2Client | null = null,
+  ) {
+    this.client = client
+  }
 
   async send(message: Message): Promise<void> {
+    const { SESv2Client, SendEmailCommand } = await import('@aws-sdk/client-sesv2')
+    this.client ??= new SESv2Client({})
+    const carries = (message.attachments ?? []).length > 0
     await this.client.send(
       new SendEmailCommand({
         FromEmailAddress: this.from,
         Destination: { ToAddresses: [message.to] },
         ...(this.configurationSet ? { ConfigurationSetName: this.configurationSet } : {}),
-        Content: {
-          Simple: {
-            Subject: { Data: message.subject, Charset: 'UTF-8' },
-            Body: {
-              Text: { Data: message.text, Charset: 'UTF-8' },
-              Html: { Data: message.html, Charset: 'UTF-8' },
+        Content: carries
+          ? { Raw: { Data: rawMessage(this.from, message) } }
+          : {
+              Simple: {
+                Subject: { Data: message.subject, Charset: 'UTF-8' },
+                Body: {
+                  Text: { Data: message.text, Charset: 'UTF-8' },
+                  Html: { Data: message.html, Charset: 'UTF-8' },
+                },
+              },
             },
-          },
-        },
       }),
     )
   }
@@ -230,4 +332,108 @@ export function reminderMessage(input: ReminderInput): Omit<Message, 'to'> {
   ].join('')
 
   return { subject, text, html }
+}
+
+/* ---------- the delivery ---------- */
+
+interface Delivery {
+  subject: string
+  greeting: string
+  attached: string
+  forward: string
+}
+
+// The reminder copy above and this one are held apart. Because a) the reminder
+// asks for a tracker that does not exist yet. b) this one carries the finished
+// workbook. c) a subject shared between the two would thread them together in
+// the mailbox.
+const DELIVERY: Record<LocaleCode, Delivery> = {
+  en: {
+    subject: 'Your {month} tracker is attached',
+    greeting: 'Hello {name}',
+    attached: 'Your tracker for {month} is attached to this message.',
+    forward: 'Check it then forward it to {address}.',
+  },
+  de: {
+    subject: 'Ihr Tracker für {month} im Anhang',
+    greeting: 'Hallo {name}',
+    attached: 'Ihr Tracker für {month} liegt dieser Nachricht bei.',
+    forward: 'Bitte prüfen Sie ihn und leiten Sie ihn an {address} weiter.',
+  },
+  fr: {
+    subject: 'Votre tracker de {month} en pièce jointe',
+    greeting: 'Bonjour {name}',
+    attached: 'Votre tracker de {month} est joint à ce message.',
+    forward: 'Vérifiez le puis transférez le à {address}.',
+  },
+  es: {
+    subject: 'Tu tracker de {month} adjunto',
+    greeting: 'Hola {name}',
+    attached: 'Tu tracker de {month} está adjunto a este mensaje.',
+    forward: 'Revísalo y reenvíalo a {address}.',
+  },
+  cs: {
+    subject: 'Váš tracker za {month} v příloze',
+    greeting: 'Dobrý den {name}',
+    attached: 'Váš tracker za {month} je přílohou této zprávy.',
+    forward: 'Zkontrolujte jej a přepošlete na {address}.',
+  },
+  hu: {
+    subject: '{month} havi tracker csatolva',
+    greeting: 'Üdvözöljük {name}',
+    attached: 'A {month} havi tracker ehhez az üzenethez csatolva van.',
+    forward: 'Ellenőrizze majd továbbítsa a következő címre {address}.',
+  },
+  'pt-BR': {
+    subject: 'Seu tracker de {month} em anexo',
+    greeting: 'Olá {name}',
+    attached: 'Seu tracker de {month} está anexado a esta mensagem.',
+    forward: 'Confira e encaminhe para {address}.',
+  },
+  'zh-CN': {
+    subject: '{month}工时表已附上',
+    greeting: '{name} 您好',
+    attached: '本邮件已附上您{month}的工时表。',
+    forward: '请核对后转发至 {address}。',
+  },
+}
+
+/** What the workbook is called on the wire. The tracker carries macros. */
+export const WORKBOOK_TYPE = 'application/vnd.ms-excel.sheet.macroEnabled.12'
+
+export interface DeliveryInput {
+  locale: LocaleCode | null
+  firstName: string
+  year: number
+  /** 1 through 12. */
+  month: number
+  workbook: Attachment
+}
+
+/** The message that carries a finished workbook to the user who asked for it. */
+export function deliveryMessage(input: DeliveryInput): Omit<Message, 'to'> {
+  const locale = input.locale ?? DEFAULT_LOCALE
+  const copy = DELIVERY[locale]
+  const monthName = new Intl.DateTimeFormat(locale, { month: 'long', timeZone: 'UTC' }).format(
+    new Date(Date.UTC(input.year, input.month - 1, 1)),
+  )
+  const values = { month: monthName, name: input.firstName, address: TRACKER_RECIPIENT }
+
+  const subject = fill(copy.subject, values)
+  const greeting = fill(copy.greeting, values)
+  const attached = fill(copy.attached, values)
+  const forward = fill(copy.forward, values)
+
+  const text = [greeting, '', attached, forward, '', input.workbook.filename].join('\n')
+
+  // Inline styles only. A mail client strips a stylesheet.
+  const html = [
+    '<html><body style="font-family:system-ui,sans-serif;color:#0d1b2a;line-height:1.5">',
+    `<p>${escape(greeting)}</p>`,
+    `<p>${escape(attached)} ${escape(forward)}</p>`,
+    `<p style="color:#5b6b7c;font-size:12px">${escape(input.workbook.filename)}</p>`,
+    '</body></html>',
+  ].join('')
+
+  return { subject, text, html, attachments: [input.workbook] }
 }

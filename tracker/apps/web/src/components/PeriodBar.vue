@@ -2,15 +2,15 @@
 // The head of the sheet. The period and the location on the left. The running
 // figures on the right.
 //
-// The view switch is not here. It stands with the month in `ViewSwitch.vue`
-// because this bar is carried by the quick fill too and that page draws neither
-// the grid nor the board.
+// Nothing that acts on the month is here. The view switch and the save state
+// and the button that empties the month all stand in the row above the section
+// being edited. This bar sets which month is open and reports its figures.
 
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { catalogue } from '@tracker/core'
-import { LOCALES, monthName, shortTime, type LocaleCode } from '@/i18n'
+import { LOCALES, monthName, type LocaleCode } from '@/i18n'
 import {
   booked,
   chooseLocale,
@@ -18,10 +18,7 @@ import {
   month,
   monthOverride,
   profile,
-  retrySave,
   saveProfile,
-  saveState,
-  savedAt,
   target,
   workingDays,
   year,
@@ -48,9 +45,6 @@ function onLocaleChange(event: Event): void {
   chooseLocale((event.target as HTMLSelectElement).value as LocaleCode)
   void saveProfile()
 }
-
-// The clock time rather than the date because a save is minutes old at most.
-const savedTime = computed(() => (savedAt.value ? shortTime(locale.value, savedAt.value) : ''))
 </script>
 
 <template>
@@ -89,18 +83,6 @@ const savedTime = computed(() => (savedAt.value ? shortTime(locale.value, savedA
         </option>
       </select>
     </label>
-
-    <!-- Where the Save button stood. The month is written as it is edited so
-         the only thing left to say is whether the last edit landed. -->
-    <p class="state" :class="saveState" aria-live="polite">
-      <template v-if="saveState === 'saving'">{{ t('setup.saving') }}</template>
-      <template v-else-if="saveState === 'saved'">{{ t('setup.saved') }} {{ savedTime }}</template>
-      <template v-else-if="saveState === 'failed'">
-        <span class="failed">{{ t('setup.saveFailed') }}</span>
-        <button type="button" class="btn retry" @click="retrySave">{{ t('setup.retry') }}</button>
-        <span class="hint">{{ t('setup.saveFailedHint') }}</span>
-      </template>
-    </p>
 
     <dl class="stats">
       <div class="stat">
@@ -174,39 +156,6 @@ const savedTime = computed(() => (savedAt.value ? shortTime(locale.value, savedA
 select.missing {
   border-color: var(--orange);
   background: var(--open);
-}
-
-/* The save state sits where the button did so the eye lands where it looked
-   before. It holds its height so the bar does not jump as the state changes. */
-.state {
-  align-self: flex-end;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 9px;
-  min-height: 17px;
-  font-size: 13px;
-  color: var(--grey);
-}
-
-/*
- * Vibrant Orange on white reaches 3.32 to 1 which is short of the 4.5 to 1 that
- * 13px needs. So a failure is carried by the word and not by the colour and the
- * text stays the body one.
- */
-.state .failed {
-  font-weight: 700;
-  color: var(--smart-blue);
-}
-
-.state .hint {
-  flex-basis: 100%;
-}
-
-.retry {
-  padding: 2px 10px;
-  font-size: 12px;
 }
 
 /* The figures read left to right in one line. */

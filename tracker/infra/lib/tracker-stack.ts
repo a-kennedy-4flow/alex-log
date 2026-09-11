@@ -87,6 +87,15 @@ const REMINDER_TIME_ZONE = 'Europe/Berlin'
 const JIRA_CLOUD_ID = '792ba525-6efc-4a5f-80f4-b9269516a256'
 
 /**
+ * Where a ticket is read by a person.
+ *
+ * The API host answers no browse address so the host a user opens is configured
+ * rather than derived from the cloud id. It reaches the browser on the Jira link
+ * state. Empty leaves every ticket id on the screen as plain text.
+ */
+const JIRA_SITE_URL = 'https://4flow.atlassian.net'
+
+/**
  * The client id of the registered OAuth 2.0 app.
  *
  * Not a secret either. The browser puts it in the authorize URL. Empty leaves
@@ -439,16 +448,25 @@ export class TrackerStack extends Stack {
     // during synth. Because a) the esbuild binary shim is not runnable under
     // pnpm. b) an explicit artefact is reproducible. c) synth then needs no
     // toolchain of its own.
-    if (!existsSync(join(API_BUNDLE, 'lambda.mjs'))) {
-      throw new Error('run `pnpm --filter @tracker/api bundle` before synth')
+    for (const file of ['api-lambda.mjs', 'jira-lambda.mjs', 'reminder-lambda.mjs']) {
+      if (!existsSync(join(API_BUNDLE, file))) {
+        throw new Error('run `pnpm --filter @tracker/api bundle` before synth')
+      }
     }
 
     const handler = new lambda.Function(this, 'ApiFunction', {
       code: lambda.Code.fromAsset(API_BUNDLE),
-      handler: 'lambda.main',
+      handler: 'api-lambda.main',
       runtime: lambda.Runtime.NODEJS_22_X,
       architecture: lambda.Architecture.ARM_64,
-      memorySize: 512,
+      // Benchmarked rather than guessed. A sweep of the catalogue route from
+      // 256 MB to 2048 MB put the warm median at 447 ms and 204 ms and 132 ms
+      // and 85 ms and 65 ms and 57 ms and 77 ms. The cost of a million calls
+      // was lowest here at 1.15 dollars against 1.36 at 512 MB. Because a) the
+      // share of a vCPU a function gets is its memory over 1769 MB. b) the work
+      // is JSON and gzip which is one thread of pure CPU. c) the run never used
+      // more than 166 MB so this buys processor rather than room.
+      memorySize: 1024,
       // The export decompresses the catalogue and zips a workbook so it needs
       // more than the default three seconds on a cold start.
       timeout: Duration.seconds(30),
@@ -464,6 +482,12 @@ export class TrackerStack extends Stack {
       ...(apiDomain ? { defaultDomainMapping: { domainName: apiDomain } } : {}),
       corsPreflight: {
         allowHeaders: ['content-type', 'authorization'],
+        // The export names the workbook in `content-disposition`. A browser
+        // hides every response header outside the CORS safelist until the API
+        // names it here. Without this the download is named by the fallback in
+        // the API client rather than by the API. The development server exposes
+        // the same header so the two behave alike.
+        exposeHeaders: ['content-disposition'],
         allowMethods: [
           apigw.CorsHttpMethod.GET,
           apigw.CorsHttpMethod.PUT,
@@ -607,12 +631,17 @@ export class TrackerStack extends Stack {
 
     const jiraHandler = new lambda.Function(this, 'JiraFunction', {
       code: lambda.Code.fromAsset(API_BUNDLE),
-      handler: 'lambda.jira',
+      handler: 'jira-lambda.jira',
       runtime: lambda.Runtime.NODEJS_22_X,
       architecture: lambda.Architecture.ARM_64,
       // It holds no catalogue and writes no workbook so it needs less than the
-      // API function.
-      memorySize: 256,
+      // API function. It is not as cheap as 256 MB looked. Because a) a month
+      // of production put the ninety fifth percentile at 1851 ms and the worst
+      // call at 6901 ms against a twenty second timeout. b) the same sweep that
+      // sized the API function had 256 MB running the identical work 2.2 times
+      // slower than 512 MB. c) a KMS decrypt and a TLS handshake and the parse
+      // of a search result are all processor.
+      memorySize: 512,
       // Shorter than the API function. It waits on Atlassian rather than on a
       // browser and a month of one user is one search.
       timeout: Duration.seconds(20),
@@ -620,6 +649,7 @@ export class TrackerStack extends Stack {
         TABLE_NAME: table.tableName,
         JIRA_CLIENT_ID,
         JIRA_CLOUD_ID,
+        JIRA_SITE_URL,
         JIRA_SECRET_ARN: jiraSecret.secretArn,
         JIRA_KEY_ARN: jiraKey.keyArn,
         JIRA_HOURS_FIELDS,
@@ -694,6 +724,22 @@ export class TrackerStack extends Stack {
         configurationSet,
       })
 
+      // Both are named. SES checks the identity and the configuration set
+      // separately so a policy naming only the identity is refused.
+      const mailTargets = [
+        identity.emailIdentityArn,
+        `arn:${this.partition}:ses:${this.region}:${this.account}:configuration-set/${configurationSet.configurationSetName}`,
+      ]
+
+      // The delivery route sends a finished workbook to the mailbox of whoever
+      // pressed the button. It shares the identity and the configuration set
+      // with the reminder so one bounce suppresses the address for both.
+      handler.addEnvironment('MAIL_FROM', mailFrom)
+      handler.addEnvironment('MAIL_CONFIGURATION_SET', configurationSet.configurationSetName)
+      handler.addToRolePolicy(
+        new iam.PolicyStatement({ actions: ['ses:SendEmail'], resources: mailTargets }),
+      )
+
       // Published as `none` and changed to `reject` once a message has been
       // seen to arrive. A policy of `reject` set before DKIM is proven drops
       // every message silently.
@@ -708,9 +754,11 @@ export class TrackerStack extends Stack {
       // roles then hold the client secret rather than one.
       const reminder = new lambda.Function(this, 'ReminderFunction', {
         code: lambda.Code.fromAsset(API_BUNDLE),
-        handler: 'lambda.reminder',
+        handler: 'reminder-lambda.reminder',
         runtime: lambda.Runtime.NODEJS_22_X,
         architecture: lambda.Architecture.ARM_64,
+        // Left where it was. A month of production shows the run finishing in
+        // under a second on 148 MB so there is nothing here to buy.
         memorySize: 512,
         // The whole pool is read and one message goes out per person due today.
         timeout: Duration.minutes(5),
@@ -743,15 +791,7 @@ export class TrackerStack extends Stack {
       // signed in once and saved nothing is exactly who is being reminded.
       userPool.grant(reminder, 'cognito-idp:ListUsers')
       reminder.addToRolePolicy(
-        new iam.PolicyStatement({
-          actions: ['ses:SendEmail'],
-          // Both are named. SES checks the identity and the configuration set
-          // separately so a policy naming only the identity is refused.
-          resources: [
-            identity.emailIdentityArn,
-            `arn:${this.partition}:ses:${this.region}:${this.account}:configuration-set/${configurationSet.configurationSetName}`,
-          ],
-        }),
+        new iam.PolicyStatement({ actions: ['ses:SendEmail'], resources: mailTargets }),
       )
 
       // Daily rather than monthly. The function decides whose day it is because

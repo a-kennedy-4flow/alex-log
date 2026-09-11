@@ -50,9 +50,16 @@ pnpm --filter @tracker/web build
 
 # The hashed assets are immutable. The shell must never be served stale or a
 # deployment would not reach a browser that already has it.
+#
+# The old assets are left in place rather than deleted. Because a) the routes
+# and the catalogues are fetched on demand so a browser holding the previous
+# shell asks for them after the deployment. b) the distribution answers a
+# missing key with index.html and a 200 so the fetch would return markup and
+# fail on the parse rather than on the status. c) a hashed file costs a few
+# kilobytes a deployment.
 aws s3 sync "$root/apps/web/dist/" "s3://$bucket/" \
   --profile "$PROFILE" --region "$REGION" \
-  --delete --exclude index.html \
+  --exclude index.html \
   --cache-control 'public,max-age=31536000,immutable'
 
 aws s3 cp "$root/apps/web/dist/index.html" "s3://$bucket/index.html" \

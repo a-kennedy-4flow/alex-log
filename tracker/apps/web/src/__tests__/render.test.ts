@@ -1,18 +1,26 @@
 // Mount tests. A build that compiles can still fail on the first render so the
 // grid and the whole router tree are both mounted here.
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineComponent, h } from 'vue'
 import { flushPromises, mount } from '@vue/test-utils'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/vue-router'
 
 import { i18n } from '@/i18n'
+import { updateReady } from '@/composables/useVersion'
+import { forgetPicks } from '@/composables/useRecentPicks'
 import { routeTree } from '@/router'
 import { allSpecifications, catalogue, setCatalogue, specificationsFor } from '@tracker/core'
+import type { Timesheet } from '@tracker/core'
 import { monthName, setLocale, shortDate } from '@/i18n'
 import { loadCatalogue } from '@tracker/fixtures'
-import { readCatalogueFrom } from '@tracker/workbook-reader'
+import { readCatalogueFrom, readProjectNumbersFrom } from '@tracker/workbook-reader'
+
+// The English catalogue is read rather than quoted. A sentence copied into an
+// assertion is a second copy of the wording and it fails on every rewrite of
+// the copy rather than on a fault.
+import en from '@/i18n/messages/en'
 import { readFileSync, readdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -22,8 +30,10 @@ import {
   clearMonth,
   clearRow,
   halfDays,
+  history,
   issues,
   month,
+  monthIsEmpty,
   monthOverride,
   openLocation,
   openMonth,
@@ -33,6 +43,7 @@ import {
   workingDays,
   year,
 } from '@/composables/useTimesheet'
+import { clearHalf } from '@/composables/useRowEdit'
 import MonthGrid from '@/components/MonthGrid.vue'
 import MonthCalendar from '@/components/MonthCalendar.vue'
 import MonthPage from '@/pages/MonthPage.vue'
@@ -44,6 +55,7 @@ import TourOverlay from '@/components/TourOverlay.vue'
 import SetupForm from '@/components/SetupForm.vue'
 import SetupWizard from '@/components/SetupWizard.vue'
 import PeriodBar from '@/components/PeriodBar.vue'
+import ClearMonth from '@/components/ClearMonth.vue'
 import SimplePage from '@/pages/SimplePage.vue'
 import ViewSwitch from '@/components/ViewSwitch.vue'
 import ValidationPanel from '@/components/ValidationPanel.vue'
@@ -73,8 +85,34 @@ const plugins = [i18n, VueQueryPlugin]
 // workday ids that the count has to drop.
 const workbookRoot = join(dirname(fileURLToPath(import.meta.url)), '../../../..')
 const workbook = readdirSync(workbookRoot).filter((f) => f.endsWith('.xlsm'))[0]!
+const numbersList = readdirSync(workbookRoot).find((f) => /Projectnumbers/i.test(f))!
+
+/** jsdom builds a File with no `arrayBuffer` so the page is handed what it reads. */
+function fileOf(name: string): File {
+  const bytes = readFileSync(join(workbookRoot, name))
+  return {
+    name,
+    arrayBuffer: () =>
+      Promise.resolve(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)),
+  } as unknown as File
+}
+
+// The shell and five of the six routes are fetched rather than bundled. They
+// are warmed here so a mount resolves them on the same turn as the render.
+async function warmChunks(): Promise<void> {
+  await Promise.all([
+    import('@/components/AdminUpload.vue'),
+    import('@/components/SummaryPanel.vue'),
+    import('@/pages/SimplePage.vue'),
+    import('@/pages/SetupPage.vue'),
+    import('@/pages/AdminPage.vue'),
+    import('@/pages/JiraPage.vue'),
+    import('@/pages/PrivacyPage.vue'),
+  ])
+}
 
 beforeAll(async () => {
+  await warmChunks()
   setCatalogue(await loadCatalogue())
   profile.location = '01_DE_Berlin'
   profile.entity = '02_GmbH'
@@ -202,6 +240,43 @@ describe('the router tree', () => {
     }
   })
 
+  // A stale tab must not be left editing against an API it was never built for
+  // so the demand takes the screen rather than sitting above it.
+  it('replaces the screen once an update is found', async () => {
+    const router = createRouter({
+      routeTree,
+      history: createMemoryHistory({ initialEntries: ['/'] }),
+    })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const wrapper = mount(Host, { global: { plugins } })
+    await router.load()
+    await flushPromises()
+    await flushPromises()
+    updateReady.value = true
+    try {
+      await flushPromises()
+      expect(wrapper.find('h1').exists()).toBe(false)
+      expect(wrapper.get('.update').text()).toContain(i18n.global.t('update.reload'))
+      // The demand carries the surface every other screen carries.
+      expect(wrapper.get('.update').classes()).toContain('pad')
+    } finally {
+      updateReady.value = false
+    }
+  })
+
+  it('sends an address with no route to the month grid', async () => {
+    const router = createRouter({
+      routeTree,
+      history: createMemoryHistory({ initialEntries: ['/nothing-here'] }),
+    })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    mount(Host, { global: { plugins } })
+    await router.load()
+    await flushPromises()
+    await flushPromises()
+    expect(router.state.location.pathname).toBe('/')
+  })
+
   it('renders the privacy notice with every band it promises', async () => {
     const router = createRouter({
       routeTree,
@@ -230,6 +305,17 @@ describe('the router tree', () => {
 })
 
 describe('the cost centre picker', () => {
+  async function pickInto(wrapper: ReturnType<typeof mount>, row: number, id: string) {
+    const pickers = wrapper.findAll('.picker')
+    await pickers[row]!.find('.trigger').trigger('click')
+    await flushPromises()
+    const input = pickers[row]!.find('input[type="search"]')
+    await input.setValue(id)
+    await flushPromises()
+    await input.trigger('keydown', { key: 'Enter' })
+    await flushPromises()
+  }
+
   async function openPicker() {
     const wrapper = mount(MonthGrid, { global: { plugins } })
     await wrapper.find('.picker .trigger').trigger('click')
@@ -308,6 +394,65 @@ describe('the cost centre picker', () => {
     await flushPromises()
     const ids = wrapper.findAll('.picker .results li .id').map((n) => n.text())
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  // The store outlives a component so a case that reads the order clears it.
+  describe('the rows picked last', () => {
+    beforeEach(forgetPicks)
+    afterAll(forgetPicks)
+
+    it('leads the list with what was picked last', async () => {
+      const first = mount(MonthGrid, { global: { plugins } })
+      await pickInto(first, 0, '24112')
+      await pickInto(first, 0, '24111')
+
+      const wrapper = await openPicker()
+      const ids = wrapper.findAll('.picker .results li .id').map((n) => n.text())
+      expect(ids.slice(0, 2)).toEqual(['24111', '24112'])
+      clearRow(halfDays.value[0]!)
+    })
+
+    it('says why those rows are where they are', async () => {
+      const first = mount(MonthGrid, { global: { plugins } })
+      await pickInto(first, 0, '24112')
+
+      const wrapper = await openPicker()
+      const rows = wrapper.findAll('.picker .results li')
+      expect(rows[0]!.find('.kind.recent').text()).toBe(en.picker.recent)
+      // Only the rows it applies to carry the mark.
+      expect(rows.at(-1)!.find('.kind.recent').exists()).toBe(false)
+      clearRow(halfDays.value[0]!)
+    })
+
+    it('leads with nothing of its own before anything is picked', async () => {
+      const wrapper = await openPicker()
+      expect(wrapper.find('.picker .results li .kind.recent').exists()).toBe(false)
+    })
+  })
+
+  describe('the panel', () => {
+    it('joins the trigger rather than floating over it', async () => {
+      const wrapper = await openPicker()
+      const trigger = wrapper.find('.picker .trigger')
+      const panel = wrapper.find('.picker .panel')
+      expect(trigger.classes()).toContain('open')
+      expect(panel.exists()).toBe(true)
+
+      // jsdom measures every box as zero so the trigger bottom and the panel
+      // top are both zero. What is checked is that nothing is added between
+      // them and that the panel never sets a left of its own.
+      const style = panel.attributes('style') ?? ''
+      expect(style).toContain('top: 0px')
+      expect(style).toContain('left: 8px')
+    })
+
+    it('lets the trigger go back to a plain box when it shuts', async () => {
+      const wrapper = await openPicker()
+      await wrapper.find('.picker input[type="search"]').trigger('keydown', { key: 'Escape' })
+      await flushPromises()
+      expect(wrapper.find('.picker .trigger').classes()).not.toContain('open')
+      expect(wrapper.find('.picker .panel').exists()).toBe(false)
+    })
   })
 })
 
@@ -495,9 +640,25 @@ describe('the second row of a day', () => {
     const wrapper = mount(MonthGrid, { global: { plugins } })
     await pickRow(wrapper, 0, '24112')
     await halveFirst(wrapper)
-    clearRow(halfDays.value[0]!)
+    clearHalf(halfDays.value[0]!)
     await flushPromises()
     expect(wrapper.findAll('.picker')).toHaveLength(calendar.value.length)
+  })
+
+  it('keeps its booking when the first row is cleared', async () => {
+    const wrapper = mount(MonthGrid, { global: { plugins } })
+    await pickRow(wrapper, 0, '24112')
+    await halveFirst(wrapper)
+    await pickRow(wrapper, 1, '24111')
+
+    await wrapper.findAll('td.col-act button.icon')[0]!.trigger('click')
+    await flushPromises()
+    // The user cleared one row of the two on show so one booking goes. The
+    // other moves up because the upper row is the one a day shows.
+    expect(halfDays.value[0]!.workdayId).toBe('24111')
+    expect(halfDays.value[0]!.days).toBe(0.5)
+    expect(halfDays.value[1]!.workdayId).toBeNull()
+    expect(booked.value).toBe(0.5)
   })
 
   it('grows the week cell with the row it gains', async () => {
@@ -517,7 +678,7 @@ describe('the admin page', () => {
   it('refuses an ordinary user', () => {
     switchTo('alex')
     const wrapper = mount(AdminUpload, { global: { plugins } })
-    expect(wrapper.text()).toContain('Only the backoffice group')
+    expect(wrapper.text()).toContain(en.admin.denied)
     expect(wrapper.find('.drop').exists()).toBe(false)
   })
 
@@ -556,6 +717,42 @@ describe('the admin page', () => {
     expect(shown).toBeLessThan(parsed.projects.length)
     const dropped = parsed.projects.length + parsed.absenceTypes.length - offered.size
     expect(wrapper.text()).toContain(String(dropped))
+    switchTo('alex')
+  })
+
+  // The second workbook backoffice uploads. It carries no location and no bank
+  // holiday so it is refused until a tracker has been uploaded.
+  it('recognises the 4s project numbers list', async () => {
+    switchTo('backoffice')
+    const wrapper = mount(AdminUpload, { global: { plugins } })
+
+    await wrapper
+      .find('.drop')
+      .trigger('drop', { dataTransfer: { files: [fileOf(numbersList)] } })
+    await flushPromises()
+
+    expect(wrapper.find('.preview').exists()).toBe(true)
+    expect(wrapper.text()).toContain(numbersList)
+    const parsed = readProjectNumbersFrom(new Uint8Array(readFileSync(join(workbookRoot, numbersList))))
+    expect(Number(wrapper.findAll('.counts dd')[0]!.text())).toBe(parsed.numbers.length)
+    expect(wrapper.text()).toContain(en.admin.numbersNeedTracker)
+    expect(wrapper.find('footer button').attributes('disabled')).toBeDefined()
+    switchTo('alex')
+  })
+
+  it('refuses a spreadsheet that is neither', async () => {
+    switchTo('backoffice')
+    const wrapper = mount(AdminUpload, { global: { plugins } })
+    const file = {
+      name: 'notes.xlsx',
+      arrayBuffer: () => Promise.resolve(new TextEncoder().encode('hello').buffer),
+    } as unknown as File
+
+    await wrapper.find('.drop').trigger('drop', { dataTransfer: { files: [file] } })
+    await flushPromises()
+
+    expect(wrapper.find('.preview').exists()).toBe(false)
+    expect(wrapper.find('.failure').text()).toContain('not a workbook the upload accepts')
     switchTo('alex')
   })
 
@@ -777,6 +974,28 @@ describe('the progress panel', () => {
   })
 })
 
+// A saved month holding `days` days on one cost centre. Only the fields the
+// reference list reads are filled in.
+function sheetFor(year: number, month: number, workdayId: string, days: number): Timesheet {
+  const period = `${year}-${String(month).padStart(2, '0')}`
+  return {
+    year,
+    month,
+    location: '01_DE_Berlin',
+    adjustedWorkDays: null,
+    halfDays: Array.from({ length: days }, (_unused, index) => ({
+      date: `${period}-${String(index + 1).padStart(2, '0')}`,
+      half: 0 as const,
+      workdayId,
+      specification: specificationsFor(workdayId).options[0] ?? null,
+      specificationIsDefault: false,
+      days: 1 as const,
+      location: null,
+      tasks: null,
+    })),
+  }
+}
+
 describe('the reference list', () => {
   it('says so while nothing has been booked', () => {
     for (const row of halfDays.value) clearRow(row)
@@ -805,9 +1024,11 @@ describe('the reference list', () => {
     for (const row of halfDays.value) clearRow(row)
   })
 
-  it('holds no more than five', async () => {
+  it('holds no more than twelve', async () => {
     for (const row of halfDays.value) clearRow(row)
-    const ids = ['24112', '24111', '24141', '24041', '24241', '18019']
+    // Thirteen booked so the cap is what holds the count down.
+    const ids = [...new Set(catalogue.projects.map((p) => p.workdayId))].slice(0, 13)
+    expect(ids).toHaveLength(13)
     const days = calendar.value.filter((d) => !d.nonWorking)
     ids.forEach((id, index) => {
       const upper = halfDays.value.find((h) => h.date === days[index]!.date && h.half === 0)!
@@ -817,7 +1038,37 @@ describe('the reference list', () => {
     })
     await flushPromises()
     const wrapper = mount(RecentCostCentres, { global: { plugins } })
-    expect(wrapper.findAll('li')).toHaveLength(5)
+    expect(wrapper.findAll('li')).toHaveLength(12)
+    for (const row of halfDays.value) clearRow(row)
+  })
+
+  // The order is what the list is for so a stale code must not hold the top.
+  it('puts a recent cost centre above an older one with more days', async () => {
+    for (const row of halfDays.value) clearRow(row)
+    // April 2026 is open so December is four months back and March is one.
+    history.value = [sheetFor(2025, 12, '24111', 8), sheetFor(2026, 3, '24112', 3)]
+    await flushPromises()
+
+    const wrapper = mount(RecentCostCentres, { global: { plugins } })
+    const rows = wrapper.findAll('li .id').map((n) => n.text())
+    expect(rows).toEqual(['24112', '24111'])
+    // The days column still reads the plain total and not the weighted one.
+    expect(wrapper.findAll('li .days')[0]!.text()).toContain('3')
+
+    history.value = []
+    for (const row of halfDays.value) clearRow(row)
+  })
+
+  // Four months back is two half lives so a day there is worth a quarter.
+  it('lets enough old days outweigh a recent one', async () => {
+    for (const row of halfDays.value) clearRow(row)
+    history.value = [sheetFor(2025, 12, '24111', 13), sheetFor(2026, 3, '24112', 3)]
+    await flushPromises()
+
+    const wrapper = mount(RecentCostCentres, { global: { plugins } })
+    expect(wrapper.findAll('li .id').map((n) => n.text())).toEqual(['24111', '24112'])
+
+    history.value = []
     for (const row of halfDays.value) clearRow(row)
   })
 
@@ -880,6 +1131,26 @@ describe('the reference list', () => {
     expect(filled[0]!.workdayId).toBe(catalogue.absenceTypes[0]!.label)
     expect(filled[0]!.date).toBe(calendar.value.find((d) => !d.nonWorking)!.date)
     expect(wrapper.find('.absence .landed').exists()).toBe(true)
+    for (const row of halfDays.value) clearRow(row)
+  })
+
+  // The squares are the one control everybody reaches for so they sit above a
+  // list most of which belongs to somebody else.
+  it('keeps the absence squares above the list', async () => {
+    for (const row of halfDays.value) clearRow(row)
+    const first = calendar.value.find((d) => !d.nonWorking)!
+    const seed = halfDays.value.find((h) => h.date === first.date && h.half === 0)!
+    seed.workdayId = '24112'
+    seed.specification = specificationsFor('24112').options[0] ?? null
+    seed.days = 1
+    await flushPromises()
+
+    const wrapper = mount(RecentCostCentres, { global: { plugins } })
+    const children = [...wrapper.get('section').element.children]
+    const squares = children.findIndex((child) => child.classList.contains('absence'))
+    const list = children.findIndex((child) => child.tagName === 'UL')
+    expect(squares).toBeGreaterThanOrEqual(0)
+    expect(list).toBeGreaterThan(squares)
     for (const row of halfDays.value) clearRow(row)
   })
 
@@ -1084,6 +1355,18 @@ describe('a month with no office set', () => {
     }
   }
 
+  it('offers the download and the delivery in that order', async () => {
+    profile.location = '01_DE_Berlin'
+    fillMonth()
+    await flushPromises()
+
+    const panel = mount(ExportPanel, { global: { plugins } })
+    const buttons = panel.findAll('button')
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0]!.text()).toBe('Download the tracker')
+    expect(buttons[1]!.text()).toBe('Email it to me')
+  })
+
   it('says why rather than only disabling the button', async () => {
     profile.location = null
     fillMonth()
@@ -1128,14 +1411,15 @@ describe('a month with no office set', () => {
     expect(set.find('select.missing').exists()).toBe(false)
   })
 
-  it('carries no save button', async () => {
+  it('carries no save button and no longer carries the state either', async () => {
     const bar = mount(PeriodBar, { global: { plugins } })
     await flushPromises()
 
-    // The month is written as it is edited so the bar reports rather than asks.
+    // The month is written as it is edited so nothing here asks to save it. The
+    // state of that write moved to the row above the month.
     expect(bar.find('.save').exists()).toBe(false)
     expect(bar.findAll('button').map((b) => b.text())).not.toContain('Save')
-    expect(bar.find('.state').exists()).toBe(true)
+    expect(bar.find('.state').exists()).toBe(false)
   })
 
   it('marks a missing entity as a warning in the settings', async () => {
@@ -1286,6 +1570,10 @@ describe('the first login wizard', () => {
     const wrapper = mount(SetupWizard, { global: { plugins } })
     const german = wrapper.findAll('.language').find((button) => button.text() === 'Deutsch')!
     await german.trigger('click')
+    // The German catalogue is fetched rather than bundled so the button waits
+    // on the module before the wording moves.
+    await vi.waitUntil(() => i18n.global.locale.value === 'de')
+    await flushPromises()
     expect(profile.locale).toBe('de')
     expect(wrapper.get('.language.chosen').text()).toBe('Deutsch')
     // The rest of the wizard is read in it straight away.
@@ -1518,6 +1806,30 @@ describe('the board', () => {
     for (const row of halfDays.value) clearRow(row)
   })
 
+  it('leaves the other half of a day alone when one row is cleared', async () => {
+    for (const row of halfDays.value) clearRow(row)
+    const first = calendar.value[0]!
+    const rows = halfDays.value.filter((h) => h.date === first.date)
+    for (const [at, row] of rows.entries()) {
+      row.workdayId = at === 0 ? '24112' : '24111'
+      row.specification = specificationsFor(row.workdayId).options[0] ?? null
+      row.days = 0.5
+    }
+
+    const wrapper = mount(MonthCalendar, { global: { plugins } })
+    await wrapper.findAll('.cell')[0]!.trigger('click')
+    await flushPromises()
+    // Both halves are on show so both carry a clear button.
+    expect(wrapper.findAll('.pop .half')).toHaveLength(2)
+
+    await wrapper.findAll('.pop .half')[0]!.find('button.clear').trigger('click')
+    await flushPromises()
+    expect(rows[0]!.workdayId).toBe('24111')
+    expect(rows[1]!.workdayId).toBeNull()
+    expect(booked.value).toBe(0.5)
+    for (const row of halfDays.value) clearRow(row)
+  })
+
   it('moves focus across the cells with the arrows', async () => {
     const wrapper = mount(MonthCalendar, { global: { plugins }, attachTo: document.body })
     const cells = wrapper.findAll('.cell')
@@ -1567,11 +1879,22 @@ describe('the view switch', () => {
     await flushPromises()
     const box = wrapper.get('.month.sheet.pad')
     const children = [...box.element.children].map((el) => el.className)
-    expect(children[0]).toContain('switch')
+    expect(children[0]).toContain('month-bar')
     expect(children[1]).toContain('grid-wrap')
 
     // The box is the surface so the view inside it carries none of its own.
     expect(wrapper.get('.grid-wrap').classes()).not.toContain('sheet')
+  })
+
+  it('shares that row with everything else the month carries', async () => {
+    const wrapper = mount(MonthPage, { global: { plugins } })
+    await flushPromises()
+    const row = wrapper.get('.month-bar')
+    // What reads sits on the left and what acts holds the right end.
+    expect([...row.element.children].map((el) => el.className)[0]).toContain('state')
+    const actions = [...row.get('.actions').element.children].map((el) => el.className)
+    expect(actions[0]).toContain('clear')
+    expect(actions[1]).toContain('switch')
   })
 
   it('stands with the month and not in the shared bar', async () => {
@@ -1585,5 +1908,224 @@ describe('the view switch', () => {
     await flushPromises()
     expect(wrapper.findComponent(ViewSwitch).exists()).toBe(false)
     expect(wrapper.find('.views').exists()).toBe(false)
+  })
+})
+
+describe('the legend', () => {
+  function bookTwo(): void {
+    const ids = ['24112', '24111']
+    const spec = (id: string) => specificationsFor(id).options[0] ?? null
+    for (const [at, day] of calendar.value.filter((d) => !d.nonWorking).slice(0, 2).entries()) {
+      const row = halfDays.value.find((h) => h.date === day.date && h.half === 0)!
+      row.workdayId = ids[at]!
+      row.specification = spec(ids[at]!)
+      row.days = 1
+    }
+  }
+
+  it('stands in the row above the month rather than over the board', async () => {
+    bookTwo()
+    view.value = 'board'
+    const wrapper = mount(MonthPage, { global: { plugins } })
+    await flushPromises()
+
+    expect(wrapper.find('.month-bar .legend').exists()).toBe(true)
+    // The board drew it above its own table before. That copy is gone.
+    expect(wrapper.findComponent(MonthCalendar).find('.legend').exists()).toBe(false)
+    for (const row of halfDays.value) clearRow(row)
+  })
+
+  it('names one cost centre per line the month books', async () => {
+    bookTwo()
+    view.value = 'board'
+    const wrapper = mount(MonthPage, { global: { plugins } })
+    await flushPromises()
+
+    const chips = wrapper.findAll('.month-bar .legend .chip')
+    expect(chips.map((chip) => chip.text())).toEqual(['24112', '24111'])
+    // First appearance in the month decides the line and the board reads the
+    // same order for its cells.
+    expect(chips[0]!.classes()).toContain('line-0')
+    expect(chips[1]!.classes()).toContain('line-1')
+    for (const row of halfDays.value) clearRow(row)
+  })
+
+  it('is absent on the grid because the grid draws no line', async () => {
+    bookTwo()
+    view.value = 'grid'
+    const wrapper = mount(MonthPage, { global: { plugins } })
+    await flushPromises()
+    expect(wrapper.find('.legend').exists()).toBe(false)
+    for (const row of halfDays.value) clearRow(row)
+  })
+
+  it('says nothing while the month books nothing', async () => {
+    view.value = 'board'
+    const wrapper = mount(MonthPage, { global: { plugins } })
+    await flushPromises()
+    expect(wrapper.find('.legend').exists()).toBe(false)
+    view.value = 'grid'
+  })
+})
+
+describe('the clear month button', () => {
+  // Two days is a month with something in it. The count is what the assertions
+  // read so a fuller month would only make them longer.
+  function fillTwoDays(): void {
+    const spec = specificationsFor('24112').options[0] ?? null
+    for (const day of calendar.value.filter((d) => !d.nonWorking).slice(0, 2)) {
+      const row = halfDays.value.find((h) => h.date === day.date && h.half === 0)!
+      row.workdayId = '24112'
+      row.specification = spec
+      row.days = 1
+    }
+  }
+
+  it('is dead while the month holds nothing', async () => {
+    const clear = mount(ClearMonth, { global: { plugins } })
+    await flushPromises()
+    expect(monthIsEmpty.value).toBe(true)
+    expect(clear.get('button').attributes('disabled')).toBeDefined()
+  })
+
+  it('counts a part filled row as something to clear', async () => {
+    // A row holding a task and nothing else is not booked and is not valid
+    // either. It is still a row a user typed into.
+    halfDays.value[0]!.tasks = 'a note'
+    await flushPromises()
+    expect(booked.value).toBe(0)
+    expect(monthIsEmpty.value).toBe(false)
+    const clear = mount(ClearMonth, { global: { plugins } })
+    expect(clear.get('button').attributes('disabled')).toBeUndefined()
+  })
+
+  it('asks before it empties anything', async () => {
+    fillTwoDays()
+    await flushPromises()
+    const clear = mount(ClearMonth, { global: { plugins } })
+    await clear.get('button').trigger('click')
+
+    expect(clear.get('.ask').text()).toBe(en.header.clearMonthAsk)
+    expect(booked.value).toBe(2)
+  })
+
+  it('empties every row once the answer is given', async () => {
+    fillTwoDays()
+    await flushPromises()
+    const clear = mount(ClearMonth, { global: { plugins } })
+    await clear.get('button').trigger('click')
+    await clear.get('.btn-primary').trigger('click')
+
+    expect(booked.value).toBe(0)
+    expect(halfDays.value.filter((row) => row.workdayId !== null)).toEqual([])
+    // The button is back with nothing left to do.
+    expect(clear.get('button').attributes('disabled')).toBeDefined()
+  })
+
+  it('holds the month while the question is refused', async () => {
+    fillTwoDays()
+    await flushPromises()
+    const clear = mount(ClearMonth, { global: { plugins } })
+    await clear.get('button').trigger('click')
+    const cancel = clear.findAll('button').find((b) => b.text() === 'Cancel')!
+    await cancel.trigger('click')
+
+    expect(booked.value).toBe(2)
+    expect(clear.find('.ask').exists()).toBe(false)
+  })
+
+  it('takes Escape as a refusal', async () => {
+    fillTwoDays()
+    await flushPromises()
+    const clear = mount(ClearMonth, { global: { plugins } })
+    await clear.get('button').trigger('click')
+    await clear.trigger('keydown.esc')
+
+    expect(booked.value).toBe(2)
+    expect(clear.find('.ask').exists()).toBe(false)
+  })
+
+  it('leaves the target override where it is', async () => {
+    monthOverride.value = 12
+    fillTwoDays()
+    await flushPromises()
+    const clear = mount(ClearMonth, { global: { plugins } })
+    await clear.get('button').trigger('click')
+    await clear.get('.btn-primary').trigger('click')
+
+    // The override is a property of the month and not an entry in it.
+    expect(monthOverride.value).toBe(12)
+  })
+
+  it('stands in the row above the month on both editing pages', async () => {
+    for (const page of [MonthPage, SimplePage]) {
+      const wrapper = mount(page, { global: { plugins } })
+      await flushPromises()
+      expect(wrapper.findComponent(ClearMonth).exists()).toBe(true)
+      // Emptying the month acts on it so it holds the right end of the row.
+      expect(wrapper.find('.month-bar .actions .clear').exists()).toBe(true)
+      expect(wrapper.findComponent(PeriodBar).find('.clear').exists()).toBe(false)
+    }
+  })
+})
+
+describe('the credits', () => {
+  /** The shell against a memory router. The credits are reached through it. */
+  function shellAt(entry: string) {
+    const router = createRouter({ routeTree, history: createMemoryHistory({ initialEntries: [entry] }) })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const wrapper = mount(Host, { global: { plugins } })
+    return { router, wrapper }
+  }
+
+  /** The route is lazy so the page arrives a tick after the load. */
+  async function settle({ router }: ReturnType<typeof shellAt>): Promise<void> {
+    await router.load()
+    for (const _ of [0, 1, 2]) await flushPromises()
+  }
+
+  it('rolls the names and writes a role as it is given', async () => {
+    const shell = shellAt('/credits')
+    const wrapper = shell.wrapper
+    await settle(shell)
+
+    expect(wrapper.get('h1').text()).toBe('Credits')
+
+    // The list is content and is edited freely so no name is pinned here.
+    const names = wrapper.findAll('.people .name')
+    expect(names.length).toBeGreaterThan(0)
+    expect(names.every((name) => name.text() !== '')).toBe(true)
+
+    // A line with no role still draws the cell. That is what holds every name
+    // in one column.
+    const roles = wrapper.findAll('.people .role')
+    expect(roles).toHaveLength(names.length)
+    expect(roles.some((role) => role.text() !== '')).toBe(true)
+
+    // A role is plain text so nothing on the page may read as a key path.
+    expect(wrapper.text()).not.toContain('credits.')
+    // The stage takes the one surface the theme gives a section.
+    expect(wrapper.get('.stage').classes()).toContain('sheet')
+  })
+
+  it('sits in the footer beside the notice and out of the nav', async () => {
+    const shell = shellAt('/credits')
+    const wrapper = shell.wrapper
+    await settle(shell)
+    expect(wrapper.findAll('nav a')).toHaveLength(4)
+    expect(wrapper.findAll('footer a').map((link) => link.text())).toEqual(['Privacy', 'Credits'])
+  })
+
+  it('opens from that link', async () => {
+    const shell = shellAt('/')
+    const { router, wrapper } = shell
+    await settle(shell)
+    expect(wrapper.find('.stage').exists()).toBe(false)
+
+    await wrapper.get('footer a[href="/credits"]').trigger('click')
+    await settle(shell)
+
+    expect(router.state.location.pathname).toBe('/credits')
+    expect(wrapper.get('.stage h1').text()).toBe('Credits')
   })
 })

@@ -18,6 +18,7 @@ import {
   findProject,
   totalDays,
   trackerRow,
+  TRACKER_RECIPIENT,
   validate,
   type CalendarDay,
   type HalfDay,
@@ -53,8 +54,6 @@ export interface ExportResult {
   filename: string
   bytes: Uint8Array
 }
-
-const RECIPIENT = 'software.projecttracker@4flow.com'
 
 /** The aggregation block holds this many rows in the shipped tracker. */
 const AGGREGATE_SLOTS = 15
@@ -213,8 +212,8 @@ export function buildTrackerCells(request: ExportRequest, days: CalendarDay[]): 
         ? `${delta} working day(s) too much`
         : 'Your project tracker is completed!'
   put(cells, 'O2', status)
-  put(cells, 'O4', `Send this file to ${RECIPIENT} if everything is correct`)
-  put(cells, 'M94', `Send this file to ${RECIPIENT} if everything is correct`)
+  put(cells, 'O4', `Send this file to ${TRACKER_RECIPIENT} if everything is correct`)
+  put(cells, 'M94', `Send this file to ${TRACKER_RECIPIENT} if everything is correct`)
 
   return cells
 }

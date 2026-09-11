@@ -10,8 +10,19 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { AddressInfo } from 'node:net'
 import type { Server } from 'node:http'
-import { catalogue as live, findProject, setCatalogue, type CatalogueInput } from '@tracker/core'
-import { readCatalogueFrom, toCatalogueInput } from '@tracker/workbook-reader'
+import {
+  catalogue as live,
+  findProject,
+  labelOf,
+  setCatalogue,
+  type CatalogueInput,
+} from '@tracker/core'
+import {
+  mergeProjectNumbers,
+  readCatalogueFrom,
+  readProjectNumbersFrom,
+  toCatalogueInput,
+} from '@tracker/workbook-reader'
 
 import { createDevServer, DEV_HEADERS } from '../dev-server'
 import { MemoryRepository } from '../repository'
@@ -19,7 +30,9 @@ import { resetCatalogueCache } from '../handlers'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = join(here, '../../../..')
-const workbooks = readdirSync(root).filter((f) => f.endsWith('.xlsm'))
+const files = readdirSync(root)
+const workbooks = files.filter((f) => f.endsWith('.xlsm'))
+const listName = files.find((f) => /Projectnumbers/i.test(f))
 
 let server: Server
 let base: string
@@ -87,5 +100,61 @@ describe.each(workbooks)('%s', (name) => {
     expect(first).toBeDefined()
     expect(findProject(String(first?.workdayId))).not.toBeNull()
     expect(findProject('Vacation or sickness')).not.toBeNull()
+  })
+})
+
+// The second upload. A tracker leaves 462 of its 4s projects nameless and the
+// list names them, so the run below is the only proof that a merged body still
+// satisfies the route and still reaches the picker.
+describe('the 4s project numbers over a tracker', () => {
+  const workbook = workbooks[0] as string
+
+  it('names a project the tracker left blank', async () => {
+    resetCatalogueCache()
+    expect(listName).toBeDefined()
+
+    const tracker = readCatalogueFrom(new Uint8Array(readFileSync(join(root, workbook))))
+    const first = await fetch(`${base}/api/admin/catalogue`, {
+      method: 'PUT',
+      headers: BACKOFFICE,
+      body: JSON.stringify(toCatalogueInput(tracker, workbook)),
+    })
+    expect(first.status).toBe(200)
+
+    const before = (await (await fetch(`${base}/api/catalogue`, { headers: BACKOFFICE })).json()) as
+      CatalogueInput & { version: string; updatedAt: string }
+    const numbers = readProjectNumbersFrom(new Uint8Array(readFileSync(join(root, listName as string))))
+    const { version: _version, updatedAt: _updatedAt, ...data } = before
+    const { data: body, report } = mergeProjectNumbers(data, numbers, listName as string, true)
+    expect(report.named).toBeGreaterThan(400)
+    expect(report.added).toBe(report.absent)
+
+    const second = await fetch(`${base}/api/admin/catalogue`, {
+      method: 'PUT',
+      headers: BACKOFFICE,
+      body: JSON.stringify(body),
+    })
+    expect(second.status).toBe(200)
+
+    const stored = (await (await fetch(`${base}/api/catalogue`, { headers: BACKOFFICE })).json()) as
+      CatalogueInput
+    // The route answers with one version. A stale copy inside the stored lists
+    // would win the spread and hand every reader the wrong one.
+    expect(stored.source?.workbook).toBe(workbook)
+    expect(stored.source?.projectNumbers?.workbook).toBe(listName)
+    expect(Object.keys(stored)).not.toContain('data')
+
+    setCatalogue(stored)
+    // Every list the tracker owns survived the second upload.
+    expect(live.locations).toHaveLength(22)
+    expect(live.timeValues).toEqual([0.5, 1])
+    expect(findProject('Vacation or sickness')).not.toBeNull()
+
+    const named = numbers.numbers.find((number) => number.customer !== null)
+    expect(named).toBeDefined()
+    const project = findProject(named?.workdayId as string)
+    expect(project).not.toBeNull()
+    expect(project?.customer).toBe(named?.customer)
+    expect(labelOf(project!)).not.toBe('')
   })
 })

@@ -11,6 +11,7 @@
 import { createServer, type Server } from 'node:http'
 
 import { handle, type Caller, type Deps } from './handlers'
+import { JiraAsUserRefused, type RequestHeaders } from './jira-dev'
 import { jiraResponse, type JiraDeps } from './jira-handlers'
 
 /** The headers that stand in for a token. */
@@ -43,10 +44,18 @@ function firstValue(value: string | string[] | undefined): string | undefined {
 }
 
 /**
- * @param jira Absent leaves every `/api/jira/` route answering 404. That is
- *   how the deployed function behaves with no app registered.
+ * @param jira The Jira deps of one request. Absent leaves every `/api/jira/`
+ *   route answering 404 which is how the deployed function behaves with no app
+ *   registered.
+ *
+ *   A function of the headers rather than one fixed object. Because the local
+ *   server reads the month of whichever Atlassian account a header names and
+ *   that account is a field in the browser. See `jira-dev.ts`.
  */
-export function createDevServer(deps: Deps, jira?: JiraDeps): Server {
+export function createDevServer(
+  deps: Deps,
+  jira?: (headers: RequestHeaders) => JiraDeps,
+): Server {
   return createServer((req, res) => {
     const chunks: Buffer[] = []
     req.on('data', (chunk: Buffer) => chunks.push(chunk))
@@ -78,10 +87,24 @@ export function createDevServer(deps: Deps, jira?: JiraDeps): Server {
         }
         // API Gateway routes `/api/jira/{proxy+}` to a function of its own so
         // the split is reproduced here rather than merged into one handler.
-        const response =
-          path.startsWith('/api/jira/') && jira
-            ? await jiraResponse(request, jira)
-            : await handle(request, deps)
+        let response
+        if (path.startsWith('/api/jira/') && jira) {
+          // A header naming no account Atlassian could own is answered as the
+          // request being wrong. The screen prints the reason. Reading the
+          // consenting account instead would read as the switch being ignored.
+          let chosen: JiraDeps
+          try {
+            chosen = jira(req.headers)
+          } catch (error) {
+            if (!(error instanceof JiraAsUserRefused)) throw error
+            res.writeHead(400, { ...cors, 'content-type': 'application/json' })
+            res.end(JSON.stringify({ error: error.message }))
+            return
+          }
+          response = await jiraResponse(request, chosen)
+        } else {
+          response = await handle(request, deps)
+        }
 
         res.writeHead(response.status, { ...cors, ...response.headers })
         res.end(response.isBase64 ? Buffer.from(response.body, 'base64') : response.body)

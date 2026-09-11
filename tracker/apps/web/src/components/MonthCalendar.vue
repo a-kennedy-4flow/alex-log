@@ -14,8 +14,10 @@ import { useI18n } from 'vue-i18n'
 import type { CalendarDay, HalfDay } from '@tracker/core'
 import { catalogue, dayOptionsFor, isAbsence, rowToDay } from '@tracker/core'
 import { weekdayName } from '@/i18n'
-import { calendar, halfDays, issues, pastTarget, rowsByDate } from '@/composables/useTimesheet'
+import { calendar, issues, pastTarget, rowsByDate } from '@/composables/useTimesheet'
+import { lineClass } from '@/composables/useMonthLines'
 import {
+  clearHalf,
   incomplete,
   rowsOf,
   setDays,
@@ -57,38 +59,6 @@ const weeks = computed<(CalendarDay | null)[][]>(() => {
 })
 
 /* ---------- chips ---------- */
-
-/**
- * A theme line down the edge of a Warm Grey chip tells one cost centre from
- * another. No shade is invented so no brand owner has to approve anything. A
- * line may be Bright Blue where text may not.
- *
- * Five lines separate. A sixth cost centre falls back to the plain chip and the
- * number does the work. The one cost is Vibrant Orange. It is reserved for the
- * primary action so the fifth line spends that reservation. Dropping it leaves
- * four.
- */
-const LINES = 5
-
-/** Order of first appearance in the month. */
-const lineOf = computed(() => {
-  const order = new Map<string, number>()
-  for (const half of halfDays.value) {
-    if (half.workdayId === null) continue
-    if (!order.has(half.workdayId)) order.set(half.workdayId, order.size)
-  }
-  return order
-})
-
-function lineClass(workdayId: string | null): string {
-  const at = workdayId === null ? undefined : lineOf.value.get(workdayId)
-  return at !== undefined && at < LINES ? `line-${at}` : ''
-}
-
-/** The cost centres the month books. The legend names the lines. */
-const legend = computed(() =>
-  [...lineOf.value.keys()].map((id) => ({ id, line: lineClass(id) })),
-)
 
 function chipsOf(date: string): HalfDay[] {
   return (rowsByDate.value.get(date) ?? []).filter((row) => row.workdayId !== null)
@@ -216,10 +186,6 @@ function onDaysChange(entry: HalfDay, event: Event): void {
   setDays(entry, value === '' ? null : (Number(value) as 0.5 | 1))
 }
 
-function clearHalf(entry: HalfDay): void {
-  setWorkday(entry, null)
-}
-
 function halfLabel(entry: HalfDay): string {
   return entry.half === 0 ? t('board.upperHalf') : t('board.lowerHalf')
 }
@@ -236,15 +202,6 @@ function longDate(date: string): string {
 
 <template>
   <div ref="board" class="wrap" data-tour="board">
-    <div v-if="legend.length" class="legend">
-      <span class="lab">{{ t('board.legend') }}</span>
-      <span class="chips">
-        <span v-for="entry in legend" :key="entry.id" class="chip" :class="entry.line">
-          <b class="num">{{ isAbsence(entry.id) ? t('picker.absence') : entry.id }}</b>
-        </span>
-      </span>
-    </div>
-
     <table class="board">
       <caption class="visually-hidden">{{ t('board.caption') }}</caption>
       <thead>
@@ -397,32 +354,6 @@ function longDate(date: string): string {
 </template>
 
 <style scoped>
-.legend {
-  display: flex;
-  gap: 9px;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 0 0 14px;
-}
-
-.legend .lab {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--grey);
-}
-
-.legend .chips {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-}
-
-.legend .chip {
-  font-size: 11px;
-  padding: 3px 9px;
-}
-
 /* Line weight divides the cells because the sheet carries no card. */
 .board {
   width: 100%;
@@ -512,47 +443,10 @@ td.off .d {
 }
 
 /* Decision 2 option B. A Warm Grey chip with a theme line down its edge. */
-.chip {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  background: var(--warm-grey);
-  color: var(--smart-blue);
-  border-left: 4px solid transparent;
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 4px 9px;
-  font-size: 12px;
-}
-
-.chip b {
-  font-weight: 700;
-}
-
 .chip i {
   margin-left: auto;
   font-style: normal;
   font-weight: 700;
-}
-
-/* Smart Blue then Bright Blue then Grey then Vibrant Orange then Bold Pink. */
-.chip.line-0 {
-  border-left-color: var(--smart-blue);
-}
-
-.chip.line-1 {
-  border-left-color: var(--bright-blue);
-}
-
-.chip.line-2 {
-  border-left-color: var(--grey);
-}
-
-.chip.line-3 {
-  border-left-color: var(--orange);
-}
-
-.chip.line-4 {
-  border-left-color: var(--pink);
 }
 
 .chip.bad {

@@ -2,10 +2,10 @@ import { createApp, h } from 'vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { RouterProvider } from '@tanstack/vue-router'
 
-import { i18n } from './i18n'
+import { i18n, loadCatalogueFor } from './i18n'
 import { router } from './router'
 import { ApiError } from './lib/api'
-import { authEnabled, establish, takeReturnTo } from './lib/auth'
+import { authEnabled, authMisconfigured, establish, takeReturnTo } from './lib/auth'
 import { consentError, finishLink } from './lib/jira'
 import SignedOut from './components/SignedOut.vue'
 import './styles/tokens.css'
@@ -15,12 +15,20 @@ import './styles/tokens.css'
 // be torn down again. c) the redirect is invisible while the portal session is
 // live.
 async function start(): Promise<void> {
+  // The chosen catalogue is fetched before the first render so no screen paints
+  // in English first and then swaps.
+  await loadCatalogueFor(i18n.global.locale.value)
+
   let reason: string | null = null
   let present = true
   /** Where the router should open. Null leaves it on the address bar. */
   let at: string | null = null
 
-  if (authEnabled) {
+  // A shell that can sign nobody in shows nobody anything.
+  if (authMisconfigured) {
+    present = false
+    reason = 'This deployment has no sign in configured.'
+  } else if (authEnabled) {
     try {
       present = (await establish()) !== null
       at = takeReturnTo()

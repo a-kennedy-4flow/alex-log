@@ -7,7 +7,14 @@
 import { afterAll, describe, expect, it } from 'vitest'
 import { loadCatalogue } from '@tracker/fixtures'
 
-import { catalogue, setCatalogue, workdayIdForCostCentre, type RawProject } from '../index'
+import {
+  catalogue,
+  resolveCostCentre,
+  setCatalogue,
+  workdayIdForCostCentre,
+  type CompletedTicket,
+  type RawProject,
+} from '../index'
 
 const real = await loadCatalogue()
 setCatalogue(real)
@@ -112,5 +119,132 @@ describe('a cost centre the deduplication would have dropped', () => {
   it('falls back to a project number where no cost centre carries the value', () => {
     setCatalogue({ projects: [projectOf({ workdayId: '10100', projectNo: '4242' })] })
     expect(workdayIdForCostCentre('4242')).toBe('10100')
+  })
+})
+
+// Which cost centre one ticket books against and where that came from.
+//
+// The order is what a month is booked on so every step of it is fixed here. A
+// 4flow ticket rarely carries a cost centre of its own and the epic above it
+// carries one for everything beneath. The Jira client walks that chain and this
+// reads what the walk found.
+describe('resolving the cost centre of one ticket', () => {
+  afterAll(() => setCatalogue(real))
+
+  function ticketOf(over: Partial<CompletedTicket> = {}): CompletedTicket {
+    return {
+      key: 'PLRS-1141',
+      summary: 'Add TO/Load identification',
+      projectKey: 'PLRS',
+      resolvedAt: '2026-08-26T14:34:46.607+0200',
+      parentKey: 'PLRS-900',
+      parentSummary: 'User group feedback',
+      costCentre: null,
+      costCentreFrom: null,
+      costCentreSpecification: null,
+      costCentreSpecificationFrom: null,
+      days: {},
+      workdayId: null,
+      specification: null,
+      hours: 0,
+      hoursSource: '',
+      ...over,
+    }
+  }
+
+  const nothing = { tickets: {}, projects: {} }
+
+  it('takes the cost centre on the ticket itself', () => {
+    setCatalogue(real)
+    const found = resolveCostCentre(
+      ticketOf({ costCentre: '99980100', costCentreFrom: 'PLRS-1141' }),
+      nothing,
+    )
+    expect(found).toEqual({
+      workdayId: '10100',
+      source: 'jira',
+      costCentre: '99980100',
+      from: 'PLRS-1141',
+      unknown: false,
+    })
+  })
+
+  it('names the ancestor a cost centre was inherited from', () => {
+    const found = resolveCostCentre(
+      ticketOf({ costCentre: '99980100', costCentreFrom: 'PLRS-900' }),
+      nothing,
+    )
+    expect(found.workdayId).toBe('10100')
+    expect(found.source).toBe('jira')
+    // The screen says which ticket answered. A figure read off an epic reads
+    // exactly like one written on the ticket until it does.
+    expect(found.from).toBe('PLRS-900')
+  })
+
+  it('books nothing where no ticket in the chain carried one', () => {
+    const found = resolveCostCentre(ticketOf(), nothing)
+    expect(found).toEqual({
+      workdayId: null,
+      source: 'none',
+      costCentre: null,
+      from: null,
+      unknown: false,
+    })
+  })
+
+  it('takes the cost centre set on that one ticket', () => {
+    const found = resolveCostCentre(ticketOf(), { tickets: { 'PLRS-1141': '10200' }, projects: {} })
+    expect(found.workdayId).toBe('10200')
+    expect(found.source).toBe('ticket')
+  })
+
+  it('lets a ticket answer beat the field Jira carried', () => {
+    // The one way to correct an epic carrying the wrong cost centre for a
+    // single ticket beneath it.
+    const found = resolveCostCentre(
+      ticketOf({ costCentre: '99980100', costCentreFrom: 'PLRS-900' }),
+      { tickets: { 'PLRS-1141': '10200' }, projects: {} },
+    )
+    expect(found.workdayId).toBe('10200')
+    expect(found.source).toBe('ticket')
+  })
+
+  it('lets the field Jira carried beat the project map', () => {
+    // One project is not one cost centre so the per ticket field is the finer
+    // answer of the two.
+    const found = resolveCostCentre(
+      ticketOf({ costCentre: '99980100', costCentreFrom: 'PLRS-900' }),
+      { tickets: {}, projects: { PLRS: '10200' } },
+    )
+    expect(found.workdayId).toBe('10100')
+    expect(found.source).toBe('jira')
+  })
+
+  it('falls to the project map where Jira carried nothing', () => {
+    const found = resolveCostCentre(ticketOf(), { tickets: {}, projects: { PLRS: '10200' } })
+    expect(found.workdayId).toBe('10200')
+    expect(found.source).toBe('project')
+  })
+
+  it('reports a number the catalogue does not know and lets the map answer', () => {
+    const found = resolveCostCentre(
+      ticketOf({ costCentre: '12345678', costCentreFrom: 'PLRS-900' }),
+      { tickets: {}, projects: { PLRS: '10200' } },
+    )
+    expect(found.workdayId).toBe('10200')
+    expect(found.source).toBe('project')
+    expect(found.unknown).toBe(true)
+    expect(found.costCentre).toBe('12345678')
+    expect(found.from).toBe('PLRS-900')
+  })
+
+  it('reports one it does not know with nothing underneath to answer', () => {
+    const found = resolveCostCentre(
+      ticketOf({ costCentre: '12345678', costCentreFrom: 'PLRS-900' }),
+      nothing,
+    )
+    expect(found.workdayId).toBeNull()
+    expect(found.source).toBe('none')
+    expect(found.unknown).toBe(true)
   })
 })

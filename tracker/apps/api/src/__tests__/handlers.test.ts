@@ -9,6 +9,7 @@ import { loadCatalogue } from '@tracker/fixtures'
 import { loadSamples, type Sample } from '@tracker/fixtures/samples'
 
 import { handle, resetCatalogueCache, type ApiRequest, type Caller, type Deps } from '../handlers'
+import { MemoryMailer } from '../mail'
 import { MemoryRepository, expiryFor, periodOf } from '../repository'
 
 const catalogue = await loadCatalogue()
@@ -215,10 +216,112 @@ describe('the profile', () => {
     })
   })
 
+  // One project is not one cost centre so a ticket is answered on its own. The
+  // screen writes this for a ticket no cost centre could be found for.
+  it('keeps a cost centre set against one ticket', async () => {
+    const saved = await call('PUT', '/api/me', {
+      body: { jiraProjects: { PLRS: '10100' }, jiraTickets: { 'PLRS-1141': '10200' } },
+    })
+    expect(saved.status).toBe(200)
+    expect(JSON.parse(saved.body).jiraTickets).toEqual({ 'PLRS-1141': '10200' })
+    expect(JSON.parse((await call('GET', '/api/me')).body).jiraTickets).toEqual({
+      'PLRS-1141': '10200',
+    })
+  })
+
+  it('drops a key that names no ticket and a Workday ID nothing offers', async () => {
+    const saved = await call('PUT', '/api/me', {
+      body: {
+        jiraTickets: {
+          'PLRS-1141': '10100',
+          PLRS: '10100',
+          'plrs-1141': '10100',
+          'PLRS-1142': 'not a Workday ID',
+          'PLRS-1143': 42,
+        },
+      },
+    })
+    expect(JSON.parse(saved.body).jiraTickets).toEqual({ 'PLRS-1141': '10100' })
+  })
+
+  it('takes no ticket map at all as an empty one', async () => {
+    expect(JSON.parse((await call('PUT', '/api/me', { body: {} })).body).jiraTickets).toEqual({})
+  })
+
   it('says so when no catalogue has been uploaded', async () => {
     resetCatalogueCache()
     deps = { repository: new MemoryRepository(), now: () => NOW }
     expect((await call('PUT', '/api/me', { body: { location: '01_DE_Berlin' } })).status).toBe(503)
+  })
+})
+
+describe('the catalogue version cache', () => {
+  /** Counts what each request actually asks the table for. */
+  class CountingRepository extends MemoryRepository {
+    heads = 0
+    blobs = 0
+
+    override async getCatalogueVersion() {
+      this.heads++
+      return super.getCatalogueVersion()
+    }
+
+    override async getCatalogue() {
+      this.blobs++
+      return super.getCatalogue()
+    }
+  }
+
+  let clock: Date
+  let counter: CountingRepository
+
+  beforeEach(async () => {
+    resetCatalogueCache()
+    clock = new Date(NOW)
+    counter = new CountingRepository()
+    deps = { repository: counter, now: () => clock }
+    await seedCatalogue()
+    counter.heads = 0
+    counter.blobs = 0
+  })
+
+  /** A route that resolves against the catalogue. */
+  function save() {
+    return call('PUT', '/api/me', { body: { location: '01_DE_Berlin' } })
+  }
+
+  it('asks the table once and then believes itself for half a minute', async () => {
+    expect((await save()).status).toBe(200)
+    expect(counter.heads).toBe(1)
+
+    clock = new Date(NOW.getTime() + 29_000)
+    expect((await save()).status).toBe(200)
+    expect(counter.heads).toBe(1)
+  })
+
+  it('asks again once the half minute is up', async () => {
+    // The first request after a reset reads the version and the list.
+    await save()
+    clock = new Date(NOW.getTime() + 30_001)
+    await save()
+    expect(counter.heads).toBe(2)
+    // The version had not moved so the list itself was not read a second time.
+    expect(counter.blobs).toBe(1)
+  })
+
+  it('reads the list again only when the version has moved', async () => {
+    await save()
+    clock = new Date(NOW.getTime() + 30_001)
+    await counter.putCatalogue({ version: 'next', updatedAt: 'next', data: catalogue })
+    await save()
+    expect(counter.blobs).toBe(2)
+  })
+
+  it('serves an upload from the container that took it straight away', async () => {
+    await save()
+    await seedCatalogue()
+    const body = JSON.parse((await call('GET', '/api/catalogue')).body)
+    expect(body.version).toBe(NOW.toISOString())
   })
 })
 
@@ -403,6 +506,85 @@ describe('the export', () => {
     await call('PUT', `/api/timesheets/${period}`, { body: { halfDays: halfDaysOf(complete), adjustedWorkDays: complete.adjustedWorkDays } })
     expect((await call('POST', `/api/timesheets/${period}/export`, { caller: OTHER })).status)
       .toBe(404)
+  })
+})
+
+describe('the delivery', () => {
+  const period = periodOf(complete.year, complete.month)
+  const NAME = 'Kennedy.Alexander_2026_08_projecttracker_DE.xlsm'
+  let mailer: MemoryMailer
+
+  beforeEach(async () => {
+    mailer = new MemoryMailer()
+    deps.mailer = mailer
+    await seedCatalogue()
+    await call('PUT', '/api/me', { body: { location: complete.location } })
+    await call('PUT', `/api/timesheets/${period}`, {
+      body: {
+        location: complete.location,
+        halfDays: halfDaysOf(complete),
+        adjustedWorkDays: complete.adjustedWorkDays,
+      },
+    })
+  })
+
+  it('sends the workbook to the address on the token', async () => {
+    const response = await call('POST', `/api/timesheets/${period}/email`)
+    expect(response.status).toBe(200)
+    expect(JSON.parse(response.body)).toEqual({ to: USER.email, filename: NAME })
+
+    expect(mailer.sent).toHaveLength(1)
+    const message = mailer.sent[0]!
+    expect(message.to).toBe(USER.email)
+
+    // The bytes the download hands over. The writer tests already verify them.
+    const file = (message.attachments ?? [])[0]!
+    expect(file.filename).toBe(NAME)
+    const sheet = strFromU8(unzipSync(file.bytes)['xl/worksheets/sheet1.xml'] as Uint8Array)
+    expect(sheet).toContain('Your project tracker is completed!')
+  })
+
+  it('takes no address from the request', async () => {
+    await call('POST', `/api/timesheets/${period}/email`, { body: { to: 'somebody@else.com' } })
+    expect(mailer.sent[0]!.to).toBe(USER.email)
+  })
+
+  it('files the month exactly as the download does', async () => {
+    await call('POST', `/api/timesheets/${period}/email`)
+    const stored = JSON.parse((await call('GET', `/api/timesheets/${period}`)).body)
+    expect(stored.exportedAt).toBe(NOW.toISOString())
+  })
+
+  it('leaves the month owed when the send fails', async () => {
+    deps.mailer = { send: () => Promise.reject(new Error('SES refused the message')) }
+    expect((await call('POST', `/api/timesheets/${period}/email`)).status).toBe(502)
+    const stored = JSON.parse((await call('GET', `/api/timesheets/${period}`)).body)
+    expect(stored.exportedAt).toBe(null)
+  })
+
+  it('refuses the route where the deployment carries no mailer', async () => {
+    delete deps.mailer
+    expect((await call('POST', `/api/timesheets/${period}/email`)).status).toBe(503)
+  })
+
+  it('sends nothing for a sheet the tracker calls invalid', async () => {
+    const other = periodOf(invalid.year, invalid.month)
+    await call('PUT', '/api/me', { body: { location: invalid.location } })
+    await call('PUT', `/api/timesheets/${other}`, {
+      body: {
+        location: invalid.location,
+        halfDays: halfDaysOf(invalid),
+        adjustedWorkDays: invalid.adjustedWorkDays,
+      },
+    })
+    expect((await call('POST', `/api/timesheets/${other}/email`)).status).toBe(422)
+    expect(mailer.sent).toHaveLength(0)
+  })
+
+  it('will not send another user sheet', async () => {
+    expect((await call('POST', `/api/timesheets/${period}/email`, { caller: OTHER })).status)
+      .toBe(404)
+    expect(mailer.sent).toHaveLength(0)
   })
 })
 

@@ -6,7 +6,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
-import { NotATracker, readCatalogueFrom, toCatalogueInput } from '../index'
+import { NotAnUpload, readCatalogueFrom, toCatalogueInput } from '../index'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = join(here, '../../../..')
@@ -79,10 +79,10 @@ describe.each(workbooks)('%s', (name) => {
 
 describe('refusing something that is not a tracker', () => {
   it('rejects bytes that are not a spreadsheet', () => {
-    expect(() => readCatalogueFrom(new TextEncoder().encode('hello'))).toThrow(NotATracker)
+    expect(() => readCatalogueFrom(new TextEncoder().encode('hello'))).toThrow(NotAnUpload)
   })
 
   it('rejects an empty file', () => {
-    expect(() => readCatalogueFrom(new Uint8Array())).toThrow(NotATracker)
+    expect(() => readCatalogueFrom(new Uint8Array())).toThrow(NotAnUpload)
   })
 })

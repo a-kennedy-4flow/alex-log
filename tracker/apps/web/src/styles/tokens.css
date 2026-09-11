@@ -181,14 +181,78 @@ button:focus-visible,
   align-items: start;
 }
 
-/* The month box. It holds the view switch then the grid or the board so the
-   control sits on the surface it acts on. The two views carry no surface of
-   their own. Only the month page has this box. */
+/* The month box. It holds the row above the month then whichever section edits
+   it so each control sits on the surface it acts on. What goes inside carries
+   no surface of its own. Both editing pages have this box. */
 .split > .month {
   display: grid;
   gap: 14px;
   align-content: start;
   min-width: 0;
+}
+
+/*
+ * A cost centre chip. The board draws one per booked half day and the legend
+ * draws one per cost centre so the two cannot drift apart.
+ *
+ * The line down the edge is what tells one cost centre from another. Smart Blue
+ * then Bright Blue then Grey then Vibrant Orange then Bold Pink. No shade is
+ * invented so no brand owner has to approve anything. A line may be Bright Blue
+ * where text may not.
+ */
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--warm-grey);
+  color: var(--smart-blue);
+  border-left: 4px solid transparent;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 4px 9px;
+  font-size: 12px;
+}
+
+.chip b {
+  font-weight: 700;
+}
+
+.chip.line-0 {
+  border-left-color: var(--smart-blue);
+}
+
+.chip.line-1 {
+  border-left-color: var(--bright-blue);
+}
+
+.chip.line-2 {
+  border-left-color: var(--grey);
+}
+
+.chip.line-3 {
+  border-left-color: var(--orange);
+}
+
+.chip.line-4 {
+  border-left-color: var(--pink);
+}
+
+/* The line above the month. What reads sits on the left and what acts holds the
+   right end. Both editing pages carry this row so a reader moving between them
+   finds every one of them in the same place. */
+.month-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Emptying the month and choosing the view are the two things this row does so
+   they hold the right end together. What reads rather than acts stays left. */
+.month-bar > .actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
 }
 
 /* The aside is about the month as a whole so it stays put while it scrolls. */

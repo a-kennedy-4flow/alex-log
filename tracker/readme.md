@@ -349,7 +349,28 @@ what the picker actually offers.
     workday id and a customer id and a business line and nothing a person would
     recognise. The picker falls back to the project number. Does the real
     `4flow_Projectnumbers.xlsm` carry the customer names and titles that this
-    embedded copy leaves out.
+    embedded copy leaves out. Yes for the 4s slice of it.
+    `20251218_4s_Projectnumbers_protected.xlsx` is the file backoffice sends.
+    Its `Project no.` column is the Workday ID under another name. It lists 798
+    numbers. The tracker already carries 486 of them. It names not one. 504 of
+    its 774 customer projects carry a title. Every one carries a customer.
+
+    The upload therefore accepts either workbook. A tracker still replaces
+    every list. The 4s list replaces nothing. Because a) it carries no location
+    and no bank holiday and no day value. b) it covers one business line of
+    four. c) the tracker copy is cut later so a blank is the only field the list
+    can be trusted to know better.
+
+    It names 462 projects and leaves 24 cost centres untouched because the
+    tracker titles those already. 312 of its numbers are absent from the tracker
+    altogether. The admin screen counts them and offers to add them. An added
+    row is business line `software` with no cost centre. Because a) it is the 4s
+    list. b) all 700 rows whose number the tracker also carries read `software`
+    there. c) the three specifications the list offers are exactly the
+    `spec_software_proj` range.
+
+    The fourth sheet holds prose describing each `4s_Overheads_` specification.
+    Nothing in the app shows prose about a specification so it is left unread.
 
 # The days column
 
@@ -584,6 +605,9 @@ split one.
 
 Non-working days are reached only once every working day is taken.
 
+The two absences sit above that list on a square each. Because everyone books an
+absence where a cost centre is booked by the few who own it.
+
 # The tour
 
 Each page names its own steps and each step names the element it points at
@@ -655,3 +679,56 @@ weekends.
 45. The working weekend column names no location. Its dates are Chinese make-up
     days so the reader attaches it to Shanghai. Confirm that, and say whether
     the column should be split per location the way the holidays are.
+
+# A deployment while the page is open
+
+A tab loaded before a deployment keeps running the bundle it was given. There is
+one bundle because the routes are imported statically. So no later request can
+fail on a name the deployment has dropped. Nothing tells the page on its own.
+
+`useVersion.ts` reads `index.html` every ten minutes and again whenever a hidden
+tab is looked at. It compares the hashed asset names in that answer against the
+ones this page was given. A build moves the hash of whatever it changed so those
+names are the version.
+
+The check needs nothing added to the deploy. Because a) `index.html` already
+goes up with `no-cache` and is invalidated. b) every asset beside it is hashed
+and immutable. c) a build id written beside them would be a second thing to keep
+in step.
+
+The names this page runs are taken as the bundle loads rather than at each
+check. Because a `modulepreload` written into the page for a chunk fetched later
+would otherwise read as a version nobody served.
+
+The demand blocks rather than informs. The open month is written first then the
+shell replaces the routed screen with the reload button. The wizard and the tour
+are withdrawn so nothing can cover it. A read that fails is ignored because an
+offline tab is not a new version.
+
+# Where a cost centre comes from
+
+A 4flow ticket rarely carries one. The epic above it carries one for everything
+beneath so the Jira client walks the parent chain five deep and returns the
+ticket the value came from beside it.
+
+The screen resolves four answers in order. A cost centre set against this one
+ticket. The Jira field from that chain. The project map on the profile. Nothing.
+
+One project is not one cost centre. A 4flow project runs work for several of
+them so the project map is a guess for every ticket of it. A row nothing
+answered now carries a picker of its own and what it writes is kept against the
+ticket in `jiraTickets` on the profile. The project map is still offered under
+the table for a whole project at once.
+
+Under the Workday ID in smaller writing is where the figure was found. `Cost
+centre 99980100 from PLRS-900` names the epic that answered. A cost centre read
+off an epic reads exactly like one written on the ticket until the screen says
+which it was.
+
+A number Jira carried which the catalogue does not know is reported on the row
+in orange. The row still books against whatever answered underneath it so
+saying nothing would read as Jira carrying none at all.
+
+A pick made on the screen used to outrank Jira until the page was read again and
+rank third after it. So one answer resolved two ways. The project map now ranks
+third whenever it was written and a ticket answer ranks first.

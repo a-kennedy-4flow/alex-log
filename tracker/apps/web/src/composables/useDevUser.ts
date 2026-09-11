@@ -4,7 +4,9 @@
 // the Cognito token instead. The switcher exists so the two roles can be walked
 // through without a pool. `useIdentity` decides which source is live.
 
-import { reactive, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
+
+import { DEV_JIRA_AS_USER } from '@tracker/core'
 
 export interface DevUser {
   sub: string
@@ -57,6 +59,26 @@ export function switchTo(sub: string): void {
   if (next) Object.assign(devUser, next)
 }
 
+const JIRA_KEY = 'timesheets.devJiraAsUser'
+
+/**
+ * The Atlassian account the local server reads the month of.
+ *
+ * Empty is the account the server was started for. That is whoever consented
+ * unless `JIRA_AS_USER` named one. It is kept beside the caller because the two
+ * are the same kind of thing. A header the local server trusts and the deployed
+ * one ignores.
+ *
+ * It is not the caller. The tracker user stays whoever the switch above says
+ * and only the Jira month changes.
+ */
+export const jiraAsUser = ref(localStorage.getItem(JIRA_KEY) ?? '')
+
+watch(jiraAsUser, (id) => {
+  if (id === '') localStorage.removeItem(JIRA_KEY)
+  else localStorage.setItem(JIRA_KEY, id)
+})
+
 /** The headers the local API reads in place of a token. */
 export function devHeaders(): Record<string, string> {
   return {
@@ -65,5 +87,8 @@ export function devHeaders(): Record<string, string> {
     'x-dev-first-name': devUser.firstName,
     'x-dev-last-name': devUser.lastName,
     'x-dev-groups': devUser.groups.join(','),
+    // Absent rather than empty where no account is named. An empty header and a
+    // missing one read the same on the server so the shorter one is sent.
+    ...(jiraAsUser.value === '' ? {} : { [DEV_JIRA_AS_USER]: jiraAsUser.value }),
   }
 }

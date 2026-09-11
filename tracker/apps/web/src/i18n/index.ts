@@ -9,13 +9,18 @@ import { createI18n } from 'vue-i18n'
 import { DEFAULT_LOCALE, isLocale, matchLocale, type LocaleCode } from '@tracker/core'
 
 import en from './messages/en'
-import de from './messages/de'
-import fr from './messages/fr'
-import es from './messages/es'
-import cs from './messages/cs'
-import hu from './messages/hu'
-import ptBR from './messages/pt-BR'
-import zhCN from './messages/zh-CN'
+
+// English stays in the entry because it is the fallback every other locale
+// resolves against. The other seven load on their own.
+const CATALOGUES: Record<string, () => Promise<{ default: typeof en }>> = {
+  de: () => import('./messages/de'),
+  fr: () => import('./messages/fr'),
+  es: () => import('./messages/es'),
+  cs: () => import('./messages/cs'),
+  hu: () => import('./messages/hu'),
+  'pt-BR': () => import('./messages/pt-BR'),
+  'zh-CN': () => import('./messages/zh-CN'),
+}
 
 // The list is the domain one. The reminder is written in the same language the
 // interface uses so a second copy here would let the two drift apart.
@@ -37,14 +42,27 @@ function initialLocale(): LocaleCode {
   return DEFAULT_LOCALE
 }
 
+// English alone at the start. The keys are typed off it so `t` still checks and
+// the record is loose in its locale so a catalogue can be added at runtime.
+const messages: Record<string, typeof en> = { en }
+
 export const i18n = createI18n({
   legacy: false,
   locale: initialLocale(),
   fallbackLocale: 'en',
-  messages: { en, de, fr, es, cs, hu, 'pt-BR': ptBR, 'zh-CN': zhCN },
+  messages,
 })
 
-export function setLocale(code: LocaleCode): void {
+/** Fetches a catalogue the entry does not carry. Loaded ones are kept. */
+export async function loadCatalogueFor(code: string): Promise<void> {
+  const loader = CATALOGUES[code]
+  if (!loader) return
+  if (i18n.global.availableLocales.includes(code)) return
+  i18n.global.setLocaleMessage(code, (await loader()).default)
+}
+
+export async function setLocale(code: LocaleCode): Promise<void> {
+  await loadCatalogueFor(code)
   i18n.global.locale.value = code
   localStorage.setItem(STORAGE_KEY, code)
   document.documentElement.lang = code

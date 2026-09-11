@@ -97,6 +97,8 @@ export interface JiraLinkState {
   /** Empty when no app is registered for this deployment. */
   clientId: string
   redirectUri: string
+  /** The Atlassian site. Empty leaves a ticket id on the screen unlinked. */
+  siteUrl: string
   accountId: string | null
   linkedAt: string | null
 }
@@ -143,13 +145,32 @@ export const api = {
   unlinkJira: () => json<{ linked: boolean }>('DELETE', '/api/jira/link'),
   jiraMonth: (period: string) => json<JiraMonth>('GET', `/api/jira/completed/${period}`),
 
-  /** Returns the workbook and the name the recipient expects. */
-  async export(period: string): Promise<{ filename: string; blob: Blob }> {
+  /**
+   * Returns the workbook and the name the recipient expects.
+   *
+   * `shown` is the name the panel already put on the screen. It is what the
+   * download is called when the header cannot be read. Because a) the panel and
+   * the API build the name from the same rule in `filename.ts` so the two agree
+   * on every field. b) a browser hides `content-disposition` on a cross origin
+   * response the API does not expose it on. c) a period alone is not a name the
+   * recipient can file and it is not the name the user was promised.
+   */
+  async export(period: string, shown: string): Promise<{ filename: string; blob: Blob }> {
     const response = await request('POST', `/api/timesheets/${period}/export`)
     const disposition = response.headers.get('content-disposition') ?? ''
-    const filename = disposition.match(/filename="([^"]+)"/)?.[1] ?? `${period}.xlsm`
+    const filename = disposition.match(/filename="([^"]+)"/)?.[1] ?? shown
     return { filename, blob: await response.blob() }
   },
+
+  /**
+   * Sends the workbook to the mailbox of whoever is signed in.
+   *
+   * No address is handed over. The API reads it from the token so nobody can
+   * post another person's month to a mailbox of their choosing. The answer
+   * names where it went because that is what the panel reports.
+   */
+  emailTracker: (period: string) =>
+    json<{ to: string; filename: string }>('POST', `/api/timesheets/${period}/email`),
 }
 
 /** Hands the file to the browser. The user emails it on. */

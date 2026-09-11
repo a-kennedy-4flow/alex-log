@@ -2,7 +2,7 @@
 // The shell. The cost centre list loads once before anything renders because
 // the specification dropdown and the validation both resolve against it.
 
-import { computed, watch } from 'vue'
+import { computed, defineAsyncComponent, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useQuery } from '@tanstack/vue-query'
 import { Link, Outlet, useLocation } from '@tanstack/vue-router'
@@ -18,13 +18,18 @@ import {
   profileComplete,
   year,
 } from '@/composables/useTimesheet'
-import AdminUpload from '@/components/AdminUpload.vue'
+// The uploader carries the workbook reader and its inflate library. Only
+// backoffice ever opens it so it is fetched when it is shown.
+const AdminUpload = defineAsyncComponent(() => import('@/components/AdminUpload.vue'))
+import BrandMark from '@/components/BrandMark.vue'
 import DevUserSwitch from '@/components/DevUserSwitch.vue'
+import LoadingRing from '@/components/LoadingRing.vue'
 import SetupWizard from '@/components/SetupWizard.vue'
 import TourOverlay from '@/components/TourOverlay.vue'
 import { start as startTour, startUnlessSeen } from '@/composables/useTour'
 import { armWizard, wizardOpen } from '@/composables/useWizard'
 import { canSignOut, identity, isBackoffice, signOut } from '@/composables/useIdentity'
+import { updateReady } from '@/composables/useVersion'
 
 const { t } = useI18n()
 
@@ -53,12 +58,14 @@ const projects = useQuery({
 
 const ready = computed(() => projects.isSuccess.value)
 
-// The privacy notice renders before the catalogue does. Because a) it is fixed
-// text that reads neither the catalogue nor the profile. b) an empty deployment
-// answers 503 until backoffice uploads a workbook. c) a notice nobody can reach
-// in that state is not a notice.
+/** The screens that read neither the catalogue nor the profile. */
+const UNGATED = ['/privacy', '/credits']
+
+// These render before the catalogue does. Because a) both are fixed text. b) an
+// empty deployment answers 503 until backoffice uploads a workbook. c) a notice
+// nobody can reach in that state is not a notice.
 const path = useLocation({ select: (location) => location.pathname })
-const ungated = computed(() => path.value === '/privacy')
+const ungated = computed(() => UNGATED.includes(path.value))
 
 // The wizard is told when to decide rather than working it out for itself. The
 // profile has landed by the time the catalogue query settles. Because a) the
@@ -83,6 +90,13 @@ const catalogueMissing = computed(
 watch(wizardOpen, (open) => {
   if (!open) startUnlessSeen()
 })
+
+// A stale page keeps calling an API it was not built against so the update
+// replaces the screen rather than sitting above it. The edit is already written
+// by the time the bar renders.
+function reload(): void {
+  location.reload()
+}
 </script>
 
 <template>
@@ -90,18 +104,7 @@ watch(wizardOpen, (open) => {
     <header>
       <div class="bar">
         <span class="brand">
-          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="20" y="5" width="8" height="8" rx="4" fill="var(--smart-blue)" />
-            <circle cx="24" cy="26" r="16" fill="var(--smart-blue)" />
-            <path
-              d="M24 26 35 20"
-              fill="none"
-              stroke="var(--orange)"
-              stroke-width="5"
-              stroke-linecap="round"
-            />
-            <circle cx="40" cy="42" r="16" fill="var(--orange)" />
-          </svg>
+          <BrandMark class="mark" />
           <span class="wordmark">{{ t('app.title') }}</span>
         </span>
 
@@ -131,8 +134,17 @@ watch(wizardOpen, (open) => {
     </header>
 
     <main>
-      <Outlet v-if="ungated" />
-      <p v-else-if="projects.isPending.value" class="sheet pad muted">{{ t('picker.loading') }}</p>
+      <div v-if="updateReady" class="sheet pad update">
+        <h2>{{ t('update.title') }}</h2>
+        <p>{{ t('update.body') }}</p>
+        <button type="button" class="btn btn-primary" @click="reload">
+          {{ t('update.reload') }}
+        </button>
+      </div>
+      <Outlet v-else-if="ungated" />
+      <LoadingRing v-else-if="projects.isPending.value" class="sheet pad">
+        {{ t('picker.loading') }}
+      </LoadingRing>
       <Outlet v-else-if="ready" />
       <template v-else-if="catalogueMissing">
         <div v-if="isBackoffice()" class="bootstrap">
@@ -148,17 +160,37 @@ watch(wizardOpen, (open) => {
 
     <footer>
       <Link to="/privacy">{{ t('privacy.title') }}</Link>
+      <Link to="/credits">{{ t('credits.title') }}</Link>
     </footer>
 
-    <TourOverlay />
-    <SetupWizard v-if="ready && wizardOpen" />
+    <TourOverlay v-if="!updateReady" />
+    <SetupWizard v-if="ready && wizardOpen && !updateReady" />
   </div>
 </template>
 
 <style scoped>
-/* The notice is reached from here rather than from the bar. A row of working
-   screens is not where somebody looks for it. */
+/* The update is the screen and not a notice on top of one. */
+.update {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.update h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.update p {
+  margin: 0;
+  color: var(--grey);
+}
+
+/* Neither screen here is one the work is done on so neither belongs in the
+   bar. A row of working screens is not where somebody looks for them. */
 footer {
+  display: flex;
+  gap: 14px;
   margin-top: 26px;
   font-size: 12px;
 }

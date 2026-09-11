@@ -1,9 +1,38 @@
-# The monthly reminder
+# Mail
 
-One message a month to each user. It says the month is nearly over and asks for
-the tracker. Nothing else is ever sent.
+Two messages leave this application.
 
-The sender is `reminder@tracker.4flow.io`. That mailbox receives nothing.
+The **reminder** goes to a user once a month. It says the month is nearly over
+and asks for the tracker.
+
+The **delivery** goes out when a user presses `Email it to me` on the download
+panel. It carries the finished workbook to that user's own mailbox. It is for
+somebody who would rather forward from Outlook than attach a file by hand.
+
+Nothing else is ever sent.
+
+Both come from `reminder@tracker.4flow.io`. That mailbox receives nothing. One
+sender rather than two. Because a) the identity is the domain so a second local
+part proves nothing new. b) a recipient who has allowed one address has allowed
+the other. c) a bounce then suppresses the address for both.
+
+## The delivery
+
+The address is read from the Cognito token and never from the request. So
+nobody can post another person's month to a mailbox of their choosing.
+
+The API function sends it. Its SES client is imported on the first send rather
+than on the first line so a cold start that answers any other route resolves the
+Dynamo client alone.
+
+A workbook is carried as MIME because SES sends a file in a raw message and in
+no other. `mail.ts` builds it.
+
+The month is marked as sent only once SES has taken the message. A failed send
+leaves the month owed so the reminder still names it and the button still works.
+
+A deployment whose domain is not delegated has no identity to send from. The
+route answers 503 there and every other route is untouched.
 
 ## One record in the other account
 
@@ -72,14 +101,14 @@ needs a time zone per location in the catalogue and an hourly schedule.
 
 | Skipped | Why |
 | --- | --- |
-| the month was downloaded | the workbook exists so the month is dealt with |
+| the workbook has gone out | it was downloaded or delivered so the month is dealt with |
 | the switch is off | the user turned the reminder off in their settings |
 | a reminder was already recorded | one message per user per month |
 
-Downloading is the closest thing to sending that this application can observe.
-The workbook is mailed on by the user rather than by us. Editing the sheet after
-a download clears the record because the file that was downloaded no longer
-matches what is stored.
+A workbook leaving is the closest thing to a submission that this application
+can observe. The file is passed on to `software.projecttracker@4flow.com` by the
+user rather than by us. Editing the sheet afterwards clears the record because
+what left no longer matches what is stored.
 
 The claim is written before the message and removed again when the send fails.
 Because a) the schedule retries a failed run. b) a repeat must send nothing. c)

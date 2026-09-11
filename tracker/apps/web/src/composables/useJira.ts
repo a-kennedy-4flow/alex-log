@@ -14,16 +14,20 @@ import {
   defaultSpecificationFor,
   distribute,
   fitsMonth,
-  groupByWorkdayId,
+  groupByAllocation,
   hoursPerHalfDay,
   hoursPerMonth,
   hoursTotals,
+  resolveCostCentre,
+  resolveSpecification,
   tasksFor,
   targetDays,
-  workdayIdForCostCentre,
   workingDayCount,
   type Allocation,
   type CompletedTicket,
+  type CostCentreChoices,
+  type ResolvedCostCentre,
+  type ResolvedSpecification,
   type TicketHours,
 } from '@tracker/core'
 
@@ -58,13 +62,44 @@ export const fetchedAt = ref<string | null>(null)
  * reported rendered as text and nothing here parses it back. Every row reads
  * empty on the 4flow site because that site has no worklogs. The month is
  * divided by the share per Workday ID instead.
+ *
+ * Two decimal places. A worklog is seconds so dividing by 3600 answers a figure
+ * like 1.9166666666666667 and a column of those is noise rather than an answer.
+ * A trailing zero is dropped so a whole figure still reads as one.
+ *
+ * Nothing is lost by rounding here. Because a) this is the column text and
+ * nothing reads it back. b) `shareOf` and `daysToBook` divide the month from
+ * `ticket.hours` itself. c) the fill books half days so a hundredth of an hour
+ * could never have reached a timesheet.
  */
 export function hoursTextOf(ticket: CompletedTicket): string {
-  return ticket.hours > 0 ? String(ticket.hours) : ''
+  return ticket.hours > 0 ? String(Math.round(ticket.hours * 100) / 100) : ''
 }
 
-/** A Workday ID chosen on the screen for a project the profile does not map. */
-export const chosenProjects = reactive<Record<string, string>>({})
+/**
+ * Where a ticket is read in Jira. Null when the site is not known.
+ *
+ * The site comes from the link state rather than from a constant here. So a
+ * deployment with no Atlassian app answers an empty one and the screen shows
+ * the id as text. That is better than an address that opens nothing.
+ */
+export function ticketUrl(key: string): string | null {
+  const site = link.value?.siteUrl ?? ''
+  return site === '' ? null : `${site.replace(/\/$/, '')}/browse/${key}`
+}
+
+/**
+ * What this user has answered by hand.
+ *
+ * Read off the profile rather than mirrored into a store of its own. Because a)
+ * the profile is reactive so a pick shows the moment it is written. b) it is
+ * what the API answers and what `saveProfile` writes back. c) a mirror ranked a
+ * pick made a moment ago differently from the same pick after a reload.
+ */
+const choices = computed<CostCentreChoices>(() => ({
+  tickets: profile.jiraTickets,
+  projects: profile.jiraProjects,
+}))
 
 /** The month before the one the clock is in. That is what this screen reads. */
 export function lastPeriod(now = new Date()): string {
@@ -116,26 +151,43 @@ export async function choosePeriod(next: string): Promise<void> {
 }
 
 /**
- * The Workday ID a ticket books against.
+ * The cost centre one ticket books against and where it came from.
  *
- * Three answers in order. A choice made on this screen. The Jira cost centre
- * converted through the catalogue. The project map on the profile.
- *
- * Jira beats the profile map. Because a) the cost centre is per ticket and the
- * map is per project so Jira is the finer answer. b) an epic carries one for
- * everything beneath it so a whole release books correctly without anybody
- * typing. c) the map stays as the answer for a project Jira says nothing about.
- *
- * A choice still beats both. It is the one answer a person made on purpose.
+ * The order lives in `resolveCostCentre` in core because it is domain. This
+ * reads the two maps of this user into it and nothing else.
  */
-export function workdayIdOf(ticket: CompletedTicket): string | null {
-  return (
-    chosenProjects[ticket.projectKey] ??
-    workdayIdForCostCentre(ticket.costCentre) ??
-    ticket.workdayId ??
-    null
-  )
+export function foundFor(ticket: CompletedTicket): ResolvedCostCentre {
+  return resolveCostCentre(ticket, choices.value)
 }
+
+/** Null where nothing answered. Such a ticket is listed and never booked. */
+export function workdayIdOf(ticket: CompletedTicket): string | null {
+  return foundFor(ticket).workdayId
+}
+
+/**
+ * The specification one ticket books and where it came from.
+ *
+ * The cost centre is resolved first because it owns the list the Jira label is
+ * read into. `resolveSpecification` in core holds that order.
+ */
+export function specificationFoundFor(ticket: CompletedTicket): ResolvedSpecification {
+  return resolveSpecification(ticket, workdayIdOf(ticket))
+}
+
+/**
+ * Every ticket beside its resolved cost centre. What the table renders.
+ *
+ * The resolution is computed once per ticket here rather than called from three
+ * places in the template. A row shows the figure and says where it came from so
+ * the same answer is read more than once.
+ */
+export const rows = computed(() =>
+  tickets.value.map((ticket) => {
+    const found = resolveCostCentre(ticket, choices.value)
+    return { ticket, found, spec: resolveSpecification(ticket, found.workdayId) }
+  }),
+)
 
 /** What the arithmetic uses. Only a worklog or `timespent` ever fills it. */
 export function hoursOf(ticket: CompletedTicket): number {
@@ -144,15 +196,26 @@ export function hoursOf(ticket: CompletedTicket): number {
 
 /** The list as the arithmetic sees it. */
 export const withHours = computed<TicketHours[]>(() =>
-  tickets.value.map((ticket) => ({
+  rows.value.map(({ ticket, found, spec }) => ({
     key: ticket.key,
     summary: ticket.summary,
-    workdayId: workdayIdOf(ticket),
+    workdayId: found.workdayId,
+    specification: spec.specification,
     hours: hoursOf(ticket),
   })),
 )
 
-export const groups = computed(() => groupByWorkdayId(withHours.value, profile.hoursPerDay))
+export const groups = computed(() => groupByAllocation(withHours.value, profile.hoursPerDay))
+
+/**
+ * How many cost centres the month books against.
+ *
+ * Counted apart from the groups because one cost centre holds a group per
+ * specification. The intro says Workday IDs so it has to count those.
+ */
+export const workdayIdCount = computed(
+  () => new Set(groups.value.map((group) => group.workdayId)).size,
+)
 export const totals = computed(() =>
   hoursTotals(withHours.value, groups.value, profile.hoursPerDay),
 )
@@ -172,26 +235,31 @@ export const monthHours = computed(() => hoursPerMonth(profile.hoursPerDay, mont
  */
 export const mode = ref<'hours' | 'percent'>('percent')
 
-/** A share per Workday ID. Empty means the hours decide the split. */
+/**
+ * A share per group. Empty means the hours decide the split.
+ *
+ * Keyed by the group rather than by the Workday ID because one cost centre
+ * books several specifications and each of them is a row of its own.
+ */
 export const shares = reactive<Record<string, number>>({})
 
 /**
- * The share of the month one Workday ID takes.
+ * The share of the month one group takes.
  *
  * It falls back to what the hours imply so switching to percentages starts from
  * the answer the user already gave rather than from zero.
  */
-export function shareOf(workdayId: string): number {
-  const held = shares[workdayId]
+export function shareOf(key: string): number {
+  const held = shares[key]
   if (held !== undefined) return held
   const total = totals.value.hours
   if (total <= 0) return groups.value.length ? Math.round(100 / groups.value.length) : 0
-  const group = groups.value.find((entry) => entry.workdayId === workdayId)
+  const group = groups.value.find((entry) => entry.key === key)
   return group ? Math.round((group.hours / total) * 100) : 0
 }
 
 export const shareTotal = computed(() =>
-  groups.value.reduce((sum, group) => sum + shareOf(group.workdayId), 0),
+  groups.value.reduce((sum, group) => sum + shareOf(group.key), 0),
 )
 
 /** What the fill would book. The hours decide it or the target does. */
@@ -223,7 +291,14 @@ export async function loadLink(): Promise<void> {
     const problem = raised as { status?: number; message?: string }
     link.value =
       problem.status === 404
-        ? { linked: false, clientId: '', redirectUri: '', accountId: null, linkedAt: null }
+        ? {
+            linked: false,
+            clientId: '',
+            redirectUri: '',
+            siteUrl: '',
+            accountId: null,
+            linkedAt: null,
+          }
         : null
     if (problem.status !== 404) linkError.value = problem.message ?? 'the Jira link could not be read'
   }
@@ -266,8 +341,24 @@ export async function loadMonth(): Promise<void> {
  * filling anything.
  */
 export async function mapProject(projectKey: string, workdayId: string): Promise<void> {
-  chosenProjects[projectKey] = workdayId
   profile.jiraProjects = { ...profile.jiraProjects, [projectKey]: workdayId }
+  await saveProfile()
+}
+
+/**
+ * Remembers which cost centre one ticket books against.
+ *
+ * It is offered on a ticket no cost centre was found for. Keyed by ticket
+ * rather than by project because one project is not one cost centre. It
+ * outranks both the Jira field and the project map so it also corrects an epic
+ * carrying the wrong cost centre for one ticket beneath it.
+ *
+ * Written to the profile the moment it is chosen for the same reason the
+ * project map is. The answer is worth keeping even when the user leaves without
+ * filling anything.
+ */
+export async function mapTicket(key: string, workdayId: string): Promise<void> {
+  profile.jiraTickets = { ...profile.jiraTickets, [key]: workdayId }
   await saveProfile()
 }
 
@@ -293,8 +384,8 @@ function allocations(): Allocation[] {
   if (mode.value === 'hours') return allocationsFromGroups(groups.value, profile.location)
   return groups.value.map((group) => ({
     workdayId: group.workdayId,
-    specification: defaultSpecificationFor(group.workdayId),
-    percent: shareOf(group.workdayId),
+    specification: group.specification ?? defaultSpecificationFor(group.workdayId),
+    percent: shareOf(group.key),
     location: profile.location,
     tasks: tasksFor(group),
   }))

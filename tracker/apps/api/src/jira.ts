@@ -10,7 +10,12 @@
 // The rotation of a refresh token is not handled here. `jira-tokens.ts` owns
 // that because it needs the table and this file needs only the network.
 
-import { DEFAULT_HOURS_FIELDS, NO_HOURS_SOURCE, type CompletedTicket } from '@tracker/core'
+import {
+  ATLASSIAN_ACCOUNT_ID,
+  DEFAULT_HOURS_FIELDS,
+  NO_HOURS_SOURCE,
+  type CompletedTicket,
+} from '@tracker/core'
 
 /** Where a token is exchanged. Not the site host and not the API host. */
 const AUTH = 'https://auth.atlassian.com/oauth/token'
@@ -80,7 +85,12 @@ export interface Jira {
   refresh(refreshToken: string): Promise<TokenSet>
   /** The Atlassian account id of whoever the token belongs to. */
   accountId(accessToken: string): Promise<string>
-  /** Every ticket this user completed inside the period. */
+  /**
+   * Every ticket this user completed inside the period.
+   *
+   * Which user is the token owner unless the implementation was built to read
+   * another one. Only the local server does that. See `AtlassianJira`.
+   */
   completed(accessToken: string, period: string): Promise<CompletedTicket[]>
 }
 
@@ -164,6 +174,17 @@ function secondsToHours(value: unknown): number | null {
   return typeof value === 'number' && value > 0 ? value / 3600 : null
 }
 
+/**
+ * Who the two searches are about.
+ *
+ * `currentUser()` is whoever the token belongs to and that is the answer on
+ * every deployment. An account id is passed by `local.ts` alone and only for a
+ * test. `docs/jira.md` says why that switch exists nowhere else.
+ */
+function theUser(accountId: string | null): string {
+  return accountId === null ? 'currentUser()' : `"${accountId}"`
+}
+
 /** The first day of the period and the first day of the month after it. */
 export function monthBounds(period: string): { from: string; to: string } {
   const [year, month] = period.split('-').map(Number) as [number, number]
@@ -186,20 +207,20 @@ export function monthBounds(period: string): { from: string; to: string } {
  * needs no list of status names. b) migrated 4flow projects carry status names
  * that differ per project. c) the changed form scans the changelog.
  */
-export function completedJql(period: string): string {
+export function completedJql(period: string, accountId: string | null = null): string {
   const { from, to } = monthBounds(period)
   return (
-    'assignee = currentUser() AND statusCategory = Done' +
+    `assignee = ${theUser(accountId)} AND statusCategory = Done` +
     ` AND resolutiondate >= "${from}" AND resolutiondate < "${to}"` +
     ' ORDER BY resolutiondate DESC'
   )
 }
 
 /** The tickets this user logged time against inside the month. */
-export function worklogJql(period: string): string {
+export function worklogJql(period: string, accountId: string | null = null): string {
   const { from, to } = monthBounds(period)
   return (
-    'worklogAuthor = currentUser()' +
+    `worklogAuthor = ${theUser(accountId)}` +
     ` AND worklogDate >= "${from}" AND worklogDate < "${to}"`
   )
 }
@@ -221,6 +242,8 @@ interface SearchIssue {
     resolutiondate?: string
     /** The first twenty worklogs and the count of all of them. */
     worklog?: { total?: number; worklogs?: Worklog[] }
+    /** Every link on the ticket. One side is filled and the other is absent. */
+    issuelinks?: { inwardIssue?: { key?: string }; outwardIssue?: { key?: string } }[]
     /** Whatever else `JIRA_HOURS_FIELDS` named. A custom field is one of these. */
     [field: string]: unknown
   }
@@ -275,7 +298,25 @@ export class AtlassianJira implements Jira {
      * a custom field read as hours.
      */
     private readonly hoursFields: string[] = DEFAULT_HOURS_FIELDS,
-  ) {}
+    /**
+     * The account whose month is read instead of the token owner one.
+     *
+     * Null on every deployment. `lambda.ts` passes nothing and only
+     * `apps/api/src/local.ts` passes anything else. `build.mjs` bundles from
+     * `lambda.ts` and nothing there reaches that file so the switch cannot
+     * arrive in the artefact. `jira-fake.ts` states the same rule about itself.
+     *
+     * It is not impersonation. The call carries the token of whoever linked so
+     * it returns what that person may already browse and nothing more.
+     */
+    private readonly asUser: string | null = null,
+  ) {
+    // Thrown at construction rather than at the first search. A typed account
+    // id is a wrong month and a wrong month reads as an empty one.
+    if (asUser !== null && !ATLASSIAN_ACCOUNT_ID.test(asUser)) {
+      throw new Error(`${asUser} is not an Atlassian account id`)
+    }
+  }
 
   private async token(body: Record<string, string>): Promise<TokenSet> {
     const response = await this.fetching(AUTH, {
@@ -375,6 +416,9 @@ export class AtlassianJira implements Jira {
    * worklogs of every issue it returns. b) that answers almost every ticket of
    * a month outright. c) the per issue call then costs nothing except on the
    * few that hold more.
+   *
+   * `issuelinks` rides along at no cost of its own because the search carries
+   * every link inline.
    */
   private searchFields(cost: CostFields): string[] {
     return [
@@ -383,6 +427,7 @@ export class AtlassianJira implements Jira {
       'resolutiondate',
       'parent',
       'worklog',
+      'issuelinks',
       ...cost.centre,
       ...cost.specification,
       ...this.hoursFields.filter((field) => field !== 'worklog'),
@@ -525,6 +570,47 @@ export class AtlassianJira implements Jira {
   }
 
   /**
+   * The specification tickets the month links to.
+   *
+   * A 4flow cost centre epic sits in `COMM` or `TMS` while the work sits in a
+   * product project. So it is not on the parent chain of the ticket booking
+   * against it and the link is the only route to it. Only a ticket the chain
+   * left without a specification is followed.
+   *
+   * Every link of the month is read in one batched search and the parents of
+   * what comes back are walked after. So a month linking to forty specification
+   * tickets costs one call and one walk rather than forty.
+   */
+  private async withLinked(
+    accessToken: string,
+    issues: Map<string, SearchIssue>,
+    known: Map<string, SearchIssue>,
+    cost: CostFields,
+    fields: string[],
+  ): Promise<Map<string, SearchIssue>> {
+    // A site without the field has nothing a link could answer. Every ticket
+    // would otherwise read as unanswered and every link be fetched for nothing.
+    if (cost.specification.length === 0) return known
+    const wanted: string[] = []
+    for (const key of issues.keys()) {
+      if (inheritedField(key, known, cost.specification).value !== null) continue
+      for (const link of linkedKeys(issues.get(key))) {
+        if (!known.has(link) && !wanted.includes(link)) wanted.push(link)
+      }
+    }
+    if (wanted.length === 0) return known
+    const found = new Map(known)
+    for (let at = 0; at < wanted.length; at += PARENT_BATCH) {
+      const batch = wanted.slice(at, at + PARENT_BATCH)
+      for (const issue of await this.search(accessToken, `key in (${batch.join(',')})`, fields)) {
+        if (issue.key) found.set(issue.key, issue)
+      }
+    }
+    for (const key of wanted) if (!found.has(key)) found.set(key, {})
+    return this.withAncestors(accessToken, found, fields)
+  }
+
+  /**
    * Every ticket of the month.
    *
    * Two searches rather than one. A ticket closed in the month is what the
@@ -535,9 +621,11 @@ export class AtlassianJira implements Jira {
     const cost = await this.costCentreFields(accessToken)
     const fields = this.searchFields(cost)
     const [accountId, closed, logged] = await Promise.all([
-      this.accountId(accessToken),
-      this.search(accessToken, completedJql(period), fields),
-      this.search(accessToken, worklogJql(period), fields),
+      // A named account is already the answer `/myself` would give so the call
+      // is not made. It is also the only account this token may not be.
+      this.asUser === null ? this.accountId(accessToken) : Promise.resolve(this.asUser),
+      this.search(accessToken, completedJql(period, this.asUser), fields),
+      this.search(accessToken, worklogJql(period, this.asUser), fields),
     ])
 
     // Closed first so a ticket both closed and logged against keeps the record
@@ -554,13 +642,13 @@ export class AtlassianJira implements Jira {
     //
     // The walk asks for no worklog. Nobody logs time against an epic.
     const inherits = cost.centre.length + cost.specification.length > 0
+    const quiet = fields.filter((field) => field !== 'worklog')
+    const walked = inherits ? await this.withAncestors(accessToken, issues, quiet) : issues
+    // A link is followed only where the parent chain named no specification. So
+    // a site holding the field on every epic never makes this call.
     const known = inherits
-      ? await this.withAncestors(
-          accessToken,
-          issues,
-          fields.filter((field) => field !== 'worklog'),
-        )
-      : issues
+      ? await this.withLinked(accessToken, issues, walked, cost, quiet)
+      : walked
     return [...issues.keys()].map((key) =>
       toTicket(key, known, days.get(key) ?? {}, cost, this.hoursFields),
     )
@@ -615,6 +703,48 @@ function inheritedField(
   return { value: null, from: null }
 }
 
+/** Both ends of every link on a ticket. The far end is whichever one is filled. */
+function linkedKeys(issue: SearchIssue | undefined): string[] {
+  const out: string[] = []
+  for (const link of issue?.fields?.issuelinks ?? []) {
+    const key = link.inwardIssue?.key ?? link.outwardIssue?.key
+    if (key && !out.includes(key)) out.push(key)
+  }
+  return out
+}
+
+/**
+ * The two cost centre fields of one ticket and the tickets they were read from.
+ *
+ * The parent chain answers first. A linked ticket answers only a specification
+ * the chain left null and it answers a cost centre only where the chain left
+ * that null as well. The first link carrying one wins.
+ *
+ * A specification from a link may name a list its cost centre does not allow.
+ * `matchSpecification` drops it there so nothing outside the list is ever
+ * booked. That guard sits in the browser because only the browser holds the
+ * catalogue.
+ */
+function inheritedFields(
+  key: string,
+  known: Map<string, SearchIssue>,
+  cost: CostFields,
+): {
+  centre: { value: string | null; from: string | null }
+  specification: { value: string | null; from: string | null }
+} {
+  const centre = inheritedField(key, known, cost.centre)
+  const specification = inheritedField(key, known, cost.specification)
+  if (specification.value !== null) return { centre, specification }
+  for (const link of linkedKeys(known.get(key))) {
+    const found = inheritedField(link, known, cost.specification)
+    if (found.value === null) continue
+    const linkedCentre = centre.value === null ? inheritedField(link, known, cost.centre) : centre
+    return { centre: linkedCentre, specification: found }
+  }
+  return { centre, specification }
+}
+
 /**
  * One search result as the screen receives it.
  *
@@ -651,8 +781,7 @@ function toTicket(
       break
     }
   }
-  const centre = inheritedField(key, known, cost.centre)
-  const specification = inheritedField(key, known, cost.specification)
+  const { centre, specification } = inheritedFields(key, known, cost)
   return {
     key,
     summary: issue.fields?.summary ?? key,
@@ -663,10 +792,13 @@ function toTicket(
     costCentre: centre.value,
     costCentreFrom: centre.from,
     costCentreSpecification: specification.value,
+    costCentreSpecificationFrom: specification.from,
     days,
     // Null until the project is mapped. `jira-handlers.ts` fills it from the
     // profile of the caller.
     workdayId: null,
+    // Null until the catalogue reads the label. Only the browser holds it.
+    specification: null,
     hours,
     hoursSource,
   }

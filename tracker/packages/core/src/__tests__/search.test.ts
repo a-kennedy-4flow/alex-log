@@ -10,6 +10,8 @@ import {
   defaultSpecificationFor,
   isAbsence,
   searchProjects,
+  withRecentPick,
+  RECENT_LIMIT,
   buildMonth,
   daysPastTarget,
   hasErrors,
@@ -157,6 +159,71 @@ describe('typing an id', () => {
     const exact = searchProjects('24112', 10, 'consulting')[0]
     expect(exact?.workdayId).toBe('24112')
     expect(exact?.businessLine).toBe('software')
+  })
+})
+
+describe('the pick list', () => {
+  it('moves a pick to the front and holds it once', () => {
+    expect(withRecentPick([], '24112')).toEqual(['24112'])
+    expect(withRecentPick(['24112', '10000'], '10000')).toEqual(['10000', '24112'])
+    expect(withRecentPick(['10000', '24112'], '10000')).toEqual(['10000', '24112'])
+  })
+
+  it('remembers no more than it can show', () => {
+    let list: string[] = []
+    for (const id of catalogue.projects.slice(0, RECENT_LIMIT + 5)) {
+      list = withRecentPick(list, id.workdayId)
+    }
+    expect(list).toHaveLength(RECENT_LIMIT)
+  })
+})
+
+describe('ordering by what was picked last', () => {
+  const recent = ['24112', '10000']
+
+  it('leads the unfiltered list with the newest pick', () => {
+    const results = searchProjects('', 50, 'consulting', recent)
+    expect(results.slice(0, 2).map((p) => p.workdayId)).toEqual(recent)
+  })
+
+  it('offers a pick once rather than twice', () => {
+    const results = searchProjects('', 200, 'consulting', recent)
+    for (const id of recent) {
+      expect(results.filter((p) => p.workdayId === id), id).toHaveLength(1)
+    }
+  })
+
+  it('changes nothing while nothing has been picked', () => {
+    const before = searchProjects('', 50, 'consulting').map((p) => p.workdayId)
+    const after = searchProjects('', 50, 'consulting', []).map((p) => p.workdayId)
+    expect(after).toEqual(before)
+  })
+
+  it('skips a pick the catalogue no longer offers', () => {
+    const results = searchProjects('', 5, null, ['this id was dropped by an upload'])
+    expect(results.map((p) => p.workdayId)).not.toContain('this id was dropped by an upload')
+    expect(results).toHaveLength(5)
+  })
+
+  // The complaint that started this was a list that read as though it had
+  // ignored what was typed. Recency breaks a tie and never beats a closer match.
+  it('never beats a better match', () => {
+    const exact = searchProjects('24112', 10, null, ['10000'])[0]
+    expect(exact?.workdayId).toBe('24112')
+  })
+
+  it('breaks a tie ahead of the business line', () => {
+    // Two rows of the same rank. The one picked last leads even though the
+    // other belongs to the line the user set.
+    const all = searchProjects('4flow', 400, null)
+    const tied = all.filter((p) => p.businessLine !== null)
+    const chosen = tied.find((p) => p.businessLine === 'software')
+    const other = tied.find((p) => p.businessLine !== 'software')
+    expect(chosen).toBeDefined()
+    expect(other).toBeDefined()
+
+    const ranked = searchProjects('4flow', 400, 'software', [other!.workdayId])
+    expect(ranked[0]?.workdayId).toBe(other!.workdayId)
   })
 })
 

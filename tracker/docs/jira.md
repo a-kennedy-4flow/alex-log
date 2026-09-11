@@ -6,7 +6,7 @@ Workday ID. Nothing is ever written back to Jira.
 
 ## Terms
 
-Four words below could be read more than one way. They are defined here once for
+Five words below could be read more than one way. They are defined here once for
 the whole project.
 
 **Cloud id.** The identifier of one Atlassian site. Ours is
@@ -21,6 +21,10 @@ is not the key. Mine is `712020:0cecee67-bb99-467b-b2f6-5664d8db8d5c`.
 
 **Consent.** The one time approval a user gives the tracker to read Jira as
 themselves. Atlassian records it. A later sign in is a redirect with no screen.
+
+**Specification ticket.** The ticket carrying the `Cost Center Specification` a
+work ticket books under. `COMM-23079 iTMS-4s Concept & Development` is one. It
+is reached by the parent chain or by a link.
 
 ## What the site actually holds
 
@@ -81,7 +85,8 @@ Name the fields. The default set returns thirteen fields including three blocks
 of avatar URLs.
 
     "fields": ["summary", "project", "resolutiondate", "parent", "worklog",
-               "<internal cost center>", "<cost center specification>"]
+               "issuelinks", "<internal cost center>",
+               "<cost center specification>"]
 
 `parent` is worth carrying. Column M takes the ticket summary so the epic is
 never written to a timesheet. The screen shows it under each summary as context.
@@ -131,6 +136,33 @@ A value arrives as a number on one site and as a select option on another and as
 a list of options on a third. All three state the same fact so all three are
 read to one string. Blank is nothing rather than an answer.
 
+On `4flow.atlassian.net` the two are `customfield_10084` and `customfield_10085`
+as of 2026-09-10. The first is a float. The second is a labels field so every
+value it holds is one word.
+
+### The specification ticket a link names
+
+986 issues carry `Cost Center Specification`. They are cost centre epics in
+`COMM` and `TMS` and `CUS` and `TREX`. A person writes code in `PLRS` or `TORO`
+and books against one of them. So the specification ticket is in a project of
+its own and no parent chain of a work ticket reaches it.
+
+The link does. `PLRS-1141 implements ECLIPSE-613` is one. So a ticket the parent
+chain left without a specification has its links followed and the first linked
+ticket carrying one answers. That ticket own parent chain is walked after it.
+
+The cost centre of that ticket is taken as well where the chain named none.
+Because a) a specification names one of the lists its own cost centre allows. b)
+a work ticket in `PLRS` carries neither field so both come from the same place.
+c) a chain that did name a cost centre keeps it because a ticket is the finer
+statement than anything it links to.
+
+A link costs no call of its own. `issuelinks` rides on the search that already
+runs and every link of the month is read in one batched `key in (...)`. A month
+whose parent chains answered every specification makes no call at all.
+
+Nothing is written back. A link is read and never created.
+
 ## The join to a tracker user
 
 Cognito holds the email. Identity Center supplies it. See `docs/identity-centre.md`.
@@ -165,14 +197,83 @@ The second and the third are both built. The second wins.
 
 ### The order the screen resolves in
 
-1. A choice made on the screen. It is the one answer a person made on purpose.
-2. The Jira `Internal Cost Center` converted through the catalogue.
-3. The project map on the profile.
+`resolveCostCentre` in `packages/core/src/jira-cost-centre.ts` holds it. Four
+answers in order.
 
-Jira beats the profile map. Because a) a cost centre is per ticket and the map
+1. A cost centre set against this one ticket. `jiraTickets` on the profile.
+2. The Jira `Internal Cost Center` converted through the catalogue. The ticket
+   itself or the nearest ancestor carrying one.
+3. The project map on the profile. `jiraProjects`.
+4. Nothing. The row is listed and never booked.
+
+A ticket answer beats Jira. Because a) it is the one answer a person made for
+that ticket on purpose. b) it is the only way to correct an epic carrying the
+wrong cost centre for one ticket beneath it. c) it is set on a ticket Jira says
+nothing about so it usually competes with nothing at all.
+
+Jira beats the project map. Because a) a cost centre is per ticket and the map
 is per project so Jira is the finer answer. b) an epic carries one for
 everything beneath it so a whole release books correctly with nobody typing. c)
 the map stays the answer for a project Jira says nothing about.
+
+One project is not one cost centre. A 4flow project runs work for several of
+them so the project map is a guess for every ticket of it. That is why the
+answer offered on an unresolved row is written against the ticket. The project
+map is still offered under the table for a whole project at once.
+
+The order is the same before and after a reload. A pick made on the screen used
+to outrank Jira until the page was read again and rank third after it. So the
+same answer resolved two ways.
+
+### The specification the row books
+
+`resolveSpecification` in `packages/core/src/jira-cost-centre.ts` holds it. The
+cost centre is answered first because it owns the list. Three answers follow.
+
+1. The Jira label read into that list. `matchSpecification` does the reading.
+2. The first specification the cost centre allows. What a hand typed row starts
+   with.
+3. Nothing. A cost centre whose range the workbook leaves empty has nothing
+   that applies by right so a blank stands.
+
+A label outside the list answers nothing and is reported on the row. Because a)
+the cost centre owns the list so a value outside it cannot be booked. b) the
+field also holds a cost centre number somebody typed into the wrong box and
+`CUS-2479` carries exactly that. c) the nearest entry would be a guess booking
+time against work nobody did.
+
+### Reading a label into the workbook list
+
+Jira holds the specification as a labels field so no value carries a space. The
+workbook writes the same fact three other ways.
+
+| Jira label | Workbook specification |
+| --- | --- |
+| `4s_Overheads_Concept_&_development` | `4s_Overheads_Concept & development` |
+| `4s_changeRequest` | `4s_Change request` |
+| `Overheads` | `Overheads` |
+
+Both sides are lowercased and every character that is not a letter or a digit
+is dropped. All three then agree. The 38 specifications the workbook holds stay
+distinct under it and a test pins that.
+
+### Grouping by the pair
+
+A group is a Workday ID and a specification rather than a Workday ID. Because
+a) a timesheet row holds both so a group holding two specifications could book
+only one of them. b) cost centre `21111` runs `4s_Overheads_Concept &
+development` and `4s_Overheads_Product operations` and nine more. c) the
+specification a group drops is the one nobody would notice was missing.
+
+The share editor keys on the pair for the same reason. The intro still counts
+Workday IDs because that is what it says.
+
+### Where an answer is kept
+
+`jiraTickets` on the profile. One ticket key to one Workday ID. `PUT /api/me`
+holds it to a ticket key and to a Workday ID the catalogue offers exactly as it
+already holds the project map. The bound is five hundred rather than fifty
+because a ticket is answered once and kept and a month holds forty of them.
 
 ### The conversion
 
@@ -199,11 +300,17 @@ building it from the kept rows would lose exactly the numbers it exists to find.
 A number the catalogue never heard of converts to nothing. The profile map then
 answers. Nothing is guessed.
 
+Such a number is reported on the row rather than swallowed. Because a) the
+figure the row books against is not the Jira one. b) saying nothing would read
+as Jira carrying no cost centre. c) correcting it in Jira is somebody business
+and they cannot correct what they cannot see.
+
 ### Where it runs
 
 In the browser rather than in the Jira function. That function never loads the
 catalogue and `lambda.ts` keeps it that way. So the answer the API returns
-carries the Jira cost centre unconverted and `useJira.ts` converts it.
+carries the Jira cost centre unconverted and `useJira.ts` converts it. The
+specification label is carried the same way and matched there.
 
 ## The screen
 
@@ -211,10 +318,43 @@ A page of its own at `/jira`. Not a band of the month sheet. Its layout is H1 of
 `mockups/index.html`. It holds three things in one column.
 
 A list of last month tickets. One row each. The key then the summary then the
-Workday ID its project maps to then the hours.
+Workday ID it books against then the hours.
 
-A table grouped by Workday ID. One row each. It sums the hours of the tickets
-under it.
+Under the Workday ID in smaller writing is where its cost centre was found. One
+sentence of five. `Cost centre 99980100 on this ticket` and `Cost centre
+99980100 from PLRS-900` and `Cost centre you set on this ticket` and `Cost
+centre you set for PLRS` and `No cost centre on this ticket or any epic above
+it`. A cost centre read off an epic reads exactly like one written on the ticket
+until the screen says which it was.
+
+Beside the Workday ID is the specification the row books. Under it in smaller
+writing is where that came from. One sentence of five. `Specification on this
+ticket` and `Specification from COMM-23080` and `Default specification of this
+cost centre` and `This cost centre names no specification list` and `Jira says
+9963711 on CUS-2479 which this cost centre does not allow`.
+
+A turning ring stands beside the line while the month is read. Reading one
+costs several searches against Atlassian so the wait is long enough to look
+like a dead page. The line alone reads the same whether the request is in
+flight or finished. So the turning is what says data is still moving.
+
+`LoadingRing.vue` draws it. The fill button carries the same ring while it
+writes. One component rather than a rule per page because the `role` and the
+reduced motion rule are what a copy drops.
+
+A row nothing answered carries a cost centre picker in place of the figure. It
+writes to the ticket rather than to the project and it saves the moment it is
+chosen. So a ticket Jira says nothing about is answered where it is read.
+
+The key opens the ticket at `https://4flow.atlassian.net/browse/<key>`. That
+host is answered by `GET /api/jira/link` as `siteUrl` rather than compiled into
+the browser bundle. Because a) the screen already takes its client id and its
+callback from that route. b) the API host `api.atlassian.com` answers no browse
+address so the host a person opens is configuration of its own. c) a deployment
+naming no site answers an empty one and every key then stays plain text.
+
+A table grouped by the Workday ID and the specification together. One row each.
+It sums the hours of the tickets under it.
 
 A table of days under that. It converts each hour total to days and rounds up to
 the nearest half day. The rule is `ceil(hours / halfDay) / 2`.
@@ -228,9 +368,9 @@ c) nobody but the user knows how long their day is.
 A button reading **Fill the month timesheet** closes the page. It copies the
 days across and writes each ticket summary into column M.
 
-Rounding up runs per Workday ID rather than once on the total. So the rounded
-total is almost always larger than the true one. Two Workday IDs holding one
-hour each become one whole day. Both figures are shown. Because a) the user is
+Rounding up runs per group rather than once on the total. So the rounded total
+is almost always larger than the true one. Two groups holding one hour each
+become one whole day. Both figures are shown. Because a) the user is
 answerable for the number they submit. b) the tracker warns when the month
 misses its target so a silent inflation would surface later as that warning. c)
 rounding down instead would book less time than was worked.
@@ -528,6 +668,85 @@ life of the container so a retry alone proves nothing.
 Ask the Atlassian administrator to confirm one thing. External app access rules
 must permit a customer OAuth app to read Jira. An administrator can block that
 site wide.
+
+### Reading another account for a test
+
+The account this was built on holds seven closed August tickets, no worklog and
+no cost centre. So the hours path and the cost centre path cannot be seen
+against it. `JIRA_AS_USER` on the local server reads the month of another
+Atlassian account instead.
+
+    JIRA_CLIENT_ID=wJiihW00HOrSowAzpyBcDjWOj7vUMAXz \
+    JIRA_CLOUD_ID=792ba525-6efc-4a5f-80f4-b9269516a256 \
+    JIRA_CLIENT_SECRET="$(aws secretsmanager get-secret-value \
+      --secret-id tracker/jira --query SecretString --output text)" \
+    JIRA_AS_USER=712020:0cecee67-bb99-467b-b2f6-5664d8db8d5c \
+    pnpm dev:api
+
+A client secret is what turns the local server from the double to the real
+client. Without one `FakeJira` answers and `JIRA_AS_USER` is refused at startup
+rather than ignored. Because the double serves one fixed month of one fixed
+account so a switch with nothing behind it would answer as though the account it
+named looked like that.
+
+### The same switch in the browser
+
+The Jira screen carries a dashed field reading **jira as**. It sets the account
+for one request rather than for the whole server so the account can be changed
+without a restart. `x-dev-jira-as-user` is the header it sends.
+
+It renders where `import.meta.env.DEV` is true and no user pool is configured.
+So the deployed bundle never carries it. The deployed API ignores the header
+either way because only the local server reads a caller out of headers at all.
+
+`jira-dev.ts` holds the reading. Nothing in `lambda.ts` imports that file or
+`local.ts` so `build.mjs` cannot bundle either.
+
+Three rules sit on it.
+
+An id that is not an account id is refused with 400 rather than dropped.
+Because a) a dropped one reads as the switch never having worked. b) the id
+reaches JQL inside quotes. c) `ATLASSIAN_ACCOUNT_ID` in `packages/core/src/dev.ts`
+is the one copy of the rule so the field and the server cannot disagree.
+
+The header against the double is refused the same way `JIRA_AS_USER` is refused
+at startup. The field says so before the request is made.
+
+The stored month is hidden from a read of another account and none is left
+behind. Because that cache rides on the link of the caller and it is keyed by
+period alone. So the tickets of the account read before would be served again
+for the next one and the switch would show the wrong month for up to a day. The
+rest of the record still lands because a refresh token that rotated during the
+read is the rest of it.
+
+One client is built per account rather than per request. The two cost centre
+field ids are looked up once per client so a client per request would spend that
+call on every month read.
+
+The field renders above every branch of the screen rather than inside the linked
+one. Because a refused header reaches the link route as well and a control the
+linked layout alone carried would be the one thing that refusal hid.
+
+The consent screen is the real one. `http://localhost:5173/jira/callback` is a
+registered callback on the app so nothing in Atlassian has to change. The link
+is held in memory so `vite-node --watch` drops it on every edit and the consent
+has to be given again.
+
+An account id is on the profile URL in Jira. `.../jira/people/<account id>`. It
+is also on the assignee of any issue the API returns.
+
+The switch is not impersonation and it grants nothing. The search carries the
+token of whoever consented on that machine so it returns what that person may
+already browse and nothing more. `assignee = currentUser()` becomes
+`assignee = "<account id>"` and so does `worklogAuthor`. `/rest/api/3/myself` is
+then not called at all because the account is already named and asking would
+name the wrong one.
+
+It lives in `apps/api/src/local.ts` and nowhere else. Because a) `build.mjs`
+bundles from `lambda.ts` and nothing there reaches that file so no deployment
+can carry the switch. b) that file already refuses to run in production. c) a
+route or an environment variable on the deployed function would point every user
+of one deployment at one account.
 
 ## Option B. The browser holds the access token
 

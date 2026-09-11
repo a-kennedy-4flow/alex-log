@@ -13,8 +13,11 @@ function idToken(payload: Record<string, unknown>): string {
   return `header.${body}.signature`
 }
 
-function landOn(search: string, pathname = '/auth/callback'): void {
-  vi.stubGlobal('location', { origin: ORIGIN, pathname, search, assign: vi.fn() })
+/** Returns the navigation the module makes from this address. */
+function landOn(search: string, pathname = '/auth/callback') {
+  const assign = vi.fn()
+  vi.stubGlobal('location', { origin: ORIGIN, pathname, search, assign })
+  return assign
 }
 
 function tokenReply(payload: Record<string, unknown>): void {
@@ -109,10 +112,17 @@ describe('the sign in callback', () => {
     await expect(auth.establish()).rejects.toThrow('not assigned to this application')
   })
 
-  it('leaves a signed out user on the way back in', async () => {
-    landOn('?signedout=1', '/')
+  it('sends a retried callback to the month grid', async () => {
+    // A callback that failed leaves its spent code in the address bar and the
+    // signed out screen renders there. The button stores that address.
+    landOn('?code=spent&state=spent')
     const auth = await load()
-    expect(await auth.establish()).toBeNull()
+    await auth.signIn()
+
+    landOn(`?code=fresh&state=${sessionStorage.getItem('timesheets.pkce.state')}`)
+    tokenReply({ sub: 'abc' })
+    await auth.establish()
+    expect(auth.takeReturnTo()).toBe('/')
   })
 
   it('treats a missing group claim as no group', async () => {
@@ -122,6 +132,72 @@ describe('the sign in callback', () => {
     const auth = await load()
     const claims = await auth.establish()
     expect(claims?.groups).toEqual([])
+  })
+})
+
+describe('signing out', () => {
+  it('asks Cognito for the address the stack registered', async () => {
+    const assign = landOn('', '/settings')
+    const auth = await load()
+    auth.signOut()
+
+    expect(assign).toHaveBeenCalledOnce()
+    const sent = new URL(String(assign.mock.lastCall?.[0]))
+    // Cognito matches this against its sign out list exactly. The stack
+    // registers the bare origin so anything more is refused.
+    expect(sent.searchParams.get('logout_uri')).toBe(`${ORIGIN}/`)
+  })
+
+  it('holds the user on the way back in', async () => {
+    landOn('', '/settings')
+    const auth = await load()
+    auth.signOut()
+
+    landOn('', '/')
+    expect(await (await load()).establish()).toBeNull()
+  })
+
+  it('does not hold them again once they are back', async () => {
+    landOn('', '/settings')
+    let auth = await load()
+    auth.signOut()
+
+    // The one button the signed out screen carries.
+    landOn('', '/')
+    auth = await load()
+    await auth.signIn()
+
+    landOn(`?code=the-code&state=${sessionStorage.getItem('timesheets.pkce.state')}`)
+    tokenReply({ sub: 'abc' })
+    expect(await auth.establish()).not.toBeNull()
+    expect(auth.takeReturnTo()).toBe('/')
+
+    // The reload that used to land back on the signed out screen. It leaves for
+    // the hosted sign in instead and never settles.
+    const assign = landOn('', '/')
+    auth = await load()
+    let settled = false
+    void auth.establish().then(() => {
+      settled = true
+    })
+    await vi.waitFor(() => expect(assign).toHaveBeenCalledOnce())
+    expect(settled).toBe(false)
+    expect(new URL(String(assign.mock.lastCall?.[0])).pathname).toBe('/oauth2/authorize')
+  })
+})
+
+describe('a bundle that names no pool', () => {
+  it('renders nothing once it is built', async () => {
+    vi.stubEnv('DEV', false)
+    vi.resetModules()
+    const auth = await import('@/lib/auth')
+    expect(auth.authMisconfigured).toBe(true)
+  })
+
+  it('is how the fixtures are worked on', async () => {
+    vi.resetModules()
+    const auth = await import('@/lib/auth')
+    expect(auth.authMisconfigured).toBe(false)
   })
 })
 

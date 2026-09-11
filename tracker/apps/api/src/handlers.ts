@@ -23,12 +23,15 @@ import {
   type HalfDay,
   type UserProfile,
 } from '@tracker/core'
-import { writeTracker, ExportBlocked } from '@tracker/xlsm-writer'
+import { writeTracker, ExportBlocked, type ExportResult } from '@tracker/xlsm-writer'
+
+import { deliveryMessage, WORKBOOK_TYPE, type Mailer } from './mail'
 
 import {
   PERIOD,
   splitPeriod,
   type Repository,
+  type StoredCatalogue,
   type StoredSheet,
 } from './repository'
 
@@ -59,6 +62,12 @@ export interface ApiResponse {
 export interface Deps {
   repository: Repository
   now: () => Date
+  /**
+   * Absent refuses the delivery route and leaves every other one alone. That is
+   * a deployment whose domain is not delegated yet so SES has no identity to
+   * send from. See `docs/mail.md`.
+   */
+  mailer?: Mailer
 }
 
 const JSON_HEADERS = { 'content-type': 'application/json' }
@@ -66,6 +75,15 @@ const BACKOFFICE_GROUP = 'backoffice'
 
 /** Nobody works on more Jira projects than this in six months. */
 const MAX_JIRA_PROJECTS = 50
+
+/** How many tickets one profile may answer by hand. */
+const MAX_JIRA_TICKETS = 500
+
+/** A Jira project key. `PLRS`. */
+const PROJECT_KEY = /^[A-Z][A-Z0-9_]{0,29}$/
+
+/** A Jira ticket key. `PLRS-1141`. */
+const TICKET_KEY = /^[A-Z][A-Z0-9_]{0,29}-\d{1,10}$/
 
 export function json(status: number, value: unknown): ApiResponse {
   return { status, headers: JSON_HEADERS, body: JSON.stringify(value) }
@@ -80,21 +98,68 @@ export function problem(status: number, message: string, extra: object = {}): Ap
 // Lambda keeps a warm container between calls so the catalogue is decompressed
 // once per container rather than once per request. The version guards the cache
 // so a backoffice upload takes effect without a redeploy.
-let cachedVersion: string | null = null
 
-async function useCatalogue(deps: Deps): Promise<{ version: string; updatedAt: string } | null> {
-  const stored = await deps.repository.getCatalogue()
-  if (!stored) return null
-  if (cachedVersion !== stored.version) {
-    setCatalogue(stored.data)
-    cachedVersion = stored.version
-  }
-  return { version: stored.version, updatedAt: stored.updatedAt }
+/**
+ * How long a confirmed version is believed without asking the table again.
+ *
+ * A warm container serves several requests a second under load and each one
+ * would otherwise cost a round trip to say what the last one already said.
+ * Because a) the catalogue is replaced by hand a few times a year. b) the
+ * upload path clears this cache in the container that served it. c) half a
+ * minute is shorter than the time it takes the person who uploaded to tell
+ * anybody they have.
+ */
+const VERSION_TTL_MS = 30_000
+
+let cachedVersion: string | null = null
+/** The answer `useCatalogue` returns while the version is still believed. */
+let cachedHead: { version: string; updatedAt: string } | null = null
+/** When the version was last read from the table. Milliseconds. */
+let confirmedAt = 0
+
+/** Parses a freshly read catalogue into the module and remembers its version. */
+function prime(stored: StoredCatalogue, at: number): void {
+  setCatalogue(stored.data)
+  cachedVersion = stored.version
+  cachedHead = { version: stored.version, updatedAt: stored.updatedAt }
+  confirmedAt = at
 }
 
-/** Test hook. A new process would otherwise inherit a stale cache. */
+/**
+ * Makes the catalogue current for this request. Null means none is uploaded.
+ *
+ * The version is read on its own rather than with the list. Because a) the
+ * stored blob is sixty kilobytes and over a megabyte once it is parsed. b) a
+ * warm container is already holding the parsed copy so reading the blob again
+ * would throw it away and rebuild the same thing. c) the projection still
+ * catches an upload within `VERSION_TTL_MS`.
+ */
+async function useCatalogue(deps: Deps): Promise<{ version: string; updatedAt: string } | null> {
+  const at = deps.now().getTime()
+  if (cachedHead && at - confirmedAt < VERSION_TTL_MS) return cachedHead
+
+  const head = await deps.repository.getCatalogueVersion()
+  if (!head) return null
+  if (cachedVersion !== head.version) {
+    const stored = await deps.repository.getCatalogue()
+    if (!stored) return null
+    prime(stored, at)
+    return cachedHead
+  }
+  cachedHead = head
+  confirmedAt = at
+  return head
+}
+
+/**
+ * Test hook. It is also what the upload path calls so the container that took
+ * the new catalogue serves it on the very next request rather than in half a
+ * minute.
+ */
 export function resetCatalogueCache(): void {
   cachedVersion = null
+  cachedHead = null
+  confirmedAt = 0
 }
 
 /**
@@ -137,6 +202,7 @@ function defaultProfile(caller: Caller): UserProfile {
     remindByEmail: true,
     hoursPerDay: null,
     jiraProjects: {},
+    jiraTickets: {},
   }
 }
 
@@ -206,6 +272,7 @@ function readProfile(body: unknown, caller: Caller): UserProfile | string {
     remindByEmail: input.remindByEmail !== false,
     hoursPerDay: hours,
     jiraProjects: readJiraProjects(input.jiraProjects),
+    jiraTickets: readJiraTickets(input.jiraTickets),
   }
 }
 
@@ -216,14 +283,35 @@ function readProfile(body: unknown, caller: Caller): UserProfile | string {
  * export. c) an unbounded map would grow the profile item without limit.
  */
 function readJiraProjects(value: unknown): Record<string, string> {
+  return readJiraMap(value, PROJECT_KEY, MAX_JIRA_PROJECTS)
+}
+
+/**
+ * Checks the Jira ticket map. It is held to the same rules as the project one
+ * against a key naming a ticket rather than a project.
+ *
+ * The bound is larger because a ticket is answered once and kept. A month holds
+ * forty tickets so a project map of fifty is years of them. Five hundred keeps
+ * the profile item small and outlives the six months of history the tracker
+ * holds.
+ */
+function readJiraTickets(value: unknown): Record<string, string> {
+  return readJiraMap(value, TICKET_KEY, MAX_JIRA_TICKETS)
+}
+
+function readJiraMap(
+  value: unknown,
+  key: RegExp,
+  limit: number,
+): Record<string, string> {
   if (typeof value !== 'object' || value === null) return {}
   const offered = new Set(offeredWorkdayIds(catalogue))
   const out: Record<string, string> = {}
-  for (const [project, workdayId] of Object.entries(value as Record<string, unknown>)) {
+  for (const [name, workdayId] of Object.entries(value as Record<string, unknown>)) {
     if (typeof workdayId !== 'string' || !offered.has(workdayId)) continue
-    if (!/^[A-Z][A-Z0-9_]{0,29}$/.test(project)) continue
-    out[project] = workdayId
-    if (Object.keys(out).length >= MAX_JIRA_PROJECTS) break
+    if (!key.test(name)) continue
+    out[name] = workdayId
+    if (Object.keys(out).length >= limit) break
   }
   return out
 }
@@ -262,6 +350,74 @@ async function requireProfile(deps: Deps, caller: Caller): Promise<UserProfile> 
   return (await deps.repository.getProfile(caller.sub)) ?? defaultProfile(caller)
 }
 
+/* ---------- the workbook ---------- */
+
+interface Built {
+  result: ExportResult
+  profile: UserProfile
+  sheet: StoredSheet
+}
+
+/**
+ * The workbook of one stored month. An `ApiResponse` instead is the refusal.
+ *
+ * The download and the delivery both run this. Neither marks the month. That is
+ * `markExported` and each route calls it at the point where the workbook has
+ * actually left.
+ */
+async function buildWorkbook(
+  period: string,
+  caller: Caller,
+  deps: Deps,
+): Promise<Built | ApiResponse> {
+  if (!(await useCatalogue(deps))) return problem(503, 'no catalogue has been uploaded yet')
+  const sheet = await deps.repository.getSheet(caller.sub, period)
+  if (!sheet) return problem(404, 'no sheet saved for that month')
+  const profile = await requireProfile(deps, caller)
+  // The same rule the export panel names the file with. `filename.ts` holds it
+  // so the screen and this cannot drift apart.
+  const location = exportLocation(sheet.location, profile.location)
+  if (!location) return problem(400, 'set your location before exporting')
+
+  const workingDays = buildMonth(sheet.year, sheet.month, location).filter(
+    (d) => !d.nonWorking,
+  ).length
+  const effective = targetDays(workingDays, profile.workPercent, sheet.adjustedWorkDays)
+
+  try {
+    const result = writeTracker({
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      location,
+      year: sheet.year,
+      month: sheet.month,
+      // Tracker cell B8. Null leaves it empty which means a full month.
+      adjustedWorkDays: effective === workingDays ? null : effective,
+      halfDays: sheet.halfDays,
+      createdIso: deps.now().toISOString(),
+    })
+    return { result, profile, sheet }
+  } catch (error) {
+    if (error instanceof ExportBlocked) {
+      return problem(422, 'the timesheet holds errors', { codes: error.codes })
+    }
+    throw error
+  }
+}
+
+/** Mutes the monthly reminder for a month whose workbook has gone out. */
+async function markExported(
+  period: string,
+  caller: Caller,
+  sheet: StoredSheet,
+  deps: Deps,
+): Promise<void> {
+  await deps.repository.putSheet(caller.sub, period, {
+    ...sheet,
+    exportedAt: deps.now().toISOString(),
+  })
+}
+
 /* ---------- routing ---------- */
 
 export async function handle(request: ApiRequest, deps: Deps): Promise<ApiResponse> {
@@ -285,9 +441,12 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
 
   /* the catalogue */
   if (method === 'GET' && path === '/api/catalogue') {
+    // The one route that hands the whole list back. It reads the blob it is
+    // about to serve rather than calling `useCatalogue` which would read it a
+    // second time.
     const stored = await deps.repository.getCatalogue()
     if (!stored) return problem(503, 'no catalogue has been uploaded yet')
-    await useCatalogue(deps)
+    prime(stored, deps.now().getTime())
     return json(200, { version: stored.version, updatedAt: stored.updatedAt, ...stored.data })
   }
 
@@ -324,10 +483,11 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
     return json(200, { sheets: await deps.repository.listSheets(caller.sub) })
   }
 
-  const sheetMatch = path.match(/^\/api\/timesheets\/([^/]+)(\/export)?$/)
+  const sheetMatch = path.match(/^\/api\/timesheets\/([^/]+)(\/export|\/email)?$/)
   if (sheetMatch) {
     const period = sheetMatch[1] as string
     const isExport = sheetMatch[2] === '/export'
+    const isEmail = sheetMatch[2] === '/email'
     if (!PERIOD.test(period)) return problem(400, 'the period must read as yyyy-mm')
 
     if (method === 'GET' && !isExport) {
@@ -370,51 +530,59 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
     }
 
     if (method === 'POST' && isExport) {
-      if (!(await useCatalogue(deps))) return problem(503, 'no catalogue has been uploaded yet')
-      const sheet = await deps.repository.getSheet(caller.sub, period)
-      if (!sheet) return problem(404, 'no sheet saved for that month')
-      const profile = await requireProfile(deps, caller)
-      // The same rule the export panel names the file with. `filename.ts` holds
-      // it so the screen and this cannot drift apart.
-      const location = exportLocation(sheet.location, profile.location)
-      if (!location) return problem(400, 'set your location before exporting')
+      const built = await buildWorkbook(period, caller, deps)
+      if ('status' in built) return built
+      await markExported(period, caller, built.sheet, deps)
+      return {
+        status: 200,
+        headers: {
+          'content-type': WORKBOOK_TYPE,
+          'content-disposition': `attachment; filename="${built.result.filename}"`,
+        },
+        body: Buffer.from(built.result.bytes).toString('base64'),
+        isBase64: true,
+      }
+    }
 
-      const workingDays = buildMonth(sheet.year, sheet.month, location).filter(
-        (d) => !d.nonWorking,
-      ).length
-      const effective = targetDays(workingDays, profile.workPercent, sheet.adjustedWorkDays)
+    if (method === 'POST' && isEmail) {
+      // Both guards run before the workbook is built. Nothing is gained by
+      // writing a file that has nowhere to go.
+      const mailer = deps.mailer
+      if (!mailer) return problem(503, 'this deployment sends no mail')
+      // The token names the mailbox rather than the body. A user holds the
+      // workbook of their own month and of no other so there is nowhere else
+      // for it to be sent.
+      const to = caller.email
+      if (!to) return problem(400, 'your account carries no email address')
+
+      const built = await buildWorkbook(period, caller, deps)
+      if ('status' in built) return built
+      const { result, profile, sheet } = built
 
       try {
-        const result = writeTracker({
-          firstName: profile.firstName,
-          lastName: profile.lastName,
-          location,
-          year: sheet.year,
-          month: sheet.month,
-          // Tracker cell B8. Null leaves it empty which means a full month.
-          adjustedWorkDays: effective === workingDays ? null : effective,
-          halfDays: sheet.halfDays,
-          createdIso: deps.now().toISOString(),
+        await mailer.send({
+          to,
+          ...deliveryMessage({
+            locale: profile.locale,
+            firstName: profile.firstName,
+            year: sheet.year,
+            month: sheet.month,
+            workbook: {
+              filename: result.filename,
+              contentType: WORKBOOK_TYPE,
+              bytes: result.bytes,
+            },
+          }),
         })
-        // Written only once the workbook exists so a blocked export leaves the
-        // month owed. This is what the monthly reminder reads.
-        const exportedAt = deps.now().toISOString()
-        await deps.repository.putSheet(caller.sub, period, { ...sheet, exportedAt })
-        return {
-          status: 200,
-          headers: {
-            'content-type': 'application/vnd.ms-excel.sheet.macroEnabled.12',
-            'content-disposition': `attachment; filename="${result.filename}"`,
-          },
-          body: Buffer.from(result.bytes).toString('base64'),
-          isBase64: true,
-        }
       } catch (error) {
-        if (error instanceof ExportBlocked) {
-          return problem(422, 'the timesheet holds errors', { codes: error.codes })
-        }
-        throw error
+        // The month is left owed so the reminder still names it and the user
+        // may press the button again.
+        console.error(`the delivery to ${caller.sub} failed`, error)
+        return problem(502, 'the message could not be sent')
       }
+
+      await markExported(period, caller, sheet, deps)
+      return json(200, { to, filename: result.filename })
     }
   }
 

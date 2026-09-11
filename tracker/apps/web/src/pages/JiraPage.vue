@@ -8,16 +8,24 @@
 
 import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { findProject, labelOf } from '@tracker/core'
+import {
+  findProject,
+  labelOf,
+  type CompletedTicket,
+  type ResolvedCostCentre,
+  type ResolvedSpecification,
+} from '@tracker/core'
 
 import { monthName } from '@/i18n'
 
 import CostCentrePicker from '@/components/CostCentrePicker.vue'
+import LoadingRing from '@/components/LoadingRing.vue'
+import JiraAsUserSwitch from '@/components/JiraAsUserSwitch.vue'
 import { consentError, startLink } from '@/lib/jira'
-import { target } from '@/composables/useTimesheet'
+import { router } from '@/router'
+import { profile, target } from '@/composables/useTimesheet'
 import {
   choosePeriod,
-  chosenProjects,
   error,
   fetchedAt,
   filling,
@@ -31,17 +39,21 @@ import {
   loadMonth,
   loading,
   mapProject,
+  mapTicket,
   mode,
   offeredPeriods,
   period,
   relinkNeeded,
+  rows,
   tickets,
   shareOf,
   shares,
   shareTotal,
+  ticketUrl,
   totals,
   unlink,
   workdayIdOf,
+  workdayIdCount,
   wouldReplace,
   daysToBook,
   halfDayHours,
@@ -60,6 +72,54 @@ const { t, te, n, locale } = useI18n()
 function sourceLabel(source: string): string {
   if (source === '') return t('jira.source.none')
   return te(`jira.source.${source}`) ? t(`jira.source.${source}`) : source
+}
+
+/**
+ * Where the cost centre of one row was found.
+ *
+ * One sentence per source. It is rendered under the Workday ID because that is
+ * the figure it explains. A cost centre inherited from an epic reads exactly
+ * like one written on the ticket unless the screen says which it was.
+ */
+function fromLabel(found: ResolvedCostCentre, ticket: CompletedTicket): string {
+  if (found.source === 'ticket') return t('jira.from.ticket')
+  if (found.source === 'jira') {
+    return found.from === ticket.key
+      ? t('jira.from.self', { centre: found.costCentre })
+      : t('jira.from.parent', { centre: found.costCentre, key: found.from })
+  }
+  if (found.source === 'project') return t('jira.from.project', { project: ticket.projectKey })
+  return found.unknown ? unknownLabel(found) : t('jira.from.none')
+}
+
+/**
+ * A cost centre Jira carried which the catalogue does not know.
+ *
+ * Said out loud rather than swallowed. Because a) the row books against
+ * whatever answered underneath it so the figure shown is not the Jira one. b)
+ * silence would read as Jira carrying nothing. c) the number is somebody
+ * business to correct in Jira.
+ */
+function unknownLabel(found: ResolvedCostCentre): string {
+  return t('jira.from.unknown', { centre: found.costCentre, key: found.from })
+}
+
+/**
+ * Where the specification of one row was found.
+ *
+ * One sentence per source under the specification itself. A label read off a
+ * linked ticket reads exactly like one written on the ticket unless the screen
+ * says which it was.
+ */
+function specLabel(spec: ResolvedSpecification, ticket: CompletedTicket): string {
+  if (spec.unknown) return t('jira.spec.unknown', { label: spec.label, key: spec.from })
+  if (spec.source === 'jira') {
+    return spec.from === ticket.key
+      ? t('jira.spec.self')
+      : t('jira.spec.linked', { key: spec.from })
+  }
+  if (spec.source === 'default') return t('jira.spec.default')
+  return t('jira.spec.none')
 }
 
 onMounted(async () => {
@@ -90,17 +150,54 @@ async function chooseFor(projectKey: string, workdayId: string | null): Promise<
   if (workdayId) await mapProject(projectKey, workdayId)
 }
 
+/**
+ * Sets the cost centre of one ticket.
+ *
+ * Offered on the row itself rather than in the block below the table. Because
+ * a) it is the ticket being answered and not the project. b) one project is not
+ * one cost centre so the row is the only place the answer is true of. c) a
+ * clear picker means nothing was chosen so nothing is written.
+ */
+async function setFor(key: string, workdayId: string | null): Promise<void> {
+  if (workdayId) await mapTicket(key, workdayId)
+}
+
+/**
+ * Fills the month and then opens it.
+ *
+ * `fillMonth` has already moved the editor to the month it wrote. So the screen
+ * holding the result is one route away and the user is on the wrong one. The
+ * fill writes nine rows the person is expected to read before they submit
+ * anything and nothing on this screen shows them.
+ *
+ * The router singleton rather than `useRouter`. Because a) this page is mounted
+ * bare in a test where there is no router context to read. b) `main.ts` already
+ * treats that instance as the one. c) navigating is not a rendering concern.
+ *
+ * A fill that answered false wrote nothing so there is nothing to open. The
+ * button is disabled in that state as well.
+ */
 async function run(): Promise<void> {
-  await fillMonth()
+  if (await fillMonth()) await router.navigate({ to: '/' })
 }
 </script>
 
 <template>
   <div class="sheet">
+    <!--
+      Development alone. It reads the Jira month of another account.
+
+      Above every branch rather than inside the linked one. Because the server
+      refuses a header naming no account Atlassian could own and that refusal
+      reaches the link route as well. A control only the linked layout carried
+      would be the one thing a refused header hid.
+    -->
+    <JiraAsUserSwitch />
+
     <!-- The state is unknown until the first read answers. -->
     <section v-if="link === null && linkError === null" class="pad">
       <h2 class="eyebrow">{{ t('jira.title') }}</h2>
-      <p class="muted">{{ t('jira.loading') }}</p>
+      <LoadingRing>{{ t('jira.loading') }}</LoadingRing>
     </section>
 
     <!-- The read failed. The button is still offered. -->
@@ -133,7 +230,7 @@ async function run(): Promise<void> {
         <div>
           <h2 class="eyebrow">{{ t('jira.title') }}</h2>
           <p class="intro">
-            {{ t('jira.intro', { month: readMonth, count: tickets.length, ids: groups.length }) }}
+            {{ t('jira.intro', { month: readMonth, count: tickets.length, ids: workdayIdCount }) }}
           </p>
           <div class="months">
             <button type="button" class="btn quiet" @click="unlink()">
@@ -186,7 +283,7 @@ async function run(): Promise<void> {
           </button>
         </p>
         <p v-else-if="error" class="note">{{ error }}</p>
-        <p v-else-if="loading" class="muted">{{ t('jira.loading') }}</p>
+        <LoadingRing v-else-if="loading">{{ t('jira.loading') }}</LoadingRing>
         <p v-else-if="tickets.length === 0" class="muted">{{ t('jira.none') }}</p>
 
         <table v-else>
@@ -196,26 +293,59 @@ async function run(): Promise<void> {
               <th>{{ t('jira.summary') }}</th>
               <th>{{ t('jira.closed') }}</th>
               <th>{{ t('jira.workdayId') }}</th>
+              <th>{{ t('jira.specification') }}</th>
               <th class="right">{{ t('jira.hoursColumn') }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="ticket in tickets" :key="ticket.key">
-              <td class="num nowrap">{{ ticket.key }}</td>
-              <td>
-                {{ ticket.summary }}
-                <span v-if="ticket.parentSummary" class="epic">{{ ticket.parentSummary }}</span>
+            <tr v-for="row in rows" :key="row.ticket.key">
+              <td class="num nowrap">
+                <a
+                  v-if="ticketUrl(row.ticket.key)"
+                  class="key"
+                  :href="ticketUrl(row.ticket.key)!"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {{ row.ticket.key }}
+                </a>
+                <template v-else>{{ row.ticket.key }}</template>
               </td>
-              <td class="nowrap">{{ ticket.resolvedAt.slice(0, 10) }}</td>
               <td>
-                <span v-if="workdayIdOf(ticket)" class="pill light num">
-                  {{ workdayIdOf(ticket) }}
+                {{ row.ticket.summary }}
+                <span v-if="row.ticket.parentSummary" class="epic">
+                  {{ row.ticket.parentSummary }}
                 </span>
-                <span v-else class="unmapped">{{ ticket.projectKey }}</span>
+              </td>
+              <td class="nowrap">{{ row.ticket.resolvedAt.slice(0, 10) }}</td>
+              <!-- The figure then the line saying where its cost centre came from. -->
+              <td class="cc">
+                <span v-if="row.found.workdayId" class="pill light num">
+                  {{ row.found.workdayId }}
+                </span>
+                <!-- Nothing answered. The ticket is answered here or never. -->
+                <CostCentrePicker
+                  v-else
+                  :model-value="null"
+                  @update:model-value="setFor(row.ticket.key, $event)"
+                />
+                <span class="from">{{ fromLabel(row.found, row.ticket) }}</span>
+                <span v-if="row.found.unknown && row.found.source === 'project'" class="from odd">
+                  {{ unknownLabel(row.found) }}
+                </span>
+              </td>
+              <!-- The specification then the line saying which ticket named it. -->
+              <td class="cc">
+                <span v-if="row.spec.specification" class="pill light">
+                  {{ row.spec.specification }}
+                </span>
+                <span :class="row.spec.unknown ? 'from odd' : 'from'">
+                  {{ specLabel(row.spec, row.ticket) }}
+                </span>
               </td>
               <td class="right">
-                <span class="num">{{ hoursTextOf(ticket) || '—' }}</span>
-                <span class="src">{{ sourceLabel(ticket.hoursSource) }}</span>
+                <span class="num">{{ hoursTextOf(row.ticket) || '—' }}</span>
+                <span class="src">{{ sourceLabel(row.ticket.hoursSource) }}</span>
               </td>
             </tr>
           </tbody>
@@ -223,13 +353,16 @@ async function run(): Promise<void> {
 
         <p v-if="fetchedAt" class="muted">{{ t('jira.read', { at: fetchedAt.slice(0, 16) }) }}</p>
 
-        <!-- Every project that books against nothing yet. One row each. -->
-        <div v-for="ticket in unmapped" :key="ticket.projectKey" class="map">
-          <p>{{ t('jira.mapIntro', { project: ticket.projectKey }) }}</p>
-          <CostCentrePicker
-            :model-value="chosenProjects[ticket.projectKey] ?? null"
-            @update:model-value="chooseFor(ticket.projectKey, $event)"
-          />
+        <!-- Every project holding a ticket that books against nothing. One row each. -->
+        <div v-if="unmapped.length" class="maps">
+          <p class="intro">{{ t('jira.mapAll') }}</p>
+          <div v-for="ticket in unmapped" :key="ticket.projectKey" class="map">
+            <p>{{ t('jira.mapIntro', { project: ticket.projectKey }) }}</p>
+            <CostCentrePicker
+              :model-value="profile.jiraProjects[ticket.projectKey] ?? null"
+              @update:model-value="chooseFor(ticket.projectKey, $event)"
+            />
+          </div>
         </div>
       </section>
 
@@ -240,20 +373,22 @@ async function run(): Promise<void> {
           <thead>
             <tr>
               <th>{{ t('jira.workdayId') }}</th>
+              <th>{{ t('jira.specification') }}</th>
               <th>{{ t('jira.projectTitle') }}</th>
               <th class="right">{{ t('jira.tickets') }}</th>
               <th class="right">{{ t('jira.hoursColumn') }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="group in groups" :key="group.workdayId">
+            <tr v-for="group in groups" :key="group.key">
               <td class="num nowrap">{{ group.workdayId }}</td>
+              <td>{{ group.specification ?? '—' }}</td>
               <td>{{ titleOf(group.workdayId) }}</td>
               <td class="right num">{{ group.tickets.length }}</td>
               <td class="right num">{{ n(group.hours) }}</td>
             </tr>
             <tr class="total">
-              <td colspan="2">{{ t('jira.total') }}</td>
+              <td colspan="3">{{ t('jira.total') }}</td>
               <td class="right num">{{ tickets.length }}</td>
               <td class="right num">{{ n(totals.hours) }}</td>
             </tr>
@@ -281,16 +416,17 @@ async function run(): Promise<void> {
           <p class="intro">
             {{ t('jira.percentIntro', { target: n(daysToBook), hours: n(monthHours) }) }}
           </p>
-          <label v-for="group in groups" :key="group.workdayId" class="share">
+          <label v-for="group in groups" :key="group.key" class="share">
             <span class="num">{{ group.workdayId }}</span>
+            <span class="muted">{{ group.specification }}</span>
             <input
               class="hrs num"
               type="number"
               min="0"
               max="100"
               step="1"
-              :value="shareOf(group.workdayId)"
-              @input="shares[group.workdayId] = Number(($event.target as HTMLInputElement).value)"
+              :value="shareOf(group.key)"
+              @input="shares[group.key] = Number(($event.target as HTMLInputElement).value)"
             />
             <span class="muted">{{ t('jira.percent') }}</span>
           </label>
@@ -303,20 +439,22 @@ async function run(): Promise<void> {
           <thead>
             <tr>
               <th>{{ t('jira.workdayId') }}</th>
+              <th>{{ t('jira.specification') }}</th>
               <th class="right">{{ t('jira.hoursColumn') }}</th>
               <th class="right">{{ t('jira.trueDays') }}</th>
               <th class="right">{{ t('jira.bookedDays') }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="group in groups" :key="group.workdayId">
+            <tr v-for="group in groups" :key="group.key">
               <td class="num nowrap">{{ group.workdayId }}</td>
+              <td>{{ group.specification ?? '—' }}</td>
               <td class="right num">{{ n(group.hours) }}</td>
               <td class="right num">{{ n(group.trueDays) }}</td>
               <td class="right num strong">{{ n(group.days) }}</td>
             </tr>
             <tr class="total">
-              <td>{{ t('jira.total') }}</td>
+              <td colspan="2">{{ t('jira.total') }}</td>
               <td class="right num">{{ n(totals.hours) }}</td>
               <td class="right num">{{ n(totals.trueDays) }}</td>
               <td class="right num">{{ n(totals.roundedDays) }}</td>
@@ -353,6 +491,7 @@ async function run(): Promise<void> {
           <p v-if="!fits" class="warn">{{ t('jira.doesNotFit') }}</p>
         </div>
         <button type="button" class="btn btn-primary" :disabled="filling || !fits" @click="run">
+          <LoadingRing v-if="filling" bare />
           {{ filling ? t('jira.filling') : t('jira.fill') }}
         </button>
       </section>
@@ -361,6 +500,16 @@ async function run(): Promise<void> {
 </template>
 
 <style scoped>
+/* The fill button is Vibrant Orange so the default arc would be orange on
+   orange. Smart Blue is the text of that button already. */
+.btn-primary {
+  --ring-arc: var(--smart-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .head {
   display: flex;
   align-items: flex-end;
@@ -531,6 +680,34 @@ tr.total td {
   color: var(--grey);
 }
 
+/* The Workday ID reads first and the line under it says where it came from. */
+.cc {
+  min-width: 22ch;
+}
+
+.from {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--grey);
+}
+
+/* A cost centre Jira carried which the catalogue does not know. */
+.from.odd {
+  color: var(--orange);
+}
+
+/* The id is the only link in the table so it carries the underline itself. */
+.key {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 2px;
+}
+
+.key:hover {
+  text-decoration-color: var(--bright-blue);
+}
+
 .unmapped {
   color: var(--orange);
   font-weight: 700;
@@ -566,10 +743,18 @@ tr.total td {
   margin: 14px 0 0;
 }
 
+.maps {
+  margin-top: 18px;
+}
+
+.maps .intro {
+  margin-bottom: 0;
+}
+
 .map {
   display: grid;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 14px;
   max-width: 60ch;
 }
 
