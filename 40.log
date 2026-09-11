@@ -1,0 +1,11 @@
+Log 40. Add a button that clears a whole month.
+2026-09-09T21:06:10Z opened the log | the previous task closed with 39.log so this one takes the next number.
+2026-09-09T21:09:50Z read the month page and the period bar and the quick fill | clearMonth already existed in useTimesheet and only the tests called it so the work is a control and not a new rule.
+2026-09-09T21:09:50Z chose the period bar for the button | the bar is the head of the sheet and it is carried by the quick fill too so both editing pages get the action.
+2026-09-09T21:10:45Z added rowIsEmpty to core and monthIsEmpty to the store and wrote ClearMonth.vue into the period bar | the button asks once and the answer replaces it.
+2026-09-09T21:11:24Z added four keys to all eight catalogues | the catalogues are typed off en so a missing key is a typecheck failure rather than a fallback at runtime.
+2026-09-09T21:12:56Z added eight web tests and three core tests | 174 core tests pass and the eight new ones cover the ask and the answer and the refusal and the untouched override.
+2026-09-09T21:13:54Z ran the typecheck over every package | apps/web is clean and a transient TRACKER_TRACKER_RECIPIENT in xlsm-writer cleared on its own so it was somebody else mid-edit and not this work.
+2026-09-09T21:17:47Z drove the button in the real app in all eight languages | the bar never overflows and it holds one height and Czech is the widest question at 430px.
+2026-09-09T21:20:00Z proved the clear reaches the API | a seeded month of 22 booked rows came back with 0 after the button so the autosave watcher fires on the whole grid being replaced.
+2026-09-09T21:20:21Z stopped both dev servers | 5174 and 8787 are both closed and nothing of this session is left listening.

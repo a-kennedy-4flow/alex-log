@@ -1,0 +1,62 @@
+Log for the session that makes the tracker catalogue upload accept the Projectnumbers workbook.
+2026-09-10T08:25:00Z  ls tracker/*.xlsm tracker/*.xlsx  Found 20251218_4s_Projectnumbers_protected.xlsx next to two projecttracker xlsm files.
+2026-09-10T08:25:00Z  cat tracker/apps/web/src/components/AdminUpload.vue  The upload screen reads a workbook in the browser through readCatalogueFrom then sends toCatalogueInput.
+2026-09-10T08:28:55Z  python3 compare Projectnumbers against the tracker project list  Project no. is the Workday ID. 486 of 798 already exist and all 700 matching rows are business line software with a blank customer and a blank project title.
+2026-09-10T08:33:41Z  python3 check CM2 and CM3 numbers and the spec ranges  Every product and general number is a software cost centre and the three CM1 specifications are exactly spec_software_proj.
+2026-09-10T08:36:22Z  append the project numbers reader to packages/workbook-reader/src/index.ts  The package now reads both workbooks and merges the 4s list over a stored catalogue.
+2026-09-10T08:36:30Z  add projectNumbers to CatalogueSource in packages/core/src/types.ts  The catalogue now records the second file without disturbing the four tracker fields.
+2026-09-10T08:36:37Z  pnpm --filter @tracker/workbook-reader typecheck  Only the renamed error class failed. Everything new compiles.
+2026-09-10T08:37:14Z  pnpm --filter @tracker/workbook-reader test  Three of my assumptions in the new test were wrong. 24 rows are already known and the second pass counts 798.
+2026-09-10T08:38:41Z  pnpm --filter @tracker/workbook-reader test  All 33 tests pass. The list names 462 projects and adds 312 and leaves 24 untouched.
+2026-09-10T08:39:43Z  pnpm --filter @tracker/web test  One failure already in the tree. The clear month wording test expects an older sentence. Nothing to do with the upload.
+2026-09-10T08:42:26Z  rewrite AdminUpload.vue and add eleven keys to all eight locales  The drop zone now reads either workbook and previews what the 4s list would name.
+2026-09-10T08:42:26Z  pnpm --filter @tracker/web typecheck  Clean.
+2026-09-10T08:42:38Z  pnpm typecheck  The whole workspace typechecks.
+2026-09-10T08:43:21Z  pnpm --filter @tracker/api test catalogue-upload  Four tests pass. A merged body still satisfies the route.
+2026-09-10T08:43:59Z  pnpm --filter @tracker/web test render  Both new admin tests pass. Only the clear month wording failure that was already there remains.
+2026-09-10T08:44:31Z  pnpm test  Every package passes except the clear month wording failure that was already there.
+2026-09-10T08:45:26Z  pnpm lint  Clean after naming the two dropped fields with a leading underscore.
+2026-09-10T08:45:26Z  pnpm test and pnpm typecheck  Both clean. The same one failure remains.
+2026-09-10T08:46:24Z  answer question 43 in readme.md  The 4s list is the answer and the readme now records what the upload does with it.
+2026-09-10T08:46:50Z  pnpm dev:api in the background  Up on 8787 with 3149 fixture projects.
+2026-09-10T08:47:06Z  pnpm dev in the background  Up on 5173.
+2026-09-10T08:47:34Z  vite-node src/check-numbers-upload.ts against the running dev server  Project 1110771 read as "project 11107711" before and "4s_SAP-TORO_BMW_4flow TORO - BMW TOPCO" after. Offered rose from 2592 to 2904 and the 22 locations and 22 holiday lists and the day values were untouched.
+2026-09-10T08:48:00Z  pnpm fixtures  Rebuilt with no change to any fixture file. The shared zip reader reads the tracker exactly as before.
+2026-09-10T08:47:20Z  invoke the claude-in-chrome skill  Refused. The extension is not set up in this session so the screen was driven through the API instead.
+2026-09-10T08:48:57Z  kill the two dev server pids  Both stopped. pkill had missed them because the command line runs through a .bin symlink.
+2026-09-10T08:49:10Z  hide the add checkbox when nothing is absent then pnpm lint and pnpm --filter @tracker/web test render  Lint clean and the admin tests pass. Only the clear month wording failure remains.
+2026-09-10T08:55:26Z  grep for the cost centre loading line  It is App.vue line 152 and it prints picker.loading as a bare muted paragraph.
+2026-09-10T08:55:31Z  add the waiting row and the busy ring to App.vue then pnpm lint and pnpm --filter @tracker/web typecheck  2026-09-10T08:56:11Z  pnpm --filter @tracker/web test loading  Both pass. The ring renders and the paragraph carries role status.
+2026-09-10T08:56:22Z  pnpm --filter @tracker/web test styles  All 15 pass.
+2026-09-10T08:56:29Z  pnpm lint and pnpm test  Lint clean. Only the clear month wording failure remains across all five packages.
+2026-09-10T08:57:09Z  print the rendered markup once through a temporary probe then remove it  The paragraph renders the ring span then the text and carries role status.
+2026-09-10T09:11:06Z  add the nameless guard to project-numbers.test.ts then pnpm --filter @tracker/workbook-reader test  Both new guards pass. No number the list carries is left nameless and no row it does not carry is touched.
+2026-09-10T09:13:03Z  git diff en.ts and grep the asserted sentences  The English copy is being rewritten by hand so six tests assert sentences that have moved. Three already fail.
+2026-09-10T09:13:13Z  point six assertions at the en catalogue then pnpm --filter @tracker/web test  All 259 pass. The clear month failure that had been in the tree since the start was the same cause.
+2026-09-10T09:13:31Z  pnpm lint and pnpm typecheck and pnpm test  Everything green. No lint error and no type error and every test passes.
+2026-09-10T09:47:16Z  read CostCentrePicker.vue and searchProjects and the panel guard test  The panel is fixed to the viewport on purpose because the month grid clips an absolute one and a styles test holds that.
+2026-09-10T09:47:33Z  add withRecentPick to core and useRecentPicks.ts to the web app  Recency is a stored list of ids newest first and core owns the ordering it produces.
+2026-09-10T09:48:18Z  add picker.recent to all eight locales then pnpm lint and pnpm --filter @tracker/web typecheck  2026-09-10T09:49:27Z  grep boardCell across the locales and useTour.ts  en.ts has lost the tour.boardCell entry while useTour.ts and MonthCalendar.vue still carry that step so the seven other locales no longer typecheck.
+2026-09-10T09:49:27Z  restore tour.boardCell in en.ts then pnpm typecheck  The whole workspace typechecks again.
+2026-09-10T09:49:55Z  pnpm test  2026-09-10T09:50:33Z  add the recency cases to packages/core search.test.ts  All 59 pass.
+2026-09-10T09:51:29Z  add the recency and panel cases to render.test.ts then pnpm --filter @tracker/web test render  All 134 pass.
+2026-09-10T09:51:47Z  pnpm lint and pnpm typecheck and pnpm test  2026-09-10T09:53:49Z  check the month grid column widths  The cost centre column is about 115px at its narrowest so a panel matching the trigger width cannot hold a result row and a panel wider than the trigger leaves a step in the joined outline.
+2026-09-10T09:54:03Z  make the open control cover the trigger and style the search field as that box then pnpm lint  2026-09-10T09:54:32Z  rewrite the panel guard for the in place control then pnpm --filter @tracker/web test  All 266 pass.
+2026-09-10T09:54:50Z  pnpm lint and pnpm typecheck and pnpm test  Everything green. No lint error and no type error and every test in every package passes.
+2026-09-10T11:03:56Z  diff en.ts against HEAD and translate the stale keys into the seven locales  67 of the 89 keys that moved needed new wording. The other 22 were already translated against the current English.
+2026-09-10T11:04:04Z  verify every locale against the canonical shape  All seven carry 325 keys with no gap and the new wording. Only the product name app.title stays English which is right.
+2026-09-10T11:04:04Z  pnpm lint and pnpm typecheck  Both clean.
+2026-09-10T11:04:37Z  pnpm test  All 689 tests across five packages pass.
+2026-09-10T11:05:18Z  add apps/web i18n.test.ts then pnpm --filter @tracker/web test i18n  All 21 pass. The guard catches a key left in English and a dropped placeholder.
+2026-09-10T11:05:27Z  pnpm lint and pnpm typecheck and pnpm test  Everything green.
+2026-09-10T11:13:59Z  read PeriodBar.vue and ViewSwitch.vue and both editing pages  The save state sits in the period bar which both editing pages carry while the view switch stands only on the month page.
+2026-09-10T11:14:54Z  extract SaveState.vue and put the month bar on both editing pages then pnpm lint and pnpm --filter @tracker/web typecheck  Both clean.
+2026-09-10T11:15:10Z  pnpm --filter @tracker/web test  Two tests assert the old placement. Both need updating to the new row.
+2026-09-10T11:15:42Z  update the two placement tests and add one for the shared row then pnpm --filter @tracker/web test  2026-09-10T11:16:10Z  add the parity guard and correct the tokens comment then pnpm lint and pnpm test  Clean and every package passes.
+2026-09-10T11:16:36Z  pnpm typecheck and pnpm test counts  No type error. 712 tests pass across the five packages.
+2026-09-10T11:24:11Z  grep for the legend and read MonthCalendar and ClearMonth  The legend names cost centre colours the board alone draws and its palette is scoped inside MonthCalendar so moving it needs the assignment and the chip shared.
+2026-09-10T11:25:20Z  move the legend and the clear button into the row and share the chip through tokens.css then pnpm lint and pnpm --filter @tracker/web typecheck  Both clean.
+2026-09-10T11:25:37Z  pnpm --filter @tracker/web test  Eight tests mount the period bar to reach the clear button. They need the row instead.
+2026-09-10T11:26:21Z  point the clear month tests at the component and the row then pnpm --filter @tracker/web test  All 289 pass.
+2026-09-10T11:26:57Z  add four legend cases then pnpm --filter @tracker/web test  All 293 pass including the four new legend cases.
+2026-09-10T11:27:16Z  pnpm lint and pnpm typecheck and pnpm test  Everything green.

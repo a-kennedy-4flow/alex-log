@@ -1,0 +1,5 @@
+Log 30. Moving the two absence squares to the top of the cost centre card.
+2026-09-08T15:31:32Z grep bookAbsence and cat -n RecentCostCentres.vue | the V and O squares are a band under the list in the Your cost centres card.
+2026-09-08T15:31:54Z python3 move of the absence band in RecentCostCentres.vue | the band is above the list now and its divider is a border below rather than above.
+2026-09-08T15:32:56Z added a position case to render.test.ts | the case fails on a -1 index as well so it cannot pass on a card that renders neither band.
+2026-09-08T15:33:31Z python3 append to the Your cost centres section of readme.md | the position is now a decision so the readme records why.

@@ -1,0 +1,28 @@
+Log 29. Resolving a Jira cost centre up the parent chain and letting one be set per ticket.
+2026-09-08T15:30:00Z ls and git status and cat 26.log 27.log 28.log | logs 27 and 28 are held by other sessions so this work takes 29.
+2026-09-08T15:31:00Z cat apps/api/src/jira.ts | inheritedField already walks five parents and returns costCentreFrom so the chain half is built.
+2026-09-08T15:32:00Z cat apps/web/src/pages/JiraPage.vue and useJira.ts | neither costCentre nor costCentreFrom is rendered and the only override offered is per project.
+2026-09-08T15:33:00Z grep jiraProjects across apps | the map is keyed by project key alone which is what one project not being one cost centre breaks.
+2026-09-08T15:40:00Z wrote packages/core/src/jira-cost-centre.ts | the order of the four answers and where each came from now lives in one tested function.
+2026-09-08T15:42:00Z python3 patch of core types.ts and apps/api/src/handlers.ts and dynamo.ts | the profile carries jiraTickets and the route validates a ticket key against its own bound of five hundred.
+2026-09-08T15:44:00Z python3 patch of apps/api/src/jira-handlers.ts | mapped takes the two maps as CostCentreChoices and reads the ticket one first.
+2026-09-08T15:46:00Z python3 patch of useJira.ts | chosenProjects is gone because the reactive profile already shows a pick the moment it is written.
+2026-09-08T15:48:00Z python3 patch of JiraPage.vue | the table iterates rows so each cell reads one resolution and the unanswered row carries a picker of its own.
+2026-09-08T15:50:00Z python3 insert of the from block into all eight locales | six sentences cover the four sources plus the number no catalogue knows.
+2026-09-08T15:52:00Z pnpm typecheck | seven projects pass after the two api profile builders and the web fixtures took the new map.
+2026-09-08T15:56:00Z appended a describe to packages/core/src/__tests__/cost-centre.test.ts | nine cases fix every step of the order plus the number no catalogue knows.
+2026-09-08T15:58:00Z appended a describe to apps/web/src/__tests__/jira.test.ts | seven cases read the line under the figure and drive the picker on a row.
+2026-09-08T16:00:00Z added cases to apps/api/src/__tests__/jira.test.ts and handlers.test.ts | the ticket map beats the project map on the route and the validation drops a key naming no ticket.
+2026-09-08T16:02:00Z pnpm test and pnpm exec eslint | 581 cases pass across five projects and the lint is clean.
+2026-09-08T16:04:00Z python3 rewrite of docs/jira.md and appended a readme section | the order and where an answer is kept and the line under the figure are all recorded.
+2026-09-08T16:08:00Z curl of the running local api on 8787 | the profile route already answers jiraTickets and the fake month carries no cost centre so the double shows the picker path alone.
+2026-09-08T16:09:00Z deleted the dev link the curl created | the local server was unlinked before this session touched it.
+2026-09-08T16:10:00Z pnpm typecheck and pnpm test and pnpm exec eslint | seven projects typecheck and 581 cases pass and the lint is clean.
+2026-09-08T16:20:00Z moved the account id rule to packages/core/src/dev.ts | the field in the browser and the check in jira.ts now read one constant.
+2026-09-08T16:22:00Z wrote apps/api/src/jira-dev.ts | the header is read and the client is built per account and the stored month is hidden from a read of another one.
+2026-09-08T16:24:00Z python3 patch of dev-server.ts and local.ts | the jira deps are now a function of the request headers and a refused id answers 400.
+2026-09-08T16:26:00Z wrote apps/web/src/components/JiraAsUserSwitch.vue | a dashed field above every branch of the Jira screen sets the account and reads the link and the month again.
+2026-09-08T16:28:00Z wrote apps/api/src/__tests__/jira-dev.test.ts and appended to dev-server.test.ts and jira.test.ts | 26 api cases and 6 web cases cover the header and both refusals and the hidden cache.
+2026-09-08T16:30:00Z curl of the running server with a malformed header and with a valid one | both refusals answer 400 with the reason so the wiring in local.ts is proven.
+2026-09-08T16:31:00Z pnpm typecheck and pnpm test and eslint | seven projects typecheck and 607 cases pass and the lint is clean.
+2026-09-08T16:32:00Z python3 patch of docs/jira.md | the browser switch and its three rules sit under the JIRA_AS_USER section.

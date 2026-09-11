@@ -1,0 +1,14 @@
+Log 35. The downloaded file name has to be the name ExportPanel shows.
+2026-09-09T17:37:09Z read tracker/apps/web/src/components/ExportPanel.vue | the panel shows exportFilename from core and the download takes its name from file.filename which the API sets so the two are separate paths.
+2026-09-09T17:37:09Z read tracker/packages/core/src/filename.ts and tracker/apps/api/src/handlers.ts line 411 | both sides call the same exportFilename on the same exportLocation so the rule itself does not drift.
+2026-09-09T17:37:09Z read tracker/apps/web/src/lib/api.ts line 149 | api.export reads the name out of content-disposition and falls back to period.xlsm which is 2026-08.xlsm and matches nothing the panel promised.
+2026-09-09T17:37:09Z grepped for access-control-expose-headers | tracker/apps/api/src/dev-server.ts line 73 exposes content-disposition and tracker/infra/lib/tracker-stack.ts line 474 does not so the header is hidden from the browser in the deployment.
+2026-09-09T17:37:09Z read tracker/infra/lib/tracker-stack.ts line 282 and 313 | CloudFront serves the site alone and the API answers on its own domain so the export call is cross origin and the fallback is the live path in production.
+2026-09-09T17:40:20Z edited tracker/apps/web/src/lib/api.ts | api.export now takes the name the panel shows and falls back to it rather than to period.xlsm.
+2026-09-09T17:40:20Z edited tracker/apps/web/src/components/ExportPanel.vue line 72 | the call hands filename.value in so the download cannot land under a name the user was never shown.
+2026-09-09T17:40:20Z edited tracker/infra/lib/tracker-stack.ts line 476 | exposeHeaders content-disposition on the HTTP API CORS so the deployment behaves as the development server already did.
+2026-09-09T17:40:20Z wrote tracker/apps/web/src/__tests__/export-name.test.ts | two tests and the header wins where it is readable and the shown name is used where it is not.
+2026-09-09T17:40:20Z edited tracker/apps/web/src/__tests__/autosave.test.ts | extracted fillMonth and added a test that the name handed to the export equals the text the panel prints.
+2026-09-09T17:40:20Z ran pnpm test and pnpm typecheck | 610 tests pass across five packages and all eight typecheck clean.
+2026-09-09T17:40:20Z ran pnpm synth in infra | Tracker.template.json line 939 carries ExposeHeaders content-disposition so the fix reaches the deployed API.
+2026-09-09T17:40:20Z ran pnpm lint | the one error is a parsing error in JiraBookmartlet.js which is untouched here and was already committed in 58f7ac0.

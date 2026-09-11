@@ -1,0 +1,19 @@
+Log 37. What can be improved in the tracker lambdas.
+2026-09-09T20:11:33Z read tracker/apps/api/build.mjs | one esbuild entry at src/lambda.ts produces one 106551 byte dist/lambda.mjs with no minify and the AWS SDK marked external.
+2026-09-09T20:11:33Z read tracker/infra/lib/tracker-stack.ts lines 455 and 623 and 725 | three functions all take the same asset and differ only by handler so each cold start parses the other two.
+2026-09-09T20:11:33Z read tracker/apps/api/src/lambda.ts | the module imports cognito and kms and mail and the Atlassian client at the top so a plain GET on the API function loads four SDK clients it never calls.
+2026-09-09T20:11:33Z read tracker/apps/api/src/handlers.ts line 94 and tracker/apps/api/src/dynamo.ts line 116 | useCatalogue calls getCatalogue on every request and getCatalogue gunzips and parses the whole megabyte before the version is compared so the warm cache saves only the setCatalogue call.
+2026-09-09T20:11:33Z read tracker/apps/api/src/handlers.ts line 319 | GET /api/catalogue calls getCatalogue and then useCatalogue so it reads the item twice and decompresses it twice.
+2026-09-09T20:14:08Z measured the stored catalogue | 1358 kB of JSON stored as 59 kB of base64 and 8.1 ms to decompress and parse on this desktop so a 512 MB arm64 container pays several times that on every request.
+2026-09-09T20:14:08Z built the api with three entry points instead of one | api 66920 and jira 40005 and reminder 27188 bytes against 106580 for the shared artefact.
+2026-09-09T20:14:08Z built the api minified | one entry falls from 106580 to 60314 and the split entries fall to 38295 and 22784 and 16183.
+2026-09-09T20:14:08Z read the esbuild metafile for the external imports of each entry | the shared artefact pulls cognito and kms and secrets-manager and sesv2 into the API function which calls none of them.
+2026-09-09T20:14:08Z timed the marginal import of those four clients in one node process | 15 and 4 and 16 and 23 milliseconds on this desktop for 58 in total.
+2026-09-09T20:14:08Z checked period and version against the DynamoDB reserved word list | neither is reserved so listSheets and a version projection both need no alias.
+2026-09-09T20:19:55Z added getCatalogueVersion to the repository and both implementations and rewrote useCatalogue to read the projection first | the blob is fetched only when the version has moved.
+2026-09-09T20:19:55Z rewrote GET /api/catalogue to prime the cache from the copy it is already serving | one read where there were two.
+2026-09-09T20:19:55Z split src/lambda.ts into src/api-lambda.ts and src/jira-lambda.ts and src/reminder-lambda.ts over a shared src/lambda-event.ts | api-lambda names only dynamodb and util-dynamodb where the shared artefact named six clients.
+2026-09-09T20:19:55Z turned on minify in apps/api/build.mjs and switched it to outdir with three entry points | api-lambda.mjs 38 kB and jira-lambda.mjs 24 kB and reminder-lambda.mjs 25 kB against 106 kB for the old shared artefact.
+2026-09-09T20:19:55Z pointed the three functions in tracker-stack.ts at the new handlers and widened the pre synth guard to all three files | cdk synth writes api-lambda.main and jira-lambda.jira and reminder-lambda.reminder.
+2026-09-09T20:19:55Z rewrote the reminder screen to read profiles twenty five at a time and to build the month once per location | the sends stay one at a time so a claim is never taken for a message the next line fails to send.
+2026-09-09T20:19:55Z ran the whole repository | 612 tests pass and typecheck is clean and eslint reports only the pre existing parse error in JiraBookmartlet.js and cdk synth succeeds.

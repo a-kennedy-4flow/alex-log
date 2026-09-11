@@ -1,0 +1,20 @@
+Log 27. Making the Jira ticket id on the Jira screen a link to the ticket.
+2026-09-08T15:11:00Z ls and git log and cat 26.log | the integration is the tracker app and the last log covered reading another user tickets.
+2026-09-08T15:11:30Z grep -ril ticket across apps and packages | the only rendered ticket id is apps/web/src/pages/JiraPage.vue line 204.
+2026-09-08T15:12:00Z cat apps/web/src/composables/useJira.ts and apps/web/src/lib/api.ts | JiraLinkState carries no site host so the page cannot build a browse address.
+2026-09-08T15:12:20Z grep cloudId and JIRA_CLOUD_ID across apps and infra | the site is named by a cloud id constant in infra/lib/tracker-stack.ts and passed to the Jira function.
+2026-09-08T15:12:40Z grep atlassian.net across the repo | the site host is 4flow.atlassian.net and the bookmarklet builds a browse address from location.origin.
+2026-09-08T15:13:00Z grep tasks in MonthGrid.vue and SimpleView.vue | the timesheet tasks column is an input so a ticket id written there cannot be a link.
+2026-09-08T15:15:04Z python3 rewrite of infra/lib/tracker-stack.ts | JIRA_SITE_URL is now a stack constant and the Jira function environment carries it.
+2026-09-08T15:15:17Z python3 rewrite of apps/api/src/jira-handlers.ts | JiraDeps takes siteUrl and GET /api/jira/link answers it.
+2026-09-08T15:15:26Z python3 rewrite of apps/api/src/lambda.ts and apps/api/src/local.ts | both Jira deps now pass a site url and the local one falls back to the real host.
+2026-09-08T15:16:18Z python3 rewrite of apps/web/src/lib/api.ts and useJira.ts and JiraPage.vue | the link state carries siteUrl and ticketUrl builds the browse address and the ticket column renders an anchor.
+2026-09-08T15:16:32Z python3 rewrite of apps/api/src/__tests__/jira.test.ts | the deps and the expected link body carry the site.
+2026-09-08T15:17:01Z python3 rewrite of apps/web/src/__tests__/jira.test.ts | the link state fixtures carry a site and two cases cover the anchor and the unconfigured fallback.
+2026-09-08T15:18:29Z pnpm typecheck | seven projects pass after the unlinked fixture took a site and the anchor assertions moved to a mapped list.
+2026-09-08T15:18:56Z pnpm exec eslint apps/web/src and apps/api/src and infra/lib | clean after the anchor closing bracket moved onto its own line.
+2026-09-08T15:19:04Z git stash then pnpm exec eslint JiraBookmartlet.js then git stash pop | the one lint error is the encoded bookmarklet and it predates this change.
+2026-09-08T15:19:45Z pnpm test | 548 tests pass across five projects with two skipped.
+2026-09-08T15:20:11Z python3 rewrite of docs/jira.md | the screen section records the browse address and why the host comes from the link route.
+2026-09-08T15:20:52Z git diff --stat | the tree also holds the log 26 JIRA_AS_USER work and an update prompt feature which this change left untouched.
+2026-09-08T15:41:12Z lsof -iTCP:5173 then kill 552218 552217 | the listener was a four hour old vite from polaris-frontend packages/vanguard and the port is now free.

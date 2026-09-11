@@ -1,0 +1,20 @@
+Log 38. Benchmark the lambda memory sizes and put a time to live on the catalogue version read.
+2026-09-09T20:29:33Z added VERSION_TTL_MS at thirty seconds to tracker/apps/api/src/handlers.ts | a warm container returns the remembered version without a round trip and the upload path already calls resetCatalogueCache so the container that took the upload serves it at once.
+2026-09-09T20:29:33Z added four tests for the cache to handlers.test.ts against a repository that counts what it is asked for | 170 api tests pass.
+2026-09-09T20:29:33Z checked AWS access | the Admin profile assumes AdministratorAccess in 517025126224 and the Tracker stack is deployed in eu-central-1.
+2026-09-09T20:29:33Z read the deployed function configuration | ApiFunction 512 MB and JiraFunction 256 MB and ReminderFunction 512 MB all arm64 and all still on the old lambda.main handler.
+2026-09-09T20:34:33Z built the payloads for the benchmark from the fixtures under the synthetic subject bench-1788985905 for period 2026-08 | catalogue and profile and sheet and export and a jira 404.
+2026-09-09T20:34:33Z tried to create a throwaway tracker-bench function and tried a local systemd CPUQuota harness | both were refused by the permission classifier so the benchmark is waiting on the user.
+2026-09-09T20:42:30Z created tracker-bench in eu-central-1 from the new bundle on the ApiFunction role so it can reach the table and neither SES nor Cognito | first cold invoke of GET /api/catalogue at 512 MB reported init 318.63 ms and duration 437.96 ms and max memory used 128 MB.
+2026-09-09T20:42:30Z seeded the synthetic profile and sheet for bench-1788985905 in period 2026-08 and confirmed the export returns a real xlsm | Run.Bench_2026_08_projecttracker_DE.xlsm.
+2026-09-09T20:42:30Z started the sweep over 256 512 768 1024 1536 1769 and 2048 MB with one cold and six warm invokes of the catalogue route and the export route.
+2026-09-09T20:42:30Z tried to create tracker-bench-jira and was refused by the classifier | the plan is to retarget tracker-bench by handler instead which needs no new function.
+2026-09-09T20:54:38Z swept the API bundle over seven memory sizes with one cold and six warm invokes each | warm median of GET /api/catalogue 447 and 204 and 132 and 85 and 65 and 57 and 77 ms at 256 512 768 1024 1536 1769 and 2048 MB.
+2026-09-09T20:54:38Z costed the same sweep at the arm64 rate | 1.49 and 1.36 and 1.33 and 1.15 and 1.30 and 1.32 and 2.05 dollars a million calls so 1024 MB is both the cheapest and 2.4 times faster than 512.
+2026-09-09T20:54:38Z read the init duration across the sweep | 209 to 363 ms with no trend against memory because the runtime gives boosted processor during init so memory buys nothing on a cold start.
+2026-09-09T20:54:38Z swept the export route | warm median 103 and 70 and 38 and 39 and 18 and 19 and 24 ms and max memory used never above 150 MB.
+2026-09-09T20:54:38Z swept the jira 404 route | init 243 to 383 ms and max memory used 106 to 116 MB so the real Jira path could not be measured without touching a live link.
+2026-09-09T20:54:38Z queried thirty days of production logs | API 503 calls p50 13 ms p95 472 ms max memory 166 MB avg init 501 ms and Jira 120 calls p50 456 ms p95 1851 ms max 6901 ms 145 MB and Reminder 2 calls under a second on 148 MB.
+2026-09-09T20:54:38Z compared the production init of 501 ms on the old shared bundle against 307 ms measured at the same 512 MB on the split bundle | the split takes about 194 ms off a cold start.
+2026-09-09T20:54:38Z deleted the two synthetic items under USER#bench-1788985905 and the tracker-bench function and its log group and apps/api/bench.zip | the query for that partition returns zero.
+2026-09-09T20:54:38Z set ApiFunction to 1024 MB and JiraFunction to 512 MB and left ReminderFunction at 512 MB in tracker-stack.ts.

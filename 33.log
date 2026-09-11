@@ -1,0 +1,10 @@
+Log 33. Costing an Outlook calendar connector for tracker.
+2026-09-09T15:22:23Z grepped tracker for outlook microsoft msal graph azure entra calendar caldav | nothing touches Microsoft anything and every calendar hit is packages/core/src/calendar.ts which is the working day calendar.
+2026-09-09T15:22:23Z read apps/web/src/lib/auth.ts and infra/lib/tracker-stack.ts | sign in is Cognito federating to IAM Identity Center over SAML 2.0 so no Entra tenant sits in the path and no Microsoft token falls out of sign in.
+2026-09-09T15:22:23Z read docs/jira.md and docs/jira-admin.md and apps/api/src/jira-tokens.ts | the Jira write up is the template and the token rotation and the KMS cipher and the per user link record are all reusable for a second provider.
+2026-09-09T15:22:23Z listed the repo root logs | 32.log dated today is a GitLab connector design by another session so this log is 33.
+2026-09-09T15:26:03Z read packages/core/src/aggregate.ts and catalogue.ts and fixtures/data/entry-options.json | the tracker already holds two absence labels Vacation or sickness and Other absence so an out of office block needs no attribution guess at all.
+2026-09-09T15:26:03Z read router.ts and types.ts and distribute.ts | six screens exist today and the profile already carries jiraProjects and jiraTickets as flat string maps so an Outlook map is the same shape.
+2026-09-09T15:29:28Z wrote tracker/docs/outlook.md in the shape of docs/jira.md | 484 lines covering the query and the drop filter and the overlap merge and the attribution order and five options and a comparison and a recommendation.
+2026-09-09T15:29:28Z checked the file for commas and for chained and the clauses | two chains fixed and the only remaining commas sit inside a select URL and a Record type so the grammar rules hold.
+2026-09-09T15:29:28Z read SimpleView.vue and validation.ts for the evaluation | the quick page already fills a month from a share per project in one click so that is the baseline any calendar feature has to beat and the document never states it.

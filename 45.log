@@ -1,0 +1,52 @@
+Session log for adding an animated credits easter egg page to the tracker web app.
+One line per shell command. UTC timestamp then the command then what happened.
+2026-09-10T21:56:33Z  cat 45.log heredoc  Opened the log file for this session.
+2026-09-10T21:56:33Z  cat two memory files  Read the grammar rules and the variants rule.
+2026-09-10T21:56:42Z  cat router.ts and ls of the web src tree  Six routes declared in code and pages are lazy except the month.
+2026-09-10T21:56:48Z  cat PrivacyPage.vue and App.vue  A page is a script plus scoped styles and the shell has a footer with the privacy link.
+2026-09-10T21:56:55Z  cat styles/tokens.css  Six colours and white with shades and a hex outside the file fails the colour check.
+2026-09-10T21:57:00Z  cat __tests__/colour.test.ts  Only token hexes are allowed anywhere under src public and index.html.
+2026-09-10T21:57:10Z  cat __tests__/styles.test.ts  Reward motion is dropped under reduced motion where informative motion keeps the element.
+2026-09-10T21:58:05Z  cat i18n/index.ts and __tests__/i18n.test.ts  Eight catalogues to the same keys and no sentence may stay in English.
+2026-09-10T21:58:15Z  cat eslint.config.js and useVersion.ts  No accessibility plugin in the lint config and the version is the hashed asset list.
+2026-09-10T21:58:20Z  ls mockups and grep the message groups in en.ts  Twenty two groups and the mockups folder holds standalone design pages.
+2026-09-10T21:58:26Z  sed over en.ts privacy and update groups  Read the group shapes so the credits keys match them.
+2026-09-10T21:58:40Z  grep over useTour.ts  A tour page names its own steps so an unlinked page adds nothing there.
+2026-09-10T21:58:56Z  grep for App.vue mounts and router navigate  Nothing mounts App.vue alone and JiraPage navigates through the router singleton.
+2026-09-10T22:00:52Z  grep the test files for RouterProvider  Every render of the shell goes through a test router so useRouter is safe there.
+2026-09-10T22:00:59Z  grep MonthProgress and head de.ts  Reduced motion is a reduce block and de addresses the user formally.
+2026-09-10T22:03:22Z  tail over the seven locale files  Read the register each one uses so the credits lines match it.
+2026-09-10T22:03:22Z  cat BrandMark.vue and useCredits.ts heredocs  Wrote the shared mark and the five tap counter.
+2026-09-10T22:03:56Z  cat pages/CreditsPage.vue heredoc  Wrote the Smart Blue stage with the drifting sky and the staggered roll.
+2026-09-10T22:04:06Z  python3 patch of router.ts  Added the lazy credits route and said where the way in lives.
+2026-09-10T22:04:21Z  python3 patch of App.vue  The header draws BrandMark and five taps on it navigate to the credits.
+2026-09-10T22:04:48Z  grep for apostrophes in fr.ts  The typographic apostrophe inside single quotes is the dominant style.
+2026-09-10T22:04:48Z  python3 insert of the credits group into eight catalogues  Title intro tail and five roles in every language.
+2026-09-10T22:05:15Z  python3 patch of render.test.ts  Added five credits cases covering the route the nav and the tap counter.
+2026-09-10T22:05:26Z  python3 patch of styles.test.ts  Asserted the reduced motion block and that only the keyframes hide a name.
+2026-09-10T22:05:34Z  vitest run of styles colour and i18n  Fifty seven passed so the palette and the key parity hold.
+2026-09-10T22:05:52Z  vitest run of render.test.ts  Three of the new credits cases failed so the output needs reading.
+2026-09-10T22:06:33Z  python3 patch of render.test.ts  The credits cases now load the router before they read the page.
+2026-09-10T22:06:41Z  vitest run of render.test.ts filtered to credits  All five cases passed including the five taps through the shell.
+2026-09-10T22:07:00Z  pnpm --filter @tracker/web test  All 308 tests passed.
+2026-09-10T22:07:25Z  pnpm typecheck and pnpm lint  Lint clean and vue-tsc rejected the router type on the settle helper.
+2026-09-10T22:07:50Z  pnpm typecheck and pnpm lint after the helper fix  Both clean.
+2026-09-10T22:08:11Z  python3 patch of the stage assertion then pnpm typecheck  The get wrapper has no exists so the class is read instead.
+2026-09-10T22:08:30Z  pnpm --filter @tracker/web test  Full suite green at 308.
+2026-09-10T22:08:54Z  search for a project run skill and a chromium binary  Only the ui-design skill exists and no chromium is on PATH.
+2026-09-10T22:09:03Z  cat the ui-design SKILL.md  Rule six demands a screenshot of any page before showing it.
+2026-09-10T22:09:16Z  ls of the playwright cache  A chromium build is already downloaded so it can take the screenshot.
+2026-09-10T22:09:27Z  chrome --version from the playwright cache  Chrome for Testing 151 is available.
+2026-09-10T22:10:01Z  vite --port 5301 in the background  The dev server answers 200 on the new port.
+2026-09-10T22:11:06Z  check for playwright and a python websocket client  websocket-client is present so CDP can be driven from python.
+2026-09-10T22:11:33Z  python3 shot.py over CDP  Seeded the wizard and tour keys then captured the credits from the route and from five taps.
+2026-09-10T22:12:24Z  python3 patch of shot.py  Added the allow origins flag and suppressed the Origin header after an earlier pkill had killed its own shell.
+2026-09-10T22:13:37Z  python3 shot.py with emulated reduced motion  Captured the credits a third time with the motion switched off.
+2026-09-10T22:14:53Z  Read of the four screenshots  The stage the taps the reduced motion state and the narrow layout all render as designed.
+2026-09-10T22:14:53Z  pkill of the dev server and chrome  Stopped both and removed the temporary browser profile.
+2026-09-10T22:16:51Z  /run-skill-generator invoked  Authoring a run skill for the tracker workspace.
+2026-09-10T22:18:11Z  cat driver.py heredoc  Wrote the CDP driver with a step language and console error reporting.
+2026-09-10T22:18:38Z  driver.py --serve with the tap flow  Started vite drove five clicks reached /credits and reported no console errors.
+2026-09-10T22:19:28Z  driver.py --serve driving the cost centre picker  Opened the panel typed 24112 and read the filtered row.
+2026-09-10T22:20:01Z  curl of port 8787 and grep of local.ts  A live server already answers there so the API takes PORT from the environment.
+2026-09-10T22:20:28Z  curl of the api routes on 8790  Health and catalogue answer under the /api prefix with no AWS configured.

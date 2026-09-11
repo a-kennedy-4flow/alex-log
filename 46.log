@@ -1,0 +1,36 @@
+Audit of authentication and redirects in the tracker app. One line per command. UTC timestamp then command then what happened.
+2026-09-11T10:00:13Z | cat > 46.log | Created the log file for this session.
+2026-09-11T10:00:13Z | ls -la ; cat CLAUDE.md | Listed the repo root. No CLAUDE.md exists. Logs run to 45.
+2026-09-11T10:00:21Z | find tracker -type f | Listed the tracker tree. Vue SPA plus Lambda API plus CDK infra.
+2026-09-11T10:00:31Z | cat lib/auth.ts router.ts main.ts | Read the browser sign in flow. PKCE against Cognito. establish() redirects when there is no session.
+2026-09-11T10:00:45Z | cat cognito.ts api-lambda.ts lambda-event.ts api.ts .env.production.local verify-auth.sh | Read the API adapter and the deployed web configuration.
+2026-09-11T10:01:30Z | sed -n on tracker-stack.ts | Read the CloudFront behaviour and the HTTP API routes. Proxy route carries the JWT authorizer. /api/health does not.
+2026-09-11T10:02:34Z | grep allowLocalOrigin ; cat AdminPage.vue ; sed -n 200,282p tracker-stack.ts | Read the CSP and found the admin page carries no group guard.
+2026-09-11T10:03:04Z | python3 read Tracker.template.json | Confirmed the registered logout URLs carry no query string.
+2026-09-11T10:03:55Z | npx vitest run zz-repro.test.ts | Both redirect faults reproduced then the temporary test was deleted.
+2026-09-11T10:05:03Z | cat deploy-site.sh build.mjs | The bundle carries three Lambda entries. The development server is in none of them.
+2026-09-11T10:05:03Z | aws cognito-idp describe-user-pool-client | Refused. No credentials reach the pool from here so the synthesised template is the source.
+2026-09-11T10:05:03Z | grep notFound | The router declares no not found route.
+2026-09-11T10:05:03Z | pnpm --filter @tracker/web test | 314 tests passed. That is the baseline the reproductions ran against.
+2026-09-11T10:09:43Z | User asked for fixes to bugs 1 to 5. The privacy finding is left alone.
+2026-09-11T10:10:46Z | grep denied AdminUpload.vue | The admin screen already refuses a non backoffice user. Finding four withdrawn.
+2026-09-11T10:11:44Z | python3 patch lib/auth.ts | Moved the signed out marker into the tab. Sent the bare origin as logout_uri. Compared the return path without its query.
+2026-09-11T10:11:52Z | python3 patch main.ts router.ts | Closed the gate on a bundle with no pool. Added the catch all route to the month grid.
+2026-09-11T10:12:39Z | python3 patch auth.test.ts | Replaced the query marker test. Added sign out and misconfiguration cover.
+2026-09-11T10:12:52Z | python3 patch verify-auth.sh | Added the sign out URL check beside the callback check.
+2026-09-11T10:13:44Z | python3 patch auth.test.ts render.test.ts | Settled the typecheck complaint and covered the catch all route.
+2026-09-11T10:15:24Z | pnpm --filter @tracker/web test ; typecheck | 320 tests passed. vue-tsc reported nothing.
+2026-09-11T10:15:24Z | pnpm -r --filter '!@tracker/web' test | core xlsm-writer workbook-reader and api all passed.
+2026-09-11T10:15:38Z | pnpm exec eslint on the changed files | Clean.
+2026-09-11T10:16:16Z | python3 patch lib/auth.ts | Reworded two comments. 320 tests passed and eslint was clean.
+2026-09-11T10:29:03Z | User asked to move the credits link to the footer beside Privacy.
+2026-09-11T10:29:57Z | python3 patch App.vue router.ts ; rm useCredits.ts | Credits moved into the footer beside the notice. The tap counter is gone.
+2026-09-11T10:31:59Z | pnpm --filter @tracker/web test | Both footer credits tests passed. One older credits test fails on an edit made to CreditsPage.vue during this session.
+2026-09-11T10:31:59Z | pnpm typecheck ; eslint apps/web/src | Both clean after useCredits.ts was deleted.
+2026-09-11T10:33:57Z | asked about role labels and spelling | Alex is rewriting the credits list himself. CreditsPage.vue left untouched.
+2026-09-11T10:37:12Z | python3 patch CreditsPage.vue and the eight catalogues | Roles render as written. The credits.roles block is gone.
+2026-09-11T10:38:14Z | pnpm --filter @tracker/web test ; typecheck ; eslint | 318 tests passed. Both clean.
+2026-09-11T10:38:14Z | pnpm -r --filter '!@tracker/web' test | core xlsm-writer workbook-reader and api all passed.
+2026-09-11T10:45:20Z | User reports the .intro animation is not smooth.
+2026-09-11T10:47:35Z | python3 patch CreditsPage.vue | Promoted the moving elements to their own layer before they move.
+2026-09-11T10:48:03Z | pnpm --filter @tracker/web test | 318 tests passed after the layer change.

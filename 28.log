@@ -1,0 +1,18 @@
+Log 28. Detecting a deployment made while the page is open and demanding a reload.
+2026-09-08T15:13:59Z grep save in useTimesheet.ts and cat main.ts | the grid autosaves on a debounce so a forced reload has to flush first.
+2026-09-08T15:14:25Z grep component in router.ts and ls dist/assets | the routes are statically imported so there is one bundle and a stale tab never hits a missing chunk.
+2026-09-08T15:16:58Z user picked the index.html variant | implementing the asset hash comparison with no deploy change.
+2026-09-08T15:17:08Z cat dist/index.html and sed the save path in useTimesheet.ts | the built shell names both hashed assets in head and the localStorage mirror holds an edit whose API write failed.
+2026-09-08T15:19:08Z sed tokens.css and the locale tails | sheet and pad and btn-primary are shared classes and every locale avoids the comma so the new strings can too.
+2026-09-08T15:19:08Z wrote src/composables/useVersion.ts | the detection compares the hashed asset names of the served shell against the ones this page declared.
+2026-09-08T15:19:38Z python3 patch of src/App.vue | the bar replaces the routed screen and hides the wizard and the tour so the demand cannot be covered.
+2026-09-08T15:19:58Z python3 insert of the update block into all eight locales | every locale carries the three strings so the typecheck against en passes.
+2026-09-08T15:20:35Z wrote src/__tests__/version.test.ts | the seven cases fix the behaviour on every answer the edge can give.
+2026-09-08T15:20:58Z pnpm vitest run version.test.ts and pnpm typecheck | the new cases pass and vue-tsc is clean.
+2026-09-08T15:22:30Z rewrote useVersion.ts to read the running assets once at load | a modulepreload added for a chunk fetched later would otherwise read as a version the deployment never served.
+2026-09-08T15:23:14Z ran the preload case against a per-check reading | it fails without the read at load so the guard is tested rather than assumed.
+2026-09-08T15:23:41Z pnpm test and pnpm lint at the tracker root | all 211 cases pass and the only lint error is the bookmarklet which predates this work.
+2026-09-08T15:24:19Z appended a section to readme.md | the readme records why the check reads the shell rather than a build id.
+2026-09-08T15:25:41Z added a router tree case to render.test.ts | the demand replaces the routed screen and carries the same surface as every other screen.
+2026-09-08T15:26:39Z pnpm test and pnpm lint across the workspace | 557 cases pass and the one lint error is the bookmarklet which predates this work.
+2026-09-08T15:27:14Z python3 split of 27.log into 27.log and 28.log | another session holds 27 for the Jira link work so this task moved to 28.

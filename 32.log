@@ -1,0 +1,37 @@
+Log 32. Designing a GitLab time tracking connector for tracker.
+2026-09-09T15:20:58Z listed tracker sources and read apps/api/src/jira.ts | the Jira reader is one interface with four methods so a second provider fits behind the same shape.
+2026-09-09T15:20:58Z read jira-tokens.ts and jira-handlers.ts and repository.ts and lambda.ts | the rotation and the cache and the KMS cipher are all keyed on one link record so none of it is Atlassian specific except the client itself.
+2026-09-09T15:20:58Z grepped the repo for gitlab | the instance is gitlab.4flow-software.com named in 2026-04-27/day.md and utils/jobspeed.json holds gid://gitlab ids from its GraphQL API.
+2026-09-09T15:24:17Z read the GitLab OAuth and time tracking docs | the instance supports authorization code with PKCE at /oauth/authorize and /oauth/token and a refresh invalidates both tokens which is the same rotation hazard jira-tokens.ts already guards.
+2026-09-09T15:24:17Z read the GitLab issues REST reference | GET /projects/:id/issues/:iid/time_stats answers four aggregate fields and no REST route returns a dated entry with an author so REST cannot answer a month.
+2026-09-09T15:24:17Z introspected Timelog and Query.timelogs against gitlab.com/api/graphql | Timelog carries id spentAt timeSpent summary user issue mergeRequest note project and the query takes startDate endDate startTime endTime projectId groupId username sort and the four page arguments.
+2026-09-09T15:24:17Z probed Query.timelogs unauthenticated | it refuses with 'Non-admin users must provide a groupId, projectId, or current username' so a per user token may read only its own month which is exactly the shape wanted.
+2026-09-09T15:24:17Z introspected Issue and UserCore | Issue answers iid reference title webUrl closedAt state labels milestone epic timeEstimate totalTimeSpent and UserCore answers username so the identity join is Query.currentUser.
+2026-09-09T16:54:55Z read jira-dev.ts and jira-fake.ts and core/dev.ts and the web api and router | the integration is fourteen files and the only Atlassian specific ones are the client and the scopes and the account id regex.
+2026-09-09T16:54:55Z read the GitLab authorization code parameters against the Atlassian ones | both take client_id client_secret code grant_type redirect_uri and both rotate on refresh so exchange and refresh map one to one and only the body encoding differs.
+2026-09-09T16:54:55Z checked the GitLab docs for a grace window on a spent refresh token | none is documented where Atlassian gives ten minutes so rule three of jira-tokens.ts has nothing to fall back on against GitLab.
+2026-09-09T16:54:55Z read the DynamoDB key layout | the link is sort key JIRA under USER#<sub> so a GITLAB sort key sits beside it and no existing item moves.
+2026-09-09T17:00:31Z confirmed with the user that Lambda reaches gitlab.4flow-software.com | the VPC question is closed so the Jira function shape carries over unchanged.
+2026-09-09T17:00:31Z read docs/jira-admin.md and the two request docs for house style | a request doc names the ask in one line then the fields then what it reads then how to check it worked.
+2026-09-09T17:00:31Z wrote docs/gitlab-admin.md | it asks for one OAuth application with read_api and offers a group owned route that needs no administrator at all.
+2026-09-09T17:34:51Z started the step 3 refactor before it was asked for and was stopped | the user wanted a plan so the code changes were reverted rather than finished.
+2026-09-09T17:34:51Z reverted repository.ts and jira-tokens.ts from HEAD and unpicked dynamo.ts and jira.ts by hand | the latter two carried uncommitted work from before this session so a checkout would have destroyed it.
+2026-09-09T17:34:51Z ran typecheck and the full suite after the revert | eight projects typecheck and 607 tests pass so the tree is back where it started.
+2026-09-09T17:35:41Z wrote docs/gitlab.md as the plan | five steps with step 2 the only one that touches working code and the administrator request able to go out first.
+2026-09-09T17:40:51Z redirected to read ticket ids from git history rather than from timelogs | the timelog design is dropped and the commit message becomes the source.
+2026-09-09T17:40:51Z read the events and commits API docs | a push event carries only one commit_title so events alone lose commits and the commits API must supply the messages.
+2026-09-09T17:40:51Z counted commits under each author filter on a public project | author matches name or email and matches on a substring so 'Vishal' and 'vtak@gitlab.com' both returned the same 16.
+2026-09-09T17:40:51Z tested ref_name as a revision range | ref_name=<from>..<to> returns the commits of that range so a push event range gives exactly the commits of that push.
+2026-09-09T17:40:51Z checked the search API scopes | scope=commits needs Advanced Search and Premium so an instance wide commit search cannot be assumed.
+2026-09-09T17:40:51Z probed /users/:id/contributed_projects | it answers 200 with full project objects though the users API page does not document it.
+2026-09-09T17:42:35Z rewrote docs/gitlab.md around the commit history design | events give the pushes and a revision range gives the commits and the message gives the ticket id.
+2026-09-09T17:42:35Z patched docs/gitlab-admin.md off the timelog design | the three calls are now /user and /events and the commits API and the retention window is added to what the administrator must send back.
+2026-09-09T20:32:51Z explored the cost centre chain and the Jira screen and the validation machinery | stages 2 and 3 and 4 of the asked for workflow already exist so only the download is new.
+2026-09-09T20:32:51Z read resolveCostCentre and its callers | a gap is already first class as source === none and the screen already swaps a picker into an unresolved row.
+2026-09-09T20:32:51Z found that the Lambda never loads the catalogue | jira-handlers.ts runs a reduced two step lookup so the full four step precedence only runs in the browser.
+2026-09-09T20:32:51Z tested the events after and before bounds against gitlab.com | both are exclusive so August needs after=2026-07-31 and before=2026-09-01 or the first day is lost.
+2026-09-09T20:32:51Z read the Jira function timeout in the stack | 20 seconds at tracker-stack.ts:633 and API Gateway caps a synchronous response at 30 so a busy month needs a job.
+2026-09-09T20:32:51Z read the reminder function | five minute timeout at tracker-stack.ts:732 so the precedent for a long running worker already exists.
+2026-09-09T20:32:51Z corrected the merge justification for the two project maps | a GitLab path is not guaranteed lowercase but it always carries a slash which a Jira project key never can.
+2026-09-09T20:32:51Z found the cold start hole in the looked up rather than trusted rule | a user with no Jira link would see every real ticket fall through so the regex now decides what is shown and the lookup decides what is resolved.
+2026-09-09T20:32:51Z wrote the plan to ~/.claude/plans/so-thers-a-workflow-glittery-cook.md | five steps behind a measurement gate with the parser first because it is pure.

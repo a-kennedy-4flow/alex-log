@@ -1,0 +1,23 @@
+Session log for keeping the second row of a day when the first row is cleared in tracker.
+One line per shell command. UTC timestamp then the command then what happened.
+The first block of lines was reconstructed after the fact because the log was opened late.
+2026-09-10T21:41:56Z  sed -n over MonthCalendar.vue  Read the popover and found the clear button calling a local clearHalf.
+2026-09-10T21:41:56Z  cat composables/useRowEdit.ts  Found setWorkday clearing the row then calling clearLower.
+2026-09-10T21:41:56Z  sed -n over packages/core/src/distribute.ts  dayIsSplit reads the upper row so clearing it hides the lower one.
+2026-09-10T21:41:56Z  grep -rn clearRow over apps and packages  clearRow cascaded into the lower row and bulk loops in the tests clear row by row.
+2026-09-10T21:41:56Z  sed -n over packages/core/src/types.ts  A half is a tracker row slot and carries no morning or afternoon meaning so a booking may move up.
+2026-09-10T21:41:56Z  python3 patch of useTimesheet.ts  clearRow now empties one row and nothing else.
+2026-09-10T21:41:56Z  python3 patch of useRowEdit.ts  Added clearHalf which moves a lower booking up and pointed setWorkday at it.
+2026-09-10T21:41:56Z  python3 patch of MonthGrid.vue and MonthCalendar.vue  Both clear buttons now call the shared clearHalf.
+2026-09-10T21:41:56Z  python3 patch of render.test.ts  Added a grid case and a board case for clearing the first row of a split day.
+2026-09-10T21:41:56Z  pnpm --filter @tracker/web test  All 295 tests passed.
+2026-09-10T21:41:56Z  python3 patch reverting clearHalf to the old cascade  Both new cases failed which proves they cover the fault.
+2026-09-10T21:41:56Z  python3 patch restoring clearHalf  The two cases passed again.
+2026-09-10T21:41:56Z  pnpm --filter @tracker/web typecheck and pnpm lint  Both clean.
+2026-09-10T21:42:30Z  sed -n over infra/lib/tracker-stack.ts and infra/bin/app.ts and infra/lib/dns-stack.ts  The identity is built from the hosted zone in the eu-central-1 Tracker stack and delegated is already true.
+2026-09-10T21:42:46Z  dig NS SOA A tracker.4flow.io and TXT _dmarc and MX bounce  Delegation is live and the DMARC and bounce records are published. 4flow.io itself publishes no DMARC.
+2026-09-10T21:43:05Z  aws sesv2 get-email-identity tracker.4flow.io in eu-central-1  DKIM status SUCCESS with three RSA 2048 tokens and MailFromDomainStatus SUCCESS.
+2026-09-10T21:43:05Z  dig CNAME on the three _domainkey names  All three resolve to dkim.amazonses.com and the public key is served.
+2026-09-10T21:43:05Z  aws sesv2 get-account  ProductionAccessEnabled false so the sandbox still caps at 200 a day to verified addresses.
+2026-09-10T21:43:40Z  aws sesv2 list-email-identities  The domain is the only identity so no mailbox is verified for a sandbox test.
+2026-09-10T21:43:45Z  grep -n p=none infra/lib/tracker-stack.ts  The DMARC policy is still none at line 749 so tightening it is the remaining step.

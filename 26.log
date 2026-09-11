@@ -1,0 +1,35 @@
+Log 26. A switch on the Jira integration to read the tickets of another user for testing.
+2026-09-08T14:47:50Z grep -ril jira across the repo | the integration is the tracker app and the client is tracker/apps/api/src/jira.ts.
+2026-09-08T14:47:50Z cat apps/api/src/jira.ts and jira-handlers.ts and lambda.ts and local.ts and dev-server.ts and jira-fake.ts | the user is fixed three ways currentUser in both JQL and accountId filtering the worklogs.
+2026-09-08T14:49:06Z sed docs/jira.md the query and the join sections | option C already records that assignee = currentUser becomes assignee = "<account id>".
+2026-09-08T14:49:06Z grep the granted scopes in packages/core/src/jira-scopes.ts | a search for another assignee needs no scope the grant lacks.
+2026-09-08T14:49:06Z grep jiraMonth in apps/web/src/lib/api.ts and requestOf in lambda.ts | the month is a path segment because no adapter passes a query string or a header to a handler.
+2026-09-08T14:49:06Z sed readTickets in jira-handlers.ts | the tickets are cached on the link row per period so a read as another user would poison the real cache.
+2026-09-08T15:14:35Z user asked for the switch to be dev only | grep docs/jira-admin.md | localhost:5173/jira/callback is already a registered callback so the real flow runs locally.
+2026-09-08T15:14:35Z python3 added ACCOUNT_ID and theUser and the account argument of both JQLs in apps/api/src/jira.ts | currentUser stays the default.
+2026-09-08T15:14:35Z python3 added the asUser constructor argument to AtlassianJira | it also skips the myself call because the account is already named.
+2026-09-08T15:14:35Z python3 added jiraOf to apps/api/src/local.ts | the real client answers when JIRA_CLIENT_SECRET is set and JIRA_AS_USER names the account.
+2026-09-08T15:20:46Z another session added a required siteUrl to JiraDeps mid change | it landed in local.ts and the test depsOf before my two edits for it did so both were dropped.
+2026-09-08T15:20:46Z python3 added the clientSecret unwrap to local.ts | tracker/jira holds either the bare value or a JSON object and a pasted object would be refused as access_denied.
+2026-09-08T15:20:46Z wrote five tests in apps/api/src/__tests__/jira.test.ts around a paths recorder on the site stub | both JQLs and the myself call and the worklog filter and the refusal.
+2026-09-08T15:20:46Z vite-node src/local.ts four ways | the double and the switch refused with no secret and the real client and a quote in the account id refused.
+2026-09-08T15:20:46Z curl /api/jira/link in real mode | it answers the real client id so the browser builds the real authorize URL and needs no change.
+2026-09-08T15:20:46Z python3 added Reading another account for a test to docs/jira.md | the command and why the switch lives in local.ts alone.
+2026-09-08T15:20:46Z pnpm -r typecheck and pnpm -r test | seven packages clean and 548 tests pass.
+2026-09-08T15:32:43Z user asked for the fill button to open the month view | grep router across apps/web | no page navigates today and App.vue uses Link alone.
+2026-09-08T15:32:43Z sed fillMonth in useJira.ts and openMonth in useTimesheet.ts | the fill already moves the editor to the month it wrote so the route needs no period on it.
+2026-09-08T15:32:43Z sed MonthPage.vue and App.vue | neither resets the month on mount so the filled month survives the navigation.
+2026-09-08T15:32:43Z python3 added the router navigate to run in apps/web/src/pages/JiraPage.vue | the singleton because the page is mounted bare in a test.
+2026-09-08T15:32:43Z python3 added a hoisted router double and two tests to apps/web/src/__tests__/jira.test.ts | the click opens the month it filled and a refused fill navigates nowhere.
+2026-09-08T15:32:43Z pnpm --filter @tracker/web test and typecheck and eslint | 214 tests pass and both checks clean.
+2026-09-08T15:47:35Z user asked for hoursTextOf to round to two places | grep the callers | it is the column text of JiraPage.vue and nothing reads it back.
+2026-09-08T15:47:35Z python3 rounded hoursTextOf in apps/web/src/composables/useJira.ts | Math.round times a hundred which is the idiom calendar.ts and distribute.ts already use.
+2026-09-08T15:47:35Z wrote the hours column describe with four tests | 1.9166 reads 1.92 and a whole figure stays whole and a trailing zero is dropped and nothing reported reads empty.
+2026-09-08T15:47:35Z pnpm --filter @tracker/web test and typecheck and eslint | 227 tests pass and both checks clean.
+2026-09-08T16:10:08Z user asked for the scroll bar on the month view to go | grep overflow across apps/web | the only scroll box is grid-wrap in MonthGrid.vue at overflow auto and max-height 720px.
+2026-09-08T16:10:08Z summed the nine column widths in MonthGrid.vue | 1030px of minimums against a box of about 730px at a 1440px window so that rule drew a horizontal bar as well as a vertical one.
+2026-09-08T16:10:08Z user said just the vertical one | dropped the browser measurement and cut the cap alone.
+2026-09-08T16:10:08Z python3 replaced the grid-wrap rule with overflow-x auto | the page is now the only vertical scroller and the wide table is still reachable.
+2026-09-08T16:10:08Z python3 noted the sticky thead as inert in MonthGrid.vue | a header can only stick inside a scrollport and that box no longer scrolls down.
+2026-09-08T16:10:08Z added the month grid describe to styles.test.ts | it holds the cap out and the horizontal axis in because jsdom lays nothing out.
+2026-09-08T16:10:08Z pnpm --filter @tracker/web test and typecheck and eslint | 228 tests pass and both checks clean.

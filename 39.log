@@ -1,0 +1,18 @@
+Log 39. Adjust the month view column widths so the tasks column and the clear row button are both in the box.
+2026-09-09T20:35:10Z read tracker/apps/web/src/components/MonthGrid.vue and the styles test | nine columns declared 1028px of width against a month box of about 730px on a 1440px window so the last two columns were pushed out of the scroller.
+2026-09-09T20:35:10Z measured the box | the shell is 80vw and the aside takes 300px and the sheet takes 52px of padding so the grid gets 0.8W minus 420.
+2026-09-09T20:35:10Z read the location codes and the specifications in packages/fixtures/data | a location code runs to 36 characters and a specification to 36 so both columns truncate at any width.
+2026-09-09T20:35:10Z counted the widths the header and the flags force | thead th was nowrap and Especificacion needs 125px and Arbeitswochenende needs 108px of the date column.
+2026-09-09T20:35:10Z rewrote the nine widths and dropped nowrap from thead th and pinned .col-act to the right edge | the total is now 778px and the button holds the edge when the wrapper still scrolls.
+2026-09-09T20:35:10Z ran the web styles and render tests | 129 pass.
+2026-09-09T20:36:16Z found the playwright chromium headless shell in the cache | it can screenshot the real page so the widths are checked in a browser rather than on paper.
+2026-09-09T20:37:45Z started pnpm dev:api on 8787 and vite on 5174 | port 5173 was taken by another project so the tracker needed its own port.
+2026-09-09T20:40:06Z seeded the dev api with a profile and a filled September through curl | the grid needed real values in every column before a screenshot could show a truncation.
+2026-09-09T20:42:27Z screenshotted the filled month at 1440 | the cost centre column had taken 286px against a declared 160px so the picker label was setting the width and the tasks column was down to a strip.
+2026-09-09T20:44:08Z set table-layout fixed with a 704px min-width and left the cost centre and the specification and the tasks columns to divide the surplus | a declared width is now the width.
+2026-09-09T20:49:56Z measured a select in the grid | 36px goes on padding and the arrow before any text so the days column needed 68px to show 0.5 and 52px was showing 0.
+2026-09-09T20:53:24Z ran the whole web suite | 242 tests pass including three new stylesheet guards.
+2026-09-09T20:56:49Z rewrote the new comments to the project grammar rules and reran the tests | 132 pass and no inventory chain is left in the file.
+2026-09-09T20:58:27Z dropped the fixed width off the location column so it grows with the other three | a location holds 215px at 1920px against the 112px it had and 119px at 1440px.
+2026-09-09T20:59:23Z stopped the two dev servers this session started | the dev api holds everything in memory so the seeded profile and month went with it.
+2026-09-09T20:59:49Z ran eslint and vue-tsc and the web suite once more | all clean and 242 tests pass.

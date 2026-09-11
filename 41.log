@@ -1,0 +1,26 @@
+Log 41. Add a button that sends the tracker by email to a.kennedy@4flow.com.
+2026-09-09T21:20:00Z opened the log | the previous task closed with 40.log so this one takes the next number.
+2026-09-09T21:20:05Z cat memory files | read the grammar rules and the logging rule and the variants rule.
+2026-09-09T21:20:10Z ls repo root and tracker | found the numbered logs and the tracker workspace.
+2026-09-09T21:20:15Z head 40.log | copied the log header format.
+2026-09-09T21:20:20Z find tracker sources | listed every source file outside node_modules.
+2026-09-09T21:22:00Z cat ExportPanel.vue | read the download panel that the new button sits beside.
+2026-09-09T21:22:30Z cat mail.ts and reminder.ts | found the SES mailer and the reminder copy tables.
+2026-09-09T21:23:00Z cat cognito.ts lambda-event.ts handlers.ts | confirmed the caller carries the signed in email from the JWT.
+2026-09-09T21:24:00Z cat api-lambda.ts reminder-lambda.ts build.mjs | the API bundle deliberately loads no SES client so the mailer must load lazily.
+2026-09-09T21:25:00Z resolve @aws-sdk/client-sesv2 | 3.1127.0 is installed but the Lambda runtime supplies its own so the send uses raw MIME.
+2026-09-09T21:25:20Z cat web lib/api.ts | read the client the new call is added to.
+2026-09-09T21:26:00Z cat docs/mail.md and grep the stack for SES | only the reminder role may send today so the API role needs the same grant.
+2026-09-09T21:27:00Z sed the stack | the API function is built before the SES block so the grant is added inside it with addEnvironment.
+2026-09-09T21:28:00Z grep the handler tests and the panel usages | found the export tests and the two pages the panel sits on.
+2026-09-09T21:30:00Z grep the recipient address | it is written out twice already so the value moves into core before a third copy is added.
+2026-09-09T21:38:00Z wrote submission.ts and rewrote mail.ts and handlers.ts | the workbook build is now shared by the download and the new delivery route.
+2026-09-09T21:48:00Z edited the panel and the client and eight message files and the stack and docs/mail.md | the button is wired end to end and the API role may now send.
+2026-09-09T21:55:00Z pnpm --filter @tracker/api test | 188 tests pass including the seven new delivery cases and the MIME suite.
+2026-09-09T21:59:00Z pnpm --filter @tracker/web test | 252 tests pass after the click was moved behind the watcher tick.
+2026-09-09T22:02:00Z pnpm --filter @tracker/api bundle | the API bundle grew to 44 kB and names the SES client only inside a dynamic import.
+2026-09-09T22:06:00Z curl and node against the local server on 8799 | the route answered 200 with the mailbox and the console mailer printed the workbook name.
+2026-09-09T22:12:00Z rewrote the two panel tests | the disabled check moved to the suite where the API is live because it proved nothing where it was.
+2026-09-09T22:16:00Z pnpm exec eslint on the changed files | clean. The one workspace lint error is in JiraBookmartlet.js and predates this task.
+2026-09-09T22:17:00Z pnpm -r typecheck and pnpm -r test | seven packages typecheck and every suite passes.
+2026-09-09T22:17:30Z closed the log | the work is done.

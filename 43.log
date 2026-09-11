@@ -1,0 +1,43 @@
+Session log for adding a linked specification ticket field to the Jira integration in tracker.
+One line per shell command. UTC timestamp then the command then what happened.
+2026-09-10T21:37:42Z  cat 43.log heredoc  Created the log file for this session.
+2026-09-10T21:37:48Z  grep -ril jira over tracker sources  Listed the 60 odd files that touch Jira and found packages/core/src/jira-cost-centre.ts.
+2026-09-10T21:37:54Z  cat packages/core/src/jira-cost-centre.ts and docs/jira.md  Read the cost centre resolution order and the Jira design document.
+2026-09-10T21:38:22Z  grep -rn -i specification over tracker  Found the timesheet specification column and specificationsFor keyed by workday id.
+2026-09-10T21:38:43Z  grep -rn costCentreSpecification  The Jira specification is fetched and carried to the browser and then never read.
+2026-09-10T21:39:08Z  MCP getIssueLinkTypes on 4flow.atlassian.net  Twenty one link types and none of them is named specification.
+2026-09-10T21:39:43Z  MCP JQL key in (ECLIPSE-613,PLRS-1141,ECLIPSE-269) fields *all  PLRS work tickets link to ECLIPSE epics with the implements link type.
+2026-09-10T21:41:24Z  MCP JQL Cost Center Specification is not EMPTY  986 issues carry it and they are cost centre epics in COMM TMS CUS TREX.
+2026-09-10T21:42:02Z  MCP JQL linked issues of my tickets AND Cost Center Specification is not EMPTY  Zero. No linked issue of my completed tickets carries the specification field.
+2026-09-10T21:43:22Z  AskUserQuestion where to look for the specification ticket  Alex chose the parent chain then issue links.
+2026-09-10T21:44:13Z  MCP getJiraIssueTypeMetaWithFields COMM Epic  Internal Cost Center is customfield_10084 a number and Cost Center Specification is customfield_10085 a labels array.
+2026-09-10T21:44:47Z  MCP JQL read customfield_10085 values  The specification arrives as Jira labels such as 4s_Overheads_Concept_and_development and 4s_changeRequest.
+2026-09-10T21:45:29Z  python3 scratchpad/match.py  Lowercasing and dropping non alphanumerics maps every real Jira label onto a catalogue specification with no collision across the 38.
+2026-09-10T21:45:39Z  append matchSpecification to packages/core/src/catalogue.ts  Added the label to specification match keyed on letters and digits alone.
+2026-09-10T21:46:26Z  python3 rewrite packages/core/src/hours.ts  Grouping now keys on the Workday ID and the specification and the fill books the resolved one.
+2026-09-10T21:46:42Z  python3 append resolveSpecification to jira-cost-centre.ts  The specification resolves inside the cost centre and falls back to the workbook default.
+2026-09-10T21:47:34Z  python3 add withLinked to apps/api/src/jira.ts  The month now follows issue links for any ticket the parent chain left without a specification.
+2026-09-10T21:47:52Z  python3 add inheritedFields and linkedKeys to jira.ts  A linked ticket now answers the specification the parent chain left null.
+2026-09-10T21:48:42Z  pnpm --filter @tracker/core typecheck  Core compiles after the grouping rename and the two new ticket fields.
+2026-09-10T21:50:32Z  python3 rewrite apps/web/src/pages/JiraPage.vue  The page shows a specification column and the shares now key on the cost centre and specification pair.
+2026-09-10T21:51:52Z  python3 add jira.specification and jira.spec to nine locales  Eight message catalogues gained six keys each and the rounding sentences now name the pair.
+2026-09-10T21:52:15Z  pnpm --filter @tracker/web typecheck  The browser compiles with the specification column and the pair keyed shares.
+2026-09-10T21:53:09Z  pnpm --filter @tracker/web test  295 pass after keying the share tests on the group.
+2026-09-10T21:53:48Z  pnpm --filter @tracker/api test  198 pass including nine new ones for the link walk.
+2026-09-10T21:54:55Z  pnpm --filter @tracker/core test  198 pass including sixteen new ones for the label match and the pair grouping.
+2026-09-10T21:56:30Z  pnpm --filter @tracker/web test  301 pass including six new browser tests for the specification cell.
+2026-09-10T21:58:57Z  pnpm -r typecheck and pnpm -r test and pnpm lint  Seven packages typecheck and 749 tests pass and eslint is clean.
+2026-09-10T21:59:19Z  python3 edit docs/jira.md terms and field sections  Defined the specification ticket and wrote the section on following a link to it.
+2026-09-10T21:59:45Z  python3 add three sections to docs/jira.md  Documented the resolution order and the label match and why a group is a pair.
+2026-09-10T21:59:57Z  python3 edit the where it runs section  Said that the label is matched in the browser for the same reason the cost centre is converted there.
+2026-09-10T22:01:25Z  python3 guard withLinked on the specification field  A site holding only the cost centre field now follows no link and a test pins it.
+2026-09-10T22:02:16Z  pnpm lint and pnpm -r typecheck and pnpm -r test  Clean. Seven packages typecheck and 750 tests pass.
+2026-09-10T22:02:29Z  git diff --stat  Work complete. The specification now resolves from Jira through the parent chain then a link.
+2026-09-10T22:10:39Z  grep for an existing spinner in tracker  Looking for a spinner already in the project before adding one.
+2026-09-10T22:11:05Z  sed App.vue style block and styles.test.ts  The ring already exists in App.vue as .waiting and .busy but the style block is scoped so the Jira page cannot reach it.
+2026-09-10T22:11:49Z  write apps/web/src/components/LoadingRing.vue  The ring is now one component so no page copies its markup or its reduced motion rule.
+2026-09-10T22:12:48Z  python3 add the ring to JiraPage and colour it on the button  The fill button turns a Smart Blue arc because the default orange one would vanish on orange.
+2026-09-10T22:13:48Z  pnpm --filter @tracker/web test  309 pass after moving the ring into a component and pointing the styles test at it.
+2026-09-10T22:15:38Z  npx vitest run src/__tests__/jira.test.ts --reporter=verbose  Five new ring tests pass covering the two reading states and the fill button.
+2026-09-10T22:17:04Z  python3 centre the button label and document the ring  The fill button keeps its centred label and docs/jira.md now describes the ring.
+2026-09-10T22:18:34Z  pnpm lint and pnpm -r typecheck and pnpm -r test  Clean. Seven packages typecheck and 763 tests pass.

@@ -1,0 +1,11 @@
+Log 31. Querying the keycloak postgres export for all users.
+2026-09-08T17:25:17Z ls of s3export and file on a table part | the export is an RDS snapshot export so every table is a gz.parquet directory not a sql dump.
+2026-09-08T17:25:49Z downloaded the duckdb v1.5.5 cli and copied it to ~/.local/bin | parquet needs a reader and duckdb queries the directories in place with no load step.
+2026-09-08T17:25:49Z duckdb describe and a group by on user_entity joined to realm | 353 users across two realms 337 platform and 16 master of which 9 are service accounts.
+2026-09-08T17:26:09Z duckdb copy of the joined user_entity to keycloak_users.csv in the scratchpad | 353 rows plus a header so the export matches the group by count.
+2026-09-08T17:27:39Z duckdb list of the platform realm split by service_account_client_link | 337 rows are 329 people and 8 service accounts of which 4 disabled.
+2026-09-08T17:27:39Z joined service_account_client_link to public.client | each service account names its client so the 8 map to langfuse langgraph ontology streamlit keycloak-automation risk-management service-request-agent and shippeo.
+2026-09-08T17:30:49Z duckdb lookup of client_id ilike exception-management | there are two clients but only exception-management defines roles so the frontend client holds none.
+2026-09-08T17:30:49Z counted user_role_mapping and group_role_mapping and composite_role against the 8 exception-management roles | 165 direct and 4 group and 0 composite so the union of two paths is the whole picture.
+2026-09-08T17:30:49Z inspected the one group that carries exception-management roles | it is test-group with no members and no children so no user holds a role through a group today.
+2026-09-08T17:30:49Z wrote em_roles.sql and ran it | 162 users hold 165 grants and only 3 users hold more than one role.
