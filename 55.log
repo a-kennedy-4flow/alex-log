@@ -1,0 +1,163 @@
+Adding human breast milk to milky_os as a reference product for comparison against the dm formula articles.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-14T14:51:53Z  find milky_os; cat scraper/readme.md  Three projects. ocr and scraper and scraper2. The scraper holds 137 dm Babymilch articles in products.json with a nutrition declaration each.
+2026-09-14T14:51:53Z  tail 54.log; head 53.log  Read the log format. One UTC stamp then the command then what happened.
+2026-09-14T14:57:03Z  python3 over products.json  137 articles declare 66 distinct nutrients under a 100 ml basis. Twelve are declared by all 134 that carry that column.
+2026-09-14T14:57:03Z  WebSearch human milk composition systematic review  Found Hopperton 2026 AJCN literature values and the MILQ 2025 reference value series.
+2026-09-14T14:57:03Z  WebFetch PMC13197950  Hopperton 2026 gives per 100 g values off a 1,031 g/ml density. It flags thiamin riboflavin B6 pantothenate vitamin E and manganese as single study.
+2026-09-14T14:57:03Z  curl europepmc fullTextXML x6  PMC blocks WebFetch with a captcha. The Europe PMC REST route returns the full JATS for every MILQ paper.
+2026-09-14T14:57:03Z  dump.py PMC12673392  MILQ B vitamins per litre. B1 111 ug B2 115 ug B3 1,4 mg pantothenate 2,4 mg B6 76 ug biotin 8 ug B12 0,29 ug choline 109 mg.
+2026-09-14T14:57:03Z  dump.py PMC12673390  MILQ macronutrients per litre. Protein 8,5 g carbohydrate 69 g fat 32 g energy 607 kcal.
+2026-09-14T14:57:03Z  dump.py PMC12592235  MILQ fat soluble per litre. Vitamin A 1,64 umol RAE alpha tocopherol 3,7 mg vitamin D 30,6 IU. No vitamin K.
+2026-09-14T14:57:03Z  dump.py PMC12592237  MILQ minerals per litre. Na 111 K 542 Mg 33 P 150 Ca 287 Fe 0,25 Cu 0,26 Zn 1,29 mg and Se 9 ug.
+2026-09-14T14:57:03Z  europepmc search MILQ  A corrigendum to the minerals paper exists as doi 10.1016/j.advnut.2025.100578. Its full text is not on the REST route.
+2026-09-14T15:06:40Z  curl pmc corrigendum with a browser agent  The minerals corrigendum only reprints the copper figures 8A and 8B. Table 1 is unchanged.
+2026-09-14T15:06:40Z  AskUserQuestion age step  The user took no option. Breast milk changes over lactation so the month has to be carried and every source quoted.
+2026-09-14T15:06:40Z  grep MILQ xml for Supplemental Table  Each MILQ paper carries monthly percentiles by month postpartum in mmc1.docx.
+2026-09-14T15:06:40Z  curl pmc bin/mmc1.docx  PMC gates binary downloads behind a proof of work script. The file never arrives.
+2026-09-14T15:06:40Z  curl europepmc supplementaryFiles  All four archives arrive. Each holds mmc1.docx beside the figures.
+2026-09-14T15:06:40Z  docx.py and extract.py  27 nutrients with a P50 for each of ten lactation windows from 4-17 d to 8-8.5 m. Vitamin D starts at 1-2 m.
+2026-09-14T15:16:49Z  europepmc verify citations  Exact authors volume and doi for all six papers. The macronutrient paper is 100501 and the fat soluble is 100484.
+2026-09-14T15:16:49Z  write tools/fetch_breastmilk.py  Downloads the four MILQ supplements and writes breastmilk.json with a source per number.
+2026-09-14T15:16:49Z  python3 tools/fetch_breastmilk.py  50 nutrient entries and 404 measurements over ten windows from nine sources.
+2026-09-14T15:16:49Z  write tools/reference.py  One article per lactation window under the brand Muttermilch in the shape the scraper writes.
+2026-09-14T15:16:49Z  edit compare_data.py  stage_of takes the brand so Muttermilch is its own step placed first. variant_of keeps the window name whole.
+2026-09-14T15:16:49Z  edit the four builders  Each merges the reference after the load and each takes --no-reference.
+2026-09-14T15:16:49Z  python3 tools/make_page.py make_chart.py make_views.py  122 articles on the page and 119 on the charts over eight age steps.
+2026-09-14T15:16:49Z  python3 tools/export_dataset.py  299 kB and 14 brands. The ten reference articles carry no price so 109 of 119 are priced.
+2026-09-14T15:16:49Z  pytest -q  169 pass. Twenty new tests cover the reference articles and hold the formula step medians still.
+2026-09-14T15:20:47Z  write tests/test_reference.py  Twenty tests. Shape units German printing the step the window label and six figures against the published ones.
+2026-09-14T15:20:47Z  edit make_page.py link label  The row linked to PMC under the words dm.de. The label is now read off the host.
+2026-09-14T15:20:47Z  edit make_page.py lede  The header counted the ten windows as dm articles. It now names them separately.
+2026-09-14T15:20:47Z  make_page make_chart make_views export_dataset  Rebuilt with the reference and again with --no-reference which reproduces 112 and 109 exactly.
+2026-09-14T15:20:47Z  readme.md  A Breast milk section with all nine citations the conversions the age step and what it cannot do. Counts and the test count updated.
+2026-09-14T15:20:47Z  pytest -q  169 pass.
+2026-09-14T15:29:15Z  stat scraper2 .output  The dataset was rewritten at 17:20 and the build was from 16:06 so the served app still held the old figures.
+2026-09-14T15:29:15Z  ./node_modules/.bin/nuxt build  Rebuilt. The dataset is a nitro server asset so it is only bundled at build time.
+2026-09-14T15:29:15Z  curl /api/overview /api/compare /api/matrix /api/article/9000003  Muttermilch is slot 3 of the brands and the compare rows draw the ten window iron curve.
+2026-09-14T15:29:15Z  edit app/pages/article/[dan].vue  The header printed two empty separators where a reference article has no pack size. The parts are now joined on what is there.
+2026-09-14T15:29:15Z  nuxt build; sweep 15 routes  All 200 and no runtime error. The server log holds only the listening line.
+2026-09-14T15:38:56Z  ./node_modules/.bin/nuxt dev  Answers in 3 seconds. Nuxt 4.5.2 on Nitro 2.13.4 and Vite 8.3.0. The log carries no warning.
+2026-09-14T15:38:56Z  sweep 9 routes on the dev server  All 200 and clean. The overview holds 119 articles and Muttermilch at slot 3.
+2026-09-14T15:38:56Z  kill the dev server  Port 3000 closed.
+2026-09-14T16:01:42Z  add age_span sold_from step_spans against to compare_data.py  Every article names its own age so the pairing is read off the data. Pre and 1 and Spezialnahrung take seven windows and stage 2 takes three.
+2026-09-14T16:01:42Z  four options in make_views.py  gap beside lifetime closest under a third group. Fourteen options now come from the one builder.
+2026-09-14T16:01:42Z  pytest -q  186 pass. The generic option tests cover the four new pages and test_against covers the pairing.
+2026-09-14T16:01:42Z  contrast.py on the ramp over the tinted track  The light step of each arm reaches 1,87 and the neutral 1,02 against the 3 to 1 a mark needs. On the sheet only 2,11 and 1,15.
+2026-09-14T16:01:42Z  drop the ramp from the against options  The milk takes the navy accent at 13,34 and the step the series blue at 4,42 on the sheet. Position carries the direction instead.
+2026-09-14T16:01:42Z  contrast.py on the two blues  3,02 apart in light and 1,69 in dark. Colour is never the only cue so the rail is labelled and the shapes differ and every option has a table twin.
+2026-09-14T16:01:42Z  parse and link and dataset check over 15 pages  No unbalanced markup. 58 links resolve. Every page holds a dataset identical to the source.
+2026-09-14T16:01:42Z  node stub DOM renderer over 12 option and step combinations and 43 nutrients  No NaN and no zero width mark and no empty plot.
+2026-09-14T16:01:42Z  firefox --headless --screenshot  Writes nothing in this sandbox so the pages were verified through the renderer rather than by eye.
+2026-09-14T16:01:42Z  readme.md  The against band with its four options the pairing rule what it finds and what the colour cost.
+2026-09-14T16:02:34Z  Skill ui-design  Never ask which option. One shell one dataset. Emit from a builder. State the cost in the page. Prove the colour. Verify before showing.
+2026-09-14T16:02:34Z  regex over the pack names per stage  Every pack declares its own age. Pre and 1 von Geburt an. 2 nach dem 6. 3 ab dem 10. 4 and Kindermilch ab dem 12.
+2026-09-14T16:02:34Z  add age_span and sold_from to compare_data  One reader over a dm pack and a lactation window so the two meet on a month.
+2026-09-14T16:02:34Z  add against() to compare_data  Pre 1 and Spezialnahrung pair with seven windows. Stage 2 with three. Stage 3 4 and Kindermilch pair with nothing.
+2026-09-14T16:02:34Z  four options added to make_views  gap beside lifetime closest under a third group called against.
+2026-09-14T16:02:34Z  node DOM harness over every page  All fourteen options run with no error and every mark count agrees with the dataset.
+2026-09-14T16:02:34Z  contrast.py over 38 new pairings  The inner bands of the diverging ramp can never clear 3 to 1 against the tinted track. Measured not recalled.
+2026-09-14T16:02:34Z  drop the ramp from gap.html  Position carries the direction. The milk band measures 3,12 and the field band 4,42 and the dot ring 17,76.
+2026-09-14T16:02:34Z  convert the lifetime svg and look at it  The step labels overprinted into a smear and three steps sold from birth stacked invisibly.
+2026-09-14T16:02:34Z  rework lifetime  Outlined blocks so overlapping spans read. Labels staggered along the span. Spezialnahrung left out as the ladder leaves it out.
+2026-09-14T16:02:34Z  re-render lifetime for Brennwert  The axis was forced to zero and crushed the plot. The scale now spans the data and the subtitle says where it starts.
+2026-09-14T16:02:34Z  contrast.py over the final palette  Worst mark 3,11 against a floor of 3. Every text pair clears 4,5.
+2026-09-14T16:02:34Z  link and parse check  58 local links resolve and no page carries an unclosed tag.
+2026-09-14T16:02:34Z  write tests/test_against.py  Seventeen tests over the age reader the pairing and what it finds. 186 pass and the count is deterministic over three runs.
+2026-09-14T16:14:47Z  europepmc search fluoride taurine manganese chromium molybdenum vitamin C  Four gaps closed and one weak figure given a second reading.
+2026-09-14T16:14:47Z  europepmc PMC12280829 grep breast milk  The EFSA 2025 fluoride assessment quotes a mean breast milk fluoride of 6 microgram per litre from Sener 2007.
+2026-09-14T16:14:47Z  epmc Kim 1998 abstract  Taurine 406 nmol/ml in colostrum and 335 in mature milk. Two bands like carnitine.
+2026-09-14T16:14:47Z  epmc Yoshida 2008 abstract  Molybdenum median 3,18 ng/ml and chromium 1,00 ng/ml over 79 samples by ICP-MS.
+2026-09-14T16:14:47Z  epmc Frisbie 2019 abstract  Reports 3 to 6 microgram per litre of manganese against the 1,96 Hopperton gives. Recorded beside it rather than swapped.
+2026-09-14T16:14:47Z  vitamin C moved to the middle of the LactMed range  7,0 mg per 100 ml rather than the low end of 5,0. The published spread is carried beside it.
+2026-09-14T16:14:47Z  python3 tools/fetch_breastmilk.py  54 entries and 444 measurements from twelve sources. Fluorid Taurin Molybdaen and Chrom are new.
+2026-09-14T16:14:47Z  reference.py carries a source per measurement  Plus sources() and cited_by() so a page can cite what it draws.
+2026-09-14T16:14:47Z  make_page.py  A Src column on a reference article linking to a numbered citation list. A dm article names dm and the day it was collected.
+2026-09-14T16:14:47Z  compare_data.py build carries cites  export_dataset.py carries the sources map so the app can cite too.
+2026-09-14T16:14:47Z  scraper2 article endpoint and page  A Quelle column and a Quellen block. The endpoint says whether an article is dm or science.
+2026-09-14T16:14:47Z  app.vue footer  It claimed every figure was a dm figure. It now names both kinds.
+2026-09-14T16:14:47Z  pytest -q  203 pass. Seventeen new tests cover the provenance on both kinds of article.
+2026-09-14T16:14:47Z  nuxt build; sweep 14 routes  All 200 and clean. 41 of 41 breast milk rows carry a source and the dm article carries the dm sentence.
+2026-09-14T16:21:45Z  fold and substring check over the 68 declared names  No two names collapse to one string. Only the expected Fett inside davon gesaettigte Fettsaeuren.
+2026-09-14T16:21:45Z  co-occurrence test Laktose against davon Milchzucker  Zero packs print both. 83 and 39 make exactly the 122 that print either so they are one nutrient under two names.
+2026-09-14T16:21:45Z  co-occurrence test Folsaeure against Folat gesamt  Thirteen packs print both so they are not pure synonyms. The total is the one to keep where both appear.
+2026-09-14T16:21:45Z  compare names I added against dm  I wrote Lacto-N-Neotetraose (LNnT) and dm writes (LNnt). A near miss that never matched. Fixed.
+2026-09-14T16:21:45Z  quantify the split  Folat gesamt at 31 percent and davon Milchzucker at 28 percent fall under the half a nutrient needs so both were dropped before any chart.
+2026-09-14T16:21:45Z  compare_data.py folded()  Two groups. Laktose takes davon Milchzucker and Folat takes Folat gesamt then Folsaeure.
+2026-09-14T16:21:45Z  rebuild  Lactose in the Pre step goes from 17 of 26 packs to 26 of 26. Folate now pairs at 7,69 ug against 13,6 so Pre carries 1,77 times the milk.
+2026-09-14T16:21:45Z  pytest -q  211 pass. Eight new tests hold the fold and one asserts no name of mine is a near miss of a dm name.
+2026-09-14T16:33:55Z  map 70 declared names onto English Wikipedia articles  62 distinct articles. The sialyllactoses have no page so they stand under the human milk oligosaccharide one.
+2026-09-14T16:33:55Z  tools/fetch_nutrients.py  The REST summary endpoint answers 429 under a burst so each refusal doubles the wait. 70 quotes cached under .cache/encyclopedia.
+2026-09-14T16:33:55Z  tools/make_profiles.py  One page per name with the quote the breast milk windows the age steps and the caveats. 69 profiles and an index at 614 kB.
+2026-09-14T16:33:55Z  spot check the quotes  Every article landed on the right subject. Iron is the element article which is what Wikipedia has.
+2026-09-14T16:33:55Z  fix milk_of for a folded name  The Folat page claimed breast milk carried nothing because the figure is filed under Folat gesamt.
+2026-09-14T16:33:55Z  move the manganese caveat off the source onto the nutrient  It was appearing on every nutrient Hopperton supplies including folate.
+2026-09-14T16:33:55Z  fix the not charted caveat  Folsaeure was blamed on the share gate when the real reason is the fold.
+2026-09-14T16:33:55Z  published error detection  Anything over twenty times its own step median. It finds the Aptamil 4 mg manganese at 182 times without being told.
+2026-09-14T16:33:55Z  pytest -q  230 pass. Nineteen new tests cover the quotes the licence the caveats and the pages.
+2026-09-14T16:33:55Z  parse and link check over profiles  70 pages 0 unbalanced 0 broken of 279 local links. External links go only to wikipedia doi creativecommons and ncbi.
+2026-09-14T16:33:55Z  readme.md  A What each nutrient is section with the four blocks the licence reasoning and a table of when each caveat appears.
+2026-09-14T16:43:37Z  tools/publish.py  Copies index compare views and profiles into scraper2/public/pages so one server answers for everything. 89 pages and 6,1 MB.
+2026-09-14T16:43:37Z  new views option periods.html  Rows are nutrients. Ten columns of breast milk by window then the median of each age step tinted against the milk of that age.
+2026-09-14T16:43:37Z  nameLink in make_views SCRIPT  Every nutrient label on a chart or a table twin links to its profile. Thirteen label sites swapped.
+2026-09-14T16:43:37Z  file_of moved into make_page  One fold shared by the page builder and the profile builder. Eiweiss keeps its ss rather than losing the letter.
+2026-09-14T16:43:37Z  node check the two folds agree  The JavaScript slug and the Python slug give the same file for every awkward name.
+2026-09-14T16:43:37Z  app/composables/useProfile.ts  The app links a nutrient to /pages/profiles. Article rows matrix heads matrix table and the compare title.
+2026-09-14T16:43:37Z  app.vue nav  Four outbound links to the built pages marked with an arrow.
+2026-09-14T16:43:37Z  kill the stale server  An old build held port 3000 so every /pages route answered 404 until it was replaced.
+2026-09-14T16:43:37Z  sweep 20 routes  All 200. 73 links followed across five served pages with none broken.
+2026-09-14T16:43:37Z  pytest -q  230 pass.
+2026-09-14T17:03:50Z  MILQ table 2 in all four papers  Every one prints what breast milk delivers a day beside the IOM adequate intake. 24 nutrients with a requirement.
+2026-09-14T17:03:50Z  europepmc PMC12673386 milk volume  818 g a day at 1 to 3,5 months and 833 then 691. A figure a day becomes a figure per 100 ml on 793 ml.
+2026-09-14T17:03:50Z  epmc iron absorption  Stoffel 2024 Sci Adv by isotope dilution. Intake 0,27 against 11,19 mg a day and absorbed 0,128 against 0,457.
+2026-09-14T17:03:50Z  epmc Saarinen 1977  49 percent absorbed from breast milk against about 10 from cow milk. The classic reading beside the modern one.
+2026-09-14T17:03:50Z  epmc Krebs 1996 and Shertukde 2022  Zinc fractional absorption 0,54 from human milk. Calcium net retention 40,4 percent over the first six months.
+2026-09-14T17:03:50Z  tools/fetch_requirements.py  24 requirements and 3 absorption records with five citations into requirements.json.
+2026-09-14T17:03:50Z  fix B1 read as B12  startswith matched B12 under the B1 key so thiamin carried B12 numbers. Longest name first and a no digit guard.
+2026-09-14T17:03:50Z  fix the vitamin D unit  The intake table counts IU and a pack counts micrograms. Converted at 0,025 rather than compared as printed.
+2026-09-14T17:03:50Z  make_profiles gains two blocks  What a baby needs and How much is absorbed. The step table gains a share of the need column.
+2026-09-14T17:03:50Z  fix the copper corrigendum leaking  It appeared as a caveat on iron and zinc. A corrigendum is about the paper so it stays on the citation.
+2026-09-14T17:03:50Z  iron page now reads  19,8 times the milk and 1.560 percent of the need and 47 against 4,1 percent absorbed. Formula carries 41 times and delivers 3,6.
+2026-09-14T17:03:50Z  pytest -q  241 pass. Eleven new tests including one that catches B1 being read as B12.
+2026-09-14T17:03:50Z  rebuild publish nuxt build restart  15 options now. 71 profile pages 0 unbalanced 0 broken of 282 links. Twelve routes served clean.
+2026-09-14T17:12:31Z  grep the MILQ papers on the adequate intakes  The B vitamin paper says the AIs rest on studies of as few as five women from 1951 to 1997 and need revision.
+2026-09-14T17:12:31Z  the framing was wrong  An AI for this age is calculated from milk so a milk under it is evidence about the assumption not about the milk. Corrected.
+2026-09-14T17:12:31Z  grep the fat soluble paper for vitamin D  Its AI is set from serum 25(OH)D over 30 nmol/L and not from milk. Human milk alone does not provide enough. A real exception.
+2026-09-14T17:12:31Z  grep the same paper for vitamin K  Left out of the reference values because the concentration is very low and the remedy is an injection after birth. The second exception.
+2026-09-14T17:12:31Z  requirements.json gains circular and set_from_outcome  22 requirements are circular and vitamin D and vitamin K are set from an outcome in the child.
+2026-09-14T17:12:31Z  make_profiles caveat rewritten  A milk under the intake now reads as a question about the intake with the MILQ quote under it.
+2026-09-14T17:12:31Z  fix vitamin K falling through  It carries no figure a day so it never reached its own exception. needs_card now shows an outcome record without a requirement row.
+2026-09-14T17:12:31Z  fix the doubled phrase  set_from carried rather than from milk and the template added it again.
+2026-09-14T17:12:31Z  pytest -q  243 pass. Three new tests hold the corrected position and assert only the two exceptions are marked uncircular.
+2026-09-14T17:12:31Z  rebuild publish nuxt restart  Seven routes clean. No page still carries the old claim.
+2026-09-14T17:36:10Z  new views option stars.html  A small star per pack of a step and one per matched lactation window. An arm is how many times the milk of that age.
+2026-09-14T17:36:10Z  the radial axis counts doublings  An eighth to thirty two times with the one times ring dashed. A value past the top sits on the rim.
+2026-09-14T17:36:10Z  clicking a star holds it  The held set drives a large overlay chart and a named list beside it. The address bar carries the set.
+2026-09-14T17:36:10Z  spokes control  Twelve headline nutrients by default and macronutrients or minerals or vitamins. Forty spokes on a small star is a smudge.
+2026-09-14T17:36:10Z  node stub renderer caught el is not defined  The draw block runs before the shared script so a top level listener fails. Attached lazily instead.
+2026-09-14T17:36:10Z  node stub renderer caught const pair = pair()  The binding shadowed the function it called. Renamed to step.
+2026-09-14T17:36:10Z  node stub renderer caught reach already declared  The shared script already has reach. Renamed mine to armOf.
+2026-09-14T17:36:10Z  sweep five control combinations  33 plots for Pre and 30 for stage 2. No NaN and every spoke group resolves.
+2026-09-14T17:36:10Z  pytest -q  247 pass. Four new tests including one that fails any draw touching the document at top level.
+2026-09-14T17:36:10Z  publish nuxt build restart  16 options. Sterne added to the nav. Seven routes served clean.
+2026-09-14T17:44:39Z  export_dataset carries against and windows  The app had no pairing so it could not draw anything against the milk of a matching age.
+2026-09-14T17:44:39Z  server/utils/stars.ts and api/stars.get.ts  One endpoint gives the axes the milk band every pack with its brand slot and the brand roll.
+2026-09-14T17:44:39Z  app/pages/stars.vue  All packs of a step over each other. A brand key turns a whole brand off. Hover raises one and fades the rest.
+2026-09-14T17:44:39Z  contrast.py on the milk against the eight brand hues  The navy measures 1,56 against the purple of slot 6. That is the ninth hue collision the readme warns about.
+2026-09-14T17:44:39Z  the milk became a hatch  A texture is a channel no hue uses so it cannot collide. The band runs from the lowest to the highest lactation window.
+2026-09-14T17:44:39Z  one slot goes unused here  Muttermilch holds the fourth slot across the app and is drawn as a hatch so seven brands carry a hue and five the grey. Noted on the page.
+2026-09-14T17:44:39Z  nuxt build and sweep 18 routes  All 200. 31 polygons server rendered with no NaN and the hatch pattern present.
+2026-09-14T17:44:39Z  pytest -q  247 pass.
+2026-09-14T17:55:10Z  usda fooddata central 172217  Unfortified whole milk because German Vollmilch carries no added vitamin A or D. 113 figures into 39 declared rows.
+2026-09-14T17:55:10Z  epmc Domelloef 2014 ESPGHAN  Unmodified cow milk should not be the main drink before twelve months and under 500 ml a day in toddlers.
+2026-09-14T17:55:10Z  tools/fetch_cowmilk.py  One article rather than ten because a cow is not a mother and the record is one composition.
+2026-09-14T17:55:10Z  compare_data gains a Kuhmilch stage and a REFERENCES tuple  stage_of and variant_of and step_spans now read a reference generically.
+2026-09-14T17:55:10Z  against() generalised to more than one reference  A step pairs with whichever milk covers its months. Six pairs now rather than four.
+2026-09-14T17:55:10Z  stage 4 and Kindermilch pair with cow milk  Iron 38,7 times and vitamin D 22,3 and a third of the protein. Energy the same to a percent.
+2026-09-14T17:55:10Z  stage 3 still reaches neither  The study stops at 8,5 months and cow milk starts at twelve. Nothing was stretched over the gap.
+2026-09-14T17:55:10Z  bug a ratio against nothing  Cow milk declares no vitamin C so the gap page rendered four NaN. Those nutrients are named rather than divided by.
+2026-09-14T17:55:10Z  bug the reference voted on the unit  Linolsaeure is 36 packs in grams against 39 in milligrams so two reference articles flipped the column. Units now count brands alone.
+2026-09-14T17:55:10Z  name the reference at runtime  Twelve strings said breast milk where the reference can now be cow milk.
+2026-09-14T17:55:10Z  ESPGHAN warning on the article page  A reference can carry a caution that belongs to no single figure so the endpoint carries it separately.
+2026-09-14T17:55:10Z  pytest -q  255 pass. Seven new tests and three older ones updated to two references.
+2026-09-14T17:55:10Z  rebuild publish nuxt restart  123 articles on the page and 120 on the charts over nine age steps. 90 pages 0 unbalanced 0 broken. 17 routes clean.

@@ -1,0 +1,177 @@
+/* The one shell every page and every option sits in.
+
+   Terms. A **plane** is the page background. A **sheet** is a white panel on it. A
+   **band** is the yellow fill a heading or a toolbar carries. A **rule** is a line that
+   carries no text so it may sit below the text contrast minimum. */
+
+:root {
+  color-scheme: light;
+
+  --plane: #fdfaec;
+  --sheet: #ffffff;
+  --band: #fbf4d4;
+  --band-strong: #f6e9a8;
+  --line: #e4e2d5;
+  --rule: #c9c6b4;
+
+  --ink: #16181d;
+  --quiet: #5c6270;
+  --accent: #002878;
+  --accent-ink: #ffffff;
+
+  /* Diverging. Six bands against the step median with a neutral grey between them. */
+  --low3: #184f95;
+  --low2: #3987e5;
+  --low1: #86b6ef;
+  --mid: #f0efec;
+  --high1: #eda3a3;
+  --high2: #e06a6a;
+  --high3: #b83232;
+  --on-low3: #ffffff;
+  --on-low2: #16181d;
+  --on-low1: #16181d;
+  --on-mid: #16181d;
+  --on-high1: #16181d;
+  --on-high2: #16181d;
+  --on-high3: #ffffff;
+
+  /* Categorical. The documented eight in their documented order. */
+  --series1: #2a78d6;
+  --series2: #eb6834;
+  --series3: #1baf7a;
+  --series4: #eda100;
+  --series5: #e87ba4;
+  --series6: #008300;
+  --series7: #4a3aa7;
+  --series8: #e34948;
+  --deemph: #8b92a1;
+
+  --step: 0.5rem;
+  --gutter: 1.5rem;
+}
+
+* { box-sizing: border-box; }
+
+/* Hard edges everywhere. One rule rather than a reset on each component. */
+*, *::before, *::after { border-radius: 0 !important; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--plane);
+  color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-weight: 650; letter-spacing: -0.01em; margin: 0; }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.05rem; }
+h3 { font-size: 0.9rem; }
+p { margin: 0.4rem 0; }
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Masthead */
+.masthead { background: var(--accent); color: var(--accent-ink); border-bottom: 3px solid var(--ink); }
+.masthead .wrap { display: flex; align-items: baseline; gap: 1rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
+.masthead .title { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.01em; color: var(--accent-ink); text-decoration: none; }
+.masthead .strap { font-size: 0.8rem; opacity: 0.82; }
+.masthead .stamp { margin-left: auto; font-size: 0.75rem; opacity: 0.82; font-variant-numeric: tabular-nums; }
+
+/* Navigation */
+.mainnav { background: var(--band); border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 20; }
+.mainnav .wrap { display: flex; gap: 0; overflow-x: auto; }
+.mainnav a {
+  padding: 0.55rem 0.95rem; font-size: 0.85rem; font-weight: 550; color: var(--ink);
+  text-decoration: none; border-right: 1px solid var(--rule); white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+.mainnav a:first-child { border-left: 1px solid var(--rule); }
+.mainnav a:hover { background: var(--band-strong); }
+/* A link that leaves the app for a built page says so before it is clicked. */
+.mainnav a.out { color: var(--quiet); }
+.mainnav a.out::after { content: " \2197"; font-size: 0.8em; }
+.mainnav a.on { border-bottom-color: var(--accent); background: var(--sheet); }
+
+main { padding: var(--gutter) 0 3rem; }
+
+/* Sheets */
+.sheet { background: var(--sheet); border: 1px solid var(--line); margin-bottom: var(--gutter); }
+.sheet > header {
+  background: var(--band); border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 0.9rem; display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap;
+}
+.sheet > header .note { font-size: 0.78rem; color: var(--quiet); margin-left: auto; }
+.sheet > .body { padding: 0.9rem; }
+.sheet > .body.flush { padding: 0; }
+
+.lede { color: var(--quiet); font-size: 0.88rem; max-width: 62ch; }
+.note { font-size: 0.78rem; color: var(--quiet); }
+
+/* Toolbar */
+.toolbar { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: flex-end; }
+.field { display: flex; flex-direction: column; gap: 0.2rem; }
+.field label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--quiet); }
+select, input, button {
+  font: inherit; font-size: 0.85rem; padding: 0.3rem 0.5rem; background: var(--sheet);
+  color: var(--ink); border: 1px solid var(--rule);
+}
+select:hover, input:hover, button:hover { border-color: var(--accent); }
+button { cursor: pointer; }
+button.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.switch { display: flex; }
+.switch button { border-right-width: 0; }
+.switch button:last-child { border-right-width: 1px; }
+
+/* Tables */
+table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+thead th {
+  background: var(--band); text-align: left; font-weight: 650; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink);
+  padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); position: sticky; top: 2.3rem;
+}
+tbody td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr:hover td { background: var(--band); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tight td, .tight th { padding: 0.25rem 0.5rem; }
+
+/* Statistics row */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.stat { background: var(--sheet); padding: 0.7rem 0.9rem; }
+.stat .k { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--quiet); }
+.stat .v { font-size: 1.6rem; font-weight: 650; line-height: 1.1; }
+.stat .s { font-size: 0.76rem; color: var(--quiet); }
+
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 0.15rem 0.9rem; font-size: 0.76rem; color: var(--quiet); align-items: center; }
+.legend .key { display: inline-flex; align-items: center; gap: 0.35rem; }
+.legend .chip { width: 11px; height: 11px; display: inline-block; border: 1px solid rgba(11, 11, 11, 0.18); }
+.legend .ramp { display: inline-flex; }
+.legend .ramp span { width: 22px; height: 11px; border: 1px solid rgba(11, 11, 11, 0.12); border-right-width: 0; }
+.legend .ramp span:last-child { border-right-width: 1px; }
+
+/* Charts */
+.plot { width: 100%; display: block; }
+.plot .grid { stroke: var(--line); stroke-width: 1; }
+.plot .axis { stroke: var(--rule); stroke-width: 1; }
+.plot .tick { fill: var(--quiet); font-size: 10px; }
+.plot .label { fill: var(--ink); font-size: 11px; }
+/* The backing circle is the surface gap. The mark then carries its own ring. */
+.plot .gap { fill: var(--sheet); }
+.plot .mark { stroke-width: 1.5; }
+.plot .row:hover .band { fill: var(--band); }
+.cell { stroke: var(--sheet); stroke-width: 1; }
+
+.footer { border-top: 1px solid var(--rule); margin-top: 2rem; padding: 1rem 0 2rem; font-size: 0.78rem; color: var(--quiet); }
+.footer p { max-width: 76ch; }
+
+.cost { border-left: 4px solid var(--accent); background: var(--band); padding: 0.6rem 0.9rem; font-size: 0.85rem; }
+.cost strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--quiet); }
+
+@media print {
+  .mainnav, .toolbar { display: none; }
+  body { background: #fff; }
+}

@@ -1,0 +1,44 @@
+Command log for adding prices and colour to the milky_os scraper and rebuilding the page as a Vue 3 server rendered site under scraper2.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-14T13:06:21Z ls milky_os/scraper -- 137 articles in products.json under 14 brands with no price field and eleven generated view pages.
+2026-09-14T13:06:21Z python scan of .cache for a price key -- the dm detail payload already carries price.current and a per kilo unit price so the dm price costs no new request.
+2026-09-14T13:10:47Z curl probe of fourteen German shops for a GTIN search -- mueller kaufland rossmann idealo amazon ebay medpex docmorris and eurapon answer 403 or a client challenge so they are out.
+2026-09-14T13:10:47Z curl probe of the survivors -- sanicare returns a promotion page for any query disapo returns an empty shell and babymarkt and baby-walz answer 429 behind a rate limit.
+2026-09-14T13:10:47Z curl shop-apotheke.com/search.htm -- the page embeds the whole Algolia result so ean pzn price pricePerUnit packSize and deeplink come out of one request.
+2026-09-14T13:10:47Z curl shop-apotheke by its own ean 4062300402409 -- an exact ean query returns the one hit so the matcher can try the barcode first and fall back to the name.
+2026-09-14T13:14:40Z pnpm install nuxt 4.5.2 in milky_os/scraper2 -- the Vue 3 server rendered app has its toolchain and node_modules is ignored.
+2026-09-14T13:14:40Z patch dmscrape/client.py -- get_bytes and get_text sit under the existing pacing and cache so a shop page is read on the same terms as a dm service.
+2026-09-14T13:14:40Z .venv/bin/python -m pytest -q -- 94 tests still pass after the client split.
+2026-09-14T13:16:31Z cat > dmscrape/prices/match.py -- a candidate is refused unless the maker the age step and the pack size all agree and the recipe markers do not conflict.
+2026-09-14T13:16:31Z python check of seven matcher cases -- Aptamil Ha Pre was scoring 0.75 against Aptamil Pronutra Pre so the marker subset guard now refuses it at zero.
+2026-09-14T13:18:29Z cat > dmscrape/prices/{models,__init__}.py and sources/{dm,shopapotheke,volksversand}.py -- three adapters behind one collector that records the site the title the price the pack size the link and how the match was made.
+2026-09-14T13:18:29Z python3 tools/fetch_prices.py --limit 4 -- dm answered four of four and shop-apotheke two of four so the pipeline works end to end.
+2026-09-14T13:18:29Z python3 tools/fetch_prices.py -- started the full run over 137 articles.
+2026-09-14T13:21:45Z node validate_palette.js on the categorical palette against a white card -- eight slots pass every gate and three sit under 3 to 1 so a table twin is required.
+2026-09-14T13:21:45Z node validate_palette.js --ordinal on the blue ramp -- seven age steps cannot be drawn as one hue because no subset above step 250 clears the 0,06 lightness gap so colour never carries the age step.
+2026-09-14T13:21:45Z node validate_palette.js on both diverging arms against white -- blue 250 400 600 and red pass as ordinal ramps so deviation from the step median is the encoding that carries the difference.
+2026-09-14T13:21:45Z cat > tools/export_dataset.py -- one compact dataset of 231 kB holding 109 articles 43 nutrients the step medians and the offers.
+2026-09-14T13:29:28Z python3 tools/fetch_prices.py over 137 articles -- 260 requests in four minutes gave 238 offers with no failures.
+2026-09-14T13:29:28Z python audit of the widest spreads -- a six bottle pack read as one bottle and 1.200 g read as 1,2 g so the size reader now handles the German thousands mark and a multiplier.
+2026-09-14T13:29:28Z patch dmscrape/prices/match.py -- a goat recipe was matching a cow recipe so a declared feature must now agree on both sides.
+2026-09-14T13:29:28Z patch dmscrape/prices/match.py -- Milupa Aptamil was matching Milupa Milumil so a maker word is only dropped when it is the maker of one of the two articles.
+2026-09-14T13:29:28Z python3 tools/fetch_prices.py from the cache -- the tightened matcher keeps 218 offers and the widest spread fell from 24 times to 1,96 times.
+2026-09-14T13:38:32Z cat > scraper2/{nuxt.config.ts,app/assets/theme.css} -- white sheets on a light yellow plane with a navy masthead and one rule setting every corner to zero.
+2026-09-14T13:38:32Z cat > scraper2/server/{utils,api} -- six endpoints so a page only carries the figures it draws rather than the whole 278 kB dataset.
+2026-09-14T13:38:32Z cat > scraper2/app/pages -- overview comparison matrix prices register article method and three layout options.
+2026-09-14T13:38:32Z ./node_modules/.bin/nuxt build then node .output/server/index.mjs -- eleven routes answer 200 and the comparison page carries 26 circles in the served HTML so the chart is rendered on the server.
+2026-09-14T13:38:32Z note -- pnpm 11 refuses to run the esbuild install script and nuxt build then fails so the build is invoked through the local binary.
+2026-09-14T13:43:56Z cat > tests/test_prices.py then pytest -q -- 55 new tests cover the size reader the matcher and the three sources so the suite now runs 149.
+2026-09-14T13:43:56Z firefox --headless --screenshot against localhost and against a local file -- both hang and write nothing so playwright chromium is fetched for the screenshots.
+2026-09-14T13:57:21Z read tools/make_views.py balance -- option seven is the lean which sorts every nutrient of a step into the seven bands and centres the bar on the median.
+2026-09-14T14:07:07Z patch useColour.ts -- each band now names a ring in a darker step of its own arm because the neutral mark was invisible on a white sheet.
+2026-09-14T14:07:07Z patch theme.css and DotPlot.vue -- a backing circle in the sheet colour carries the gap so the mark can carry its own ring.
+2026-09-14T14:07:07Z patch MatrixGrid.vue -- the article column is fixed at 250 px and left aligned and its heading no longer sticks to the page over the first row.
+2026-09-14T14:07:07Z patch export_dataset.py and both colour modules -- eight brands hold a hue and the rest take the de-emphasis grey rather than sharing a ninth.
+2026-09-14T14:07:07Z patch BrandLegend.vue -- the legend sorts by slot so the order never changes between two pages.
+2026-09-14T14:07:07Z patch index.vue -- align-items start so the shorter of the two sheets no longer stretches.
+2026-09-14T14:07:07Z node validate_palette.js over all 28 pairs of the eight slots -- five fail the all pairs separation so the dot plot drops the brand hue for a single highlighted brand against a grey field.
+2026-09-14T14:07:07Z cat > server/api/balance.get.ts and app/{components/LeanBars.vue,pages/balance.vue} -- option seven the lean sorts every nutrient of a step into the seven bands and centres the bar on the median.
+2026-09-14T14:07:07Z playwright screenshot of /balance -- the left half stacked outward from its far end so the block order is reversed and the halves now meet at the centre line.
+2026-09-14T14:07:07Z ./node_modules/.bin/nuxt build then twelve routes -- all answer 200 and /balance serves 96 segments for Kindermilch so the lean is drawn on the server.
+2026-09-14T14:07:07Z .venv/bin/python -m pytest -q -- 149 tests pass.

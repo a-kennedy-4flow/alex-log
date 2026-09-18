@@ -158,9 +158,12 @@ select.missing {
   background: var(--open);
 }
 
-/* The figures read left to right in one line. */
+/* The figures read left to right. They wrap under one another rather than
+   running off a narrow window. */
 .stats {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   margin: 0 0 0 auto;
 }
 

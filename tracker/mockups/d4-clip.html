@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — decision 4 option A — the id gives way</title>
+<link rel="stylesheet" href="f-board.css">
+<style>
+/* The board is held at what a 1280px window gives the app. */
+.board{max-width:604px}
+.legend{max-width:604px}
+
+/* A `1fr` track still refuses to go under its own content so the seven columns
+   of `f-board.css` come out unequal. `MonthCalendar.vue` draws a table with a
+   fixed layout where every column is the same width. The mockup has to match
+   it or an option is judged on a column the app never draws. */
+.board{grid-template-columns:repeat(7,minmax(0,1fr))}
+
+/* The app sets `.num` in the mono stack and a digit there is wider than the
+   Arial digit `f-board.css` draws. The d1 and d2 pages keep the Arial digit
+   because those decisions were judged on it. */
+.chip b,.cell .d{font-family:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace}
+
+/* The guard. It belongs to every option because a box crossing the cell rule is
+   the fault rather than a design. Nothing below overrides it. */
+.cell{min-width:0}
+.chips{min-width:0}
+.chip{min-width:0}
+.chip b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip i{flex:none}
+
+/* The date holds its width and the flag beside it breaks inside the word.
+   `Ascension Day` is 13 characters against the 44px the cell leaves it. */
+.cell .top{min-width:0}
+.cell .d{flex:none}
+.cell .lab{min-width:0;overflow-wrap:break-word}
+/* Option A. One line and the id gives way. Nothing else changes. */
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#" class="on">Month view</a><a href="#">Quick fill</a><a href="#">My settings</a><a href="#">Cost centres</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Decision 4. The chip holds one line and cuts the id to reach it.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <div class="controls">
+        <label class="field"><span>Year</span><select><option>2026</option></select></label>
+        <label class="field"><span>Month</span><select><option>May</option></select></label>
+        <label class="field"><span>Location</span><select><option>DE_BERLIN</option></select></label>
+        <div class="field">
+          <span>View</span>
+          <div class="views">
+            <button type="button">Grid</button><button type="button" class="on">Board</button>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Working days</dt><dd>18</dd></div>
+          <div class="stat"><dt>Target</dt><dd>14.5</dd></div>
+          <div class="stat"><dt>Booked</dt><dd class="off">13.5</dd></div>
+        </dl>
+      </div>
+
+      <div class="cols">
+        <div class="edge">
+          <div class="legend"><span class="lab">Legend</span><span id="legend"></span></div>
+          <div class="board" id="board"></div>
+
+        </div>
+        <aside>
+          <section>
+            <h2>This month</h2>
+            <div class="figure"><span class="big">13.5</span><span class="of">/ 14.5</span><span class="unit">days</span></div>
+            <div class="track"><div class="fill"></div></div>
+            <ul class="weeks" id="weeks"></ul>
+            <p class="foot">18 working days at your location.</p>
+          </section>
+          <section>
+            <h2>Checks</h2>
+            <ul class="checks" id="checks"></ul>
+          </section>
+          <section>
+            <h2>Your cost centres</h2>
+            <div class="recent" id="recent"></div>
+            <p class="foot">Click one to book it on the next free day.</p>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <div class="download">
+      <div class="fn"><span>File name</span>20260531_4flow_2026_05_projecttracker_DE_BERLIN.xlsm</div>
+      <p>Download the tracker then email it to software.projecttracker@4flow.com.</p>
+      <button type="button" class="primary">Download the tracker</button>
+    </div>
+  </div>
+
+  <footer><b>Decision 4 option A. One line and the id gives way.</b> The chip never leaves its cell and never grows.
+    It costs the id. A cut id names no cost centre and the reader has to open the day to learn which one it is.
+    16 of the 21 ids on this page are cut so it is the normal case rather than the rare one.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="f-board.js"></script>
+<script>
+const POP = `<label class="ed"><span>Cost centre</span><select><option>3000112 — Product development</option></select></label><label class="ed"><span>Specification</span><select><option>Development</option></select></label><div class="two"><label class="ed"><span>Days</span><select><option>0.5</option><option>1</option></select></label><label class="ed"><span>Location</span><select><option>DE_BERLIN</option></select></label></div><label class="ed"><span>Tasks</span><input type="text" value="Release 2.4"></label>`
+renderBoard('#board', addControl)
+fillAside()
+</script>
+</body>
+</html>

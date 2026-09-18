@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitamin B 1, Thiamin · dm Babymilch</title>
+<style>
+:root {
+  --ink: #16181d;
+  --quiet: #5c6270;
+  --line: #e2e5ec;
+  --page: #f6f7f9;
+  --card: #ffffff;
+  --accent: #002878;
+  --band: #eef1f7;
+  --series: #2a78d6;
+  --deemph: #8b92a1;
+  --mid: #f0efec;
+  --low3: #184f95;
+  --low2: #3987e5;
+  --low1: #86b6ef;
+  --high1: #eda3a3;
+  --high2: #e06a6a;
+  --high3: #b83232;
+  --ink0: #ffffff;
+  --ink1: #16181d;
+  --ink2: #16181d;
+  --ink3: #16181d;
+  --ink4: #16181d;
+  --ink5: #16181d;
+  --ink6: #ffffff;
+  --radius: 10px;
+  --who: 17rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8eaf0;
+    --quiet: #9aa2b4;
+    --line: #2c313c;
+    --page: #14161b;
+    --card: #1b1e25;
+    --accent: #8ab0ff;
+    --band: #232833;
+    --series: #3987e5;
+    --deemph: #626b7d;
+    --mid: #383835;
+    --low3: #86b6ef;
+    --low2: #3987e5;
+    --low1: #1c5cab;
+    --high1: #8a3535;
+    --high2: #c14a4a;
+    --high3: #e66767;
+    --ink0: #16181d;
+    --ink1: #16181d;
+    --ink2: #ffffff;
+    --ink3: #ffffff;
+    --ink4: #ffffff;
+    --ink5: #ffffff;
+    --ink6: #16181d;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.top { padding: 1.25rem 1.25rem 0.5rem; }
+h1 { margin: 0; font-size: 1.4rem; letter-spacing: -0.01em; }
+.lede { margin: 0.2rem 0 0; color: var(--quiet); font-size: 0.9rem; }
+a { color: var(--accent); }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: end;
+  padding: 0.75rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.control { display: grid; gap: 0.15rem; }
+.control span {
+  color: var(--quiet);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+select, button {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+select { max-width: 22rem; }
+button:hover, select:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { padding: 1rem 1.25rem 1rem; }
+.card {
+  padding: 1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow-x: auto;
+}
+.card h2 { margin: 0; font-size: 1rem; }
+.card .sub { margin: 0.15rem 0 1rem; color: var(--quiet); font-size: 0.82rem; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  margin: 0 0 0.9rem;
+  color: var(--quiet);
+  font-size: 0.78rem;
+}
+.legend i {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.3rem;
+  border-radius: 3px;
+  vertical-align: -0.12rem;
+}
+.legend .dot { border-radius: 50%; width: 0.6rem; height: 0.6rem; }
+.note { margin: 1rem 0 0; color: var(--quiet); font-size: 0.8rem; }
+#pack:empty { display: none; }
+.cost {
+  margin: 1rem 1.25rem 3rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 0.85rem;
+}
+.cost h2 { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--quiet); }
+.cost p { margin: 0 0 0.5rem; }
+.cost p:last-child { margin-bottom: 0; }
+.cost b { font-weight: 600; }
+#tip {
+  position: fixed;
+  z-index: 9;
+  max-width: 22rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.16);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+#tip[hidden] { display: none; }
+#tip b { display: block; }
+#tip span { display: block; color: var(--quiet); }
+table { border-collapse: collapse; font-size: 0.82rem; }
+th, td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+thead th { color: var(--quiet); font-size: 0.76rem; vertical-align: bottom; }
+tbody tr:hover { background: var(--band); }
+th.who, td.who { position: sticky; left: 0; background: var(--card); }
+tbody tr:hover th.who, tbody tr:hover td.who { background: var(--band); }
+.who b { font-weight: 600; }
+.who .variant { color: var(--quiet); font-weight: 400; }
+.who .size { color: var(--deemph); font-size: 0.75rem; }
+a.what { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--quiet); }
+a.what:hover, a.what:focus { color: var(--accent); border-bottom-color: var(--accent); }
+
+main { margin: 0 1.25rem 3rem; display: grid; gap: 1rem; max-width: 60rem; }
+.card h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+blockquote { margin: 0 0 0.6rem; padding-left: 0.9rem; border-left: 3px solid var(--line);
+  font-size: 0.95rem; }
+.attrib { margin: 0; color: var(--quiet); font-size: 0.78rem; }
+.attrib a { color: var(--accent); }
+table.grid { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+table.grid th, table.grid td { padding: 0.28rem 0.5rem; border-bottom: 1px solid var(--line);
+  text-align: right; }
+table.grid th[scope=row], table.grid thead th:first-child { text-align: left; }
+table.grid thead th { color: var(--quiet); font-size: 0.78rem; }
+table.grid td.none { color: var(--quiet); }
+ul.caveats { margin: 0; padding-left: 1.1rem; font-size: 0.85rem; }
+ul.caveats li { margin-bottom: 0.45rem; }
+.empty { color: var(--quiet); font-size: 0.85rem; margin: 0; }
+.tag { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 3px;
+  background: var(--band); color: var(--quiet); font-size: 0.72rem; margin-left: 0.3rem; }
+.index { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+.index th, .index td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line);
+  text-align: left; vertical-align: top; }
+.index td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.index a { color: var(--accent); text-decoration: none; }
+.index a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Vitamin B 1, Thiamin</h1>
+  <p class="lede">69 names over 120 articles collected on 13 September 2026. <a href="index.html">Every nutrient</a> ·
+    <a href="../index.html">The list</a> · <a href="../compare.html">Compare</a>.</p>
+</header>
+<main><section class="card"><h2>What it is</h2><blockquote>Thiamine, also known as thiamin and vitamin B1, is a vitamin – an essential micronutrient for humans and animals. It is found in food and commercially synthesized to be a dietary supplement or medication. Phosphorylated forms of thiamine are required for some metabolic reactions, including the breakdown of glucose and amino acids.</blockquote><p class="attrib">Quoted from the Wikipedia article <a href="https://en.wikipedia.org/wiki/Thiamine" rel="noreferrer">Thiamine</a> as of 2026-08-18 · CC BY-SA 4.0 <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer">licence</a></p></section><section class="card"><h2>In breast milk, per 100 ml</h2><table class="grid"><thead><tr><th>Lactation window</th><th>Declared</th></tr></thead><tbody><tr><th scope=row>4. bis 17. Tag</th><td>0,00588 mg</td></tr><tr><th scope=row>18. bis 31. Tag</th><td>0,00931 mg</td></tr><tr><th scope=row>1. bis 2. Monat</th><td>0,011 mg</td></tr><tr><th scope=row>2. bis 3. Monat</th><td>0,0114 mg</td></tr><tr><th scope=row>3. bis 4. Monat</th><td>0,0112 mg</td></tr><tr><th scope=row>4. bis 5. Monat</th><td>0,0109 mg</td></tr><tr><th scope=row>5. bis 6. Monat</th><td>0,0107 mg</td></tr><tr><th scope=row>6. bis 7. Monat</th><td>0,0107 mg</td></tr><tr><th scope=row>7. bis 8. Monat</th><td>0,0109 mg</td></tr><tr><th scope=row>8. bis 8,5. Monat</th><td>0,011 mg</td></tr></tbody></table><p class="attrib">Allen LH, Shahab-Ferdows S, Moore SE, Peerson JM, Kac G, Figueiredo AC, et al. Reference Values for B Vitamins in Human Milk: The Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100500. <a href="https://doi.org/10.1016/j.advnut.2025.100500" rel="noreferrer">doi</a></p></section><section class="card"><h2>In the packs, per 100 ml in mg</h2><table class="grid"><thead><tr><th>Age step</th><th>Packs</th><th>Median</th><th>Lowest</th><th>Highest</th><th>Times the milk</th><th>Of the need</th></tr></thead><tbody><tr><th scope=row>Pre</th><td>26 of 26</td><td>0,0665</td><td>0,034</td><td>0,11</td><td>6,1×</td><td>0,264%</td></tr><tr><th scope=row>1</th><td>17 of 17</td><td>0,07</td><td>0,035</td><td>0,12</td><td>6,42×</td><td>0,278%</td></tr><tr><th scope=row>2</th><td>27 of 27</td><td>0,062</td><td>0,039</td><td>0,11</td><td>5,69×</td><td>0,246%</td></tr><tr><th scope=row>3</th><td>13 of 13</td><td>0,07</td><td>0,038</td><td>0,12</td><td>—</td><td>0,278%</td></tr><tr><th scope=row>4</th><td>4 of 4</td><td>0,063</td><td>0,045</td><td>0,073</td><td>1,33×</td><td>0,25%</td></tr><tr><th scope=row>Kindermilch<span class="tag">not drawn</span></th><td>2 of 12</td><td>0,0845</td><td>0,083</td><td>0,086</td><td>—</td><td>0,335%</td></tr><tr><th scope=row>Kuhmilch</th><td>1 of 1</td><td>0,0475</td><td>0,0475</td><td>0,0475</td><td>—</td><td>0,188%</td></tr><tr><th scope=row>Spezialnahrung</th><td>10 of 10</td><td>0,068</td><td>0,01</td><td>0,14</td><td>6,24×</td><td>0,27%</td></tr></tbody></table></section><section class="card"><h2>What a baby needs</h2><table class="grid"><tbody><tr><th scope=row>Adequate intake a day</th><td>200 μg</td></tr><tr><th scope=row>Breast milk delivers a day</th><td>90 μg</td></tr><tr><th scope=row>Which is</th><td>45% of it</td></tr><tr><th scope=row>So a feed needs</th><td>25,2 μg per 100 ml</td></tr></tbody></table><p class="attrib">The figure a day becomes a figure per 100 ml on the 793,4 ml a baby of 1-3.49 mo was measured drinking.</p><p class="attrib">The adequate intake for this age was itself calculated from an assumed breast milk composition times an assumed intake of 0,78 litres a day. A gap between the milk and the figure is evidence about the assumption rather than about the milk. Breast milk is the reference for what adequate means at this age so a figure under the intake is a question about the intake.</p><p class="attrib"><span class="detail">Depending on the vitamin in question, the studies used for setting the AIs included as few as 5 women (riboflavin) and no more than 111 women (vitamin B12) and were conducted between 1951 and 1997. Thus, the current AIs are based on data from outdated studies with few participants, indicating the need for revision.</span></p><p class="attrib">Allen LH, Shahab-Ferdows S, Moore SE, Peerson JM, Kac G, Figueiredo AC, et al. Reference Values for B Vitamins in Human Milk: The Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100500. <a href="https://doi.org/10.1016/j.advnut.2025.100500" rel="noreferrer">doi</a></p><p class="attrib">Dror DK, et al. Breast Milk Intake from 1 to 8.5 Months of Lactation in the Multisite Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1).<span class="detail">Milk intake was 818 g/d at 1-3.49 mo, 833 g/d at 3.5-5.99 mo and 691 g/d at 6-8.5 mo over all sites.</span></p></section><section class="card"><h2>How much is absorbed</h2><p class="empty">No measurement of how much of this is absorbed from either milk is carried here. A concentration on this page is what is in the milk rather than what reaches the child.</p></section><section class="card"><h2>What to watch</h2><ul class="caveats"><li>Breast milk delivers 45% of the adequate intake. That is not a shortfall in the milk. The adequate intake for this age was itself calculated from an assumed breast milk composition times an assumed intake of 0,78 litres a day. A gap between the milk and the figure is evidence about the assumption rather than about the milk. The milk of a healthy mother is what adequate means at this age.</li></ul></section></main>
+</body>
+</html>

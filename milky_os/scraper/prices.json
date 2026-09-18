@@ -1,0 +1,3099 @@
+{
+ "sites": [
+  "dm.de",
+  "shop-apotheke.com",
+  "volksversand.de"
+ ],
+ "count": 137,
+ "coverage": {
+  "dm.de": 137,
+  "shop-apotheke.com": 64,
+  "volksversand.de": 17
+ },
+ "quotes": [
+  {
+   "dan": 1617230,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch Pre Combiotik von Geburt an, 600 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 26.58,
+     "url": "https://www.dm.de/p/d/1617230/hipp-anfangsmilch-pre-combiotik-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "HiPP - Bio Combiotik PRE Säuglingsmilch ab der Geburt",
+     "price": 17.99,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 29.98,
+     "url": "https://www.shop-apotheke.com/baby/CH07836384/hipp-bio-combiotik-pre-saeuglingsmilch-ab-der-geburt.htm",
+     "matched": "name",
+     "score": 0.75
+    }
+   ]
+  },
+  {
+   "dan": 1690860,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre Pronutra von Geburt an, 1,2 kg",
+     "price": 25.95,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 21.63,
+     "url": "https://www.dm.de/p/d/1690860/aptamil-anfangsmilch-pre-pronutra-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Pronutra Pre– Anfangsmilch von Geburt an",
+     "price": 25.99,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 21.66,
+     "url": "https://www.shop-apotheke.com/baby/18354052/aptamil-pronutra-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1343922,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Anfangsmilch Pre von Geburt an, 500 g",
+     "price": 6.45,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 12.9,
+     "url": "https://www.dm.de/p/d/1343922/bebivita-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617229,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch Pre HA Combiotik von Geburt an, 600 g",
+     "price": 17.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 29.08,
+     "url": "https://www.dm.de/p/d/1617229/hipp-anfangsmilch-pre-ha-combiotik-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3127828,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch Pre PUR von Geburt an, 500 g",
+     "price": 10.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 21.9,
+     "url": "https://www.dm.de/p/d/3127828/hipp-anfangsmilch-pre-pur-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1682140,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Anfangsmilch Pre von Geburt an, 750 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 22.6,
+     "url": "https://www.dm.de/p/d/1682140/humana-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana Pre Anfangsmilch von Geburt an",
+     "price": 14.79,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 19.72,
+     "url": "https://www.shop-apotheke.com/baby/19626363/humana-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617234,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch Pre Combiotik trinkfertig von Geburt an, 200 ml",
+     "price": 2.25,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 11.25,
+     "url": "https://www.dm.de/p/d/1617234/hipp-anfangsmilch-pre-combiotik-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1621976,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Anfangsmilch Pre aus Ziegenmilch von Geburt an, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1621976/holle-anfangsmilch-pre-aus-ziegenmilch-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105160,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Anfangsmilch Pre von Geburt an, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/3105160/toepfer-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1368608,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre Pronutra von Geburt an, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1368608/aptamil-anfangsmilch-pre-pronutra-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Pronutra Pre – Anfangsmilch von Geburt an – Mit pflanzlichen Ölen ohne Palmöl",
+     "price": 19.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.99,
+     "url": "https://www.shop-apotheke.com/baby/4620320/aptamil-pronutra-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Pronutra Pre Anfangsmilch Safebox 800 G Pulver",
+     "price": 29.0,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.25,
+     "url": "https://volksversand.de/search?q=2866903",
+     "matched": "name",
+     "score": 0.48
+    }
+   ]
+  },
+  {
+   "dan": 1621285,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Spezialnahrung Comfort von Geburt an, 600 g",
+     "price": 15.35,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 25.58,
+     "url": "https://www.dm.de/p/d/1621285/hipp-spezialnahrung-comfort-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "HiPP Comfort Spezialnahrung",
+     "price": 27.19,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 45.32,
+     "url": "https://www.shop-apotheke.com/baby/CH01119209/hipp-comfort-spezialnahrung.htm",
+     "matched": "name",
+     "score": 0.75
+    }
+   ]
+  },
+  {
+   "dan": 1352689,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre HA von Geburt an, 800 g",
+     "price": 21.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.44,
+     "url": "https://www.dm.de/p/d/1352689/aptamil-anfangsmilch-pre-ha-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil HA Pre – Hydrolysierte Anfangsnahrung von Geburt an",
+     "price": 21.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.49,
+     "url": "https://www.shop-apotheke.com/baby/13715344/aptamil-ha-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Ha Pre 800 G Pulver",
+     "price": 30.02,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 37.52,
+     "url": "https://volksversand.de/search?q=3205788",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1640708,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch Pre aus Ziegenmilch von Geburt an, 400 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 42.38,
+     "url": "https://www.dm.de/p/d/1640708/hipp-anfangsmilch-pre-aus-ziegenmilch-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1494148,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Löwenzahn Organics Anfangsmilch Pre von Geburt an, 500 g",
+     "price": 13.45,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 26.9,
+     "url": "https://www.dm.de/p/d/1494148/loewenzahn-organics-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1620936,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pronutra Pre trinkfertig von Geburt an 4x200ml, 0,8 l",
+     "price": 6.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 8.69,
+     "url": "https://www.dm.de/p/d/1620936/aptamil-anfangsmilch-pronutra-pre-trinkfertig-von-geburt-an-4x200ml",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Pre Anfangsmilch trinkfertig",
+     "price": 7.59,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 9.49,
+     "url": "https://www.shop-apotheke.com/baby/CH90000920/aptamil-pre-anfangsmilch-trinkfertig.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3041761,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Pre von Geburt an, 1.200 g",
+     "price": 24.95,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 20.79,
+     "url": "https://www.dm.de/p/d/3041761/nestle-beba-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3038664,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Anfangsmilch Pre Milumil von Geburt an, 1,2 kg",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 12.46,
+     "url": "https://www.dm.de/p/d/3038664/milupa-anfangsmilch-pre-milumil-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1459132,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Pre von Geburt an, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1459132/nestle-beba-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Nestle Beba Pre 800 G Pulver",
+     "price": 28.94,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.17,
+     "url": "https://volksversand.de/search?q=3141405",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1620294,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Spezialnahrung Comfort von Geburt an, 800 g",
+     "price": 21.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.44,
+     "url": "https://www.dm.de/p/d/1620294/aptamil-spezialnahrung-comfort-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Comfort Spezialnahrung von Geburt an",
+     "price": 22.79,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 28.49,
+     "url": "https://www.shop-apotheke.com/baby/15390320/aptamil-comfort-spezialnahrung-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617231,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch 1 Combiotik von Geburt an, 600 g",
+     "price": 15.75,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 26.25,
+     "url": "https://www.dm.de/p/d/1617231/hipp-anfangsmilch-1-combiotik-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Hipp Bio Combiotik 1 Anfangsmilch von Geburt an",
+     "price": 17.99,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 29.98,
+     "url": "https://www.shop-apotheke.com/baby/6946184/hipp-bio-combiotik-1-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617219,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Spezialnahrung Anti-Reflux von Geburt an, 600 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 28.25,
+     "url": "https://www.dm.de/p/d/1617219/hipp-spezialnahrung-anti-reflux-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1587588,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Supreme Pre von Geburt an, 800 g",
+     "price": 29.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 37.44,
+     "url": "https://www.dm.de/p/d/1587588/nestle-beba-anfangsmilch-supreme-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé BEBA® SUPREME Pre, Anfangsmilch von Geburt an",
+     "price": 34.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 43.69,
+     "url": "https://www.shop-apotheke.com/baby/16893678/nestle-beba-supreme-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Nestle Beba Pre 800 G Pulver",
+     "price": 28.94,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.17,
+     "url": "https://volksversand.de/search?q=3141405",
+     "matched": "name",
+     "score": 0.48
+    }
+   ]
+  },
+  {
+   "dan": 1459135,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Kindermilch Junior 1+ ab 1 Jahr, 800 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 19.94,
+     "url": "https://www.dm.de/p/d/1459135/nestle-beba-kindermilch-junior-1-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105197,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Anfangsmilch Pre aus Ziegenmilch von Geburt an, 400 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 37.38,
+     "url": "https://www.dm.de/p/d/3105197/toepfer-anfangsmilch-pre-aus-ziegenmilch-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3132614,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Expert HA Pre von Geburt an, 1.200 g",
+     "price": 29.95,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 24.96,
+     "url": "https://www.dm.de/p/d/3132614/nestle-beba-anfangsmilch-expert-ha-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Nestle Beba Expert Ha Pre Pulver",
+     "price": 26.99,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 22.49,
+     "url": "https://volksversand.de/search?q=3401486",
+     "matched": "name",
+     "score": 0.833
+    }
+   ]
+  },
+  {
+   "dan": 1637384,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre Care von Geburt an, 800 g",
+     "price": 20.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 26.19,
+     "url": "https://www.dm.de/p/d/1637384/aptamil-anfangsmilch-pre-care-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Care Pre – Auch für Kaiserschnitt geborene Babys",
+     "price": 20.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 26.19,
+     "url": "https://www.shop-apotheke.com/baby/17629067/aptamil-care-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Care Pre 800 G Pulver",
+     "price": 28.65,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 35.81,
+     "url": "https://volksversand.de/search?q=3205614",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1452404,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Anfangsmilch Pre von Geburt an, 400 g",
+     "price": 8.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 22.38,
+     "url": "https://www.dm.de/p/d/1452404/holle-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio Pre Anfangsmilch von Geburt an",
+     "price": 8.89,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 22.23,
+     "url": "https://www.shop-apotheke.com/baby/12553738/holle-bio-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Holle Bio Pre Anfangsmilch 400 G",
+     "price": 8.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 22.38,
+     "url": "https://volksversand.de/search?q=3058534",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1459140,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Kindermilch Junior 2+ ab 2 Jahre, 800 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 19.94,
+     "url": "https://www.dm.de/p/d/1459140/nestle-beba-kindermilch-junior-2-ab-2-jahre",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1711543,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Löwenzahn Organics Anfangsmilch Pre auf Vollmilchbasis, von Geburt an, 400 g",
+     "price": 13.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 34.88,
+     "url": "https://www.dm.de/p/d/1711543/loewenzahn-organics-anfangsmilch-pre-auf-vollmilchbasis-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1423131,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bambinchen Anfangsmilch 1 aus Ziegenmilch von Geburt an, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1423131/bambinchen-anfangsmilch-1-aus-ziegenmilch-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Bambinchen 1 Säuglingsanfangsnahrung auf der Basis von Ziegenmilch, von Geburt an, 400g",
+     "price": 25.45,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 63.63,
+     "url": "https://www.shop-apotheke.com/baby/upmRWZHX2/bambinchen-1-saeuglingsanfangsnahrung-auf-der-basis-von-ziegenmilch-von-geburt-an-400g.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1332482,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Anfangsmilch Pre HA von Geburt an, 500 g",
+     "price": 9.25,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 18.5,
+     "url": "https://www.dm.de/p/d/1332482/bebivita-anfangsmilch-pre-ha-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3127728,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch PUR ab dem 12.Monat, 500 g",
+     "price": 9.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 19.9,
+     "url": "https://www.dm.de/p/d/3127728/hipp-folgemilch-pur-ab-dem-12-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1621973,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Folgemilch 4 aus Ziegenmilch ab dem 12. Monat, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1621973/holle-folgemilch-4-aus-ziegenmilch-ab-dem-12-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio-Folgemilch 4 auf Ziegenmilchbasis ab dem 12. Monat",
+     "price": 15.99,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.98,
+     "url": "https://www.shop-apotheke.com/baby/17441085/holle-bio-folgemilch-4-auf-ziegenmilchbasis-ab-dem-12-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1620675,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Spezialnahrung Anti-Reflux von Geburt an, 800 g",
+     "price": 21.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.44,
+     "url": "https://www.dm.de/p/d/1620675/aptamil-spezialnahrung-anti-reflux-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Anti-Reflux - Komplettnahrung von Geburt an, Zum Diät Management, Bei Spucken & Aufstoßen, Babynahrung, Milchpulver",
+     "price": 26.89,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 33.61,
+     "url": "https://www.shop-apotheke.com/baby/15390314/aptamil-ar-komplettnahrung-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1473934,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch 1 Pronutra von Geburt an, 1,2 kg",
+     "price": 25.95,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 21.63,
+     "url": "https://www.dm.de/p/d/1473934/aptamil-anfangsmilch-1-pronutra-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1615429,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre Profutura Duo Advance von Geburt an, 800 g",
+     "price": 25.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 32.44,
+     "url": "https://www.dm.de/p/d/1615429/aptamil-anfangsmilch-pre-profutura-duo-advance-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Profutura Pre Anfangsmilch von Geburt an",
+     "price": 26.5,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 33.13,
+     "url": "https://www.shop-apotheke.com/baby/17212195/aptamil-profutura-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Profutura Duo Advance Pre 800 G Pulver",
+     "price": 43.16,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 53.95,
+     "url": "https://volksversand.de/search?q=3206059",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1361295,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Anfangsmilch Pre Milumil von Geburt an, 800 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 14.94,
+     "url": "https://www.dm.de/p/d/1361295/milupa-anfangsmilch-pre-milumil-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Milupa milumil Pre Anfangsmilch von Geburt an",
+     "price": 12.59,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 15.74,
+     "url": "https://www.shop-apotheke.com/baby/8107402/milupa-milumil-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617232,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch 2 Combiotik nach dem 6. Monat, 600 g",
+     "price": 15.75,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 26.25,
+     "url": "https://www.dm.de/p/d/1617232/hipp-folgemilch-2-combiotik-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617305,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Löwenzahn Organics Anfangsmilch Pre auf Ziegenmilchbasis von Geburt an, 500 g",
+     "price": 20.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 41.9,
+     "url": "https://www.dm.de/p/d/1617305/loewenzahn-organics-anfangsmilch-pre-auf-ziegenmilchbasis-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1690861,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 Pronutra nach dem 6. Monat, 1,2 kg",
+     "price": 25.95,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 21.63,
+     "url": "https://www.dm.de/p/d/1690861/aptamil-folgemilch-2-pronutra-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Pronutra 2  – Folgemilch ab dem 6. Monat",
+     "price": 26.99,
+     "currency": "EUR",
+     "grams": 1200.0,
+     "per_kilo": 22.49,
+     "url": "https://www.shop-apotheke.com/baby/18354069/aptamil-folgemilch-2-pronutra.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1640707,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch 2 aus Ziegenmilch ab dem 7. Monat, 400 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 42.38,
+     "url": "https://www.dm.de/p/d/1640707/hipp-folgemilch-2-aus-ziegenmilch-ab-dem-7-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617233,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch 3 Combiotik ab dem 10. Monat, 600 g",
+     "price": 15.75,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 26.25,
+     "url": "https://www.dm.de/p/d/1617233/hipp-folgemilch-3-combiotik-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1607938,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Kindermilch Supreme Junior 1+, ab 1 Jahr, 800 g",
+     "price": 29.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 37.44,
+     "url": "https://www.dm.de/p/d/1607938/nestle-beba-kindermilch-supreme-junior-1-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1417572,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bambinchen Folgemilch 2 aus Ziegenmilch nach dem 6. Monat, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1417572/bambinchen-folgemilch-2-aus-ziegenmilch-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Bambinchen 2 Folgemilch – Hochwertige Ziegenmilchnahrung für eine sanfte Verdauung ab dem 6. Monat",
+     "price": 25.45,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 63.63,
+     "url": "https://www.shop-apotheke.com/baby/upmYLP3LL/bambinchen-2-folgemilch-hochwertige-ziegenmilchnahrung-fuer-eine-sanfte-verdauung-ab-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617225,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Kindermilch Combiotik ab 1 Jahr, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/1617225/hipp-kindermilch-combiotik-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1428506,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Anfangsmilch 1 von Geburt an, 500 g",
+     "price": 5.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 11.9,
+     "url": "https://www.dm.de/p/d/1428506/bebivita-anfangsmilch-1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1493460,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Spezialnahrung Comfort + von Geburt an, 500 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 29.9,
+     "url": "https://www.dm.de/p/d/1493460/nestle-beba-spezialnahrung-comfort-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé BEBA Spezialnahrung Comfort+ ab Geburt",
+     "price": 19.49,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 38.98,
+     "url": "https://www.shop-apotheke.com/baby/19234479/nestle-beba-spezialnahrung-comfort-ab-geburt.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1625149,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Kindergetränk 1+ ab 1 Jahr, 650 g",
+     "price": 10.95,
+     "currency": "EUR",
+     "grams": 650.0,
+     "per_kilo": 16.85,
+     "url": "https://www.dm.de/p/d/1625149/humana-kindergetraenk-1-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana PROBALANCE™ für kleine Helden 1+",
+     "price": 9.99,
+     "currency": "EUR",
+     "grams": 650.0,
+     "per_kilo": 15.37,
+     "url": "https://www.shop-apotheke.com/baby/17420479/humana-probalance-fuer-kleine-helden-1.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3127798,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch 1 PUR von Geburt an, 500 g",
+     "price": 10.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 21.9,
+     "url": "https://www.dm.de/p/d/3127798/hipp-anfangsmilch-1-pur-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1657079,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Folgemilch 4 ab dem 12. Monat, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/1657079/holle-folgemilch-4-ab-dem-12-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 4 Folgemilch ab dem 12. Monat",
+     "price": 13.35,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 22.25,
+     "url": "https://www.shop-apotheke.com/baby/5463093/holle-bio-4-folgemilch-ab-dem-12-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617227,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch 2 Combiotik ohne Stärke nach dem 6. Monat, 600 g",
+     "price": 16.25,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 27.08,
+     "url": "https://www.dm.de/p/d/1617227/hipp-folgemilch-2-combiotik-ohne-staerke-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1626814,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Pre trinkfertig von Geburt an, 200 ml",
+     "price": 1.75,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 8.75,
+     "url": "https://www.dm.de/p/d/1626814/nestle-beba-anfangsmilch-pre-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1561244,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Spezialnahrung SL Expert von Geburt an, 600 g",
+     "price": 14.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 24.08,
+     "url": "https://www.dm.de/p/d/1561244/humana-spezialnahrung-sl-expert-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana SL Expert FS",
+     "price": 14.59,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 24.32,
+     "url": "https://www.shop-apotheke.com/baby/18752628/humana-sl-expert-600g-fs.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1711547,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Löwenzahn Organics Folgemilch auf Vollmilchbasis, nach dem 6. Monat, 400 g",
+     "price": 13.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 34.88,
+     "url": "https://www.dm.de/p/d/1711547/loewenzahn-organics-folgemilch-auf-vollmilchbasis-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1372536,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 3 Pronutra ab dem 10. Monat, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1372536/aptamil-folgemilch-3-pronutra-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Pronutra 3  – Folgemilch ab dem 10. Monat",
+     "price": 20.5,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 25.63,
+     "url": "https://www.shop-apotheke.com/baby/3352952/aptamil-pronutra-3-folgemilch-nach-dem-10-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1230306,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Folgemilch 3 ab dem 10.Monat, 500 g",
+     "price": 6.25,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 12.5,
+     "url": "https://www.dm.de/p/d/1230306/bebivita-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1677244,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Anfangsmilch Pre trinkfertig von Geburt an, 200 ml",
+     "price": 1.95,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 9.75,
+     "url": "https://www.dm.de/p/d/1677244/toepfer-anfangsmilch-pre-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1657075,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Folgemilch 2 nach dem 6. Monat, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/1657075/holle-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 2 Folgemilch ab dem 7. Monat",
+     "price": 10.29,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 17.15,
+     "url": "https://www.shop-apotheke.com/baby/5373645/holle-bio-2-folgemilch-ab-dem-7-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617226,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Kindermilch Combiotik ab 2 Jahren, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/1617226/hipp-kindermilch-combiotik-ab-2-jahren",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617221,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch HA2 Combiotik nach dem 6.Monat, 600 g",
+     "price": 17.25,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 28.75,
+     "url": "https://www.dm.de/p/d/1617221/hipp-folgemilch-ha2-combiotik-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617220,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch HA1 Combiotik von Geburt an, 600 g",
+     "price": 17.25,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 28.75,
+     "url": "https://www.dm.de/p/d/1617220/hipp-anfangsmilch-ha1-combiotik-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1494149,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Löwenzahn Organics Folgemilch 2 nach dem 6. Monat, 500 g",
+     "price": 13.45,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 26.9,
+     "url": "https://www.dm.de/p/d/1494149/loewenzahn-organics-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1368521,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch 1 Pronutra von Geburt an, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1368521/aptamil-anfangsmilch-1-pronutra-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1615439,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Kindermilch Pronutra ab 1 Jahr, 800 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 18.69,
+     "url": "https://www.dm.de/p/d/1615439/aptamil-kindermilch-pronutra-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Kindermilch 1+ Kindernahrung ab 1 Jahr",
+     "price": 18.59,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 23.24,
+     "url": "https://www.shop-apotheke.com/baby/16396365/aptamil-kindermilch-1-kindernahrung-ab-1-jahr.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1435430,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Kindermilch 1+ ab 1 Jahr, 550 g",
+     "price": 7.95,
+     "currency": "EUR",
+     "grams": 550.0,
+     "per_kilo": 14.45,
+     "url": "https://www.dm.de/p/d/1435430/milupa-kindermilch-1-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1435451,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Kindermilch ab 2 Jahren, 550 g",
+     "price": 7.95,
+     "currency": "EUR",
+     "grams": 550.0,
+     "per_kilo": 14.45,
+     "url": "https://www.dm.de/p/d/1435451/milupa-kindermilch-ab-2-jahren",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105194,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Folgemilch Kinder ab dem 12. Monat, 500 g",
+     "price": 9.45,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 18.9,
+     "url": "https://www.dm.de/p/d/3105194/toepfer-folgemilch-kinder-ab-dem-12-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Töpfer BIO Kinder-Folgemilch",
+     "price": 10.39,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 20.78,
+     "url": "https://www.shop-apotheke.com/baby/14141170/toepfer-bio-kinder-folgemilch.htm",
+     "matched": "name",
+     "score": 0.5
+    }
+   ]
+  },
+  {
+   "dan": 3127829,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch 3 PUR ab dem 10. Monat, 500 g",
+     "price": 10.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 21.9,
+     "url": "https://www.dm.de/p/d/3127829/hipp-folgemilch-3-pur-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3127813,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Folgemilch 2 PUR nach dem 6. Monat, 500 g",
+     "price": 10.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 21.9,
+     "url": "https://www.dm.de/p/d/3127813/hipp-folgemilch-2-pur-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1685706,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Anfangsmilch 1, 750 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 22.6,
+     "url": "https://www.dm.de/p/d/1685706/humana-anfangsmilch-1",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana 1 Anfangsmilch",
+     "price": 12.99,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 17.32,
+     "url": "https://www.shop-apotheke.com/baby/19626386/humana-1-anfangsmilch.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1361297,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Anfangsmilch 1 Milumil von Geburt an, 800 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 14.94,
+     "url": "https://www.dm.de/p/d/1361297/milupa-anfangsmilch-1-milumil-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Milupa milumil 1 Anfangsmilch",
+     "price": 12.59,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 15.74,
+     "url": "https://www.shop-apotheke.com/baby/8107403/milupa-milumil-1-anfangsmilch.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105273,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Anfangsmilch Pre trinkfertig von Geburt an, 200 ml",
+     "price": 1.55,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 7.75,
+     "url": "https://www.dm.de/p/d/3105273/humana-anfangsmilch-pre-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana Anfangsmilch PRE trinkfertig",
+     "price": 1.79,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 8.95,
+     "url": "https://www.shop-apotheke.com/baby/upmACEX9X/humana-anfangsmilch-pre-trinkfertig.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1353670,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Folgemilch 3 Milumil ab dem 10. Monat, 800 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 14.94,
+     "url": "https://www.dm.de/p/d/1353670/milupa-folgemilch-3-milumil-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Milupa milumil 3 Folgemilch ab dem 10. Monat",
+     "price": 11.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 14.99,
+     "url": "https://www.shop-apotheke.com/baby/8107405/milupa-milumil-3-folgemilch-ab-dem-10-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1419335,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pronutra Pre trinkfertig von Geburt an, 2x90 ml, 180 ml",
+     "price": 2.45,
+     "currency": "EUR",
+     "grams": 180.0,
+     "per_kilo": 13.61,
+     "url": "https://www.dm.de/p/d/1419335/aptamil-anfangsmilch-pronutra-pre-trinkfertig-von-geburt-an-2x90-ml",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Pronutra-ADVANCE PRE Anfangsmilch von Geburt an",
+     "price": 2.49,
+     "currency": "EUR",
+     "grams": 180.0,
+     "per_kilo": 13.83,
+     "url": "https://www.shop-apotheke.com/baby/9515349/aptamil-pronutra-advance-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1582833,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre von Geburt an, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1582833/aptamil-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Bio Pre – Anfangsmilch von Geburt an – Pflanzliche Öle, ohne Palmöl",
+     "price": 21.51,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 26.89,
+     "url": "https://www.shop-apotheke.com/baby/19292117/aptamil-anfangsmilch-pre-bio-saeuglingsnahrung-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Milupa Aptamil Pre Pulver 800 G Pulver",
+     "price": 29.08,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.35,
+     "url": "https://volksversand.de/search?q=2413219",
+     "matched": "name",
+     "score": 0.75
+    }
+   ]
+  },
+  {
+   "dan": 3105196,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Folgemilch 2 aus Ziegenmilch nach dem 6. Monat, 400 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 37.38,
+     "url": "https://www.dm.de/p/d/3105196/toepfer-folgemilch-2-aus-ziegenmilch-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Töpfer Lactana Bio Folgemilch 2 aus Ziegenmilch ab dem 7. Monat",
+     "price": 15.49,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 38.73,
+     "url": "https://www.shop-apotheke.com/baby/10283358/toepfer-lactana-bio-folgemilch-2-aus-ziegenmilch-ab-dem-7-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1685704,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Folgemilch 2 ab dem 6. Monat, 750 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 21.27,
+     "url": "https://www.dm.de/p/d/1685704/humana-folgemilch-2-ab-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana PROBALANCE 2 Folgemilch ab dem 6. Monat",
+     "price": 15.99,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 21.32,
+     "url": "https://www.shop-apotheke.com/baby/19626392/humana-probalance-2-folgemilch-ab-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1587589,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Folgemilch Supreme 2 ab dem 7. Monat, 800 g",
+     "price": 29.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 37.44,
+     "url": "https://www.dm.de/p/d/1587589/nestle-beba-folgemilch-supreme-2-ab-dem-7-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé BEBA® SUPREME 2, Folgemilch nach dem 6. Monat",
+     "price": 35.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 44.94,
+     "url": "https://www.shop-apotheke.com/baby/16893690/nestle-beba-supreme-2-folgemilch-nach-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1352706,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 HA nach dem 6. Monat, 800 g",
+     "price": 21.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.44,
+     "url": "https://www.dm.de/p/d/1352706/aptamil-folgemilch-2-ha-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Prosyneo HA 2 Folgemilch ab dem 7. Monat",
+     "price": 42.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 53.74,
+     "url": "https://www.shop-apotheke.com/baby/15625705/aptamil-prosyneo-ha-2-folgemilch-ab-dem-7-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Ha 2 800 G Pulver",
+     "price": 30.02,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 37.52,
+     "url": "https://volksversand.de/search?q=3205887",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1615434,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Kindermilch Pronutra ab 2 Jahren, 800 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 18.69,
+     "url": "https://www.dm.de/p/d/1615434/aptamil-kindermilch-pronutra-ab-2-jahren",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Kindermilch 2+ Kindernahrung ab 2 Jahr",
+     "price": 20.39,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 25.49,
+     "url": "https://www.shop-apotheke.com/baby/16396394/aptamil-kindermilch-2-kindernahrung-ab-2-jahr.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1368506,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 Pronutra nach dem 6. Monat, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1368506/aptamil-folgemilch-2-pronutra-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Pronutra 2  – Folgemilch nach dem 6. Monat",
+     "price": 23.29,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 29.11,
+     "url": "https://www.shop-apotheke.com/baby/3352828/aptamil-pronutra-2-folgemilch-ab-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105161,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Anfangsmilch 1 von Geburt an, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/3105161/toepfer-anfangsmilch-1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1428507,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Folgemilch 2 nach dem 6.Monat, 500 g",
+     "price": 6.25,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 12.5,
+     "url": "https://www.dm.de/p/d/1428507/bebivita-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1459133,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch 1 von Geburt an, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1459133/nestle-beba-anfangsmilch-1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé BEBA® 1 Anfangsmilch von Geburt an",
+     "price": 17.9,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 22.38,
+     "url": "https://www.shop-apotheke.com/baby/16140341/nestle-beba-1-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Nestle Beba 1 Pulver",
+     "price": 28.94,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.17,
+     "url": "https://volksversand.de/search?q=3141413",
+     "matched": "name",
+     "score": 0.667
+    }
+   ]
+  },
+  {
+   "dan": 1631266,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Folgemilch Expert HA 2 nach dem 6. Monat, 550 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 550.0,
+     "per_kilo": 30.82,
+     "url": "https://www.dm.de/p/d/1631266/nestle-beba-folgemilch-expert-ha-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1626813,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Expert HA Pre trinkfertig von Geburt an, 200 ml",
+     "price": 2.25,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 11.25,
+     "url": "https://www.dm.de/p/d/1626813/nestle-beba-anfangsmilch-expert-ha-pre-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1352651,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch HA1 von Geburt an, 800 g",
+     "price": 21.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.44,
+     "url": "https://www.dm.de/p/d/1352651/aptamil-anfangsmilch-ha1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil HA 1 – Hydrolysierte Anfangsnahrung von Geburt an",
+     "price": 21.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 27.49,
+     "url": "https://www.shop-apotheke.com/baby/13715350/aptamil-ha-1-anfangsnahrung.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1631272,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Expert HA Pre von Geburt an, 550 g",
+     "price": 16.95,
+     "currency": "EUR",
+     "grams": 550.0,
+     "per_kilo": 30.82,
+     "url": "https://www.dm.de/p/d/1631272/nestle-beba-anfangsmilch-expert-ha-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé Beba® Expert HA Pre Anfangsmilch von Geburt an",
+     "price": 17.79,
+     "currency": "EUR",
+     "grams": 550.0,
+     "per_kilo": 32.35,
+     "url": "https://www.shop-apotheke.com/baby/17843783/nestle-beba-expert-ha-pre-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Nestle Beba Expert Ha Pre Pulver",
+     "price": 26.99,
+     "currency": "EUR",
+     "grams": 550.0,
+     "per_kilo": 49.07,
+     "url": "https://volksversand.de/search?q=3401486",
+     "matched": "name",
+     "score": 0.833
+    }
+   ]
+  },
+  {
+   "dan": 1452409,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Anfangsmilch 1 aus Ziegenmilch von Geburt an, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1452409/holle-anfangsmilch-1-aus-ziegenmilch-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 1 auf Ziegenmilchbasis Anfangsmilch von Geburt an",
+     "price": 13.89,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 34.73,
+     "url": "https://www.shop-apotheke.com/baby/11022424/holle-bio-1-auf-ziegenmilchbasis-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Holle Bio Anfangsmilch 1 auf Ziegenmilchbasis 400 G",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://volksversand.de/search?q=3058500",
+     "matched": "name",
+     "score": 0.5
+    }
+   ]
+  },
+  {
+   "dan": 1452412,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Folgemilch 3 aus Ziegenmilch ab dem 10. Monat, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1452412/holle-folgemilch-3-aus-ziegenmilch-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 3 Folgemilch auf Ziegenmilchbasis ab dem 10. Monat",
+     "price": 14.69,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 36.73,
+     "url": "https://www.shop-apotheke.com/baby/11022430/holle-bio-3-folgemilch-auf-ziegenmilchbasis-ab-dem-10-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1604698,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Kindermilch Pronutra, ab 1 Jahr, 1 l",
+     "price": 2.85,
+     "currency": "EUR",
+     "grams": 1000.0,
+     "per_kilo": 2.85,
+     "url": "https://www.dm.de/p/d/1604698/aptamil-kindermilch-pronutra-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Kindermilch 1 Plus trinkfertig – Kindermilch ab 1 Jahr",
+     "price": 3.29,
+     "currency": "EUR",
+     "grams": 1000.0,
+     "per_kilo": 3.29,
+     "url": "https://www.shop-apotheke.com/baby/15232621/aptamil-kindermilch-1-milchnahrung.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1639847,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Kindermilch 1 ab dem 12.Monat, 0,5 kg",
+     "price": 5.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 11.9,
+     "url": "https://www.dm.de/p/d/1639847/bebivita-kindermilch-1-ab-dem-12-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1646329,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Bebivita Kindermilch 2+, ab 2 Jahren, 500 g",
+     "price": 5.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 11.9,
+     "url": "https://www.dm.de/p/d/1646329/bebivita-kindermilch-2-ab-2-jahren",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1637393,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 Care nach dem 6. Monat, 800 g",
+     "price": 20.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 26.19,
+     "url": "https://www.dm.de/p/d/1637393/aptamil-folgemilch-2-care-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Care 2 – Auch für Kaiserschnitt geborene Babys",
+     "price": 20.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 26.24,
+     "url": "https://www.shop-apotheke.com/baby/17629073/aptamil-care-2-folgemilch-nach-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Care 2 800 G Pulver",
+     "price": 28.65,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 35.81,
+     "url": "https://volksversand.de/search?q=3205622",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1626812,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Supreme Pre trinkfertig von Geburt an, 200 ml",
+     "price": 2.95,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 14.75,
+     "url": "https://www.dm.de/p/d/1626812/nestle-beba-anfangsmilch-supreme-pre-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1657078,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Anfangsmilch 1 von Geburt an, 400 g",
+     "price": 8.45,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 21.13,
+     "url": "https://www.dm.de/p/d/1657078/holle-anfangsmilch-1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 1 Anfangsmilch von Geburt an",
+     "price": 6.69,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 16.73,
+     "url": "https://www.shop-apotheke.com/baby/2935404/holle-bio-1-anfangsmilch-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1493446,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Spezialnahrung Anti-Reflux von Geburt an, 500 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 29.9,
+     "url": "https://www.dm.de/p/d/1493446/nestle-beba-spezialnahrung-anti-reflux-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1685705,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Folgemilch 3 ab dem 10. Monat, 750 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 21.27,
+     "url": "https://www.dm.de/p/d/1685705/humana-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana PROBALANCE 3 Folgemilch ab dem 10. Monat",
+     "price": 14.48,
+     "currency": "EUR",
+     "grams": 750.0,
+     "per_kilo": 19.31,
+     "url": "https://www.shop-apotheke.com/baby/19626400/humana-probalance-3-folgemilch-ab-dem-10-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1533381,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Spezialnahrung Frühgeborene PDF von Geburt an, 400 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 31.13,
+     "url": "https://www.dm.de/p/d/1533381/aptamil-spezialnahrung-fruehgeborene-pdf-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® PDF Spezialnahrung Frühgeborene",
+     "price": 12.79,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 31.98,
+     "url": "https://www.shop-apotheke.com/baby/14154391/aptamil-pdf-spezialnahrung-fruehgeborene.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105195,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Anfangsmilch 1 aus Ziegenmilch, von Geburt an, 400 g",
+     "price": 14.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 37.38,
+     "url": "https://www.dm.de/p/d/3105195/toepfer-anfangsmilch-1-aus-ziegenmilch-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Töpfer BIO Anfangsmilch aus Ziegenmilch 1 von Geburt an",
+     "price": 15.19,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 37.98,
+     "url": "https://www.shop-apotheke.com/baby/10283341/toepfer-bio-anfangsmilch-aus-ziegenmilch-1-von-geburt-an.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1610516,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "dmBio Folgemilch 3 ab dem 12.Monat, 500 g",
+     "price": 6.25,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 12.5,
+     "url": "https://www.dm.de/p/d/1610516/dmbio-folgemilch-3-ab-dem-12-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1458723,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Milchgetränk, trinkfertig, Junior, ab 1 Jahr, 0,5 l",
+     "price": 1.85,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 3.7,
+     "url": "https://www.dm.de/p/d/1458723/nestle-beba-milchgetraenk-trinkfertig-junior-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1615435,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 Profutura Duo Advance, nach dem 6. Monat, 800 g",
+     "price": 25.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 32.44,
+     "url": "https://www.dm.de/p/d/1615435/aptamil-folgemilch-2-profutura-duo-advance-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Profutura 2 Folgemilch ab dem 7. Monat",
+     "price": 28.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.24,
+     "url": "https://www.shop-apotheke.com/baby/17212226/aptamil-profutura-2-folgemilch-ab-dem-7-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Profutura Duo Advance 2 Ab 6.Monat",
+     "price": 43.16,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 53.95,
+     "url": "https://volksversand.de/search?q=3145943",
+     "matched": "name",
+     "score": 0.8
+    }
+   ]
+  },
+  {
+   "dan": 1353669,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Folgemilch 2 Milumil nach dem 6.Monat, 800 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 14.94,
+     "url": "https://www.dm.de/p/d/1353669/milupa-folgemilch-2-milumil-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Milupa milumil 2 Folgemilch nach dem 6 Monat",
+     "price": 11.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 14.99,
+     "url": "https://www.shop-apotheke.com/baby/8107404/milupa-milumil-2-folgemilch-nach-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105192,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Folgemilch 2 nach dem 6. Monat, 600 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 19.92,
+     "url": "https://www.dm.de/p/d/3105192/toepfer-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1459134,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Folgemilch 2 nach dem 6. Monat, 800 g",
+     "price": 18.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 23.69,
+     "url": "https://www.dm.de/p/d/1459134/nestle-beba-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé BEBA 2 Pulver",
+     "price": 19.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.99,
+     "url": "https://www.shop-apotheke.com/baby/18887742/nestle-beba-2-pulver.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Nestle Beba 2 Pulver",
+     "price": 28.94,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 36.17,
+     "url": "https://volksversand.de/search?q=3141439",
+     "matched": "name",
+     "score": 0.667
+    }
+   ]
+  },
+  {
+   "dan": 1459136,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Folgemilch 3 ab dem 10. Monat, 800 g",
+     "price": 18.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 23.69,
+     "url": "https://www.dm.de/p/d/1459136/nestle-beba-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Nestlé BEBA® 3 Folgemilch ab dem 10. Monat",
+     "price": 17.9,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 22.38,
+     "url": "https://www.shop-apotheke.com/baby/16140364/nestle-beba-3-folgemilch-ab-dem-10-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617306,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Löwenzahn Organics Folgemilch 2 auf Ziegenmilchbasis nach dem 6. Monat, 500 g",
+     "price": 20.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 41.9,
+     "url": "https://www.dm.de/p/d/1617306/loewenzahn-organics-folgemilch-2-auf-ziegenmilchbasis-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1604659,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 Pronutra trinkfertig nach dem 6. Monat, 200 ml",
+     "price": 2.15,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 10.75,
+     "url": "https://www.dm.de/p/d/1604659/aptamil-folgemilch-2-pronutra-trinkfertig-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® Pronutra 2 Folgemilch nach dem 6. Monat",
+     "price": 2.39,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 11.95,
+     "url": "https://www.shop-apotheke.com/baby/15610388/aptamil-pronutra-2-folgemilch-nach-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1419337,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch Pre HA trinkfertig, von Geburt an, 2x90ml, 180 ml",
+     "price": 2.45,
+     "currency": "EUR",
+     "grams": 180.0,
+     "per_kilo": 13.61,
+     "url": "https://www.dm.de/p/d/1419337/aptamil-anfangsmilch-pre-ha-trinkfertig-von-geburt-an-2x90ml",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil HA Pre Anfangsmilch von Geburt an, trinkfertig",
+     "price": 2.59,
+     "currency": "EUR",
+     "grams": 180.0,
+     "per_kilo": 14.39,
+     "url": "https://www.shop-apotheke.com/baby/14154356/aptamil-ha-pre-anfangsmilch-von-geburt-an-trinkfertig.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1365933,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Spezialnahrung Anti-Reflux Andickungsmittel von Geburt an, 135 g",
+     "price": 9.95,
+     "currency": "EUR",
+     "grams": 135.0,
+     "per_kilo": 73.7,
+     "url": "https://www.dm.de/p/d/1365933/aptamil-spezialnahrung-anti-reflux-andickungsmittel-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Anti-Reflux - Komplettnahrung von Geburt an, Zum Diät Management, Bei Spucken & Aufstoßen, Babynahrung, Milchpulver",
+     "price": 12.59,
+     "currency": "EUR",
+     "grams": 135.0,
+     "per_kilo": 93.26,
+     "url": "https://www.shop-apotheke.com/baby/14154273/aptamil-ar-andickungsmittel-bei-spucken-aufstossen.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1582832,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Folgemilch 2 nach dem 6. Monat, 800 g",
+     "price": 19.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 24.94,
+     "url": "https://www.dm.de/p/d/1582832/aptamil-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil Bio 2 – Die Bio-Folgemilch nach dem 6. Monat – Pflanzliche Öle, ohne Palmöl",
+     "price": 20.99,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 26.24,
+     "url": "https://www.shop-apotheke.com/baby/19292123/aptamil-folgemilch-2-bio-babymilch-ab-dem-6-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1552420,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Spezialnahrung Frühgeborenen 2 von Geburt an, 400 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 29.88,
+     "url": "https://www.dm.de/p/d/1552420/nestle-beba-spezialnahrung-fruehgeborenen-2-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "BEBA Frühgeborenennahrung Stufe 2",
+     "price": 14.89,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 37.23,
+     "url": "https://www.shop-apotheke.com/baby/19743620/beba-fruehgeborenennahrung-stufe-2.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1452407,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Folgemilch 3 ab dem 10. Monat, 600 g",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.dm.de/p/d/1452407/holle-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 3 Folgemilch ab dem 10. Monat",
+     "price": 12.45,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 20.75,
+     "url": "https://www.shop-apotheke.com/baby/1875752/holle-bio-3-folgemilch-ab-dem-10-monat.htm",
+     "matched": "name",
+     "score": 0.667
+    }
+   ]
+  },
+  {
+   "dan": 3090056,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Kindermilch Pronutra ab 1 Jahr, 200 ml",
+     "price": 1.15,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 5.75,
+     "url": "https://www.dm.de/p/d/3090056/aptamil-kindermilch-pronutra-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3105193,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Töpfer Folgemilch 3 ab dem 10. Monat, 600 g",
+     "price": 11.95,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 19.92,
+     "url": "https://www.dm.de/p/d/3105193/toepfer-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1692043,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Milchgetränk trinkfertig, Junior, ab 1 Jahr, 200 ml",
+     "price": 1.15,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 5.75,
+     "url": "https://www.dm.de/p/d/1692043/nestle-beba-milchgetraenk-trinkfertig-junior-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1570223,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Spezialnahrung HN Expert von Geburt an, 300 g",
+     "price": 8.45,
+     "currency": "EUR",
+     "grams": 300.0,
+     "per_kilo": 28.17,
+     "url": "https://www.dm.de/p/d/1570223/humana-spezialnahrung-hn-expert-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana Expert HN Spezialnahrung von Geburt an",
+     "price": 9.99,
+     "currency": "EUR",
+     "grams": 300.0,
+     "per_kilo": 33.3,
+     "url": "https://www.shop-apotheke.com/baby/16569127/humana-expert-hn-spezialnahrung-von-geburt-an.htm",
+     "matched": "name",
+     "score": 0.8
+    }
+   ]
+  },
+  {
+   "dan": 1640822,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milasan Anfangsmilch PRE von Geburt an, 500 g",
+     "price": 5.45,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 10.9,
+     "url": "https://www.dm.de/p/d/1640822/milasan-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1416838,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupa Kindermilch Milupino ab 1 Jahr, 1 l",
+     "price": 2.85,
+     "currency": "EUR",
+     "grams": 1000.0,
+     "per_kilo": 2.85,
+     "url": "https://www.dm.de/p/d/1416838/milupa-kindermilch-milupino-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1646160,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milasan Anfangsmilch 1 von Geburt an, 500 g",
+     "price": 5.65,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 11.3,
+     "url": "https://www.dm.de/p/d/1646160/milasan-anfangsmilch-1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1674212,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Humana Spezialnahrung Comfort Expert von Geburt an, 350 g",
+     "price": 10.45,
+     "currency": "EUR",
+     "grams": 350.0,
+     "per_kilo": 29.86,
+     "url": "https://www.dm.de/p/d/1674212/humana-spezialnahrung-comfort-expert-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Humana Comfort Expert",
+     "price": 10.95,
+     "currency": "EUR",
+     "grams": 350.0,
+     "per_kilo": 31.29,
+     "url": "https://www.shop-apotheke.com/baby/upmWTF2GW/humana-comfort-expert.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1640823,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milasan Folgemilch 3 ab dem 10. Monat, 500 g",
+     "price": 5.65,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 11.3,
+     "url": "https://www.dm.de/p/d/1640823/milasan-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1626811,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Nestlé BEBA Anfangsmilch Expert HA Pre trinkfertig, von Geburt an, 32x90ml, 2,88 l",
+     "price": 39.95,
+     "currency": "EUR",
+     "grams": 2880.0,
+     "per_kilo": 13.87,
+     "url": "https://www.dm.de/p/d/1626811/nestle-beba-anfangsmilch-expert-ha-pre-trinkfertig-von-geburt-an-32x90ml",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1620293,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milupino Kindermilch Milupino ab 1 Jahr, 200 ml",
+     "price": 0.95,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 4.75,
+     "url": "https://www.dm.de/p/d/1620293/milupino-kindermilch-milupino-ab-1-jahr",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1460764,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "babylove Anfangsmilch 1 von Geburt an, 500 g",
+     "price": 5.25,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 10.5,
+     "url": "https://www.dm.de/p/d/1460764/babylove-anfangsmilch-1-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1640821,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Milasan Folgemilch 2 nach dem 6. Monat, 500 g",
+     "price": 5.65,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 11.3,
+     "url": "https://www.dm.de/p/d/1640821/milasan-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1460763,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "babylove Anfangsmilch Pre von Geburt an, 500 g",
+     "price": 5.25,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 10.5,
+     "url": "https://www.dm.de/p/d/1460763/babylove-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1610517,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "dmBio Folgemilch 2, nach dem 6.Monat, 600 g",
+     "price": 6.25,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 10.42,
+     "url": "https://www.dm.de/p/d/1610517/dmbio-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1491845,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "babylove Folgemilch 2 nach dem 6. Monat, 500 g",
+     "price": 4.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 9.9,
+     "url": "https://www.dm.de/p/d/1491845/babylove-folgemilch-2-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1459777,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "babylove Folgemilch 3 ab dem 10. Monat, 500 g",
+     "price": 4.95,
+     "currency": "EUR",
+     "grams": 500.0,
+     "per_kilo": 9.9,
+     "url": "https://www.dm.de/p/d/1459777/babylove-folgemilch-3-ab-dem-10-monat",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1617228,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "HiPP Anfangsmilch Pre HA Combiotik trinkfertig von Geburt an, 200 ml",
+     "price": 2.35,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 11.75,
+     "url": "https://www.dm.de/p/d/1617228/hipp-anfangsmilch-pre-ha-combiotik-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1452411,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Holle Folgemilch 2 aus Ziegenmilch nach dem 6. Monat, 400 g",
+     "price": 15.95,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 39.88,
+     "url": "https://www.dm.de/p/d/1452411/holle-folgemilch-2-aus-ziegenmilch-nach-dem-6-monat",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Holle Bio 2 Folgemilch auf Ziegenmilchbasis ab dem 7. Monat",
+     "price": 14.69,
+     "currency": "EUR",
+     "grams": 400.0,
+     "per_kilo": 36.73,
+     "url": "https://www.shop-apotheke.com/baby/10552485/holle-bio-2-folgemilch-auf-ziegenmilchbasis-ab-dem-7-monat.htm",
+     "matched": "gtin",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 3090247,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "babylove Anfangsmilch Pre trinkfertig von Geburt an, 200 ml",
+     "price": 1.25,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 6.25,
+     "url": "https://www.dm.de/p/d/3090247/babylove-anfangsmilch-pre-trinkfertig-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1615433,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch 1 Profutura Duo Advance von Geburt an, 800 g",
+     "price": 25.95,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 32.44,
+     "url": "https://www.dm.de/p/d/1615433/aptamil-anfangsmilch-1-profutura-duo-advance-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    },
+    {
+     "site": "shop-apotheke.com",
+     "title": "Aptamil® PROfutura® DUOADVANCE",
+     "price": 35.09,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 43.86,
+     "url": "https://www.shop-apotheke.com/baby/17212203/aptamil-profutura-duoadvance.htm",
+     "matched": "gtin",
+     "score": 1.0
+    },
+    {
+     "site": "volksversand.de",
+     "title": "Aptamil Profutura Duo Advance 1 800 G Pulver",
+     "price": 43.16,
+     "currency": "EUR",
+     "grams": 800.0,
+     "per_kilo": 53.95,
+     "url": "https://volksversand.de/search?q=3206067",
+     "matched": "name",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1479902,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "Aptamil Anfangsmilch FMS Muttermilchsupplement von Geburt an, 200 g",
+     "price": 18.95,
+     "currency": "EUR",
+     "grams": 200.0,
+     "per_kilo": 94.75,
+     "url": "https://www.dm.de/p/d/1479902/aptamil-anfangsmilch-fms-muttermilchsupplement-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "dan": 1610288,
+   "offers": [
+    {
+     "site": "dm.de",
+     "title": "dmBio Anfangsmilch Pre von Geburt an, 600 g",
+     "price": 6.75,
+     "currency": "EUR",
+     "grams": 600.0,
+     "per_kilo": 11.25,
+     "url": "https://www.dm.de/p/d/1610288/dmbio-anfangsmilch-pre-von-geburt-an",
+     "matched": "dan",
+     "score": 1.0
+    }
+   ]
+  }
+ ],
+ "failures": []
+}

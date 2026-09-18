@@ -1,0 +1,641 @@
+{
+ "built_on": "2026-09-14",
+ "source": "English Wikipedia by way of its REST summary endpoint",
+ "licence": {
+  "name": "CC BY-SA 4.0",
+  "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "note": "Wikipedia text is quoted rather than rewritten. Every quote names the article and the revision it was taken at."
+ },
+ "profiles": {
+  "Brennwert": {
+   "article": "Food energy",
+   "title": "Food energy",
+   "description": "Chemical energy animals derive from food",
+   "quote": "Food energy is chemical energy that animals derive from food to sustain their metabolism and muscular activity. This is usually measured in calories or joules.",
+   "url": "https://en.wikipedia.org/wiki/Food_energy",
+   "revision": "1370336058",
+   "as_of": "2026-08-20T14:56:50Z"
+  },
+  "Fett": {
+   "article": "Fat",
+   "title": "Fat",
+   "description": "Esters of fatty acid or triglycerides",
+   "quote": "In nutrition, biology, and chemistry, fat usually means any ester of fatty acids, or a mixture of such compounds, most commonly those that occur in living beings or in food.",
+   "url": "https://en.wikipedia.org/wiki/Fat",
+   "revision": "1373590347",
+   "as_of": "2026-09-06T20:08:21Z"
+  },
+  "davon gesättigte Fettsäuren": {
+   "article": "Saturated fat",
+   "title": "Saturated fat",
+   "description": "Fat in which the fatty acid chains have all or predominantly single bonds",
+   "quote": "A saturated fat is a type of fat: a glyceride in which the fatty acid chains have all single bonds between the carbon atoms. Glyceride fats with single bonds are called saturated because they are \"saturated with\" hydrogen atoms, having no C=C double bonds available to react with hydrogen.",
+   "url": "https://en.wikipedia.org/wiki/Saturated_fat",
+   "revision": "1373844805",
+   "as_of": "2026-09-08T07:35:53Z"
+  },
+  "davon einfach ungesättigte Fettsäuren": {
+   "article": "Monounsaturated fat",
+   "title": "Monounsaturated fat",
+   "description": "Fatty acid",
+   "quote": "In biochemistry and nutrition, a monounsaturated fat is a fat which contains a monounsaturated fatty acid (MUFA), a subclass of fatty acid characterized by having a double bond in the fatty acid chain with all of the remaining carbon atoms being single-bonded. By contrast, polyunsaturated fatty acids (PUFAs) have more than one double bond.",
+   "url": "https://en.wikipedia.org/wiki/Monounsaturated_fat",
+   "revision": "1333598622",
+   "as_of": "2026-01-18T18:53:31Z"
+  },
+  "davon mehrfach ungesättigte Fettsäuren": {
+   "article": "Polyunsaturated fat",
+   "title": "Polyunsaturated fat",
+   "description": "Type of fatty acid defined by molecular bonds",
+   "quote": "In biochemistry and nutrition, a polyunsaturated fat is a fat that contains a polyunsaturated fatty acid, which is a subclass of fatty acid characterized by a backbone with two or more carbon–carbon double bonds.",
+   "url": "https://en.wikipedia.org/wiki/Polyunsaturated_fat",
+   "revision": "1368757222",
+   "as_of": "2026-08-10T23:18:11Z"
+  },
+  "Kohlenhydrate": {
+   "article": "Carbohydrate",
+   "title": "Carbohydrate",
+   "description": "Organic compound that consists only of carbon, hydrogen, and oxygen",
+   "quote": "A carbohydrate is a sugar (saccharide) or a sugar derivative. For the simplest carbohydrates, the carbon-to-hydrogen-to-oxygen atomic ratio is 1:2:1, i.e. they are often represented by the empirical formula (CH2O)n.",
+   "url": "https://en.wikipedia.org/wiki/Carbohydrate",
+   "revision": "1373499020",
+   "as_of": "2026-09-06T08:36:43Z"
+  },
+  "davon Zucker": {
+   "article": "Sugar",
+   "title": "Sugar",
+   "description": "Sweet-tasting, water-soluble carbohydrates",
+   "quote": "Sugar is a class of sweet-tasting, soluble carbohydrates, many of which are used in food. Simple sugars, also called monosaccharides, include glucose, fructose and galactose. Compound sugars, also called disaccharides or double sugars, are molecules made of two bonded monosaccharides; common examples are sucrose, lactose and maltose.",
+   "url": "https://en.wikipedia.org/wiki/Sugar",
+   "revision": "1372656979",
+   "as_of": "2026-09-01T17:33:44Z"
+  },
+  "davon Stärke": {
+   "article": "Starch",
+   "title": "Starch",
+   "description": "Glucose polymer used as energy store in plants",
+   "quote": "Starch is a carbohydrate consisting of numerous glucose units joined by glycosidic bonds. This polysaccharide is produced by most green plants for energy storage. Worldwide, it is the most common carbohydrate in human diets, and is contained in large amounts in staple foods such as wheat, potatoes, maize (corn), rice, and cassava (manioc).",
+   "url": "https://en.wikipedia.org/wiki/Starch",
+   "revision": "1373645125",
+   "as_of": "2026-09-07T02:34:09Z"
+  },
+  "davon Milchzucker": {
+   "article": "Lactose",
+   "title": "Lactose",
+   "description": "Carbohydrate",
+   "quote": "Lactose is a disaccharide composed of galactose and glucose and has the molecular formula C12H22O11. Lactose makes up around 2–8% of milk (by mass). The name comes from lac (gen. lactis), the Latin word for milk, plus the suffix -ose used to name sugars.",
+   "url": "https://en.wikipedia.org/wiki/Lactose",
+   "revision": "1368882867",
+   "as_of": "2026-08-11T16:38:05Z"
+  },
+  "Laktose": {
+   "article": "Lactose",
+   "title": "Lactose",
+   "description": "Carbohydrate",
+   "quote": "Lactose is a disaccharide composed of galactose and glucose and has the molecular formula C12H22O11. Lactose makes up around 2–8% of milk (by mass). The name comes from lac (gen. lactis), the Latin word for milk, plus the suffix -ose used to name sugars.",
+   "url": "https://en.wikipedia.org/wiki/Lactose",
+   "revision": "1368882867",
+   "as_of": "2026-08-11T16:38:05Z"
+  },
+  "Folat": {
+   "article": "Folate",
+   "title": "Folate",
+   "description": "Vitamin",
+   "quote": "Folate, also known as vitamin B9 and folacin, is one of the B vitamins. Folate is required for the body to make DNA and RNA and metabolize amino acids necessary for cell division and maturation of blood cells. As the human body cannot make folate, it is required in the diet, making it an essential nutrient.",
+   "url": "https://en.wikipedia.org/wiki/Folate",
+   "revision": "1373027965",
+   "as_of": "2026-09-03T16:23:40Z"
+  },
+  "Folsäure": {
+   "article": "Folic acid",
+   "title": "Folate",
+   "description": "Vitamin",
+   "quote": "Folate, also known as vitamin B9 and folacin, is one of the B vitamins. Folate is required for the body to make DNA and RNA and metabolize amino acids necessary for cell division and maturation of blood cells. As the human body cannot make folate, it is required in the diet, making it an essential nutrient.",
+   "url": "https://en.wikipedia.org/wiki/Folate",
+   "revision": "1373027965",
+   "as_of": "2026-09-03T16:23:40Z"
+  },
+  "Folat, gesamt": {
+   "article": "Folate",
+   "title": "Folate",
+   "description": "Vitamin",
+   "quote": "Folate, also known as vitamin B9 and folacin, is one of the B vitamins. Folate is required for the body to make DNA and RNA and metabolize amino acids necessary for cell division and maturation of blood cells. As the human body cannot make folate, it is required in the diet, making it an essential nutrient.",
+   "url": "https://en.wikipedia.org/wiki/Folate",
+   "revision": "1373027965",
+   "as_of": "2026-09-03T16:23:40Z"
+  },
+  "Ballaststoffe": {
+   "article": "Dietary fiber",
+   "title": "Dietary fiber",
+   "description": "Portion of plant-derived food that cannot be completely digested",
+   "quote": "Dietary fiber, or roughage, is the portion of plant-derived food that cannot be completely broken down by human digestive enzymes. Dietary fibers are diverse in chemical composition and can be grouped generally by their solubility, viscosity and fermentability, which affect how fibers are processed in the body. Dietary fiber has two main subtypes: soluble and insoluble.",
+   "url": "https://en.wikipedia.org/wiki/Dietary_fiber",
+   "revision": "1373387255",
+   "as_of": "2026-09-05T18:08:08Z"
+  },
+  "Eiweiß": {
+   "article": "Protein (nutrient)",
+   "title": "Protein (nutrient)",
+   "description": "Nutrient for the human body",
+   "quote": "Proteins are essential nutrients for the human body. They are one of the constituents of body tissue and also serve as a fuel source. As fuel, proteins have the same energy density as carbohydrates: 17 kJ per gram.",
+   "url": "https://en.wikipedia.org/wiki/Protein_(nutrient)",
+   "revision": "1366342569",
+   "as_of": "2026-07-27T13:31:10Z"
+  },
+  "Casein": {
+   "article": "Casein",
+   "title": "Casein",
+   "description": "Family of proteins found in milk",
+   "quote": "Casein is a family of related phosphoproteins that are commonly found in mammalian milk, comprising about 80% of the proteins in cow's milk and between 20% and 60% of the proteins in human milk. Sheep and cow milk have a higher casein content than other types of milk with human milk having a particularly low casein content.",
+   "url": "https://en.wikipedia.org/wiki/Casein",
+   "revision": "1372040108",
+   "as_of": "2026-08-30T00:21:55Z"
+  },
+  "Molkenprotein": {
+   "article": "Whey protein",
+   "title": "Whey protein",
+   "description": "Protein supplement",
+   "quote": "Whey protein is a mixture of proteins isolated from whey, the liquid material created as a by-product of cheese production. The proteins consist of α-lactalbumin, β-lactoglobulin, serum albumin and immunoglobulins. Glycomacropeptide also makes up the third largest component but is not a protein.",
+   "url": "https://en.wikipedia.org/wiki/Whey_protein",
+   "revision": "1373056349",
+   "as_of": "2026-09-03T20:17:49Z"
+  },
+  "Alanin": {
+   "article": "Alanine",
+   "title": "Alanine",
+   "description": "Α-amino acid that is used in the biosynthesis of proteins",
+   "quote": "Alanine, or α-alanine, is an α-amino acid that is used in the biosynthesis of proteins. It contains an amine group and a carboxylic acid group, both attached to the central carbon atom which also carries a methyl group side chain. Consequently it is classified as a non-polar, aliphatic α-amino acid.",
+   "url": "https://en.wikipedia.org/wiki/Alanine",
+   "revision": "1374815255",
+   "as_of": "2026-09-14T06:19:16Z"
+  },
+  "Taurin": {
+   "article": "Taurine",
+   "title": "Taurine",
+   "description": "Aminosulfonic acid",
+   "quote": "Taurine is a naturally occurring organic compound with the chemical formula H2N−CH2−CH2−SO2−OH in its non-zwitterionic form and H3N+−CH2−CH2−SO−3 in its zwitterionic form, and is a non-proteinogenic amino sulfonic acid widely distributed in mammalian tissues and organs. Structurally, by containing a sulfonic acid group instead of a carboxylic acid group, it is not involved in protein synthesis but is still usually referred to as an amino acid. As non-proteinogenic amino sulfonic acid, it is not encoded by genetic code and is distinguished from the protein-building α-amino acids.",
+   "url": "https://en.wikipedia.org/wiki/Taurine",
+   "revision": "1367977693",
+   "as_of": "2026-08-06T08:45:24Z"
+  },
+  "Carnitin": {
+   "article": "Carnitine",
+   "title": "Carnitine",
+   "description": "Compound active in mitochondria",
+   "quote": "Carnitine is a quaternary ammonium compound involved in metabolism in most mammals, plants, and some bacteria. In support of energy metabolism, carnitine transports long-chain fatty acids from the cytosol into mitochondria to be oxidized for free energy production, and also participates in removing products of metabolism from cells. Given its key metabolic roles, carnitine is concentrated in tissues like skeletal and cardiac muscle that metabolize fatty acids as an energy source.",
+   "url": "https://en.wikipedia.org/wiki/Carnitine",
+   "revision": "1371621091",
+   "as_of": "2026-08-27T12:59:35Z"
+  },
+  "Inositol": {
+   "article": "Inositol",
+   "title": "Inositol",
+   "description": "Carbocyclic sugar",
+   "quote": "In biochemistry, medicine, and related sciences, inositol generally refers to myo-inositol, the most important stereoisomer of the chemical compound cyclohexane-1,2,3,4,5,6-hexol. Its formula is C6H12O6; the molecule has a ring of six carbon atoms, each with a hydrogen atom and a hydroxy group (–OH). In myo-inositol, two of the hydroxyls, neither adjacent nor opposite, lie above the respective hydrogens relative to the mean plane of the ring.",
+   "url": "https://en.wikipedia.org/wiki/Inositol",
+   "revision": "1371660479",
+   "as_of": "2026-08-27T18:22:07Z"
+  },
+  "Cholin, gesamt": {
+   "article": "Choline",
+   "title": "Choline",
+   "description": "Chemical compound and essential nutrient",
+   "quote": "Choline is a cation with the chemical formula [(CH3)3NCH2CH2OH]+. Choline forms various salts, such as choline chloride and choline bitartrate. An essential nutrient for animals, it is a structural component of phospholipids and cell membranes.",
+   "url": "https://en.wikipedia.org/wiki/Choline",
+   "revision": "1371206571",
+   "as_of": "2026-08-25T05:05:46Z"
+  },
+  "Nukleotid": {
+   "article": "Nucleotide",
+   "title": "Nucleotide",
+   "description": "Biological molecules constituting nucleic acids",
+   "quote": "Nucleotides are organic molecules composed of a nitrogenous base, a pentose sugar and a phosphate. They serve as monomeric units of the nucleic acid polymers – deoxyribonucleic acid (DNA) and ribonucleic acid (RNA), both of which are essential biomolecules within all life-forms on Earth. Nucleotides are obtained in the diet and are also synthesized from common nutrients by the liver.",
+   "url": "https://en.wikipedia.org/wiki/Nucleotide",
+   "revision": "1374824034",
+   "as_of": "2026-09-14T08:00:44Z"
+  },
+  "Salz": {
+   "article": "Salt",
+   "title": "Salt",
+   "description": "Mineral composed of sodium chloride",
+   "quote": "Salt is a mineral composed primarily of sodium chloride (NaCl). When used in food, especially in granulated form, it is more formally called table salt. In the form of a natural crystalline mineral, salt is also known as rock salt or halite.",
+   "url": "https://en.wikipedia.org/wiki/Salt",
+   "revision": "1372909840",
+   "as_of": "2026-09-02T22:59:56Z"
+  },
+  "Natrium": {
+   "article": "Sodium",
+   "title": "Sodium",
+   "description": "Chemical element with atomic number 11 (Na)",
+   "quote": "Sodium is a chemical element; it has symbol Na and atomic number 11. It is a soft, silvery-white, highly reactive metal. Sodium is an alkali metal, being in group 1 of the periodic table.",
+   "url": "https://en.wikipedia.org/wiki/Sodium",
+   "revision": "1357207766",
+   "as_of": "2026-06-01T10:25:33Z"
+  },
+  "Kalium": {
+   "article": "Potassium",
+   "title": "Potassium",
+   "description": "Chemical element with atomic number 19 (K)",
+   "quote": "Potassium is a chemical element; it has symbol K and atomic number 19. It is a silvery white metal that is soft enough to easily cut with a knife. Potassium metal reacts rapidly with atmospheric oxygen to form flaky white potassium peroxide in only seconds of exposure.",
+   "url": "https://en.wikipedia.org/wiki/Potassium",
+   "revision": "1374332400",
+   "as_of": "2026-09-11T10:30:26Z"
+  },
+  "Calcium": {
+   "article": "Calcium",
+   "title": "Calcium",
+   "description": "Chemical element with atomic number 20 (Ca)",
+   "quote": "Calcium is a chemical element; it has symbol Ca and atomic number 20. As an alkaline earth metal, calcium is a reactive metal that forms a dark oxide-nitride layer when exposed to air. Its physical and chemical properties are most similar to its heavier homologues strontium and barium.",
+   "url": "https://en.wikipedia.org/wiki/Calcium",
+   "revision": "1356544185",
+   "as_of": "2026-05-28T12:05:36Z"
+  },
+  "Magnesium": {
+   "article": "Magnesium",
+   "title": "Magnesium",
+   "description": "Chemical element with atomic number 12 (Mg)",
+   "quote": "Magnesium is a chemical element; it has symbol Mg and atomic number 12. It is a shiny gray metal having a low density, low melting point, and high chemical reactivity. Like the other alkaline earth metals, it occurs naturally only in combination with other elements and almost always has an oxidation state of +2.",
+   "url": "https://en.wikipedia.org/wiki/Magnesium",
+   "revision": "1373748470",
+   "as_of": "2026-09-07T18:40:08Z"
+  },
+  "Phosphor": {
+   "article": "Phosphorus",
+   "title": "Phosphorus",
+   "description": "Chemical element with atomic number 15 (P)",
+   "quote": "Phosphorus is a chemical element; it has symbol P and atomic number 15. All elemental forms of phosphorus are highly reactive and are therefore never found in nature. Elemental phosphorus can be prepared artificially, the two most common allotropes being white phosphorus and red phosphorus.",
+   "url": "https://en.wikipedia.org/wiki/Phosphorus",
+   "revision": "1374437794",
+   "as_of": "2026-09-12T01:53:59Z"
+  },
+  "Eisen": {
+   "article": "Iron",
+   "title": "Iron",
+   "description": "Chemical element with atomic number 26 (Fe)",
+   "quote": "Iron is a chemical element; it has symbol Fe and atomic number 26. It is a metal that belongs to the first transition series and group 8 of the periodic table. It is, by mass, the most common element on Earth, forming much of Earth's outer and inner core.",
+   "url": "https://en.wikipedia.org/wiki/Iron",
+   "revision": "1374741179",
+   "as_of": "2026-09-13T21:33:37Z"
+  },
+  "Zink": {
+   "article": "Zinc",
+   "title": "Zinc",
+   "description": "Chemical element with atomic number 30 (Zn)",
+   "quote": "Zinc is a chemical element; it has symbol Zn and atomic number 30. It is a slightly brittle metal at room temperature and has a shiny blue whitish appearance when surface oxidation is removed. It is the first element in group 12 (IIB) of the periodic table.",
+   "url": "https://en.wikipedia.org/wiki/Zinc",
+   "revision": "1374087094",
+   "as_of": "2026-09-09T19:23:59Z"
+  },
+  "Kupfer": {
+   "article": "Copper",
+   "title": "Copper",
+   "description": "Chemical element with atomic number 29 (Cu)",
+   "quote": "Copper is a chemical element; it has symbol Cu and atomic number 29. It is a soft, malleable, and ductile metal with very high thermal and electrical conductivity. A freshly exposed surface of pure copper has a pinkish-orange color.",
+   "url": "https://en.wikipedia.org/wiki/Copper",
+   "revision": "1374343138",
+   "as_of": "2026-09-11T12:22:36Z"
+  },
+  "Mangan": {
+   "article": "Manganese",
+   "title": "Manganese",
+   "description": "Chemical element with atomic number 25 (Mn)",
+   "quote": "Manganese is a chemical element; it has the symbol Mn and atomic number 25. It is a hard, brittle, silvery metal, often found in minerals in combination with iron. First isolated in the 1770s, manganese is a transition metal with many industrial alloy uses, particularly in stainless steels in which it improves strength, workability, and resistance to wear.",
+   "url": "https://en.wikipedia.org/wiki/Manganese",
+   "revision": "1374128275",
+   "as_of": "2026-09-10T01:02:57Z"
+  },
+  "Selen": {
+   "article": "Selenium",
+   "title": "Selenium",
+   "description": "Chemical element with atomic number 34 (Se)",
+   "quote": "Selenium is a chemical element; it has symbol Se and atomic number 34. It has various physical appearances, including a brick-red powder, a vitreous black solid, and a grey metallic-looking form. It seldom occurs in this elemental state or as pure ore compounds in Earth's crust.",
+   "url": "https://en.wikipedia.org/wiki/Selenium",
+   "revision": "1372692188",
+   "as_of": "2026-09-01T20:55:33Z"
+  },
+  "Jod": {
+   "article": "Iodine",
+   "title": "Iodine",
+   "description": "Chemical element with atomic number 53 (I)",
+   "quote": "Iodine is a chemical element; it has symbol I and atomic number 53. The heaviest of the stable halogens, it exists at standard conditions as a semi-lustrous, non-metallic solid that melts to form a deep violet liquid at 114 °C (237 °F), and boils to a violet gas at 184 °C (363 °F). The element was discovered by the French chemist Bernard Courtois in 1811 and was named two years later by Joseph Louis Gay-Lussac, after the Ancient Greek Ιώδης, meaning 'violet'.",
+   "url": "https://en.wikipedia.org/wiki/Iodine",
+   "revision": "1371950075",
+   "as_of": "2026-08-29T14:58:12Z"
+  },
+  "Chlorid": {
+   "article": "Chloride",
+   "title": "Chloride",
+   "description": "Main anion present in sea water",
+   "quote": "The chloride ion is the anion of chlorine, that is, chlorine with an extra electron. The term \"chloride\" is also used non-systematically for chemicals containing chlorine covalently bonded to another atom.",
+   "url": "https://en.wikipedia.org/wiki/Chloride",
+   "revision": "1373763325",
+   "as_of": "2026-09-07T20:02:45Z"
+  },
+  "Fluorid": {
+   "article": "Fluoride",
+   "title": "Fluoride",
+   "description": "Ion of fluorine",
+   "quote": "Fluoride is an inorganic, monatomic anion of fluorine, with the chemical formula F−, whose salts are typically white or colorless. Fluoride salts typically have distinctive bitter tastes and are odorless. Its salts and minerals are important chemical reagents and industrial chemicals, mainly used in the production of hydrogen fluoride for fluorocarbons.",
+   "url": "https://en.wikipedia.org/wiki/Fluoride",
+   "revision": "1370297055",
+   "as_of": "2026-08-20T07:47:35Z"
+  },
+  "Chrom": {
+   "article": "Chromium",
+   "title": "Chromium",
+   "description": "Chemical element with atomic number 24 (Cr)",
+   "quote": "Chromium is a chemical element; it has symbol Cr and atomic number 24. It is the first element in group 6. It is a steely-grey, lustrous, hard, and brittle transition metal.",
+   "url": "https://en.wikipedia.org/wiki/Chromium",
+   "revision": "1373205633",
+   "as_of": "2026-09-04T15:37:02Z"
+  },
+  "Molybdän": {
+   "article": "Molybdenum",
+   "title": "Molybdenum",
+   "description": "Chemical element with atomic number 42 (Mo)",
+   "quote": "Molybdenum is a chemical element; it has symbol Mo and atomic number 42. The name is derived from Ancient Greek μόλυβδος mólybdos, meaning lead, since its ores were sometimes confused with those of lead. Molybdenum minerals have been known throughout history, but the element was discovered in 1778 by Carl Wilhelm Scheele.",
+   "url": "https://en.wikipedia.org/wiki/Molybdenum",
+   "revision": "1369083780",
+   "as_of": "2026-08-12T20:20:33Z"
+  },
+  "Vitamin A": {
+   "article": "Vitamin A",
+   "title": "Vitamin A",
+   "description": "Essential nutrient",
+   "quote": "Vitamin A is a fat-soluble vitamin that is an essential nutrient. The term \"vitamin A\" encompasses a group of chemically related organic compounds that includes retinol, retinyl esters, and several provitamin (precursor) carotenoids, most notably β-carotene (beta-carotene). Vitamin A has multiple functions: growth during embryo development, maintaining the immune system, and healthy vision.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_A",
+   "revision": "1368893121",
+   "as_of": "2026-08-11T17:49:31Z"
+  },
+  "Vitamin C": {
+   "article": "Vitamin C",
+   "title": "Vitamin C",
+   "description": "Essential nutrient found in citrus fruits and other foods",
+   "quote": "Vitamin C or ascorbate is a water-soluble vitamin found in citrus and other fruits, berries and vegetables. It is found as a form of ascorbic acid. It is an essential nutrient involved in the repair of tissue, the formation of collagen, and the enzymatic production of certain neurotransmitters.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_C",
+   "revision": "1372484521",
+   "as_of": "2026-08-31T23:58:26Z"
+  },
+  "Vitamin D": {
+   "article": "Vitamin D",
+   "title": "Vitamin D",
+   "description": "Essential nutrient",
+   "quote": "Vitamin D is a group of structurally related, fat-soluble compounds responsible for increasing intestinal absorption of calcium and phosphate, along with numerous other biological functions. In humans, the most important compounds within this group are vitamin D3 (cholecalciferol) and vitamin D2 (ergocalciferol). The name Vitamin D is a misnomer; technically vitamin D is not a vitamin, but rather a fat-soluble secosteroid hormone.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_D",
+   "revision": "1374719411",
+   "as_of": "2026-09-13T18:56:40Z"
+  },
+  "Vitamin E": {
+   "article": "Vitamin E",
+   "title": "Vitamin E",
+   "description": "Class of 8 chemically related vitamins",
+   "quote": "Vitamin E is a group of eight compounds related in molecular structure that includes four tocopherols and four tocotrienols. The tocopherols function as fat-soluble antioxidants which may help protect cell membranes from reactive oxygen species.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_E",
+   "revision": "1360707384",
+   "as_of": "2026-06-23T02:58:28Z"
+  },
+  "Vitamin K": {
+   "article": "Vitamin K",
+   "title": "Vitamin K",
+   "description": "Fat-soluble vitamers",
+   "quote": "Vitamin K is a family of structurally similar, fat-soluble vitamers found in foods and marketed as dietary supplements. The human body requires vitamin K for post-synthesis modification of certain proteins that are required for blood coagulation and for controlling binding of calcium in bones and other tissues. The complete synthesis involves final modification of these so-called \"Gla proteins\" by the enzyme gamma-glutamyl carboxylase that uses vitamin K as a cofactor.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_K",
+   "revision": "1359634094",
+   "as_of": "2026-06-16T09:59:48Z"
+  },
+  "Vitamin B 1, Thiamin": {
+   "article": "Thiamine",
+   "title": "Thiamine",
+   "description": "Vitamin",
+   "quote": "Thiamine, also known as thiamin and vitamin B1, is a vitamin – an essential micronutrient for humans and animals. It is found in food and commercially synthesized to be a dietary supplement or medication. Phosphorylated forms of thiamine are required for some metabolic reactions, including the breakdown of glucose and amino acids.",
+   "url": "https://en.wikipedia.org/wiki/Thiamine",
+   "revision": "1370021799",
+   "as_of": "2026-08-18T17:29:33Z"
+  },
+  "Vitamin B 2, Riboflavin": {
+   "article": "Riboflavin",
+   "title": "Riboflavin",
+   "description": "Vitamin",
+   "quote": "Riboflavin, also known as vitamin B2, is a vitamin found in food and sold as a dietary supplement. It is essential to the formation of two major coenzymes, flavin mononucleotide and flavin adenine dinucleotide. These coenzymes are involved in energy metabolism, cellular respiration, and antibody production, as well as normal growth and development.",
+   "url": "https://en.wikipedia.org/wiki/Riboflavin",
+   "revision": "1371607149",
+   "as_of": "2026-08-27T10:38:27Z"
+  },
+  "Vitamin B 6": {
+   "article": "Vitamin B6",
+   "title": "Vitamin B6",
+   "description": "Class of vitamins",
+   "quote": "Vitamin B6 is one of the B vitamins, and is an essential nutrient for humans. The term essential nutrient refers to a group of six chemically similar compounds, i.e., \"vitamers\", which can be interconverted in biological systems. Its active form, pyridoxal 5′-phosphate, serves as a coenzyme in more than 140 enzyme reactions in amino acid, glucose, and lipid metabolism.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_B6",
+   "revision": "1370021772",
+   "as_of": "2026-08-18T17:29:15Z"
+  },
+  "Vitamin B 12": {
+   "article": "Vitamin B12",
+   "title": "Vitamin B12",
+   "description": "Class of vitamins",
+   "quote": "Vitamin B12, also known as cobalamin or extrinsic factor, is a water-soluble vitamin involved in metabolism. One of eight B vitamins, it serves as a vital cofactor in DNA synthesis and both fatty acid and amino acid metabolism. It plays an essential role in the nervous system by supporting myelin synthesis and is critical for the maturation of red blood cells in the bone marrow.",
+   "url": "https://en.wikipedia.org/wiki/Vitamin_B12",
+   "revision": "1372815226",
+   "as_of": "2026-09-02T12:01:25Z"
+  },
+  "Niacin": {
+   "article": "Niacin",
+   "title": "Nicotinic acid",
+   "description": "Vitamer of Vitamin B3",
+   "quote": "Nicotinic acid, or niacin, is an organic compound and a vitamer of vitamin B3, an essential human nutrient. It is produced by plants and animals from the amino acid tryptophan.",
+   "url": "https://en.wikipedia.org/wiki/Nicotinic_acid",
+   "revision": "1370022200",
+   "as_of": "2026-08-18T17:32:17Z"
+  },
+  "Pantothensäure": {
+   "article": "Pantothenic acid",
+   "title": "Pantothenic acid",
+   "description": "Vitamin",
+   "quote": "Pantothenic acid (vitamin B5) is a B vitamin and an essential nutrient. All animals need pantothenic acid in order to synthesize coenzyme A (CoA), which is essential for cellular energy production and for the synthesis and degradation of proteins, carbohydrates, and fats.",
+   "url": "https://en.wikipedia.org/wiki/Pantothenic_acid",
+   "revision": "1370022393",
+   "as_of": "2026-08-18T17:33:40Z"
+  },
+  "Biotin": {
+   "article": "Biotin",
+   "title": "Biotin",
+   "description": "Vitamin",
+   "quote": "Biotin (also known as vitamin B7 and vitamin H) is one of the B vitamins – a group of essential dietary micronutrients. Present in every living cell, it is involved as a cofactor for enzymes in numerous metabolic processes, both in humans and in other organisms, primarily related to the biochemistry of fats, carbohydrates, and amino acids.",
+   "url": "https://en.wikipedia.org/wiki/Biotin",
+   "revision": "1371607318",
+   "as_of": "2026-08-27T10:40:28Z"
+  },
+  "Linolsäure": {
+   "article": "Linoleic acid",
+   "title": "Linoleic acid",
+   "description": "18-Carbon polyunsaturated fatty acid",
+   "quote": "Linoleic acid (LA) is an organic compound with the formula CH3(CH2)4CH=CHCH2CH=CH(CH2)7COOH. Both alkene groups (−CH=CH−) are cis. It is a fatty acid sometimes denoted 18:2 (n−6) or 18:2 cis-9,12.",
+   "url": "https://en.wikipedia.org/wiki/Linoleic_acid",
+   "revision": "1369582024",
+   "as_of": "2026-08-15T21:43:13Z"
+  },
+  "Alpha-Linolensäure": {
+   "article": "Alpha-Linolenic acid",
+   "title": "Α-Linolenic acid",
+   "description": "18-Carbon polyunsaturated fatty acid",
+   "quote": "α-Linolenic acid, also known as alpha-linolenic acid (ALA), is an n−3, or omega-3, essential fatty acid. ALA is found in many seeds and oils, including flaxseed, walnuts, chia, hemp, and many common vegetable oils.",
+   "url": "https://en.wikipedia.org/wiki/%CE%91-Linolenic_acid",
+   "revision": "1369561968",
+   "as_of": "2026-08-15T19:01:15Z"
+  },
+  "Arachidonsäure": {
+   "article": "Arachidonic acid",
+   "title": "Arachidonic acid",
+   "description": "20-Carbon polyunsaturated fatty acid",
+   "quote": "Arachidonic acid is a polyunsaturated omega−6 fatty acid 20:4(ω−6), or 20:4(5,8,11,14). It is a precursor in the formation of leukotrienes, prostaglandins, and thromboxanes.",
+   "url": "https://en.wikipedia.org/wiki/Arachidonic_acid",
+   "revision": "1371576724",
+   "as_of": "2026-08-27T05:37:29Z"
+  },
+  "Docosahexaensäure (DHA)": {
+   "article": "Docosahexaenoic acid",
+   "title": "Docosahexaenoic acid",
+   "description": "22-Carbon polyunsaturated fatty acid",
+   "quote": "Docosahexaenoic acid (DHA) is an omega−3 fatty acid that is an important component of the human brain, cerebral cortex, skin, and retina. It is given the fatty acid notation 22:6(n−3). It can be synthesized from alpha-linolenic acid or obtained directly from maternal milk (breast milk), fatty fish, fish oil, or algae oil.",
+   "url": "https://en.wikipedia.org/wiki/Docosahexaenoic_acid",
+   "revision": "1369638057",
+   "as_of": "2026-08-16T05:25:11Z"
+  },
+  "LCPs": {
+   "article": "Polyunsaturated fatty acid",
+   "title": "Polyunsaturated fat",
+   "description": "Type of fatty acid defined by molecular bonds",
+   "quote": "In biochemistry and nutrition, a polyunsaturated fat is a fat that contains a polyunsaturated fatty acid, which is a subclass of fatty acid characterized by a backbone with two or more carbon–carbon double bonds.",
+   "url": "https://en.wikipedia.org/wiki/Polyunsaturated_fat",
+   "revision": "1368757222",
+   "as_of": "2026-08-10T23:18:11Z"
+  },
+  "Mittelkettige Triglyceride": {
+   "article": "Medium-chain triglyceride",
+   "title": "Medium-chain triglyceride",
+   "description": "Medium-chain fatty acids",
+   "quote": "A medium-chain triglyceride (MCT) is a triglyceride with two or three fatty acids having an aliphatic tail of 6–12 carbon atoms, i.e. a medium-chain fatty acid (MCFA). Rich food sources for commercial extraction of MCTs include palm kernel oil and coconut oil.",
+   "url": "https://en.wikipedia.org/wiki/Medium-chain_triglyceride",
+   "revision": "1368089898",
+   "as_of": "2026-08-07T00:02:34Z"
+  },
+  "Galactose": {
+   "article": "Galactose",
+   "title": "Galactose",
+   "description": "Monosaccharide sugar",
+   "quote": "Galactose is a common monosaccharide, i.e. a simple sugar. It is classified as a reducing hexose, more specifically an aldohexose.",
+   "url": "https://en.wikipedia.org/wiki/Galactose",
+   "revision": "1370651610",
+   "as_of": "2026-08-22T08:33:18Z"
+  },
+  "Maltodextrin": {
+   "article": "Maltodextrin",
+   "title": "Maltodextrin",
+   "description": "Polysaccharide of glucose",
+   "quote": "Maltodextrin is a name shared by two different families of chemicals. Both families are glucose polymers, but have little chemical or nutritional similarity.",
+   "url": "https://en.wikipedia.org/wiki/Maltodextrin",
+   "revision": "1351307153",
+   "as_of": "2026-04-27T05:00:29Z"
+  },
+  "Laktase": {
+   "article": "Lactase",
+   "title": "Lactase",
+   "description": "Milk-sugar digesting enzyme",
+   "quote": "Lactase is an enzyme produced by many organisms and is essential to the complete digestion of whole milk. It breaks down the sugar lactose into its component parts, galactose and glucose, simple sugars that can be absorbed into the bloodstream through an animal's intestines. A lactase is a type of β-galactosidase because it breaks down the β-glycosidic bond in D-lactose.",
+   "url": "https://en.wikipedia.org/wiki/Lactase",
+   "revision": "1373219925",
+   "as_of": "2026-09-04T17:27:32Z"
+  },
+  "Galactooligosaccharide (GOS)": {
+   "article": "Galactooligosaccharide",
+   "title": "Galactooligosaccharide",
+   "description": "Class of prebiotics",
+   "quote": "Galactooligosaccharides (GOS), also known as oligogalactosyllactose, oligogalactose, oligolactose or transgalactooligosaccharides (TOS), belong to the group of prebiotics. Prebiotics are defined as non-digestible food ingredients that beneficially affect the host by stimulating the growth and/or activity of beneficial bacteria in the colon. GOS occurs in commercially available products such as food for both infants and adults.",
+   "url": "https://en.wikipedia.org/wiki/Galactooligosaccharide",
+   "revision": "1334701239",
+   "as_of": "2026-01-25T04:05:53Z"
+  },
+  "Fructooligosaccharide": {
+   "article": "Fructooligosaccharide",
+   "title": "Fructooligosaccharide",
+   "description": "Oligosaccharide fructans",
+   "quote": "Fructooligosaccharides (FOS) also sometimes called oligofructose or oligofructan, are oligosaccharide fructans, used as an alternative sweetener. FOS exhibits sweetness levels between 30 and 50 percent of sugar in commercially prepared syrups. It occurs naturally, and its commercial use emerged in the 1980s in response to demand for healthier and calorie-reduced foods.",
+   "url": "https://en.wikipedia.org/wiki/Fructooligosaccharide",
+   "revision": "1368977256",
+   "as_of": "2026-08-12T04:40:13Z"
+  },
+  "Humane Milch-Oligosaccharide (HMO)": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  },
+  "2'-Fucosyllactose (2'-FL)": {
+   "article": "2'-Fucosyllactose",
+   "title": "2'-Fucosyllactose",
+   "description": "Chemical compound",
+   "quote": "2′-Fucosyllactose (2′-FL) is a fucosylated neutral trisaccharide composed of L-fucose, D-galactose, and D-glucose units. It is the most prevalent human milk oligosaccharide (HMO) naturally present in human breast milk, making up about 30% of all of HMOs. It was first discovered in the 1950s in human milk.",
+   "url": "https://en.wikipedia.org/wiki/2'-Fucosyllactose",
+   "revision": "1369380190",
+   "as_of": "2026-08-14T16:43:05Z"
+  },
+  "3-Fucosyllactose (3-FL)": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  },
+  "3'-Sialyllactose": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  },
+  "6'-Sialyllactose": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  },
+  "Difucosyllactose (DFL)": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  },
+  "Lacto-N-Tetraose (LNT)": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  },
+  "Lacto-N-Neotetraose (LNnt)": {
+   "article": "Human milk oligosaccharide",
+   "title": "Human milk oligosaccharide",
+   "description": "Group of compounds",
+   "quote": "Human milk oligosaccharides (HMOs), also known as human milk glycans, are short polymers of simple sugars that can be found in high concentrations in human breast milk. Human milk oligosaccharides promote the development of the immune system, can reduce the risk of pathogen infections and improve brain development and cognition. The HMO profile of human breast milk shapes the gut microbiota of the infant by selectively stimulating bifidobacteria and other bacteria.",
+   "url": "https://en.wikipedia.org/wiki/Human_milk_oligosaccharide",
+   "revision": "1358109570",
+   "as_of": "2026-06-06T16:47:21Z"
+  }
+ }
+}

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>16 ways to read the whole table · dm Babymilch</title>
+<style>
+:root {
+  --ink: #16181d;
+  --quiet: #5c6270;
+  --line: #e2e5ec;
+  --page: #f6f7f9;
+  --card: #ffffff;
+  --accent: #002878;
+  --band: #eef1f7;
+  --series: #2a78d6;
+  --deemph: #8b92a1;
+  --mid: #f0efec;
+  --low3: #184f95;
+  --low2: #3987e5;
+  --low1: #86b6ef;
+  --high1: #eda3a3;
+  --high2: #e06a6a;
+  --high3: #b83232;
+  --ink0: #ffffff;
+  --ink1: #16181d;
+  --ink2: #16181d;
+  --ink3: #16181d;
+  --ink4: #16181d;
+  --ink5: #16181d;
+  --ink6: #ffffff;
+  --radius: 10px;
+  --who: 17rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8eaf0;
+    --quiet: #9aa2b4;
+    --line: #2c313c;
+    --page: #14161b;
+    --card: #1b1e25;
+    --accent: #8ab0ff;
+    --band: #232833;
+    --series: #3987e5;
+    --deemph: #626b7d;
+    --mid: #383835;
+    --low3: #86b6ef;
+    --low2: #3987e5;
+    --low1: #1c5cab;
+    --high1: #8a3535;
+    --high2: #c14a4a;
+    --high3: #e66767;
+    --ink0: #16181d;
+    --ink1: #16181d;
+    --ink2: #ffffff;
+    --ink3: #ffffff;
+    --ink4: #ffffff;
+    --ink5: #ffffff;
+    --ink6: #16181d;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.top { padding: 1.25rem 1.25rem 0.5rem; }
+h1 { margin: 0; font-size: 1.4rem; letter-spacing: -0.01em; }
+.lede { margin: 0.2rem 0 0; color: var(--quiet); font-size: 0.9rem; }
+a { color: var(--accent); }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: end;
+  padding: 0.75rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.control { display: grid; gap: 0.15rem; }
+.control span {
+  color: var(--quiet);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+select, button {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+select { max-width: 22rem; }
+button:hover, select:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { padding: 1rem 1.25rem 1rem; }
+.card {
+  padding: 1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow-x: auto;
+}
+.card h2 { margin: 0; font-size: 1rem; }
+.card .sub { margin: 0.15rem 0 1rem; color: var(--quiet); font-size: 0.82rem; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  margin: 0 0 0.9rem;
+  color: var(--quiet);
+  font-size: 0.78rem;
+}
+.legend i {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.3rem;
+  border-radius: 3px;
+  vertical-align: -0.12rem;
+}
+.legend .dot { border-radius: 50%; width: 0.6rem; height: 0.6rem; }
+.note { margin: 1rem 0 0; color: var(--quiet); font-size: 0.8rem; }
+#pack:empty { display: none; }
+.cost {
+  margin: 1rem 1.25rem 3rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 0.85rem;
+}
+.cost h2 { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--quiet); }
+.cost p { margin: 0 0 0.5rem; }
+.cost p:last-child { margin-bottom: 0; }
+.cost b { font-weight: 600; }
+#tip {
+  position: fixed;
+  z-index: 9;
+  max-width: 22rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.16);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+#tip[hidden] { display: none; }
+#tip b { display: block; }
+#tip span { display: block; color: var(--quiet); }
+table { border-collapse: collapse; font-size: 0.82rem; }
+th, td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+thead th { color: var(--quiet); font-size: 0.76rem; vertical-align: bottom; }
+tbody tr:hover { background: var(--band); }
+th.who, td.who { position: sticky; left: 0; background: var(--card); }
+tbody tr:hover th.who, tbody tr:hover td.who { background: var(--band); }
+.who b { font-weight: 600; }
+.who .variant { color: var(--quiet); font-weight: 400; }
+.who .size { color: var(--deemph); font-size: 0.75rem; }
+a.what { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--quiet); }
+a.what:hover, a.what:focus { color: var(--accent); border-bottom-color: var(--accent); }
+
+.options { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1rem; }
+.option { display: grid; gap: 0.4rem; align-content: start; }
+.option h2 { margin: 0; font-size: 1rem; }
+.option h2 a { text-decoration: none; }
+.option p { margin: 0; font-size: 0.85rem; }
+.option .tag { color: var(--quiet); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.band { margin: 1.6rem 0 0.2rem; font-size: 1.05rem; }
+.band:first-child { margin-top: 0; }
+.blurb { margin: 0 0 0.8rem; max-width: 46rem; color: var(--quiet); font-size: 0.85rem; }
+.shared { margin: 1.5rem 1.25rem 3rem; font-size: 0.88rem; }
+.shared h2 { font-size: 0.95rem; margin: 1.2rem 0 0.3rem; }
+.shared p { margin: 0 0 0.6rem; max-width: 46rem; }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>16 ways to read the whole table</h1>
+  <p class="lede">120 powder articles over 9 age steps. Collected from dm.de on 13 September 2026. <a href="../compare.html">One nutrient at a time</a> ·
+    <a href="../index.html">The list</a>.</p>
+</header>
+<main><h2 class="band">One age step at a time</h2><p class="blurb">Every option here holds one step and shows every nutrient of it.</p><div class="options"><section class="card option"><p class="tag">Option 1</p><h2><a href="panels.html">Small multiples</a></h2><p>One panel per nutrient. Every panel runs from the lowest to the highest value of that nutrient in the step so the dots spread over the whole width.</p><p><b>Answers.</b> Where does this pack sit among the others on each nutrient in the unit the pack declares.</p><p><b>Costs.</b> Every panel holds a different scale so a dot in one panel says nothing about a dot in the next. A panel is about 300 px wide so a difference is read off a handful of pixels. Only the two ends of the scale carry a number.</p></section><section class="card option"><p class="tag">Option 2</p><h2><a href="indexed.html">One shared axis</a></h2><p>One row per nutrient on one axis. A value is drawn as its share of the median of the step so a microgram of vitamin D sits beside a kilocalorie.</p><p><b>Answers.</b> Which nutrients the brands actually differ on and which are settled by the recipe.</p><p><b>Costs.</b> The axis carries a share rather than a declared number so the figure itself only appears on hover or in the table. The axis is held at 200% so the handful of values above that are pushed onto the edge as a square.</p></section><section class="card option"><p class="tag">Option 3</p><h2><a href="heatmap.html">Heatmap</a></h2><p>One row per article and one column per nutrient. The cell carries how far the declaration sits from the median of the step in seven steps.</p><p><b>Answers.</b> Which article is unlike the field and on which nutrients it is unlike it.</p><p><b>Costs.</b> Colour carries the value so the cell holds no number. Seven steps read as seven classes so two packs 30% apart inside one step look identical. The column headings have to stand on end to fit.</p></section><section class="card option"><p class="tag">Option 4</p><h2><a href="profiles.html">Profiles</a></h2><p>One line per article. The line steps through every nutrient at its share of the median so a recipe reads as a shape rather than as a row of numbers.</p><p><b>Answers.</b> What shape a recipe has and which packs follow each other across the whole table.</p><p><b>Costs.</b> Twenty six lines cross constantly so a single line is only readable once it is held. The order of the nutrients along the foot is a choice and it changes every shape on the page. A nutrient the pack never declares is stepped over silently.</p></section><section class="card option"><p class="tag">Option 5</p><h2><a href="spread.html">What is settled</a></h2><p>One bar per nutrient sorted by how far the declarations of the step reach. The bar is the lowest to the highest as a share of the median.</p><p><b>Answers.</b> Which nutrients the recipe settles and which the brands are free on.</p><p><b>Costs.</b> One published error stretches a whole bar so the order reports the extreme rather than the field. The middle eight in ten is offered for that reason and it hides a real outlier just as readily.</p></section><section class="card option"><p class="tag">Option 6</p><h2><a href="card.html">One pack</a></h2><p>One row per nutrient the pack declares. The bar runs from the median of the step out to what this pack declares and the rows are sorted by that distance.</p><p><b>Answers.</b> What actually makes one pack different from the milk beside it.</p><p><b>Costs.</b> One pack at a time. The field is the median of its own step so a pack of stage 4 is measured against three others. The bar is held at a hundred points either way.</p></section><section class="card option"><p class="tag">Option 7</p><h2><a href="balance.html">The lean</a></h2><p>One bar per article. Every nutrient of the step is sorted into the seven bands and the bar is centred so what sits below the median stacks left and what sits above stacks right.</p><p><b>Answers.</b> Which brands are generous across the whole table rather than on one nutrient.</p><p><b>Costs.</b> A band counts a nutrient rather than weighing it so vitamin K counts as much as protein. The bands are coarse so five points and twenty four points land in the same block.</p></section></div><h2 class="band">Against breast milk</h2><p class="blurb">Every option here holds a formula step beside the breast milk a baby of that age drinks. The pairing is read off the age each one declares. Stage 3 and stage 4 and Kindermilch have no option here because the study stops at 8,5 months.</p><div class="options"><section class="card option"><p class="tag">Option 8</p><h2><a href="gap.html">How far the step sits from the milk</a></h2><p>One row per nutrient the step and the milk both declare. The dot is the step median divided by the milk median and the axis counts doublings so every step out is twice the last. The grey strip along the foot of the track is the milk over its own windows and the rule is where the two are equal.</p><p><b>Answers.</b> Which nutrients a step copies from breast milk and which it departs from.</p><p><b>Costs.</b> A ratio hides the declared figure so a nutrient that runs in micrograms reads as loudly as protein. A nutrient only one side declares is dropped rather than drawn at zero. Manganese is the widest bar on the page and both of its figures are the weak ones named under Limits.</p></section><section class="card option"><p class="tag">Option 9</p><h2><a href="beside.html">The milk beside the step</a></h2><p>One panel per nutrient with two rails. The upper rail is breast milk over the windows of that age and the lower is the step over its packs. Both rails share the scale of the panel so the gap is the distance between the two dots.</p><p><b>Answers.</b> What the two actually declare rather than how many times one is the other.</p><p><b>Costs.</b> Every panel holds its own scale so a gap in one panel says nothing about a gap in the next. A panel is about 240 px wide so a small difference is a few pixels. Only the two ends of the scale carry a number.</p></section><section class="card option"><p class="tag">Option 10</p><h2><a href="lifetime.html">The first year</a></h2><p>The month of life runs along the foot. The line is breast milk at each lactation window and each block is an age step drawn over the months it is sold for with its median ruled across it.</p><p><b>Answers.</b> What a child actually drinks through the first year on breast milk or on the packs sold for each age.</p><p><b>Costs.</b> One nutrient at a time. A step is drawn as one block so the recipe appears to change on the day the child turns six months. The milk line stops at 8,5 months because the study does so stage 3 and stage 4 and Kindermilch face nothing. Pre and stage 1 are sold for the same months so their outlines overlap and only the two names under the foot tell them apart. Spezialnahrung is left out. The scale spans the data rather than starting at zero so a small gap fills the plot and the subtitle is the only thing that says where it starts.</p></section><section class="card option"><p class="tag">Option 11</p><h2><a href="closest.html">Which pack sits nearest</a></h2><p>One bar per pack. Every nutrient the pack and the milk both declare is measured as a number of doublings away from the milk and the bar is the middle one of those. A shorter bar is nearer the milk.</p><p><b>Answers.</b> Which tin on the shelf is nearest breast milk across the whole table.</p><p><b>Costs.</b> One number flattens forty nutrients so a pack that matches the milk on protein and misses on iron scores like its opposite. It weighs vitamin K as much as fat. A pack that declares fewer nutrients is scored on fewer of them.</p></section><section class="card option"><p class="tag">Option 12</p><h2><a href="periods.html">The period table</a></h2><p>One row per nutrient. The ten left columns are breast milk at each lactation window as the study publishes it. The right columns are the median of each age step tinted against the milk of the age that step is sold for.</p><p><b>Answers.</b> What breast milk holds at each period of lactation and what the packs sold for that age hold beside it, as numbers rather than as marks.</p><p><b>Costs.</b> A step is one median so the spread inside it is gone. Stage 3 and stage 4 and Kindermilch carry no tint because the study stops at 8,5 months and there is nothing of that age to measure them against. The table is wider than a screen so the nutrient column is pinned and the rest scrolls.</p></section><section class="card option"><p class="tag">Option 13</p><h2><a href="stars.html">The star wall</a></h2><p>One small star per pack of the step and one per lactation window of the matching age. Each arm is how many times the breast milk of that age the pack declares and the dashed ring is one times it. Clicking a star holds it and every held star is drawn over the others above.</p><p><b>Answers.</b> What shape each recipe of a step has against breast milk, and how two of them differ, without leaving the step.</p><p><b>Costs.</b> Twelve spokes out of forty so the shape is a choice rather than the whole declaration. The order of the spokes around the circle changes every shape on the wall. Colour carries no identity so two held stars are told apart by the list beside the chart rather than by their hue. An arm past 32 times the milk sits on the rim.</p></section></div><h2 class="band">Across the age steps</h2><p class="blurb">Every option here holds every step so Pre 1 2 3 4 and Kindermilch read against each other. Spezialnahrung is left out because a medical food is not the next milk of a growing child.</p><div class="options"><section class="card option"><p class="tag">Option 14</p><h2><a href="ladder.html">The step ladder</a></h2><p>One panel per nutrient. The line joins the median of Pre 1 2 3 4 and Kindermilch and the band behind it is the lowest to the highest declaration of each step.</p><p><b>Answers.</b> How the recipe of a nutrient changes as the child grows.</p><p><b>Costs.</b> The line carries the median so a step of four articles is drawn as loudly as a step of twenty seven. Every panel holds its own scale. Spezialnahrung is left out because a medical food is not the next milk of a growing child.</p></section><section class="card option"><p class="tag">Option 15</p><h2><a href="steps.html">The step matrix</a></h2><p>One row per nutrient and one column per age step. The cell carries the median of that step as a share of the first step that declares the nutrient and prints it.</p><p><b>Answers.</b> Which nutrients are raised and which are cut as the steps go up.</p><p><b>Costs.</b> A ratio of two medians says nothing about the spread inside either step. A nutrient that arrives late is measured against its own first step rather than against Pre so two rows can hold different bases.</p></section><section class="card option"><p class="tag">Option 16</p><h2><a href="pairs.html">Two nutrients</a></h2><p>One panel per age step with the same two scales in every panel. A dot is an article at its declaration of the two nutrients.</p><p><b>Answers.</b> Whether two nutrients move together and whether the steps sit apart.</p><p><b>Costs.</b> Two nutrients out of forty three at a time. The scales are shared so a step whose articles sit in one corner spends most of its panel on empty space. An article that declares only one of the two is left out and counted.</p></section></div></main>
+<section class="shared">
+  <h2>What every option holds steady</h2>
+  <p>One shell one dataset one builder. Every option reads the same 120 powder
+  articles and the same nutrient list and every option was emitted from
+  <code>tools/make_views.py</code>.</p>
+  <p>A nutrient is drawn for a step only when at least half the articles of that step declare
+  it. Everything is the per 100 ml column as the baby drinks it.</p>
+  <h2>The one number that makes a microgram comparable to a kilocalorie</h2>
+  <p>Most of the options draw a value as its share of a median.
+  Because a) the nutrients run from 0,001 mg to 500 kcal so one raw axis is unreadable b) two
+  axes on one plot would invent a relation that is not in the data c) the median of the step is
+  a figure the reader can name.</p>
+  <h2>What the data does to the drawing</h2>
+  <p>Both dm data errors are still in here. Aptamil Spezialnahrung declares 4 mg of manganese
+  against a step median of 0,022 mg and an Aptamil Folgemilch 2 declares 17 µg of vitamin B12
+  against a median of 0,18 µg. They sit at the ceiling of every indexed option and they are the
+  reason the ceiling exists.</p>
+</section>
+</body>
+</html>

@@ -105,6 +105,13 @@ per section that `MonthPage.vue` builds today.
       weekday header for a screen reader.
 - [x] Add keyboard movement across the cells. The grid gets this free from the
       table with its form controls.
+- [x] Hold the chip inside its cell. Decision 4 took option F. See
+      `mockups/d4-tight.html`. The cell chip is 11px with 6px of padding and it
+      wraps the day value under the id. `.chip` takes `min-width: 0` in
+      `tokens.css` so a chip can go under its own content at all.
+- [x] Break the day flag inside the word. `Arbeitswochenende` is 17 characters
+      and the cell holds 64px beside the date. `MonthGrid.vue` already breaks
+      the same flag.
 
 ## 5. Tour and tests
 
@@ -140,6 +147,14 @@ per section that `MonthPage.vue` builds today.
 3. **Bright Blue draws lines and never carries text.** It reaches 3.87 to 1 on
    white. Grey carries the small headings at 4.61 to 1. Grey sits on white
    alone because it falls to 3.74 on Warm Grey.
+4. **What a chip does when the cell is too narrow for it. Option F. Smaller
+   then wrapped.** Built at `mockups/d4-tight.html`. Because a) 11px type with
+   6px of padding needs 46px for a seven digit id where 12px type needed 101px
+   for the id with its day value. b) the day value then drops to a second line
+   rather than cutting the id. c) it is the only one of the six that keeps all
+   21 ids whole at the 604px board a 1280px window gives. It costs 19px of cell
+   height on a day holding a seven digit id. The cut of option A is kept in
+   `tokens.css` as the guard under 800px.
 
 ## What else the list needed
 

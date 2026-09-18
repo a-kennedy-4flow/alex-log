@@ -108,6 +108,17 @@ describe.each(samples)('$workbook', (sample) => {
       expect(actual, `${expected.workdayId} ${expected.specification}`).toBeDefined()
       expect(actual?.days).toBe(expected.days)
     }
+    // The block Excel wrote is the whole block. A group the workbook left out
+    // is as wrong as one it holds that is missing here.
+    expect(mine).toHaveLength(sample.aggregate.length)
+  })
+
+  it('leaves absence out of the block so rows 71 to 87 total the month once', () => {
+    const block = aggregateByProject(halfDays).reduce((sum, r) => sum + r.days, 0)
+    const absence =
+      absenceTotal(halfDays, 'Vacation or sickness') + absenceTotal(halfDays, 'Other absence')
+    // Mirrors tracker cell M88 which is SUM(K71:K87).
+    expect(block + absence).toBe(sample.totalDays)
   })
 
   it('takes the adjusted work days as the target when set', () => {

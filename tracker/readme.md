@@ -324,7 +324,8 @@ every value it needs.
 
 42. A month with more than fifteen cost centre groups overflows the tracker
     block. The export writes the extra rows below it rather than dropping them.
-    Confirm that is wanted.
+    Confirm that is wanted. The per week block now moves down with it. See
+    below.
 
 # The cost centre picker
 
@@ -732,3 +733,72 @@ saying nothing would read as Jira carrying none at all.
 A pick made on the screen used to outrank Jira until the page was read again and
 rank third after it. So one answer resolved two ways. The project map now ranks
 third whenever it was written and a ticket answer ranks first.
+
+# The aggregation block
+
+Tracker column AB is the group. The workbook names it the combined cost centre
+and builds it as `CONCAT(I," - ",J)` which is the Workday ID and the
+specification. Cell K71 then reads `SUMIF($AB$5:$AB$66,AB71,$K$5:$K$66)`. So one
+cost centre booked under two specifications is two rows and the same
+specification under two cost centres is two rows.
+
+Absence is not in it. The grand total at M88 is `SUM(K71:K87)` which spans the
+block and the two absence lines under it. A vacation day written in both places
+is counted twice. The submitted August workbook books five vacation days and its
+block names the cost centre alone.
+
+The export wrote them in both places until 2026-09-14. Twelve project days and
+five vacation days read as twenty two against a stated total of seventeen. The
+summary panel showed the same month the same way. `aggregateByProject` now drops
+a booking whose Workday ID is one of the two the tracker gives a line of its
+own. A label on neither line stays in the block so no booked day can fall
+between the two.
+
+The check that would have caught it is that rows 71 to 87 total the month once.
+The old test asked only that every row Excel wrote appears in the block and
+never that the block holds nothing else.
+
+# The blocks below the grid
+
+Both move together. The block at 71 holds fifteen slots and grows past them
+rather than dropping a group. The per week block sat at a fixed row 92 so a
+month holding twenty one groups wrote I92 and K92 and M94 twice. Excel refuses a
+sheet holding a repeated reference.
+
+The per week header is now `max(92, grandTotalRow + 4)`. A month inside the
+fifteen slots lands on 92 exactly so the shipped layout is untouched. A month of
+twenty one groups puts it on 98. LibreOffice opens both.
+
+# Column M carries the business line
+
+Its header reads `Name of project [Business Line]` and the workbook builds the
+cell as the Workday Title and then `[BL ` and the line. The export wrote the
+title alone until 2026-09-14 so the header named something the column never
+carried. `projectLabel` appends it. A cost centre nothing names the line for
+keeps the bare title rather than an empty `[BL ]`.
+
+# Column I carries a number
+
+The workbook holds a Workday ID as a number and an absence label as text. The
+export wrote the whole column as text. `workdayCell` converts a canonical
+integer and leaves everything else alone. Because a) a leading zero is part of
+an id that carries one. b) an id past the safe integer range would not survive
+the trip through a double. c) `String(Number(text)) === text` refuses both
+without needing a rule for each.
+
+All 3149 ids in the shipped list are plain digits under seven of them. Nothing
+in the catalogue today takes the text branch. The two absence labels do.
+
+# What the export still does differently
+
+Cell L71 reads `n.a.` in the submitted workbook. Its formula looks the Workday
+ID up as a number against a project list column of text so the lookup fails.
+Cell M71 on the same row succeeds because that formula wraps the id in `TEXT`
+first. The export resolves the customer on both. Copying a fault to match a
+cached value is not fidelity.
+
+An unused slot at rows 72 to 85 holds the text `"0"` in the workbook because the
+formula quotes its zero. The export writes the number. A Days column that sums
+is worth more than the quoting slip.
+
+Every other cell of the block now matches the submitted workbook exactly.

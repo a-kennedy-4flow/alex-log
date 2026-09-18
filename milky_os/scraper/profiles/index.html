@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Every nutrient · dm Babymilch</title>
+<style>
+:root {
+  --ink: #16181d;
+  --quiet: #5c6270;
+  --line: #e2e5ec;
+  --page: #f6f7f9;
+  --card: #ffffff;
+  --accent: #002878;
+  --band: #eef1f7;
+  --series: #2a78d6;
+  --deemph: #8b92a1;
+  --mid: #f0efec;
+  --low3: #184f95;
+  --low2: #3987e5;
+  --low1: #86b6ef;
+  --high1: #eda3a3;
+  --high2: #e06a6a;
+  --high3: #b83232;
+  --ink0: #ffffff;
+  --ink1: #16181d;
+  --ink2: #16181d;
+  --ink3: #16181d;
+  --ink4: #16181d;
+  --ink5: #16181d;
+  --ink6: #ffffff;
+  --radius: 10px;
+  --who: 17rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8eaf0;
+    --quiet: #9aa2b4;
+    --line: #2c313c;
+    --page: #14161b;
+    --card: #1b1e25;
+    --accent: #8ab0ff;
+    --band: #232833;
+    --series: #3987e5;
+    --deemph: #626b7d;
+    --mid: #383835;
+    --low3: #86b6ef;
+    --low2: #3987e5;
+    --low1: #1c5cab;
+    --high1: #8a3535;
+    --high2: #c14a4a;
+    --high3: #e66767;
+    --ink0: #16181d;
+    --ink1: #16181d;
+    --ink2: #ffffff;
+    --ink3: #ffffff;
+    --ink4: #ffffff;
+    --ink5: #ffffff;
+    --ink6: #16181d;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.top { padding: 1.25rem 1.25rem 0.5rem; }
+h1 { margin: 0; font-size: 1.4rem; letter-spacing: -0.01em; }
+.lede { margin: 0.2rem 0 0; color: var(--quiet); font-size: 0.9rem; }
+a { color: var(--accent); }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: end;
+  padding: 0.75rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.control { display: grid; gap: 0.15rem; }
+.control span {
+  color: var(--quiet);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+select, button {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+select { max-width: 22rem; }
+button:hover, select:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { padding: 1rem 1.25rem 1rem; }
+.card {
+  padding: 1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow-x: auto;
+}
+.card h2 { margin: 0; font-size: 1rem; }
+.card .sub { margin: 0.15rem 0 1rem; color: var(--quiet); font-size: 0.82rem; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  margin: 0 0 0.9rem;
+  color: var(--quiet);
+  font-size: 0.78rem;
+}
+.legend i {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.3rem;
+  border-radius: 3px;
+  vertical-align: -0.12rem;
+}
+.legend .dot { border-radius: 50%; width: 0.6rem; height: 0.6rem; }
+.note { margin: 1rem 0 0; color: var(--quiet); font-size: 0.8rem; }
+#pack:empty { display: none; }
+.cost {
+  margin: 1rem 1.25rem 3rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 0.85rem;
+}
+.cost h2 { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--quiet); }
+.cost p { margin: 0 0 0.5rem; }
+.cost p:last-child { margin-bottom: 0; }
+.cost b { font-weight: 600; }
+#tip {
+  position: fixed;
+  z-index: 9;
+  max-width: 22rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.16);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+#tip[hidden] { display: none; }
+#tip b { display: block; }
+#tip span { display: block; color: var(--quiet); }
+table { border-collapse: collapse; font-size: 0.82rem; }
+th, td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+thead th { color: var(--quiet); font-size: 0.76rem; vertical-align: bottom; }
+tbody tr:hover { background: var(--band); }
+th.who, td.who { position: sticky; left: 0; background: var(--card); }
+tbody tr:hover th.who, tbody tr:hover td.who { background: var(--band); }
+.who b { font-weight: 600; }
+.who .variant { color: var(--quiet); font-weight: 400; }
+.who .size { color: var(--deemph); font-size: 0.75rem; }
+a.what { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--quiet); }
+a.what:hover, a.what:focus { color: var(--accent); border-bottom-color: var(--accent); }
+
+main { margin: 0 1.25rem 3rem; display: grid; gap: 1rem; max-width: 60rem; }
+.card h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+blockquote { margin: 0 0 0.6rem; padding-left: 0.9rem; border-left: 3px solid var(--line);
+  font-size: 0.95rem; }
+.attrib { margin: 0; color: var(--quiet); font-size: 0.78rem; }
+.attrib a { color: var(--accent); }
+table.grid { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+table.grid th, table.grid td { padding: 0.28rem 0.5rem; border-bottom: 1px solid var(--line);
+  text-align: right; }
+table.grid th[scope=row], table.grid thead th:first-child { text-align: left; }
+table.grid thead th { color: var(--quiet); font-size: 0.78rem; }
+table.grid td.none { color: var(--quiet); }
+ul.caveats { margin: 0; padding-left: 1.1rem; font-size: 0.85rem; }
+ul.caveats li { margin-bottom: 0.45rem; }
+.empty { color: var(--quiet); font-size: 0.85rem; margin: 0; }
+.tag { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 3px;
+  background: var(--band); color: var(--quiet); font-size: 0.72rem; margin-left: 0.3rem; }
+.index { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+.index th, .index td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line);
+  text-align: left; vertical-align: top; }
+.index td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.index a { color: var(--accent); text-decoration: none; }
+.index a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Every nutrient</h1>
+  <p class="lede">69 names over 120 articles collected on 13 September 2026. <a href="index.html">Every nutrient</a> ·
+    <a href="../index.html">The list</a> · <a href="../compare.html">Compare</a>.</p>
+</header>
+<main><section class="card"><h2>69 names</h2><table class="index"><thead><tr><th>Nutrient</th><th>What it is</th><th>Packs</th><th>Breast milk</th><th>Charted</th></tr></thead><tbody><tr><td><a href="brennwert.html">Brennwert</a></td><td>Chemical energy animals derive from food</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="calcium.html">Calcium</a></td><td>Chemical element with atomic number 20 (Ca)</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="eisen.html">Eisen</a></td><td>Chemical element with atomic number 26 (Fe)</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="eiweiss.html">Eiweiß</a></td><td>Nutrient for the human body</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="fett.html">Fett</a></td><td>Esters of fatty acid or triglycerides</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="kohlenhydrate.html">Kohlenhydrate</a></td><td>Organic compound that consists only of carbon, hydrogen, and oxygen</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="davon-zucker.html">davon Zucker</a></td><td>Sweet-tasting, water-soluble carbohydrates</td><td class="num">123</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-b-12.html">Vitamin B 12</a></td><td>Class of vitamins</td><td class="num">122</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-c.html">Vitamin C</a></td><td>Essential nutrient found in citrus fruits and other foods</td><td class="num">121</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-d.html">Vitamin D</a></td><td>Essential nutrient</td><td class="num">120</td><td>yes</td><td>yes</td></tr><tr><td><a href="davon-gesattigte-fettsauren.html">davon gesättigte Fettsäuren</a></td><td>Fat in which the fatty acid chains have all or predominantly single bonds</td><td class="num">120</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-b-2-riboflavin.html">Vitamin B 2, Riboflavin</a></td><td>Vitamin</td><td class="num">119</td><td>yes</td><td>yes</td></tr><tr><td><a href="jod.html">Jod</a></td><td>Chemical element with atomic number 53 (I)</td><td class="num">118</td><td>yes</td><td>yes</td></tr><tr><td><a href="davon-mehrfach-ungesattigte-fettsauren.html">davon mehrfach ungesättigte Fettsäuren</a></td><td>Type of fatty acid defined by molecular bonds</td><td class="num">118</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-a.html">Vitamin A</a></td><td>Essential nutrient</td><td class="num">117</td><td>yes</td><td>yes</td></tr><tr><td><a href="zink.html">Zink</a></td><td>Chemical element with atomic number 30 (Zn)</td><td class="num">116</td><td>yes</td><td>yes</td></tr><tr><td><a href="phosphor.html">Phosphor</a></td><td>Chemical element with atomic number 15 (P)</td><td class="num">114</td><td>yes</td><td>yes</td></tr><tr><td><a href="biotin.html">Biotin</a></td><td>Vitamin</td><td class="num">113</td><td>yes</td><td>yes</td></tr><tr><td><a href="kalium.html">Kalium</a></td><td>Chemical element with atomic number 19 (K)</td><td class="num">112</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-b-1-thiamin.html">Vitamin B 1, Thiamin</a></td><td>Vitamin</td><td class="num">112</td><td>yes</td><td>yes</td></tr><tr><td><a href="natrium.html">Natrium</a></td><td>Chemical element with atomic number 11 (Na)</td><td class="num">111</td><td>yes</td><td>yes</td></tr><tr><td><a href="kupfer.html">Kupfer</a></td><td>Chemical element with atomic number 29 (Cu)</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="magnesium.html">Magnesium</a></td><td>Chemical element with atomic number 12 (Mg)</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="niacin.html">Niacin</a></td><td>Vitamer of Vitamin B3</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="pantothensaure.html">Pantothensäure</a></td><td>Vitamin</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="selen.html">Selen</a></td><td>Chemical element with atomic number 34 (Se)</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-b-6.html">Vitamin B 6</a></td><td>Class of vitamins</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-e.html">Vitamin E</a></td><td>Class of 8 chemically related vitamins</td><td class="num">110</td><td>yes</td><td>yes</td></tr><tr><td><a href="fluorid.html">Fluorid</a></td><td>Ion of fluorine</td><td class="num">109</td><td>yes</td><td>yes</td></tr><tr><td><a href="mangan.html">Mangan</a></td><td>Chemical element with atomic number 25 (Mn)</td><td class="num">107</td><td>yes</td><td>yes</td></tr><tr><td><a href="vitamin-k.html">Vitamin K</a></td><td>Fat-soluble vitamers</td><td class="num">107</td><td>yes</td><td>yes</td></tr><tr><td><a href="chlorid.html">Chlorid</a></td><td>Main anion present in sea water</td><td class="num">106</td><td>yes</td><td>yes</td></tr><tr><td><a href="docosahexaensaure-dha.html">Docosahexaensäure (DHA)</a></td><td>22-Carbon polyunsaturated fatty acid</td><td class="num">103</td><td>yes</td><td>yes</td></tr><tr><td><a href="davon-einfach-ungesattigte-fettsauren.html">davon einfach ungesättigte Fettsäuren</a></td><td>Fatty acid</td><td class="num">93</td><td>yes</td><td>yes</td></tr><tr><td><a href="alpha-linolensaure.html">Alpha-Linolensäure</a></td><td>18-Carbon polyunsaturated fatty acid</td><td class="num">91</td><td>yes</td><td>yes</td></tr><tr><td><a href="ballaststoffe.html">Ballaststoffe</a></td><td>Portion of plant-derived food that cannot be completely digested</td><td class="num">83</td><td>—</td><td>yes</td></tr><tr><td><a href="folsaure.html">Folsäure</a></td><td>Vitamin</td><td class="num">80</td><td>—</td><td>—</td></tr><tr><td><a href="laktose.html">Laktose</a></td><td>Carbohydrate</td><td class="num">80</td><td>yes</td><td>yes</td></tr><tr><td><a href="arachidonsaure.html">Arachidonsäure</a></td><td>20-Carbon polyunsaturated fatty acid</td><td class="num">78</td><td>yes</td><td>yes</td></tr><tr><td><a href="cholin-gesamt.html">Cholin, gesamt</a></td><td>Chemical compound and essential nutrient</td><td class="num">76</td><td>yes</td><td>yes</td></tr><tr><td><a href="linolsaure.html">Linolsäure</a></td><td>18-Carbon polyunsaturated fatty acid</td><td class="num">76</td><td>yes</td><td>yes</td></tr><tr><td><a href="inositol.html">Inositol</a></td><td>Carbocyclic sugar</td><td class="num">75</td><td>yes</td><td>yes</td></tr><tr><td><a href="carnitin.html">Carnitin</a></td><td>Compound active in mitochondria</td><td class="num">74</td><td>yes</td><td>yes</td></tr><tr><td><a href="galactooligosaccharide-gos.html">Galactooligosaccharide (GOS)</a></td><td>Class of prebiotics</td><td class="num">50</td><td>—</td><td>—</td></tr><tr><td><a href="folat-gesamt.html">Folat, gesamt</a></td><td>Vitamin</td><td class="num">41</td><td>yes</td><td>—</td></tr><tr><td><a href="taurin.html">Taurin</a></td><td>Aminosulfonic acid</td><td class="num">40</td><td>yes</td><td>—</td></tr><tr><td><a href="salz.html">Salz</a></td><td>Mineral composed of sodium chloride</td><td class="num">38</td><td>yes</td><td>—</td></tr><tr><td><a href="davon-milchzucker.html">davon Milchzucker</a></td><td>Carbohydrate</td><td class="num">31</td><td>—</td><td>—</td></tr><tr><td><a href="davon-starke.html">davon Stärke</a></td><td>Glucose polymer used as energy store in plants</td><td class="num">24</td><td>—</td><td>—</td></tr><tr><td><a href="chrom.html">Chrom</a></td><td>Chemical element with atomic number 24 (Cr)</td><td class="num">22</td><td>yes</td><td>—</td></tr><tr><td><a href="fructooligosaccharide.html">Fructooligosaccharide</a></td><td>Oligosaccharide fructans</td><td class="num">22</td><td>—</td><td>—</td></tr><tr><td><a href="molybdan.html">Molybdän</a></td><td>Chemical element with atomic number 42 (Mo)</td><td class="num">22</td><td>yes</td><td>—</td></tr><tr><td><a href="2-fucosyllactose-2-fl.html">2&#x27;-Fucosyllactose (2&#x27;-FL)</a></td><td>Chemical compound</td><td class="num">21</td><td>yes</td><td>—</td></tr><tr><td><a href="3-sialyllactose.html">3&#x27;-Sialyllactose</a></td><td>Group of compounds</td><td class="num">16</td><td>yes</td><td>—</td></tr><tr><td><a href="lcps.html">LCPs</a></td><td>Type of fatty acid defined by molecular bonds</td><td class="num">14</td><td>—</td><td>—</td></tr><tr><td><a href="6-sialyllactose.html">6&#x27;-Sialyllactose</a></td><td>Group of compounds</td><td class="num">13</td><td>yes</td><td>—</td></tr><tr><td><a href="difucosyllactose-dfl.html">Difucosyllactose (DFL)</a></td><td>Group of compounds</td><td class="num">11</td><td>—</td><td>—</td></tr><tr><td><a href="nukleotid.html">Nukleotid</a></td><td>Biological molecules constituting nucleic acids</td><td class="num">10</td><td>—</td><td>—</td></tr><tr><td><a href="lacto-n-tetraose-lnt.html">Lacto-N-Tetraose (LNT)</a></td><td>Group of compounds</td><td class="num">5</td><td>yes</td><td>—</td></tr><tr><td><a href="humane-milch-oligosaccharide-hmo.html">Humane Milch-Oligosaccharide (HMO)</a></td><td>Group of compounds</td><td class="num">4</td><td>yes</td><td>—</td></tr><tr><td><a href="casein.html">Casein</a></td><td>Family of proteins found in milk</td><td class="num">3</td><td>—</td><td>—</td></tr><tr><td><a href="galactose.html">Galactose</a></td><td>Monosaccharide sugar</td><td class="num">3</td><td>—</td><td>—</td></tr><tr><td><a href="lacto-n-neotetraose-lnnt.html">Lacto-N-Neotetraose (LNnt)</a></td><td>Group of compounds</td><td class="num">3</td><td>yes</td><td>—</td></tr><tr><td><a href="3-fucosyllactose-3-fl.html">3-Fucosyllactose (3-FL)</a></td><td>Group of compounds</td><td class="num">2</td><td>yes</td><td>—</td></tr><tr><td><a href="laktase.html">Laktase</a></td><td>Milk-sugar digesting enzyme</td><td class="num">1</td><td>—</td><td>—</td></tr><tr><td><a href="maltodextrin.html">Maltodextrin</a></td><td>Polysaccharide of glucose</td><td class="num">1</td><td>—</td><td>—</td></tr><tr><td><a href="mittelkettige-triglyceride.html">Mittelkettige Triglyceride</a></td><td>Medium-chain fatty acids</td><td class="num">1</td><td>—</td><td>—</td></tr><tr><td><a href="molkenprotein.html">Molkenprotein</a></td><td>Protein supplement</td><td class="num">1</td><td>—</td><td>—</td></tr><tr><td><a href="folat.html">Folat</a></td><td>Vitamin</td><td class="num">0</td><td>—</td><td>yes</td></tr></tbody></table></section></main>
+</body>
+</html>

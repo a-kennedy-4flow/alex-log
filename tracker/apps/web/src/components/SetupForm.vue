@@ -202,9 +202,11 @@ async function save(): Promise<void> {
   margin-top: 0;
 }
 
+/* The minimum gives way once the page is narrower than one column. Otherwise a
+   260px track holds its width against a 236px box and the sheet clips it. */
 .fields {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: var(--gap);
 }
 

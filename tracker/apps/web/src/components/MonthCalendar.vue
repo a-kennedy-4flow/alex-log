@@ -402,13 +402,18 @@ td.flagged {
   box-shadow: inset 3px 0 0 var(--orange);
 }
 
+/*
+ * Padding is 6px on the side rather than 10px. A cell at a 1280px window is
+ * 86px wide and every pixel it gives up is a pixel of the workday id.
+ */
 .cell {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
+  min-width: 0;
   min-height: 108px;
-  padding: 9px 10px;
+  padding: 8px 6px;
   border: 0;
   background: none;
   color: inherit;
@@ -420,11 +425,13 @@ td.flagged {
   display: flex;
   align-items: baseline;
   gap: 7px;
+  min-width: 0;
 }
 
 .d {
   font-weight: 700;
   font-size: 16px;
+  flex: none;
 }
 
 /* Weight recedes a non-working day. Colour cannot because Grey fails on a tint. */
@@ -432,17 +439,43 @@ td.off .d {
   font-weight: 400;
 }
 
+/*
+ * `Arbeitswochenende` is one German flag of 17 characters. It needs 97px and a
+ * cell holds 64px beside the date so it breaks inside the word. `MonthGrid.vue`
+ * breaks the same flag for the same reason.
+ */
 .lab {
   font-size: 11px;
   line-height: 1.25;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .cell .chips {
   display: grid;
   gap: 5px;
+  min-width: 0;
 }
 
-/* Decision 2 option B. A Warm Grey chip with a theme line down its edge. */
+/*
+ * Decision 2 option B. A Warm Grey chip with a theme line down its edge.
+ *
+ * Decision 4 option F. The cell chip is smaller than the legend chip and it
+ * wraps rather than cutting the id. A seven digit id with a day value needs
+ * 101px at 12px type and the cell gives 83px at 1440px and 65px at 1280px. At
+ * 11px with 6px of padding the id alone needs 46px so it stays whole and the
+ * day value takes a second line under it. The board is the one view that shows
+ * the whole month so it grows downwards rather than scrolling sideways as
+ * `MonthGrid.vue` does. See `mockups/d4-tight.html` and the five it beat.
+ */
+.cell .chip {
+  flex-wrap: wrap;
+  row-gap: 0;
+  font-size: 11px;
+  padding: 3px 6px;
+  gap: 5px;
+}
+
 .chip i {
   margin-left: auto;
   font-style: normal;

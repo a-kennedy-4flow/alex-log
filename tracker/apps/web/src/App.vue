@@ -261,8 +261,11 @@ footer :deep(a:hover) {
   background: var(--warm-grey);
 }
 
+/* The bar wraps so the nav has to wrap with it. Otherwise one row of links
+   holds 400px and runs off a narrow window. */
 nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 2px;
 }
 

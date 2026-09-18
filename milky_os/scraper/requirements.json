@@ -1,0 +1,385 @@
+{
+ "built_on": "2026-09-14",
+ "basis": "pro 100 ml",
+ "density": 1.031,
+ "volumes": [
+  {
+   "window": "1-3.49 mo",
+   "grams": 818,
+   "sd": 152,
+   "n": 558
+  },
+  {
+   "window": "3.5-5.99 mo",
+   "grams": 833,
+   "sd": 186,
+   "n": 464
+  },
+  {
+   "window": "6-8.5 mo",
+   "grams": 691,
+   "sd": 206,
+   "n": 436
+  },
+  {
+   "window": "1-8.5 mo",
+   "grams": 781,
+   "sd": 193,
+   "n": 1458
+  }
+ ],
+ "volume_used": {
+  "window": "1-3.49 mo",
+  "grams": 818,
+  "millilitres": 793.4044616876819
+ },
+ "requirements": {
+  "Eiweiß": {
+   "name": "Eiweiß",
+   "as_printed": "Protein (g/d)",
+   "unit": "g",
+   "milk_a_day": 7.1,
+   "needs_a_day": 9.1,
+   "source": "milq-macro",
+   "needs_per_100_ml": 1.1469559902200488,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Kohlenhydrate": {
+   "name": "Kohlenhydrate",
+   "as_printed": "Carbohydrate (g/d)",
+   "unit": "g",
+   "milk_a_day": 57.1,
+   "needs_a_day": 60.0,
+   "source": "milq-macro",
+   "needs_per_100_ml": 7.5623471882640585,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Fett": {
+   "name": "Fett",
+   "as_printed": "Fat (g/d)",
+   "unit": "g",
+   "milk_a_day": 26.0,
+   "needs_a_day": 31.0,
+   "source": "milq-macro",
+   "needs_per_100_ml": 3.9072127139364303,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Brennwert": {
+   "name": "Brennwert",
+   "as_printed": "Energy (kcal/d)",
+   "unit": "kcal",
+   "milk_a_day": 487.5,
+   "needs_a_day": 438.0,
+   "source": "milq-macro",
+   "needs_per_100_ml": 55.20513447432763,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Natrium": {
+   "name": "Natrium",
+   "as_printed": "Sodium (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 96.0,
+   "needs_a_day": 110.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 13.864303178484107,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Kalium": {
+   "name": "Kalium",
+   "as_printed": "Potassium (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 452.0,
+   "needs_a_day": 400.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 50.41564792176039,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Magnesium": {
+   "name": "Magnesium",
+   "as_printed": "Magnesium (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 27.0,
+   "needs_a_day": 30.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 3.7811735941320292,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Phosphor": {
+   "name": "Phosphor",
+   "as_printed": "Phosphorus (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 125.0,
+   "needs_a_day": 100.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 12.603911980440097,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Calcium": {
+   "name": "Calcium",
+   "as_printed": "Calcium (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 239.0,
+   "needs_a_day": 200.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 25.207823960880194,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Eisen": {
+   "name": "Eisen",
+   "as_printed": "Iron (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 0.2,
+   "needs_a_day": 0.27,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 0.034030562347188265,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Kupfer": {
+   "name": "Kupfer",
+   "as_printed": "Copper (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 0.22,
+   "needs_a_day": 0.2,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 0.025207823960880196,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Zink": {
+   "name": "Zink",
+   "as_printed": "Zinc (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 1.1,
+   "needs_a_day": 2.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 0.25207823960880194,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Selen": {
+   "name": "Selen",
+   "as_printed": "Selenium (μg/d)",
+   "unit": "μg",
+   "milk_a_day": 7.3,
+   "needs_a_day": 15.0,
+   "source": "milq-mineral",
+   "needs_per_100_ml": 1.8905867970660146,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Vitamin A": {
+   "name": "Vitamin A",
+   "as_printed": "Vitamin A (RAE, μg/d)",
+   "unit": "μg",
+   "milk_a_day": 389.0,
+   "needs_a_day": 400.0,
+   "source": "milq-fat-soluble",
+   "needs_per_100_ml": 50.41564792176039,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Vitamin E": {
+   "name": "Vitamin E",
+   "as_printed": "ɑ-tocopherol (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 3.0,
+   "needs_a_day": 4.0,
+   "source": "milq-fat-soluble",
+   "needs_per_100_ml": 0.5041564792176039,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Vitamin D": {
+   "name": "Vitamin D",
+   "as_printed": "Vitamin D (ARA, IU/d)",
+   "unit": "µg",
+   "milk_a_day": 0.610575,
+   "needs_a_day": 10.0,
+   "source": "milq-fat-soluble",
+   "converted": "from international units at 0,025 µg per IU",
+   "needs_per_100_ml": 1.2603911980440097,
+   "set_from": "the serum 25(OH)D a child has to hold",
+   "circular": false
+  },
+  "Vitamin B 1, Thiamin": {
+   "name": "Vitamin B 1, Thiamin",
+   "as_printed": "B1 (μg/d)",
+   "unit": "μg",
+   "milk_a_day": 90.0,
+   "needs_a_day": 200.0,
+   "source": "milq-b",
+   "needs_per_100_ml": 25.207823960880194,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Vitamin B 2, Riboflavin": {
+   "name": "Vitamin B 2, Riboflavin",
+   "as_printed": "B2 (μg/d)",
+   "unit": "μg",
+   "milk_a_day": 87.0,
+   "needs_a_day": 300.0,
+   "source": "milq-b",
+   "needs_per_100_ml": 37.81173594132029,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Niacin": {
+   "name": "Niacin",
+   "as_printed": "B3 (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 1.2,
+   "needs_a_day": 2.0,
+   "source": "milq-b",
+   "needs_per_100_ml": 0.25207823960880194,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Pantothensäure": {
+   "name": "Pantothensäure",
+   "as_printed": "Pantothenic acid (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 2.0,
+   "needs_a_day": 1.7,
+   "source": "milq-b",
+   "needs_per_100_ml": 0.21426650366748165,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Vitamin B 6": {
+   "name": "Vitamin B 6",
+   "as_printed": "B6 (μg/d)",
+   "unit": "μg",
+   "milk_a_day": 65.0,
+   "needs_a_day": 100.0,
+   "source": "milq-b",
+   "needs_per_100_ml": 12.603911980440097,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Biotin": {
+   "name": "Biotin",
+   "as_printed": "Biotin (μg/d)",
+   "unit": "μg",
+   "milk_a_day": 6.4,
+   "needs_a_day": 5.0,
+   "source": "milq-b",
+   "needs_per_100_ml": 0.6301955990220048,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Vitamin B 12": {
+   "name": "Vitamin B 12",
+   "as_printed": "B12 (μg/d)",
+   "unit": "μg",
+   "milk_a_day": 0.25,
+   "needs_a_day": 0.4,
+   "source": "milq-b",
+   "needs_per_100_ml": 0.05041564792176039,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  },
+  "Cholin, gesamt": {
+   "name": "Cholin, gesamt",
+   "as_printed": "Choline (mg/d)",
+   "unit": "mg",
+   "milk_a_day": 94.0,
+   "needs_a_day": 125.0,
+   "source": "milq-b",
+   "needs_per_100_ml": 15.754889975550121,
+   "set_from": "what breast milk was assumed to hold",
+   "circular": true
+  }
+ },
+ "circular": {
+  "says": "The adequate intake for this age was itself calculated from an assumed breast milk composition times an assumed intake of 0,78 litres a day. A gap between the milk and the figure is evidence about the assumption rather than about the milk.",
+  "quote": "Depending on the vitamin in question, the studies used for setting the AIs included as few as 5 women (riboflavin) and no more than 111 women (vitamin B12) and were conducted between 1951 and 1997. Thus, the current AIs are based on data from outdated studies with few participants, indicating the need for revision.",
+  "source": "milq-b"
+ },
+ "set_from_outcome": {
+  "Vitamin D": {
+   "set_from": "the serum 25(OH)D a child has to hold",
+   "says": "The main source of vitamin D is sunlight on skin and the diet is the second source. Human milk alone does not provide enough of it whatever the mother eats. The remedy is a supplement for the child rather than a different milk.",
+   "quote": "The primary source of vitamin D is cutaneous synthesis upon exposure to ultraviolet B (UVB) light; dietary intake is a secondary source. Human milk alone does not provide sufficient vitamin D to meet infant needs. The IOM set the AI for vitamin D to 400 IU/d (10 microgram/d) for infants under 12 mo based on the maintenance of serum 25(OH)D concentration over 30 nmol/L; clearly, human milk provides only a small fraction of this requirement.",
+   "source": "milq-fat-soluble"
+  },
+  "Vitamin K": {
+   "set_from": "the bleeding it prevents",
+   "says": "The concentration in milk is very low and the remedy is an injection after birth rather than a different milk. MILQ left it out of its reference values for that reason.",
+   "quote": "Vitamin K was not included in the analyses because milk concentration is very low, and the recommendation is to provide an intramuscular injection to infants after birth.",
+   "source": "milq-fat-soluble"
+  }
+ },
+ "absorption": {
+  "Eisen": {
+   "milk": 47.0,
+   "formula": 4.1,
+   "measured": "stable iron isotope dilution from birth to 6 months",
+   "says": "Breastfed infants took in 0,27 mg a day and absorbed 0,128. Formula fed infants took in 11,19 mg a day and absorbed 0,457. Formula carries 41 times the iron and delivers 3,6 times the absorbed iron.",
+   "source": "stoffel",
+   "also": "saarinen"
+  },
+  "Zink": {
+   "milk": 54.0,
+   "formula": null,
+   "measured": "stable zinc isotope dilution in exclusively breastfed infants",
+   "says": "Fractional absorption from human milk was 0,54. No figure for a powder is carried here so the two are not put side by side.",
+   "source": "krebs"
+  },
+  "Calcium": {
+   "milk": null,
+   "formula": null,
+   "measured": "a systematic review of mass balance and isotope studies",
+   "says": "Net calcium retention averaged 40,4% over the first six months. The review finds intake from human milk may lead to greater absorption and retention than formula but publishes no pair of figures.",
+   "source": "shertukde"
+  }
+ },
+ "sources": {
+  "stoffel": {
+   "citation": "Stoffel NU, Cepeda-López AC, Zeder C, Herter-Aeberli I, Zimmermann MB. Measurement of iron absorption and iron gains from birth to 6 months in breastfed and formula-fed infants using iron isotope dilution. Sci Adv. 2024;10(28):eado4262.",
+   "doi": "10.1126/sciadv.ado4262",
+   "pmcid": "PMC11235178",
+   "quote": "In breastfed (BF, n = 8), formula-fed (FF, n = 7), or mixed feeding (MF, n = 8) infants, median iron intake was 0.27, 11.19, and 4.13 mg/day; iron absorbed was 0.128, 0.457, and 0.391 mg/day."
+  },
+  "saarinen": {
+   "citation": "Saarinen UM, Siimes MA, Dallman PR. Iron absorption in infants: high bioavailability of breast milk iron as indicated by the extrinsic tag method of iron absorption and by the concentration of serum ferritin. J Pediatr. 1977;91(1):36-39.",
+   "doi": "10.1016/s0022-3476(77)80439-3",
+   "quote": "Breast-fed infants absorbed an average of 49% of a trace dose of extrinsic iron, in contrast to about 10% absorbed from cow milk under similar conditions."
+  },
+  "krebs": {
+   "citation": "Krebs NF, Reidinger CJ, Miller LV, Hambidge KM. Zinc homeostasis in breast-fed infants. Pediatr Res. 1996;39(4 Pt 1):661-665.",
+   "doi": "10.1203/00006450-199604000-00017",
+   "quote": "Results included a mean dietary zinc intake of 17.8 +/- 6.6 mumol/d; fractional absorption of 0.54 +/- 0.075; and total absorbed zinc of 9.5 +/- 3.5 mumol/d."
+  },
+  "shertukde": {
+   "citation": "Shertukde SP, Cahoon DS, Prado B, Cara KC, Chung M. Calcium Intake and Metabolism in Infants and Young Children: A Systematic Review of Balance Studies. Adv Nutr. 2022;13(5):1529-1553.",
+   "doi": "10.1093/advances/nmac003",
+   "pmcid": "PMC9526821",
+   "quote": "The random-effects model meta-regression on 42 mass balance study arms showed an average net calcium retention of 40.4% among infants aged 0-6 mo."
+  },
+  "milq-b": {
+   "citation": "Allen LH, Shahab-Ferdows S, Moore SE, Peerson JM, Kac G, Figueiredo AC, et al. Reference Values for B Vitamins in Human Milk: The Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100500.",
+   "doi": "10.1016/j.advnut.2025.100500",
+   "pmcid": "PMC12673392"
+  },
+  "milq-fat-soluble": {
+   "citation": "Kac G, Jones KS, Meadows SR, Hampel D, Islam MM, Mølgaard C, et al. Reference Values for Fat-Soluble Vitamins in Human Milk: The Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100484.",
+   "doi": "10.1016/j.advnut.2025.100484",
+   "pmcid": "PMC12592235"
+  },
+  "milq-volume": {
+   "citation": "Dror DK, et al. Breast Milk Intake from 1 to 8.5 Months of Lactation in the Multisite Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1).",
+   "pmcid": "PMC12673386",
+   "quote": "Milk intake was 818 g/d at 1-3.49 mo, 833 g/d at 3.5-5.99 mo and 691 g/d at 6-8.5 mo over all sites."
+  }
+ }
+}

@@ -210,10 +210,28 @@ button:focus-visible,
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 4px 9px;
   font-size: 12px;
+  /* A flex item refuses to go under its content without this. A chip in a
+     board cell then crosses the rule into the next day. */
+  min-width: 0;
 }
 
+/*
+ * The last guard on the workday id. A seven digit id needs 50px and a board
+ * cell at a 1280px window gives the chip 46px. The id is cut rather than drawn
+ * outside the cell. Every width the board is usable at keeps it whole because
+ * the cell chip wraps first. See `MonthCalendar.vue`.
+ */
 .chip b {
   font-weight: 700;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The day value is three characters and never gives any of them up. */
+.chip i {
+  flex: none;
 }
 
 .chip.line-0 {

@@ -1,0 +1,996 @@
+{
+ "caption": "Referenzwerte der Muttermilch",
+ "basis": "pro 100 ml",
+ "built_on": "2026-09-14",
+ "density": 1.031,
+ "sources": {
+  "milq-macro": {
+   "citation": "Lewis JI, Dror DK, Hampel D, Kac G, Mølgaard C, Moore SE, et al. Reference Values for Macronutrients in Human Milk: the Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100501.",
+   "doi": "10.1016/j.advnut.2025.100501",
+   "pmcid": "PMC12673390",
+   "table": "Supplementary Table 1, monthly percentile summaries, P50",
+   "measured": "near infrared spectroscopy",
+   "by_month": true
+  },
+  "milq-mineral": {
+   "citation": "Allen LH, Islam MM, Kac G, Michaelsen KF, Moore SE, Andersson M, et al. Reference Values for Minerals in Human Milk: the Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100431.",
+   "doi": "10.1016/j.advnut.2025.100431",
+   "pmcid": "PMC12592237",
+   "table": "Supplementary Table 1, monthly percentile summaries, P50",
+   "measured": "inductively coupled plasma mass spectrometry",
+   "corrigendum": "Adv Nutr. 2025;17(2):100578 doi 10.1016/j.advnut.2025.100578 reprints the copper figures 8A and 8B. No published concentration changed.",
+   "by_month": true
+  },
+  "milq-fat-soluble": {
+   "citation": "Kac G, Jones KS, Meadows SR, Hampel D, Islam MM, Mølgaard C, et al. Reference Values for Fat-Soluble Vitamins in Human Milk: The Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100484.",
+   "doi": "10.1016/j.advnut.2025.100484",
+   "pmcid": "PMC12592235",
+   "table": "Supplementary Table 1, monthly percentile summaries, P50",
+   "measured": "high performance liquid chromatography and LC-MS/MS",
+   "by_month": true
+  },
+  "milq-b": {
+   "citation": "Allen LH, Shahab-Ferdows S, Moore SE, Peerson JM, Kac G, Figueiredo AC, et al. Reference Values for B Vitamins in Human Milk: The Mothers, Infants and Lactation Quality (MILQ) Study. Adv Nutr. 2025;16(Suppl 1):100500.",
+   "doi": "10.1016/j.advnut.2025.100500",
+   "pmcid": "PMC12673392",
+   "table": "Supplementary Table 1, monthly percentile summaries, P50",
+   "measured": "UPLC-MS/MS, HPLC-fluorescence and chemiluminescence immunoassay",
+   "by_month": true
+  },
+  "hopperton": {
+   "citation": "Hopperton KE, Thavarajah S, Ahuja J, Casavale K, Chakrabarti S, Gibbs K, et al. Literature-based human milk nutrient composition values for use in North American food composition databases. Am J Clin Nutr. 2026;123(5):101252.",
+   "doi": "10.1016/j.ajcnut.2026.101252",
+   "pmcid": "PMC13197950",
+   "table": "Table 1, pooled mean per 100 g",
+   "period": "21 d to 7 mo of lactation",
+   "by_month": false
+  },
+  "hmo-review": {
+   "citation": "Kenney AD, Sabag-Daigle A, Stoecklein MM, Buck RH, Reverri EJ. A review of human milk oligosaccharide concentrations of breast milk for infants and young children through 24 months of age. Front Pediatr. 2025;13:1649609.",
+   "doi": "10.3389/fped.2025.1649609",
+   "pmcid": "PMC12443758",
+   "table": "Table 2, concentration of the six core HMOs across 13 studies",
+   "by_month": true
+  },
+  "lactmed-c": {
+   "citation": "Vitamin C. Drugs and Lactation Database (LactMed) [Internet]. Bethesda (MD): National Institute of Child Health and Human Development; 2006-. Updated 2024 Jun 15.",
+   "url": "https://www.ncbi.nlm.nih.gov/books/NBK544628/",
+   "quote": "Average mature milk vitamin C concentrations are 50 to 90 mg/L in mothers consuming adequate vitamin C in their diet.",
+   "by_month": false
+  },
+  "efsa-fluoride": {
+   "citation": "EFSA Scientific Committee. Updated consumer risk assessment of fluoride in food and drinking water including the contribution from other sources of oral exposure. EFSA J. 2025;23(7):e9478.",
+   "doi": "10.2903/j.efsa.2025.9478",
+   "pmcid": "PMC12280829",
+   "quote": "Mothers (n = 125; drinking water fluoride concentration was 0.3 mg/L) had a mean plasma fluoride concentration of 17 microgram/L and a mean breast milk fluoride concentration of 6 microgram/L (Sener et al., 2007).",
+   "by_month": false
+  },
+  "kim-taurine": {
+   "citation": "Kim ES, Kim JS, Cho KH, Lee KH, Tamari Y. Quantitation of taurine and selenium levels in human milk and estimated intake of taurine by breast-fed infants during the early periods of lactation. Adv Exp Med Biol. 1998;442:477-486.",
+   "doi": "10.1007/978-1-4899-0117-0_57",
+   "quote": "The concentration of taurine (406 +/- 174 nmol/ml) in colostrum was significantly higher than that (335 +/- 115 nmol/ml) in mature milk.",
+   "by_month": true
+  },
+  "yoshida": {
+   "citation": "Yoshida M, Takada A, Hirose J, Endo M, Fukuwatari T, Shibata K. Molybdenum and chromium concentrations in breast milk from Japanese women. Biosci Biotechnol Biochem. 2008;72(8):2247-2250.",
+   "doi": "10.1271/bbb.80283",
+   "quote": "For Mo the range and median were <0.1 to 25.91 and 3.18 ng/ml. For Cr the range and median were <0.1 to 18.67 and 1.00 ng/ml. 79 samples by ICP-MS.",
+   "by_month": false
+  },
+  "ogasa": {
+   "citation": "Ogasa K, Kuboyama M, Kiyosawa I, Suzuki T, Itoh M. The content of free and bound inositol in human and cow's milk. J Nutr Sci Vitaminol. 1975;21(2):129-135.",
+   "doi": "10.3177/jnsv.21.129",
+   "quote": "The content of total myoinositol in human milk was 32.7 +/- 15.2 mg/100 ml in colostrum, 17.8 +/- 1.9 mg/100 ml in transitional milk, and 14.9 +/- 3.1 mg/100 ml in mature milk.",
+   "by_month": true
+  },
+  "sandor": {
+   "citation": "Sandor A, Pecsuvac K, Kerner J, Alkonyi I. On carnitine content of the human breast milk. Pediatr Res. 1982;16(2):89-91.",
+   "doi": "10.1203/00006450-198202000-00001",
+   "quote": "The concentration of total carnitine in human breast milk remained at a constant mean level near 62.9 nmoles/ml during the first 21 days postpartum. The carnitine level fell significantly to 35.2 +/- 1.26 nmoles/ml until the 40-50th day.",
+   "by_month": true
+  }
+ },
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12673385/",
+ "windows": [
+  {
+   "key": "4-17 d",
+   "name": "4. bis 17. Tag",
+   "from_day": 4,
+   "to_day": 17
+  },
+  {
+   "key": "18-31 d",
+   "name": "18. bis 31. Tag",
+   "from_day": 18,
+   "to_day": 31
+  },
+  {
+   "key": "1-2 m",
+   "name": "1. bis 2. Monat",
+   "from_day": 31,
+   "to_day": 61
+  },
+  {
+   "key": "2-3 m",
+   "name": "2. bis 3. Monat",
+   "from_day": 61,
+   "to_day": 91
+  },
+  {
+   "key": "3-4 m",
+   "name": "3. bis 4. Monat",
+   "from_day": 91,
+   "to_day": 122
+  },
+  {
+   "key": "4-5 m",
+   "name": "4. bis 5. Monat",
+   "from_day": 122,
+   "to_day": 152
+  },
+  {
+   "key": "5-6 m",
+   "name": "5. bis 6. Monat",
+   "from_day": 152,
+   "to_day": 183
+  },
+  {
+   "key": "6-7 m",
+   "name": "6. bis 7. Monat",
+   "from_day": 183,
+   "to_day": 213
+  },
+  {
+   "key": "7-8 m",
+   "name": "7. bis 8. Monat",
+   "from_day": 213,
+   "to_day": 243
+  },
+  {
+   "key": "8-8.5 m",
+   "name": "8. bis 8,5. Monat",
+   "from_day": 243,
+   "to_day": 259
+  }
+ ],
+ "nutrients": [
+  {
+   "name": "Brennwert",
+   "source": "milq-macro",
+   "unit": "kJ",
+   "note": "the measured kilocalorie at 4,184 kJ per kcal",
+   "per_100_ml": {
+    "4-17 d": 275.3072,
+    "18-31 d": 269.0312,
+    "1-2 m": 262.33680000000004,
+    "2-3 m": 256.06080000000003,
+    "3-4 m": 252.29520000000002,
+    "4-5 m": 250.20320000000004,
+    "5-6 m": 249.78480000000002,
+    "6-7 m": 249.78480000000002,
+    "7-8 m": 250.20320000000004,
+    "8-8.5 m": 250.62160000000003
+   }
+  },
+  {
+   "name": "Brennwert",
+   "source": "milq-macro",
+   "unit": "kcal",
+   "per_100_ml": {
+    "4-17 d": 65.8,
+    "18-31 d": 64.3,
+    "1-2 m": 62.7,
+    "2-3 m": 61.2,
+    "3-4 m": 60.300000000000004,
+    "4-5 m": 59.800000000000004,
+    "5-6 m": 59.7,
+    "6-7 m": 59.7,
+    "7-8 m": 59.800000000000004,
+    "8-8.5 m": 59.900000000000006
+   }
+  },
+  {
+   "name": "Fett",
+   "source": "milq-macro",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 3.64,
+    "18-31 d": 3.5600000000000005,
+    "1-2 m": 3.4299999999999997,
+    "2-3 m": 3.29,
+    "3-4 m": 3.18,
+    "4-5 m": 3.1300000000000003,
+    "5-6 m": 3.12,
+    "6-7 m": 3.1500000000000004,
+    "7-8 m": 3.18,
+    "8-8.5 m": 3.2
+   }
+  },
+  {
+   "name": "Kohlenhydrate",
+   "source": "milq-macro",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 7.01,
+    "18-31 d": 7.01,
+    "1-2 m": 6.96,
+    "2-3 m": 6.890000000000001,
+    "3-4 m": 6.870000000000001,
+    "4-5 m": 6.88,
+    "5-6 m": 6.88,
+    "6-7 m": 6.859999999999999,
+    "7-8 m": 6.840000000000001,
+    "8-8.5 m": 6.82
+   }
+  },
+  {
+   "name": "davon Zucker",
+   "source": "milq-macro",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 7.01,
+    "18-31 d": 7.01,
+    "1-2 m": 6.96,
+    "2-3 m": 6.890000000000001,
+    "3-4 m": 6.870000000000001,
+    "4-5 m": 6.88,
+    "5-6 m": 6.88,
+    "6-7 m": 6.859999999999999,
+    "7-8 m": 6.840000000000001,
+    "8-8.5 m": 6.82
+   }
+  },
+  {
+   "name": "Laktose",
+   "source": "milq-macro",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 7.01,
+    "18-31 d": 7.01,
+    "1-2 m": 6.96,
+    "2-3 m": 6.890000000000001,
+    "3-4 m": 6.870000000000001,
+    "4-5 m": 6.88,
+    "5-6 m": 6.88,
+    "6-7 m": 6.859999999999999,
+    "7-8 m": 6.840000000000001,
+    "8-8.5 m": 6.82
+   }
+  },
+  {
+   "name": "Eiweiß",
+   "source": "milq-macro",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 1.2460000000000002,
+    "18-31 d": 1.0710000000000002,
+    "1-2 m": 0.9810000000000001,
+    "2-3 m": 0.885,
+    "3-4 m": 0.8210000000000002,
+    "4-5 m": 0.789,
+    "5-6 m": 0.776,
+    "6-7 m": 0.775,
+    "7-8 m": 0.777,
+    "8-8.5 m": 0.78
+   }
+  },
+  {
+   "name": "Natrium",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 21.990000000000002,
+    "18-31 d": 17.23,
+    "1-2 m": 13.980000000000002,
+    "2-3 m": 12.100000000000001,
+    "3-4 m": 11.07,
+    "4-5 m": 10.23,
+    "5-6 m": 9.65,
+    "6-7 m": 9.41,
+    "7-8 m": 9.340000000000002,
+    "8-8.5 m": 9.340000000000002
+   }
+  },
+  {
+   "name": "Salz",
+   "source": "milq-mineral",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.054975,
+    "18-31 d": 0.043075,
+    "1-2 m": 0.03495,
+    "2-3 m": 0.03025,
+    "3-4 m": 0.027675,
+    "4-5 m": 0.025575,
+    "5-6 m": 0.024125,
+    "6-7 m": 0.023525,
+    "7-8 m": 0.023350000000000003,
+    "8-8.5 m": 0.023350000000000003
+   }
+  },
+  {
+   "name": "Kalium",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 66.60000000000001,
+    "18-31 d": 62.1,
+    "1-2 m": 58.400000000000006,
+    "2-3 m": 55.5,
+    "3-4 m": 53.800000000000004,
+    "4-5 m": 52.7,
+    "5-6 m": 52.0,
+    "6-7 m": 51.400000000000006,
+    "7-8 m": 50.900000000000006,
+    "8-8.5 m": 50.5
+   }
+  },
+  {
+   "name": "Magnesium",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 2.94,
+    "18-31 d": 2.92,
+    "1-2 m": 3.0100000000000002,
+    "2-3 m": 3.18,
+    "3-4 m": 3.29,
+    "4-5 m": 3.33,
+    "5-6 m": 3.3100000000000005,
+    "6-7 m": 3.2600000000000002,
+    "7-8 m": 3.2,
+    "8-8.5 m": 3.16
+   }
+  },
+  {
+   "name": "Phosphor",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 16.7,
+    "18-31 d": 16.3,
+    "1-2 m": 15.9,
+    "2-3 m": 15.4,
+    "3-4 m": 15.0,
+    "4-5 m": 14.700000000000001,
+    "5-6 m": 14.4,
+    "6-7 m": 14.100000000000001,
+    "7-8 m": 13.700000000000001,
+    "8-8.5 m": 13.5
+   }
+  },
+  {
+   "name": "Calcium",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 29.0,
+    "18-31 d": 29.200000000000003,
+    "1-2 m": 29.400000000000002,
+    "2-3 m": 29.400000000000002,
+    "3-4 m": 28.8,
+    "4-5 m": 27.900000000000002,
+    "5-6 m": 26.8,
+    "6-7 m": 25.6,
+    "7-8 m": 24.5,
+    "8-8.5 m": 23.700000000000003
+   }
+  },
+  {
+   "name": "Eisen",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.034300000000000004,
+    "18-31 d": 0.032600000000000004,
+    "1-2 m": 0.030100000000000002,
+    "2-3 m": 0.026800000000000004,
+    "3-4 m": 0.024,
+    "4-5 m": 0.0221,
+    "5-6 m": 0.021,
+    "6-7 m": 0.0206,
+    "7-8 m": 0.0204,
+    "8-8.5 m": 0.020100000000000003
+   }
+  },
+  {
+   "name": "Kupfer",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.053700000000000005,
+    "18-31 d": 0.0429,
+    "1-2 m": 0.0355,
+    "2-3 m": 0.0295,
+    "3-4 m": 0.0256,
+    "4-5 m": 0.0228,
+    "5-6 m": 0.0205,
+    "6-7 m": 0.0187,
+    "7-8 m": 0.0172,
+    "8-8.5 m": 0.0161
+   }
+  },
+  {
+   "name": "Zink",
+   "source": "milq-mineral",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.33820000000000006,
+    "18-31 d": 0.26070000000000004,
+    "1-2 m": 0.196,
+    "2-3 m": 0.14670000000000002,
+    "3-4 m": 0.12130000000000002,
+    "4-5 m": 0.1065,
+    "5-6 m": 0.09350000000000001,
+    "6-7 m": 0.0826,
+    "7-8 m": 0.0743,
+    "8-8.5 m": 0.0685
+   }
+  },
+  {
+   "name": "Selen",
+   "source": "milq-mineral",
+   "unit": "µg",
+   "per_100_ml": {
+    "4-17 d": 1.016,
+    "18-31 d": 0.9990000000000001,
+    "1-2 m": 0.977,
+    "2-3 m": 0.935,
+    "3-4 m": 0.8810000000000001,
+    "4-5 m": 0.8340000000000001,
+    "5-6 m": 0.798,
+    "6-7 m": 0.775,
+    "7-8 m": 0.778,
+    "8-8.5 m": 0.794
+   }
+  },
+  {
+   "name": "Vitamin A",
+   "source": "milq-fat-soluble",
+   "unit": "µg",
+   "per_100_ml": {
+    "4-17 d": 89.0,
+    "18-31 d": 68.0,
+    "1-2 m": 55.00000000000001,
+    "2-3 m": 48.0,
+    "3-4 m": 46.0,
+    "4-5 m": 45.0,
+    "5-6 m": 45.0,
+    "6-7 m": 46.0,
+    "7-8 m": 46.0,
+    "8-8.5 m": 46.0
+   }
+  },
+  {
+   "name": "Vitamin E",
+   "source": "milq-fat-soluble",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.568,
+    "18-31 d": 0.44000000000000006,
+    "1-2 m": 0.392,
+    "2-3 m": 0.34800000000000003,
+    "3-4 m": 0.33,
+    "4-5 m": 0.33,
+    "5-6 m": 0.337,
+    "6-7 m": 0.34700000000000003,
+    "7-8 m": 0.355,
+    "8-8.5 m": 0.36000000000000004
+   }
+  },
+  {
+   "name": "Vitamin D",
+   "source": "milq-fat-soluble",
+   "unit": "µg",
+   "per_100_ml": {
+    "1-2 m": 0.06575,
+    "2-3 m": 0.073,
+    "3-4 m": 0.07625,
+    "4-5 m": 0.07825,
+    "5-6 m": 0.07975,
+    "6-7 m": 0.081,
+    "7-8 m": 0.08199999999999999,
+    "8-8.5 m": 0.08275
+   }
+  },
+  {
+   "name": "Vitamin B 1, Thiamin",
+   "source": "milq-b",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.00588,
+    "18-31 d": 0.00931,
+    "1-2 m": 0.01101,
+    "2-3 m": 0.01144,
+    "3-4 m": 0.01121,
+    "4-5 m": 0.01086,
+    "5-6 m": 0.01068,
+    "6-7 m": 0.01072,
+    "7-8 m": 0.010870000000000001,
+    "8-8.5 m": 0.011000000000000001
+   }
+  },
+  {
+   "name": "Vitamin B 2, Riboflavin",
+   "source": "milq-b",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.01615,
+    "18-31 d": 0.01522,
+    "1-2 m": 0.012400000000000001,
+    "2-3 m": 0.01122,
+    "3-4 m": 0.011090000000000001,
+    "4-5 m": 0.01118,
+    "5-6 m": 0.01131,
+    "6-7 m": 0.01144,
+    "7-8 m": 0.01156,
+    "8-8.5 m": 0.011640000000000001
+   }
+  },
+  {
+   "name": "Niacin",
+   "source": "milq-b",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.1318,
+    "18-31 d": 0.16670000000000001,
+    "1-2 m": 0.1583,
+    "2-3 m": 0.1448,
+    "3-4 m": 0.1375,
+    "4-5 m": 0.134,
+    "5-6 m": 0.1321,
+    "6-7 m": 0.131,
+    "7-8 m": 0.1303,
+    "8-8.5 m": 0.1299
+   }
+  },
+  {
+   "name": "Pantothensäure",
+   "source": "milq-b",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.2396,
+    "18-31 d": 0.2536,
+    "1-2 m": 0.2562,
+    "2-3 m": 0.248,
+    "3-4 m": 0.23870000000000002,
+    "4-5 m": 0.231,
+    "5-6 m": 0.22480000000000003,
+    "6-7 m": 0.22010000000000002,
+    "7-8 m": 0.21680000000000002,
+    "8-8.5 m": 0.2147
+   }
+  },
+  {
+   "name": "Vitamin B 6",
+   "source": "milq-b",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 0.00254,
+    "18-31 d": 0.0046700000000000005,
+    "1-2 m": 0.00638,
+    "2-3 m": 0.007390000000000001,
+    "3-4 m": 0.007790000000000001,
+    "4-5 m": 0.0079,
+    "5-6 m": 0.00782,
+    "6-7 m": 0.0077,
+    "7-8 m": 0.00757,
+    "8-8.5 m": 0.00748
+   }
+  },
+  {
+   "name": "Biotin",
+   "source": "milq-b",
+   "unit": "µg",
+   "per_100_ml": {
+    "4-17 d": 0.378,
+    "18-31 d": 0.631,
+    "1-2 m": 0.7480000000000001,
+    "2-3 m": 0.786,
+    "3-4 m": 0.785,
+    "4-5 m": 0.775,
+    "5-6 m": 0.763,
+    "6-7 m": 0.7530000000000001,
+    "7-8 m": 0.743,
+    "8-8.5 m": 0.7360000000000001
+   }
+  },
+  {
+   "name": "Vitamin B 12",
+   "source": "milq-b",
+   "unit": "µg",
+   "per_100_ml": {
+    "4-17 d": 0.037,
+    "18-31 d": 0.032600000000000004,
+    "1-2 m": 0.032100000000000004,
+    "2-3 m": 0.0304,
+    "3-4 m": 0.0286,
+    "4-5 m": 0.028000000000000004,
+    "5-6 m": 0.0286,
+    "6-7 m": 0.03,
+    "7-8 m": 0.0316,
+    "8-8.5 m": 0.032900000000000006
+   }
+  },
+  {
+   "name": "Cholin, gesamt",
+   "source": "milq-b",
+   "unit": "mg",
+   "per_100_ml": {
+    "4-17 d": 12.21,
+    "18-31 d": 12.020000000000001,
+    "1-2 m": 11.690000000000001,
+    "2-3 m": 11.190000000000001,
+    "3-4 m": 10.780000000000001,
+    "4-5 m": 10.47,
+    "5-6 m": 10.200000000000001,
+    "6-7 m": 10.0,
+    "7-8 m": 9.83,
+    "8-8.5 m": 9.700000000000001
+   }
+  },
+  {
+   "name": "davon gesättigte Fettsäuren",
+   "source": "hopperton",
+   "unit": "g",
+   "per_100_ml": {
+    "18-31 d": 1.39185,
+    "1-2 m": 1.39185,
+    "2-3 m": 1.39185,
+    "3-4 m": 1.39185,
+    "4-5 m": 1.39185,
+    "5-6 m": 1.39185,
+    "6-7 m": 1.39185
+   }
+  },
+  {
+   "name": "davon einfach ungesättigte Fettsäuren",
+   "source": "hopperton",
+   "unit": "g",
+   "per_100_ml": {
+    "18-31 d": 1.31968,
+    "1-2 m": 1.31968,
+    "2-3 m": 1.31968,
+    "3-4 m": 1.31968,
+    "4-5 m": 1.31968,
+    "5-6 m": 1.31968,
+    "6-7 m": 1.31968
+   }
+  },
+  {
+   "name": "davon mehrfach ungesättigte Fettsäuren",
+   "source": "hopperton",
+   "unit": "g",
+   "per_100_ml": {
+    "18-31 d": 0.67015,
+    "1-2 m": 0.67015,
+    "2-3 m": 0.67015,
+    "3-4 m": 0.67015,
+    "4-5 m": 0.67015,
+    "5-6 m": 0.67015,
+    "6-7 m": 0.67015
+   }
+  },
+  {
+   "name": "Linolsäure",
+   "source": "hopperton",
+   "unit": "g",
+   "per_100_ml": {
+    "18-31 d": 0.57736,
+    "1-2 m": 0.57736,
+    "2-3 m": 0.57736,
+    "3-4 m": 0.57736,
+    "4-5 m": 0.57736,
+    "5-6 m": 0.57736,
+    "6-7 m": 0.57736
+   }
+  },
+  {
+   "name": "Alpha-Linolensäure",
+   "source": "hopperton",
+   "unit": "g",
+   "per_100_ml": {
+    "18-31 d": 0.050518999999999994,
+    "1-2 m": 0.050518999999999994,
+    "2-3 m": 0.050518999999999994,
+    "3-4 m": 0.050518999999999994,
+    "4-5 m": 0.050518999999999994,
+    "5-6 m": 0.050518999999999994,
+    "6-7 m": 0.050518999999999994
+   }
+  },
+  {
+   "name": "Docosahexaensäure (DHA)",
+   "source": "hopperton",
+   "unit": "mg",
+   "per_100_ml": {
+    "18-31 d": 6.804599999999999,
+    "1-2 m": 6.804599999999999,
+    "2-3 m": 6.804599999999999,
+    "3-4 m": 6.804599999999999,
+    "4-5 m": 6.804599999999999,
+    "5-6 m": 6.804599999999999,
+    "6-7 m": 6.804599999999999
+   }
+  },
+  {
+   "name": "Arachidonsäure",
+   "source": "hopperton",
+   "unit": "mg",
+   "per_100_ml": {
+    "18-31 d": 14.434,
+    "1-2 m": 14.434,
+    "2-3 m": 14.434,
+    "3-4 m": 14.434,
+    "4-5 m": 14.434,
+    "5-6 m": 14.434,
+    "6-7 m": 14.434
+   }
+  },
+  {
+   "name": "Folat, gesamt",
+   "source": "hopperton",
+   "unit": "µg",
+   "per_100_ml": {
+    "18-31 d": 7.69126,
+    "1-2 m": 7.69126,
+    "2-3 m": 7.69126,
+    "3-4 m": 7.69126,
+    "4-5 m": 7.69126,
+    "5-6 m": 7.69126,
+    "6-7 m": 7.69126
+   }
+  },
+  {
+   "name": "Vitamin K",
+   "source": "hopperton",
+   "unit": "µg",
+   "note": "this rests on three studies of 79 participants",
+   "per_100_ml": {
+    "18-31 d": 0.19588999999999998,
+    "1-2 m": 0.19588999999999998,
+    "2-3 m": 0.19588999999999998,
+    "3-4 m": 0.19588999999999998,
+    "4-5 m": 0.19588999999999998,
+    "5-6 m": 0.19588999999999998,
+    "6-7 m": 0.19588999999999998
+   }
+  },
+  {
+   "name": "Jod",
+   "source": "hopperton",
+   "unit": "µg",
+   "per_100_ml": {
+    "18-31 d": 18.815749999999998,
+    "1-2 m": 18.815749999999998,
+    "2-3 m": 18.815749999999998,
+    "3-4 m": 18.815749999999998,
+    "4-5 m": 18.815749999999998,
+    "5-6 m": 18.815749999999998,
+    "6-7 m": 18.815749999999998
+   }
+  },
+  {
+   "name": "Mangan",
+   "source": "hopperton",
+   "unit": "mg",
+   "note": "this rests on one study. Frisbie SH, Mitchell EJ, Roudeau S, Domart F, Carmona A, Ortega R. PLoS One. 2019;14(11):e0223636 doi 10.1371/journal.pone.0223636 reports 3 to 6 microgram per litre for the same figure against the 1,96 taken here",
+   "per_100_ml": {
+    "18-31 d": 0.00019589,
+    "1-2 m": 0.00019589,
+    "2-3 m": 0.00019589,
+    "3-4 m": 0.00019589,
+    "4-5 m": 0.00019589,
+    "5-6 m": 0.00019589,
+    "6-7 m": 0.00019589
+   }
+  },
+  {
+   "name": "Chlorid",
+   "source": "hopperton",
+   "unit": "mg",
+   "per_100_ml": {
+    "18-31 d": 41.60085,
+    "1-2 m": 41.60085,
+    "2-3 m": 41.60085,
+    "3-4 m": 41.60085,
+    "4-5 m": 41.60085,
+    "5-6 m": 41.60085,
+    "6-7 m": 41.60085
+   }
+  },
+  {
+   "name": "2'-Fucosyllactose (2'-FL)",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.3,
+    "6-7 m": 0.182
+   }
+  },
+  {
+   "name": "3-Fucosyllactose (3-FL)",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.038,
+    "6-7 m": 0.123
+   }
+  },
+  {
+   "name": "Lacto-N-Tetraose (LNT)",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.131,
+    "6-7 m": 0.05
+   }
+  },
+  {
+   "name": "Lacto-N-Neotetraose (LNnt)",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.05500000000000001,
+    "6-7 m": 0.013000000000000001
+   }
+  },
+  {
+   "name": "3'-Sialyllactose",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.020999999999999998,
+    "6-7 m": 0.02
+   }
+  },
+  {
+   "name": "6'-Sialyllactose",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.052000000000000005,
+    "6-7 m": 0.008
+   }
+  },
+  {
+   "name": "Humane Milch-Oligosaccharide (HMO)",
+   "source": "hmo-review",
+   "unit": "g",
+   "per_100_ml": {
+    "4-17 d": 0.772,
+    "6-7 m": 0.512
+   }
+  },
+  {
+   "name": "Vitamin C",
+   "source": "lactmed-c",
+   "unit": "mg",
+   "note": "the middle of the 50 to 90 mg per litre LactMed calls the average",
+   "low": 5.0,
+   "high": 9.0,
+   "per_100_ml": {
+    "18-31 d": 7.0,
+    "1-2 m": 7.0,
+    "2-3 m": 7.0,
+    "3-4 m": 7.0,
+    "4-5 m": 7.0,
+    "5-6 m": 7.0,
+    "6-7 m": 7.0,
+    "7-8 m": 7.0,
+    "8-8.5 m": 7.0
+   }
+  },
+  {
+   "name": "Inositol",
+   "source": "ogasa",
+   "unit": "mg",
+   "note": "transitional milk for the first window and mature milk after",
+   "per_100_ml": {
+    "4-17 d": 17.8,
+    "18-31 d": 14.9,
+    "1-2 m": 14.9,
+    "2-3 m": 14.9,
+    "3-4 m": 14.9,
+    "4-5 m": 14.9,
+    "5-6 m": 14.9,
+    "6-7 m": 14.9,
+    "7-8 m": 14.9,
+    "8-8.5 m": 14.9
+   }
+  },
+  {
+   "name": "Carnitin",
+   "source": "sandor",
+   "unit": "mg",
+   "note": "the first 21 days and the level from the 40th day on",
+   "per_100_ml": {
+    "4-17 d": 1.0139479999999998,
+    "1-2 m": 0.5674239999999999,
+    "2-3 m": 0.5674239999999999,
+    "3-4 m": 0.5674239999999999,
+    "4-5 m": 0.5674239999999999,
+    "5-6 m": 0.5674239999999999,
+    "6-7 m": 0.5674239999999999,
+    "7-8 m": 0.5674239999999999,
+    "8-8.5 m": 0.5674239999999999
+   }
+  },
+  {
+   "name": "Fluorid",
+   "source": "efsa-fluoride",
+   "unit": "mg",
+   "note": "6 microgram per litre and not resolved by month",
+   "per_100_ml": {
+    "4-17 d": 0.0006,
+    "18-31 d": 0.0006,
+    "1-2 m": 0.0006,
+    "2-3 m": 0.0006,
+    "3-4 m": 0.0006,
+    "4-5 m": 0.0006,
+    "5-6 m": 0.0006,
+    "6-7 m": 0.0006,
+    "7-8 m": 0.0006,
+    "8-8.5 m": 0.0006
+   }
+  },
+  {
+   "name": "Taurin",
+   "source": "kim-taurine",
+   "unit": "mg",
+   "note": "colostrum for the first window and mature milk after",
+   "per_100_ml": {
+    "4-17 d": 5.0810900000000006,
+    "18-31 d": 4.192525,
+    "1-2 m": 4.192525,
+    "2-3 m": 4.192525,
+    "3-4 m": 4.192525,
+    "4-5 m": 4.192525,
+    "5-6 m": 4.192525,
+    "6-7 m": 4.192525,
+    "7-8 m": 4.192525,
+    "8-8.5 m": 4.192525
+   }
+  },
+  {
+   "name": "Molybdän",
+   "source": "yoshida",
+   "unit": "µg",
+   "note": "the median of 79 samples",
+   "low": 0.01,
+   "high": 2.591,
+   "per_100_ml": {
+    "4-17 d": 0.318,
+    "18-31 d": 0.318,
+    "1-2 m": 0.318,
+    "2-3 m": 0.318,
+    "3-4 m": 0.318,
+    "4-5 m": 0.318,
+    "5-6 m": 0.318,
+    "6-7 m": 0.318,
+    "7-8 m": 0.318,
+    "8-8.5 m": 0.318
+   }
+  },
+  {
+   "name": "Chrom",
+   "source": "yoshida",
+   "unit": "µg",
+   "note": "the median of 79 samples",
+   "low": 0.01,
+   "high": 1.867,
+   "per_100_ml": {
+    "4-17 d": 0.1,
+    "18-31 d": 0.1,
+    "1-2 m": 0.1,
+    "2-3 m": 0.1,
+    "3-4 m": 0.1,
+    "4-5 m": 0.1,
+    "5-6 m": 0.1,
+    "6-7 m": 0.1,
+    "7-8 m": 0.1,
+    "8-8.5 m": 0.1
+   }
+  }
+ ]
+}

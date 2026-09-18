@@ -1,0 +1,22 @@
+Command log for the model_running sample that runs a Hugging Face model locally on a 10 GB RTX 3080.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-13T11:28:21Z nvidia-smi and python3 --version on this box -- a GTX 1650 with 4 GB and Python 3.12.3 on Ubuntu 24.04 so the sample targets the users 3080 and cannot be exercised on real GPU weights here.
+2026-09-13T11:28:39Z cat > model.env -- single settings file holding the repo id the quantisation the context the GGUF file the layer split and the port.
+2026-09-13T11:28:59Z cat > setup.sh -- one venv per variant plus a CUDA llama.cpp build pinned to compute 86 which is the 3080 architecture.
+2026-09-13T11:29:26Z cat > run_transformers.py and run_transformers.sh -- streaming runner with nf4 double quantisation a chat session a token rate and a CPU fallback.
+2026-09-13T11:30:02Z cat > serve_vllm.sh serve_llamacpp.sh run_ollama.sh -- three servers behind one OpenAI compatible port with eager mode on vLLM and a layer split on llama.cpp.
+2026-09-13T11:30:31Z cat > fit.py -- standard library VRAM estimator that reads the safetensors index and the config from the hub.
+2026-09-13T11:30:45Z ./fit.py on Qwen 7B and 14B and 3B -- 7B lands at 6.2 GB in 4 bit and 14B needs 11.7 GB so it triggers the layer split advice and a gated repo returns the token hint.
+2026-09-13T11:31:01Z cat > chat.py download.py and their wrappers -- one OpenAI client for both servers and a prefetch that skips the duplicate legacy weight copies.
+2026-09-13T11:31:33Z patch run_transformers.py -- compute dtype now picks bfloat16 only where the card supports it so the script also runs on pre Ampere hardware.
+2026-09-13T11:32:24Z cat > README.md -- terms defined once a quick start the four variants a fit table an ordered recovery path and a troubleshooting table.
+2026-09-13T11:32:41Z cat > .gitignore and rm __pycache__ -- the environments the build tree and the downloaded GGUF files stay out of the repository.
+2026-09-13T11:37:12Z patch download.py -- a test pull of SmolLM2 dragged in onnx and openvino copies so the skip list now covers every duplicate runtime format.
+2026-09-13T11:38:55Z patch model.env -- every setting became an overridable default so a single run can be redirected without editing the file.
+2026-09-13T11:40:04Z test HF_HUB_ENABLE_HF_TRANSFER against huggingface_hub 1.31 -- the variable is deprecated so model.env now exports HF_XET_HIGH_PERFORMANCE and setup.sh drops the hf_transfer extra.
+2026-09-13T11:40:42Z cat > check.py and patch README.md -- a readiness check that names the driver the CUDA wheel the compute capability the free VRAM and the bitsandbytes state.
+2026-09-13T11:41:27Z patch serve_llamacpp.sh -- the interrupted test download left a part file so curl now resumes with -C - instead of starting the pull again.
+2026-09-13T11:42:07Z ./serve_llamacpp.sh with a 135M GGUF then ./chat.py against it -- the script fetched the file started llama-server with jinja and the client held a session over the OpenAI protocol so the whole server path is proven.
+2026-09-13T11:42:18Z rm -rf models llama.cpp __pycache__ -- the test artefacts are gone and only the nine scripts the settings file the gitignore and the README remain.
+2026-09-13T11:42:18Z note -- the 4 bit CUDA path and the vLLM server are unproven here because this box has a 4 GB Turing card and the user targets a 10 GB Ampere card.
+2026-09-13T11:44:08Z patch README.md -- added the per run override the wrapper pattern the cache location the resume behaviour and a section naming what was tested and what was not.

@@ -1,0 +1,17 @@
+Command log for checking the grouping logic behind the tracker xlsm download where specification plus cost centre forms the group.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-14T13:09:02Z ls tracker and grep for xlsm -- the writer lives in tracker/packages/xlsm-writer with core and web and api around it.
+2026-09-14T13:14:40Z python dump of rows 68 to 90 of both shipped workbooks -- column AB is named "comined cost center" and holds CONCAT(I," - ",J) so the workbook group key is workday id plus specification.
+2026-09-14T13:14:40Z read packages/core/src/aggregate.ts -- aggregateByProject keys on workdayId plus specification which matches column AB.
+2026-09-14T13:22:10Z probe test over the August fixture -- the writer puts "Vacation or sickness" in block row 72 for 5 days and writes 5 again on the absence line so rows 71 to 87 read 22 against a stated total of 17.
+2026-09-14T13:22:10Z probe test over a synthetic 21 group month -- buildTrackerCells emits I92 and K92 and M94 twice because the overflow block runs into the per week block.
+2026-09-14T13:34:02Z patched packages/core/src/aggregate.ts -- ABSENCE_LINES added and aggregateByProject skips a booking the tracker gives an absence line of its own and the key separator is now " - " as column AB builds it.
+2026-09-14T13:34:02Z patched packages/xlsm-writer/src/index.ts -- the two absence lines read from ABSENCE_LINES and the per week block starts at max(92, grandTotalRow + 4) and the two block loops merged into one.
+2026-09-14T13:36:15Z added tests to sample-tracker.test.ts and write.test.ts -- the block length matches Excel and rows 71 to 87 total the month once and a 21 group month writes no cell twice. All four fail without the patches.
+2026-09-14T13:38:40Z pnpm -r test and pnpm -r typecheck -- 774 tests pass across five packages and every package typechecks.
+2026-09-14T13:40:05Z soffice headless convert of the August export and of a 21 group export -- both open with no repair and the August block reads 12 and 5 and 0 against a total of 17 exactly as the submitted workbook does.
+2026-09-14T13:52:30Z checked the 3149 catalogue workday ids -- every one is plain digits with no leading zero and at most seven of them so a numeric column I is safe.
+2026-09-14T13:54:10Z patched packages/xlsm-writer/src/index.ts -- workdayCell writes a canonical integer as a number and projectLabel appends "[BL <line>]" to column M.
+2026-09-14T13:56:00Z added two assertions to write.test.ts -- column M matches the M cell Excel cached and column I is numeric on a cost centre and text on an absence. Both fail without the patch.
+2026-09-14T13:58:20Z pnpm -r test and pnpm -r typecheck and eslint -- 775 tests pass and every package typechecks and the changed files lint clean.
+2026-09-14T14:00:45Z python cell by cell compare of the export against the submitted workbook -- column I is a number and I52 stays text and M71 carries [BL software]. Only L71 and the quoted zeros in unused slots differ and both are deliberate.

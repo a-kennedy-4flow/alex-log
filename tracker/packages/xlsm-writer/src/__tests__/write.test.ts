@@ -113,13 +113,68 @@ describe('the package', () => {
   })
 })
 
+describe('a month holding more groups than the tracker left room for', () => {
+  // Twenty one cost centres push the block past its fifteen slots. The blocks
+  // below the grid have to move with it or two of them write the same cell.
+  const days = buildMonth(2026, 3, '01_DE_Berlin')
+  const ids = Array.from({ length: 21 }, (_, i) => String(27311 + i))
+  const halfDays: HalfDay[] = days
+    .filter((d) => !d.nonWorking)
+    .slice(0, ids.length)
+    .map((d, i) => ({
+      date: d.date,
+      half: 0 as const,
+      workdayId: ids[i] as string,
+      specification: '4s_Overheads_Concept & development',
+      specificationIsDefault: false,
+      days: 1 as const,
+      location: null,
+      tasks: null,
+    }))
+  const result = writeTracker({
+    firstName: 'Alexander',
+    lastName: 'Kennedy',
+    location: '01_DE_Berlin',
+    year: 2026,
+    month: 3,
+    adjustedWorkDays: ids.length,
+    halfDays,
+    createdIso: CREATED,
+  })
+  const { sheet, cells } = readBack(result.bytes)
+
+  it('writes no cell twice', () => {
+    const refs = [...sheet.matchAll(/<c r="([^"]+)"/g)].map((m) => m[1])
+    expect(refs).toHaveLength(new Set(refs).size)
+  })
+
+  it('grows the block rather than dropping a group', () => {
+    const written = new Set<string>()
+    for (let row = 71; row <= 71 + ids.length - 1; row++) {
+      const id = cells.get(`I${row}`)
+      if (id !== undefined) written.add(id)
+    }
+    expect([...written].sort()).toEqual([...ids].sort())
+  })
+
+  it('moves the per week block clear of it', () => {
+    const header = [...cells.entries()].find(([, v]) => v === 'Total days')?.[0]
+    expect(header).toBeDefined()
+    const headerRow = Number(header?.slice(1))
+    expect(headerRow).toBeGreaterThan(71 + ids.length + 2)
+    expect(totalDays(halfDays)).toBe(ids.length)
+  })
+})
+
 describe.each(samples.filter((s) => s.statusMessage === 'Your project tracker is completed!'))(
   'writing $workbook',
   (sample) => {
     const request = requestFor(sample)
     const result = writeTracker(request)
-    const { cells } = readBack(result.bytes)
+    const { cells, sheet } = readBack(result.bytes)
     const days = buildMonth(sample.year, sample.month, sample.location)
+    /** The opening tag of one cell so a test can read the type Excel will see. */
+    const tagOf = (ref: string) => sheet.match(new RegExp(`<c r="${ref}"[^>]*`))?.[0] ?? ''
 
     it('names the file after the person and the month', () => {
       expect(result.filename).toBe(
@@ -179,13 +234,49 @@ describe.each(samples.filter((s) => s.statusMessage === 'Your project tracker is
         const row = slot?.[0].slice(1)
         expect(cells.get(`K${row}`)).toBe(String(expected.days))
         expect(cells.get(`J${row}`)).toBe(expected.specification ?? undefined)
+        // Column M carries the business line the header names. The workbook
+        // builds it as the Workday Title and then "[BL " and the line.
+        expect(cells.get(`M${row}`), `M${row}`).toBe(expected.projectTitle ?? undefined)
       }
+    })
+
+    it('writes a numeric workday id as a number and an absence label as text', () => {
+      const numeric = sample.rows.find(
+        (r) => r.days !== null && /^[0-9]+$/.test(String(r.workdayId)),
+      )
+      const label = sample.rows.find(
+        (r) => r.days !== null && r.workdayId !== null && !/^[0-9]+$/.test(String(r.workdayId)),
+      )
+      expect(numeric, 'a numeric workday id to check').toBeDefined()
+      expect(label, 'an absence label to check').toBeDefined()
+      // The shipped workbook holds column I as a number except on an absence.
+      expect(tagOf(`I${numeric?.row}`)).not.toContain('inlineStr')
+      expect(tagOf(`I${label?.row}`)).toContain('inlineStr')
+
+      const slot = [...cells.entries()].find(([ref]) => /^I(7[1-9]|8[0-5])$/.test(ref))
+      expect(slot).toBeDefined()
+      expect(tagOf(slot?.[0] ?? '')).not.toContain('inlineStr')
     })
 
     it('writes the absence totals and the grand total', () => {
       expect(cells.get('K86')).toBe(String(sample.vacationDays))
       expect(cells.get('K87')).toBe(String(sample.otherAbsenceDays))
       expect(cells.get('M88')).toBe(String(sample.totalDays))
+    })
+
+    it('books each day once across rows 71 to 87', () => {
+      // The tracker grand total is SUM(K71:K87). An absence written into the
+      // block as well as onto its own line is counted twice.
+      let sum = 0
+      for (let row = 71; row <= 87; row++) sum += Number(cells.get(`K${row}`) ?? 0)
+      expect(sum).toBe(sample.totalDays)
+    })
+
+    it('keeps absence out of the aggregation block', () => {
+      const block = []
+      for (let row = 71; row <= 85; row++) block.push(cells.get(`I${row}`))
+      expect(block).not.toContain('Vacation or sickness')
+      expect(block).not.toContain('Other absence')
     })
 
     it('repeats the message Excel showed the user', () => {

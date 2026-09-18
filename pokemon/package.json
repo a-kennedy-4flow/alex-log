@@ -1,0 +1,217 @@
+{
+  "name": "gba-webview",
+  "displayName": "GBA",
+  "description": "Runs a Game Boy Advance ROM inside a VS Code editor tab.",
+  "version": "0.1.0",
+  "publisher": "alex",
+  "license": "GPL-3.0",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "gba.rom",
+        "displayName": "Game Boy Advance",
+        "selector": [
+          {
+            "filenamePattern": "*.gba"
+          },
+          {
+            "filenamePattern": "*.gbc"
+          },
+          {
+            "filenamePattern": "*.gb"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "gba.openRom",
+        "title": "GBA: Open ROM",
+        "category": "GBA"
+      },
+      {
+        "command": "gba.saveState",
+        "title": "Save State",
+        "category": "GBA"
+      },
+      {
+        "command": "gba.loadState",
+        "title": "Load State",
+        "category": "GBA"
+      },
+      {
+        "command": "gba.showLog",
+        "title": "Show Log",
+        "category": "GBA"
+      },
+      {
+        "command": "gba.playInPanel",
+        "title": "Play in Side Bar",
+        "category": "GBA"
+      },
+      {
+        "command": "gba.playInEditor",
+        "title": "Play in Editor Tab",
+        "category": "GBA"
+      }
+    ],
+    "configuration": {
+      "title": "GBA",
+      "properties": {
+        "gba.volume": {
+          "type": "number",
+          "default": 0.5,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Starting volume."
+        },
+        "gba.saveIntervalSeconds": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "description": "How often battery save data is written to disc."
+        },
+        "gba.log": {
+          "type": "string",
+          "enum": [
+            "errors",
+            "all"
+          ],
+          "default": "errors",
+          "description": "How much of the emulator's own output to record at info level. Everything is kept either way. At errors the routine chatter is filed as debug."
+        },
+        "gba.autoStateMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "description": "Minutes between automatic save states. Zero turns it off. An automatic state is filed separately so it never overwrites one you saved yourself."
+        },
+        "gba.resumeFromAutoState": {
+          "type": "boolean",
+          "default": true,
+          "description": "Carry on from the last automatic state when a cartridge is opened."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "gba.swallowKey",
+        "key": "x",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "s",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "v",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "enter",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "up",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "down",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "left",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "right",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "z",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "a",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "q",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "e",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "tab",
+        "when": "gba.focused"
+      },
+      {
+        "command": "gba.swallowKey",
+        "key": "r",
+        "when": "gba.focused"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "gba.saveState",
+          "when": "activeCustomEditorId == 'gba.rom'"
+        },
+        {
+          "command": "gba.loadState",
+          "when": "activeCustomEditorId == 'gba.rom'"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "gba.view",
+          "name": "Game Boy Advance",
+          "type": "webview",
+          "icon": "media/icons/gba.svg",
+          "initialSize": 3,
+          "visibility": "collapsed"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vendor": "node scripts/vendor.mjs",
+    "build": "node scripts/vendor.mjs && node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies",
+    "test": "node test/make-rom.mjs ramp.gba && SHOT=ramp.png node test/run-webview.mjs ramp.gba"
+  },
+  "devDependencies": {
+    "@emulatorjs/core-mgba": "^4.2.3",
+    "@emulatorjs/emulatorjs": "^4.2.3",
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0"
+  }
+}

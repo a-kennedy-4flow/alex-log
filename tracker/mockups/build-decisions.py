@@ -214,6 +214,99 @@ HANDOFF = """          <div class="handoff">
           </div>
 """
 
+# Decision 4. The board is held at the width where the chip stops fitting.
+#
+# A workday id runs to seven digits and the day value takes three more. The chip
+# needs 101px for both and a cell at a 1280px window gives it 83px. The mockup
+# area is wider than the app so every option here pins the board to 604px. That
+# is the seven cells a 1280px window leaves the app today. Because a) the fault
+# is invisible at the natural mockup width. b) an option judged where it does
+# not bite proves nothing.
+SQUEEZE = """/* The board is held at what a 1280px window gives the app. */
+.board{max-width:604px}
+.legend{max-width:604px}
+
+/* A `1fr` track still refuses to go under its own content so the seven columns
+   of `f-board.css` come out unequal. `MonthCalendar.vue` draws a table with a
+   fixed layout where every column is the same width. The mockup has to match
+   it or an option is judged on a column the app never draws. */
+.board{grid-template-columns:repeat(7,minmax(0,1fr))}
+
+/* The app sets `.num` in the mono stack and a digit there is wider than the
+   Arial digit `f-board.css` draws. The d1 and d2 pages keep the Arial digit
+   because those decisions were judged on it. */
+.chip b,.cell .d{font-family:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace}
+
+/* The guard. It belongs to every option because a box crossing the cell rule is
+   the fault rather than a design. Nothing below overrides it. */
+.cell{min-width:0}
+.chips{min-width:0}
+.chip{min-width:0}
+.chip b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip i{flex:none}
+
+/* The date holds its width and the flag beside it breaks inside the word.
+   `Ascension Day` is 13 characters against the 44px the cell leaves it. */
+.cell .top{min-width:0}
+.cell .d{flex:none}
+.cell .lab{min-width:0;overflow-wrap:break-word}
+"""
+
+CLIP_CSS = """/* Option A. One line and the id gives way. Nothing else changes. */
+"""
+
+WRAP_CSS = """/* Option B. The day value drops to a line of its own once both will not fit. */
+.chip{flex-wrap:wrap;row-gap:0}
+"""
+
+MARK_CSS = """/* Option C. A half day is drawn rather than written so the id holds the chip
+   alone. The fill stops halfway. No shade is invented because the cut is
+   between Warm Grey and the white of the cell. */
+.chip i{display:none}
+.chip.half{background:linear-gradient(90deg,var(--warm-grey) 0 50%,var(--white) 50% 100%)}
+.half-key{margin-top:14px;font-size:12px;color:var(--grey);display:flex;align-items:center;gap:9px}
+.half-key .chip{font-size:11px;padding:3px 9px}
+"""
+
+COMPACT_CSS = """/* Option D. Less type and less padding buy the line back. 11px is what the
+   cell already sets on a bank holiday label. */
+.cell{padding:8px 6px}
+.chip{font-size:11px;padding:3px 6px;gap:5px}
+"""
+
+SCROLL_CSS = """/* Option E. A cell holds a minimum and the board scrolls sideways under it.
+   This is what `MonthGrid.vue` already does with its nine columns. */
+.scroller{overflow-x:auto}
+.board{min-width:728px;max-width:none}
+.scroller{max-width:604px}
+"""
+
+TIGHT_CSS = COMPACT_CSS + """
+/* Then option B under it. The compact chip holds one line to 1440px and wraps
+   below that rather than cutting the id. */
+.chip{flex-wrap:wrap;row-gap:0}
+"""
+
+# Option E is the one page that needs a box around the board. The rest differ in
+# CSS alone.
+SCROLL_SCRIPT = """renderBoard('#board', addControl)
+const board = document.querySelector('#board')
+const scroller = document.createElement('div')
+scroller.className = 'scroller'
+board.parentNode.insertBefore(scroller, board)
+scroller.appendChild(board)"""
+
+# The half day mark is a class rather than a value so the CSS can draw it.
+MARK_SCRIPT = """renderBoard('#board', addControl)
+for (const chip of document.querySelectorAll('.chip')) {
+  const value = chip.querySelector('i')
+  if (value && value.textContent.trim() === '0.5') chip.classList.add('half')
+}
+document.querySelector('#board').insertAdjacentHTML(
+  'afterend',
+  '<p class="half-key">A chip filled to halfway is half a day. <span class="chip cc-4100782 half"><b class="num">4100782</b></span> <span class="chip cc-4100915"><b class="num">4100915</b></span></p>',
+)"""
+
 PAGES = [
     dict(
         key='d1-popover',
@@ -312,6 +405,93 @@ renderBoard('#board', control)""",
         footer="""<b>Decision 2 option C. No colour.</b> Every chip is Warm Grey. The number is the only thing that separates one cost centre from another.
     Nothing needs approval. A month may hold any number of cost centres. This is what A and B and F already do in the grid.
     It costs the glance. Two cost centres in one week look alike until the number is read.""",
+    ),
+    dict(
+        key='d4-clip',
+        title='decision 4 option A — the id gives way',
+        standfirst='Decision 4. The chip holds one line and cuts the id to reach it.',
+        board='edge',
+        css=SQUEEZE + CLIP_CSS,
+        under='',
+        side=ASIDE,
+        script="renderBoard('#board', addControl)",
+        footer="""<b>Decision 4 option A. One line and the id gives way.</b> The chip never leaves its cell and never grows.
+    It costs the id. A cut id names no cost centre and the reader has to open the day to learn which one it is.
+    16 of the 21 ids on this page are cut so it is the normal case rather than the rare one.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.""",
+    ),
+    dict(
+        key='d4-wrap',
+        title='decision 4 option B — the day value drops a line',
+        standfirst='Decision 4. The day value takes a second line when both will not fit.',
+        board='edge',
+        css=SQUEEZE + WRAP_CSS,
+        under='',
+        side=ASIDE,
+        script="renderBoard('#board', addControl)",
+        footer="""<b>Decision 4 option B. The day value drops to a line of its own.</b> The id gets the first line to itself.
+    12 px type is still too wide to pay for the drop. 16 of the 21 ids are cut here which is what option A cuts without growing at all.
+    It costs cell height for nothing. The cell runs to 139 px against 108 px today.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.""",
+    ),
+    dict(
+        key='d4-mark',
+        title='decision 4 option C — a half day is drawn',
+        standfirst='Decision 4. The day value becomes a mark so the id has the chip.',
+        board='edge',
+        css=SQUEEZE + MARK_CSS,
+        under='',
+        side=ASIDE,
+        script=MARK_SCRIPT,
+        footer="""<b>Decision 4 option C. The day value is drawn rather than written.</b> A chip filled to halfway is half a day and a solid chip is a whole one.
+    The id then has the chip to itself so one line holds it. No shade is invented because the cut is between Warm Grey and the white of the cell.
+    It costs a convention the reader has to learn. It also costs the figure itself. A key under the board pays part of that.
+    16 of the 21 ids are cut here even so. Dropping three characters does not buy back the five the 12 px id is over.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.""",
+    ),
+    dict(
+        key='d4-compact',
+        title='decision 4 option D — a smaller chip',
+        standfirst='Decision 4. Less type and less padding buy the line back.',
+        board='edge',
+        css=SQUEEZE + COMPACT_CSS,
+        under='',
+        side=ASIDE,
+        script="renderBoard('#board', addControl)",
+        footer="""<b>Decision 4 option D. A smaller chip.</b> 11 px text with 6 px of padding needs 87 px where the chip today needs 101 px.
+    11 px is what the cell already sets on a bank holiday label so nothing new arrives.
+    The id alone then fits the chip exactly. 5 of the 21 are still cut because those chips hold the day value on the same line.
+    It costs nothing but it does not finish the job on its own.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.""",
+    ),
+    dict(
+        key='d4-scroll',
+        title='decision 4 option E — the board scrolls',
+        standfirst='Decision 4. A cell holds a minimum and the board scrolls under it.',
+        board='edge',
+        css=SQUEEZE + SCROLL_CSS,
+        under='',
+        side=ASIDE,
+        script=SCROLL_SCRIPT,
+        footer="""<b>Decision 4 option E. The board scrolls sideways.</b> A cell never goes under 104 px so the chip fits as it is drawn today.
+    <code>MonthGrid.vue</code> already answers its own width this way so the two views would agree.
+    It costs the whole month. Seeing the month at once is what the board is for and a scrolled board shows five days of the seven.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.""",
+    ),
+    dict(
+        key='d4-tight',
+        title='decision 4 option F — smaller then wrapped',
+        standfirst='Decision 4. The smaller chip wraps rather than cuts.',
+        board='edge',
+        css=SQUEEZE + TIGHT_CSS,
+        under='',
+        side=ASIDE,
+        script="renderBoard('#board', addControl)",
+        footer="""<b>Decision 4 option F. D then B.</b> The smaller chip holds one line from 1440 px up and drops the day value to a second line below that.
+    None of the 21 ids is cut here. It is the only one of the six that manages that without taking the month off the screen.
+    In the app the id stays whole down to 800 px and the cut of option A is left as the guard under it.
+    It costs 19 px of cell height on a day holding a seven digit id.
+    The board is held at 604 px across all six pages. That is the seven cells a 1280 px window leaves the app today.""",
     ),
 ]
 

@@ -1,0 +1,132 @@
+{
+ "dan": 1615434,
+ "gtin": 4056631004074,
+ "brand": {
+  "image": {
+   "alt": "Aptamil",
+   "ratio": 1.3053097345132743,
+   "src": "https://products.dm-static.com/images/f_auto,q_auto,c_fit,w_280,h_180/v1750687524/assets/mp/brands/subbrand_5941_default/subbrand_5941_default.png"
+  },
+  "name": "Aptamil"
+ },
+ "title": {
+  "headline": "Kindermilch Pronutra ab 2 Jahren, 800 g"
+ },
+ "self": "/p/d/1615434/aptamil-kindermilch-pronutra-ab-2-jahren",
+ "breadcrumbs": [
+  "Baby & Kind",
+  "Babynahrung & Getränke",
+  "Babymilch"
+ ],
+ "metadata": {
+  "canonical": "https://www.dm.de/p/d/1615434/aptamil-kindermilch-pronutra-ab-2-jahren"
+ },
+ "seoInformation": {
+  "structuredData": {
+   "brand": "Aptamil",
+   "category": "Baby & Kind > Babynahrung & Getränke > Babymilch"
+  }
+ },
+ "descriptionGroups": [
+  {
+   "header": "Nährwerte",
+   "contentBlock": [
+    {
+     "table": [
+      [
+       "Durchschnittliche Nährwertangaben",
+       "pro 100 ml*"
+      ],
+      [
+       "Brennwert",
+       "264 kJ / 63 kcal"
+      ],
+      [
+       "Fett",
+       "2,7 g"
+      ],
+      [
+       "davon gesättigte Fettsäuren",
+       "0,3 g"
+      ],
+      [
+       "davon mehrfach ungesättigte Fettsäuren",
+       "1,2 g"
+      ],
+      [
+       "Kohlenhydrate",
+       "8 g"
+      ],
+      [
+       "davon Zucker",
+       "8 g"
+      ],
+      [
+       "Ballaststoffe",
+       "1,1 g"
+      ],
+      [
+       "Eiweiß",
+       "1,1 g"
+      ],
+      [
+       "Salz",
+       "0,04 g"
+      ],
+      [
+       "Alpha-Linolensäure",
+       "0,09 g"
+      ],
+      [
+       "Laktose",
+       "7,6 g"
+      ],
+      [
+       "Fructooligosaccharide",
+       "0,16 g"
+      ],
+      [
+       "Galactooligosaccharide (GOS)",
+       "1,4 g"
+      ],
+      [
+       "Calcium",
+       "126 mg"
+      ],
+      [
+       "Eisen",
+       "1,3 mg"
+      ],
+      [
+       "Jod",
+       "15 µg"
+      ],
+      [
+       "Vitamin B 2, Riboflavin",
+       "0,14 mg"
+      ],
+      [
+       "Vitamin A",
+       "72 µg"
+      ],
+      [
+       "Vitamin B 12",
+       "0,24 µg"
+      ],
+      [
+       "Vitamin C",
+       "14 mg"
+      ],
+      [
+       "Vitamin D",
+       "2,3 µg"
+      ]
+     ],
+     "texts": [
+      "*des zubereiteten Produkts"
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+Command log for building the dm.de baby milk scraper under milky_os/scraper.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-13T11:17:52Z ls -la milky_os/scraper -- the scraper directory exists and is empty.
+2026-09-13T11:17:52Z curl the babymilch category page -- returned 200 with only 11200 bytes so the listing is not in the served HTML.
+2026-09-13T11:19:37Z grep assets.dm.de/product/...min.js for path templates -- found /products/detail/{country}/dan/{dan}.
+2026-09-13T11:19:37Z curl https://products.dm.de/product/products/detail/DE/dan/1230306 -- 200 with the full product including a Naehrwerte description group holding the nutrition table.
+2026-09-13T11:19:37Z curl product-search.services.dmtech.com/de/search/crawl -- 200 for a query and 429 on the next call so the scraper needs throttling and retry.
+2026-09-13T11:25:02Z cat > dmscrape/{models,client,parse,listing,product,scrape,cli,__init__,__main__}.py -- wrote the types the throttled client the nutrition parser the listing walker the article reader the job runner and the command line.
+2026-09-13T11:28:10Z python -m dmscrape --dan 1617219 -- the product service answers gzip so the client now undoes the transfer encoding.
+2026-09-13T11:28:10Z python -m dmscrape --csv nutrition.csv -- collected all 137 articles with a declaration on every one and no failures in 139 requests over 2 minutes 18.
+2026-09-13T11:30:34Z cat > tests/{conftest,test_parse,test_client}.py -- the pacing test caught a timestamp tested for truthiness so the first gap never applied and the sentinel is now None.
+2026-09-13T11:35:41Z cat > tests/{test_product,test_listing,test_cli}.py -- 41 tests run offline against two trimmed article payloads and a fake clock.
+2026-09-13T11:35:41Z patch dmscrape/cli.py report -- the basis heading now ends on the right edge of its column so a wide label no longer pushes the line out of place.
+2026-09-13T11:35:41Z cat > readme.md -- documented the two services the pace the cache the output shapes the German number rules and the limits.
+2026-09-13T11:35:41Z python -m dmscrape --csv nutrition.csv -- final run from the cache wrote 137 articles 5488 nutrient rows and 6135 CSV rows with no failures.
+2026-09-13T11:43:42Z cat > tools/make_page.py -- wrote the generator that groups the collected articles by brand into one self contained HTML file.
+2026-09-13T11:43:42Z firefox --headless --screenshot index.html -- the page header was too tall to stick so it now scrolls away and each brand heading holds the top.
+2026-09-13T11:43:42Z patch tools/make_page.py -- dropped the pack size repeated in the name added a disclosure chevron and left aligned the nutrient column heading.
+2026-09-13T11:43:42Z python contrast check of both palettes -- every text pair clears WCAG AA and most clear AAA.
+2026-09-13T11:43:42Z firefox --headless --screenshot "index.html?q=ziegenmilch" -- the filter hides the emptied brands and retallies every count over 14 goat milk articles.
+2026-09-13T11:44:35Z cat > tests/test_page.py -- eleven tests for the page generator including escaping and balanced markup so the suite now runs 52.
+2026-09-13T11:44:35Z patch tools/make_page.py count -- one brand read as "1 brands" so the lede now picks the ending.
+2026-09-13T11:52:55Z patch tools/make_page.py ready_to_drink -- the page now leaves out the 19 ready to drink articles and keeps 118 under 13 brands.
+2026-09-13T11:52:55Z python check of the rule -- 15 articles say trinkfertig and 4 Kindermilch cartons never say it yet are sold by the litre so the volume pack size catches those.
+2026-09-13T12:10:37Z python audit of the declarations -- one brand prints DHA in grams and another in milligrams so the chart normalises every nutrient onto one unit.
+2026-09-13T12:10:37Z cat > tools/compare_data.py -- read the age step off the pack name trimmed the label to the recipe and kept only the per 100 ml column.
+2026-09-13T12:10:37Z cat > tools/make_chart.py -- wrote compare.html as a dot plot per age step with a median line a table twin and deep links.
+2026-09-13T12:10:37Z node validate_palette.js -- the single series hue passes the lightness chroma and contrast checks on both surfaces.
+2026-09-13T12:10:37Z firefox --headless --screenshot compare.html -- a button shrink wraps even as a grid box so every dot sat at the left until the row took the full width.
+2026-09-13T12:10:37Z cat > tests/test_compare.py -- the escaping test found article names reaching a script block and innerHTML unescaped so both are now escaped.
+2026-09-13T12:27:57Z python audit of products.json -- seven recipes are listed twice under one brand differing only in the pack size and six of those seconds are the 1,2 kg repacks.
+2026-09-13T12:29:45Z patch tools/make_page.py -- added pack_size and repacks so a recipe listed in two pack sizes keeps only the smallest tin and a carton never displaces a powder.
+2026-09-13T12:29:45Z patch tools/make_chart.py -- the chart drops the same repacks behind the same --repacks flag and the lede names how many went.
+2026-09-13T12:29:45Z cat >> tests/test_page.py -- eight tests for the size reader and the repack rule so the suite now runs 83.
+2026-09-13T12:29:45Z make_page.py then make_chart.py -- index.html holds 112 articles over 13 brands and compare.html compares 109.
+2026-09-13T12:31:40Z python diff of the six pairs -- five of them disagree on at least one nutrient so the readme now states that the kept figure is the smaller tins.
+2026-09-13T12:31:40Z firefox --headless --screenshot of both pages -- every recipe holds one row and the Pre step now plots 26 dots instead of 30.
+2026-09-13T12:31:40Z make_page.py --repacks and --ready-to-drink -- the flags give back 118 and 131 articles so the carton is never read as a repack of the tin.
+2026-09-13T12:31:40Z patch readme.md -- defined the term repack and stated the rule the counts and the disagreement between the two tins.
+2026-09-13T13:14:22Z python audit of every value against its step median -- 93,5 percent sit inside 50 to 150 percent and two dm errors reach 9444 and 18182 percent so every indexed view needs a ceiling.
+2026-09-13T13:14:22Z cat > tools/make_views.py -- one builder emitting four options plus the page that holds them beside each other.
+2026-09-13T13:14:22Z make_views.py -- wrote views/index.html and the four option pages at about 235 kB each.
+2026-09-13T13:22:03Z node validate_palette.js --ordinal on both arms -- the light blue and light red ends failed the 2 to 1 floor on white so the arms were re-stepped to 86b6ef and eda3a3 and both modes now pass.
+2026-09-13T13:22:03Z contrast.py on every mark and text pair -- the series blue is 4,42 and the de-emphasis grey 3,12 on white so both clear the 3 to 1 mark floor and every text pair clears AA.
+2026-09-13T13:22:03Z firefox --headless --screenshot of all five pages -- the indexed legend swatch was escaping the legend because an unscoped .dot rule made it absolute and the end dots were clipped by the panel edge.
+2026-09-13T13:22:03Z patch tools/make_views.py -- scoped the plot rules inset every mark by 5 px stood the profile axis names on end and gave the unheld lines the series hue.
+2026-09-13T13:22:03Z cat > tests/test_views.py -- nine tests over the shaping the four options and the escaping so the suite now runs 91.
+2026-09-13T13:22:03Z python parse of every page -- all seven balance and every link resolves and the four options carry a byte identical dataset.
+2026-09-13T13:22:03Z firefox --headless with ui.systemUsesDarkTheme -- the dark ramp holds and the neutral band recedes into the dark surface as it should.
+2026-09-13T13:23:05Z firefox --headless on profiles.html?sort=spread&pick=1682140,1459132 -- the held lines read against the grey field and widest spread first turns the tangle into a funnel.
+2026-09-13T13:23:05Z patch tools/make_chart.py -- compare.html now links the four ways so the new pages are reachable from the chain.
+2026-09-13T13:23:05Z patch readme.md -- a section for the four options the median index the ceiling and the colour proof.
+2026-09-13T21:18:51Z patch tools/make_views.py -- the core now reads whichever controls an option carries so an option may drop the age step or ask for two nutrients or one article.
+2026-09-13T21:18:51Z cat >> tools/make_views.py -- six more options three of which hold every age step at once.
+2026-09-13T21:18:51Z contrast.py on all fourteen printed cells -- every band of the step matrix carries either white or the ink at 4,8 to 1 or better so the printed share is readable on every fill.
+2026-09-13T21:18:51Z firefox --headless --screenshot of the six -- the lean stacked its bands inward from the wrong end and a heavily leaning pack would have overrun its half of the track.
+2026-09-13T21:18:51Z patch the lean -- the bands now stack outward from the centre and every bar is measured in the widest side of the field so no bar is squeezed.
+2026-09-13T21:18:51Z patch the ladder and the scatter -- the step key is a sentence rather than a row pretending to head the grid and the vertical scale is named in its own gutter.
+2026-09-13T21:18:51Z pytest and a parse of all thirteen pages -- 94 tests pass every page balances every link resolves and the ten options carry one identical dataset.
+2026-09-13T21:19:28Z patch readme.md -- the two option tables the step ladder finding and the ink proof for the printed cells.

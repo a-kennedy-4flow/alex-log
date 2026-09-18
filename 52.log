@@ -1,0 +1,27 @@
+Command log for the wrapping audit of the tracker web app starting with the board view.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-14T14:02:02Z find tracker for vue files and read MonthCalendar.vue and tokens.css -- the board view is apps/web/src/components/MonthCalendar.vue and the chip styles are global in styles/tokens.css.
+2026-09-14T14:03:17Z read i18n and api and useTimesheet -- the web app runs on fixtures with no VITE_API_URL and keeps the month in localStorage so a browser audit needs no API.
+2026-09-14T14:03:33Z pnpm exec vite --mode audit --port 5199 -- the dev server runs on fixtures at 5199 because mode audit loads no env file.
+2026-09-14T14:04:55Z playwright smoke against 5199 -- the app renders on fixtures and the setup wizard opens over the month so the audit has to seed tracker.wizardSeen and timesheets.tourSeen.
+2026-09-14T14:06:12Z playwright overflow audit of the board in German at seven widths -- span.chips overflows button.cell at every width so a chip crosses the cell rule into the next column.
+2026-09-14T14:11:34Z playwright open of the board popover at 1440 and 900 and 768 -- the popover fits at every width so the board fault is the chip alone.
+2026-09-14T14:17:33Z python3 build-decisions.py -- six decision 4 pages emitted from the same shell as the decision 1 and 2 pages.
+2026-09-14T14:21:32Z playwright overflow sweep of eight screens at seven widths in German and English and Hungarian -- four faults bite at a real window size. The board chip crosses the cell rule at every width. The quick fill table is cut by the sheet at 1280. The per week summary passes its column at 1280. The share field passes its cell in English and Hungarian.
+2026-09-14T14:21:43Z patched styles/tokens.css -- the shared chip takes min-width 0 and the id takes the ellipsis guard and the day value stops shrinking.
+2026-09-14T14:22:01Z patched components/MonthCalendar.vue -- the cell chip takes decision 4 option F and the cell padding drops to 6px and the day flag breaks inside the word.
+2026-09-14T14:22:55Z patched components/SimpleView.vue -- the quick fill table sits in a horizontal scroller with a 674px minimum and the share field stops passing its cell.
+2026-09-14T14:23:06Z patched components/SummaryPanel.vue and App.vue -- the per week headers wrap and the header nav wraps with the bar it sits in.
+2026-09-14T14:23:24Z patched components/PeriodBar.vue and pages/JiraPage.vue -- both stat strips wrap rather than running off the window.
+2026-09-14T14:24:05Z patched mockups/index.html -- decision 4 added with six cards and option F marked as taken.
+2026-09-14T14:24:25Z patched docs/todo-f-design-and-board-view.md -- decision 4 recorded with its reason and its cost and the two board items ticked.
+2026-09-14T14:24:40Z python html parse and link check over mockups -- every page parses and every href and src resolves to a file.
+2026-09-14T14:27:28Z pnpm --filter @tracker/web test -- 318 tests pass across twelve files with the wrapping patches in.
+2026-09-14T14:28:12Z eslint --fix on SimpleView.vue then pnpm lint and vue-tsc -- the scroller indentation is settled and the repo lints clean and typechecks.
+2026-09-14T14:36:20Z patched components/SummaryPanel.vue and components/SetupForm.vue -- the per week headers break anywhere and the cells take 5px so the table fits its panel in German and Hungarian and the settings columns give up their 260px minimum on a narrow page.
+2026-09-14T14:40:06Z pnpm -r test and pnpm lint and pnpm typecheck -- 775 tests pass across five packages and eslint is clean and every package typechecks.
+2026-09-14T14:40:06Z playwright overflow sweep repeated over eleven widths -- nothing passes its own box at 768px and up apart from the credits glow which the sheet clips on purpose. Everything left sits at 480px and below and the header one is the dev only user switch.
+2026-09-14T14:41:11Z added six assertions to apps/web/src/__tests__/styles.test.ts -- the board cell and the quick fill scroller are pinned the way the month grid already is. Removing flex-wrap from the cell chip fails the wrap assertion.
+2026-09-14T14:41:57Z pkill vite --mode audit -- the audit server on 5199 is stopped.
+2026-09-14T14:42:27Z playwright screenshot of mockups/index.html at the decision 4 section -- the six cards draw their own live preview and option F carries the chosen mark.
+2026-09-14T15:48:08Z kill 640754 676358 -- two waiter shells never exited because their own command line matched the pgrep they waited on. Both audits they waited for had already been read.

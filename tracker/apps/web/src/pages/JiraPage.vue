@@ -598,6 +598,8 @@ async function run(): Promise<void> {
 
 .stats {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   margin: 0 0 0 auto;
 }
 

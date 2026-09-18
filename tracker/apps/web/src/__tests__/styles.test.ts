@@ -84,6 +84,74 @@ describe('the month grid', () => {
   })
 })
 
+describe('a board cell', () => {
+  const board = () => readFileSync(join(ROOT, 'src/components/MonthCalendar.vue'), 'utf8')
+  const styles = () => board().slice(board().indexOf('<style'))
+
+  it('lets every box inside it go under its own content', () => {
+    // A flex item and a grid item both refuse that by default. A chip in a cell
+    // 86px wide then drew itself across the rule into the next day. jsdom lays
+    // nothing out so the rules are read rather than measured.
+    const cell = styles().slice(styles().indexOf('.cell {'), styles().indexOf('.top {'))
+    expect(cell).toContain('min-width: 0')
+    const chips = styles().slice(styles().indexOf('.cell .chips {'), styles().indexOf('.cell .chip {'))
+    expect(chips).toContain('min-width: 0')
+    expect(TOKENS).toMatch(/\.chip \{[^}]*min-width: 0/)
+  })
+
+  it('wraps the chip rather than cutting the workday id', () => {
+    // Decision 4 option F. A seven digit id with its day value needs 101px at
+    // 12px type and the cell gives 65px at a 1280px window. At 11px the id
+    // alone needs 46px so the day value takes the second line instead.
+    const chip = styles().slice(styles().indexOf('.cell .chip {'))
+    const rule = chip.slice(0, chip.indexOf('}'))
+    expect(rule).toContain('flex-wrap: wrap')
+    expect(rule).toContain('font-size: 11px')
+  })
+
+  it('breaks the day flag inside the word', () => {
+    // `Arbeitswochenende` is 17 characters and the cell holds 64px beside the
+    // date. `MonthGrid.vue` breaks the same flag for the same reason.
+    const lab = styles().slice(styles().indexOf('.lab {'))
+    expect(lab.slice(0, lab.indexOf('}'))).toContain('overflow-wrap: break-word')
+  })
+
+  it('holds the id whole and cuts it only as the last guard', () => {
+    // The cut belongs to `tokens.css` because the legend draws the same chip.
+    // It fires under about 800px where the cell cannot hold seven digits at
+    // all. Above that the wrap above has already paid for it.
+    const chip = TOKENS.slice(TOKENS.indexOf('.chip b {'))
+    const rule = chip.slice(0, chip.indexOf('}'))
+    expect(rule).toContain('text-overflow: ellipsis')
+    expect(rule).toContain('min-width: 0')
+    // The day value is three characters and gives up none of them.
+    const value = TOKENS.slice(TOKENS.indexOf('.chip i {'))
+    expect(value.slice(0, value.indexOf('}'))).toContain('flex: none')
+  })
+})
+
+describe('the quick fill table', () => {
+  const view = () => readFileSync(join(ROOT, 'src/components/SimpleView.vue'), 'utf8')
+  const styles = () => view().slice(view().indexOf('<style'))
+
+  it('scrolls sideways rather than letting the sheet clip it', () => {
+    // Five columns hold 674px and the month box beside the aside is 656px at a
+    // 1280px window. `.sheet` carries `overflow: hidden` so the tasks column
+    // and the remove button left the screen with nothing saying they were
+    // there. `MonthGrid.vue` answers its own width the same way.
+    expect(styles()).toContain('overflow-x: auto')
+    expect(styles()).toMatch(/min-width: 674px/)
+    expect(view()).toContain('<div class="table-wrap">')
+  })
+
+  it('lets its section go under the table it holds', () => {
+    // The section is a grid item of the month box. Without this the scroller
+    // inside it never narrows and the sheet is pushed wider than the page.
+    const section = styles().slice(styles().indexOf('section {'))
+    expect(section.slice(0, section.indexOf('}'))).toContain('min-width: 0')
+  })
+})
+
 describe('the loading ring', () => {
   const ring = () => readFileSync(join(ROOT, 'src/components/LoadingRing.vue'), 'utf8')
 

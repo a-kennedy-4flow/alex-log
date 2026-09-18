@@ -132,67 +132,69 @@ function onWorkdayChange(row: Allocation, value: string | null): void {
     <h2>{{ t('simple.title') }}</h2>
     <p class="muted intro">{{ t('simple.intro') }}</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th class="col-cc">{{ t('grid.workdayId') }}</th>
-          <th class="col-spec">{{ t('grid.specification') }}</th>
-          <th class="col-pct">{{ t('simple.percent') }}</th>
-          <th class="col-days">{{ t('simple.days') }}</th>
-          <th class="col-tasks">{{ t('grid.tasks') }}</th>
-          <th class="col-act"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(row, index) in rows" :key="index">
-          <td>
-            <CostCentrePicker
-              :model-value="row.workdayId === '' ? null : row.workdayId"
-              @update:model-value="onWorkdayChange(row, $event)"
-            />
-          </td>
-          <td>
-            <SpecPicker
-              v-model="row.specification"
-              :workday-id="row.workdayId === '' ? null : row.workdayId"
-              :is-default="row.specification === null && row.workdayId !== ''"
-            />
-          </td>
-          <td>
-            <div class="pct" :data-tour="index === 0 ? 'quickShare' : undefined">
-              <input
-                v-model.number="row.percent"
-                type="number"
-                min="0"
-                max="100"
-                step="1"
-                :class="{ auto: !sharesAreTheirs && row.workdayId !== '' }"
-                @input="onPercentInput"
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-cc">{{ t('grid.workdayId') }}</th>
+            <th class="col-spec">{{ t('grid.specification') }}</th>
+            <th class="col-pct">{{ t('simple.percent') }}</th>
+            <th class="col-days">{{ t('simple.days') }}</th>
+            <th class="col-tasks">{{ t('grid.tasks') }}</th>
+            <th class="col-act"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, index) in rows" :key="index">
+            <td>
+              <CostCentrePicker
+                :model-value="row.workdayId === '' ? null : row.workdayId"
+                @update:model-value="onWorkdayChange(row, $event)"
               />
-              <span class="muted">%</span>
-            </div>
-          </td>
-          <td class="num days">{{ daysOf(row) ?? '' }}</td>
-          <td><input v-model="row.tasks" type="text" /></td>
-          <td>
-            <button type="button" class="icon" :title="t('simple.remove')" @click="remove(index)">
-              ×
-            </button>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="2">
-            <button type="button" class="btn" @click="add">{{ t('simple.addRow') }}</button>
-            <button type="button" class="btn spread" data-tour="quickSpread" @click="resetShares">100 / n</button>
-          </td>
-          <td class="num total" :class="{ off: !balanced }">{{ total }} %</td>
-          <td class="num total">{{ target }}</td>
-          <td colspan="2"></td>
-        </tr>
-      </tfoot>
-    </table>
+            </td>
+            <td>
+              <SpecPicker
+                v-model="row.specification"
+                :workday-id="row.workdayId === '' ? null : row.workdayId"
+                :is-default="row.specification === null && row.workdayId !== ''"
+              />
+            </td>
+            <td>
+              <div class="pct" :data-tour="index === 0 ? 'quickShare' : undefined">
+                <input
+                  v-model.number="row.percent"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="1"
+                  :class="{ auto: !sharesAreTheirs && row.workdayId !== '' }"
+                  @input="onPercentInput"
+                />
+                <span class="muted">%</span>
+              </div>
+            </td>
+            <td class="num days">{{ daysOf(row) ?? '' }}</td>
+            <td><input v-model="row.tasks" type="text" /></td>
+            <td>
+              <button type="button" class="icon" :title="t('simple.remove')" @click="remove(index)">
+                ×
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <button type="button" class="btn" @click="add">{{ t('simple.addRow') }}</button>
+              <button type="button" class="btn spread" data-tour="quickSpread" @click="resetShares">100 / n</button>
+            </td>
+            <td class="num total" :class="{ off: !balanced }">{{ total }} %</td>
+            <td class="num total">{{ target }}</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 
     <p v-if="!balanced && ready.length > 0" class="warn">{{ t('simple.mustBe100') }}</p>
 
@@ -222,8 +224,30 @@ function onWorkdayChange(row: Allocation, value: string | null): void {
   max-width: 70ch;
 }
 
+/*
+ * This section is a grid item of the month box so it holds its own content
+ * width until it is told not to. The table below then pushed the sheet wider
+ * than the page.
+ */
+section {
+  min-width: 0;
+}
+
+/*
+ * The section scrolls the table rather than the sheet clipping it.
+ *
+ * Five columns hold 674px and the month box beside the aside is 656px at a
+ * 1280px window. The sheet carries `overflow: hidden` so without this the
+ * tasks column and the remove button were cut off the screen with nothing
+ * saying they were there. `MonthGrid.vue` answers its own width the same way.
+ */
+.table-wrap {
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
+  min-width: 674px;
   border-collapse: collapse;
 }
 
@@ -272,6 +296,11 @@ tfoot td {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* The field is 100 per cent of a cell it shares with the sign beside it. */
+.pct input {
+  min-width: 0;
 }
 
 /* Split by the app rather than typed. Matches the default specification. */

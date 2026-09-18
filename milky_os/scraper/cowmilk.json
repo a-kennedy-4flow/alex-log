@@ -1,0 +1,271 @@
+{
+ "caption": "Nährwerte der Vollmilch",
+ "basis": "pro 100 ml",
+ "built_on": "2026-09-14",
+ "density": 1.032,
+ "fdc_id": 172217,
+ "description": "Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D",
+ "url": "https://fdc.nal.usda.gov/food-details/172217/nutrients",
+ "warning": {
+  "from_month": 12,
+  "says": "Whole cow milk is not a milk for an infant. ESPGHAN says it should not be the main drink before twelve months and should stay under 500 ml a day after that. It is here as the thing a Kindermilch is sold against rather than as an option for a younger child.",
+  "source": "espghan"
+ },
+ "sources": {
+  "usda": {
+   "citation": "Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D. FoodData Central SR Legacy, FDC ID 172217. Washington (DC): US Department of Agriculture, Agricultural Research Service; 2019.",
+   "url": "https://fdc.nal.usda.gov/food-details/172217/nutrients",
+   "note": "A United States reference for a German shelf. German Vollmilch is sold at 3,5% fat against the 3,25% of this record and neither is fortified."
+  },
+  "espghan": {
+   "citation": "Domellöf M, Braegger C, Campoy C, Colomb V, Decsi T, Fewtrell M, et al. Iron requirements of infants and toddlers. A position paper by the ESPGHAN Committee on Nutrition. J Pediatr Gastroenterol Nutr. 2014;58(1):119-129.",
+   "doi": "10.1097/mpg.0000000000000206",
+   "quote": "Unmodified cow's milk should not be fed as the main milk drink to infants before the age of 12 months and intake should be limited to <500 mL/day in toddlers."
+  }
+ },
+ "nutrients": [
+  {
+   "name": "Brennwert",
+   "source": "usda",
+   "unit": "kJ",
+   "per_100_ml": 263.391168,
+   "note": "the published kilocalorie at 4,184 kJ per kcal"
+  },
+  {
+   "name": "Brennwert",
+   "source": "usda",
+   "unit": "kcal",
+   "per_100_ml": 62.952
+  },
+  {
+   "name": "Eiweiß",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 3.2508
+  },
+  {
+   "name": "Fett",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 3.3746400000000003
+  },
+  {
+   "name": "davon gesättigte Fettsäuren",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 1.92468
+  },
+  {
+   "name": "davon einfach ungesättigte Fettsäuren",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.8379840000000001
+  },
+  {
+   "name": "davon mehrfach ungesättigte Fettsäuren",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.20124
+  },
+  {
+   "name": "Kohlenhydrate",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 4.9329600000000005,
+   "note": "the record works this out by difference from the water protein fat and ash while it measures the sugars, so the sugars come out above the total. Neither was corrected"
+  },
+  {
+   "name": "davon Zucker",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 5.2116
+  },
+  {
+   "name": "Laktose",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 5.2116
+  },
+  {
+   "name": "Ballaststoffe",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.0
+  },
+  {
+   "name": "Galactose",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.0
+  },
+  {
+   "name": "Linolsäure",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.12384
+  },
+  {
+   "name": "Alpha-Linolensäure",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.0774
+  },
+  {
+   "name": "Arachidonsäure",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.0
+  },
+  {
+   "name": "Docosahexaensäure (DHA)",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.0
+  },
+  {
+   "name": "Natrium",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 44.376000000000005
+  },
+  {
+   "name": "Kalium",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 136.224
+  },
+  {
+   "name": "Calcium",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 116.616
+  },
+  {
+   "name": "Magnesium",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 10.32
+  },
+  {
+   "name": "Phosphor",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 86.688
+  },
+  {
+   "name": "Eisen",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.03096
+  },
+  {
+   "name": "Zink",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.38184
+  },
+  {
+   "name": "Kupfer",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.025800000000000003
+  },
+  {
+   "name": "Mangan",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.004128000000000001
+  },
+  {
+   "name": "Selen",
+   "source": "usda",
+   "unit": "µg",
+   "per_100_ml": 3.8184000000000005
+  },
+  {
+   "name": "Vitamin A",
+   "source": "usda",
+   "unit": "µg",
+   "per_100_ml": 47.472
+  },
+  {
+   "name": "Vitamin C",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.0
+  },
+  {
+   "name": "Vitamin D",
+   "source": "usda",
+   "unit": "µg",
+   "per_100_ml": 0.10320000000000001
+  },
+  {
+   "name": "Vitamin E",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.07224000000000001
+  },
+  {
+   "name": "Vitamin K",
+   "source": "usda",
+   "unit": "µg",
+   "per_100_ml": 0.3096
+  },
+  {
+   "name": "Vitamin B 1, Thiamin",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.047472
+  },
+  {
+   "name": "Vitamin B 2, Riboflavin",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.174408
+  },
+  {
+   "name": "Niacin",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.091848
+  },
+  {
+   "name": "Pantothensäure",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.384936
+  },
+  {
+   "name": "Vitamin B 6",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 0.037152
+  },
+  {
+   "name": "Folat, gesamt",
+   "source": "usda",
+   "unit": "µg",
+   "per_100_ml": 5.16
+  },
+  {
+   "name": "Vitamin B 12",
+   "source": "usda",
+   "unit": "µg",
+   "per_100_ml": 0.46440000000000003
+  },
+  {
+   "name": "Cholin, gesamt",
+   "source": "usda",
+   "unit": "mg",
+   "per_100_ml": 14.757600000000002
+  },
+  {
+   "name": "Salz",
+   "source": "usda",
+   "unit": "g",
+   "per_100_ml": 0.11094000000000001,
+   "note": "the sodium times 2,5 which is how a label derives it"
+  }
+ ]
+}

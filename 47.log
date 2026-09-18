@@ -1,0 +1,36 @@
+Command log for building the food label OCR application under milky_os/ocr.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-13T11:06:20Z ls -la milky_os/ocr -- the ocr directory exists and is empty.
+2026-09-13T11:06:20Z which python3 tesseract node -- python 3.12 and node 22 are present and tesseract is absent.
+2026-09-13T11:06:20Z sudo -n true -- no passwordless sudo so apt cannot install tesseract.
+2026-09-13T11:06:20Z pip3 download rapidocr-onnxruntime -- pip reaches the index and the wheel is 14.9 MB with the models bundled.
+2026-09-13T11:06:20Z cat 47.log -- log created.
+2026-09-13T11:07:38Z cat > labelocr/models.py -- wrote the dataclasses for boxes cells rows quantities nutrients and the label.
+2026-09-13T11:07:43Z python3 -m venv .venv && pip install -r requirements.txt -- the virtualenv built and rapidocr-onnxruntime installed cleanly.
+2026-09-13T11:09:22Z cat > labelocr/engine.py -- wrote the image preparation and the RapidOCR call that returns cells grouped into rows.
+2026-09-13T11:10:26Z cat > labelocr/parse.py -- wrote the field extraction for the name ingredients allergens nutrition table net quantity dates storage and barcode.
+2026-09-13T11:10:50Z cat > labelocr/{reader,__init__,cli,__main__}.py -- wrote the read_label entry point the package exports and the command line front end.
+2026-09-13T11:11:42Z cat > tools/make_samples.py -- wrote the synthetic label generator for three labels.
+2026-09-13T11:11:48Z python tools/make_samples.py -- generated crisps.png milk.png and cereal.png in samples/.
+2026-09-13T11:11:55Z python -m labelocr samples/crisps.png -- read every field correctly in 2.5 seconds.
+2026-09-13T11:13:03Z python3 - <<PY patching parse.py models.py cli.py -- added unit repair for kJ read as k] split may contain from the allergen declaration and kept storage lines together.
+2026-09-13T11:13:30Z patch parse.py kJ repair -- the trailing  never matched after a bracket so the guard became a lookahead and energy in kJ now reads.
+2026-09-13T11:14:16Z cat > tests/{conftest,test_parse}.py -- wrote the parser tests that run without the OCR stack.
+2026-09-13T11:14:38Z cat > tests/test_samples.py -- wrote the end to end tests over the three drawn labels.
+2026-09-13T11:15:12Z append test_reads_a_rotated_and_noisy_photograph to tests/test_samples.py -- the reader holds up on a rotated noisy JPEG at 62 percent scale.
+2026-09-13T11:15:49Z cat > readme.md -- documented the install the command line the extracted fields the pipeline and the limits.
+2026-09-13T11:16:12Z patch labelocr/engine.py docstrings -- stated the purpose instead of listing the steps and split the buried reason into a Because sentence.
+2026-09-13T11:16:45Z patch tools/make_samples.py and tests/test_samples.py -- the crisps energy row now carries a serving column so the two column energy path is covered end to end.
+2026-09-13T11:17:05Z python -m labelocr Bebivita-1.png Bebivita-pre.png -- ran the reader on the two real label photographs found in the directory.
+2026-09-13T11:23:22Z python sweep.py Bebivita-pre.png -- contrast and sharpening cut the recognised German words from 22 to 17 so enhancement becomes opt in.
+2026-09-13T11:23:22Z cat > labelocr/parse.py -- rewrote the parser with German terms fuzzy name matching micronutrients side by side panels and a resolution warning.
+2026-09-13T11:23:45Z patch engine.py models.py reader.py cli.py -- enhancement became opt in boxes now carry source coordinates and a warnings field reaches the report.
+2026-09-13T11:25:10Z patch parse.py date normalisation and the product name test -- a month running into the year is split and the name test ignores engine spacing.
+2026-09-13T11:27:03Z patch parse.py -- column assignment now reads a per 100 heading and a serving heading separately so two panels printed side by side keep their own columns.
+2026-09-13T11:27:36Z patch parse.py -- a product name must be printed well above the usual height and a gluten free or lactose free claim no longer reads as the allergen.
+2026-09-13T11:29:00Z append German and panel tests to tests/test_parse.py -- eight new cases cover the German table the fuzzy name match two panels the free from claim and the resolution warning.
+2026-09-13T11:29:24Z append test_reads_a_real_german_panel to tests/test_samples.py -- the real panel now has a test that asserts the warning rather than the wrong readings.
+2026-09-13T11:29:56Z cat > readme.md -- rewrote the documentation for the German support the panel splitting the enhancement default and the resolution warning.
+2026-09-13T11:30:34Z sed -i labelocr/parse.py -- dropped the Cell import the rewrite left behind.
+2026-09-13T11:30:34Z python -m pytest tests/ -q -- 43 tests pass.
+2026-09-13T11:30:47Z python -m labelocr samples/milk.png Bebivita-1.png -- the drawn label reads every field and the real German panel reads the basis the allergen and the warning.

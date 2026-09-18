@@ -1,0 +1,15 @@
+Closure Compiler trial. Applying https://github.com/google/closure-compiler to the JavaScript in this repo inside a git worktree.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-14T14:05:37Z  cat memory/*.md  Read the grammar rule and the logging rule and the build-all-variants rule.
+2026-09-14T14:05:37Z  ls -la; find . -maxdepth 2  Listed the repo root. Fifty two logs and twelve project directories.
+2026-09-14T14:05:37Z  cat package.json tsconfig.json .gitignore  Root is a small nunjucks day-log generator built with tsgo.
+2026-09-14T14:05:37Z  find -name '*.js' per directory  Counted JavaScript. tracker 138 and milky_os 134 and databases 13 and website 3.
+2026-09-14T14:05:37Z  cat tracker/apps/web/package.json  The tracker web app is Vue 3 on Vite 7 with vitest.
+2026-09-14T14:05:37Z  find website sites -name '*.js'  Three hand written browser scripts. klar 2776 and praxis 3377 and ruhe 1157 bytes.
+2026-09-14T14:05:37Z  grep -rl '<script' sites  Nineteen Rehbrunn pages carry an inline script block.
+2026-09-14T14:05:37Z  java -version; node --version  Java 25.0.4 and Node 22.22.2 are installed.
+2026-09-14T14:05:37Z  grep -n 'main.js' website/_build/*.py  The three main.js files are written by the Python design modules.
+2026-09-14T14:05:37Z  npm view google-closure-compiler version  Network reaches npm. Latest compiler is 20260909.0.0.
+2026-09-14T14:05:37Z  pnpm --version; git worktree list  pnpm 11.10.0. One worktree already exists for an unrelated branch.
+2026-09-14T14:05:37Z  sed -n '237,300p' sites/uhrmacherei-pfeil/index.html  Inline scripts are modern ES with const and arrow functions and Map.
+2026-09-14T14:05:37Z  ls tracker/apps/web/dist/assets  A Vite build is already present. Chunks run from 227 bytes to 20 kilobytes.

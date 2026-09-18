@@ -2,7 +2,9 @@
 //
 // The layout follows the shipped tracker so the recipient recognises it. The
 // grid sits at rows 5 to 66 with two rows per calendar day. The aggregation
-// block sits at 70 to 88. The per week block sits at 92 to 102.
+// block sits at 70 to 88. The per week block sits at 92 to 102. Both blocks
+// below the grid move down together when a month holds more groups than the
+// tracker left room for.
 //
 // Everything is a value. Because a) the export carries no project list. b) the
 // tracker derives those cells with XLOOKUP against that list. c) a lookup with
@@ -10,6 +12,7 @@
 
 import { zipSync, strToU8 } from 'fflate'
 import {
+  ABSENCE_LINES,
   aggregateByProject,
   aggregateByWeek,
   absenceTotal,
@@ -22,6 +25,7 @@ import {
   validate,
   type CalendarDay,
   type HalfDay,
+  type Project,
 } from '@tracker/core'
 
 import {
@@ -75,6 +79,36 @@ const WIDTHS: Record<string, number> = {
 
 function put(cells: Cell[], ref: string, value: Cell['value'], style?: number): void {
   cells.push(style === undefined ? { ref, value } : { ref, value, style })
+}
+
+/**
+ * Tracker column I. The workbook holds a Workday ID as a number and an absence
+ * label as text. The export writes each the same way so a reader sorts and
+ * pivots the column as the sheet this copies lets them.
+ *
+ * Only a canonical integer converts. Because a) a leading zero is part of an id
+ * that carries one. b) an id past the safe integer range would not survive the
+ * trip through a double. c) `String(Number(text)) === text` refuses both
+ * without needing a rule for each.
+ *
+ * All 3149 ids in the shipped list are plain digits under seven of them so
+ * nothing in the catalogue today takes the text branch. A later upload might.
+ */
+function workdayCell(workdayId: string | null): Cell['value'] {
+  if (workdayId === null) return null
+  const asNumber = Number(workdayId)
+  return String(asNumber) === workdayId ? asNumber : workdayId
+}
+
+/**
+ * Tracker column M. Its header reads `Name of project [Business Line]` and the
+ * workbook formula appends that business line to the title. The suffix is
+ * dropped where nothing names the line rather than written empty.
+ */
+function projectLabel(project: Project | null | undefined): string | null {
+  const title = project?.workdayTitle ?? project?.projectTitle ?? null
+  if (title === null) return null
+  return project?.businessLine ? `${title} [BL ${project.businessLine}]` : title
 }
 
 /**
@@ -139,7 +173,7 @@ export function buildTrackerCells(request: ExportRequest, days: CalendarDay[]): 
       put(cells, `H${row}`, half === 0 ? day.dayOfMonth : null, shade)
 
       const entry = byKey.get(`${day.date}:${half}`)
-      put(cells, `I${row}`, entry?.workdayId ?? null, shade)
+      put(cells, `I${row}`, workdayCell(entry?.workdayId ?? null), shade)
       put(cells, `J${row}`, entry?.specification ?? null, shade)
       put(cells, `K${row}`, entry?.days ?? null, shade)
       put(cells, `L${row}`, entry?.location ?? null, shade)
@@ -154,49 +188,56 @@ export function buildTrackerCells(request: ExportRequest, days: CalendarDay[]): 
   put(cells, 'L70', 'Customer', STYLE.header)
   put(cells, 'M70', 'Name of project [Business Line]', STYLE.header)
 
+  // The tracker left fifteen slots. An empty slot is still written so the block
+  // keeps its shape. A month holding more groups grows the block rather than
+  // losing the rest.
   const groups = aggregateByProject(halfDays).filter((g) => g.workdayId !== null)
-  for (let i = 0; i < AGGREGATE_SLOTS; i++) {
+  const groupRows = Math.max(AGGREGATE_SLOTS, groups.length)
+  for (let i = 0; i < groupRows; i++) {
     const row = 71 + i
     const group = groups[i]
     const project = group ? findProject(group.workdayId) : null
-    put(cells, `I${row}`, group?.workdayId ?? null)
+    put(cells, `I${row}`, workdayCell(group?.workdayId ?? null))
     put(cells, `J${row}`, group?.specification ?? null)
     put(cells, `K${row}`, group?.days ?? 0)
     put(cells, `L${row}`, project?.customer ?? null)
-    put(cells, `M${row}`, project?.workdayTitle ?? project?.projectTitle ?? null)
-  }
-  // A month with more than fifteen groups would silently lose the rest so the
-  // overflow is written below the block rather than dropped.
-  for (let i = AGGREGATE_SLOTS; i < groups.length; i++) {
-    const group = groups[i]
-    const row = 71 + i
-    put(cells, `I${row}`, group?.workdayId ?? null)
-    put(cells, `J${row}`, group?.specification ?? null)
-    put(cells, `K${row}`, group?.days ?? 0)
+    put(cells, `M${row}`, projectLabel(project))
   }
 
-  const lastGroupRow = 71 + Math.max(AGGREGATE_SLOTS, groups.length) - 1
-  put(cells, `I${lastGroupRow + 1}`, 'Vacation or sickness:', STYLE.bold)
-  put(cells, `K${lastGroupRow + 1}`, absenceTotal(halfDays, 'Vacation or sickness'))
-  put(cells, `I${lastGroupRow + 2}`, 'Other absences:', STYLE.bold)
-  put(cells, `K${lastGroupRow + 2}`, absenceTotal(halfDays, 'Other absence'))
-  put(cells, `L${lastGroupRow + 3}`, 'Total', STYLE.bold)
-  put(cells, `M${lastGroupRow + 3}`, booked, STYLE.total)
+  // The two absence lines and the grand total sit under the block. The tracker
+  // grand total is SUM(K71:K87) so the block never carries an absence itself.
+  const lastGroupRow = 71 + groupRows - 1
+  const ABSENCE_HEADINGS = ['Vacation or sickness:', 'Other absences:']
+  ABSENCE_LINES.forEach((label, i) => {
+    put(cells, `I${lastGroupRow + 1 + i}`, ABSENCE_HEADINGS[i] ?? `${label}:`, STYLE.bold)
+    put(cells, `K${lastGroupRow + 1 + i}`, absenceTotal(halfDays, label))
+  })
+  const grandTotalRow = lastGroupRow + ABSENCE_LINES.length + 1
+  put(cells, `L${grandTotalRow}`, 'Total', STYLE.bold)
+  put(cells, `M${grandTotalRow}`, booked, STYLE.total)
 
-  /* the per week block */
-  put(cells, 'H92', 'CW', STYLE.header)
-  put(cells, 'I92', 'working days', STYLE.header)
-  put(cells, 'J92', 'non-working days*', STYLE.header)
-  put(cells, 'K92', 'Total days', STYLE.header)
+  /*
+   * The per week block. It starts at row 92 as the tracker does and moves down
+   * only when the block above has grown past its fifteen slots. Because a) the
+   * two would otherwise write the same cell twice and Excel refuses a sheet
+   * holding a repeated reference. b) a month can hold up to sixty two groups.
+   * c) a reader recognises the layout as long as nothing has overflowed.
+   */
+  const weekHeaderRow = Math.max(92, grandTotalRow + 4)
+  put(cells, `H${weekHeaderRow}`, 'CW', STYLE.header)
+  put(cells, `I${weekHeaderRow}`, 'working days', STYLE.header)
+  put(cells, `J${weekHeaderRow}`, 'non-working days*', STYLE.header)
+  put(cells, `K${weekHeaderRow}`, 'Total days', STYLE.header)
 
+  const weekFirstRow = weekHeaderRow + 3
   weeks.forEach((week, i) => {
-    const row = 95 + i
+    const row = weekFirstRow + i
     put(cells, `H${row}`, week.week)
     put(cells, `I${row}`, week.workingDays)
     put(cells, `J${row}`, week.nonWorkingDays)
     put(cells, `K${row}`, week.total)
   })
-  const totalRow = 95 + weeks.length
+  const totalRow = weekFirstRow + weeks.length
   put(cells, `H${totalRow}`, 'Total', STYLE.bold)
   put(cells, `K${totalRow}`, booked, STYLE.total)
   put(cells, `J${totalRow + 1}`, 'target', STYLE.bold)
@@ -213,7 +254,7 @@ export function buildTrackerCells(request: ExportRequest, days: CalendarDay[]): 
         : 'Your project tracker is completed!'
   put(cells, 'O2', status)
   put(cells, 'O4', `Send this file to ${TRACKER_RECIPIENT} if everything is correct`)
-  put(cells, 'M94', `Send this file to ${TRACKER_RECIPIENT} if everything is correct`)
+  put(cells, `M${weekHeaderRow + 2}`, `Send this file to ${TRACKER_RECIPIENT} if everything is correct`)
 
   return cells
 }

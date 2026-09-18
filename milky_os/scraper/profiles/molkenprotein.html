@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molkenprotein · dm Babymilch</title>
+<style>
+:root {
+  --ink: #16181d;
+  --quiet: #5c6270;
+  --line: #e2e5ec;
+  --page: #f6f7f9;
+  --card: #ffffff;
+  --accent: #002878;
+  --band: #eef1f7;
+  --series: #2a78d6;
+  --deemph: #8b92a1;
+  --mid: #f0efec;
+  --low3: #184f95;
+  --low2: #3987e5;
+  --low1: #86b6ef;
+  --high1: #eda3a3;
+  --high2: #e06a6a;
+  --high3: #b83232;
+  --ink0: #ffffff;
+  --ink1: #16181d;
+  --ink2: #16181d;
+  --ink3: #16181d;
+  --ink4: #16181d;
+  --ink5: #16181d;
+  --ink6: #ffffff;
+  --radius: 10px;
+  --who: 17rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8eaf0;
+    --quiet: #9aa2b4;
+    --line: #2c313c;
+    --page: #14161b;
+    --card: #1b1e25;
+    --accent: #8ab0ff;
+    --band: #232833;
+    --series: #3987e5;
+    --deemph: #626b7d;
+    --mid: #383835;
+    --low3: #86b6ef;
+    --low2: #3987e5;
+    --low1: #1c5cab;
+    --high1: #8a3535;
+    --high2: #c14a4a;
+    --high3: #e66767;
+    --ink0: #16181d;
+    --ink1: #16181d;
+    --ink2: #ffffff;
+    --ink3: #ffffff;
+    --ink4: #ffffff;
+    --ink5: #ffffff;
+    --ink6: #16181d;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.top { padding: 1.25rem 1.25rem 0.5rem; }
+h1 { margin: 0; font-size: 1.4rem; letter-spacing: -0.01em; }
+.lede { margin: 0.2rem 0 0; color: var(--quiet); font-size: 0.9rem; }
+a { color: var(--accent); }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: end;
+  padding: 0.75rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.control { display: grid; gap: 0.15rem; }
+.control span {
+  color: var(--quiet);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+select, button {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+select { max-width: 22rem; }
+button:hover, select:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { padding: 1rem 1.25rem 1rem; }
+.card {
+  padding: 1rem 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow-x: auto;
+}
+.card h2 { margin: 0; font-size: 1rem; }
+.card .sub { margin: 0.15rem 0 1rem; color: var(--quiet); font-size: 0.82rem; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  margin: 0 0 0.9rem;
+  color: var(--quiet);
+  font-size: 0.78rem;
+}
+.legend i {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.3rem;
+  border-radius: 3px;
+  vertical-align: -0.12rem;
+}
+.legend .dot { border-radius: 50%; width: 0.6rem; height: 0.6rem; }
+.note { margin: 1rem 0 0; color: var(--quiet); font-size: 0.8rem; }
+#pack:empty { display: none; }
+.cost {
+  margin: 1rem 1.25rem 3rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 0.85rem;
+}
+.cost h2 { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--quiet); }
+.cost p { margin: 0 0 0.5rem; }
+.cost p:last-child { margin-bottom: 0; }
+.cost b { font-weight: 600; }
+#tip {
+  position: fixed;
+  z-index: 9;
+  max-width: 22rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.16);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+#tip[hidden] { display: none; }
+#tip b { display: block; }
+#tip span { display: block; color: var(--quiet); }
+table { border-collapse: collapse; font-size: 0.82rem; }
+th, td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+thead th { color: var(--quiet); font-size: 0.76rem; vertical-align: bottom; }
+tbody tr:hover { background: var(--band); }
+th.who, td.who { position: sticky; left: 0; background: var(--card); }
+tbody tr:hover th.who, tbody tr:hover td.who { background: var(--band); }
+.who b { font-weight: 600; }
+.who .variant { color: var(--quiet); font-weight: 400; }
+.who .size { color: var(--deemph); font-size: 0.75rem; }
+a.what { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--quiet); }
+a.what:hover, a.what:focus { color: var(--accent); border-bottom-color: var(--accent); }
+
+main { margin: 0 1.25rem 3rem; display: grid; gap: 1rem; max-width: 60rem; }
+.card h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+blockquote { margin: 0 0 0.6rem; padding-left: 0.9rem; border-left: 3px solid var(--line);
+  font-size: 0.95rem; }
+.attrib { margin: 0; color: var(--quiet); font-size: 0.78rem; }
+.attrib a { color: var(--accent); }
+table.grid { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+table.grid th, table.grid td { padding: 0.28rem 0.5rem; border-bottom: 1px solid var(--line);
+  text-align: right; }
+table.grid th[scope=row], table.grid thead th:first-child { text-align: left; }
+table.grid thead th { color: var(--quiet); font-size: 0.78rem; }
+table.grid td.none { color: var(--quiet); }
+ul.caveats { margin: 0; padding-left: 1.1rem; font-size: 0.85rem; }
+ul.caveats li { margin-bottom: 0.45rem; }
+.empty { color: var(--quiet); font-size: 0.85rem; margin: 0; }
+.tag { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 3px;
+  background: var(--band); color: var(--quiet); font-size: 0.72rem; margin-left: 0.3rem; }
+.index { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+.index th, .index td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--line);
+  text-align: left; vertical-align: top; }
+.index td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.index a { color: var(--accent); text-decoration: none; }
+.index a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Molkenprotein</h1>
+  <p class="lede">69 names over 120 articles collected on 13 September 2026. <a href="index.html">Every nutrient</a> ·
+    <a href="../index.html">The list</a> · <a href="../compare.html">Compare</a>.</p>
+</header>
+<main><section class="card"><h2>What it is</h2><blockquote>Whey protein is a mixture of proteins isolated from whey, the liquid material created as a by-product of cheese production. The proteins consist of α-lactalbumin, β-lactoglobulin, serum albumin and immunoglobulins. Glycomacropeptide also makes up the third largest component but is not a protein.</blockquote><p class="attrib">Quoted from the Wikipedia article <a href="https://en.wikipedia.org/wiki/Whey_protein" rel="noreferrer">Whey protein</a> as of 2026-09-03 · CC BY-SA 4.0 <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer">licence</a></p></section><section class="card"><h2>In breast milk</h2><p class="empty">No source measures this in human milk so the reference declares nothing.</p></section><section class="card"><h2>In the packs</h2><p class="empty">No pack declares this.</p></section><section class="card"><h2>What a baby needs</h2><p class="empty">No adequate intake is published for this at the age these packs are sold for.</p></section><section class="card"><h2>How much is absorbed</h2><p class="empty">No measurement of how much of this is absorbed from either milk is carried here. A concentration on this page is what is in the milk rather than what reaches the child.</p></section><section class="card"><h2>What to watch</h2><ul class="caveats"><li>No chart draws this. Only 1 of the 120 articles print it which is under the half of the field a nutrient needs before a median means anything.</li><li>Breast milk carries no figure here. Either no source measures it or human milk does not contain it. The reference is never guessed.</li></ul></section></main>
+</body>
+</html>

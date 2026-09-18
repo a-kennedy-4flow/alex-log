@@ -194,14 +194,22 @@ table.tight {
   font-size: 13px;
 }
 
+/*
+ * A header wraps rather than holding one line. `An Arbeitstagen` and `An freien
+ * Tagen` together need 322px and the per week column is 296px at a 1280px
+ * window so the table passed its own panel. `anywhere` rather than `break-word`
+ * because only `anywhere` takes the word out of the smallest width the table
+ * reports. Hungarian needs that. `Nem munkanapokon` still held 342px when it
+ * broke at the space alone. The cell padding is 5px for the same 46px.
+ */
 th {
   text-align: left;
   font-size: 12px;
   color: var(--grey);
   font-weight: 400;
-  padding: 0 8px 6px;
+  padding: 0 5px 6px;
   border-bottom: 1px solid var(--line);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 th.sortable {
@@ -214,7 +222,7 @@ th.sortable:hover {
 }
 
 td {
-  padding: 5px 8px;
+  padding: 5px;
   border-bottom: 1px solid var(--line);
 }
 

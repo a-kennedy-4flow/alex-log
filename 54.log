@@ -1,0 +1,14 @@
+Applying arXiv 2503.15669v1 section 9 to the tracker project. ECO is the LLM driven code optimizer for warehouse scale computers.
+One line per command. UTC timestamp then the command then what happened.
+2026-09-14T14:10:13Z  WebFetch arxiv 2503.15669v1  Section 9 is the conclusion. ECO mines 55k performance edits then retrieves similar code then edits with a fine tuned LLM then verifies and measures in production.
+2026-09-14T14:10:13Z  cat 53.log  A Closure Compiler trial ran earlier today. Tracker holds 138 JavaScript files and the web app is Vue 3 on Vite 7.
+2026-09-14T14:10:51Z  find and wc tracker sources  31555 lines. web 18138 and api 6935 and core 3299 and workbook-reader 1044 and xlsm-writer 908.
+2026-09-14T14:10:51Z  git log -- tracker  Four commits touch tracker and ten exist in the whole repo. ECO mines 55k edits so its first stage has no substrate here.
+2026-09-14T14:10:51Z  cat packages/core/src/aggregate.ts and catalogue.ts  The catalogue holds 5142 project rows and builds Maps on setCatalogue. Aggregation is single pass over half days.
+2026-09-14T14:10:51Z  cat tracker/docs/telemetry.md  An unbuilt telemetry plan. The stage access log already records both latencies per route so a production signal exists.
+2026-09-14T14:10:51Z  ls .github; grep bench  No CI workflow and no benchmark anywhere in the repo.
+2026-09-14T14:12:46Z  cat catalogue.ts searchProjects  The picker scans every row per keystroke and builds a concatenated text field per row before it ranks.
+2026-09-14T14:12:46Z  vitest temp bench of searchProjects  2592 rows offered after dedup. Empty query 0.150 ms. Typed query 0.39 to 0.52 ms per keystroke.
+2026-09-14T14:12:46Z  vitest temp bench of writeTracker  The export costs 1.86 ms and produces 5767 bytes for the April sample.
+2026-09-14T14:12:46Z  rm both temp bench files  The two benchmarks were deleted. Nothing in the working tree changed.
+2026-09-14T14:12:46Z  head tracker/docs/budget.md  Forty USD ceiling and about a tenth of that expected. ECO reports 500000 cores a quarter so the economics do not meet.
