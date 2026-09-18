@@ -1,0 +1,17 @@
+Log 58. Investigation of git commit failing in the alex-log repo after the freezing fix.
+2026-09-18T09:46:18Z cat memory/mandatory-grammar-rules.md memory/log-every-command-as-you-go.md — read the writing rules and the logging rule.
+2026-09-18T09:46:18Z git rev-parse --git-dir --show-toplevel — repo root is /home/alex/repos/alex-log and tracker is a subdirectory not its own repo.
+2026-09-18T09:46:18Z git config --get core.hooksPath — hooks are redirected to /home/alex/.config/git/hooks.
+2026-09-18T09:46:18Z ls /home/alex/repos/alex-log — highest existing log is 57.log so this log is 58.log.
+2026-09-18T09:46:18Z git config --show-origin --get-all core.hooksPath — the redirect is set in /home/alex/.gitconfig so it applies to every repo.
+2026-09-18T09:46:18Z ls -la /home/alex/.config/git/hooks — every hook is a symlink to one _chain script and _chain was modified on 17 September.
+2026-09-18T09:46:18Z ls -la .git/hooks — only the stock samples are there so the global directory is the only active one.
+2026-09-18T09:46:41Z cat /home/alex/.config/git/hooks/_chain — the pre-commit body ends by running ./gradlew spotlessCheck spotbugsMain pmdMain javadoc.
+2026-09-18T09:46:41Z cat /home/alex/.config/git/hooks/prepare-commit-msg — it defers to a repo hook then falls back to lib/commit-stats.sh.
+2026-09-18T09:47:51Z ls ./gradlew — the alex-log repo has no Gradle wrapper and the wrapper exists only in the Java repos.
+2026-09-18T09:47:51Z git init a scratch repo then git commit — reproduced the failure with './gradlew: not found' and exit 1.
+2026-09-18T09:48:47Z python3 edit of /home/alex/.config/git/hooks/_chain — added a guard that exits 0 when there is no executable ./gradlew.
+2026-09-18T09:48:47Z git commit in the scratch repo — the commit now succeeds and the hook prints that it skipped the quality checks.
+2026-09-18T09:48:47Z ran _chain under the name pre-commit inside alex-log — it exited 0 and left the working tree and the stash list unchanged.
+2026-09-18T09:48:47Z [ -x ./gradlew ] in polaris-backend — the wrapper is executable there so the Gradle checks still run.
+2026-09-18T09:48:47Z rm /tmp/claude-1000/pre-commit — removed the symlink used to run the hook under its real name.

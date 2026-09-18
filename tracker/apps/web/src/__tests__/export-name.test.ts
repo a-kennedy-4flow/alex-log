@@ -9,6 +9,8 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
+import { dispositionParams } from '@tracker/core'
+
 import { api } from '@/lib/api'
 
 const SHOWN = 'Kennedy.Alexander_2026_08_projecttracker_DE.xlsm'
@@ -38,5 +40,14 @@ describe('the exported file name', () => {
     respondWith({})
     const file = await api.export('2026-08', SHOWN)
     expect(file.filename).toBe(SHOWN)
+  })
+
+  it('takes the encoded name over the replaced one', async () => {
+    // The plain parameter has every extended character replaced. Reading it
+    // would land the download under Mller rather than under Müller.
+    const name = 'Müller.Jörg_2026_08_projecttracker_DE.xlsm'
+    respondWith({ 'content-disposition': `attachment; ${dispositionParams(name)}` })
+    const file = await api.export('2026-08', SHOWN)
+    expect(file.filename).toBe(name)
   })
 })

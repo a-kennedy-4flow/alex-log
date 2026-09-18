@@ -12,6 +12,7 @@
 import {
   buildMonth,
   catalogue,
+  dispositionParams,
   exportLocation,
   hasErrors,
   isLocale,
@@ -537,7 +538,7 @@ export async function handle(request: ApiRequest, deps: Deps): Promise<ApiRespon
         status: 200,
         headers: {
           'content-type': WORKBOOK_TYPE,
-          'content-disposition': `attachment; filename="${built.result.filename}"`,
+          'content-disposition': `attachment; ${dispositionParams(built.result.filename)}`,
         },
         body: Buffer.from(built.result.bytes).toString('base64'),
         isBase64: true,

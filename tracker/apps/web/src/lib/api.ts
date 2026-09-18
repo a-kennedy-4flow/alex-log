@@ -5,12 +5,13 @@
 // timesheets in localStorage so the UI can be worked on with nothing else
 // running.
 
-import type {
-  CatalogueInput,
-  CompletedTicket,
-  HalfDay,
-  UserProfile,
-  ValidationIssue,
+import {
+  filenameFromDisposition,
+  type CatalogueInput,
+  type CompletedTicket,
+  type HalfDay,
+  type UserProfile,
+  type ValidationIssue,
 } from '@tracker/core'
 import { devHeaders } from '@/composables/useDevUser'
 import { apiToken, authEnabled } from '@/lib/auth'
@@ -158,7 +159,7 @@ export const api = {
   async export(period: string, shown: string): Promise<{ filename: string; blob: Blob }> {
     const response = await request('POST', `/api/timesheets/${period}/export`)
     const disposition = response.headers.get('content-disposition') ?? ''
-    const filename = disposition.match(/filename="([^"]+)"/)?.[1] ?? shown
+    const filename = filenameFromDisposition(disposition) ?? shown
     return { filename, blob: await response.blob() }
   },
 

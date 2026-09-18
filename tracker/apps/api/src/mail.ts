@@ -15,7 +15,12 @@ import { randomUUID } from 'node:crypto'
 
 import type { SESv2Client } from '@aws-sdk/client-sesv2'
 
-import { DEFAULT_LOCALE, TRACKER_RECIPIENT, type LocaleCode } from '@tracker/core'
+import {
+  DEFAULT_LOCALE,
+  TRACKER_RECIPIENT,
+  dispositionParams,
+  type LocaleCode,
+} from '@tracker/core'
 
 export interface Attachment {
   filename: string
@@ -66,13 +71,6 @@ function wrap(value: string): string {
   return (value.match(/.{1,76}/g) ?? []).join('\r\n')
 }
 
-/** RFC 2231. A quoted file name must be ASCII and a surname need not be. */
-function nameParams(filename: string): string {
-  const ascii = filename.replace(/[^\x20-\x7e]/g, '_')
-  const also = ascii === filename ? '' : `; filename*=UTF-8''${encodeURIComponent(filename)}`
-  return `filename="${ascii}"${also}`
-}
-
 /**
  * The message as MIME. SES carries a file in a raw message and in no other.
  *
@@ -110,9 +108,9 @@ export function rawMessage(from: string, message: Message): Buffer {
   for (const file of message.attachments ?? []) {
     lines.push(
       `--${mixed}`,
-      `Content-Type: ${file.contentType}; ${nameParams(file.filename)}`,
+      `Content-Type: ${file.contentType}; ${dispositionParams(file.filename)}`,
       'Content-Transfer-Encoding: base64',
-      `Content-Disposition: attachment; ${nameParams(file.filename)}`,
+      `Content-Disposition: attachment; ${dispositionParams(file.filename)}`,
       '',
       wrap(Buffer.from(file.bytes).toString('base64')),
     )

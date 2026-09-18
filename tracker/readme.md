@@ -278,6 +278,18 @@ copies. Every derived cell is a value.
 An error blocks the download. The writer refuses the sheet and the API answers
 422 naming the failing check.
 
+The name travels in `content-disposition`. A header carries bytes rather than
+text so a plain `filename` is read as ISO-8859-1. A surname holding ü arrived as
+Ã¼. One holding ř killed the response before it left Node. `filename*` from RFC
+6266 states its own encoding and answers both faults. Both parameters are
+written. Because a) a recipient that reads `filename*` prefers it. b) one that
+does not still gets a name it can file. c) the plain parameter is ASCII so no
+transport can mangle it.
+
+`dispositionParams` writes the parameters and `filenameFromDisposition` reads
+them back. Both sit in `filename.ts` beside the rule that builds the name. The
+mail attachment uses the same pair so a download and a delivery cannot disagree.
+
 ## Verification
 
 97 tests across four packages.

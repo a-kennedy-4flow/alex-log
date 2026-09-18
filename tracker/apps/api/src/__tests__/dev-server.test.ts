@@ -15,7 +15,7 @@ import { jiraPerRequest } from '../jira-dev'
 import { FakeJira, PlainCipher } from '../jira-fake'
 import { MemoryRepository, periodOf } from '../repository'
 import { resetCatalogueCache } from '../handlers'
-import { DEV_JIRA_AS_USER, DEV_JIRA_CLIENT_ID } from '@tracker/core'
+import { DEV_JIRA_AS_USER, DEV_JIRA_CLIENT_ID, filenameFromDisposition } from '@tracker/core'
 
 const ORIGIN = 'http://localhost:5173'
 
@@ -191,6 +191,36 @@ describe('the download over the wire', () => {
     // A zip starts with PK. Base64 leaking through would start with UEs.
     expect([bytes[0], bytes[1]]).toEqual([0x50, 0x4b])
     expect(bytes.length).toBeGreaterThan(4000)
+  })
+
+  it('names a file the browser can read back over the wire', async () => {
+    // The header is where the name was mangled. Only a real socket shows it.
+    const umlaut = { ...as('jorg'), [DEV_HEADERS.firstName]: 'Jörg', [DEV_HEADERS.lastName]: 'Müller' }
+    await fetch(`${base}/api/me`, {
+      method: 'PUT',
+      headers: { ...umlaut, 'content-type': 'application/json' },
+      body: JSON.stringify({ location: complete.location }),
+    })
+    await fetch(`${base}/api/timesheets/${period}`, {
+      method: 'PUT',
+      headers: { ...umlaut, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        location: complete.location,
+        halfDays: halfDaysOf(complete),
+        adjustedWorkDays: complete.adjustedWorkDays,
+      }),
+    })
+
+    const response = await fetch(`${base}/api/timesheets/${period}/export`, {
+      method: 'POST',
+      headers: umlaut,
+    })
+    expect(response.status).toBe(200)
+    const disposition = response.headers.get('content-disposition')!
+    expect(filenameFromDisposition(disposition)).toBe(
+      'Müller.Jörg_2026_08_projecttracker_DE.xlsm',
+    )
+    await response.arrayBuffer()
   })
 })
 

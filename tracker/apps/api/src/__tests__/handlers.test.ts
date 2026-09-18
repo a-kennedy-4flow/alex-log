@@ -5,6 +5,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest'
 import { unzipSync, strFromU8 } from 'fflate'
+import { filenameFromDisposition } from '@tracker/core'
 import { loadCatalogue } from '@tracker/fixtures'
 import { loadSamples, type Sample } from '@tracker/fixtures/samples'
 
@@ -479,6 +480,23 @@ describe('the export', () => {
     expect(Object.keys(zip)).toContain('xl/worksheets/sheet1.xml')
     const sheet = strFromU8(zip['xl/worksheets/sheet1.xml'] as Uint8Array)
     expect(sheet).toContain('Your project tracker is completed!')
+  })
+
+  it('states the encoding of a name that is not ASCII', async () => {
+    // A header carries bytes. Written plain a surname holding ü arrives as Ã¼
+    // and one holding ř kills the response before it leaves Node.
+    const czech: Caller = { ...USER, sub: 'user-3', firstName: 'Tomáš', lastName: 'Dvořák' }
+    await call('PUT', `/api/timesheets/${period}`, {
+      caller: czech,
+      body: { location: complete.location, halfDays: halfDaysOf(complete), adjustedWorkDays: complete.adjustedWorkDays },
+    })
+    const response = await call('POST', `/api/timesheets/${period}/export`, { caller: czech })
+    expect(response.status).toBe(200)
+    const disposition = response.headers['content-disposition']!
+    expect(disposition).toMatch(/^[\x20-\x7e]*$/)
+    expect(filenameFromDisposition(disposition)).toBe(
+      'Dvořák.Tomáš_2026_08_projecttracker_DE.xlsm',
+    )
   })
 
   it('refuses to export a month that was never saved', async () => {
