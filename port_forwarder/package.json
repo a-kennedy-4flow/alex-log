@@ -1,0 +1,135 @@
+{
+  "name": "compose-port-forwarder",
+  "displayName": "Compose Port Forwarder",
+  "description": "Forwards the published ports of a docker compose project to the client machine. Remote windows only.",
+  "version": "0.1.0",
+  "publisher": "alex",
+  "license": "GPL-3.0",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "The extension runs the docker command line so it needs a trusted workspace."
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "composePortForwarder.forwardNow",
+        "title": "Forward Compose Ports Now",
+        "category": "Compose Ports"
+      },
+      {
+        "command": "composePortForwarder.showPorts",
+        "title": "Show Forwarded Compose Ports",
+        "category": "Compose Ports"
+      },
+      {
+        "command": "composePortForwarder.showLog",
+        "title": "Show Log",
+        "category": "Compose Ports"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "composePortForwarder.forwardNow",
+          "when": "composePortForwarder.remote"
+        },
+        {
+          "command": "composePortForwarder.showPorts",
+          "when": "composePortForwarder.remote"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Compose Port Forwarder",
+      "properties": {
+        "composePortForwarder.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Forward the published ports of docker compose projects. Remote windows only."
+        },
+        "composePortForwarder.dockerPath": {
+          "type": "string",
+          "default": "docker",
+          "scope": "machine",
+          "description": "The docker command line to run on the remote machine."
+        },
+        "composePortForwarder.scope": {
+          "type": "string",
+          "enum": [
+            "workspace",
+            "all"
+          ],
+          "enumDescriptions": [
+            "Only projects whose compose file sits inside a folder of this window.",
+            "Every compose project the daemon is running."
+          ],
+          "default": "workspace",
+          "description": "Which compose projects to forward. Falls back to all when the window has no folder open."
+        },
+        "composePortForwarder.ignoredPorts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Host ports to leave alone. Write a single port as 5432 and a span as 9000-9100."
+        },
+        "composePortForwarder.includeOneOff": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also forward containers started by docker compose run."
+        },
+        "composePortForwarder.pollSeconds": {
+          "type": "number",
+          "default": 60,
+          "minimum": 0,
+          "description": "Seconds between safety sweeps. Set to 0 to rely on docker events alone."
+        },
+        "composePortForwarder.notify": {
+          "type": "string",
+          "enum": [
+            "silent",
+            "status",
+            "message"
+          ],
+          "enumDescriptions": [
+            "Write to the log only.",
+            "Also show a count in the status bar.",
+            "Also raise a notification for each new port."
+          ],
+          "default": "status",
+          "description": "How loudly to report a forwarded port."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies",
+    "test": "tsc -p tsconfig.json --outDir .test-out --sourceMap false && node test/run.mjs",
+    "test:live": "tsc -p tsconfig.json --outDir .test-out --sourceMap false && node test/live.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.93.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0"
+  }
+}

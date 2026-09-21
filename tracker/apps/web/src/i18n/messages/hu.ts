@@ -8,8 +8,10 @@ const hu: Messages = {
   nav: {
     month: 'Havi nézet',
     simple: 'Gyors kitöltés',
+    guided: 'Vezetett összeállítás',
     setup: 'Beállításaim',
-    admin: 'Költséghelyek',
+    admin: 'Backoffice',
+    catalogue: 'Költséghelyek',
     jira: 'Jira',
   },
   auth: {
@@ -89,7 +91,7 @@ const hu: Messages = {
     workingWeekend: 'Munkás hétvége',
     notRequired: 'Nem szükséges',
     pickCostCentre: 'Válasszon költséghelyet',
-    defaultSpecification: 'Alapértelmezett specifikáció',
+    defaultSpecification: 'Ön helyett kitöltve. Ellenőrizze és a jelölés eltűnik.',
     unverifiedSpecification: 'A költséghelynek nincs alapértelmezett specifikációja.',
     clearRow: 'Sor törlése',
     copyLastFilled: '{id} másolása az utolsó kitöltött sorból',
@@ -222,6 +224,30 @@ const hu: Messages = {
     skip: 'Kihagyás',
     keys: 'Nyilakkal lépjen. Escape a kilépés.',
     steps: {
+      navMonth: {
+        title: 'A nyitó nézet',
+        body: 'A havi nézet a teljes kimutatást mutatja.',
+      },
+      navQuick: {
+        title: 'Kitöltés százalék szerint',
+        body: 'Minden költséghelynek adjon egy részt a hónapból.',
+      },
+      navGuided: {
+        title: 'Kérdésről kérdésre',
+        body: 'Végigvezeti a hónapon. Az eredmény pontos kimutatás.',
+      },
+      navJira: {
+        title: 'A már rögzített munka',
+        body: 'Töltse be a Jira időadatait újragépelés helyett.',
+      },
+      navCostCentres: {
+        title: 'Keresés köztük',
+        body: 'Minden költséghely itt áll a specifikációival.',
+      },
+      navSetup: {
+        title: 'Minden hónap alapja',
+        body: 'A telephelyet és a szerződést itt állítja be.',
+      },
       period: {
         title: 'Adja meg a hónap adatait',
         body: 'A nyelv és a telephely alapértéke a beállításokban módosítható.',
@@ -229,38 +255,6 @@ const hu: Messages = {
       target: {
         title: 'Elvárt napok',
         body: 'A cél munkanapok a szerződés szerinti lehetséges munkanapok. Kézzel csak ezt a hónapot módosíthatja. A szerződést a beállításokban állítsa be.',
-      },
-      grid: {
-        title: 'Itt adja meg az adatait',
-        body: 'A kötelező napok fehérek.',
-      },
-      costCentre: {
-        title: 'Válasszon költséghelyet',
-        body: 'A költséghelyet a projekt nevével vagy a költséghely azonosítójával keresse.',
-      },
-      days: {
-        title: 'Egész vagy fél nap',
-        body: 'A választható értékek 0.5 vagy 1.',
-      },
-      specification: {
-        title: 'A munka típusának specifikációja',
-        body: 'Az első megfelelő specifikáció kerül be. Ha alapértelmezettként van jelölve ellenőrizze.',
-      },
-      view: {
-        title: 'Válassza ki hogyan jelenjen meg a hónap',
-        body: 'Személyes preferencia.',
-      },
-      board: {
-        title: 'Hagyományos naptárnézet',
-        body: 'Ugyanaz a működés mint a másik nézetben.',
-      },
-      boardCell: {
-        title: 'Egy nap megnyitása',
-        body: 'Kattintson egy cellára. A táblázatsor minden mezője benne van. Az Escape bezárja.',
-      },
-      progress: {
-        title: 'Előrehaladás.',
-        body: 'A hónapot túl is könyvelheti. Ez csak vizuális jelzés. Zöldre vált amikor a tracker elkészült.',
       },
       recent: {
         title: 'A leggyakrabban használt költséghelyek',
@@ -289,6 +283,26 @@ const hu: Messages = {
       quickApply: {
         title: 'Hónap kitöltése',
         body: 'Szétosztja a napokat a hetekre. Részmunkaidő hetente egy napot kihagy.',
+      },
+      guidedDays: {
+        title: 'Kezdje a távollét napjaival',
+        body: 'Adjon meg darabszámot minden távollét-típushoz. A második lépés akkor jelenik meg ha valamelyik nullánál nagyobb.',
+      },
+      guidedPlace: {
+        title: 'Tegye a szabadnapot a saját dátumára',
+        body: 'Csak munkanapok közül lehet választani. A távollét arra a napra tartozik amelyiken kivették.',
+      },
+      guidedKind: {
+        title: 'Két típus egy hónapban',
+        body: 'Válassza ki melyik távollétet helyezi el. A következő kattintott nap azt kapja.',
+      },
+      guidedProjects: {
+        title: 'Min dolgozott',
+        body: 'Adja meg az egyes költséghelyeket és a hónapból vett részüket. A részeknek százat kell kiadniuk.',
+      },
+      guidedBuild: {
+        title: 'Felépítés és ugrás',
+        body: 'A mellette álló szám az amit a hónap tartalmazni fog. A gomb addig tiltott amíg minden lépés meg nincs válaszolva.',
       },
       location: {
         title: 'Hol dolgozik',
@@ -333,6 +347,8 @@ const hu: Messages = {
     target: 'Cél',
     closedTitle: 'Múlt hónapban lezárva',
     closedIntro: 'Az ön nevében olvasva. A Jirába semmi nem kerül vissza. Az órák worklogból jönnek és ez a hely egyet sem tárol így a hónapot az alábbi részarány osztja fel.',
+    workedTitle: 'Múlt hónapban lezárt és folyamatban lévő',
+    workedIntro: 'Jirából beolvasva. Amit semmi nem zárt le, ott a dátum helyén az állapota áll.',
     relink: 'A Jira kapcsolat lejárt.',
     loading: 'Jira olvasása.',
     none: 'Múlt hónapban nem zárt le jegyet.',
@@ -352,6 +368,15 @@ const hu: Messages = {
       none: 'nincs óra',
     },
     read: 'Jirából beolvasva {at} időpontban.',
+    readStored: 'Jirából beolvasva {at} időpontban. A frissítés újra megkérdezi a Jirát.',
+    refresh: 'Frissítés',
+    refreshing: 'Beolvasás',
+    refreshHint: 'A Jira újraolvasása a korábban mentett másolat helyett.',
+    stillOpen: 'Még nyitott',
+    scope: {
+      closed: 'Csak lezártak',
+      all: 'Lezártak és folyamatban lévők',
+    },
     mapIntro: 'Melyik költséghelyre könyvel a {project}?',
     mapAll: 'Költséghely egész projektre is beállítható. Minden olyan jegyre érvényes amelyhez a Jira egyet sem ad meg.',
     from: {
@@ -415,6 +440,44 @@ const hu: Messages = {
       title: 'Az adatai törlése',
       body: 'Minden amit önről tárolunk a fiókjával együtt törlődik.',
     },
+  },
+  catalogue: {
+    title: 'Költséghelyek',
+    intro: 'A munkafüzet minden költséghelye és projektje. Nyisson meg egy sort az elszámolható specifikációkhoz.',
+    search: 'Keresés azonosító vagy cím szerint',
+    count: '{total} közül {shown} látszik.',
+    source: 'Beolvasva innen: {file}.',
+    none: 'Erre itt semmi nem illik.',
+    kind: 'Fajta',
+    specifications: 'Specifikációk',
+    ownList: 'Ennek saját listája van. A tartomány {range}.',
+    fullList: 'A munkafüzet üresen hagyja a(z) {range} tartományt, ezért minden specifikáció felkínálható.',
+    more: 'További {count} megjelenítése',
+    allTitle: 'Minden specifikáció',
+    allIntro: 'A teljes lista. A saját lista nélküli költséghely bármelyiket elszámolhatja.',
+  },
+  guided: {
+    title: 'Vezetett összeállítás',
+    intro: 'Három válasz és a hónap megíródik. A szabadnap arra a napra kerül, amikor kivette. A munka a maradékra oszlik el.',
+    step1: 'Hány napig volt távol?',
+    step1Hint: 'Ez a hónap {days} napot vár öntől.',
+    absenceType: 'A távollét fajtája',
+    step2: 'Mely napok voltak ezek?',
+    step2Left: 'Még {count} elhelyezendő.',
+    step2Done: 'Mind a(z) {count} el van helyezve.',
+    step3: 'Mely projekteken dolgozott?',
+    step3Hint: 'Ezek osztoznak azon a(z) {days} napon, amit a távolléte meghagy.',
+    willBook: 'Eddig könyvelve',
+    buildIntro: 'Ez megírja a hónapot majd meg is nyitja. Felülírja a hónap tartalmát. Semmi nem kerül beküldésre.',
+    notReady: 'Helyezzen el minden szabadnapot. Ossza szét a száz százalékot a projektek között.',
+    build: 'Hónap összeállítása',
+    step5: 'A megírt hónap',
+    builtSummary: '{absence} nap távollét és {work} nap munka.',
+    shortBy: 'A hónapból {days} nap hiányzik. A szabadnapjai olyan napokat vettek el, amelyekre a cél még számított.',
+    ignored: 'Ezekre semmi nem íródott, mert nem munkanapok. {dates}',
+    openMonth: 'Havi nézet megnyitása',
+    dismiss: 'Elrejtés',
+    again: 'Újrakezdés',
   },
   common: {
     none: 'Nincs',

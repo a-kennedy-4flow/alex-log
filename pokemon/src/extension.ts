@@ -8,7 +8,9 @@ const VIEW_TYPE = "gba.rom";
 // a pad key can fire an editor command mid game. The contributed bindings in
 // package.json park those keys on gba.swallowKey while this context key holds.
 const FOCUS_CONTEXT = "gba.focused";
+// Surfaces whose page last reported the keyboard.
 const focused = new Set<Surface>();
+let held = false;
 // The session a state command should act on.
 let active: Session | undefined;
 let log: vscode.LogOutputChannel;
@@ -19,6 +21,7 @@ interface Surface {
   readonly webview: vscode.Webview;
   readonly onDidDispose: vscode.Event<void>;
   readonly where: "editor" | "panel";
+  readonly visible: () => boolean;
 }
 
 // One machine at a time. Two cores on one cartridge would fight over the save
@@ -26,21 +29,38 @@ interface Surface {
 const live = new Set<Session>();
 
 function reportFocus(surface: Surface, hasFocus: boolean): void {
-  const before = focused.size;
   if (hasFocus) focused.add(surface);
   else focused.delete(surface);
-  if ((before > 0) !== (focused.size > 0)) {
-    void vscode.commands.executeCommand("setContext", FOCUS_CONTEXT, focused.size > 0);
-  }
+  refreshGuard();
+}
+
+// The guard is worked out from what is live rather than from the last thing a
+// page said. Because a) minimising fires no view state change so a page that
+// went down holding the keyboard would park every pad key for ever b) a surface
+// disposed while focused posts no blur to clear itself c) a window without the
+// system keyboard has no keystroke to guard.
+function refreshGuard(): void {
+  const holding = vscode.window.state.focused &&
+    [...focused].some((surface) => surface.visible());
+  if (holding === held) return;
+  held = holding;
+  void vscode.commands.executeCommand("setContext", FOCUS_CONTEXT, holding);
 }
 
 export function activate(context: vscode.ExtensionContext): void {
   log = vscode.window.createOutputChannel("GBA", { log: true });
+  log.info(`channel level ${vscode.LogLevel[log.logLevel]}`);
   const provider = new GbaEditorProvider(context);
 
   context.subscriptions.push(
     log,
+    // Losing the system keyboard is reported to an extension nowhere else.
+    vscode.window.onDidChangeWindowState(refreshGuard),
     vscode.commands.registerCommand("gba.showLog", () => log.show()),
+    vscode.commands.registerCommand("gba.reload", () => {
+      if (!active) return vscode.window.showInformationMessage("GBA: nothing is running");
+      return active.reload();
+    }),
     // Referenced by the contributed bindings and by nothing else. It is absent
     // from contributes.commands so it stays out of the command palette.
     vscode.commands.registerCommand("gba.swallowKey", () => undefined),
@@ -97,12 +117,15 @@ class GbaEditorProvider implements vscode.CustomReadonlyEditorProvider {
       webview: panel.webview,
       onDidDispose: panel.onDidDispose,
       where: "editor",
+      visible: () => panel.visible,
     };
-    // A panel that is no longer active cannot be holding the keyboard.
     const session = new Session(this.context, surface, document.uri);
     panel.onDidChangeViewState(() => {
       if (panel.active) active = session;
-      else reportFocus(surface, false);
+      // A panel that is no longer active cannot be holding the keyboard.
+      else focused.delete(surface);
+      refreshGuard();
+      session.reportVisibility();
     }, undefined, this.context.subscriptions);
 
     await session.open(token);
@@ -125,11 +148,14 @@ class GbaViewProvider implements vscode.WebviewViewProvider {
       webview: view.webview,
       onDidDispose: view.onDidDispose,
       where: "panel",
+      visible: () => view.visible,
     };
     const session = new Session(this.context, surface, rom);
     view.onDidChangeVisibility(() => {
       if (view.visible) active = session;
-      else reportFocus(surface, false);
+      else focused.delete(surface);
+      refreshGuard();
+      session.reportVisibility();
     }, undefined, this.context.subscriptions);
 
     await session.open();
@@ -140,6 +166,7 @@ class Session {
   private store!: Awaited<ReturnType<Session["storageFor"]>>;
   private name: string;
   private handover?: (state: Buffer) => void;
+  private readonly media: vscode.Uri;
 
   constructor(
     private readonly context: vscode.ExtensionContext,
@@ -147,32 +174,31 @@ class Session {
     readonly romUri: vscode.Uri,
   ) {
     this.name = basename(romUri.path);
+    this.media = vscode.Uri.joinPath(context.extensionUri, "media");
   }
 
   async open(token?: vscode.CancellationToken): Promise<void> {
-    const media = vscode.Uri.joinPath(this.context.extensionUri, "media");
     const webview = this.surface.webview;
 
     webview.options = {
       enableScripts: true,
       // The cartridge is served to the page rather than posted to it so its
       // own folder has to be reachable. Nothing else outside media/ is.
-      localResourceRoots: [media, vscode.Uri.joinPath(this.romUri, "..")],
+      localResourceRoots: [this.media, vscode.Uri.joinPath(this.romUri, "..")],
     };
-    webview.html = renderHtml(webview, media);
 
     active = this;
     live.add(this);
     this.surface.onDidDispose(() => {
       live.delete(this);
-      focused.delete(this.surface);
+      reportFocus(this.surface, false);
       if (active === this) active = undefined;
     }, undefined, this.context.subscriptions);
 
     const rom = await vscode.workspace.fs.readFile(this.romUri);
     this.store = await this.storageFor(rom, this.romUri);
     const config = vscode.workspace.getConfiguration("gba");
-    const chatty = config.get<string>("log", "errors") === "all";
+    const chatty = config.get<string>("log", "all") === "all";
 
     log.info(`open ${this.romUri.fsPath} in the ${this.surface.where}`);
     log.info(`rom ${rom.length} bytes, key ${this.store.key}`);
@@ -217,6 +243,7 @@ class Session {
             volume: config.get<number>("volume", 0.5),
             saveIntervalSeconds: config.get<number>("saveIntervalSeconds", 10),
             autoStateMinutes: config.get<number>("autoStateMinutes", 5),
+            surfaceVisible: this.surface.visible(),
           });
           log.info(
             `serving the rom with ${save ? `a ${save.length} byte save` : "no save"}` +
@@ -269,6 +296,37 @@ class Session {
         }
       }
     }, undefined, this.context.subscriptions);
+
+    // The page is served last. A webview posts ready as soon as its script runs
+    // and a message that arrives before this listener exists is dropped. The
+    // page then waits for a load that never comes and says nothing at all.
+    this.serve();
+  }
+
+  // Serving the page again restarts the core from the top so the whole boot is
+  // logged a second time. The message listener is left alone. Because a second
+  // listener would answer every message twice.
+  reload(): void {
+    log.info(`reloading the ${this.surface.where}`);
+    // The replaced page never posts a blur. The fresh one reports the keyboard
+    // again once it has it.
+    reportFocus(this.surface, false);
+    this.serve();
+  }
+
+  // renderHtml draws a fresh nonce on every call so the string always differs.
+  // VS Code ignores an assignment that matches the html the webview already has.
+  private serve(): void {
+    this.surface.webview.html = renderHtml(this.surface.webview, this.media);
+  }
+
+  // A minimised window and a hidden surface both leave the document hidden. So
+  // the page is told which of the two it is.
+  reportVisibility(): void {
+    void this.surface.webview.postMessage({
+      type: "surface",
+      visible: this.surface.visible(),
+    });
   }
 
   captureState(): void {

@@ -18,7 +18,11 @@ import { calendar, issues, pastTarget, rowsByDate } from '@/composables/useTimes
 import { lineClass } from '@/composables/useMonthLines'
 import {
   clearHalf,
+  confirmSpecification,
   incomplete,
+  missingDays,
+  missingSpecification,
+  missingWorkday,
   rowsOf,
   setDays,
   setSpecification,
@@ -201,7 +205,7 @@ function longDate(date: string): string {
 </script>
 
 <template>
-  <div ref="board" class="wrap" data-tour="board">
+  <div ref="board" class="wrap">
     <table class="board">
       <caption class="visually-hidden">{{ t('board.caption') }}</caption>
       <thead>
@@ -214,20 +218,22 @@ function longDate(date: string): string {
           <td
             v-for="(day, column) in week"
             :key="day ? day.date : `blank-${column}`"
-            :class="{
-              blank: !day,
-              off: day?.nonWorking,
-              'past-target': day ? pastTarget.has(day.date) : false,
-              flagged: day ? flagged.has(day.date) : false,
-              opened: day ? open === day.date : false,
-            }"
+            :class="[
+              `dow-${column + 1}`,
+              {
+                blank: !day,
+                off: day?.nonWorking,
+                'past-target': day ? pastTarget.has(day.date) : false,
+                flagged: day ? flagged.has(day.date) : false,
+                opened: day ? open === day.date : false,
+              },
+            ]"
           >
             <template v-if="day">
               <button
                 type="button"
                 class="cell"
                 :data-day="day.dayOfMonth"
-                :data-tour="day.dayOfMonth === 1 ? 'boardCell' : undefined"
                 :aria-expanded="open === day.date"
                 :aria-label="longDate(day.date)"
                 @click="openCell(day.date)"
@@ -277,7 +283,7 @@ function longDate(date: string): string {
                     <span>{{ t('grid.workdayId') }}</span>
                     <CostCentrePicker
                       :model-value="entry.workdayId"
-                      :invalid="incomplete(entry)"
+                      :invalid="missingWorkday(entry)"
                       @update:model-value="setWorkday(entry, $event)"
                     />
                   </label>
@@ -288,8 +294,9 @@ function longDate(date: string): string {
                       :model-value="entry.specification"
                       :workday-id="entry.workdayId"
                       :is-default="entry.specificationIsDefault"
-                      :invalid="specMismatch(entry) || (incomplete(entry) && !entry.specification)"
+                      :invalid="specMismatch(entry) || missingSpecification(entry)"
                       @update:model-value="setSpecification(entry, $event)"
+                      @confirm="confirmSpecification(entry)"
                     />
                   </label>
 
@@ -299,6 +306,7 @@ function longDate(date: string): string {
                       <select
                         :value="entry.days ?? ''"
                         :disabled="!entry.workdayId"
+                        :class="{ invalid: missingDays(entry) }"
                         @change="onDaysChange(entry, $event)"
                       >
                         <option value=""></option>
@@ -383,14 +391,25 @@ td {
   position: relative;
 }
 
+/*
+ * The shading of a day. `MonthGrid.vue` shades the same three grounds. The
+ * column is the weekday here so the weekend is read off the column rather than
+ * off the day.
+ *
+ * The weekend is written after the tint because a weekend is also a day the
+ * tracker asks nothing of. Both come before every state below because each of
+ * those carries the same weight of selector. The later rule is then the one
+ * that paints.
+ */
 td.blank,
-td.off {
+td.off,
+td.past-target {
   background: var(--tint);
 }
 
-/* A working day the target does not ask for. It is still open to a hand entry. */
-td.past-target {
-  background: var(--past-target);
+td.dow-6,
+td.dow-7 {
+  background: var(--weekend);
 }
 
 td.opened {
@@ -487,11 +506,12 @@ td.off .d {
   box-shadow: inset 0 0 0 1px var(--orange);
 }
 
+/* Every cell carries a wash and Grey holds to white. The dashed edge is what
+   recedes the affordance now that the mark itself is Smart Blue. */
 .add {
   margin-top: auto;
   border: 1px dashed var(--dash);
   border-radius: var(--radius);
-  color: var(--grey);
   text-align: center;
   padding: 5px 0;
   font-size: 15px;
@@ -499,11 +519,6 @@ td.off .d {
 
 .cell:hover .add {
   border-color: var(--orange);
-}
-
-/* Grey falls to 4.22 on the wash so the affordance takes Smart Blue there. */
-td.past-target .add {
-  color: var(--smart-blue);
 }
 
 /* A 1px Smart Blue edge stands in for the shadow F does not use. */
@@ -555,6 +570,12 @@ td.past-target .add {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--grey);
+}
+
+/* An empty required field. The same orange the two pickers carry. */
+.ed select.invalid {
+  border-color: var(--orange);
+  background: var(--open);
 }
 
 .two {

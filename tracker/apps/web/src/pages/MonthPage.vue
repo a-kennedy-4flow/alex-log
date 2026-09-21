@@ -20,6 +20,7 @@ import ViewSwitch from '@/components/ViewSwitch.vue'
 import SaveState from '@/components/SaveState.vue'
 import MonthLegend from '@/components/MonthLegend.vue'
 import ClearMonth from '@/components/ClearMonth.vue'
+import GuidedResult from '@/components/GuidedResult.vue'
 import MonthGrid from '@/components/MonthGrid.vue'
 import MonthCalendar from '@/components/MonthCalendar.vue'
 import MonthProgress from '@/components/MonthProgress.vue'
@@ -46,6 +47,9 @@ onMounted(() => startUnlessSeen())
 
     <div class="stack">
       <PeriodBar />
+      <!-- The guided build opens this page so what it has to report arrives
+           here with the user. It draws nothing until a build has run. -->
+      <GuidedResult />
       <div class="split">
         <div class="month sheet pad">
           <div class="month-bar">

@@ -1,0 +1,15 @@
+Log 62. The deduplication feature in spacemongor becomes a filetype extractor. It picks chosen file types out of several folders then lays one copy of each into a new folder. One line per command. UTC timestamp then command then result.
+2026-09-18T10:27:55Z head of 60.log and 61.log — two other sessions were writing at the same time and 60.log was taken by the tracker work. The lines below were written into 60.log as they ran and are gathered here under a number of their own. 60.log is left alone because the session holding it is still appending to it.
+2026-09-18T10:09:58Z sed over src/app.rs and src/store.rs and src/browse.rs — read the views and the answer cache and the folder measure. Settled the design: a search takes a list of folders read as one pool, the extractor picks the types out of them and lays one of each into a new folder.
+2026-09-18T10:11:24Z python3 edit of src/store.rs — the answer cache now keys on the whole question and holds a row for every folder the search read. An answer of the older shape is dropped and the digests under it stay.
+2026-09-18T10:16:00Z python3 edits of src/dupes.rs — a job now holds a list of folders and a mode. Pooled reads them all as one pool and Against keeps the two folder comparison.
+2026-09-18T10:16:00Z python3 edits of src/consolidate.rs and src/gather.rs — the plan takes the whole list of folders and can put each file type in a folder of its own. consolidate::under works out where a file sat whichever folder it came from.
+2026-09-18T10:16:00Z python3 edits of src/browse.rs — start_many measures several folders into one answer so the extractor can offer the types really there.
+2026-09-18T10:22:16Z python3 edits of src/app.rs — the consolidate view is now the extract view. It holds the list of folders and the type ticks and the layout and it runs the search itself.
+2026-09-18T10:22:16Z cargo test — 114 pass. One cache test failed first because the reset did not drop the new answer_root table and that is fixed.
+2026-09-18T10:23:05Z cargo fmt then cargo test then cargo clippy — 116 tests pass and the one clippy warning about a nested if is fixed.
+2026-09-18T10:26:05Z python3 edits of readme.md and docs/decisions.md — the bring one of each across section is now extracting by file type. The glossary defines pool and question and the answer keying is written up.
+2026-09-18T10:26:05Z cargo fmt then cargo test then cargo clippy — 116 tests pass and clippy is clean.
+2026-09-18T10:26:35Z cargo-zigbuild clippy for the Windows target — clean. The readme named the msvc target which cannot be checked from Linux any more so it now names the command building.md gives.
+2026-09-18T10:27:49Z python3 edit of src/app.rs — every group ticked now asks the same question as none ticked so the two share one stored answer.
+2026-09-18T10:27:49Z cargo fmt then cargo test then cargo clippy — 116 pass and clippy is clean. The work is done.

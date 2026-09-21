@@ -11,7 +11,11 @@ import { shortDate, weekdayName } from '@/i18n'
 import { calendar, halfDays, pastTarget } from '@/composables/useTimesheet'
 import {
   clearHalf,
+  confirmSpecification,
   incomplete,
+  missingDays,
+  missingSpecification,
+  missingWorkday,
   rowsOf,
   setDays,
   setSpecification,
@@ -99,7 +103,7 @@ const weeks = computed(() => {
 </script>
 
 <template>
-  <div class="grid-wrap" data-tour="grid">
+  <div class="grid-wrap">
     <table>
       <thead>
         <tr>
@@ -120,13 +124,16 @@ const weeks = computed(() => {
           <tr
             v-for="(entry, half) in shownRows(day.date)"
             :key="entry.half"
-            :class="{
-              'non-working': day.nonWorking,
-              'past-target': pastTarget.has(day.date),
-              'day-start': half === 0 && dayIndex > 0,
-              'row-error': incomplete(entry) || specMismatch(entry),
-              overbooked: (totalsByDate.get(day.date) ?? 0) > 1,
-            }"
+            :class="[
+              `dow-${day.weekday}`,
+              {
+                'non-working': day.nonWorking,
+                'past-target': pastTarget.has(day.date),
+                'day-start': half === 0 && dayIndex > 0,
+                'row-error': incomplete(entry) || specMismatch(entry),
+                overbooked: (totalsByDate.get(day.date) ?? 0) > 1,
+              },
+            ]"
           >
             <td
               v-if="dayIndex === 0 && half === 0"
@@ -147,30 +154,34 @@ const weeks = computed(() => {
                 {{ t('grid.notRequired') }}
               </span>
             </td>
-            <td v-if="half === 0" :rowspan="rowsShown(day.date)" class="col-day muted">
+            <td v-if="half === 0" :rowspan="rowsShown(day.date)" class="col-day">
               {{ weekdayName(locale, day.date) }}
             </td>
 
-            <td class="col-cc" :data-tour="half === 0 && dayIndex === 0 ? 'costCentre' : undefined">
+            <td class="col-cc">
               <CostCentrePicker
                 :model-value="entry.workdayId"
-                :invalid="incomplete(entry)"
+                :invalid="missingWorkday(entry)"
                 @update:model-value="setWorkday(entry, $event)"
               />
             </td>
-            <td class="col-spec" :data-tour="half === 0 && dayIndex === 0 ? 'specification' : undefined">
+            <td class="col-spec">
               <SpecPicker
                 :model-value="entry.specification"
                 :workday-id="entry.workdayId"
                 :is-default="entry.specificationIsDefault"
-                :invalid="specMismatch(entry) || (incomplete(entry) && !entry.specification)"
+                :invalid="specMismatch(entry) || missingSpecification(entry)"
                 @update:model-value="setSpecification(entry, $event)"
+                @confirm="confirmSpecification(entry)"
               />
             </td>
-            <td class="col-days" :data-tour="half === 0 && dayIndex === 0 ? 'days' : undefined">
+            <td class="col-days">
+              <!-- The day value is a required field so a blank one is marked
+                   like the two beside it. -->
               <select
                 :value="entry.days ?? ''"
                 :disabled="!entry.workdayId"
+                :class="{ invalid: missingDays(entry) }"
                 @change="onDaysChange(entry, $event)"
               >
                 <option value=""></option>
@@ -311,6 +322,12 @@ td input {
   padding: 5px 7px;
 }
 
+/* An empty required field. The same orange the two pickers carry. */
+td select.invalid {
+  border-color: var(--orange);
+  background: var(--open);
+}
+
 /* One tbody per calendar week so the week reads as a block. */
 tbody.week + tbody.week td {
   border-top: 2px solid var(--warm-grey);
@@ -320,16 +337,28 @@ tr.day-start td {
   border-top: 1px solid var(--line);
 }
 
-tr.non-working td {
+/*
+ * The shading of a day. Two shades and no colour.
+ *
+ * A day the tracker asks for is the sheet itself. A holiday and a day past the
+ * target take the tint. The weekend takes the shade above it. Because a) the
+ * colour a weekday owns says nothing about what that day asks of the user.
+ * b) the two shades say it on their own. c) a row is still in the grid either
+ * way because a user may book any of these by hand.
+ *
+ * The weekend is written after the tint because a weekend is also a day the
+ * tracker asks nothing of. Both come before every state below because each of
+ * those carries the same weight of selector. The later rule is then the one
+ * that paints.
+ */
+tr.non-working td,
+tr.past-target td {
   background: var(--tint);
 }
 
-/*
- * A working day the target does not ask for. The wash says it without taking a
- * row out of the grid because a user may still book it by hand.
- */
-tr.past-target td {
-  background: var(--past-target);
+tr.dow-6 td,
+tr.dow-7 td {
+  background: var(--weekend);
 }
 
 tr.row-error td {
@@ -364,12 +393,24 @@ tr.overbooked .col-days select {
   width: 34px;
   text-align: center;
   vertical-align: middle;
-  background: var(--white);
   border-right: 2px solid var(--warm-grey);
   padding: 0;
 }
 
-.col-week.alternate {
+/*
+ * The stripe of the week stands outside the week it labels.
+ *
+ * The cell is written on the first row of the week and spans the rest. A row
+ * rule names two elements and one class so the shading of the first day would
+ * paint the whole stripe. The row is named here to match that weight and the
+ * later rule then wins. The width stays on the class above because the fixed
+ * layout reads it off the header cell.
+ */
+tr td.col-week {
+  background: var(--white);
+}
+
+tr td.col-week.alternate {
   background: var(--tint);
 }
 
@@ -425,7 +466,9 @@ thead th.col-act {
 }
 
 /*
- * Grey holds to white so a flag on the non-working tint takes Smart Blue.
+ * Grey holds to white alone. So the flag and the weekday name beside it take
+ * Smart Blue and size and weight are what recede them under the date.
+ * `MonthCalendar.vue` recedes a day the same way.
  *
  * The break is what holds the date column at 78px. `Arbeitswochenende` is one
  * German flag of 17 characters. It needs 97px and it has 64px.
@@ -434,15 +477,7 @@ thead th.col-act {
   display: block;
   font-size: 11px;
   font-weight: 400;
-  color: var(--grey);
   overflow-wrap: break-word;
-}
-
-tr.non-working .flag,
-tr.non-working .col-day,
-tr.past-target .flag,
-tr.past-target .col-day {
-  color: var(--smart-blue);
 }
 
 .icon {

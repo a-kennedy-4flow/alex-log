@@ -1,0 +1,22 @@
+[package]
+name = "commit-message"
+version = "0.1.0"
+edition = "2024"
+description = "Prefills a commit message with a summary of what is staged. Runs as a global prepare-commit-msg hook."
+
+# The hook has to be found by git under its own name so the built binary is
+# named for the hook rather than for the crate.
+[[bin]]
+name = "prepare-commit-msg"
+path = "src/main.rs"
+
+# Deliberately none. A hook runs on every commit so the binary wants to start
+# instantly. Because there are no dependencies a) startup is a single exec b)
+# the tree builds offline years from now and c) nothing here can rot.
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

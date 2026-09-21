@@ -76,6 +76,33 @@ export const NO_HOURS_SOURCE = ''
 export const DEFAULT_HOURS_FIELDS = ['worklog', 'timespent']
 
 /**
+ * Which tickets one read asks Jira for.
+ *
+ * `closed` is the month as it was first built. It returns what this user
+ * resolved inside the period. `all` returns those and the ones still being
+ * worked. A ticket still being worked carries no resolution date so the period
+ * cannot bound it. It is bounded by when it was last touched instead.
+ *
+ * The name is the whole of the request. Nothing else travels because the two
+ * bounds are already the period.
+ */
+export const TICKET_SCOPES = ['closed', 'all'] as const
+
+export type TicketScope = (typeof TICKET_SCOPES)[number]
+
+/** What a read asks for when nobody chose. The screen opens on the month. */
+export const DEFAULT_TICKET_SCOPE: TicketScope = 'closed'
+
+export function isTicketScope(value: string): value is TicketScope {
+  return (TICKET_SCOPES as readonly string[]).includes(value)
+}
+
+/** True while the ticket is still being worked. Nothing resolved it. */
+export function isInProgress(ticket: CompletedTicket): boolean {
+  return ticket.resolvedAt === ''
+}
+
+/**
  * One ticket as the screen receives it.
  *
  * It lives in core rather than beside the Jira client because the browser and
@@ -85,6 +112,11 @@ export interface CompletedTicket extends TicketHours {
   projectKey: string
   /** When the ticket was closed. Empty on a ticket that was worked and left open. */
   resolvedAt: string
+  /**
+   * The Jira status name. `In Progress` or `Done` or whatever a project renamed
+   * those to. Empty where Jira answered none.
+   */
+  status: string
   /** The epic key. Null when the ticket has no parent. */
   parentKey: string | null
   /** The epic summary. Shown as context and never written to a timesheet. */

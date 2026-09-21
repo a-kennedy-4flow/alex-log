@@ -8,8 +8,10 @@ const cs: Messages = {
   nav: {
     month: 'Měsíční přehled',
     simple: 'Rychlé vyplnění',
+    guided: 'Vedené sestavení',
     setup: 'Moje nastavení',
-    admin: 'Nákladová střediska',
+    admin: 'Backoffice',
+    catalogue: 'Nákladová střediska',
     jira: 'Jira',
   },
   auth: {
@@ -89,7 +91,7 @@ const cs: Messages = {
     workingWeekend: 'Pracovní víkend',
     notRequired: 'Není vyžadován',
     pickCostCentre: 'Vyberte nákladové středisko',
-    defaultSpecification: 'Výchozí specifikace',
+    defaultSpecification: 'Vyplněno za vás. Zkontrolujte to a značka zmizí.',
     unverifiedSpecification: 'Nákladové středisko nemá výchozí specifikaci.',
     clearRow: 'Vyprázdnit řádek',
     copyLastFilled: 'Kopírovat {id} z posledního vyplněného řádku',
@@ -222,6 +224,30 @@ const cs: Messages = {
     skip: 'Přeskočit',
     keys: 'Šipky pro pohyb. Escape pro odchod.',
     steps: {
+      navMonth: {
+        title: 'Pohled při spuštění',
+        body: 'Měsíční přehled ukazuje celý váš výkaz.',
+      },
+      navQuick: {
+        title: 'Vyplnění podle procent',
+        body: 'Každému nákladovému středisku zadáte podíl na měsíci.',
+      },
+      navGuided: {
+        title: 'Otázka po otázce',
+        body: 'Provede vás měsícem. Výsledkem je přesný výkaz.',
+      },
+      navJira: {
+        title: 'Již zaznamenaná práce',
+        body: 'Naimportujte si čas z Jiry místo opisování.',
+      },
+      navCostCentres: {
+        title: 'Vyhledání',
+        body: 'Každé nákladové středisko je zde i se svými specifikacemi.',
+      },
+      navSetup: {
+        title: 'Základ každého měsíce',
+        body: 'Lokalitu a úvazek nastavíte zde.',
+      },
       period: {
         title: 'Zadejte údaje tohoto měsíce',
         body: 'Výchozí jazyk a lokalitu lze upravit v nastavení.',
@@ -229,38 +255,6 @@ const cs: Messages = {
       target: {
         title: 'Očekávané dny',
         body: 'Cílové pracovní dny jsou celkové možné pracovní dny podle úvazku. Ručně je můžete změnit jen pro tento měsíc. Úvazek upravte v nastavení.',
-      },
-      grid: {
-        title: 'Zde zadávejte své údaje',
-        body: 'Požadované dny jsou bílé.',
-      },
-      costCentre: {
-        title: 'Vyberte nákladové středisko',
-        body: 'Nákladové středisko hledejte podle názvu projektu nebo podle ID střediska.',
-      },
-      days: {
-        title: 'Celý nebo poloviční den',
-        body: 'Na výběr je 0.5 nebo 1.',
-      },
-      specification: {
-        title: 'Specifikace toho o jaký typ práce šlo',
-        body: 'Předvyplní se první vhodná specifikace. Pokud je označena jako výchozí zkontrolujte ji.',
-      },
-      view: {
-        title: 'Vyberte si jak se má měsíc zobrazovat',
-        body: 'Osobní preference.',
-      },
-      board: {
-        title: 'Klasické kalendářové zobrazení',
-        body: 'Stejné funkce jako druhé zobrazení.',
-      },
-      boardCell: {
-        title: 'Otevření dne',
-        body: 'Klepněte na buňku. Uvnitř jsou všechna pole řádku tabulky. Escape ji zavře.',
-      },
-      progress: {
-        title: 'Průběh dokončení.',
-        body: 'Měsíc můžete zapsat i nad plán. Je to jen vizuální pomůcka. Zezelená až je tracker vyplněn.',
       },
       recent: {
         title: 'Nejčastěji používaná nákladová střediska',
@@ -289,6 +283,26 @@ const cs: Messages = {
       quickApply: {
         title: 'Vyplnit měsíc',
         body: 'Rozprostře dny do týdnů. Zkrácený úvazek nechá jeden den v týdnu volný.',
+      },
+      guidedDays: {
+        title: 'Začněte dny nepřítomnosti',
+        body: 'Zadejte počet pro každý druh nepřítomnosti. Krok dvě se objeví jakmile je některý větší než nula.',
+      },
+      guidedPlace: {
+        title: 'Umístěte každý volný den na jeho datum',
+        body: 'Nabízeny jsou pouze pracovní dny. Nepřítomnost patří na den kdy byla čerpána.',
+      },
+      guidedKind: {
+        title: 'Dva druhy v jednom měsíci',
+        body: 'Vyberte nepřítomnost kterou umisťujete. Další kliknutý den ji dostane.',
+      },
+      guidedProjects: {
+        title: 'Na čem jste pracovali',
+        body: 'Uveďte každé nákladové středisko a jeho podíl na měsíci. Podíly musí dát dohromady sto.',
+      },
+      guidedBuild: {
+        title: 'Sestavit a přejít',
+        body: 'Číslo vedle je to co bude měsíc obsahovat. Tlačítko zůstane nedostupné dokud nejsou zodpovězeny všechny kroky.',
       },
       location: {
         title: 'Kde pracujete',
@@ -333,6 +347,8 @@ const cs: Messages = {
     target: 'Cíl',
     closedTitle: 'Uzavřeno minulý měsíc',
     closedIntro: 'Čteno za vás. Do Jiry se nic nezapisuje. Hodiny pocházejí z worklogu a tato instance žádný nemá takže měsíc dělí podíl níže.',
+    workedTitle: 'Minulý měsíc uzavřené i rozpracované',
+    workedIntro: 'Čteno z Jiry. Ticket, který nic nevyřešilo, nese na místě data svůj stav.',
     relink: 'Připojení k Jiře vypršelo.',
     loading: 'Čte se Jira.',
     none: 'Minulý měsíc jste neuzavřeli žádný tiket.',
@@ -352,6 +368,15 @@ const cs: Messages = {
       none: 'bez hodin',
     },
     read: 'Přečteno z Jiry v {at}.',
+    readStored: 'Přečteno z Jiry v {at}. Obnovení se zeptá Jiry znovu.',
+    refresh: 'Obnovit',
+    refreshing: 'Načítání',
+    refreshHint: 'Načíst Jiru znovu místo dříve uložené kopie.',
+    stillOpen: 'Stále otevřené',
+    scope: {
+      closed: 'Jen uzavřené',
+      all: 'Uzavřené i rozpracované',
+    },
     mapIntro: 'Na které nákladové středisko se {project} účtuje?',
     mapAll: 'Nákladové středisko lze nastavit i pro celý projekt. Platí pro každý tiket který v Jiře žádné nemá.',
     from: {
@@ -415,6 +440,44 @@ const cs: Messages = {
       title: 'Smazání vašich údajů',
       body: 'Vše co o vás uchováváme se smaže spolu s vaším účtem.',
     },
+  },
+  catalogue: {
+    title: 'Nákladová střediska',
+    intro: 'Každé nákladové středisko a projekt ze sešitu. Otevřete řádek a přečtěte si specifikace, které smí účtovat.',
+    search: 'Hledat podle identifikátoru nebo názvu',
+    count: 'Zobrazeno {shown} z {total}.',
+    source: 'Přečteno ze souboru {file}.',
+    none: 'Tomu zde nic neodpovídá.',
+    kind: 'Druh',
+    specifications: 'Specifikace',
+    ownList: 'Toto uvádí vlastní seznam. Rozsah je {range}.',
+    fullList: 'Sešit nechává {range} prázdný, proto jsou nabízeny všechny specifikace.',
+    more: 'Zobrazit dalších {count}',
+    allTitle: 'Všechny specifikace',
+    allIntro: 'Celý seznam. Nákladové středisko bez vlastního seznamu smí účtovat kteroukoli z nich.',
+  },
+  guided: {
+    title: 'Vedené sestavení',
+    intro: 'Tři odpovědi a měsíc je zapsán. Volný den padne na den, kdy jste si ho vzali. Práce se rozprostře po zbytku.',
+    step1: 'Kolik dní jste byli pryč?',
+    step1Hint: 'Tento měsíc od vás čeká {days} dní.',
+    absenceType: 'Druh nepřítomnosti',
+    step2: 'Které dny to byly?',
+    step2Left: 'Zbývá umístit {count}.',
+    step2Done: 'Všech {count} je umístěno.',
+    step3: 'Na kterých projektech jste pracovali?',
+    step3Hint: 'Tyto si rozdělí {days} dní, které vaše nepřítomnost nechává.',
+    willBook: 'Dosud zaúčtováno',
+    buildIntro: 'Tohle zapíše měsíc a pak ho otevře. Nahradí obsah měsíce. Nic se neodesílá.',
+    notReady: 'Umístěte každý volný den. Rozdělte mezi projekty sto procent.',
+    build: 'Sestavit měsíc',
+    step5: 'Zapsaný měsíc',
+    builtSummary: '{absence} dní nepřítomnosti a {work} dní práce.',
+    shortBy: 'Měsíci chybí {days} dní. Vaše volno vzalo dny, které cíl ještě potřeboval.',
+    ignored: 'Pro tyto nebylo nic zapsáno, protože to nejsou pracovní dny. {dates}',
+    openMonth: 'Otevřít měsíční přehled',
+    dismiss: 'Skrýt',
+    again: 'Začít znovu',
   },
   common: {
     none: 'Žádné',

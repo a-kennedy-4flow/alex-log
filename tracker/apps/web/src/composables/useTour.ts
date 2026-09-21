@@ -13,7 +13,7 @@ import { computed, ref } from 'vue'
 
 import { wizardOpen } from './useWizard'
 
-export type TourPage = 'month' | 'quick' | 'settings' | 'admin'
+export type TourPage = 'month' | 'quick' | 'guided' | 'settings' | 'admin'
 
 export interface TourStep {
   /** Value of the `data-tour` attribute on the element to point at. */
@@ -23,19 +23,21 @@ export interface TourStep {
 }
 
 const STEPS: Record<TourPage, TourStep[]> = {
+  /*
+   * The tabs are drawn by the shell so they stand on every page. They are
+   * toured from the month alone. Because a) a page offers its tour once and
+   * unasked. b) the same six tabs on every page would be six steps six times.
+   * c) the month is the page the app opens on.
+   */
   month: [
+    { anchor: 'navMonth', key: 'navMonth' },
+    { anchor: 'navQuick', key: 'navQuick' },
+    { anchor: 'navGuided', key: 'navGuided' },
+    { anchor: 'navJira', key: 'navJira' },
+    { anchor: 'navCostCentres', key: 'navCostCentres' },
+    { anchor: 'navSetup', key: 'navSetup' },
     { anchor: 'period', key: 'period' },
     { anchor: 'target', key: 'target' },
-    { anchor: 'view', key: 'view' },
-    // The month is drawn one way or the other so only one of these two runs of
-    // steps is on the page. The filter below drops whichever is absent.
-    { anchor: 'grid', key: 'grid' },
-    { anchor: 'costCentre', key: 'costCentre' },
-    { anchor: 'days', key: 'days' },
-    { anchor: 'specification', key: 'specification' },
-    { anchor: 'board', key: 'board' },
-    { anchor: 'boardCell', key: 'boardCell' },
-    { anchor: 'progress', key: 'progress' },
     { anchor: 'recent', key: 'recent' },
     { anchor: 'checks', key: 'checks' },
     { anchor: 'download', key: 'download' },
@@ -45,7 +47,20 @@ const STEPS: Record<TourPage, TourStep[]> = {
     { anchor: 'quickShare', key: 'quickShare' },
     { anchor: 'quickSpread', key: 'quickSpread' },
     { anchor: 'quickApply', key: 'quickApply' },
-    { anchor: 'progress', key: 'progress' },
+  ],
+  /*
+   * The guided build is the one page whose order is the instruction so its
+   * tour runs in step order. Step two and the switch inside it are drawn only
+   * once step one has been answered. Both are left in the list because a step
+   * with no element is skipped and a user who has answered step one is the one
+   * who needs them explained.
+   */
+  guided: [
+    { anchor: 'guidedDays', key: 'guidedDays' },
+    { anchor: 'guidedPlace', key: 'guidedPlace' },
+    { anchor: 'guidedKind', key: 'guidedKind' },
+    { anchor: 'guidedProjects', key: 'guidedProjects' },
+    { anchor: 'guidedBuild', key: 'guidedBuild' },
   ],
   settings: [
     { anchor: 'location', key: 'location' },

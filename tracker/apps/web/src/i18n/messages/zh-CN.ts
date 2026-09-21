@@ -8,8 +8,10 @@ const zhCN: Messages = {
   nav: {
     month: '月视图',
     simple: '快速填写',
+    guided: '引导式生成',
     setup: '我的设置',
-    admin: '成本中心',
+    admin: '后台管理',
+    catalogue: '成本中心',
     jira: 'Jira',
   },
   auth: {
@@ -89,7 +91,7 @@ const zhCN: Messages = {
     workingWeekend: '周末上班',
     notRequired: '无需填写',
     pickCostCentre: '选择成本中心',
-    defaultSpecification: '默认工作类别',
+    defaultSpecification: '已为你填入。核对之后标记即消失。',
     unverifiedSpecification: '该成本中心没有默认工作类别。',
     clearRow: '清空该行',
     copyLastFilled: '从上一个已填写的行复制 {id}',
@@ -222,6 +224,30 @@ const zhCN: Messages = {
     skip: '跳过',
     keys: '方向键切换。Esc 退出。',
     steps: {
+      navMonth: {
+        title: '打开即见的视图',
+        body: '月视图展示您本月填报的全貌。',
+      },
+      navQuick: {
+        title: '按百分比填写',
+        body: '为每个成本中心分配本月的占比。',
+      },
+      navGuided: {
+        title: '逐步提问',
+        body: '引导您走完本月。填出的记录更准确。',
+      },
+      navJira: {
+        title: '已记录的工时',
+        body: '从 Jira 导入工时。无需重新录入。',
+      },
+      navCostCentres: {
+        title: '逐一查阅',
+        body: '每个成本中心都连同其规格列在这里。',
+      },
+      navSetup: {
+        title: '每个月的基础',
+        body: '在这里设置您的地点和合同比例。',
+      },
       period: {
         title: '设定本月的信息',
         body: '语言和地点的默认值可在设置中调整。',
@@ -229,38 +255,6 @@ const zhCN: Messages = {
       target: {
         title: '预期天数',
         body: '目标工作日为按合同计算的可能工作日。手动修改仅影响本月。合同比例请在设置中调整。',
-      },
-      grid: {
-        title: '在此填写您的数据',
-        body: '需要填写的日期为白色。',
-      },
-      costCentre: {
-        title: '选择成本中心',
-        body: '可按项目名称或成本中心编号搜索。',
-      },
-      days: {
-        title: '整天或半天',
-        body: '可选 0.5 或 1。',
-      },
-      specification: {
-        title: '说明属于哪一类工作',
-        body: '默认填入第一个适用的工作类别。标为默认时请再确认一次。',
-      },
-      view: {
-        title: '选择您偏好的月份呈现方式',
-        body: '个人偏好。',
-      },
-      board: {
-        title: '传统日历视图',
-        body: '功能与另一种视图相同。',
-      },
-      boardCell: {
-        title: '打开某一天',
-        body: '点击单元格。表格行的每个字段都在里面。按 Escape 关闭。',
-      },
-      progress: {
-        title: '完成进度。',
-        body: '本月可以超额录入。这只是视觉提示。记录表填满后变为绿色。',
       },
       recent: {
         title: '最常用的成本中心',
@@ -289,6 +283,26 @@ const zhCN: Messages = {
       quickApply: {
         title: '填充本月',
         body: '把天数分摊到各周。非全职每周留出一天。',
+      },
+      guidedDays: {
+        title: '先填写缺勤天数',
+        body: '为每种缺勤类别各填一个天数。其中任意一项大于零后第二步就会出现。',
+      },
+      guidedPlace: {
+        title: '把每个休假日放到对应日期',
+        body: '只提供工作日。缺勤必须落在实际休息的那一天。',
+      },
+      guidedKind: {
+        title: '同一个月里的两种缺勤',
+        body: '先选好正在安排的缺勤类别。接下来点击的那天就归它。',
+      },
+      guidedProjects: {
+        title: '你做了哪些工作',
+        body: '写下每个成本中心以及它占本月的比例。各比例之和必须是一百。',
+      },
+      guidedBuild: {
+        title: '生成并跳转',
+        body: '旁边的数字就是本月将要记入的天数。所有步骤填完之前按钮一直不可用。',
       },
       location: {
         title: '您的工作地点',
@@ -333,6 +347,8 @@ const zhCN: Messages = {
     target: '目标',
     closedTitle: '上月关闭',
     closedIntro: '以您的身份读取。不会写回 Jira。小时数来自工时记录 而本站点没有任何记录 因此由下方的比例划分本月。',
+    workedTitle: '上月已关闭与进行中',
+    workedIntro: '从 Jira 读取。尚未结案的工单会在日期位置显示它的状态。',
     relink: 'Jira 连接已过期。',
     loading: '正在读取 Jira。',
     none: '您上月没有关闭任何工单。',
@@ -352,6 +368,15 @@ const zhCN: Messages = {
       none: '无小时数',
     },
     read: '于 {at} 从 Jira 读取。',
+    readStored: '于 {at} 从 Jira 读取。刷新可再次询问 Jira。',
+    refresh: '刷新',
+    refreshing: '读取中',
+    refreshHint: '重新读取 Jira 而不是之前保存的副本。',
+    stillOpen: '仍未关闭',
+    scope: {
+      closed: '仅已关闭',
+      all: '已关闭与进行中',
+    },
     mapIntro: '{project} 应记入哪个成本中心？',
     mapAll: '成本中心也可以为整个项目设定。它适用于 Jira 未指定成本中心的每个工单。',
     from: {
@@ -415,6 +440,44 @@ const zhCN: Messages = {
       title: '删除您的数据',
       body: '我们保存的关于您的一切都会随账户一并删除。',
     },
+  },
+  catalogue: {
+    title: '成本中心',
+    intro: '工作簿中的每个成本中心与项目。展开一行即可查看它可记账的规格。',
+    search: '按编号或名称搜索',
+    count: '已显示 {total} 条中的 {shown} 条。',
+    source: '读取自 {file}。',
+    none: '没有匹配的内容。',
+    kind: '类别',
+    specifications: '规格',
+    ownList: '该项有自己的列表。范围为 {range}。',
+    fullList: '工作簿将 {range} 留空，因此提供全部规格。',
+    more: '再显示 {count} 条',
+    allTitle: '全部规格',
+    allIntro: '完整列表。没有自有列表的成本中心可记入其中任何一项。',
+  },
+  guided: {
+    title: '引导式生成',
+    intro: '三个回答即可写出整月。休假日落在你实际休息的那天。工作则分布在其余日子上。',
+    step1: '你缺勤了多少天？',
+    step1Hint: '本月对你的要求是 {days} 天。',
+    absenceType: '缺勤类别',
+    step2: '具体是哪几天？',
+    step2Left: '还有 {count} 天待安排。',
+    step2Done: '{count} 天已全部安排。',
+    step3: '你参与了哪些项目？',
+    step3Hint: '这些项目分摊缺勤之后剩下的 {days} 天。',
+    willBook: '目前已记',
+    buildIntro: '这会写入本月并随后打开它。它会覆盖本月现有内容。不会提交任何东西。',
+    notReady: '请安排每个休假日，并在各项目之间分配满一百个百分点。',
+    build: '生成本月',
+    step5: '生成的月份',
+    builtSummary: '缺勤 {absence} 天，工作 {work} 天。',
+    shortBy: '本月还差 {days} 天。你的休假占用了目标仍然需要的日子。',
+    ignored: '这些日期不是工作日，因此没有写入任何内容。{dates}',
+    openMonth: '打开月视图',
+    dismiss: '隐藏',
+    again: '重新开始',
   },
   common: {
     none: '无',

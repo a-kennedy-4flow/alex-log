@@ -8,8 +8,10 @@ const ptBR: Messages = {
   nav: {
     month: 'Visão mensal',
     simple: 'Preenchimento rápido',
+    guided: 'Montagem guiada',
     setup: 'Minhas configurações',
-    admin: 'Centros de custo',
+    admin: 'Backoffice',
+    catalogue: 'Centros de custo',
     jira: 'Jira',
   },
   auth: {
@@ -89,7 +91,7 @@ const ptBR: Messages = {
     workingWeekend: 'Fim de semana útil',
     notRequired: 'Não necessário',
     pickCostCentre: 'Escolha um centro de custo',
-    defaultSpecification: 'Especificação padrão',
+    defaultSpecification: 'Preenchido para você. Confira e a marca some.',
     unverifiedSpecification: 'O centro de custo não tem especificação padrão.',
     clearRow: 'Limpar a linha',
     copyLastFilled: 'Copiar {id} da última linha preenchida',
@@ -222,6 +224,30 @@ const ptBR: Messages = {
     skip: 'Pular',
     keys: 'Setas para mover. Escape para sair.',
     steps: {
+      navMonth: {
+        title: 'A visão de abertura',
+        body: 'A visão mensal mostra o seu lançamento por inteiro.',
+      },
+      navQuick: {
+        title: 'Preencher por porcentagem',
+        body: 'Dê a cada centro de custo uma parte do mês.',
+      },
+      navGuided: {
+        title: 'Uma pergunta por vez',
+        body: 'Conduz você pelo mês. O resultado sai exato.',
+      },
+      navJira: {
+        title: 'O trabalho já registrado',
+        body: 'Importe os seus tempos do Jira em vez de digitar de novo.',
+      },
+      navCostCentres: {
+        title: 'Consultar a lista',
+        body: 'Cada centro de custo aparece com as suas especificações.',
+      },
+      navSetup: {
+        title: 'A base de cada mês',
+        body: 'Defina aqui a sua unidade e o seu contrato.',
+      },
       period: {
         title: 'Informe os dados deste mês',
         body: 'O idioma e a unidade padrão são ajustados nas configurações.',
@@ -229,38 +255,6 @@ const ptBR: Messages = {
       target: {
         title: 'Dias previstos',
         body: 'Os dias úteis alvo são os dias possíveis conforme o contrato. À mão você altera apenas este mês. Ajuste o contrato nas configurações.',
-      },
-      grid: {
-        title: 'Informe seus dados aqui',
-        body: 'Os dias exigidos estão em branco.',
-      },
-      costCentre: {
-        title: 'Escolha o centro de custo',
-        body: 'Busque o centro de custo pelo nome do projeto ou pelo identificador.',
-      },
-      days: {
-        title: 'Dia inteiro ou meio dia',
-        body: 'As opções são 0.5 ou 1.',
-      },
-      specification: {
-        title: 'Especificação do tipo de trabalho',
-        body: 'É preenchida a primeira especificação aplicável. Se estiver marcada como padrão confira.',
-      },
-      view: {
-        title: 'Escolha como prefere ver um mês',
-        body: 'Preferência pessoal.',
-      },
-      board: {
-        title: 'Visão de calendário clássica',
-        body: 'As mesmas funções da outra visão.',
-      },
-      boardCell: {
-        title: 'Abrir um dia',
-        body: 'Clique em uma célula. Todos os campos da linha da tabela estão dentro. Escape fecha.',
-      },
-      progress: {
-        title: 'Progresso.',
-        body: 'Você pode lançar além do mês. É apenas um apoio visual. Fica verde quando o tracker está completo.',
       },
       recent: {
         title: 'Centros de custo mais usados',
@@ -289,6 +283,26 @@ const ptBR: Messages = {
       quickApply: {
         title: 'Preencher o mês',
         body: 'Espalha os dias pelas semanas. Tempo parcial deixa um dia livre por semana.',
+      },
+      guidedDays: {
+        title: 'Comece pelos dias de ausência',
+        body: 'Informe uma quantidade para cada tipo de ausência. A etapa dois aparece quando alguma passa de zero.',
+      },
+      guidedPlace: {
+        title: 'Coloque cada folga na data dela',
+        body: 'Somente dias úteis são oferecidos. A ausência fica no dia em que foi tirada.',
+      },
+      guidedKind: {
+        title: 'Dois tipos no mesmo mês',
+        body: 'Escolha a ausência que está colocando. O próximo dia clicado recebe ela.',
+      },
+      guidedProjects: {
+        title: 'No que você trabalhou',
+        body: 'Informe cada centro de custo e a parte do mês que ele levou. As partes precisam somar cem.',
+      },
+      guidedBuild: {
+        title: 'Construir e ir',
+        body: 'O número ao lado é o que o mês vai conter. O botão fica desativado até todas as etapas serem respondidas.',
       },
       location: {
         title: 'Onde você trabalha',
@@ -333,6 +347,8 @@ const ptBR: Messages = {
     target: 'Meta',
     closedTitle: 'Fechados no mês passado',
     closedIntro: 'Lido como você. Nada é escrito de volta no Jira. As horas vêm de um worklog e este site não guarda nenhum então a parte abaixo divide o mês.',
+    workedTitle: 'Concluídos e em andamento no mês passado',
+    workedIntro: 'Lido do Jira. Um chamado que nada resolveu carrega o seu status onde a data estaria.',
     relink: 'A conexão com o Jira expirou.',
     loading: 'Lendo o Jira.',
     none: 'Você não fechou nenhum ticket no mês passado.',
@@ -352,6 +368,15 @@ const ptBR: Messages = {
       none: 'sem horas',
     },
     read: 'Lido do Jira às {at}.',
+    readStored: 'Lido do Jira às {at}. Atualizar consulta o Jira de novo.',
+    refresh: 'Atualizar',
+    refreshing: 'Lendo',
+    refreshHint: 'Ler o Jira de novo em vez da cópia guardada antes.',
+    stillOpen: 'Ainda aberto',
+    scope: {
+      closed: 'Somente concluídos',
+      all: 'Concluídos e em andamento',
+    },
     mapIntro: 'Em qual centro de custo o {project} é lançado?',
     mapAll: 'Um centro de custo também pode ser definido para um projeto inteiro. Vale para cada ticket que o Jira não indica nenhum.',
     from: {
@@ -415,6 +440,44 @@ const ptBR: Messages = {
       title: 'Exclusão dos seus dados',
       body: 'Tudo o que guardamos sobre você é apagado junto com sua conta.',
     },
+  },
+  catalogue: {
+    title: 'Centros de custo',
+    intro: 'Cada centro de custo e projeto da pasta de trabalho. Abra uma linha para ler as especificações que ela pode apropriar.',
+    search: 'Buscar por identificador ou título',
+    count: '{shown} de {total} exibidos.',
+    source: 'Lido de {file}.',
+    none: 'Nada aqui corresponde a isso.',
+    kind: 'Tipo',
+    specifications: 'Especificações',
+    ownList: 'Este nomeia a própria lista. A faixa é {range}.',
+    fullList: 'A pasta de trabalho deixa {range} vazia, então todas as especificações são oferecidas.',
+    more: 'Mostrar mais {count}',
+    allTitle: 'Todas as especificações',
+    allIntro: 'A lista inteira. Um centro de custo sem lista própria pode apropriar qualquer uma delas.',
+  },
+  guided: {
+    title: 'Montagem guiada',
+    intro: 'Três respostas e o mês fica escrito. Um dia de folga cai no dia em que você o tirou. O trabalho se espalha pelo que sobra.',
+    step1: 'Quantos dias você ficou ausente?',
+    step1Hint: 'Este mês espera {days} dias de você.',
+    absenceType: 'Tipo de ausência',
+    step2: 'Quais dias foram?',
+    step2Left: 'Faltam {count} a posicionar.',
+    step2Done: 'Os {count} estão posicionados.',
+    step3: 'Em quais projetos você trabalhou?',
+    step3Hint: 'Estes dividem os {days} dias que a sua ausência deixa.',
+    willBook: 'Apropriado até agora',
+    buildIntro: 'Isto escreve o mês e depois o abre. Substitui o que o mês contém. Nada é enviado.',
+    notReady: 'Posicione cada dia de folga. Divida cem por cento entre os projetos.',
+    build: 'Montar o mês',
+    step5: 'O mês escrito',
+    builtSummary: '{absence} dias de ausência e {work} dias de trabalho.',
+    shortBy: 'Faltam {days} dias ao mês. Suas folgas tomaram dias de que a meta ainda precisava.',
+    ignored: 'Nada foi escrito para estes porque não são dias úteis. {dates}',
+    openMonth: 'Abrir a visão mensal',
+    dismiss: 'Ocultar',
+    again: 'Começar de novo',
   },
   common: {
     none: 'Nenhuma',

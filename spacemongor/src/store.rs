@@ -14,7 +14,7 @@ use std::path::{Path, PathBuf};
 /// Bumped whenever the shape of the tables changes. A cache of the wrong shape
 /// is thrown away rather than migrated because everything in it can be read
 /// again from the disk.
-const VERSION: i32 = 4;
+const VERSION: i32 = 5;
 
 const SCHEMA: &str = "
 create table folder (
@@ -29,16 +29,20 @@ create table folder (
 );
 create table answer (
     id        integer primary key,
-    a_root    text    not null,
-    b_root    text,
-    a_mark    integer not null,
-    b_mark    integer,
+    -- how the folders were read and which ones they were, as one line
+    question  text    not null unique,
+    -- covers every folder the question names
+    mark      integer not null,
     bytes     integer not null,
-    total     integer not null,
-    a_files   integer not null,
-    b_files   integer not null,
-    unique(a_root, b_root)
+    total     integer not null
 );
+create table answer_root (
+    answer    integer not null references answer(id) on delete cascade,
+    ord       integer not null,
+    root      text    not null,
+    files     integer not null
+);
+create index answer_root_answer on answer_root(answer);
 create table answer_pair (
     answer    integer not null references answer(id) on delete cascade,
     keep      text    not null,
@@ -72,16 +76,18 @@ const WANTED: &[(&str, &str, &str)] = &[
 const LATER_TABLES: &str = "
 create table if not exists answer (
     id        integer primary key,
-    a_root    text    not null,
-    b_root    text,
-    a_mark    integer not null,
-    b_mark    integer,
+    question  text    not null unique,
+    mark      integer not null,
     bytes     integer not null,
-    total     integer not null,
-    a_files   integer not null,
-    b_files   integer not null,
-    unique(a_root, b_root)
+    total     integer not null
 );
+create table if not exists answer_root (
+    answer    integer not null references answer(id) on delete cascade,
+    ord       integer not null,
+    root      text    not null,
+    files     integer not null
+);
+create index if not exists answer_root_answer on answer_root(answer);
 create table if not exists answer_pair (
     answer    integer not null references answer(id) on delete cascade,
     keep      text    not null,
@@ -118,6 +124,18 @@ fn carry_forward(db: &Connection, held: i32) -> bool {
             return false;
         }
     }
+    // An answer of the older shape named one folder or two. A search now names
+    // as many as it likes so the old rows cannot be read. Dropping them costs
+    // nothing. Because an answer is only a list of pairs and the digests that
+    // produce it sit in the file table untouched.
+    if has_table(db, "answer")
+        && !has_column(db, "answer", "question")
+        && db
+            .execute_batch("drop table if exists answer_pair; drop table answer;")
+            .is_err()
+    {
+        return false;
+    }
     if db.execute_batch(LATER_TABLES).is_err() {
         return false;
     }
@@ -126,7 +144,9 @@ fn carry_forward(db: &Connection, held: i32) -> bool {
         .iter()
         .any(|(table, column, _)| !has_column(db, table, column))
         || !has_table(db, "answer")
+        || !has_table(db, "answer_root")
         || !has_table(db, "answer_pair")
+        || !has_column(db, "answer", "question")
     {
         return false;
     }
@@ -172,8 +192,8 @@ pub struct Answer {
     pub pairs: Vec<(PathBuf, PathBuf, u64)>,
     pub bytes: u64,
     pub total: u64,
-    pub a_files: u64,
-    pub b_files: u64,
+    /// Every folder that was read and what it held. The order is the order given.
+    pub files: Vec<(PathBuf, u64)>,
 }
 
 /// What a walk found for one path.
@@ -188,6 +208,14 @@ pub struct Record {
 
 pub struct Store {
     db: Connection,
+}
+
+/// The folder the cache sits in. The one place the program writes for itself.
+pub fn folder() -> PathBuf {
+    path()
+        .parent()
+        .map(Path::to_path_buf)
+        .unwrap_or_else(|| PathBuf::from("."))
 }
 
 /// Where the cache sits. `SPACEMONGOR_DB` overrides it.
@@ -255,6 +283,7 @@ impl Store {
             // shape that is not understood.
             db.execute_batch(
                 "drop table if exists answer_pair;
+                 drop table if exists answer_root;
                  drop table if exists answer;
                  drop table if exists file;
                  drop table if exists folder;",
@@ -413,37 +442,38 @@ impl Store {
             .map(|m| m as u64)
     }
 
-    /// What a search of these folders came to last time they were in this
-    /// state. `None` when they were never in it.
-    pub fn answer(
-        &self,
-        a: &Path,
-        b: Option<&Path>,
-        a_mark: u64,
-        b_mark: Option<u64>,
-    ) -> Option<Answer> {
+    /// What a search came to last time it was asked in this state. `None` when
+    /// it was never asked in it.
+    pub fn answer(&self, question: &str, mark: u64) -> Option<Answer> {
         let found = self
             .db
             .query_row(
-                "select id, bytes, total, a_files, b_files from answer
-                 where a_root = ?1 and b_root is ?2 and a_mark = ?3 and b_mark is ?4",
-                rusqlite::params![
-                    text(a),
-                    b.map(text),
-                    a_mark as i64,
-                    b_mark.map(|m| m as i64)
-                ],
+                "select id, bytes, total from answer where question = ?1 and mark = ?2",
+                rusqlite::params![question, mark as i64],
                 |r| {
                     Ok((
                         r.get::<_, i64>(0)?,
                         r.get::<_, i64>(1)?,
                         r.get::<_, i64>(2)?,
-                        r.get::<_, i64>(3)?,
-                        r.get::<_, i64>(4)?,
                     ))
                 },
             )
             .ok()?;
+
+        let mut q = self
+            .db
+            .prepare("select root, files from answer_root where answer = ?1 order by ord")
+            .ok()?;
+        let files: Vec<(PathBuf, u64)> = q
+            .query_map([found.0], |r| {
+                Ok((
+                    PathBuf::from(r.get::<_, String>(0)?),
+                    r.get::<_, i64>(1)? as u64,
+                ))
+            })
+            .ok()?
+            .flatten()
+            .collect();
 
         let mut q = self
             .db
@@ -468,52 +498,42 @@ impl Store {
             pairs,
             bytes: found.1 as u64,
             total: found.2 as u64,
-            a_files: found.3 as u64,
-            b_files: found.4 as u64,
+            files,
         })
     }
 
-    /// Keeps what a search came to so the same folders in the same state need
-    /// not be searched again.
-    pub fn keep_answer(
-        &mut self,
-        a: &Path,
-        b: Option<&Path>,
-        a_mark: u64,
-        b_mark: Option<u64>,
-        answer: &Answer,
-    ) -> bool {
+    /// Keeps what a search came to so the same question in the same state need
+    /// not be asked again.
+    pub fn keep_answer(&mut self, question: &str, mark: u64, answer: &Answer) -> bool {
+        // Refused rather than stored half readable. The search runs again next
+        // time, which is what a cache miss costs anyway.
+        if answer
+            .pairs
+            .iter()
+            .any(|(keep, copy, _)| !keeps_its_name(keep) || !keeps_its_name(copy))
+            || answer.files.iter().any(|(root, _)| !keeps_its_name(root))
+        {
+            return false;
+        }
         let Ok(tx) = self.db.transaction() else {
             return false;
         };
-        // Anything held for these two folders goes before the new answer lands.
-        //
-        // The unique constraint cannot do this on its own. SQLite counts two
-        // NULLs as different so a search of one folder never conflicted with
-        // itself. Every run added a row and the one that matched the mark was
-        // not the one the pairs were written against. Its pairs go with it.
+        // Whatever this question came to before goes first. Its roots and its
+        // pairs follow it out.
         if tx
-            .execute(
-                "delete from answer where a_root = ?1 and b_root is ?2",
-                rusqlite::params![text(a), b.map(text)],
-            )
+            .execute("delete from answer where question = ?1", [question])
             .is_err()
         {
             return false;
         }
         if tx
             .execute(
-                "insert into answer (a_root, b_root, a_mark, b_mark, bytes, total, a_files, b_files)
-                 values (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+                "insert into answer (question, mark, bytes, total) values (?1, ?2, ?3, ?4)",
                 rusqlite::params![
-                    text(a),
-                    b.map(text),
-                    a_mark as i64,
-                    b_mark.map(|m| m as i64),
+                    question,
+                    mark as i64,
                     answer.bytes as i64,
-                    answer.total as i64,
-                    answer.a_files as i64,
-                    answer.b_files as i64
+                    answer.total as i64
                 ],
             )
             .is_err()
@@ -521,6 +541,16 @@ impl Store {
             return false;
         }
         let id = tx.last_insert_rowid();
+        {
+            let Ok(mut put) = tx.prepare(
+                "insert into answer_root (answer, ord, root, files) values (?1, ?2, ?3, ?4)",
+            ) else {
+                return false;
+            };
+            for (ord, (root, files)) in answer.files.iter().enumerate() {
+                let _ = put.execute(rusqlite::params![id, ord as i64, text(root), *files as i64]);
+            }
+        }
         {
             let Ok(mut put) = tx.prepare(
                 "insert into answer_pair (answer, keep, copy, size) values (?1, ?2, ?3, ?4)",
@@ -585,6 +615,16 @@ fn text(path: &Path) -> String {
     path.to_string_lossy().into_owned()
 }
 
+/// True when the path survives being written down and read back.
+///
+/// A digest keyed on a path that does not survive simply misses and the file is
+/// read again. A stored answer is different. It hands its paths back to the
+/// caller, who opens them and lays copies of them down, so a path that came
+/// back with its broken parts replaced names a file that is not there.
+fn keeps_its_name(path: &Path) -> bool {
+    Path::new(&text(path)) == path
+}
+
 #[cfg(test)]
 mod tests {
     use super::{Answer, Known, Record, Store};
@@ -612,6 +652,47 @@ mod tests {
             digest,
             content: digest.map(|d| d % 97),
         }
+    }
+
+    /// A stored answer hands its paths back to whoever opens them. One that
+    /// could not be written down as itself is refused rather than kept.
+    #[test]
+    #[cfg(unix)]
+    fn an_answer_naming_a_path_that_is_not_text_is_refused() {
+        use std::os::unix::ffi::OsStrExt;
+        let (mut held, file) = store("lossy");
+
+        let odd = PathBuf::from(std::ffi::OsStr::from_bytes(b"/disk/caf\xe9.bin"));
+        assert!(!super::keeps_its_name(&odd), "the fixture is plain text");
+
+        let answer = Answer {
+            bytes: 10,
+            total: 1,
+            pairs: vec![(PathBuf::from("/disk/a.bin"), odd.clone(), 10)],
+            files: vec![(PathBuf::from("/disk"), 2)],
+        };
+        assert!(
+            !held.keep_answer("q", 1, &answer),
+            "it stored an answer it cannot read back"
+        );
+        assert!(
+            held.answer("q", 1).is_none(),
+            "a warm run would be handed a path that names nothing"
+        );
+
+        // The same answer with names that survive is kept as before.
+        let plain = Answer {
+            pairs: vec![(
+                PathBuf::from("/disk/a.bin"),
+                PathBuf::from("/disk/b.bin"),
+                10,
+            )],
+            ..answer
+        };
+        assert!(held.keep_answer("q", 1, &plain));
+        assert!(held.answer("q", 1).is_some());
+
+        let _ = std::fs::remove_file(file);
     }
 
     #[test]
@@ -767,9 +848,7 @@ mod tests {
         assert_eq!(row.content, None);
         // The tables the newer shape needs are there too.
         assert!(
-            carried
-                .answer(Path::new("D:\\Music"), None, 1, None)
-                .is_none(),
+            carried.answer("pooled\nD:\\Music", 1).is_none(),
             "the tables the newer shape needs are there and empty"
         );
 
@@ -833,6 +912,89 @@ mod tests {
         let _ = std::fs::remove_file(&file);
     }
 
+    /// The shape that held an answer for one folder or two. The answers go
+    /// because they cannot be read. Every digest below them stays.
+    #[test]
+    fn an_answer_of_the_older_shape_goes_and_the_digests_stay() {
+        let file =
+            std::env::temp_dir().join(format!("spacemongor-answer4-{}.db", std::process::id()));
+        let _ = std::fs::remove_file(&file);
+        {
+            let db = rusqlite::Connection::open(&file).unwrap();
+            db.execute_batch(
+                "create table folder (
+                     id integer primary key,
+                     root text not null unique,
+                     scanned integer not null,
+                     rows_mark integer,
+                     walk_mark integer
+                 );
+                 create table file (
+                     id integer primary key,
+                     folder integer not null references folder(id) on delete cascade,
+                     path text not null,
+                     size integer not null,
+                     modified integer not null,
+                     head integer,
+                     digest integer,
+                     content integer,
+                     unique(folder, path)
+                 );
+                 create table answer (
+                     id integer primary key,
+                     a_root text not null,
+                     b_root text,
+                     a_mark integer not null,
+                     b_mark integer,
+                     bytes integer not null,
+                     total integer not null,
+                     a_files integer not null,
+                     b_files integer not null,
+                     unique(a_root, b_root)
+                 );
+                 create table answer_pair (
+                     answer integer not null references answer(id) on delete cascade,
+                     keep text not null,
+                     copy text not null,
+                     size integer not null
+                 );
+                 pragma user_version = 4;",
+            )
+            .unwrap();
+            db.execute(
+                "insert into folder (id, root, scanned, rows_mark, walk_mark)
+                 values (1, '/music', 9, 5, 6)",
+                [],
+            )
+            .unwrap();
+            db.execute(
+                "insert into file (folder, path, size, modified, head, digest, content)
+                 values (1, '/music/a.mp3', 4096, 7, 11, 22, 33)",
+                [],
+            )
+            .unwrap();
+            db.execute(
+                "insert into answer (a_root, a_mark, bytes, total, a_files, b_files)
+                 values ('/music', 5, 1, 1, 1, 0)",
+                [],
+            )
+            .unwrap();
+        }
+
+        let carried = Store::open_at(&file).expect("it opens");
+        let row = &carried.known(Path::new("/music"))[Path::new("/music/a.mp3")];
+        assert_eq!(row.digest, Some(22), "a digest cost a whole file read");
+        assert_eq!(carried.mark(Path::new("/music")), Some(5));
+        let left: i64 = carried
+            .db
+            .query_row("select count(*) from answer", [], |r| r.get(0))
+            .unwrap();
+        assert_eq!(left, 0, "an answer that cannot be read was kept");
+        assert!(carried.answer("pooled\n/music", 5).is_none());
+
+        let _ = std::fs::remove_file(&file);
+    }
+
     /// Points at a real cache to check it survives. Not a check of its own.
     /// `OLD_DB=path cargo test carry_a_real_cache -- --ignored --nocapture`.
     #[test]
@@ -854,16 +1016,16 @@ mod tests {
             .flatten()
             .collect();
         for (root, walk) in roots {
+            let question = format!("pooled\n{root}");
             let held: i64 = carried
                 .db
                 .query_row(
-                    "select count(*) from answer where a_root = ?1 and b_root is null",
-                    [&root],
+                    "select count(*) from answer where question = ?1",
+                    [&question],
                     |r| r.get(0),
                 )
                 .unwrap_or(-1);
-            let answered =
-                walk.and_then(|w| carried.answer(Path::new(&root), None, w as u64, None));
+            let answered = walk.and_then(|w| carried.answer(&question, w as u64));
             println!(
                 "{root}\n  answers held {held}\n  answered for its walk mark: {}",
                 match &answered {
@@ -903,7 +1065,8 @@ mod tests {
     #[test]
     fn one_folder_searched_twice_leaves_one_answer() {
         let (mut s, file) = store("answers");
-        let root = Path::new("/disk");
+        let root = PathBuf::from("/disk");
+        let question = "pooled\n/disk";
         let pairs = |n: u64| Answer {
             pairs: vec![(
                 PathBuf::from("/disk/keep.mp3"),
@@ -912,12 +1075,11 @@ mod tests {
             )],
             bytes: n,
             total: 1,
-            a_files: 2,
-            b_files: 0,
+            files: vec![(root.clone(), 2)],
         };
 
-        s.keep_answer(root, None, 111, None, &pairs(10));
-        s.keep_answer(root, None, 222, None, &pairs(20));
+        s.keep_answer(question, 111, &pairs(10));
+        s.keep_answer(question, 222, &pairs(20));
 
         let rows: i64 =
             s.db.query_row("select count(*) from answer", [], |r| r.get(0))
@@ -927,16 +1089,63 @@ mod tests {
             s.db.query_row("select count(*) from answer_pair", [], |r| r.get(0))
                 .unwrap();
         assert_eq!(kept, 1, "pairs were left behind with the old answer");
+        let named: i64 =
+            s.db.query_row("select count(*) from answer_root", [], |r| r.get(0))
+                .unwrap();
+        assert_eq!(named, 1, "roots were left behind with the old answer");
 
         assert!(
-            s.answer(root, None, 111, None).is_none(),
+            s.answer(question, 111).is_none(),
             "the old mark still answers"
         );
-        let now = s
-            .answer(root, None, 222, None)
-            .expect("the new mark answers");
+        let now = s.answer(question, 222).expect("the new mark answers");
         assert_eq!(now.bytes, 20);
         assert_eq!(now.pairs.len(), 1, "the answer named no copies");
+
+        let _ = std::fs::remove_file(&file);
+    }
+
+    /// A search reads as many folders as it is given. The answer has to name
+    /// every one of them and hand them back in the order they went in.
+    #[test]
+    fn an_answer_holds_every_folder_the_search_read() {
+        let (mut s, file) = store("many");
+        let roots = ["/backup/one", "/backup/two", "/backup/three"];
+        let question = format!("pooled\n{}", roots.join("\n"));
+        s.keep_answer(
+            &question,
+            77,
+            &Answer {
+                pairs: vec![(
+                    PathBuf::from("/backup/one/song.mp3"),
+                    PathBuf::from("/backup/three/song.mp3"),
+                    500,
+                )],
+                bytes: 500,
+                total: 1,
+                files: roots
+                    .iter()
+                    .enumerate()
+                    .map(|(i, r)| (PathBuf::from(r), i as u64 + 1))
+                    .collect(),
+            },
+        );
+
+        let back = s.answer(&question, 77).expect("it answers");
+        assert_eq!(back.total, 1);
+        assert_eq!(
+            back.files,
+            vec![
+                (PathBuf::from("/backup/one"), 1),
+                (PathBuf::from("/backup/two"), 2),
+                (PathBuf::from("/backup/three"), 3)
+            ],
+            "the folders came back in another order"
+        );
+        assert!(
+            s.answer("pooled\n/backup/one\n/backup/two", 77).is_none(),
+            "a search of two of the three took the answer for all three"
+        );
 
         let _ = std::fs::remove_file(&file);
     }
@@ -945,23 +1154,19 @@ mod tests {
     #[test]
     fn an_answer_that_names_no_copies_is_not_trusted() {
         let (mut s, file) = store("empty-answer");
-        let root = Path::new("/disk");
         s.keep_answer(
-            root,
-            None,
+            "pooled\n/disk",
             7,
-            None,
             &Answer {
                 pairs: Vec::new(),
                 bytes: 900,
                 total: 5,
-                a_files: 9,
-                b_files: 0,
+                files: vec![(PathBuf::from("/disk"), 9)],
             },
         );
 
         assert!(
-            s.answer(root, None, 7, None).is_none(),
+            s.answer("pooled\n/disk", 7).is_none(),
             "an answer with no copies in it was handed back"
         );
 

@@ -84,6 +84,93 @@ describe('the month grid', () => {
   })
 })
 
+/*
+ * The wash of the weekday. Five washes and the Warm Grey of a weekend.
+ *
+ * Because a) a state carries the same weight of selector as the weekday under
+ * it. b) the later rule is then the one that paints. c) a wash written after a
+ * state would hide a placed day and a disabled one alike.
+ */
+describe('the weekday wash', () => {
+  const styleOf = (path: string) => {
+    const text = readFileSync(join(ROOT, path), 'utf8')
+    return text.slice(text.indexOf('<style'))
+  }
+
+  // The month view shades a day by what it asks of the user so the wash is the
+  // guided day picker alone.
+  const FILES = [['src/pages/GuidedPage.vue', '.days button']] as const
+
+  it.each(FILES)('paints all seven days in %s', (path, selector) => {
+    const styles = styleOf(path)
+    for (const day of [1, 2, 3, 4, 5]) {
+      expect(styles).toContain(`${selector}.dow-${day}`)
+      expect(styles).toContain(`var(--dow-${day})`)
+    }
+    expect(styles).toContain(`${selector}.dow-6`)
+    expect(styles).toContain(`${selector}.dow-7`)
+  })
+
+  it.each(FILES)('writes it before every state it has to lose to in %s', (path) => {
+    const styles = styleOf(path)
+    const last = styles.lastIndexOf('var(--dow-')
+    for (const state of ['var(--tint)', 'var(--open)']) {
+      const at = styles.indexOf(state, last)
+      if (at === -1) continue
+      expect(at).toBeGreaterThan(last)
+    }
+  })
+
+  it('leaves no Grey on a shaded cell', () => {
+    // Grey reaches 4.04 to 1 on the wash and 4.4 on the two day shades.
+    // `colour.test.ts` proves the ratio. Every one of these rules used to write
+    // Grey on a day cell.
+    const grid = styleOf('src/components/MonthGrid.vue')
+    expect(grid.slice(grid.indexOf('.flag {'), grid.indexOf('}', grid.indexOf('.flag {')))).not.toContain('--grey')
+    const board = styleOf('src/components/MonthCalendar.vue')
+    expect(board.slice(board.indexOf('.add {'), board.indexOf('}', board.indexOf('.add {')))).not.toContain('--grey')
+    const guided = styleOf('src/pages/GuidedPage.vue')
+    expect(guided.slice(guided.indexOf('.days .dow {'), guided.indexOf('}', guided.indexOf('.days .dow {')))).not.toContain('--grey')
+  })
+})
+
+/*
+ * The shading of a day.
+ *
+ * The month view carries no colour a weekday owns. It shades the weekend and
+ * it shades a day nobody has to fill. `colour.test.ts` holds the distance
+ * between the two shades and this holds which rule paints.
+ */
+describe('the shading of a day', () => {
+  const styleOf = (path: string) => {
+    const text = readFileSync(join(ROOT, path), 'utf8')
+    return text.slice(text.indexOf('<style'))
+  }
+
+  const VIEWS = ['src/components/MonthGrid.vue', 'src/components/MonthCalendar.vue'] as const
+
+  it.each(VIEWS)('washes no weekday in %s', (path) => {
+    expect(styleOf(path)).not.toContain('var(--dow-')
+  })
+
+  it.each(VIEWS)('shades the weekend after the day nobody has to fill in %s', (path) => {
+    // A weekend is also a day nobody has to fill and both rules carry the same
+    // weight of selector. The later rule is the one that paints.
+    const styles = styleOf(path)
+    expect(styles).toContain('var(--weekend)')
+    expect(styles.indexOf('var(--weekend)')).toBeGreaterThan(styles.indexOf('var(--tint)'))
+  })
+
+  it('keeps the week number column out of the week it labels', () => {
+    // The cell is written on the first row of the week and spans the rest. A
+    // row rule names one class and two elements so the shading of the first day
+    // of the week would paint the stripe. The row is named here to match it.
+    const styles = styleOf('src/components/MonthGrid.vue')
+    expect(styles).toContain('tr td.col-week {')
+    expect(styles).toContain('tr td.col-week.alternate {')
+  })
+})
+
 describe('a board cell', () => {
   const board = () => readFileSync(join(ROOT, 'src/components/MonthCalendar.vue'), 'utf8')
   const styles = () => board().slice(board().indexOf('<style'))
@@ -233,6 +320,7 @@ describe('a number field', () => {
       'src/components/SettingNumber.vue',
       'src/components/SetupWizard.vue',
       'src/components/SimpleView.vue',
+      'src/pages/GuidedPage.vue',
       'src/pages/JiraPage.vue',
     ])
   })

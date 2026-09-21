@@ -53,6 +53,12 @@
         "category": "GBA"
       },
       {
+        "command": "gba.reload",
+        "title": "Reload",
+        "category": "GBA",
+        "icon": "$(refresh)"
+      },
+      {
         "command": "gba.playInPanel",
         "title": "Play in Side Bar",
         "category": "GBA"
@@ -85,8 +91,8 @@
             "errors",
             "all"
           ],
-          "default": "errors",
-          "description": "How much of the emulator's own output to record at info level. Everything is kept either way. At errors the routine chatter is filed as debug."
+          "default": "all",
+          "description": "How much of the emulator's own output to record at info level. Everything is kept either way. At errors the routine chatter is filed as debug. An output channel hides debug until the level picker in its header is raised."
         },
         "gba.autoStateMinutes": {
           "type": "number",
@@ -183,6 +189,20 @@
           "command": "gba.loadState",
           "when": "activeCustomEditorId == 'gba.rom'"
         }
+      ],
+      "view/title": [
+        {
+          "command": "gba.reload",
+          "when": "view == gba.view",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "gba.reload",
+          "when": "activeCustomEditorId == 'gba.rom'",
+          "group": "navigation"
+        }
       ]
     },
     "views": {
@@ -204,7 +224,7 @@
     "watch": "node esbuild.mjs --watch",
     "typecheck": "tsc --noEmit",
     "package": "npm run build && npx @vscode/vsce package --no-dependencies",
-    "test": "node test/make-rom.mjs ramp.gba && SHOT=ramp.png node test/run-webview.mjs ramp.gba"
+    "test": "node test/run-guard.mjs && node test/make-rom.mjs ramp.gba && SHOT=ramp.png node test/run-webview.mjs ramp.gba"
   },
   "devDependencies": {
     "@emulatorjs/core-mgba": "^4.2.3",

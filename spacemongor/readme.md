@@ -23,6 +23,7 @@ Nothing repeats on a timer.
 | Reload | Walks the same filesystem again |
 | Reload this folder | Walks only the folder shown. Moves up if it has gone |
 | Browse | Go to a folder and read what is in it |
+| Extract | Pick files out of a set of folders and lay one copy of each in a new one |
 | Recycle bin | What is in it and where each thing came from |
 | Diagnostics | Where the cache sits and how fast the drive is going |
 | Nesting slider | Levels drawn inside one another. One to ten |
@@ -45,9 +46,10 @@ Nothing repeats on a timer.
 | Scan this folder for duplicates | Searches this folder on its own |
 | Compare as the first folder | Holds this folder as side A |
 | Compare as the second folder | Holds this folder as side B |
+| Add to the extractor | Holds this folder as one of the folders to read |
 | Send to the recycle bin | Asks first. A folder goes with everything under it |
 
-The last three appear on folders only.
+The last four appear on folders only.
 
 ## Browse
 
@@ -58,6 +60,11 @@ Measure this folder walks it and reports what it holds. The total and the file
 and folder counts. Every file type group with what it takes up. The twenty
 largest files with a button to show each one in the file manager. Folders it
 could not open are counted so a total that reads short can be explained.
+
+A measured folder can be drawn in the map or scanned for duplicates or held as
+either side of a comparison or added to the extractor. The picker is also how
+the extractor is given a folder to read and where to write. It says which of the
+two it is asking for.
 
 From there the folder can be drawn in the map on its own, searched for
 duplicates, or held as either side of a comparison. A folder drawn on its own
@@ -180,8 +187,9 @@ A file is read again when its size or its modified time has moved. Nothing else
 invalidates a row so touching a file without changing it costs one read.
 
 A cache written by an older build is carried forward rather than thrown away.
-Every digest in it cost a whole file read. Only a cache written by a later build
-is started again because its shape is not known here.
+Every digest in it cost a whole file read. A stored answer the newer shape
+cannot read is dropped and every digest under it stays. Only a cache written by
+a later build is started again because its shape is not known here.
 Tidy it on the Diagnostics page squeezes the file back down. A cache written
 over many times holds pages nothing uses. One real cache of 49 MB came back as
 35 MB with every row still in it.
@@ -228,7 +236,7 @@ where it is going. It refuses to start if it will not fit.
 Only the redundant copy of each pair is ever offered. The file being kept is
 never touched.
 
-The tree under the folder that was searched is laid out again under the
+The tree under the folder a copy was found in is laid out again under the
 destination. Two files of one name from two folders therefore never land on each
 other.
 
@@ -239,8 +247,11 @@ else is refused and named.
 Each file is written under a name of its own and read back before it takes the
 real one, so a copy that stops halfway leaves nothing that looks finished.
 
-`spacemongor-gathered.tsv` is written beside what was acted on with a line for
-every file giving the time and what happened and the size and both paths.
+`spacemongor-gathered.tsv` records every file acted on. One line each giving the
+time. What happened. The size. Both paths. A gather leaves it in the folder
+copied into. A clear out leaves it in the data folder beside the cache, because
+inside the bin it would be an entry the host cannot put back and emptying the
+bin would destroy the record of what the emptying removed.
 
 ## Sending things to the recycle bin
 
@@ -256,39 +267,111 @@ is walked again and the strip carries a button to do that.
 
 The third way takes many at once and is below.
 
-## Bringing one of each across
+## Extracting by file type
 
-The Bring one of each across button on the duplicates view lays a single copy of
-every file under a new folder. A file held in five places arrives once. A file
-held in one place still arrives.
+The Extract button takes the files you pick out of any number of folders and
+lays one copy of each into a new one. That is what reorganises a set of backups
+into a single tree.
 
-Which copy comes is settled the same way as everywhere else. The shortest path
-wins because it is the least buried and because the answer has to be the same on
-every run.
+It asks five questions and each one is a step of its own. The row along the top
+says where you are and marks every step already answered. A step can be gone
+back to. A step ahead of the first unanswered one cannot be opened because its
+question has no meaning yet.
+
+### 1 Folders to read
+
+List every folder. Add a folder opens the picker and Use it and pick another
+keeps it standing there for the next one. The right hand menu in the map and the
+Browse view both add the folder they are on. A folder already held inside
+another on the list is dropped. Because reading one folder twice reports every
+file below it as a copy of itself.
+
+### 2 What comes across
+
+The walk that says what each group holds starts as the step opens. Read what is
+there runs it again.
+
+A bundle is a named set of groups. Photos and video are one bundle. Tick the
+bundles you want. Only takes that bundle and nothing else.
+
+| Bundle | Groups |
+| --- | --- |
+| Photos and video | Image Video |
+| Music | Audio |
+| Documents | Document |
+| Archives | Archive |
+| Code | Code |
+| Data and system | Data System |
+| Other | Other |
+
+Single groups opens the nine underneath for a finer cut. Nothing ticked takes
+every file there is.
+
+Certain extensions only narrows what is ticked. Type `cr2 nef arw` to take the
+raw photos and leave the rest of the bundle standing. A leading dot is dropped
+and the case does not matter. An extension still has to sit in a ticked group.
+The step says so when none of them does.
+
+### 3 Where it goes
+
+Name a folder that already exists. It cannot be one of the folders being read
+nor hold one nor sit inside one. Because every file would then be laid on top of
+itself and the list would name the original.
+
+Laid out as says what sits above each file.
+
+| Laid out as | Result |
+| --- | --- |
+| keep the old paths | the flattened path sits straight under the new folder |
+| a folder for each group | pictures under Image and music under Audio |
+| a folder for each bundle | photos and video together under Photos and video |
 
 The old tree is flattened. The slider says how many parts of a path survive and
 three is the default. The first part says broadly where a file lived and the
 part just above it says what it sat with. The middle is what goes.
 
+A worked example sits below the slider and follows every setting on the step.
+
 ```
-V Old Backups/Alex Backup 2/Alex/My Documents/new/game.mdf
-V Old Backups/new/game.mdf
+backup two/old/holiday/2019/beach.jpg
+lands at  /one of each/Photos and video/backup two/2019/beach.jpg
 ```
 
-Two different files can flatten onto one place. The second gets a number before
-its extension and the count of those is shown before anything is written.
+### 4 What would happen
 
-Nothing under the old folder is touched. The old tree is still there when the
-copying finishes.
+The search reads every folder as one pool and the listing follows it on its own.
+A file held in five backups arrives once. A file held in one place still
+arrives.
+
+Which copy comes across is settled the same way as everywhere else. The shortest
+path wins because it is the least buried and because the answer has to be the
+same on every run.
+
+Nothing is written by this step. It gives what would be laid down and how much
+the files the list would name are holding.
+
+Each path is flattened against the folder it was found under. Two backups laid
+out the same way therefore land beside each other rather than on top of each
+other. Two different files that still reach one place are held apart. The second
+gets a number before its extension and the count of those is shown here.
+
+### 5 Copying
+
+Copy them across lays the plan down. Nothing in the old folders is touched.
+Every one of them is still there when the copying finishes. Start again returns
+to the first step.
 
 ## The list of what can go
 
-Write the list of what can go appears once the copying has finished. It writes
-`spacemongor-to-remove.txt` in the new folder naming every old path whose
-content is now standing in the new tree.
+Write the list of what can go appears on the copying step once it has finished.
+It writes `spacemongor-to-remove.txt` in the new folder naming every old path
+whose content is now standing in the new tree.
 
 A file is named only once its copy is really there. A list that named something
-whose copy never landed is a list that loses it.
+whose copy never landed is a list that loses it. What arrived is taken from the
+copying rather than by looking at the new folder. Because a folder already
+holding something of that name is refused and left alone, and looking would call
+the stranger our copy.
 
 The list is plain text, one path a line, so it can be read or fed to whatever
 removes them. Nothing is removed by writing it.
@@ -321,17 +404,17 @@ Only the redundant copy is ever taken. The file being kept is never touched.
 
 ## Searching only the groups you care about
 
-The Searching box at the top says which file type groups a search looks at.
-Nothing ticked looks at everything. Pictures and Music and Pictures and music
-are one click each. Any mix can be ticked.
+The Searching box at the top says which files a search looks at. Nothing ticked
+looks at everything. Each bundle is one click. Any mix of the nine groups can be
+ticked underneath.
 
 A narrower search is a much faster one. Everything outside the chosen groups is
 still walked and still drawn on the map but it is never read, and reading is the
 whole cost.
 
 The choice carries through. A search told to look at pictures reports only
-picture copies, and bringing one of each across then brings pictures only rather
-than leaving a folder full of things nobody asked about.
+picture copies. The extractor then takes pictures only rather than leaving a
+folder full of things nobody asked about.
 
 A stored answer belongs to the question that was asked. Searching one folder for
 pictures and searching it for everything are two different questions and the
@@ -342,6 +425,10 @@ moved.
 
 Right click a folder and choose Scan this folder for duplicates. Every file
 under it is read and the copies held more than once are listed.
+
+Any number of folders can be read this way at once. The extractor is what names
+them and the answer covers the whole pool. A file held in two of the folders is
+a copy wherever it sits.
 
 The shortest path in a set is treated as the one to keep and every other copy is
 reported against it. The headline is what deleting those copies would free.
@@ -461,7 +548,8 @@ stated.
 ## Safety
 
 The tool never writes to the disk it is examining unless you ask it to. Gathering
-copies only ever creates files under the folder you name. Clearing copies out
+copies and extracting by file type only ever create files under the folder you
+name. Clearing copies out
 only ever moves them to the recycle bin of this machine. It reads directory entries
 and their metadata and the free space figure for the filesystem. The duplicate
 search also reads file contents. Nothing under a scanned folder is created or
@@ -497,7 +585,7 @@ is written twice.
 | `src/gap.rs` | Working out where the unaccounted space went |
 | `src/gather.rs` | Copying the redundant copies to one place |
 | `src/browse.rs` | Going to a folder and reading what is in it |
-| `src/consolidate.rs` | Bringing one copy of everything into a new folder |
+| `src/consolidate.rs` | Laying one copy of every file into a new folder |
 | `src/store.rs` | The SQLite cache of what has been read |
 | `src/sys/` | The picker and the metadata each system reports |
 | `src/cats.rs` | File type groups and their colours |
@@ -511,20 +599,32 @@ is written twice.
 
 ```
 cargo test
-cargo clippy --target x86_64-pc-windows-msvc --all-targets
+cargo clippy --all-targets
+cargo-zigbuild clippy --target x86_64-pc-windows-gnu --all-targets
 ```
 
-A hundred and five tests. The layout maths and the group matching and the tree roll up. The
-walk is run against a fixture holding a symlink loop and a hard linked pair. The
-comparison is run against a renamed copy and against a decoy of the same length
-holding other bytes. One folder on its own is run against three copies and
-against a second hard link. The cache is run cold then warm then against an
-edited file. A test run never touches the real cache. The window is drawn headless so the boxes and the duplicate
-view can be checked without a display.
+A hundred and thirty nine tests. The layout maths. The group matching. The
+tree roll up. The walk is run against a fixture holding a symlink loop and a
+hard linked pair. The comparison is run against a renamed copy and against a
+decoy of the same length holding other bytes. The extractor is run against a
+bundle and against named extensions. A step opens only once the steps before it
+are answered. A folder to write into that is one of the folders being read is
+refused. A removal list is never allowed to name a file whose copy was refused.
+A folder whose name is not valid text is still walked. Every group label is held
+above the contrast floor. Each view is drawn and read back, so a view that drew
+nothing fails rather than passing on the count of shapes the bar puts up. One folder on its own is run against three copies and
+against a second hard link. Three folders are read as one pool against a copy
+that sits in the first and the third. The extractor is run against two backups
+holding one picture between them and the picture arrives once. The cache is run
+cold then warm then against an edited file. A cache of the older shape is opened
+to check the digests survive it. A test run never touches the real cache. The
+window is drawn headless so every view can be checked without a display. Each of
+the five extractor steps is drawn that way. `step_probe` prints where a step put
+its text so a layout can be read on a machine with no display.
 
-The second command type checks the Windows build from Linux. It needs
-`rustup target add x86_64-pc-windows-msvc` once. See `docs/building.md` for
-every build command and for the Windows cross build.
+The last command type checks the Windows build from Linux. It needs
+`rustup target add x86_64-pc-windows-gnu` and cargo-zigbuild once. See
+`docs/building.md` for every build command and for the Windows cross build.
 
 The Windows build is cross built from Linux with zig as the linker. It was
 confirmed running on Windows on 15 September 2026.

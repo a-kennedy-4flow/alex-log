@@ -1,15 +1,27 @@
-// Reads the project tracker workbooks in the repository and writes the fixtures.
+// Reads the workbooks in the repository and writes the fixtures.
 //
-// Every workbook carries the same hidden reference sheets. The catalogue is
-// taken from the newest one. Every workbook also carries a filled month so each
+// Every tracker carries the same hidden reference sheets. The catalogue is
+// taken from the newest one. Every tracker also carries a filled month so each
 // becomes a test oracle holding the numbers Excel itself computed.
+//
+// The 4s project numbers list is the second workbook backoffice uploads. It is
+// laid over that catalogue here for the same reason the admin page lays it over
+// the stored one. Otherwise local development runs against a catalogue no
+// deployment would ever hold.
 //
 // Run with `pnpm fixtures` from the repository root.
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs'
 import { dirname, join, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { openWorkbook, readCatalogue, isoDate } from '@tracker/workbook-reader'
+import {
+  NotAnUpload,
+  isoDate,
+  mergeProjectNumbers,
+  openWorkbook,
+  readCatalogue,
+  readProjectNumbersFrom,
+} from '@tracker/workbook-reader'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const WORKBOOK_DIR = join(here, '../..')
@@ -28,6 +40,30 @@ function open(path) {
 function buildCatalogue(workbook) {
   const parsed = readCatalogue(workbook)
   return { ...parsed, source: { workbook: workbook.name, ...parsed.source } }
+}
+
+/* ---------- the 4s project numbers list ---------- */
+
+/**
+ * The newest project numbers list in the repository root.
+ *
+ * Any other spreadsheet there is skipped rather than reported. `NotAnUpload` is
+ * what the reader throws for a workbook that is not this list and the root is
+ * free to hold one. Any other failure is a fault and is thrown.
+ */
+function readNumbers(dir) {
+  const lists = []
+  for (const name of readdirSync(dir).filter((f) => f.endsWith('.xlsx')).sort()) {
+    try {
+      const bytes = new Uint8Array(readFileSync(join(dir, name)))
+      lists.push({ name, parsed: readProjectNumbersFrom(bytes) })
+    } catch (error) {
+      if (!(error instanceof NotAnUpload)) throw error
+      console.log(`skipped         ${name}  ${error.message}`)
+    }
+  }
+  const dated = (list) => String(list.parsed.source.listUpdated ?? '')
+  return lists.sort((a, b) => dated(a).localeCompare(dated(b))).at(-1) ?? null
 }
 
 /* ---------- the filled month and Excel's own answers ---------- */
@@ -126,6 +162,19 @@ function updatedAt(workbook) {
 const newest = [...workbooks].sort((a, b) => updatedAt(a).localeCompare(updatedAt(b))).at(-1)
 
 const catalogue = buildCatalogue(newest)
+
+/*
+ * The absent numbers are added because that is what the admin page does by
+ * default. Because a) the seed is what a fresh deployment stores and a fresh
+ * deployment is set up by uploading both workbooks. b) a number the tracker has
+ * not got is unbookable until it is added. c) the seed would otherwise differ
+ * from every real catalogue by the whole of what the list adds.
+ */
+const numbers = readNumbers(WORKBOOK_DIR)
+const merged = numbers
+  ? mergeProjectNumbers(catalogue, numbers.parsed, numbers.name, true)
+  : { data: catalogue, report: null }
+Object.assign(catalogue, merged.data)
 const { source } = catalogue
 
 mkdirSync(OUT, { recursive: true })
@@ -174,6 +223,17 @@ for (const [location, dates] of Object.entries(catalogue.workingWeekends)) {
 }
 console.log(`spec ranges     ${Object.keys(catalogue.specifications).length} resolved`)
 console.log(`broken ranges   ${catalogue.brokenSpecRanges.map((r) => r.name).join(' ') || 'none'}`)
+if (numbers) {
+  const { parsed } = numbers
+  console.log(`numbers list    ${numbers.name}  (${parsed.source.listUpdated})`)
+  console.log(`                ${parsed.numbers.length} numbers over ${parsed.rows} rows`)
+  console.log(
+    `                named ${merged.report.named}  already named ${merged.report.known}  ` +
+      `added ${merged.report.added}`,
+  )
+} else {
+  console.log(`numbers list    none in ${WORKBOOK_DIR}`)
+}
 console.log(`projects        ${catalogue.projects.length}`)
 console.log(`business lines  ${catalogue.businessLines.map((b) => `${b.name} (${b.count})`).join(' | ')}`)
 console.log(`time values     ${catalogue.timeValues.join(' ')}`)

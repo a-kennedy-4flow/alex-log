@@ -10,6 +10,7 @@ import {
   type CatalogueInput,
   type CompletedTicket,
   type HalfDay,
+  type TicketScope,
   type UserProfile,
   type ValidationIssue,
 } from '@tracker/core'
@@ -106,6 +107,8 @@ export interface JiraLinkState {
 
 export interface JiraMonth {
   period: string
+  /** What the read asked Jira for. It answers the scope it was given. */
+  scope: TicketScope
   fetchedAt: string
   /** True when the answer came from the stored copy rather than from Jira. */
   cached: boolean
@@ -144,7 +147,16 @@ export const api = {
   linkJira: (code: string) =>
     json<{ linked: boolean; accountId: string }>('POST', '/api/jira/link', { code }),
   unlinkJira: () => json<{ linked: boolean }>('DELETE', '/api/jira/link'),
-  jiraMonth: (period: string) => json<JiraMonth>('GET', `/api/jira/completed/${period}`),
+  jiraMonth: (period: string, scope: TicketScope) =>
+    json<JiraMonth>('GET', `/api/jira/completed/${period}/${scope}`),
+  /**
+   * Reads the month again rather than from the stored copy.
+   *
+   * POST on the same path. The question is the one the GET asks and only the
+   * stored answer is refused so a second path would state the same route twice.
+   */
+  refreshJiraMonth: (period: string, scope: TicketScope) =>
+    json<JiraMonth>('POST', `/api/jira/completed/${period}/${scope}`),
 
   /**
    * Returns the workbook and the name the recipient expects.

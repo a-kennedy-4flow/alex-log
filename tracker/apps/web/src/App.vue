@@ -109,12 +109,30 @@ function reload(): void {
         </span>
 
         <nav>
-          <Link to="/" :active-props="ACTIVE" :active-options="{ exact: true }">
+          <Link
+            to="/"
+            :active-props="ACTIVE"
+            :active-options="{ exact: true }"
+            data-tour="navMonth"
+          >
             {{ t('nav.month') }}
           </Link>
-          <Link to="/quick" :active-props="ACTIVE">{{ t('nav.simple') }}</Link>
-          <Link to="/jira" :active-props="ACTIVE">{{ t('nav.jira') }}</Link>
-          <Link to="/settings" :active-props="ACTIVE" :class="{ nudge: !profileComplete }">
+          <Link to="/quick" :active-props="ACTIVE" data-tour="navQuick">
+            {{ t('nav.simple') }}
+          </Link>
+          <Link to="/guided" :active-props="ACTIVE" data-tour="navGuided">
+            {{ t('nav.guided') }}
+          </Link>
+          <Link to="/jira" :active-props="ACTIVE" data-tour="navJira">{{ t('nav.jira') }}</Link>
+          <Link to="/cost-centres" :active-props="ACTIVE" data-tour="navCostCentres">
+            {{ t('nav.catalogue') }}
+          </Link>
+          <Link
+            to="/settings"
+            :active-props="ACTIVE"
+            :class="{ nudge: !profileComplete }"
+            data-tour="navSetup"
+          >
             {{ t('nav.setup') }}
           </Link>
           <Link v-if="isBackoffice()" to="/admin" :active-props="ACTIVE" class="admin">

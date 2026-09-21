@@ -1,7 +1,8 @@
 //! Walking to a folder and asking what is in it.
 //!
-//! The treemap shows a whole filesystem. This is for going straight to one
-//! folder and reading it on its own.
+//! The treemap shows a whole filesystem. This is for going straight to a folder
+//! and reading it on its own. Several folders can be measured into one answer
+//! so the extractor can say which file types are really there.
 
 use crate::cats::{self, Cat};
 use eframe::egui;
@@ -15,9 +16,9 @@ const BIGGEST: usize = 20;
 /// Deepest folder the measure will enter.
 const MAX_DEPTH: usize = 64;
 
-/// What a folder holds.
+/// What the folders measured hold.
 pub struct Facts {
-    pub root: PathBuf,
+    pub roots: Vec<PathBuf>,
     pub files: u64,
     pub folders: u64,
     pub bytes: u64,
@@ -26,6 +27,16 @@ pub struct Facts {
     pub biggest: Vec<(PathBuf, u64)>,
     /// Folders that could not be opened. Their contents are missing.
     pub denied: u64,
+}
+
+impl Facts {
+    /// The first folder measured. Everything the picker does acts on one.
+    pub fn root(&self) -> &Path {
+        self.roots
+            .first()
+            .map(PathBuf::as_path)
+            .unwrap_or(Path::new(""))
+    }
 }
 
 pub struct Measure {
@@ -69,6 +80,11 @@ pub fn children(at: &Path) -> Vec<PathBuf> {
 }
 
 pub fn start(root: PathBuf, ctx: egui::Context) -> Arc<Measure> {
+    start_many(vec![root], ctx)
+}
+
+/// Measures every folder given and adds them up into one answer.
+pub fn start_many(roots: Vec<PathBuf>, ctx: egui::Context) -> Arc<Measure> {
     let measure = Arc::new(Measure {
         cancel: AtomicBool::new(false),
         done: AtomicBool::new(false),
@@ -79,8 +95,11 @@ pub fn start(root: PathBuf, ctx: egui::Context) -> Arc<Measure> {
     });
     let handle = Arc::clone(&measure);
     std::thread::spawn(move || {
-        let facts = walk(&root, &handle);
-        *handle.facts.lock().unwrap() = Some(Arc::new(facts));
+        let mut tally = Tally::default();
+        for root in &roots {
+            walk(root, &handle, &mut tally);
+        }
+        *handle.facts.lock().unwrap() = Some(Arc::new(tally.facts(roots)));
         handle.done.store(true, Relaxed);
         handle.current.lock().unwrap().clear();
         ctx.request_repaint();
@@ -88,16 +107,42 @@ pub fn start(root: PathBuf, ctx: egui::Context) -> Arc<Measure> {
     measure
 }
 
-fn walk(root: &Path, measure: &Measure) -> Facts {
+/// What the walk has added up. Held apart from `Facts` so several folders add
+/// into one.
+#[derive(Default)]
+struct Tally {
+    totals: std::collections::HashMap<Cat, (u64, u64)>,
+    biggest: Vec<(PathBuf, u64)>,
+    files: u64,
+    folders: u64,
+    bytes: u64,
+    denied: u64,
+}
+
+impl Tally {
+    fn facts(self, roots: Vec<PathBuf>) -> Facts {
+        let mut by_cat: Vec<(Cat, u64, u64)> = self
+            .totals
+            .into_iter()
+            .map(|(cat, (count, held))| (cat, count, held))
+            .collect();
+        by_cat.sort_by_key(|(_, _, held)| std::cmp::Reverse(*held));
+        Facts {
+            roots,
+            files: self.files,
+            folders: self.folders,
+            bytes: self.bytes,
+            by_cat,
+            biggest: self.biggest,
+            denied: self.denied,
+        }
+    }
+}
+
+fn walk(root: &Path, measure: &Measure, tally: &mut Tally) {
     let device = std::fs::metadata(root)
         .ok()
         .map(|md| crate::sys::volume_id(&md));
-    let mut totals: std::collections::HashMap<Cat, (u64, u64)> = std::collections::HashMap::new();
-    let mut biggest: Vec<(PathBuf, u64)> = Vec::new();
-    let mut folders = 0u64;
-    let mut denied = 0u64;
-    let mut bytes = 0u64;
-    let mut files = 0u64;
 
     let mut stack = vec![(root.to_path_buf(), 0usize)];
     while let Some((dir, depth)) = stack.pop() {
@@ -106,7 +151,7 @@ fn walk(root: &Path, measure: &Measure) -> Facts {
         }
         *measure.current.lock().unwrap() = dir.display().to_string();
         let Ok(entries) = std::fs::read_dir(&dir) else {
-            denied += 1;
+            tally.denied += 1;
             continue;
         };
         for entry in entries.flatten() {
@@ -118,53 +163,37 @@ fn walk(root: &Path, measure: &Measure) -> Facts {
                 if device.is_some_and(|d| crate::sys::volume_id(&md) != d) {
                     continue;
                 }
-                folders += 1;
+                tally.folders += 1;
                 stack.push((entry.path(), depth + 1));
                 continue;
             }
             let size = crate::sys::used_bytes(&md);
             let leaf = entry.file_name().to_string_lossy().into_owned();
-            let seen = totals.entry(cats::of(&leaf)).or_insert((0, 0));
+            let seen = tally.totals.entry(cats::of(&leaf)).or_insert((0, 0));
             seen.0 += 1;
             seen.1 += size;
-            files += 1;
-            bytes += size;
+            tally.files += 1;
+            tally.bytes += size;
 
             // Only the largest are kept so a folder of millions costs nothing
             // to hold.
-            if biggest.len() < BIGGEST {
-                biggest.push((entry.path(), size));
-                biggest.sort_by_key(|(_, s)| std::cmp::Reverse(*s));
-            } else if biggest.last().is_some_and(|(_, least)| size > *least) {
-                biggest.pop();
-                biggest.push((entry.path(), size));
-                biggest.sort_by_key(|(_, s)| std::cmp::Reverse(*s));
+            if tally.biggest.len() < BIGGEST {
+                tally.biggest.push((entry.path(), size));
+                tally.biggest.sort_by_key(|(_, s)| std::cmp::Reverse(*s));
+            } else if tally.biggest.last().is_some_and(|(_, least)| size > *least) {
+                tally.biggest.pop();
+                tally.biggest.push((entry.path(), size));
+                tally.biggest.sort_by_key(|(_, s)| std::cmp::Reverse(*s));
             }
         }
-        measure.files.store(files, Relaxed);
-        measure.bytes.store(bytes, Relaxed);
-    }
-
-    let mut by_cat: Vec<(Cat, u64, u64)> = totals
-        .into_iter()
-        .map(|(cat, (count, held))| (cat, count, held))
-        .collect();
-    by_cat.sort_by_key(|(_, _, held)| std::cmp::Reverse(*held));
-
-    Facts {
-        root: root.to_path_buf(),
-        files,
-        folders,
-        bytes,
-        by_cat,
-        biggest,
-        denied,
+        measure.files.store(tally.files, Relaxed);
+        measure.bytes.store(tally.bytes, Relaxed);
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{Facts, children, start};
+    use super::{Facts, children, start, start_many};
     use crate::cats::Cat;
     use eframe::egui;
     use std::fs;
@@ -238,6 +267,43 @@ mod tests {
         assert_eq!(audio.1, 2, "two files in the audio group");
 
         fs::remove_dir_all(&root).unwrap();
+    }
+
+    /// The extractor reads several folders at once so what they hold has to
+    /// add up into one answer.
+    #[test]
+    fn several_folders_measure_into_one_answer() {
+        let one = ground("many-one");
+        let two = ground("many-two");
+
+        let job = start_many(vec![one.clone(), two.clone()], egui::Context::default());
+        let deadline = Instant::now() + Duration::from_secs(20);
+        while !job.done.load(Relaxed) {
+            assert!(Instant::now() < deadline, "the measure never finished");
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        let facts = job.facts().expect("facts once it is done");
+
+        assert_eq!(facts.files, 8, "both folders hold four");
+        assert_eq!(facts.roots, vec![one.clone(), two.clone()]);
+        assert_eq!(
+            facts.root(),
+            one.as_path(),
+            "the first one is the one shown"
+        );
+        let audio = facts
+            .by_cat
+            .iter()
+            .find(|(c, _, _)| *c == Cat::Audio)
+            .unwrap();
+        assert_eq!(audio.1, 4, "the music of both folders is counted once");
+        assert!(
+            facts.biggest.iter().any(|(p, _)| p.starts_with(&two)),
+            "the second folder is missing from the largest files"
+        );
+
+        fs::remove_dir_all(&one).unwrap();
+        fs::remove_dir_all(&two).unwrap();
     }
 
     #[test]

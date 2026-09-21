@@ -3,6 +3,10 @@
 // It stands in for the API while the backend is wired and it seeds an empty
 // DynamoDB table. The tests use it as the oracle because the numbers in the
 // sample files are the ones Excel itself computed.
+//
+// The project list holds the 4s project numbers list laid over the tracker one.
+// A fresh deployment is set up by uploading both workbooks so a seed built from
+// the tracker alone would be a catalogue nobody ever runs. `source` names both.
 
 // No import from core. The two packages would otherwise depend on each other
 // because core tests read these fixtures. `setCatalogue` narrows the loose JSON

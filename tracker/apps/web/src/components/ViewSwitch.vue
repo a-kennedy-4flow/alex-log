@@ -19,7 +19,7 @@ const VIEWS: { value: MonthView; key: string }[] = [
 </script>
 
 <template>
-  <div class="switch" data-tour="view">
+  <div class="switch">
     <span id="view-label">{{ t('view.title') }}</span>
     <div class="views" role="group" aria-labelledby="view-label">
       <button

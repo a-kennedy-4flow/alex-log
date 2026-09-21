@@ -1,8 +1,8 @@
 //! Finding files that hold the same bytes.
 //!
-//! Two folders can be set against each other and they may sit on different
-//! disks. One folder can also be searched on its own. A file is a duplicate of
-//! another when the bytes match. The name is not looked at because a copy is
+//! Any number of folders can be read as one pool and they may sit on different
+//! disks. Two folders can also be set against each other. A file is a duplicate
+//! of another when the bytes match. The name is not looked at because a copy is
 //! still a copy under a new name.
 //!
 //! A digest costs a whole file read so every one is kept in the cache. A second
@@ -45,17 +45,29 @@ pub struct Report {
     pub pairs: Vec<Pair>,
     /// Bytes that deleting the copies would free.
     pub bytes: u64,
-    /// Copies found. `pairs` holds the largest `MAX_LISTED` of them.
+    /// Copies found. `pairs` holds the largest `MAX_LISTED` of them by size.
     pub total: u64,
-    pub a_files: u64,
-    pub b_files: u64,
+    /// Files found under each folder read. The order is the order given.
+    pub files: Vec<u64>,
     /// Digests taken from the cache rather than read again.
     pub cached: u64,
     /// Pairs settled by reading both files. The cache already knew the rest.
     pub confirmed: u64,
-    /// True when neither folder had moved so the whole answer came back from
-    /// the last search of them.
+    /// True when no folder had moved so the whole answer came back from the
+    /// last search of them.
     pub from_cache: bool,
+}
+
+/// How the folders are read.
+#[derive(Copy, Clone, PartialEq, Eq, Debug)]
+pub enum Mode {
+    /// Every folder read as one pool. A file held in more than one place is a
+    /// copy wherever it sits. This is what reorganising a set of backups
+    /// wants.
+    Pooled,
+    /// The second folder read against the first. Only what the first already
+    /// holds is reported.
+    Against,
 }
 
 /// A file worth considering. The identity is what the filesystem calls the file
@@ -77,20 +89,20 @@ struct Entry {
     /// matching holds the entries by shared reference while it hands the
     /// numbers out.
     content: Cell<Option<u64>>,
-    /// False when the search was told to look only at certain groups and this
-    /// file is not one of them. It is still listed and still kept in the cache.
-    /// It is only left out of the matching.
+    /// False when the search was told to look at certain files only and this
+    /// is not one of them. It is still listed and still kept in the cache. It
+    /// is only left out of the matching.
     wanted: bool,
 }
 
 pub struct Job {
-    pub a_root: PathBuf,
-    /// The second folder. `None` when one folder is searched on its own.
-    pub b_root: Option<PathBuf>,
-    /// What the slower of the two drives is. It settles how hard to read.
+    /// The folders being read. `Against` names exactly two.
+    pub roots: Vec<PathBuf>,
+    pub mode: Mode,
+    /// What the slowest of the drives is. It settles how hard to read.
     pub drive: Drive,
-    /// Groups to look at. `None` looks at everything.
-    pub only: Option<HashSet<crate::cats::Cat>>,
+    /// Which files to look at. An empty pick looks at everything.
+    pub pick: crate::cats::Pick,
     /// The cache this search uses. Settled on the thread that started the
     /// search rather than on the one that does the work.
     pub cache: PathBuf,
@@ -118,6 +130,22 @@ pub struct Job {
     pub phases: Mutex<Vec<(&'static str, u128)>>,
 }
 
+#[cfg(test)]
+impl Report {
+    /// A report of these pairs and nothing else. For probes only.
+    pub fn of_pairs(pairs: Vec<Pair>) -> Report {
+        Report {
+            bytes: pairs.iter().map(|p| p.size).sum(),
+            total: pairs.len() as u64,
+            pairs,
+            files: vec![0, 0],
+            cached: 0,
+            confirmed: 0,
+            from_cache: false,
+        }
+    }
+}
+
 impl Job {
     pub fn stop(&self) {
         self.cancel.store(true, Relaxed);
@@ -135,15 +163,9 @@ impl Job {
         self.current.lock().unwrap().clone()
     }
 
-    /// True when one folder is being searched rather than two set against each
-    /// other.
+    /// True when one folder is being read rather than several.
     pub fn alone(&self) -> bool {
-        self.b_root.is_none()
-    }
-
-    /// The folder the redundant copies sit under.
-    pub fn base(&self) -> &Path {
-        self.b_root.as_deref().unwrap_or(&self.a_root)
+        self.roots.len() == 1
     }
 
     fn say(&self, what: &str, ctx: &egui::Context) {
@@ -163,24 +185,42 @@ impl Job {
     }
 }
 
+/// Drops a folder held inside another and any folder named twice.
+///
+/// Because a pool holding both a folder and the folder above it reads every
+/// file below twice and calls the second reading a copy of the first.
+pub fn without_nested(roots: &[PathBuf]) -> Vec<PathBuf> {
+    let mut sorted = roots.to_vec();
+    sorted.sort();
+    sorted.dedup();
+    let mut kept: Vec<PathBuf> = Vec::new();
+    for root in sorted {
+        if kept.iter().any(|held| root.starts_with(held)) {
+            continue;
+        }
+        kept.push(root);
+    }
+    kept
+}
+
 pub fn start(
-    a: PathBuf,
-    b: Option<PathBuf>,
-    only: Option<HashSet<crate::cats::Cat>>,
+    roots: Vec<PathBuf>,
+    mode: Mode,
+    pick: crate::cats::Pick,
     ctx: egui::Context,
 ) -> Arc<Job> {
-    // Two folders can sit on different drives. The one that likes reading least
-    // settles it for both.
-    let drive = match (crate::sys::drive(&a), b.as_deref().map(crate::sys::drive)) {
-        (Drive::Spinning, _) | (_, Some(Drive::Spinning)) => Drive::Spinning,
-        (Drive::Solid, None) | (Drive::Solid, Some(Drive::Solid)) => Drive::Solid,
-        _ => Drive::Unknown,
-    };
+    // The folders can sit on different drives. The one that likes reading least
+    // settles it for all of them.
+    let drive = roots
+        .iter()
+        .map(|root| crate::sys::drive(root))
+        .reduce(slower)
+        .unwrap_or(Drive::Unknown);
     let job = Arc::new(Job {
-        a_root: a,
-        b_root: b,
+        roots,
+        mode,
         drive,
-        only,
+        pick,
         cache: crate::store::path(),
         cancel: AtomicBool::new(false),
         done: AtomicBool::new(false),
@@ -208,36 +248,44 @@ pub fn start(
     job
 }
 
+/// The one of the two that likes reading least.
+fn slower(a: Drive, b: Drive) -> Drive {
+    match (a, b) {
+        (Drive::Spinning, _) | (_, Drive::Spinning) => Drive::Spinning,
+        (Drive::Solid, Drive::Solid) => Drive::Solid,
+        _ => Drive::Unknown,
+    }
+}
+
 fn run(job: &Job, ctx: &egui::Context) {
     let clock = std::time::Instant::now();
-    job.say("listing the folder", ctx);
-    let mut a = list(&job.a_root, job);
-    if job.cancel.load(Relaxed) {
-        return;
-    }
-    let mut b = match &job.b_root {
-        Some(root) => {
-            job.say("listing the second folder", ctx);
-            let found = list(root, job);
-            if job.cancel.load(Relaxed) {
-                return;
-            }
-            Some(found)
+    let mut sides: Vec<Vec<Entry>> = Vec::new();
+    for (i, root) in job.roots.iter().enumerate() {
+        job.say(&listing(i, job.roots.len()), ctx);
+        sides.push(list(root, job));
+        if job.cancel.load(Relaxed) {
+            return;
         }
-        None => None,
-    };
+    }
+    if job.mode == Mode::Pooled {
+        one_name_each(&mut sides);
+    }
     job.took("walk", clock);
 
     let clock = std::time::Instant::now();
-    // What the walk itself saw. Settled before anything is read so a folder
-    // that has not moved can be answered from the last search of it.
+    // What the walk itself saw. Settled before anything is read so folders that
+    // have not moved can be answered from the last search of them.
     let asked = asked_for(job);
-    let walk_a = mark_of(&a, false, asked);
-    let walk_b = b.as_ref().map(|b| mark_of(b, false, asked));
+    let walks: Vec<u64> = sides
+        .iter()
+        .map(|side| mark_of(side, false, asked))
+        .collect();
+    let question = question(job);
+    let walked = fold(&walks);
 
     let mut store = Store::open_at(&job.cache);
     if let Some(store) = &store
-        && let Some(kept) = store.answer(&job.a_root, job.b_root.as_deref(), walk_a, walk_b)
+        && let Some(kept) = store.answer(&question, walked)
     {
         job.found.store(kept.total, Relaxed);
         job.freed.store(kept.bytes, Relaxed);
@@ -249,8 +297,7 @@ fn run(job: &Job, ctx: &egui::Context) {
                 .collect(),
             bytes: kept.bytes,
             total: kept.total,
-            a_files: kept.a_files,
-            b_files: kept.b_files,
+            files: kept.files.into_iter().map(|(_, files)| files).collect(),
             cached: 0,
             confirmed: 0,
             from_cache: true,
@@ -260,47 +307,22 @@ fn run(job: &Job, ctx: &egui::Context) {
         return;
     }
 
-    let mut held_a = HashMap::new();
-    let mut held_b = HashMap::new();
+    let mut held: Vec<HashMap<PathBuf, crate::store::Known>> = Vec::new();
     if let Some(store) = &store {
         job.say("reading the cache", ctx);
-        held_a = store.known(&job.a_root);
-        recall(&held_a, &mut a);
-        if let (Some(b), Some(root)) = (&mut b, &job.b_root) {
-            held_b = store.known(root);
-            recall(&held_b, b);
+        for (root, side) in job.roots.iter().zip(sides.iter_mut()) {
+            let known = store.known(root);
+            recall(&known, side);
+            held.push(known);
         }
     }
     job.took("recall", clock);
 
-    // Only a size held more than once can hold a twin. Sizes are free and bytes
-    // are not so the size settles what has to be read.
-    let wanted: HashSet<u64> = match &b {
-        Some(b) => {
-            let left: HashSet<u64> = a.iter().filter(|e| e.wanted).map(|e| e.size).collect();
-            b.iter()
-                .filter(|e| e.wanted)
-                .map(|e| e.size)
-                .filter(|s| left.contains(s))
-                .collect()
-        }
-        None => {
-            let mut seen: HashMap<u64, u32> = HashMap::new();
-            for e in a.iter().filter(|e| e.wanted) {
-                *seen.entry(e.size).or_insert(0) += 1;
-            }
-            seen.into_iter()
-                .filter(|(_, n)| *n > 1)
-                .map(|(s, _)| s)
-                .collect()
-        }
-    };
-    let sides = [Some(&a), b.as_ref()];
+    let wanted = worth_reading(job, &sides);
     job.of.store(
         sides
             .iter()
             .flatten()
-            .flat_map(|side| side.iter())
             .filter(|e| wanted.contains(&e.size))
             .count() as u64,
         Relaxed,
@@ -309,7 +331,6 @@ fn run(job: &Job, ctx: &egui::Context) {
         sides
             .iter()
             .flatten()
-            .flat_map(|side| side.iter())
             .filter(|e| wanted.contains(&e.size))
             .map(|e| e.size.min(CHUNK as u64))
             .sum(),
@@ -322,30 +343,27 @@ fn run(job: &Job, ctx: &egui::Context) {
     if job.drive.wants_layout_order() {
         // A spinning disk reads far better in the order the filesystem laid the
         // files down than in the order the folders name them.
-        a.sort_by_key(|e| e.ino);
-        if let Some(b) = &mut b {
-            b.sort_by_key(|e| e.ino);
+        for side in sides.iter_mut() {
+            side.sort_by_key(|e| e.ino);
         }
     }
     job.say("reading the opening block of each file", ctx);
-    spread(&mut a, job, |e, job| head_of(e, &wanted, job));
-    if let Some(b) = &mut b {
-        spread(b, job, |e, job| head_of(e, &wanted, job));
+    for side in sides.iter_mut() {
+        spread(side, job, |e, job| head_of(e, &wanted, job));
     }
     if job.cancel.load(Relaxed) {
         return;
     }
     job.took("head", clock);
 
-    let deep = colliding(&a, b.as_deref(), &wanted);
+    let deep = colliding(&sides, &wanted);
     let clock = std::time::Instant::now();
     if !deep.is_empty() {
         job.say("reading the files that still match", ctx);
         job.bytes_of.fetch_add(
-            [Some(&a), b.as_ref()]
+            sides
                 .iter()
                 .flatten()
-                .flat_map(|side| side.iter())
                 .filter(|e| {
                     e.digest.is_none() && e.head.is_some_and(|h| deep.contains(&(e.size, h)))
                 })
@@ -353,9 +371,8 @@ fn run(job: &Job, ctx: &egui::Context) {
                 .sum(),
             Relaxed,
         );
-        spread(&mut a, job, |e, job| whole_of(e, &deep, job));
-        if let Some(b) = &mut b {
-            spread(b, job, |e, job| whole_of(e, &deep, job));
+        for side in sides.iter_mut() {
+            spread(side, job, |e, job| whole_of(e, &deep, job));
         }
         if job.cancel.load(Relaxed) {
             return;
@@ -366,10 +383,10 @@ fn run(job: &Job, ctx: &egui::Context) {
     let clock = std::time::Instant::now();
     job.say("matching", ctx);
     let mut next = store.as_ref().map_or(1, |held| held.last_content() + 1);
-    let (a_files, b_files) = (a.len() as u64, b.as_ref().map_or(0, |b| b.len() as u64));
-    let Some((pairs, bytes, total)) = (match &b {
-        Some(b) => across(job, &a, b, &mut next),
-        None => within(job, &a, &mut next),
+    let files: Vec<u64> = sides.iter().map(|side| side.len() as u64).collect();
+    let Some((pairs, bytes, total)) = (match sides.as_slice() {
+        [a, b] if job.mode == Mode::Against => across(job, &borrowed(a), &borrowed(b), &mut next),
+        _ => within(job, &pooled(&sides), &mut next),
     }) else {
         return;
     };
@@ -379,29 +396,30 @@ fn run(job: &Job, ctx: &egui::Context) {
     // digests rather than needing a second pass.
     let clock = std::time::Instant::now();
     if let Some(store) = &mut store {
+        let nothing = HashMap::new();
         // A folder that comes back exactly as it was left needs no writing at
         // all. Finding that out costs one row rather than all of them.
-        let rows_a = mark_of(&a, true, asked);
-        if store.mark(&job.a_root) != Some(rows_a) {
-            job.say("writing the cache", ctx);
-            store.remember(&job.a_root, &records(&a), &held_a, rows_a, walk_a);
-        }
-        if let (Some(b), Some(root), Some(walk_b)) = (&b, &job.b_root, walk_b) {
-            let rows_b = mark_of(b, true, asked);
-            if store.mark(root) != Some(rows_b) {
-                job.say("writing the cache", ctx);
-                store.remember(root, &records(b), &held_b, rows_b, walk_b);
+        for (i, (root, side)) in job.roots.iter().zip(sides.iter()).enumerate() {
+            let rows = mark_of(side, true, asked);
+            if store.mark(root) == Some(rows) {
+                continue;
             }
+            job.say("writing the cache", ctx);
+            store.remember(
+                root,
+                &records(side),
+                held.get(i).unwrap_or(&nothing),
+                rows,
+                walks[i],
+            );
         }
     }
     job.took("remember", clock);
 
     if let Some(store) = &mut store {
         store.keep_answer(
-            &job.a_root,
-            job.b_root.as_deref(),
-            walk_a,
-            walk_b,
+            &question,
+            walked,
             &crate::store::Answer {
                 pairs: pairs
                     .iter()
@@ -409,8 +427,12 @@ fn run(job: &Job, ctx: &egui::Context) {
                     .collect(),
                 bytes,
                 total,
-                a_files,
-                b_files,
+                files: job
+                    .roots
+                    .iter()
+                    .cloned()
+                    .zip(files.iter().copied())
+                    .collect(),
             },
         );
     }
@@ -419,13 +441,87 @@ fn run(job: &Job, ctx: &egui::Context) {
         pairs,
         bytes,
         total,
-        a_files,
-        b_files,
+        files,
         cached: job.cached.load(Relaxed),
         confirmed: job.confirmed.load(Relaxed),
         from_cache: false,
     }));
     job.say("done", ctx);
+}
+
+/// What to say while a folder is being listed.
+fn listing(i: usize, of: usize) -> String {
+    match of {
+        1 => "listing the folder".to_string(),
+        _ => format!("listing folder {} of {of}", i + 1),
+    }
+}
+
+/// Drops any second name for a file already listed under another folder.
+///
+/// One file reached under two of the folders is still one file. A pool would
+/// otherwise pair it with itself and offer to delete a name that frees nothing.
+fn one_name_each(sides: &mut [Vec<Entry>]) {
+    let mut seen: HashSet<(u64, u64)> = HashSet::new();
+    for side in sides.iter_mut() {
+        side.retain(|e| match e.id {
+            Some(key) => seen.insert(key),
+            None => true,
+        });
+    }
+}
+
+/// The whole question as one line of text. Two searches sharing it are the same
+/// question and can share one answer. Which groups were asked about is folded
+/// into the mark of every folder instead.
+fn question(job: &Job) -> String {
+    let mut out = String::from(match job.mode {
+        Mode::Pooled => "pooled",
+        Mode::Against => "against",
+    });
+    for root in &job.roots {
+        out.push('\n');
+        out.push_str(&root.to_string_lossy());
+    }
+    out
+}
+
+/// One number covering every folder the question names. Naming the same folders
+/// in another order is another question so the order counts.
+fn fold(marks: &[u64]) -> u64 {
+    marks.iter().fold(0u64, |acc, m| mix(acc).wrapping_add(*m))
+}
+
+/// Sizes that could hold a twin. Only a size held more than once can. Sizes are
+/// free and bytes are not so the size settles what has to be read.
+fn worth_reading(job: &Job, sides: &[Vec<Entry>]) -> HashSet<u64> {
+    if let ([a, b], Mode::Against) = (sides, job.mode) {
+        let left: HashSet<u64> = a.iter().filter(|e| e.wanted).map(|e| e.size).collect();
+        return b
+            .iter()
+            .filter(|e| e.wanted)
+            .map(|e| e.size)
+            .filter(|s| left.contains(s))
+            .collect();
+    }
+    let mut seen: HashMap<u64, u32> = HashMap::new();
+    for e in sides.iter().flatten().filter(|e| e.wanted) {
+        *seen.entry(e.size).or_insert(0) += 1;
+    }
+    seen.into_iter()
+        .filter(|(_, n)| *n > 1)
+        .map(|(s, _)| s)
+        .collect()
+}
+
+/// Every entry across the folders as one set of borrows. The matching works on
+/// borrows so the folders can stay where they are.
+fn pooled(sides: &[Vec<Entry>]) -> Vec<&Entry> {
+    sides.iter().flatten().collect()
+}
+
+fn borrowed(side: &[Entry]) -> Vec<&Entry> {
+    side.iter().collect()
 }
 
 /// Takes the digest the cache holds for any file it has seen unchanged.
@@ -513,9 +609,9 @@ fn whole_of(e: &mut Entry, deep: &HashSet<(u64, u64)>, job: &Job) {
 
 /// Sizes and opening blocks that more than one file carries. Anything outside
 /// this set is already known to be alone.
-fn colliding(a: &[Entry], b: Option<&[Entry]>, wanted: &HashSet<u64>) -> HashSet<(u64, u64)> {
+fn colliding(sides: &[Vec<Entry>], wanted: &HashSet<u64>) -> HashSet<(u64, u64)> {
     let mut seen: HashMap<(u64, u64), u32> = HashMap::new();
-    for e in a.iter().chain(b.into_iter().flatten()) {
+    for e in sides.iter().flatten() {
         if !e.wanted || !wanted.contains(&e.size) || e.size <= CHUNK as u64 {
             continue;
         }
@@ -529,14 +625,39 @@ fn colliding(a: &[Entry], b: Option<&[Entry]>, wanted: &HashSet<u64>) -> HashSet
         .collect()
 }
 
-/// A number standing for which groups were asked about. Zero for everything.
+/// A number standing for what was asked about. Zero for everything.
+///
+/// Both halves of the pick are folded in. Because a folder searched for
+/// pictures and the same folder searched for `cr2` alone are two different
+/// questions and must not share one stored answer.
 fn asked_for(job: &Job) -> u64 {
-    let Some(only) = &job.only else {
+    if job.pick.everything() {
         return 0;
+    }
+    // Every group ticked is every group, so it carries no group at all here.
+    // Otherwise the same question asked two ways folds to two numbers and pays
+    // for the search twice.
+    let whole = crate::cats::LEGEND
+        .iter()
+        .all(|c| job.pick.cats.contains(c));
+    let mut keys: Vec<u64> = if whole {
+        Vec::new()
+    } else {
+        job.pick.cats.iter().map(|c| c.key()).collect()
     };
-    let mut keys: Vec<u64> = only.iter().map(|c| c.key()).collect();
     keys.sort_unstable();
-    keys.iter().fold(1u64, |acc, k| mix(acc.wrapping_add(*k)))
+    let mut acc = keys.iter().fold(1u64, |acc, k| mix(acc.wrapping_add(*k)));
+    let mut exts: Vec<&str> = job.pick.exts.iter().map(String::as_str).collect();
+    exts.sort_unstable();
+    for ext in exts {
+        for byte in ext.as_bytes() {
+            acc = mix(acc.wrapping_add(*byte as u64));
+        }
+        // Parts the extensions so `ab` and `c` cannot fold to what `a` and `bc`
+        // folds to.
+        acc = mix(acc.wrapping_add(u64::from(u8::MAX) + 1));
+    }
+    acc
 }
 
 /// A number standing for the whole of what a walk found.
@@ -597,11 +718,11 @@ fn records(entries: &[Entry]) -> Vec<Record> {
 ///
 /// Each group is put in path order so the pair reported never depends on which
 /// thread reached the file first.
-fn by_size(files: &[Entry]) -> HashMap<u64, Vec<&Entry>> {
-    let mut m: HashMap<u64, Vec<&Entry>> = HashMap::new();
+fn by_size<'a>(files: &[&'a Entry]) -> HashMap<u64, Vec<&'a Entry>> {
+    let mut m: HashMap<u64, Vec<&'a Entry>> = HashMap::new();
     // A file left out of the search never reaches the matching even when the
     // cache still holds a digest for it from a wider run.
-    for e in files.iter().filter(|e| e.wanted) {
+    for e in files.iter().copied().filter(|e| e.wanted) {
         m.entry(e.size).or_default().push(e);
     }
     for group in m.values_mut() {
@@ -639,7 +760,7 @@ fn mark(set: &[&Entry], next: &mut u64) {
 }
 
 /// Files under the first folder that the second folder also holds.
-fn across(job: &Job, a: &[Entry], b: &[Entry], next: &mut u64) -> Option<(Vec<Pair>, u64, u64)> {
+fn across(job: &Job, a: &[&Entry], b: &[&Entry], next: &mut u64) -> Option<(Vec<Pair>, u64, u64)> {
     let (ga, gb) = (by_size(a), by_size(b));
     let shared: Vec<u64> = ga.keys().filter(|s| gb.contains_key(s)).copied().collect();
 
@@ -672,22 +793,23 @@ fn across(job: &Job, a: &[Entry], b: &[Entry], next: &mut u64) -> Option<(Vec<Pa
             total += 1;
             job.found.store(total, Relaxed);
             job.freed.store(bytes, Relaxed);
-            if pairs.len() < MAX_LISTED {
-                pairs.push(Pair {
+            hold(
+                &mut pairs,
+                Pair {
                     a: twin.path.clone(),
                     b: e.path.clone(),
                     size,
-                });
-            }
+                },
+            );
         }
     }
-    pairs.sort_by_key(|p| std::cmp::Reverse(p.size));
+    trim(&mut pairs);
     Some((pairs, bytes, total))
 }
 
-/// Copies held more than once under one folder. The shortest path is treated as
+/// Copies held more than once across the pool. The shortest path is treated as
 /// the one to keep and every other copy is reported against it.
-fn within(job: &Job, files: &[Entry], next: &mut u64) -> Option<(Vec<Pair>, u64, u64)> {
+fn within(job: &Job, files: &[&Entry], next: &mut u64) -> Option<(Vec<Pair>, u64, u64)> {
     let groups = by_size(files);
     let sizes: Vec<u64> = groups
         .iter()
@@ -738,19 +860,41 @@ fn within(job: &Job, files: &[Entry], next: &mut u64) -> Option<(Vec<Pair>, u64,
                     total += 1;
                     job.found.store(total, Relaxed);
                     job.freed.store(bytes, Relaxed);
-                    if pairs.len() < MAX_LISTED {
-                        pairs.push(Pair {
+                    hold(
+                        &mut pairs,
+                        Pair {
                             a: keep.path.clone(),
                             b: extra.path.clone(),
                             size,
-                        });
-                    }
+                        },
+                    );
                 }
             }
         }
     }
-    pairs.sort_by_key(|p| std::cmp::Reverse(p.size));
+    trim(&mut pairs);
     Some((pairs, bytes, total))
+}
+
+/// Holds a pair for the list, largest first once `trim` has run.
+///
+/// The list is capped because a disk of millions of copies must not be held in
+/// memory whole. The cap is applied by throwing the smallest away rather than
+/// by refusing whatever arrives after it. Because the walk hands pairs over in
+/// the order a hash map happened to store them, so refusing late arrivals keeps
+/// an arbitrary set and the set moves between runs over one unchanged disk.
+fn hold(pairs: &mut Vec<Pair>, pair: Pair) {
+    pairs.push(pair);
+    if pairs.len() >= MAX_LISTED * 2 {
+        pairs.sort_by_key(|p| std::cmp::Reverse(p.size));
+        pairs.truncate(MAX_LISTED);
+    }
+}
+
+/// Puts the list in order and cuts it to the cap.
+fn trim(pairs: &mut Vec<Pair>) {
+    pairs.sort_by_key(|p| std::cmp::Reverse(p.size));
+    pairs.truncate(MAX_LISTED);
 }
 
 /// True when both names point at one file on the disk. Deleting either name
@@ -814,10 +958,7 @@ fn read_folder(
             head: None,
             digest: None,
             content: Cell::new(None),
-            wanted: job
-                .only
-                .as_ref()
-                .is_none_or(|only| only.contains(&crate::cats::of(&leaf))),
+            wanted: job.pick.holds(&leaf),
         });
         job.listed.fetch_add(1, Relaxed);
     }
@@ -977,7 +1118,7 @@ fn same(a: &Path, b: &Path, chunk: usize) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use super::{Report, start};
+    use super::{Mode, Pair, Report, start, without_nested};
     use eframe::egui;
     use std::fs;
     use std::path::PathBuf;
@@ -994,18 +1135,52 @@ mod tests {
         p
     }
 
+    /// The two folder comparison. Only what the first already holds is
+    /// reported against the second.
     fn run(a: PathBuf, b: PathBuf) -> std::sync::Arc<Report> {
-        finish(start(a, Some(b), None, egui::Context::default()))
+        finish(start(
+            vec![a, b],
+            super::Mode::Against,
+            crate::cats::Pick::default(),
+            egui::Context::default(),
+        ))
     }
 
     /// Runs over one folder looking only at the groups named.
     fn run_only(root: PathBuf, only: &[crate::cats::Cat]) -> std::sync::Arc<Report> {
-        let set: std::collections::HashSet<_> = only.iter().copied().collect();
-        finish(start(root, None, Some(set), egui::Context::default()))
+        finish(start(
+            vec![root],
+            super::Mode::Pooled,
+            crate::cats::Pick::of_cats(only.iter().copied()),
+            egui::Context::default(),
+        ))
+    }
+
+    /// Runs over one folder looking only at the extensions named.
+    fn run_exts(root: PathBuf, exts: &str) -> std::sync::Arc<Report> {
+        finish(start(
+            vec![root],
+            super::Mode::Pooled,
+            crate::cats::Pick {
+                cats: std::collections::HashSet::new(),
+                exts: crate::cats::extensions(exts),
+            },
+            egui::Context::default(),
+        ))
     }
 
     fn run_alone(root: PathBuf) -> std::sync::Arc<Report> {
-        finish(start(root, None, None, egui::Context::default()))
+        run_pool(vec![root])
+    }
+
+    /// Every folder read as one pool. This is what the extractor asks for.
+    fn run_pool(roots: Vec<PathBuf>) -> std::sync::Arc<Report> {
+        finish(start(
+            roots,
+            super::Mode::Pooled,
+            crate::cats::Pick::default(),
+            egui::Context::default(),
+        ))
     }
 
     fn finish(job: std::sync::Arc<super::Job>) -> std::sync::Arc<Report> {
@@ -1042,8 +1217,7 @@ mod tests {
         assert_eq!(r.bytes, 20_000);
         assert_eq!(r.pairs[0].a, a.join("report.pdf"));
         assert_eq!(r.pairs[0].b, b.join("report-final.pdf"));
-        assert_eq!(r.a_files, 2);
-        assert_eq!(r.b_files, 3);
+        assert_eq!(r.files, vec![2, 3]);
 
         fs::remove_dir_all(&a).unwrap();
         fs::remove_dir_all(&b).unwrap();
@@ -1076,7 +1250,7 @@ mod tests {
 
         let r = run(a.clone(), b.clone());
         assert_eq!(r.total, 0);
-        assert_eq!(r.a_files, 0);
+        assert_eq!(r.files, vec![0, 0]);
 
         fs::remove_dir_all(&a).unwrap();
         fs::remove_dir_all(&b).unwrap();
@@ -1123,7 +1297,7 @@ mod tests {
             "the shortest path is kept"
         );
         assert_eq!(r.pairs[0].b, root.join("deep/nested/a-copy.bin"));
-        assert_eq!(r.b_files, 0, "one folder has no second side");
+        assert_eq!(r.files.len(), 1, "one folder read is one count");
 
         fs::remove_dir_all(&root).unwrap();
     }
@@ -1153,9 +1327,70 @@ mod tests {
 
         let r = run_alone(root.clone());
         assert_eq!(r.total, 0, "deleting the second name would free nothing");
-        assert_eq!(r.a_files, 1);
+        assert_eq!(r.files, vec![1]);
 
         fs::remove_dir_all(&root).unwrap();
+    }
+
+    /// What the extractor rests on. Backups read as one pool and a file held in
+    /// two of them is a copy wherever it sits.
+    #[test]
+    fn copies_are_found_across_every_folder_in_the_pool() {
+        let one = dir("pool", "one");
+        let two = dir("pool", "two");
+        let three = dir("pool", "three");
+        let shot = vec![b'p'; 30_000];
+        let film = vec![b'v'; 44_000];
+        fs::write(one.join("holiday.jpg"), &shot).unwrap();
+        fs::write(three.join("deep-copy-of-holiday.jpg"), &shot).unwrap();
+        fs::write(two.join("alone.mp4"), &film).unwrap();
+
+        let r = run_pool(vec![one.clone(), two.clone(), three.clone()]);
+        assert_eq!(r.total, 1, "the copy in the third folder was missed");
+        assert_eq!(r.bytes, 30_000);
+        assert_eq!(
+            r.pairs[0].a,
+            one.join("holiday.jpg"),
+            "the shortest path is kept"
+        );
+        assert_eq!(r.pairs[0].b, three.join("deep-copy-of-holiday.jpg"));
+        assert_eq!(r.files, vec![1, 1, 1], "every folder reports what it held");
+
+        // Nothing moved so the whole pool is answered from the last search of
+        // it. A pool of two of the three is another question.
+        assert!(run_pool(vec![one.clone(), two.clone(), three.clone()]).from_cache);
+        let fewer = run_pool(vec![one.clone(), two.clone()]);
+        assert!(
+            !fewer.from_cache,
+            "it handed back the answer for three folders"
+        );
+        assert_eq!(fewer.total, 0, "the copy sits in the folder left out");
+
+        for p in [one, two, three] {
+            fs::remove_dir_all(&p).unwrap();
+        }
+    }
+
+    /// A folder read twice would report every file below it as a copy of
+    /// itself.
+    #[test]
+    fn a_folder_held_inside_another_is_dropped() {
+        let kept = without_nested(&[
+            PathBuf::from("/backup/two"),
+            PathBuf::from("/backup"),
+            PathBuf::from("/backup/two/photos"),
+            PathBuf::from("/backup"),
+            PathBuf::from("/elsewhere"),
+        ]);
+        assert_eq!(
+            kept,
+            vec![PathBuf::from("/backup"), PathBuf::from("/elsewhere")]
+        );
+        assert_eq!(
+            without_nested(&[PathBuf::from("/backup one"), PathBuf::from("/backup")]),
+            vec![PathBuf::from("/backup"), PathBuf::from("/backup one")],
+            "a name that only starts the same is another folder"
+        );
     }
 
     /// A folder that has not moved cannot have a different answer. The whole
@@ -1298,6 +1533,110 @@ mod tests {
         fs::remove_dir_all(&root).unwrap();
     }
 
+    /// Named extensions cut inside a group rather than across groups.
+    #[test]
+    fn a_search_told_which_extensions_looks_at_those_only() {
+        let root = dir("exts", "only");
+        fs::create_dir_all(root.join("copy")).unwrap();
+        let raw = vec![b'r'; 30_000];
+        let shot = vec![b's'; 40_000];
+        fs::write(root.join("a.cr2"), &raw).unwrap();
+        fs::write(root.join("copy/a.cr2"), &raw).unwrap();
+        fs::write(root.join("a.jpg"), &shot).unwrap();
+        fs::write(root.join("copy/a.jpg"), &shot).unwrap();
+
+        let both = run_alone(root.clone());
+        assert_eq!(both.total, 2, "looking at everything finds both");
+
+        // Both files are pictures so only the extension can tell them apart.
+        let raws = run_exts(root.clone(), "cr2");
+        assert_eq!(raws.total, 1, "it looked past the extension it was given");
+        assert_eq!(raws.bytes, 30_000);
+        assert!(raws.pairs[0].b.extension().is_some_and(|e| e == "cr2"));
+
+        // The mark carries the extensions or this would come back as the
+        // answer above it.
+        assert!(!raws.from_cache, "it handed back the wider answer");
+        let wider = run_only(root.clone(), &[crate::cats::Cat::Image]);
+        assert_eq!(wider.total, 2, "the narrow answer was handed back");
+
+        fs::remove_dir_all(&root).unwrap();
+    }
+
+    /// The cap must keep the largest rather than whichever the hash map
+    /// happened to hand over first.
+    #[test]
+    fn the_cap_keeps_the_largest_copies() {
+        let mut pairs = Vec::new();
+        // Smallest first is the worst order for a cap that refuses arrivals.
+        for size in 1..=(super::MAX_LISTED as u64 * 2 + 50) {
+            super::hold(
+                &mut pairs,
+                Pair {
+                    a: PathBuf::from("/a"),
+                    b: PathBuf::from("/b"),
+                    size,
+                },
+            );
+        }
+        super::trim(&mut pairs);
+
+        assert_eq!(pairs.len(), super::MAX_LISTED, "the cap did not hold");
+        assert!(
+            pairs.windows(2).all(|w| w[0].size >= w[1].size),
+            "the list is not largest first"
+        );
+        let smallest = pairs.last().unwrap().size;
+        let biggest = pairs.first().unwrap().size;
+        assert_eq!(biggest, super::MAX_LISTED as u64 * 2 + 50);
+        assert_eq!(
+            smallest,
+            super::MAX_LISTED as u64 + 51,
+            "it kept small copies and threw large ones away"
+        );
+    }
+
+    /// The other half of the rule. One question must fold to one number
+    /// however it was written down or the same search is paid for twice.
+    #[test]
+    fn one_question_written_two_ways_folds_to_one_number() {
+        use crate::cats::{LEGEND, Pick};
+        let key = |pick: Pick| {
+            let job = start(
+                vec![PathBuf::from("/nowhere")],
+                super::Mode::Pooled,
+                pick,
+                egui::Context::default(),
+            );
+            finish(job.clone());
+            super::asked_for(&job)
+        };
+
+        assert_eq!(key(Pick::default()), 0, "everything has to be zero");
+        assert_eq!(
+            key(Pick::of_cats(LEGEND)),
+            0,
+            "every group ticked is every file and must fold the same way"
+        );
+
+        let none_with_ext = Pick {
+            exts: crate::cats::extensions("jpg"),
+            ..Default::default()
+        };
+        let mut all_with_ext = Pick::of_cats(LEGEND);
+        all_with_ext.exts = crate::cats::extensions("jpg");
+        assert_eq!(
+            key(none_with_ext.clone()),
+            key(all_with_ext),
+            "an extension made the same question fold two ways"
+        );
+        assert_ne!(
+            key(none_with_ext),
+            0,
+            "an extension narrows the question so it cannot read as everything"
+        );
+    }
+
     /// The stored answer belongs to the question that was asked. A narrower
     /// search must never be handed a wider one's answer.
     #[test]
@@ -1344,7 +1683,7 @@ mod tests {
 
         let r = run_alone(root.clone());
         assert_eq!(r.total, 0);
-        assert_eq!(r.a_files, 3);
+        assert_eq!(r.files, vec![3]);
 
         fs::remove_dir_all(&root).unwrap();
     }
@@ -1389,12 +1728,22 @@ mod tests {
         let root = PathBuf::from(std::env::var("PROBE").unwrap_or_else(|_| "/usr/share".into()));
 
         chill(&root);
-        let cold_job = start(root.clone(), None, None, egui::Context::default());
+        let cold_job = start(
+            vec![root.clone()],
+            Mode::Pooled,
+            crate::cats::Pick::default(),
+            egui::Context::default(),
+        );
         let started = Instant::now();
         let cold = finish(cold_job.clone());
         let cold_took = started.elapsed();
 
-        let warm_job = start(root.clone(), None, None, egui::Context::default());
+        let warm_job = start(
+            vec![root.clone()],
+            Mode::Pooled,
+            crate::cats::Pick::default(),
+            egui::Context::default(),
+        );
         let started = Instant::now();
         let warm = finish(warm_job.clone());
         let warm_took = started.elapsed();
@@ -1405,7 +1754,7 @@ mod tests {
             crate::sys::drive(&root).label(),
             crate::sys::drive(&root).readers()
         );
-        println!("files         {}", cold.a_files);
+        println!("files         {}", cold.files.iter().sum::<u64>());
         println!(
             "copies        {} holding {}",
             cold.total,

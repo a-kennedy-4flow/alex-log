@@ -61,7 +61,7 @@ const headline = computed(() => {
 </script>
 
 <template>
-  <section class="progress sheet pad" :class="[state, { flash: justFinished }]" data-tour="progress">
+  <section class="progress sheet pad" :class="[state, { flash: justFinished }]">
     <header>
       <h2 class="eyebrow">{{ t('progress.title') }}</h2>
       <p class="headline">{{ headline }}</p>

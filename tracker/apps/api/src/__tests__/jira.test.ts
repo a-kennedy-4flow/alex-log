@@ -68,6 +68,11 @@ function get(path: string) {
   return { method: 'GET', path, body: null, caller: CALLER }
 }
 
+/** The refresh. Same path and same question with the stored copy refused. */
+function refresh(path: string) {
+  return { method: 'POST', path, body: null, caller: CALLER }
+}
+
 /** A link as it stands after one exchange. Tokens are plain in a test. */
 function linkOf(over: Partial<StoredJiraLink> = {}): StoredJiraLink {
   return {
@@ -209,6 +214,59 @@ describe('reading a month', () => {
     const again = JSON.parse((await handleJira(get('/api/jira/completed/2026-08'), later)).body)
     expect(jira.searches).toBe(2)
     expect(again.cached).toBe(false)
+  })
+
+  it('reads Jira again when the refresh posts to the same path', async () => {
+    const jira = new FakeJira()
+    const deps = depsOf({ jira })
+    await deps.repository.putJiraLink(CALLER.sub, linkOf())
+    await handleJira(get('/api/jira/completed/2026-08'), deps)
+    const again = JSON.parse((await handleJira(refresh('/api/jira/completed/2026-08'), deps)).body)
+    expect(jira.searches).toBe(2)
+    expect(again.cached).toBe(false)
+    // The answer replaces the cache so the next read is served from it again.
+    const third = JSON.parse((await handleJira(get('/api/jira/completed/2026-08'), deps)).body)
+    expect(jira.searches).toBe(2)
+    expect(third.cached).toBe(true)
+  })
+
+  it('carries the tickets still being worked under the wider scope', async () => {
+    const deps = depsOf()
+    await deps.repository.putJiraLink(CALLER.sub, linkOf())
+    const closed = JSON.parse(
+      (await handleJira(get('/api/jira/completed/2026-08/closed'), deps)).body,
+    )
+    const all = JSON.parse((await handleJira(get('/api/jira/completed/2026-08/all'), deps)).body)
+    expect(closed.tickets).toHaveLength(7)
+    expect(all.tickets).toHaveLength(9)
+    expect(all.tickets.filter((t: { resolvedAt: string }) => t.resolvedAt === '')).toHaveLength(2)
+  })
+
+  it('takes the closed scope where the path names none', async () => {
+    const deps = depsOf()
+    await deps.repository.putJiraLink(CALLER.sub, linkOf())
+    const body = JSON.parse((await handleJira(get('/api/jira/completed/2026-08'), deps)).body)
+    expect(body.scope).toBe('closed')
+    expect(body.tickets).toHaveLength(7)
+  })
+
+  it('refuses a scope it does not know', async () => {
+    const deps = depsOf()
+    await deps.repository.putJiraLink(CALLER.sub, linkOf())
+    expect((await handleJira(get('/api/jira/completed/2026-08/open'), deps)).status).toBe(400)
+  })
+
+  it('never serves one scope from the cache of the other', async () => {
+    const jira = new FakeJira()
+    const deps = depsOf({ jira })
+    await deps.repository.putJiraLink(CALLER.sub, linkOf())
+    await handleJira(get('/api/jira/completed/2026-08/closed'), deps)
+    const wider = JSON.parse(
+      (await handleJira(get('/api/jira/completed/2026-08/all'), deps)).body,
+    )
+    expect(jira.searches).toBe(2)
+    expect(wider.cached).toBe(false)
+    expect(wider.tickets).toHaveLength(9)
   })
 
   it('holds the current month for fifteen minutes rather than a day', async () => {

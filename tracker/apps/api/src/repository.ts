@@ -16,7 +16,13 @@
 
 import { gzipSync, gunzipSync } from 'node:zlib'
 
-import type { CatalogueInput, CompletedTicket, HalfDay, UserProfile } from '@tracker/core'
+import type {
+  CatalogueInput,
+  CompletedTicket,
+  HalfDay,
+  TicketScope,
+  UserProfile,
+} from '@tracker/core'
 
 export interface StoredSheet {
   year: number
@@ -45,6 +51,11 @@ export interface StoredSheet {
  */
 export interface StoredTickets {
   period: string
+  /**
+   * What the read asked Jira for. A cache written under one scope answers no
+   * question asked under the other so the two never serve each other.
+   */
+  scope: TicketScope
   fetchedAt: string
   /**
    * The shape the tickets were written in. A cache at any other version is
@@ -58,7 +69,7 @@ export interface StoredTickets {
 }
 
 /** Raise this whenever `CompletedTicket` gains or loses a field. */
-export const TICKET_CACHE_VERSION = 2
+export const TICKET_CACHE_VERSION = 3
 
 /**
  * What lets the tracker read Jira as one user.

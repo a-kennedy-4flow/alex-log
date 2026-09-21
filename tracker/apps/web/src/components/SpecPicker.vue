@@ -10,6 +10,11 @@
 // Three states are marked apart from the plain one. A default the user has not
 // confirmed reads as provisional. A specification the cost centre disallows is
 // an error. A value chosen off the full list is a warning.
+//
+// The provisional state carries no word of its own. It used to carry a badge
+// reading `default` and that badge was the answer somebody read instead of
+// reading the value under it. The field is highlighted instead and reaching the
+// field is what clears the highlight.
 
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -23,7 +28,11 @@ const props = defineProps<{
   /** True when the value was filled in rather than chosen. */
   isDefault?: boolean
 }>()
-const emit = defineEmits<{ 'update:modelValue': [value: string | null] }>()
+const emit = defineEmits<{
+  'update:modelValue': [value: string | null]
+  /** The user reached the field. The caller drops the provisional mark. */
+  confirm: []
+}>()
 
 const { t } = useI18n()
 
@@ -55,6 +64,16 @@ function onChange(event: Event): void {
   const value = (event.target as HTMLSelectElement).value
   emit('update:modelValue', value === '' ? null : value)
 }
+
+/**
+ * The user has looked at the field. The mark asks for exactly that.
+ *
+ * A click and a key press both count. A focus does not because tabbing past a
+ * field is not reading it and the tab order crosses every row of the month.
+ */
+function onReach(): void {
+  if (provisional.value) emit('confirm')
+}
 </script>
 
 <template>
@@ -65,6 +84,8 @@ function onChange(event: Event): void {
       :class="{ invalid: props.invalid, provisional, unverified }"
       :title="hint"
       @change="onChange"
+      @click="onReach"
+      @keydown="onReach"
     >
       <!--
         A blank is offered for a row with no cost centre and for one whose cost
@@ -74,7 +95,6 @@ function onChange(event: Event): void {
       <option v-if="blankAllowed" value=""></option>
       <option v-for="option in spec.options" :key="option" :value="option">{{ option }}</option>
     </select>
-    <span v-if="provisional" class="mark" :title="hint" aria-hidden="true">default</span>
     <span v-if="provisional" class="visually-hidden">{{ hint }}</span>
   </div>
 </template>
@@ -100,14 +120,15 @@ select.invalid {
 
 /*
  * A default is not a fault so it stays out of the orange and the amber those
- * two states own. Dashed and muted reads as provisional.
+ * two states own. Bright Blue is the mark that something wants reading. It is
+ * the rule under the field rather than the whole border because the border is
+ * what the error and the warning use.
  */
 select.provisional {
-  border-style: dashed;
-  border-color: var(--grey);
-  background: var(--warm-grey);
+  border-color: var(--bright-blue);
+  box-shadow: inset 0 -3px 0 var(--bright-blue);
+  background: var(--white);
   color: var(--smart-blue);
-  font-style: italic;
 }
 
 select.unverified {
@@ -115,18 +136,4 @@ select.unverified {
   background: var(--open);
 }
 
-.mark {
-  position: absolute;
-  top: -6px;
-  right: 6px;
-  padding: 0 4px;
-  border-radius: 3px;
-  background: var(--grey);
-  color: var(--white);
-  font-size: 9px;
-  font-style: normal;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  pointer-events: none;
-}
 </style>

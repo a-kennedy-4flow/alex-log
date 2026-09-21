@@ -3,7 +3,11 @@
     "workbook": "Kennedy.Alexander_2026_08_projecttracker_DE.xlsm",
     "projectListUpdated": "last update: 27.08.2026",
     "projectListFile": "4flow_Projectnumbers.xlsm",
-    "projectListPath": "X:\\finance\\Projektnummernliste"
+    "projectListPath": "X:\\finance\\Projektnummernliste",
+    "projectNumbers": {
+      "workbook": "20251218_4s_Projectnumbers_protected.xlsx",
+      "listUpdated": "2026-08-26"
+    }
   },
   "absenceTypes": [
     {

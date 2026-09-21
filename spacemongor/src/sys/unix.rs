@@ -455,9 +455,14 @@ fn unescape_url(text: &str) -> String {
     let mut out: Vec<u8> = Vec::with_capacity(raw.len());
     let mut i = 0;
     while i < raw.len() {
+        // Read the two digits as bytes rather than as text. Because a `%` in
+        // front of a character of several bytes would otherwise be sliced
+        // through the middle of it and a record written by another desktop is
+        // not ours to trust.
         if raw[i] == b'%'
             && i + 2 < raw.len()
-            && let Ok(byte) = u8::from_str_radix(&text[i + 1..i + 3], 16)
+            && let Ok(pair) = std::str::from_utf8(&raw[i + 1..i + 3])
+            && let Ok(byte) = u8::from_str_radix(pair, 16)
         {
             out.push(byte);
             i += 3;
@@ -520,7 +525,7 @@ pub fn cluster_size(_path: &Path) -> Option<u64> {
 
 #[cfg(test)]
 mod tests {
-    use super::file_uri;
+    use super::{escape, file_uri, unescape, unescape_url};
     use std::path::Path;
 
     fn ground(tag: &str) -> std::path::PathBuf {
@@ -530,6 +535,51 @@ mod tests {
         std::fs::create_dir_all(root.join("bin")).unwrap();
         std::fs::create_dir_all(root.join("disk")).unwrap();
         root
+    }
+
+    /// A record written by another desktop is foreign data. A `%` in front of
+    /// a character of several bytes used to slice through the middle of it and
+    /// take the window down with it.
+    #[test]
+    fn a_record_that_is_not_escaped_properly_is_read_rather_than_refused() {
+        assert_eq!(unescape_url("100%\u{20ac}uro.txt"), "100%\u{20ac}uro.txt");
+        assert_eq!(unescape_url("%"), "%");
+        assert_eq!(unescape_url("%2"), "%2");
+        assert_eq!(unescape_url("a%zz"), "a%zz");
+        assert_eq!(
+            unescape_url("%e2%82%ac"),
+            "\u{20ac}",
+            "a real escape stopped working"
+        );
+    }
+
+    /// Every name the escaper writes has to come back the same.
+    #[test]
+    fn escaping_a_path_and_reading_it_back_gives_the_path() {
+        for name in [
+            "/disk/holiday.mp4",
+            "/disk/My Drive/a file.txt",
+            "/disk/100% sure.txt",
+            "/disk/caf\u{e9}/\u{20ac}10.txt",
+            "/disk/a+b&c=d?e#f.txt",
+        ] {
+            let there = unescape_url(&escape(Path::new(name)));
+            assert_eq!(there, name, "{name} did not survive the round trip");
+        }
+    }
+
+    /// The one function between the picker and every volume with a space in
+    /// its name.
+    #[test]
+    fn a_mount_line_gives_up_its_octal_escapes() {
+        assert_eq!(unescape("/media/alex/My\\040Drive"), "/media/alex/My Drive");
+        assert_eq!(unescape("/plain/path"), "/plain/path");
+        assert_eq!(unescape("/a\\134b"), "/a\\b", "the backslash itself");
+        assert_eq!(
+            unescape("/trailing\\04"),
+            "/trailing\\04",
+            "a short escape is left alone"
+        );
     }
 
     #[test]

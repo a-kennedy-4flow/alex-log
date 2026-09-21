@@ -10,8 +10,14 @@ import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/vue
 import { i18n } from '@/i18n'
 import { updateReady } from '@/composables/useVersion'
 import { forgetPicks } from '@/composables/useRecentPicks'
-import { routeTree } from '@/router'
-import { allSpecifications, catalogue, setCatalogue, specificationsFor } from '@tracker/core'
+import { router as appRouter, routeTree } from '@/router'
+import {
+  allSpecifications,
+  catalogue,
+  setCatalogue,
+  specificationIsRequired,
+  specificationsFor,
+} from '@tracker/core'
 import type { Timesheet } from '@tracker/core'
 import { monthName, setLocale, shortDate } from '@/i18n'
 import { loadCatalogue } from '@tracker/fixtures'
@@ -44,6 +50,8 @@ import {
   year,
 } from '@/composables/useTimesheet'
 import { clearHalf } from '@/composables/useRowEdit'
+import * as guided from '@/composables/useGuided'
+import GuidedResult from '@/components/GuidedResult.vue'
 import MonthGrid from '@/components/MonthGrid.vue'
 import MonthCalendar from '@/components/MonthCalendar.vue'
 import MonthPage from '@/pages/MonthPage.vue'
@@ -222,7 +230,7 @@ describe('the router tree', () => {
     await flushPromises()
     await flushPromises()
     expect(wrapper.text()).toContain('4flow Tracker')
-    expect(wrapper.findAll('nav a')).toHaveLength(4)
+    expect(wrapper.findAll('nav a')).toHaveLength(6)
     // The page title is the month. The product name sits in the header bar.
     expect(wrapper.get('h1').text()).toBe(`${monthName('en', month.value)} ${year.value}`)
     expect(wrapper.findAll('.title .pill').map((p) => p.text())).toEqual([
@@ -556,7 +564,26 @@ describe('the default specification', () => {
     await pickCostCentre(wrapper, 0, '24112')
     const select = wrapper.findAll('select')[0]!
     expect(select.classes()).toContain('provisional')
-    expect(wrapper.find('.col-spec .mark').exists()).toBe(true)
+    // The badge reading `default` is gone. The field itself is the mark and a
+    // screen reader is told the same thing the highlight says.
+    expect(wrapper.find('.col-spec .mark').exists()).toBe(false)
+    expect(wrapper.find('.col-spec .visually-hidden').text()).toBe(
+      'Filled in for you. Check it and the mark goes.',
+    )
+    clearRow(halfDays.value[0]!)
+  })
+
+  it('drops the mark when the user opens the list without changing it', async () => {
+    // The mark asks to be double checked. Reaching the field is that check so
+    // confirming the value that was filled in has to clear it.
+    const wrapper = mount(MonthGrid, { global: { plugins } })
+    await pickCostCentre(wrapper, 0, '24112')
+    const chosen = halfDays.value[0]!.specification
+    await wrapper.findAll('select')[0]!.trigger('click')
+    await flushPromises()
+    expect(halfDays.value[0]!.specification).toBe(chosen)
+    expect(halfDays.value[0]!.specificationIsDefault).toBe(false)
+    expect(wrapper.findAll('select')[0]!.classes()).not.toContain('provisional')
     clearRow(halfDays.value[0]!)
   })
 
@@ -574,7 +601,7 @@ describe('the default specification', () => {
 
   it('keeps the mark off a row with no cost centre', async () => {
     const wrapper = mount(MonthGrid, { global: { plugins } })
-    expect(wrapper.find('.col-spec .mark').exists()).toBe(false)
+    expect(wrapper.findAll('select')[0]!.classes()).not.toContain('provisional')
   })
 
   it('replaces a default that the new cost centre disallows', async () => {
@@ -593,6 +620,437 @@ describe('the default specification', () => {
     // A row is complete only with a cost centre and a specification and a day.
     expect(issues.value.filter((i) => i.code === 'incompleteEntries')).toEqual([])
     clearRow(halfDays.value[0]!)
+  })
+})
+
+describe('the cost centre list', () => {
+  function shellAt(entry: string) {
+    const router = createRouter({ routeTree, history: createMemoryHistory({ initialEntries: [entry] }) })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const wrapper = mount(Host, { global: { plugins } })
+    return { router, wrapper }
+  }
+
+  /** The route is lazy so the page arrives a tick after the load. */
+  async function settle({ router }: ReturnType<typeof shellAt>): Promise<void> {
+    await router.load()
+    for (const _ of [0, 1, 2]) await flushPromises()
+  }
+
+  it('lists the catalogue and says how much of it is on the screen', async () => {
+    const shell = shellAt('/cost-centres')
+    await settle(shell)
+    const rows = shell.wrapper.findAll('tbody tr')
+    expect(rows.length).toBe(50)
+    // The count is the count of what matched rather than of what is shown.
+    expect(shell.wrapper.get('.count').text()).toContain('50 of')
+  })
+
+  it('narrows to what was typed', async () => {
+    const shell = shellAt('/cost-centres')
+    await settle(shell)
+    await shell.wrapper.get('input[type="search"]').setValue('24112')
+    await flushPromises()
+    expect(shell.wrapper.findAll('tbody tr')[0]!.text()).toContain('24112')
+  })
+
+  it('opens the specification list of one row', async () => {
+    const shell = shellAt('/cost-centres')
+    await settle(shell)
+    await shell.wrapper.get('input[type="search"]').setValue('24112')
+    await flushPromises()
+    expect(shell.wrapper.find('tr.specs').exists()).toBe(false)
+    await shell.wrapper.get('tbody .btn.small').trigger('click')
+    await flushPromises()
+    const opened = shell.wrapper.get('tr.specs')
+    expect(opened.findAll('li').map((item) => item.text())).toEqual(
+      specificationsFor('24112').options,
+    )
+  })
+})
+
+describe('the guided build writing a month', () => {
+  const HOLIDAY = 'Vacation or sickness'
+  const OTHER = 'Other absence'
+
+  /** The working days of the open month. Where a day off may be placed. */
+  function workingDateAt(at: number): string {
+    return calendar.value.filter((day) => !day.nonWorking)[at]!.date
+  }
+
+  function firstWorkingDate(): string {
+    return workingDateAt(0)
+  }
+
+  /** The rows of one date that hold anything. */
+  function bookedOn(date: string): (string | null)[] {
+    return halfDays.value.filter((row) => row.date === date && row.workdayId !== null).map((row) => row.workdayId)
+  }
+
+  beforeEach(() => {
+    guided.reset()
+    clearMonth()
+  })
+
+  afterEach(() => {
+    guided.reset()
+    clearMonth()
+  })
+
+  it('puts the day off on the day it was placed and the work elsewhere', async () => {
+    const date = firstWorkingDate()
+    guided.setCount(HOLIDAY, 1)
+    guided.toggleDate(date)
+    guided.addRow()
+    guided.rows[0]!.workdayId = '24112'
+    guided.spreadEvenly()
+    expect(guided.ready.value).toBe(true)
+
+    await guided.build()
+
+    expect(bookedOn(date)).toEqual([HOLIDAY])
+    // The work went somewhere and never onto the day that was taken.
+    const work = halfDays.value.filter((row) => row.workdayId === '24112')
+    expect(work.length).toBeGreaterThan(0)
+    expect(work.some((row) => row.date === date)).toBe(false)
+    expect(booked.value).toBe(target.value)
+  })
+
+  it('writes both kinds of absence into one month', async () => {
+    const first = workingDateAt(0)
+    const second = workingDateAt(1)
+    guided.setCount(HOLIDAY, 1)
+    guided.setCount(OTHER, 1)
+    // The first count is spent by the first day so the second kind takes over.
+    guided.toggleDate(first)
+    guided.toggleDate(second)
+    guided.addRow()
+    guided.rows[0]!.workdayId = '24112'
+    guided.spreadEvenly()
+    expect(guided.ready.value).toBe(true)
+
+    await guided.build()
+
+    expect(bookedOn(first)).toEqual([HOLIDAY])
+    expect(bookedOn(second)).toEqual([OTHER])
+  })
+
+  it('places the kind that was picked rather than the first one owing days', () => {
+    guided.setCount(HOLIDAY, 1)
+    guided.setCount(OTHER, 1)
+    guided.kind.value = OTHER
+    guided.toggleDate(firstWorkingDate())
+    expect(guided.placed[firstWorkingDate()]).toBe(OTHER)
+  })
+
+  it('asks for no more absence than the month has working days', () => {
+    const working = calendar.value.filter((day) => !day.nonWorking).length
+    guided.setCount(HOLIDAY, 500)
+    expect(guided.daysOffBy[HOLIDAY]).toBe(working)
+    // The first count has taken the month so the second has nothing to take.
+    guided.setCount(OTHER, 1)
+    expect(guided.daysOffBy[OTHER]).toBe(0)
+    guided.setCount(HOLIDAY, working - 2)
+    guided.setCount(OTHER, 5)
+    expect(guided.daysOff.value).toBe(working)
+  })
+
+  it('drops the placed day a lowered count no longer covers', () => {
+    guided.setCount(HOLIDAY, 2)
+    guided.toggleDate(workingDateAt(0))
+    guided.toggleDate(workingDateAt(1))
+    guided.setCount(HOLIDAY, 1)
+    expect(guided.chosen.value).toEqual([workingDateAt(0)])
+  })
+
+  it('refuses to build while a step is unanswered', async () => {
+    guided.setCount(HOLIDAY, 2)
+    guided.toggleDate(firstWorkingDate())
+    guided.addRow()
+    guided.rows[0]!.workdayId = '24112'
+    guided.spreadEvenly()
+    // One of the two days off is still unplaced.
+    expect(guided.ready.value).toBe(false)
+
+    await guided.build()
+    expect(guided.built.value).toBeNull()
+    expect(monthIsEmpty.value).toBe(true)
+  })
+})
+
+describe('the guided build', () => {
+  function shellAt(entry: string, attach = false) {
+    const router = createRouter({ routeTree, history: createMemoryHistory({ initialEntries: [entry] }) })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const wrapper = mount(Host, { global: { plugins }, ...(attach ? { attachTo: document.body } : {}) })
+    return { router, wrapper }
+  }
+
+  /** The route is lazy so the page arrives a tick after the load. */
+  async function settle({ router }: ReturnType<typeof shellAt>): Promise<void> {
+    await router.load()
+    for (const _ of [0, 1, 2]) await flushPromises()
+  }
+
+  beforeEach(() => {
+    guided.reset()
+    clearMonth()
+    forgetSeen()
+  })
+
+  afterEach(() => {
+    guided.reset()
+    clearMonth()
+    tourStop()
+  })
+
+  it('asks for the days off before it offers the calendar', async () => {
+    const shell = shellAt('/guided')
+    await settle(shell)
+    // Step two is not on the screen until step one is answered. It is the
+    // count that says how many days the calendar may take.
+    expect(shell.wrapper.findAll('.days button')).toHaveLength(0)
+    await shell.wrapper.get('input.count').setValue('2')
+    await flushPromises()
+    expect(shell.wrapper.findAll('.days button').length).toBeGreaterThan(0)
+  })
+
+  it('takes no more days than the count asked for', async () => {
+    const shell = shellAt('/guided')
+    await settle(shell)
+    await shell.wrapper.get('input.count').setValue('1')
+    await flushPromises()
+    const days = shell.wrapper.findAll('.days button')
+    await days[0]!.trigger('click')
+    await flushPromises()
+    expect(shell.wrapper.findAll('.days button.on')).toHaveLength(1)
+    // The second is refused rather than replacing the first.
+    expect(shell.wrapper.findAll('.days button')[1]!.attributes('disabled')).toBeDefined()
+  })
+
+  it('offers one count for each absence the catalogue holds', async () => {
+    const shell = shellAt('/guided')
+    await settle(shell)
+    expect(shell.wrapper.findAll('input.count')).toHaveLength(
+      catalogue.absenceTypes.length,
+    )
+  })
+
+  it('draws the switch only once two kinds are asked for', async () => {
+    // With one kind asked for there is nothing to choose between.
+    const shell = shellAt('/guided')
+    await settle(shell)
+    const counts = shell.wrapper.findAll('input.count')
+    await counts[0]!.setValue('1')
+    await flushPromises()
+    expect(shell.wrapper.find('[data-tour="guidedKind"]').exists()).toBe(false)
+    await counts[1]!.setValue('1')
+    await flushPromises()
+    expect(shell.wrapper.find('[data-tour="guidedKind"]').exists()).toBe(true)
+  })
+
+  it('names the absence on the day that holds it', async () => {
+    const shell = shellAt('/guided')
+    await settle(shell)
+    const counts = shell.wrapper.findAll('input.count')
+    await counts[1]!.setValue('1')
+    await flushPromises()
+    await shell.wrapper.findAll('.days button')[0]!.trigger('click')
+    await flushPromises()
+    expect(shell.wrapper.get('.days button.on .held').text()).toBe(
+      catalogue.absenceTypes[1]!.label,
+    )
+  })
+
+  it('opens the month view once it has built', async () => {
+    // The page carries the shared router rather than the memory one this mount
+    // holds so the call is what is watched.
+    const navigate = vi.spyOn(appRouter, 'navigate').mockResolvedValue(undefined)
+    const shell = shellAt('/guided')
+    await settle(shell)
+    guided.addRow()
+    guided.rows[0]!.workdayId = '24112'
+    guided.spreadEvenly()
+    await flushPromises()
+
+    await shell.wrapper.get('.fill .btn-primary').trigger('click')
+    await flushPromises()
+
+    expect(guided.built.value).not.toBeNull()
+    expect(navigate).toHaveBeenCalledWith({ to: '/' })
+    navigate.mockRestore()
+  })
+
+  it('names an anchor for every step of its tour', async () => {
+    // A step pointing at an attribute nobody wrote would be skipped in silence.
+    const shell = shellAt('/guided', true)
+    await settle(shell)
+    const counts = shell.wrapper.findAll('input.count')
+    await counts[0]!.setValue('1')
+    await counts[1]!.setValue('1')
+    await flushPromises()
+
+    setPage('guided')
+    startTour()
+    expect(steps.value.map((step) => step.key)).toEqual([
+      'guidedDays',
+      'guidedPlace',
+      'guidedKind',
+      'guidedProjects',
+      'guidedBuild',
+    ])
+    shell.wrapper.unmount()
+  })
+})
+
+describe('what the guided build wrote', () => {
+  beforeEach(() => {
+    guided.reset()
+    clearMonth()
+  })
+
+  afterEach(() => {
+    guided.reset()
+    clearMonth()
+  })
+
+  /** Builds a month of work alone. The notice reports it on the month view. */
+  async function buildOne(): Promise<void> {
+    guided.addRow()
+    guided.rows[0]!.workdayId = '24112'
+    guided.spreadEvenly()
+    await guided.build()
+  }
+
+  it('says nothing on the month view until a build has run', () => {
+    const wrapper = mount(GuidedResult, { global: { plugins } })
+    expect(wrapper.find('section').exists()).toBe(false)
+  })
+
+  it('reports the month it wrote where the build lands the user', async () => {
+    await buildOne()
+    const wrapper = mount(GuidedResult, { global: { plugins } })
+    await flushPromises()
+    expect(wrapper.find('section').exists()).toBe(true)
+    expect(wrapper.text()).toContain(en.guided.step5)
+  })
+
+  it('goes when it is dismissed', async () => {
+    await buildOne()
+    const wrapper = mount(GuidedResult, { global: { plugins } })
+    await wrapper.get('button').trigger('click')
+    await flushPromises()
+    expect(guided.built.value).toBeNull()
+    expect(wrapper.find('section').exists()).toBe(false)
+  })
+
+  it('warns about the days the free ones could not hold', async () => {
+    // The target asks for every working day and one of them is spent away. The
+    // work then wants a day the month no longer has.
+    const working = calendar.value.filter((day) => !day.nonWorking)
+    monthOverride.value = working.length + 1
+    guided.setCount('Vacation or sickness', 1)
+    guided.toggleDate(working[0]!.date)
+    await buildOne()
+    expect(guided.built.value?.shortBy).toBeGreaterThan(0)
+
+    const wrapper = mount(GuidedResult, { global: { plugins } })
+    await flushPromises()
+    expect(wrapper.findAll('.warn').length).toBeGreaterThan(0)
+    monthOverride.value = null
+  })
+})
+
+describe('a day of the week', () => {
+  it('carries its own class down the grid', () => {
+    const wrapper = mount(MonthGrid, { global: { plugins } })
+    const rows = wrapper.findAll('tbody tr')
+    expect(rows.length).toBeGreaterThan(0)
+    // The class is read back against the calendar rather than against a fixed
+    // month. Monday is 1 and Sunday is 7.
+    const weekdays = calendar.value.map((day) => day.weekday)
+    const found = rows.map((row) => {
+      const held = (row.attributes('class') ?? '').split(' ').find((name) => name.startsWith('dow-'))
+      return Number(held?.slice(4))
+    })
+    expect(new Set(found)).toEqual(new Set(weekdays))
+    expect(found.every((day) => day >= 1 && day <= 7)).toBe(true)
+  })
+
+  it('carries its own class across the board columns', () => {
+    const wrapper = mount(MonthCalendar, { global: { plugins } })
+    for (const week of wrapper.findAll('tbody tr')) {
+      const cells = week.findAll('td')
+      expect(cells.map((cell) => (cell.attributes('class') ?? '').includes('dow-'))).toEqual(
+        cells.map(() => true),
+      )
+      // The column is the weekday on this view so the seven run in order.
+      expect(cells.map((_, at) => `dow-${at + 1}`)).toEqual(
+        cells.map((cell) =>
+          (cell.attributes('class') ?? '').split(' ').find((name) => name.startsWith('dow-')),
+        ),
+      )
+    }
+  })
+})
+
+// One mark a field rather than one mark a row.
+//
+// The row carried a single mark before and every control in it took the
+// colour. A row missing only its day value therefore marked the cost centre
+// that was filled in.
+describe('an empty required field', () => {
+  async function pickCostCentre(wrapper: ReturnType<typeof mount>, row: number, id: string) {
+    const pickers = wrapper.findAll('.picker')
+    await pickers[row]!.find('.trigger').trigger('click')
+    await flushPromises()
+    const input = pickers[row]!.find('input[type="search"]')
+    await input.setValue(id)
+    await flushPromises()
+    await input.trigger('keydown', { key: 'Enter' })
+    await flushPromises()
+  }
+
+  it('marks the day value alone when that is what is missing', async () => {
+    const wrapper = mount(MonthGrid, { global: { plugins } })
+    await pickCostCentre(wrapper, 0, '24112')
+    await wrapper.findAll('td.col-days select')[0]!.setValue('')
+    await flushPromises()
+
+    expect(halfDays.value[0]!.days).toBeNull()
+    expect(wrapper.findAll('td.col-days select')[0]!.classes()).toContain('invalid')
+    // The two that are filled in carry nothing.
+    expect(wrapper.findAll('.picker .trigger')[0]!.classes()).not.toContain('invalid')
+    expect(wrapper.findAll('td.col-spec select')[0]!.classes()).not.toContain('invalid')
+    clearRow(halfDays.value[0]!)
+  })
+
+  it('marks the cost centre alone when that is what is missing', async () => {
+    const wrapper = mount(MonthGrid, { global: { plugins } })
+    halfDays.value[0]!.days = 1
+    await flushPromises()
+
+    expect(wrapper.findAll('.picker .trigger')[0]!.classes()).toContain('invalid')
+    expect(wrapper.findAll('td.col-days select')[0]!.classes()).not.toContain('invalid')
+    clearRow(halfDays.value[0]!)
+  })
+
+  it('asks for no specification where the cost centre names no list', async () => {
+    // `validate` in core allows a blank there so the grid has to allow it too.
+    // The grid marked every one of those rows before.
+    const wrapper = mount(MonthGrid, { global: { plugins } })
+    const entry = halfDays.value[0]!
+    entry.workdayId = '24112'
+    entry.specification = null
+    entry.days = 1
+    await flushPromises()
+
+    const marked = specificationIsRequired('24112')
+    expect(wrapper.findAll('td.col-spec select')[0]!.classes().includes('invalid')).toBe(marked)
+    expect(
+      issues.value.some((issue) => issue.code === 'incompleteEntries'),
+    ).toBe(marked)
+    clearRow(entry)
   })
 })
 
@@ -740,6 +1198,37 @@ describe('the admin page', () => {
     switchTo('alex')
   })
 
+  it('ships a seed that already holds that list', async () => {
+    // `pnpm fixtures` lays the list over the tracker catalogue because a fresh
+    // deployment is set up by uploading both workbooks. A seed built from the
+    // tracker alone is a catalogue nobody ever runs and every number the list
+    // adds would be unbookable in local development.
+    const seed = await loadCatalogue()
+    expect(seed.source?.projectNumbers?.workbook).toBe(numbersList)
+
+    const parsed = readProjectNumbersFrom(
+      new Uint8Array(readFileSync(join(workbookRoot, numbersList))),
+    )
+    const held = new Set(seed.projects.map((project) => project.workdayId))
+    const missing = parsed.numbers.filter((number) => !held.has(number.workdayId))
+    expect(missing.map((number) => number.workdayId)).toEqual([])
+  })
+
+  it('carries the names that list gave the tracker rows', async () => {
+    // Naming is the half of the merge that changes rows the tracker already
+    // had. A seed that only gained rows would pass the check above alone.
+    const seed = await loadCatalogue()
+    const parsed = readProjectNumbersFrom(
+      new Uint8Array(readFileSync(join(workbookRoot, numbersList))),
+    )
+    const byId = new Map(seed.projects.map((project) => [project.workdayId, project]))
+    const named = parsed.numbers.filter((number) => {
+      const project = byId.get(number.workdayId)
+      return project?.projectTitle === number.projectTitle
+    })
+    expect(named.length).toBeGreaterThan(400)
+  })
+
   it('refuses a spreadsheet that is neither', async () => {
     switchTo('backoffice')
     const wrapper = mount(AdminUpload, { global: { plugins } })
@@ -766,7 +1255,7 @@ describe('the admin page', () => {
     const wrapper = mount(Host, { global: { plugins } })
     await router.load()
     await flushPromises()
-    expect(wrapper.findAll('nav a')).toHaveLength(4)
+    expect(wrapper.findAll('nav a')).toHaveLength(6)
   })
 
   it('is offered to the backoffice group', async () => {
@@ -779,7 +1268,7 @@ describe('the admin page', () => {
     const wrapper = mount(Host, { global: { plugins } })
     await router.load()
     await flushPromises()
-    expect(wrapper.findAll('nav a')).toHaveLength(5)
+    expect(wrapper.findAll('nav a')).toHaveLength(7)
     switchTo('alex')
   })
 })
@@ -1316,18 +1805,58 @@ describe('the tour', () => {
     expect(tourActive.value).toBe(false)
   })
 
-  it('names an anchor for every step of every page', () => {
+  it('opens the month tour on the tabs', async () => {
+    const router = createRouter({
+      routeTree,
+      history: createMemoryHistory({ initialEntries: ['/'] }),
+    })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const shell = mount(Host, { global: { plugins }, attachTo: document.body })
+    await router.load()
+    await flushPromises()
+
+    // The anchor is handed to a router Link rather than written on an element
+    // so the attribute is read off the rendered tab.
+    expect(shell.find('nav a[data-tour="navMonth"]').exists()).toBe(true)
+
+    setPage('month')
+    startTour()
+    expect(steps.value.slice(0, 6).map((step) => step.key)).toEqual([
+      'navMonth',
+      'navQuick',
+      'navGuided',
+      'navJira',
+      'navCostCentres',
+      'navSetup',
+    ])
+    tourStop()
+    shell.unmount()
+  })
+
+  it('names an anchor for every step of every page', async () => {
     // A step pointing at an attribute nobody wrote would be skipped in
     // silence so the two lists are compared here instead.
+    switchTo('backoffice')
+    // The tabs are drawn by the shell rather than by any page so the shell is
+    // mounted beside the pages.
+    const router = createRouter({
+      routeTree,
+      history: createMemoryHistory({ initialEntries: ['/'] }),
+    })
+    const Host = defineComponent({ render: () => h(RouterProvider, { router }) })
+    const shell = mount(Host, { global: { plugins }, attachTo: document.body })
+    await router.load()
+    await flushPromises()
+    const mounted = [
+      shell,
+      ...[MonthGrid, SetupForm, SimpleView, AdminUpload].map((component) =>
+        mount(component, { global: { plugins }, attachTo: document.body }),
+      ),
+    ]
     const anchored = new Set(
-      [MonthGrid, SetupForm, SimpleView, AdminUpload].flatMap((component) => {
-        switchTo('backoffice')
-        const wrapper = mount(component, { global: { plugins }, attachTo: document.body })
-        const found = wrapper
-          .findAll('[data-tour]')
-          .map((node) => node.attributes('data-tour') ?? '')
-        return found
-      }),
+      mounted.flatMap((wrapper) =>
+        wrapper.findAll('[data-tour]').map((node) => node.attributes('data-tour') ?? ''),
+      ),
     )
     for (const page of ['month', 'quick', 'settings', 'admin'] as const) {
       setPage(page)
@@ -1335,6 +1864,9 @@ describe('the tour', () => {
       for (const step of steps.value) expect(anchored.has(step.anchor), step.anchor).toBe(true)
       tourStop()
     }
+    // The shell holds a running query so it is taken down rather than left on
+    // the page for whatever mounts next.
+    shell.unmount()
     switchTo('alex')
   })
 })
@@ -2112,7 +2644,7 @@ describe('the credits', () => {
     const shell = shellAt('/credits')
     const wrapper = shell.wrapper
     await settle(shell)
-    expect(wrapper.findAll('nav a')).toHaveLength(4)
+    expect(wrapper.findAll('nav a')).toHaveLength(6)
     expect(wrapper.findAll('footer a').map((link) => link.text())).toEqual(['Privacy', 'Credits'])
   })
 

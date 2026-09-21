@@ -37,6 +37,8 @@ pub struct Plan {
     pub bytes: u64,
     /// Places already holding something. None is written over.
     pub taken: usize,
+    /// Names changed because two different files reached one place.
+    pub renamed: usize,
     pub free: Option<u64>,
     pub destination: PathBuf,
 }
@@ -53,10 +55,12 @@ impl Plan {
 /// Only the redundant copy of a pair is ever offered. The one being kept is
 /// never touched because a gather that could move the original is how someone
 /// loses a file.
-pub fn plan(pairs: &[Pair], base: &Path, choice: &Choice) -> Plan {
+pub fn plan(pairs: &[Pair], roots: &[PathBuf], choice: &Choice) -> Plan {
     let mut items = Vec::new();
     let mut bytes = 0;
     let mut taken = 0;
+    let mut renamed = 0;
+    let mut offered: HashSet<PathBuf> = HashSet::new();
     let mut placed: HashSet<PathBuf> = HashSet::new();
 
     for pair in pairs {
@@ -64,15 +68,21 @@ pub fn plan(pairs: &[Pair], base: &Path, choice: &Choice) -> Plan {
         if !choice.cats.contains(&cat) {
             continue;
         }
+        // One file offered twice is one file. Held apart from the collision
+        // below because two different files reaching one place is not that.
+        if !offered.insert(pair.b.clone()) {
+            continue;
+        }
         // The tree under the folder searched is laid out again under the
         // destination. Because a) two files of one name from two folders would
         // otherwise land on each other and b) a path that still reads the same
         // is a path someone can check.
-        let leaf = name_of(&pair.b);
-        let under = pair.b.strip_prefix(base).unwrap_or(Path::new(&leaf));
-        let to = choice.destination.join(under);
-        if !placed.insert(to.clone()) {
-            continue;
+        let wanted = choice
+            .destination
+            .join(crate::consolidate::under(&pair.b, roots));
+        let to = crate::consolidate::free_name(wanted, &mut placed);
+        if to.file_name() != pair.b.file_name() {
+            renamed += 1;
         }
         let here = to.exists();
         if here {
@@ -93,6 +103,7 @@ pub fn plan(pairs: &[Pair], base: &Path, choice: &Choice) -> Plan {
         items,
         bytes,
         taken,
+        renamed,
         free: crate::sys::free_space(&choice.destination),
         destination: choice.destination.clone(),
     }
@@ -143,6 +154,9 @@ pub struct Job {
     pub current: Mutex<String>,
     /// What went wrong and where. Named so it can be acted on.
     pub trouble: Mutex<Vec<String>>,
+    /// Every place our bytes are really standing. Filled as the copying goes.
+    /// The removal list is built from this rather than from what is on disk.
+    arrived: Mutex<HashSet<PathBuf>>,
 }
 
 impl Job {
@@ -156,6 +170,11 @@ impl Job {
 
     pub fn trouble(&self) -> Vec<String> {
         self.trouble.lock().unwrap().clone()
+    }
+
+    /// Every destination now holding the bytes that were asked for.
+    pub fn arrived(&self) -> HashSet<PathBuf> {
+        self.arrived.lock().unwrap().clone()
     }
 }
 
@@ -174,6 +193,7 @@ pub fn start(plan: Plan, action: Action, ctx: egui::Context) -> Arc<Job> {
         destination: plan.destination.clone(),
         current: Mutex::new(String::new()),
         trouble: Mutex::new(Vec::new()),
+        arrived: Mutex::new(HashSet::new()),
     });
     let handle = Arc::clone(&job);
     std::thread::spawn(move || {
@@ -209,10 +229,14 @@ fn run(plan: &Plan, action: Action, job: &Job) {
             Outcome::Done => {
                 job.acted.fetch_add(1, Relaxed);
                 job.bytes.fetch_add(item.size, Relaxed);
+                if action == Action::Copy {
+                    job.arrived.lock().unwrap().insert(item.to.clone());
+                }
                 written.push((item, went));
             }
             Outcome::AlreadyThere => {
                 job.already.fetch_add(1, Relaxed);
+                job.arrived.lock().unwrap().insert(item.to.clone());
             }
             Outcome::Refused => {
                 job.refused.fetch_add(1, Relaxed);
@@ -232,14 +256,15 @@ fn run(plan: &Plan, action: Action, job: &Job) {
             }
         }
     }
-    // The record of a gather goes where the gather went. The record of a
-    // clear out goes beside the trash so it can be traced from there.
+    // The record of a gather goes where the gather went. The record of a clear
+    // out goes to the data folder beside the cache. Because a) a clear out is
+    // given no destination to write to b) inside the bin it is an entry with no
+    // record of its own, which the host shows as trashed and cannot put back,
+    // and c) emptying the bin would destroy the record of what the emptying
+    // removed.
     let beside = match action {
         Action::Copy => plan.destination.clone(),
-        Action::Trash => written
-            .first()
-            .and_then(|(_, went)| went.parent().map(Path::to_path_buf))
-            .unwrap_or_else(|| plan.destination.clone()),
+        Action::Trash => crate::store::folder(),
     };
     write_manifest(&beside, action, &written);
 }
@@ -403,7 +428,7 @@ mod tests {
 
     #[test]
     fn the_tree_is_laid_out_again_under_the_destination() {
-        let base = Path::new("/disk/photos");
+        let base = [PathBuf::from("/disk/photos")];
         let to = Path::new("/gathered");
         let pairs = [
             pair(
@@ -418,7 +443,7 @@ mod tests {
             ),
         ];
 
-        let made = plan(&pairs, base, &want(&[Cat::Image], to));
+        let made = plan(&pairs, &base, &want(&[Cat::Image], to));
         let places: Vec<&Path> = made.items.iter().map(|i| i.to.as_path()).collect();
         assert!(
             places.contains(&Path::new("/gathered/2020/b.jpg")),
@@ -433,7 +458,7 @@ mod tests {
 
     #[test]
     fn only_the_wanted_types_are_offered() {
-        let base = Path::new("/disk");
+        let base = [PathBuf::from("/disk")];
         let pairs = [
             pair(Path::new("/k/a.jpg"), Path::new("/disk/a.jpg"), 1),
             pair(Path::new("/k/b.mp4"), Path::new("/disk/b.mp4"), 2),
@@ -442,7 +467,7 @@ mod tests {
 
         let made = plan(
             &pairs,
-            base,
+            &base,
             &want(&[Cat::Image, Cat::Video], Path::new("/to")),
         );
         assert_eq!(made.items.len(), 2);
@@ -461,7 +486,7 @@ mod tests {
         )];
         let made = plan(
             &pairs,
-            Path::new("/disk"),
+            &[PathBuf::from("/disk")],
             &want(&[Cat::Image], Path::new("/to")),
         );
 
@@ -479,7 +504,7 @@ mod tests {
 
         let made = plan(
             &[pair(Path::new("/keep/clip.mp4"), &from, 5_000)],
-            &ground.join("disk"),
+            std::slice::from_ref(&ground.join("disk")),
             &want(&[Cat::Video], &to),
         );
         assert_eq!(run(&made), vec![Outcome::Done]);
@@ -511,7 +536,7 @@ mod tests {
 
         let made = plan(
             &[pair(Path::new("/keep/a.bin"), &from, 900)],
-            &ground.join("disk"),
+            std::slice::from_ref(&ground.join("disk")),
             &want(&[Cat::Data], &to),
         );
         assert_eq!(made.items.len(), 1, "a .bin file is in the data group");
@@ -535,7 +560,7 @@ mod tests {
 
         let made = plan(
             &[pair(Path::new("/keep/notes.txt"), &from, 13)],
-            &ground.join("disk"),
+            std::slice::from_ref(&ground.join("disk")),
             &want(&[Cat::Document], &to),
         );
         assert_eq!(run(&made), vec![Outcome::Refused]);
@@ -561,7 +586,7 @@ mod tests {
 
         let made = plan(
             &[pair(&keeper, &copy, 700)],
-            &ground.join("disk"),
+            std::slice::from_ref(&ground.join("disk")),
             &want(&[Cat::Audio], &ground.join("unused")),
         );
         assert_eq!(made.items.len(), 1);
@@ -589,12 +614,12 @@ mod tests {
 
     #[test]
     fn two_copies_of_one_name_do_not_land_on_each_other() {
-        let base = Path::new("/disk");
+        let base = [PathBuf::from("/disk")];
         let pairs = [
             pair(Path::new("/k/1.jpg"), Path::new("/disk/jan/IMG_1.jpg"), 1),
             pair(Path::new("/k/2.jpg"), Path::new("/disk/feb/IMG_1.jpg"), 2),
         ];
-        let made = plan(&pairs, base, &want(&[Cat::Image], Path::new("/to")));
+        let made = plan(&pairs, &base, &want(&[Cat::Image], Path::new("/to")));
 
         assert_eq!(made.items.len(), 2);
         assert_ne!(made.items[0].to, made.items[1].to);

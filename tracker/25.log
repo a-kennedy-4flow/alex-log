@@ -1,0 +1,28 @@
+Log of the shell commands run while adding the tab tour steps.
+Each line is a UTC timestamp then the command then what happened.
+2026-09-21T11:27:49Z ls *.log — listed the existing logs and took 25 as the next free number.
+2026-09-21T11:27:53Z cat App.vue and grep for data-tour — read the shell that draws the tabs.
+2026-09-21T11:28:01Z cat TourOverlay.vue — read the overlay that draws a step.
+2026-09-21T11:29:29Z sed -n on de.ts and zh-CN.ts — read the tour block of two locales to match their register.
+2026-09-21T11:30:02Z python3 edit of App.vue — put a data-tour anchor on each of the six tabs.
+2026-09-21T11:30:09Z python3 edit of useTour.ts — put the six tab steps at the head of the month tour.
+2026-09-21T11:31:16Z python3 edit of the eight message catalogues — added the six tab steps to each.
+2026-09-21T11:31:55Z python3 edit of render.test.ts — the anchor test now mounts the shell so the tab anchors are covered.
+2026-09-21T11:32:01Z pnpm --filter @tracker/web test — ran the web test suite after the tab tour edits.
+2026-09-21T11:32:33Z python3 edit of render.test.ts — added a test that the month tour opens on the six tabs.
+2026-09-21T11:32:52Z pnpm --filter @tracker/web test — reran the suite with the new tab test.
+2026-09-21T11:33:09Z pnpm typecheck then pnpm lint — checked the types and the lint of the edited files.
+2026-09-21T11:33:25Z python3 edit of readme.md — the tour section now counts the tab steps and says why they ride with the month.
+2026-09-21T11:33:42Z sed -n on readme.md — checked the step table lines up.
+2026-09-21T11:37:03Z grep for the day colours in the month view — started the shading change.
+2026-09-21T11:39:44Z node script over a ramp of warm greys — measured the distances before choosing the two shades.
+2026-09-21T11:44:38Z python3 edit of tokens.css — the weekend takes its own shade and the past target token is gone.
+2026-09-21T11:44:56Z python3 edit of MonthGrid.vue — the weekday washes are gone and a day is shaded by what it asks for.
+2026-09-21T11:45:04Z python3 edit of MonthCalendar.vue — the board columns lose the weekday wash and take the same two shades.
+2026-09-21T11:45:41Z python3 edit of colour.test.ts — the palette check now holds the two day shades and their chroma.
+2026-09-21T11:46:10Z python3 edit of styles.test.ts — added the day shading checks and moved the week column check to them.
+2026-09-21T11:46:31Z pnpm --filter @tracker/web test — ran the suite against the new day shading.
+2026-09-21T11:47:09Z pnpm --filter @tracker/web test — reran after narrowing the grounds the guided wash is measured against.
+2026-09-21T11:47:34Z python3 edit of readme.md — split the wash section into the day shading and what the guided picker keeps.
+2026-09-21T11:48:47Z pnpm typecheck then pnpm lint then pnpm test — the whole workspace after the shading change.
+2026-09-21T11:49:02Z grep for the old token — nothing refers to it so the work is done.

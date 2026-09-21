@@ -109,6 +109,30 @@ in the one before it. A ticket worked all month may still be open. So both are
 read and the union is what the screen receives. The closed set is taken first so
 a ticket in both keeps its resolution date.
 
+### The third query
+
+The screen offers a wider scope. It reads the tickets still being worked beside
+the ones the month closed.
+
+    assignee = currentUser()
+    AND statusCategory = "In Progress"
+    AND updated >= "2026-08-01"
+    AND updated <  "2026-09-01"
+    ORDER BY updated DESC
+
+Bounded by `updated` rather than by `resolutiondate`. Because a) nothing has
+resolved one of these so it carries no resolution date. b) an unbounded search
+returns the whole backlog of the account. c) a ticket touched inside the month
+is the one the month was spent on.
+
+This search runs only where the wider scope was asked for. A month read as
+closed costs the two searches above and nothing more. The scope travels as a
+path segment on `/api/jira/completed/<period>/<scope>` and the stored copy
+records which scope wrote it so one never serves the other.
+
+`status` is named in the fields because a ticket in this set carries no
+resolution date and the screen has to say something in that column.
+
 ### The two cost centre fields
 
 `Internal Cost Center` and `Cost Center Specification` are custom fields. They
@@ -487,6 +511,13 @@ The answer is cached in that item. A closed month is cached for a day. The
 current month is cached for fifteen minutes. Because a) a JQL search is one of
 the more expensive Jira calls. b) a month that ended a fortnight ago rarely
 changes again. c) the screen is reloaded more often than the data moves.
+
+A day is long enough to hide a ticket closed this morning so the screen carries
+a refresh. It is `POST` on the path the `GET` already reads. Because a) the
+question is the one the read asks and only the stored answer is refused. b) a
+second path would state the same route twice. c) neither adapter passes a query
+string through to a handler. The answer replaces the cache so the next read is
+served from it again.
 
 Option D replaces the first route with a write from Jira.
 

@@ -29,8 +29,9 @@ Press F5 in VS Code to launch an extension host. Then open a `.gba` file.
 | `scripts/vendor.mjs` | Copies the runtime and the core into `media/data`. |
 | `test/make-rom.mjs` | A tiny ARM assembler and the test cartridge it builds. |
 | `test/run-webview.mjs` | Boots the real page in headless chromium and checks the picture. |
+| `test/run-guard.mjs` | Runs the extension against a stub `vscode` and checks the keyboard guard. |
 
-## The four things that decide whether this works
+## The five things that decide whether this works
 
 **A webview is not cross origin isolated.** `crossOriginIsolated` is false and
 `SharedArrayBuffer` is undefined. Any core built with pthreads is therefore out. The
@@ -56,6 +57,12 @@ slash. `connect-src` must name `cspSource` as well or the core download is refus
 **The tab must survive a switch.** `retainContextWhenHidden` keeps the running machine
 alive. Without it the webview is disposed and the session is lost.
 
+**The page must be served last.** A webview posts its first message the moment its script
+runs. A listener registered after that message arrives never sees it. The page then waits
+for a load that never comes. Nothing is thrown and nothing is logged so the only symptom
+is a screen that reads *Loading the core* for ever. So `webview.html` is assigned after
+`onDidReceiveMessage` rather than before.
+
 ## The keyboard
 
 A webview forwards its keystrokes to the VS Code keybinding layer. So a pad key can run
@@ -71,6 +78,19 @@ natively.
 The whole pad is guarded rather than the handful of keys that collide today. Because
 a) a user may bind a plain key themselves b) VS Code adds bindings between releases
 c) guarding a key that nothing else claims costs nothing.
+
+A context key is global to the window. Nothing scopes those bindings to the webview. So a
+guard left standing with nobody playing swallows the same keys in a text editor.
+
+`refreshGuard` works the key out from what is live on every event. It holds while the
+window has the system keyboard and a surface that is still alive reports the keyboard from
+a place that is on screen. Because a) minimising fires no view state change so a page that
+went down holding the keyboard would keep the guard for ever b) a page destroyed by a
+dispose or by a reload posts no blur to clear itself c) one missed clear used to stand for
+the rest of the session.
+
+`onDidChangeWindowState` reports the first of those three. An extension is told nowhere
+else that the keyboard has left the window.
 
 The guarded set is the EmulatorJS mGBA default. That is `x` `s` `v` `enter` the four
 arrows `z` `a` `q` `e` `tab` and `r`. Change the pad in the emulator settings and edit
@@ -97,13 +117,60 @@ bound to a file the way a tab is so it follows whichever cartridge was opened la
 it to the panel or the secondary side bar if either suits you better.
 
 Collapsing the section does not stop the game. `retainContextWhenHidden` holds the
-machine and the sound carries on.
+machine and the sound carries on. Minimising the window does stop it.
 
 Only one machine runs at a time. Because two cores on one cartridge would take turns
 overwriting the same save file. When a surface takes the cartridge the other is asked to
 hand over a state first, so the position carries rather than falling back to the last
 battery save. The wait is bounded at three seconds. Because a webview that has already
 gone will never answer and the new machine must still start.
+
+## Layout
+
+Two things push the picture off centre.
+
+**VS Code injects its own stylesheet ahead of the page's.** That stylesheet puts `0 20px`
+of padding on the body. A `#game` sized at `100vw` then starts after the left padding and
+runs twenty pixels off the right edge. What shows is a black bar down the left with a
+clipped right edge. So the padding is reset and the box is sized against the body rather
+than against the viewport. A viewport unit does not track a padded box.
+
+**The core puts its letterbox at the top.** Given a box that is not the shape of the
+picture it draws at the top and leaves the rest black below. In a side bar column that is
+most of the section. So the box is cut to the shape of the picture instead and a grid
+centres it. There is then no letterbox for the core to misplace.
+
+The shape comes from `getVideoDimensions("aspect")`. Because a Game Boy cartridge is 10:9
+and must not be forced into the 3:2 of a Game Boy Advance one.
+
+## Minimising
+
+The machine suspends when the window is minimised. The main loop stops and the sound goes
+silent. Restoring the window starts both again. Somebody who muted the sound beforehand
+stays muted.
+
+A minimised window is not the same as a hidden surface. A collapsed side bar section and a
+tab that is not on top leave the document hidden as well. The page cannot tell the three
+apart on its own. So the host reports whether the surface is still on screen. Hidden while
+on screen is a minimised window and nothing else.
+
+`setVolume` applies a level and never records it. The chosen level lives in
+`EJS_emulator.volume` so that is what a resume applies again.
+
+## Reload
+
+`GBA: Reload` serves the page again. The core restarts from the top so the whole boot is
+logged a second time. The refresh button on the editor tab and on the side bar section
+runs the same command.
+
+The message listener is left alone across a reload. Because a second listener would answer
+every message twice.
+
+`renderHtml` draws a fresh nonce on every call so the html always differs. VS Code ignores
+an assignment that matches what the webview already holds.
+
+The command acts on the surface that last became active. That is the rule the state
+commands already follow.
 
 ## Saves
 
@@ -173,6 +240,22 @@ Two more cover the state path. The harness posts `takeState` and `applyState` in
 page exactly as the commands do. A state must come back and it must load again without
 complaint.
 
+Three cover the layout. The bars around the picture are measured out of the capture. They
+must match on both axes and the picture must hold its shape. The harness carries the
+stylesheet VS Code injects so the page under test is the page that ships. `WINDOW` sets
+the window size so a side bar column can be reproduced. It defaults to `800,600`.
+
+Eleven cover the keyboard guard. `test/run-guard.mjs` calls the extension's own
+`activate` against a stub `vscode` module so no display is needed. A minimised window must
+drop the guard. A restored window must put it back. A disposed surface must drop it. So
+must a reload. A page must not raise it while the window is unfocused. The key must be set
+only when it changes.
+
+Five cover suspension. `document.hidden` is read only so the harness shadows it on the
+document and fires the event a browser would fire. The machine must go quiet on a minimise
+and come back on a restore. It must carry on when the host says the surface went away with
+the document.
+
 The extension host itself is not exercised. Because no virtual display is available here
 to run one.
 
@@ -187,6 +270,12 @@ else. Even a refusal to start is a `console.log` inside `startGameError`.
 
 `gba.log` chooses whether the routine chatter is filed at info or at debug. Nothing is
 ever dropped so the setting cannot hide a fault.
+
+It defaults to `all` so the whole boot is visible without touching anything. Because a) an
+output channel records nothing below its own level b) that level starts at info. Set it to
+`errors` once a cartridge runs and only the faults stay at info.
+
+The level the channel is running at is the first line written to it.
 
 A watch runs alongside the boot. Nothing is thrown when the core declines to start so it
 polls `failedToStart` and reads the reason out of the page. A boot that simply never

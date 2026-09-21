@@ -56,6 +56,7 @@ function linkOf(over: Partial<StoredJiraLink> = {}): StoredJiraLink {
 
 const cacheOf = () => ({
   period: '2026-08',
+  scope: 'closed' as const,
   fetchedAt: '2026-09-08T11:00:00.000Z',
   version: 1,
   tickets: [] as CompletedTicket[],

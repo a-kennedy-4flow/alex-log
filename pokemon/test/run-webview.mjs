@@ -33,6 +33,14 @@ let html = renderHtml(webview, { path: "/media" });
 
 // 2. Splice in a host stub that answers "ready" with the ROM.
 const nonce = html.match(/nonce-([A-Za-z0-9]+)/)[1];
+
+// VS Code injects its own stylesheet into every webview ahead of the page's
+// own. The horizontal padding in it is what pushes an unreset layout sideways.
+// Without it here the page under test is not the page that ships.
+html = html.replace("<style>", `<style>
+  body { margin: 0; padding: 0 20px; background-color: transparent; }
+</style>
+<style>`);
 const stub = `<script nonce="${nonce}">
 window.__log = [];
 ${process.env.LEGACY ? "window.EJS_forceLegacyCores = true;" : ""}
@@ -45,7 +53,7 @@ window.acquireVsCodeApi = () => ({ postMessage(m) {
   // The host serves the cartridge rather than posting it. Same as the real one.
   window.postMessage({ type: "load", name: "stub.gba",
     romUrl: location.origin + "/rom.gba", save: undefined,
-    volume: 0, saveIntervalSeconds: 3, autoStateMinutes: 0.1 }, "*");
+    volume: 0, saveIntervalSeconds: 3, autoStateMinutes: 0.1, surfaceVisible: true }, "*");
 } });
 </script>`;
 html = html.replace(`<script nonce="${nonce}" src="/media/webview/boot.js">`, stub + `\n<script nonce="${nonce}" src="/media/webview/boot.js">`);
@@ -70,7 +78,9 @@ const server = createServer(async (req, res) => {
 await new Promise((r) => server.listen(PORT, r));
 
 // 4. Drive chromium over CDP.
+const WINDOW = process.env.WINDOW ?? "800,600";
 const chrome = spawn(CHROME, ["--headless", "--remote-debugging-port=9333", "--no-sandbox",
+  "--window-size=" + WINDOW,
   "--disable-dev-shm-usage", "--enable-unsafe-swiftshader", "--use-gl=angle",
   "--use-angle=swiftshader", "--autoplay-policy=no-user-gesture-required", "about:blank"],
   { stdio: ["ignore", "pipe", "pipe"] });
@@ -152,6 +162,40 @@ const states = await send("Runtime.evaluate", { awaitPromise: true, returnByValu
     const complainedAboutUnknown = (window.__said || [])
       .slice(beforeUnknown).some((e) => e.includes("no handler for message type loadState"));
 
+    // A minimised window is the document going hidden while the host still
+    // reports the surface on screen. document.hidden is read only so the test
+    // shadows it on the instance and fires the event the browser would fire.
+    let hidden = false;
+    Object.defineProperty(document, "hidden", { configurable: true, get: () => hidden });
+    const since = (mark) => (window.__said || []).slice(mark);
+    const hide = async (value) => {
+      hidden = value;
+      document.dispatchEvent(new Event("visibilitychange"));
+      await wait(500);
+    };
+
+    // The harness boots silent so a level is chosen the way the slider does.
+    window.EJS_emulator.volume = 0.42;
+    window.EJS_emulator.setVolume(0.42);
+    let mark = (window.__said || []).length;
+    await hide(true);
+    const suspends = since(mark).some((e) => e.includes("suspended while the window is minimised"));
+    const silenced = window.EJS_emulator.muted === true;
+
+    // A collapsed section reports the same hidden document. The host says the
+    // surface went with it so the machine must carry on.
+    mark = (window.__said || []).length;
+    window.postMessage({ type: "surface", visible: false }, "*");
+    await wait(500);
+    const collapsedPlaysOn = since(mark).some((e) => e.includes("resumed"));
+    window.postMessage({ type: "surface", visible: true }, "*");
+    await wait(500);
+
+    mark = (window.__said || []).length;
+    await hide(false);
+    const resumes = since(mark).some((e) => e.includes("resumed"));
+    const audible = window.EJS_emulator.muted === false;
+
     // Hand the cartridge over as a second surface would and check it goes quiet.
     const beforeHandover = window.__log.length;
     window.postMessage({ type: "standDown" }, "*");
@@ -159,6 +203,7 @@ const states = await send("Runtime.evaluate", { awaitPromise: true, returnByValu
     const handed = window.__log.slice(beforeHandover).some((e) => e.startsWith("state"));
     const parked = !!document.getElementById("status");
     return { size, handed, parked, complainedAboutUnknown, auto: !!window.__auto,
+      suspends, silenced, collapsedPlaysOn, resumes, audible,
       complained: window.__log.slice(before).some((e) => e.startsWith("error")) };
   })()` }, sessionId);
 
@@ -184,14 +229,37 @@ const pixels = await send("Runtime.evaluate", { awaitPromise: true, returnByValu
     const ctx = c.getContext("2d");
     ctx.drawImage(img, 0, 0);
     const all = ctx.getImageData(0, 0, c.width, c.height).data;
-    const at = (fx, fy) => {
-      const i = ((Math.round(fy * (c.height - 1)) * c.width) + Math.round(fx * (c.width - 1))) * 4;
-      return { r: all[i], g: all[i + 1], b: all[i + 2] };
-    };
     const seen = new Set();
     for (let i = 0; i < all.length; i += 4) seen.add((all[i] << 16) | (all[i + 1] << 8) | all[i + 2]);
+
+    // The ramp paints the whole framebuffer so anything still black is a bar
+    // around it. Column zero of the ramp carries green and row zero carries red
+    // so neither edge is lost to the scan.
+    const lit = (x, y) => {
+      const i = ((y * c.width) + x) * 4;
+      return all[i] + all[i + 1] + all[i + 2] > 24;
+    };
+    const columnLit = (x) => { for (let y = 0; y < c.height; y++) if (lit(x, y)) return true; return false; };
+    const rowLit = (y) => { for (let x = 0; x < c.width; x++) if (lit(x, y)) return true; return false; };
+    let first = -1, last = -1, top_ = -1, bottom_ = -1;
+    for (let x = 0; x < c.width; x++) if (columnLit(x)) { if (first < 0) first = x; last = x; }
+    for (let y = 0; y < c.height; y++) if (rowLit(y)) { if (top_ < 0) top_ = y; bottom_ = y; }
+
+    // Sampled inside the picture rather than inside the capture. A fraction of
+    // the capture lands in a bar as soon as the window stops being 800 by 600.
+    const at = (fx, fy) => {
+      const x = first + Math.round(fx * (last - first));
+      const y = top_ + Math.round(fy * (bottom_ - top_));
+      const i = ((y * c.width) + x) * 4;
+      return { r: all[i], g: all[i + 1], b: all[i + 2] };
+    };
+    const bars = { viewport: c.width + "x" + c.height,
+      leftBar: first, rightBar: c.width - 1 - last,
+      topBar: top_, bottomBar: c.height - 1 - bottom_,
+      picture: (last - first + 1) + "x" + (bottom_ - top_ + 1) };
+
     return { colours: seen.size, left: at(0.08, 0.5), right: at(0.92, 0.5),
-             top: at(0.5, 0.12), bottom: at(0.5, 0.88) };
+             top: at(0.5, 0.12), bottom: at(0.5, 0.88), bars };
   })()` }, sessionId);
 
 const p = pixels.result?.value;
@@ -204,16 +272,31 @@ const checks = p ? [
   ["green falls from top to bottom", p.top.g > p.bottom.g + 40],
   ["red holds down a column", Math.abs(p.top.r - p.bottom.r) < 8],
   ["blue stays off", p.top.b < 8 && p.bottom.b < 8],
+  // The injected stylesheet used to push the picture right and the core puts
+  // its own letterbox at the top. Both read as a bar down one side only.
+  ["the picture is centred across", Math.abs(p.bars.leftBar - p.bars.rightBar) <= 1],
+  ["the picture is centred down", Math.abs(p.bars.topBar - p.bars.bottomBar) <= 1],
+  ["the picture keeps its aspect", (() => {
+    const [w, h] = p.bars.picture.split("x").map(Number);
+    return Math.abs(w / h - 1.5) < 0.02;
+  })()],
   ["a state reached the host", (states.result?.value?.size ?? 0) > 1000],
   ["the state loaded back without complaint", states.result?.value?.complained === false],
   ["the timer files an automatic state", states.result?.value?.auto === true],
   ["an unknown message type is reported", states.result?.value?.complainedAboutUnknown === true],
+  ["a minimised window suspends the machine", states.result?.value?.suspends === true],
+  ["a suspended machine is silent", states.result?.value?.silenced === true],
+  ["a collapsed surface carries on playing", states.result?.value?.collapsedPlaysOn === true],
+  ["restoring the window resumes the machine", states.result?.value?.resumes === true],
+  ["a resumed machine gets its volume back", states.result?.value?.audible === true],
   ["a handover yields its position", states.result?.value?.handed === true],
   ["the surface that yielded goes quiet", states.result?.value?.parked === true],
 ] : [["page returned pixels", false]];
 
 console.log("=== picture ===");
 console.log(JSON.stringify(p));
+console.log("=== bars ===");
+console.log(JSON.stringify(p?.bars));
 for (const [name, ok] of checks) console.log(`${ok ? "pass" : "FAIL"}  ${name}`);
 const failed = checks.filter(([, ok]) => !ok).length;
 

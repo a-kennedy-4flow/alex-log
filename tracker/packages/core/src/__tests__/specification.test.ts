@@ -34,6 +34,7 @@ function ticketOf(over: Partial<CompletedTicket> = {}): CompletedTicket {
     summary: 'Add TO/Load identification',
     projectKey: 'PLRS',
     resolvedAt: '2026-08-26T14:34:46.607+0200',
+    status: 'Done',
     parentKey: null,
     parentSummary: null,
     costCentre: null,

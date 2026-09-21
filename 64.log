@@ -1,0 +1,45 @@
+Log 64. Four changes to the tracker guided build. A tutorial for the guided page. Absence and other entered on one page. A day of week background tint on the day cells. The build button lands on the filled month. One line per command. UTC timestamp then command then result.
+2026-09-19T11:21:08Z ls of the repo root and tail of 63.log — 63 is the highest log so this work takes 64.
+2026-09-19T11:24:00Z cat of GuidedPage.vue and useGuided.ts and packages/core/src/guided.ts — the guided build holds one absence type for the whole month in a single ref.
+2026-09-19T11:26:00Z cat of useTour.ts and App.vue and grep for setPage — the tour has four pages and the guided page names none so the help button does nothing there.
+2026-09-19T11:27:00Z sed of en.ts tour and guided blocks — the catalogue has no guided steps and the intro still says three answers.
+2026-09-19T11:32:00Z cat of MonthGrid.vue and MonthCalendar.vue and tokens.css and colour.test.ts — a new background needs a hex in tokens.css and the same hex in the THEME set of the colour test.
+2026-09-19T11:34:00Z grep for absenceTypes across the workspace — the catalogue holds two labels Vacation or sickness and Other absence.
+2026-09-19T11:40:00Z pnpm vitest run in apps/web — 7 failures before any edit. The English catalogue is missing tour.steps.quickRows which every other locale holds. It is fixed as part of this work.
+2026-09-19T11:58:00Z rewrite of useGuided.ts — step one now holds a count per absence label and step two holds the label of each placed day so both kinds fit in one month.
+2026-09-19T11:59:00Z rewrite of GuidedPage.vue — one count per kind and a switch for which kind is being placed and five tour anchors and a build that opens the month view.
+2026-09-19T12:00:00Z python3 edit of tokens.css — five weekday washes at one luminance of 0.875.
+2026-09-19T12:01:00Z python3 edit of colour.test.ts — the five hexes are in the theme set and Smart Blue clears 4.5 on each and Grey is proved to fail on all five.
+2026-09-19T12:02:00Z python3 edit of MonthGrid.vue and MonthCalendar.vue — the wash goes on the row and on the board column and Grey leaves the day cells because it cannot sit on a wash.
+2026-09-19T12:03:00Z python3 edit of useTour.ts — a guided page with five steps.
+2026-09-19T12:04:00Z new GuidedResult.vue and edit of MonthPage.vue — the build outcome now reports on the page the build lands on.
+2026-09-19T12:05:00Z python3 edit of the eight catalogues — five guided tour steps and guided.dismiss and a reworded buildIntro. The English catalogue also gains the tour.steps.quickRows it never had.
+2026-09-19T12:15:00Z python3 rewrite of the guided blocks in render.test.ts — the old tests set a single absence type. Five new tests cover both kinds in one month and the picked kind and the trim and the switch and the navigation on build.
+2026-09-19T12:17:00Z pnpm vue-tsc --noEmit in apps/web — clean.
+2026-09-19T12:18:00Z pnpm vitest run in apps/web — five colour failures. The token reader in colour.test.ts matched --[a-z-]+ so it never saw --dow-1. Widened to --[a-z0-9-]+.
+2026-09-19T12:19:00Z pnpm vitest run in apps/web — 350 pass across 12 files.
+2026-09-19T12:24:00Z pnpm -r --no-bail typecheck then pnpm lint then pnpm -r test — every project clean and 835 tests pass.
+2026-09-19T12:26:00Z pnpm build — the production bundle builds.
+2026-09-19T12:30:00Z python3 edit of styles.test.ts and render.test.ts — the wash is guarded as a stylesheet invariant and as a class the grid and the board actually write.
+2026-09-19T12:31:00Z pnpm vitest run in apps/web — 360 pass.
+2026-09-19T12:38:00Z python3 edit of useGuided.ts and GuidedPage.vue — maxFor clamps each count so two kinds cannot together ask for more absence than the month has working days.
+2026-09-19T12:40:00Z python3 edit of render.test.ts — tests for the clamp and for the GuidedResult notice on the month view.
+2026-09-19T12:41:00Z pnpm vitest run in apps/web — one failure. The test asked for a warning from a month spent entirely away and that month is short by nothing. Rewritten to raise the target instead.
+2026-09-19T12:42:00Z pnpm vitest run in apps/web — 365 pass.
+2026-09-19T12:50:00Z python3 edit of readme.md — a section for the wash of the weekday and a corrected tour table and the guided build prose for the two absences and the navigation.
+2026-09-19T12:52:00Z pnpm -r test then pnpm lint — 850 tests pass and eslint is clean.
+2026-09-19T12:53:00Z pnpm vite --port 5183 in apps/web — left running for the visual check. Port 5173 was already taken by another session.
+2026-09-19T13:05:00Z ls of the tracker root and cat of tools/extract-fixtures/extract.mjs — the extractor reads the two .xlsm trackers alone. The 4s project numbers .xlsx is tracked in git and never reaches the fixtures.
+2026-09-19T13:07:00Z grep for mergeProjectNumbers — the admin page lays the list over the stored catalogue with addAbsent defaulting to true. The seed has to do the same.
+2026-09-19T13:20:00Z python3 colour search over the palette — Monday and Wednesday were two greys a pixel apart. Smart Blue and Grey both wash to a neutral at that lightness so the two can never be told apart.
+2026-09-19T13:35:00Z python3 constrained search — Grey and Warm Grey have zero legal washes. Every light one lands under 5 delta E of Warm Grey which is the ground of a chip. The palette yields four washes and not five.
+2026-09-19T13:45:00Z python3 coordinate ascent on the four that work — Monday Bright Blue and Tuesday Vibrant Orange and Wednesday the sheet and Thursday Bold Pink and Friday Smart Blue. No pair under 9 delta E and neighbours from 12 to 26.
+2026-09-19T13:50:00Z python3 edit of tokens.css and colour.test.ts — the new washes and a delta E function. Contrast was the wrong measure and is what let the two greys through.
+2026-09-19T13:52:00Z pnpm vitest run src/__tests__/colour.test.ts — 39 pass.
+2026-09-19T14:05:00Z node probe of the merge — the 4s list holds 798 numbers over 1094 rows. It names 426 catalogue rows and adds 348 the tracker has not got.
+2026-09-19T14:10:00Z python3 edit of tools/extract-fixtures/extract.mjs — the extractor now reads the newest .xlsx project numbers list and lays it over the catalogue with the absent numbers added.
+2026-09-19T14:15:00Z pnpm fixtures — the seed is rebuilt. 798 numbers named 462 tracker rows and added 312. The project list goes from 3149 to 3461 and source.projectNumbers names the list.
+2026-09-19T14:18:00Z git diff --stat packages/fixtures — only projects.json grows. The other four files gain the projectNumbers source alone.
+2026-09-19T14:22:00Z python3 edit of render.test.ts — two tests read the list back and check every number is bookable in the seed and that the names reached the tracker rows.
+2026-09-19T14:25:00Z python3 edit of readme.md — a section on the seed for local development.
+2026-09-19T14:30:00Z pnpm -r typecheck then pnpm lint then pnpm -r test — every project clean and 869 tests pass.

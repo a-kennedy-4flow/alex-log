@@ -26,8 +26,20 @@ export function renderHtml(webview: vscode.Webview, media: vscode.Uri): string {
 <meta http-equiv="Content-Security-Policy" content="${csp}">
 <title>Game Boy Advance</title>
 <style>
-  html, body { height: 100%; margin: 0; background: #000; overflow: hidden; }
-  #game { width: 100vw; height: 100vh; }
+  /* VS Code injects its own stylesheet ahead of this one and that stylesheet
+     puts horizontal padding on the body. Left unreset it shows as a black bar
+     down the left while the right of the picture is clipped away. */
+  html, body { height: 100%; margin: 0; padding: 0; background: #000; overflow: hidden; }
+  body { display: grid; place-items: center; container-type: size; }
+  /* A percentage tracks the padded box. A viewport unit does not. */
+  #game { width: 100%; height: 100%; }
+  /* The core puts its picture at the top of whatever box it is given rather
+     than in the middle of it. So the box is cut to the picture instead and the
+     grid above centres it. boot.js sets the ratio once the core reports it. */
+  #game.fitted {
+    width: min(100cqw, calc(100cqh * var(--aspect)));
+    height: min(100cqh, calc(100cqw / var(--aspect)));
+  }
   #status {
     position: absolute; inset: 0; display: grid; place-items: center;
     color: var(--vscode-foreground); font: var(--vscode-font-size) var(--vscode-font-family);

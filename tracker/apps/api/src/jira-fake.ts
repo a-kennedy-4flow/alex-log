@@ -13,14 +13,24 @@
 // as absent here. Not because the site holds none but because that capture
 // never asked for them. A test about any of the three stubs `fetch` behind
 // `AtlassianJira` instead. `__tests__/jira.test.ts` does exactly that.
+//
+// `WORKING` is the one invention in this file. That capture asked only for
+// closed tickets so it holds none that were still open. The scope switch shows
+// nothing at all without a row to widen to.
 
-import { NO_HOURS_SOURCE, type CompletedTicket } from '@tracker/core'
+import {
+  DEFAULT_TICKET_SCOPE,
+  NO_HOURS_SOURCE,
+  type CompletedTicket,
+  type TicketScope,
+} from '@tracker/core'
 
 import type { Cipher } from './jira-tokens'
 import type { Jira, TokenSet } from './jira'
 
 type FakeTicket = Omit<
   CompletedTicket,
+  | 'status'
   | 'workdayId'
   | 'hours'
   | 'hoursSource'
@@ -85,6 +95,24 @@ const AUGUST: FakeTicket[] = [
   },
 ]
 
+/** Read only under the wider scope. Nothing resolved one so none carries a date. */
+const WORKING: FakeTicket[] = [
+  {
+    key: 'PLRS-1203',
+    summary: 'Split the delivery note importer off the mail poller',
+    projectKey: 'PLRS',
+    resolvedAt: '',
+    parentSummary: 'Release 3 technical tasks',
+  },
+  {
+    key: 'DEVH-4902',
+    summary: 'Move the staging proxy onto the new certificate',
+    projectKey: 'DEVH',
+    resolvedAt: '',
+    parentSummary: null,
+  },
+]
+
 export class FakeJira implements Jira {
   /** Counted so a test can prove a cache or a claim stopped a second call. */
   refreshes = 0
@@ -112,11 +140,17 @@ export class FakeJira implements Jira {
     return this.account
   }
 
-  async completed(_accessToken: string, period: string): Promise<CompletedTicket[]> {
+  async completed(
+    _accessToken: string,
+    period: string,
+    scope: TicketScope = DEFAULT_TICKET_SCOPE,
+  ): Promise<CompletedTicket[]> {
     this.searches++
     if (period !== this.period) return []
-    return AUGUST.map((ticket) => ({
+    const read = scope === 'all' ? [...AUGUST, ...WORKING] : AUGUST
+    return read.map((ticket) => ({
       ...ticket,
+      status: ticket.resolvedAt === '' ? 'In Progress' : 'Done',
       parentKey: null,
       costCentre: null,
       costCentreFrom: null,

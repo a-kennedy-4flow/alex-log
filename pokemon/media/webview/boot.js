@@ -110,6 +110,7 @@
       takeState: () => takeState(),
       applyState: () => applyState(message.data),
       standDown: () => standDown(),
+      surface: () => setSurfaceVisible(message.visible),
     };
     const handler = handlers[message.type];
     // A message with no handler used to vanish without trace. That is how the
@@ -122,7 +123,9 @@
   // quiet. Two running cores would take turns overwriting one save file.
   let heartbeat;
   let snapshot;
+  let handedOver = false;
   function standDown() {
+    handedOver = true;
     const manager = window.EJS_emulator && window.EJS_emulator.gameManager;
     clearInterval(heartbeat);
     clearInterval(snapshot);
@@ -141,6 +144,61 @@
     status.textContent = "Handed over to the other window.";
     document.body.appendChild(status);
   }
+
+  // A minimised window leaves the document hidden. So does a tab switch and a
+  // collapsed side bar section. The page cannot tell those apart so the host
+  // reports whether the surface is still on screen. Hidden while on screen is
+  // a minimised window and nothing else.
+  let surfaceVisible = true;
+  let suspended = false;
+  let wasMuted = false;
+
+  function setSurfaceVisible(value) {
+    surfaceVisible = value !== false;
+    settle();
+  }
+
+  function settle() {
+    // A cartridge already handed over must stay stopped.
+    if (handedOver) return;
+    if (document.hidden && surfaceVisible) suspend();
+    else resume();
+  }
+
+  function suspend() {
+    const emulator = window.EJS_emulator;
+    const manager = emulator && emulator.gameManager;
+    if (suspended || !running || !manager) return;
+    try {
+      // setVolume(0) sets the muted flag so the reading has to come first.
+      wasMuted = !!emulator.muted;
+      manager.toggleMainLoop(0);
+      emulator.setVolume(0);
+      suspended = true;
+      say("info", "suspended while the window is minimised");
+    } catch (error) {
+      say("warn", "could not suspend: " + error);
+    }
+  }
+
+  function resume() {
+    const emulator = window.EJS_emulator;
+    const manager = emulator && emulator.gameManager;
+    if (!suspended || !manager) return;
+    try {
+      manager.toggleMainLoop(1);
+      // setVolume applies a level and never records it. The chosen level lives
+      // in emulator.volume. Somebody who muted before the window went down
+      // stays muted.
+      if (!wasMuted) emulator.setVolume(emulator.volume);
+      suspended = false;
+      say("info", "resumed");
+    } catch (error) {
+      say("warn", "could not resume: " + error);
+    }
+  }
+
+  document.addEventListener("visibilitychange", settle);
 
   // An automatic snapshot is filed separately from a deliberate one. Because a
   // timer must never overwrite the state somebody chose to keep.
@@ -210,6 +268,7 @@
 
   function boot(message) {
     romUrl = message.romUrl;
+    setSurfaceVisible(message.surfaceVisible);
     const save = decode(message.save);
 
 
@@ -245,7 +304,10 @@
       if (message.resume) applyState(message.resume);
       window.addEventListener("pagehide", commit);
       window.addEventListener("blur", commit);
+      fitToPicture();
       document.querySelector("canvas")?.focus();
+      // The window may have been minimised while the core was still loading.
+      settle();
     };
 
     window.EJS_onLoadSave = function () {
@@ -263,6 +325,24 @@
     const script = document.createElement("script");
     script.src = window.GBA_LOADER;
     document.body.appendChild(script);
+  }
+
+  // The core reports its own aspect so a Game Boy cartridge is not forced into
+  // the shape of a Game Boy Advance one.
+  function fitToPicture() {
+    const manager = window.EJS_emulator && window.EJS_emulator.gameManager;
+    const game = document.getElementById("game");
+    if (!manager || !game) return;
+    let aspect = 0;
+    try {
+      aspect = Number(manager.getVideoDimensions("aspect"));
+    } catch (error) {
+      say("warn", "could not read the picture aspect: " + error);
+    }
+    if (!(aspect > 0)) return say("warn", "the core reported no aspect so the box is left full");
+    game.style.setProperty("--aspect", String(aspect));
+    game.classList.add("fitted");
+    say("info", "picture aspect " + aspect);
   }
 
   function commit() {

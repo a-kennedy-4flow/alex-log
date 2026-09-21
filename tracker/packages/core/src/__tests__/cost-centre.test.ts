@@ -137,6 +137,7 @@ describe('resolving the cost centre of one ticket', () => {
       summary: 'Add TO/Load identification',
       projectKey: 'PLRS',
       resolvedAt: '2026-08-26T14:34:46.607+0200',
+      status: 'Done',
       parentKey: 'PLRS-900',
       parentSummary: 'User group feedback',
       costCentre: null,

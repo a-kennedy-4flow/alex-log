@@ -78,9 +78,13 @@ pub struct App {
     view: View,
     filter: String,
     /// Duplicates gathered under the folder on side B that holds them. Built
-    /// once for a report rather than on every frame. The number is the report
-    /// the grouping was built from.
-    groups: Option<(usize, Vec<Folder>)>,
+    /// once for a report rather than on every frame. The report it was built
+    /// from is held alongside it rather than an address standing for it.
+    /// Because an address is reused once the thing it named is dropped and the
+    /// grouping holds places in that report.
+    groups: Option<(Arc<dupes::Report>, Vec<Folder>)>,
+    /// The filter the rows were worked out for.
+    filtered: String,
     /// Folders and files the cache holds. Read once when a report lands rather
     /// than on every frame.
     held: Option<(u64, u64)>,
@@ -90,6 +94,19 @@ pub struct App {
     /// Which file type groups to gather and where to put them.
     chosen: std::collections::HashSet<Cat>,
     destination: String,
+    /// The folders the extractor reads. They are read as one pool.
+    sources: Vec<PathBuf>,
+    /// What the folders listed hold by file type. Read when the extractor is
+    /// told to look rather than on every frame.
+    present: Vec<(Cat, u64, u64)>,
+    surveying: Option<Arc<browse::Measure>>,
+    /// True while a search the extractor started is still running. The listing
+    /// follows the moment it lands.
+    extracting: bool,
+    /// Which folder a file lands in before its own path.
+    top: consolidate::Top,
+    /// Which question the extractor is asking now.
+    step: Step,
     /// What each group of the copies holds. Worked out once when the gather
     /// view opens.
     by_cat: Vec<(Cat, u64, u64)>,
@@ -97,20 +114,28 @@ pub struct App {
     gathering: Option<Arc<gather::Job>>,
     /// Ticked before anything is taken away. Cleared the moment it is used.
     sure: bool,
-    /// Set while the picker is being used to name somewhere rather than to look
-    /// at something.
-    picking: bool,
-    /// Where the picker came from so it can go back there.
-    picking_back: View,
+    /// What the picker is being asked to name and where it goes back to.
+    /// `None` while the picker is only being looked at.
+    ///
+    /// One field rather than three. Because three fields encoding one mode can
+    /// hold a combination that means nothing, and a caller that sets two of
+    /// them sends the picker's answer to whoever set the third last.
+    picking: Option<(Naming, View)>,
     /// How many parts of a path survive the flattening.
     levels: usize,
     working: Option<Arc<consolidate::Working>>,
     across: Option<Arc<consolidate::Plan>>,
+    /// Groups the job now running was asked to act on. Held until it finishes
+    /// because only a clean finish settles them.
+    acting: std::collections::HashSet<Cat>,
     /// Groups already acted on. Marked so a long list can be worked through
     /// without losing the place.
     settled: std::collections::HashSet<Cat>,
-    /// Groups a search looks at. Empty means everything.
-    only: std::collections::HashSet<Cat>,
+    /// What a search and the extractor look at. An empty pick is everything.
+    pick: cats::Pick,
+    /// The extensions box as it was typed. Held apart from the pick because a
+    /// half typed name is not yet an extension.
+    ext_text: String,
     /// An entry waiting to be sent to the recycle bin and what it holds. A
     /// single click is not enough to take something away.
     confirm: Option<(PathBuf, u64)>,
@@ -136,7 +161,74 @@ enum View {
     Gather,
     Browse,
     Recycled,
-    Consolidate,
+    Extract,
+}
+
+/// What the picker is being asked to name.
+#[derive(PartialEq, Eq, Clone, Copy, Debug)]
+enum Naming {
+    /// A folder for the extractor to read.
+    Source,
+    /// Where the copies go.
+    Destination,
+}
+
+/// One question the extractor asks. They are asked in this order.
+///
+/// Extracting is one question split into the parts a person answers one at a
+/// time. Because a) each part changes what the next part is worth asking b) the
+/// search costs minutes and is only worth starting once the first three are
+/// settled and c) nothing is written until the fourth has been read.
+#[derive(PartialEq, Eq, Clone, Copy, Debug)]
+enum Step {
+    Folders,
+    Files,
+    Where,
+    Plan,
+    Copy,
+}
+
+impl Step {
+    const ALL: [Step; 5] = [
+        Step::Folders,
+        Step::Files,
+        Step::Where,
+        Step::Plan,
+        Step::Copy,
+    ];
+
+    fn title(self) -> &'static str {
+        match self {
+            Step::Folders => "Folders to read",
+            Step::Files => "What comes across",
+            Step::Where => "Where it goes",
+            Step::Plan => "What would happen",
+            Step::Copy => "Copying",
+        }
+    }
+
+    /// What this step is for. One line above the body.
+    fn says(self) -> &'static str {
+        match self {
+            Step::Folders => {
+                "Every folder listed is read as one pool. A file held in five of them arrives \
+                 once."
+            }
+            Step::Files => "Pick what comes across. Nothing ticked takes every file there is.",
+            Step::Where => "Name a folder that already exists and say how it is laid out there.",
+            Step::Plan => {
+                "Nothing is written yet. This is what would be laid down and what could then go."
+            }
+            Step::Copy => {
+                "Copying only. Nothing in the old folders is moved or deleted or written over."
+            }
+        }
+    }
+
+    fn before(self) -> Option<Step> {
+        let at = Step::ALL.iter().position(|s| *s == self)?;
+        at.checked_sub(1).map(|i| Step::ALL[i])
+    }
 }
 
 /// Rates worked out from two readings a moment apart. A counter on its own
@@ -189,6 +281,15 @@ struct Folder {
     bytes: u64,
     /// Places in the report rather than copies of it.
     pairs: Vec<usize>,
+    /// What the filter leaves. `None` when it leaves everything.
+    shown: Option<Vec<usize>>,
+}
+
+impl Folder {
+    /// The rows to draw.
+    fn rows(&self) -> &[usize] {
+        self.shown.as_deref().unwrap_or(&self.pairs)
+    }
 }
 
 impl App {
@@ -209,22 +310,30 @@ impl App {
             view: View::Map,
             filter: String::new(),
             groups: None,
+            filtered: String::new(),
             held: None,
             slack: None,
             meter: Meter::default(),
             chosen: std::collections::HashSet::new(),
             destination: String::new(),
+            sources: Vec::new(),
+            present: Vec::new(),
+            surveying: None,
+            extracting: false,
+            top: consolidate::Top::Nothing,
+            step: Step::Folders,
             by_cat: Vec::new(),
             plan: None,
             gathering: None,
             sure: false,
-            picking: false,
-            picking_back: View::Gather,
+            picking: None,
             levels: 3,
             working: None,
             across: None,
+            acting: std::collections::HashSet::new(),
             settled: std::collections::HashSet::new(),
-            only: std::collections::HashSet::new(),
+            pick: cats::Pick::default(),
+            ext_text: String::new(),
             confirm: None,
             said: None,
             at: PathBuf::new(),
@@ -310,40 +419,27 @@ impl App {
             // What a search looks at. Named here rather than in the search
             // because a search can be started from the map menu without ever
             // coming past a view.
-            let looking = match self.only.len() {
-                0 => "everything".to_string(),
-                1 => self
-                    .only
-                    .iter()
-                    .next()
-                    .map(|c| c.label().to_lowercase())
-                    .unwrap_or_default(),
-                n => format!("{n} groups"),
-            };
             egui::ComboBox::from_id_salt("only")
-                .selected_text(format!("Searching {looking}"))
-                .width(190.0)
+                .selected_text(format!("Searching {}", self.pick.says()))
+                .width(220.0)
                 .show_ui(ui, |ui| {
                     if ui.button("Everything").clicked() {
-                        self.only.clear();
+                        self.pick = cats::Pick::default();
+                        self.ext_text.clear();
                     }
-                    if ui.button("Pictures").clicked() {
-                        self.only = [Cat::Image].into_iter().collect();
-                    }
-                    if ui.button("Music").clicked() {
-                        self.only = [Cat::Audio].into_iter().collect();
-                    }
-                    if ui.button("Pictures and music").clicked() {
-                        self.only = [Cat::Image, Cat::Audio].into_iter().collect();
+                    for bundle in &cats::BUNDLES {
+                        if ui.button(bundle.label).clicked() {
+                            self.pick.cats = bundle.cats.iter().copied().collect();
+                        }
                     }
                     ui.separator();
                     for cat in cats::LEGEND {
-                        let mut on = self.only.contains(&cat);
+                        let mut on = self.pick.cats.contains(&cat);
                         if ui.checkbox(&mut on, cat.label()).changed() {
                             if on {
-                                self.only.insert(cat);
+                                self.pick.cats.insert(cat);
                             } else {
-                                self.only.remove(&cat);
+                                self.pick.cats.remove(&cat);
                             }
                         }
                     }
@@ -374,6 +470,17 @@ impl App {
                     }
                     self.view = View::Browse;
                 }
+            }
+            if ui
+                .selectable_label(self.view == View::Extract, "Extract")
+                .on_hover_text("Takes the file types you pick out of a set of folders")
+                .clicked()
+            {
+                self.view = if self.view == View::Extract {
+                    View::Map
+                } else {
+                    View::Extract
+                };
             }
             if ui
                 .selectable_label(self.view == View::Recycled, "Recycle bin")
@@ -691,37 +798,44 @@ impl App {
                 self.second = Some(target.path.clone());
                 ui.close();
             }
+            if ui.button("Add to the extractor").clicked() {
+                self.add_source(target.path.clone());
+                ui.close();
+            }
         }
-    }
-
-    /// Which groups a search should look at. `None` looks at everything.
-    fn looking(&self) -> Option<std::collections::HashSet<Cat>> {
-        (!self.only.is_empty()).then(|| self.only.clone())
     }
 
     fn start_compare(&mut self, ctx: &egui::Context) {
-        if let Some(old) = self.compare.take() {
-            old.stop();
-        }
         let (Some(a), Some(b)) = (self.first.clone(), self.second.clone()) else {
             return;
         };
-        self.groups = None;
-        self.filter.clear();
-        self.view = View::Duplicates;
-        self.compare = Some(dupes::start(a, Some(b), self.looking(), ctx.clone()));
+        self.start_search(vec![a, b], dupes::Mode::Against, ctx);
     }
 
     /// Searches one folder on its own rather than setting two against each
     /// other.
     fn start_alone(&mut self, root: PathBuf, ctx: &egui::Context) {
+        self.start_search(vec![root], dupes::Mode::Pooled, ctx);
+    }
+
+    /// Starts a search and shows what it finds.
+    fn start_search(&mut self, roots: Vec<PathBuf>, mode: dupes::Mode, ctx: &egui::Context) {
         if let Some(old) = self.compare.take() {
             old.stop();
         }
         self.groups = None;
         self.filter.clear();
         self.view = View::Duplicates;
-        self.compare = Some(dupes::start(root, None, self.looking(), ctx.clone()));
+        self.compare = Some(dupes::start(roots, mode, self.pick.clone(), ctx.clone()));
+    }
+
+    /// The filesystem being looked at. Where a picker starts when nothing else
+    /// says where.
+    fn volume_root(&self) -> PathBuf {
+        self.volumes
+            .get(self.selected)
+            .map(|v| v.path.clone())
+            .unwrap_or_else(|| PathBuf::from("/"))
     }
 
     /// Everything worth telling someone who is reporting a fault.
@@ -984,34 +1098,58 @@ impl App {
         Some(at)
     }
 
+    /// Opens the picker to name a folder. It comes back to `back` with it.
+    fn pick_folder(&mut self, naming: Naming, back: View) {
+        if self.at.as_os_str().is_empty() {
+            let start = self.sources.first().cloned().unwrap_or(self.volume_root());
+            self.go_to(start);
+        }
+        self.picking = Some((naming, back));
+        self.view = View::Browse;
+    }
+
     /// Going to a folder and reading it on its own.
     fn browse_ui(&mut self, ui: &mut Ui) {
         let ctx = ui.ctx().clone();
         ui.horizontal(|ui| {
             if ui.button("Back to the map").clicked() {
-                self.picking = false;
+                self.picking = None;
                 self.view = View::Map;
             }
             ui.separator();
             ui.heading("Browse");
         });
-        if self.picking {
+        if let Some((naming, back)) = self.picking {
+            let source = naming == Naming::Source;
             ui.horizontal(|ui| {
                 ui.label(
-                    egui::RichText::new("Choosing where the copies go")
-                        .strong()
-                        .color(Cat::Code.colour()),
+                    egui::RichText::new(if source {
+                        "Choosing a folder to read"
+                    } else {
+                        "Choosing where the copies go"
+                    })
+                    .strong()
+                    .color(Cat::Code.colour()),
                 );
                 if ui.button("Use this folder").clicked() {
-                    self.destination = self.at.display().to_string();
-                    self.plan = None;
-                    self.across = None;
-                    self.picking = false;
-                    self.view = self.picking_back;
+                    if source {
+                        let at = self.at.clone();
+                        self.add_source(at);
+                    } else {
+                        self.destination = self.at.display().to_string();
+                        self.plan = None;
+                        self.across = None;
+                    }
+                    self.picking = None;
+                    self.view = back;
+                }
+                if source && ui.button("Use it and pick another").clicked() {
+                    let at = self.at.clone();
+                    self.add_source(at);
                 }
                 if ui.button("Cancel").clicked() {
-                    self.picking = false;
-                    self.view = self.picking_back;
+                    self.picking = None;
+                    self.view = back;
                 }
             });
             ui.label(
@@ -1022,6 +1160,16 @@ impl App {
                 .small()
                 .weak(),
             );
+            if source && !self.sources.is_empty() {
+                ui.label(
+                    egui::RichText::new(format!(
+                        "{} folders held for the extractor",
+                        fmt::count(self.sources.len() as u64)
+                    ))
+                    .small()
+                    .weak(),
+                );
+            }
             ui.separator();
         }
 
@@ -1166,21 +1314,25 @@ impl App {
 
             ui.horizontal(|ui| {
                 if ui.button("Draw it in the map").clicked() {
-                    let at = facts.root.clone();
+                    let at = facts.root().to_path_buf();
                     self.reload_at(&at, &ctx);
                 }
                 if ui.button("Scan it for duplicates").clicked() {
-                    let at = facts.root.clone();
+                    let at = facts.root().to_path_buf();
                     self.start_alone(at, &ctx);
                 }
                 if ui.button("Hold as the first folder").clicked() {
-                    self.first = Some(facts.root.clone());
+                    self.first = Some(facts.root().to_path_buf());
                 }
                 if ui.button("Hold as the second folder").clicked() {
-                    self.second = Some(facts.root.clone());
+                    self.second = Some(facts.root().to_path_buf());
+                }
+                if ui.button("Add it to the extractor").clicked() {
+                    let at = facts.root().to_path_buf();
+                    self.add_source(at);
                 }
                 if ui.button("Open in the file manager").clicked() {
-                    sys::open_folder(&facts.root);
+                    sys::open_folder(facts.root());
                 }
                 ui.separator();
                 if ui
@@ -1190,7 +1342,7 @@ impl App {
                     )
                     .clicked()
                 {
-                    self.confirm = Some((facts.root.clone(), facts.bytes));
+                    self.confirm = Some((facts.root().to_path_buf(), facts.bytes));
                 }
             });
             ui.separator();
@@ -1206,7 +1358,7 @@ impl App {
                                 sys::reveal(path);
                             }
                             ui.label(
-                                egui::RichText::new(under_root(path, &facts.root))
+                                egui::RichText::new(under_root(path, facts.root()))
                                     .monospace()
                                     .small(),
                             );
@@ -1216,36 +1368,560 @@ impl App {
         }
     }
 
-    /// Bringing one copy of everything into a new folder.
-    fn consolidate_ui(&mut self, ui: &mut Ui) {
-        let Some(job) = self.compare.clone() else {
-            return;
-        };
-        let Some(report) = job.report() else {
-            return;
-        };
+    /// Taking the files picked out of a set of folders and laying one copy of
+    /// each into a new one.
+    ///
+    /// One step is drawn at a time. The way back and the way on sit below it
+    /// wherever the step got to.
+    fn extract_ui(&mut self, ui: &mut Ui) {
         let ctx = ui.ctx().clone();
+        egui::Panel::top("extract head")
+            .frame(egui::Frame::NONE)
+            .show_separator_line(false)
+            .show(ui, |ui| {
+                ui.horizontal(|ui| {
+                    if ui.button("Back to the map").clicked() {
+                        self.view = View::Map;
+                    }
+                    if self.compare.as_ref().is_some_and(|j| j.report().is_some())
+                        && ui.button("The copies it found").clicked()
+                    {
+                        self.view = View::Duplicates;
+                    }
+                    ui.separator();
+                    ui.heading("Extract");
+                    ui.label(
+                        egui::RichText::new("one copy of each file out of any number of folders")
+                            .small()
+                            .weak(),
+                    );
+                });
+                self.steps_ui(ui);
+                ui.separator();
+                ui.label(egui::RichText::new(self.step.title()).strong());
+                ui.label(egui::RichText::new(self.step.says()).small().weak());
+                ui.add_space(6.0);
+            });
+        egui::Panel::bottom("extract foot")
+            .frame(egui::Frame::NONE)
+            .show_separator_line(false)
+            .show(ui, |ui| {
+                ui.add_space(6.0);
+                ui.separator();
+                self.moving_ui(ui, &ctx);
+            });
+        match self.step {
+            Step::Folders => self.sources_ui(ui),
+            Step::Files => self.types_ui(ui, &ctx),
+            Step::Where => self.where_ui(ui),
+            Step::Plan => self.plan_ui(ui, &ctx),
+            Step::Copy => self.copy_ui(ui),
+        }
+    }
 
-        ui.horizontal(|ui| {
-            if ui.button("Back to the duplicates").clicked() {
-                self.view = View::Duplicates;
+    /// Every step in order with the one being answered marked.
+    fn steps_ui(&mut self, ui: &mut Ui) {
+        // Buttons only. A plain label in a wrapped row is drawn at the start of
+        // the row rather than where the row put it. The numbers carry the order
+        // that a separator between them would have carried.
+        ui.horizontal_wrapped(|ui| {
+            for (i, step) in Step::ALL.iter().enumerate() {
+                if i > 0 {
+                    ui.add_space(4.0);
+                }
+                let here = *step == self.step;
+                let open = self.reachable(*step);
+                let mut text = egui::RichText::new(format!("{}  {}", i + 1, step.title()));
+                if self.settled(*step) && !here {
+                    text = text.color(Cat::Audio.colour());
+                }
+                if ui
+                    .add_enabled(open, egui::Button::selectable(here, text))
+                    .on_disabled_hover_text("Answer the steps before it first")
+                    .clicked()
+                {
+                    self.step = *step;
+                }
             }
-            ui.separator();
-            ui.heading("Bring one of each across");
         });
+    }
+
+    /// Why the destination cannot be used. `None` when it can.
+    ///
+    /// A destination that is one of the folders being read lays every file on
+    /// top of itself. `copy_one` then reports the file as already there and the
+    /// removal list names the only copy. Refused rather than warned about.
+    fn destination_fault(&self) -> Option<String> {
+        let named = self.destination.trim();
+        if named.is_empty() {
+            return Some("Name a folder to write into.".to_string());
+        }
+        let into = PathBuf::from(named);
+        for root in &self.sources {
+            if into.starts_with(root) {
+                return Some(format!(
+                    "This sits inside {}, which is one of the folders being read. \
+                     Every file would be laid on top of itself.",
+                    root.display()
+                ));
+            }
+            if root.starts_with(&into) {
+                return Some(format!(
+                    "{} is held inside this, so the walk would read what it just \
+                     wrote.",
+                    root.display()
+                ));
+            }
+        }
+        None
+    }
+
+    /// True when this step has an answer.
+    ///
+    /// Nothing ticked on the files step is an answer. It takes every file
+    /// there is.
+    fn settled(&self, step: Step) -> bool {
+        match step {
+            Step::Folders => !self.sources.is_empty(),
+            Step::Files => true,
+            Step::Where => self.destination_fault().is_none(),
+            Step::Plan => self.across.is_some(),
+            Step::Copy => self
+                .gathering
+                .as_ref()
+                .is_some_and(|j| j.done.load(Relaxed)),
+        }
+    }
+
+    /// True when this step can be opened. Every step before it is answered.
+    fn reachable(&self, step: Step) -> bool {
+        Step::ALL
+            .iter()
+            .take_while(|s| **s != step)
+            .all(|s| self.settled(*s))
+    }
+
+    /// The way back and the way on.
+    fn moving_ui(&mut self, ui: &mut Ui, ctx: &egui::Context) {
+        ui.horizontal(|ui| {
+            if let Some(back) = self.step.before()
+                && ui.button(format!("‹  {}", back.title())).clicked()
+            {
+                self.step = back;
+            }
+            match self.step {
+                Step::Folders => {
+                    if ui
+                        .add_enabled(
+                            self.settled(Step::Folders),
+                            egui::Button::new("What comes across  ›"),
+                        )
+                        .on_disabled_hover_text("Add at least one folder to read")
+                        .clicked()
+                    {
+                        self.step = Step::Files;
+                        // Only when there is nothing to show. Read what is
+                        // there on the step itself walks them again.
+                        if self.present.is_empty() {
+                            self.survey(ctx);
+                        }
+                    }
+                }
+                Step::Files => {
+                    if ui.button("Where it goes  ›").clicked() {
+                        self.step = Step::Where;
+                    }
+                    ui.label(
+                        egui::RichText::new(format!("taking {}", self.pick.says()))
+                            .small()
+                            .weak(),
+                    );
+                }
+                Step::Where => {
+                    let fault = self.destination_fault();
+                    if ui
+                        .add_enabled(
+                            fault.is_none(),
+                            egui::Button::new("Work out what would happen  ›"),
+                        )
+                        .on_disabled_hover_text(fault.unwrap_or_default())
+                        .clicked()
+                    {
+                        self.start_extract(ctx);
+                    }
+                    ui.label(
+                        egui::RichText::new("The search is the slow part. It writes nothing.")
+                            .small()
+                            .weak(),
+                    );
+                }
+                Step::Plan => {
+                    let across = self.across.clone();
+                    let ready = across
+                        .as_ref()
+                        .is_some_and(|a| !a.items.is_empty() && !a.too_big());
+                    if ui
+                        .add_enabled(ready, egui::Button::new("Copy them across  ›"))
+                        .on_disabled_hover_text("Work out what would happen first")
+                        .clicked()
+                        && let Some(across) = across
+                    {
+                        self.start_copy(&across, ctx);
+                    }
+                }
+                Step::Copy => {
+                    if ui.button("Start again").clicked() {
+                        self.gathering = None;
+                        self.across = None;
+                        self.step = Step::Folders;
+                    }
+                }
+            }
+        });
+    }
+
+    /// The folders being read.
+    fn sources_ui(&mut self, ui: &mut Ui) {
+        let here = self
+            .scan
+            .as_ref()
+            .and_then(|s| s.snapshot())
+            .map(|s| s.path.clone());
+        ui.horizontal(|ui| {
+            if ui.button("Add a folder").clicked() {
+                self.pick_folder(Naming::Source, View::Extract);
+            }
+            if ui
+                .add_enabled(
+                    here.is_some(),
+                    egui::Button::new("Add the folder in the map"),
+                )
+                .clicked()
+                && let Some(here) = here
+            {
+                self.add_source(here);
+            }
+            if ui
+                .add_enabled(
+                    !self.sources.is_empty(),
+                    egui::Button::new("Clear the list"),
+                )
+                .clicked()
+            {
+                self.sources.clear();
+                self.present.clear();
+                self.across = None;
+            }
+        });
+        if self.sources.is_empty() {
+            ui.label(
+                egui::RichText::new(
+                    "Nothing listed yet. Add every backup you want reorganised. A \
+                     folder held inside another already on the list is dropped.",
+                )
+                .small()
+                .weak(),
+            );
+            return;
+        }
+        let mut drop = None;
+        for (i, root) in self.sources.iter().enumerate() {
+            ui.horizontal(|ui| {
+                if ui.small_button("remove").clicked() {
+                    drop = Some(i);
+                }
+                ui.label(
+                    egui::RichText::new(root.display().to_string())
+                        .monospace()
+                        .small(),
+                );
+            });
+        }
+        if let Some(i) = drop {
+            self.sources.remove(i);
+            self.present.clear();
+            self.across = None;
+        }
+    }
+
+    /// Adds a folder to the list and drops whatever the list already covers.
+    fn add_source(&mut self, root: PathBuf) {
+        self.sources.push(root);
+        let kept = dupes::without_nested(&self.sources);
+        if kept.len() != self.sources.len() {
+            self.said = Some(
+                "A folder already held inside another on the list was dropped. Reading \
+                 it twice would call every file below it a copy of itself."
+                    .to_string(),
+            );
+        }
+        self.sources = kept;
+        self.present.clear();
+        self.across = None;
+    }
+
+    /// Walks the folders listed to say what each group holds.
+    fn survey(&mut self, ctx: &egui::Context) {
+        if self.sources.is_empty() {
+            return;
+        }
+        if let Some(old) = self.surveying.take() {
+            old.stop();
+        }
+        self.surveying = Some(browse::start_many(self.sources.clone(), ctx.clone()));
+    }
+
+    /// Which files come across.
+    fn types_ui(&mut self, ui: &mut Ui, ctx: &egui::Context) {
+        ui.horizontal(|ui| {
+            if ui
+                .add_enabled(
+                    !self.sources.is_empty(),
+                    egui::Button::new("Read what is there"),
+                )
+                .on_hover_text("Walks the folders again and says what each group holds")
+                .clicked()
+            {
+                self.survey(ctx);
+            }
+            if ui.button("Take everything").clicked() {
+                self.pick = cats::Pick::default();
+                self.ext_text.clear();
+                self.across = None;
+            }
+        });
+        if let Some(running) = self.surveying.clone() {
+            match running.facts() {
+                None => {
+                    ui.label(format!(
+                        "reading  ·  {} files  ·  {}",
+                        fmt::count(running.files.load(Relaxed)),
+                        fmt::bytes(running.bytes.load(Relaxed))
+                    ));
+                    ui.label(
+                        egui::RichText::new(running.current())
+                            .monospace()
+                            .small()
+                            .weak(),
+                    );
+                    ui.ctx().request_repaint_after(Duration::from_millis(200));
+                }
+                Some(facts) => {
+                    self.present = facts.by_cat.clone();
+                    self.surveying = None;
+                }
+            }
+        }
+
+        egui::ScrollArea::vertical()
+            .auto_shrink([false, false])
+            .show(ui, |ui| {
+                self.bundles_ui(ui);
+                ui.add_space(8.0);
+                self.groups_ui(ui);
+                ui.add_space(8.0);
+                self.extensions_ui(ui);
+            });
+    }
+
+    /// The sets of groups a person actually asks for.
+    fn bundles_ui(&mut self, ui: &mut Ui) {
+        ui.label(egui::RichText::new("Bundles").strong());
         ui.label(
             egui::RichText::new(
-                "Lays one copy of every file under a new folder. A file held in five \
-                 places arrives once. Nothing under the old folder is touched and a \
-                 list of what can then go is written at the end.",
+                "A bundle is a named set of groups. Photos and video are one bundle so \
+                 they stay together wherever they land.",
             )
             .small()
             .weak(),
         );
-        ui.separator();
+        let present = self.present.clone();
+        let mut only: Option<&'static cats::Bundle> = None;
+        let mut moved = false;
+        egui::Grid::new("bundles")
+            .num_columns(5)
+            .striped(true)
+            .spacing([12.0, 3.0])
+            .show(ui, |ui| {
+                for bundle in &cats::BUNDLES {
+                    ui.horizontal(|ui| {
+                        for cat in bundle.cats {
+                            let (chip, _) =
+                                ui.allocate_exact_size(vec2(11.0, 11.0), Sense::hover());
+                            ui.painter()
+                                .rect_filled(chip, CornerRadius::same(2), cat.colour());
+                        }
+                    });
 
+                    let whole = bundle.cats.iter().all(|c| self.pick.cats.contains(c));
+                    let part = bundle.cats.iter().any(|c| self.pick.cats.contains(c));
+                    let mut on = whole;
+                    if ui.checkbox(&mut on, bundle.label).changed() {
+                        for cat in bundle.cats {
+                            if on {
+                                self.pick.cats.insert(*cat);
+                            } else {
+                                self.pick.cats.remove(cat);
+                            }
+                        }
+                        moved = true;
+                    }
+
+                    let held = bundle.cats.iter().fold((0u64, 0u64), |sum, cat| {
+                        match present.iter().find(|(c, _, _)| c == cat) {
+                            Some((_, count, bytes)) => (sum.0 + count, sum.1 + bytes),
+                            None => sum,
+                        }
+                    });
+                    if present.is_empty() {
+                        ui.label("");
+                    } else {
+                        ui.label(
+                            egui::RichText::new(format!(
+                                "{} · {}",
+                                fmt::count(held.0),
+                                fmt::bytes(held.1)
+                            ))
+                            .monospace()
+                            .small(),
+                        );
+                    }
+
+                    if ui
+                        .small_button("Only")
+                        .on_hover_text("Take this bundle and nothing else")
+                        .clicked()
+                    {
+                        only = Some(bundle);
+                    }
+                    if part && !whole {
+                        ui.label(egui::RichText::new("part of it").small().weak());
+                    } else {
+                        ui.label("");
+                    }
+                    ui.end_row();
+                }
+            });
+        // Nothing else takes the extensions with it. A bundle narrowed to two
+        // extensions is not the bundle.
+        if let Some(bundle) = only {
+            self.pick = cats::Pick::of_cats(bundle.cats.iter().copied());
+            self.ext_text.clear();
+            moved = true;
+        }
+        if moved {
+            self.across = None;
+        }
+        if self.pick.cats.is_empty() {
+            ui.label(
+                egui::RichText::new("Nothing ticked takes every file there is.")
+                    .small()
+                    .weak(),
+            );
+        }
+    }
+
+    /// The nine groups on their own for anyone wanting a finer cut.
+    fn groups_ui(&mut self, ui: &mut Ui) {
+        let present = self.present.clone();
+        let mut moved = false;
+        egui::CollapsingHeader::new("Single groups")
+            .id_salt("extract groups")
+            .show(ui, |ui| {
+                egui::Grid::new("extract group rows")
+                    .num_columns(3)
+                    .striped(true)
+                    .spacing([12.0, 3.0])
+                    .show(ui, |ui| {
+                        for cat in cats::LEGEND {
+                            let (chip, _) =
+                                ui.allocate_exact_size(vec2(11.0, 11.0), Sense::hover());
+                            ui.painter()
+                                .rect_filled(chip, CornerRadius::same(2), cat.colour());
+                            let mut on = self.pick.cats.contains(&cat);
+                            if ui.checkbox(&mut on, cat.label()).changed() {
+                                if on {
+                                    self.pick.cats.insert(cat);
+                                } else {
+                                    self.pick.cats.remove(&cat);
+                                }
+                                moved = true;
+                            }
+                            match present.iter().find(|(c, _, _)| *c == cat) {
+                                Some((_, count, bytes)) => ui.label(
+                                    egui::RichText::new(format!(
+                                        "{} · {}",
+                                        fmt::count(*count),
+                                        fmt::bytes(*bytes)
+                                    ))
+                                    .monospace()
+                                    .small()
+                                    .weak(),
+                                ),
+                                None => ui.label(""),
+                            };
+                            ui.end_row();
+                        }
+                    });
+            });
+        if moved {
+            self.across = None;
+        }
+    }
+
+    /// Narrowing what is ticked down to named extensions.
+    fn extensions_ui(&mut self, ui: &mut Ui) {
+        ui.label(egui::RichText::new("Certain extensions only").strong());
+        ui.label(
+            egui::RichText::new(
+                "Empty takes every extension in the groups ticked. Naming some narrows \
+                 it to those. A raw photo hunt is cr2 nef arw and nothing else.",
+            )
+            .small()
+            .weak(),
+        );
         ui.horizontal(|ui| {
-            ui.label("Where it goes");
+            if ui
+                .add(
+                    egui::TextEdit::singleline(&mut self.ext_text)
+                        .hint_text("jpg mp4 cr2")
+                        .desired_width(320.0),
+                )
+                .changed()
+            {
+                self.pick.exts = cats::extensions(&self.ext_text);
+                self.across = None;
+            }
+            if !self.pick.exts.is_empty() && ui.small_button("clear").clicked() {
+                self.ext_text.clear();
+                self.pick.exts.clear();
+                self.across = None;
+            }
+        });
+        // An extension outside every group ticked can never match anything.
+        // Saying so beats a search that comes back with nothing.
+        if !self.pick.exts.is_empty()
+            && !self.pick.cats.is_empty()
+            && !self
+                .pick
+                .exts
+                .iter()
+                .any(|ext| self.pick.cats.contains(&cats::of(&format!("x.{ext}"))))
+        {
+            ui.label(
+                egui::RichText::new(
+                    "No extension named sits in a group ticked above. Nothing would come \
+                     across.",
+                )
+                .small()
+                .color(Cat::System.colour()),
+            );
+        }
+    }
+
+    /// Where the files land and how they are laid out there.
+    fn where_ui(&mut self, ui: &mut Ui) {
+        ui.horizontal(|ui| {
             if ui
                 .add(
                     egui::TextEdit::singleline(&mut self.destination)
@@ -1257,14 +1933,48 @@ impl App {
                 self.across = None;
             }
             if ui.button("Choose a folder").clicked() {
-                self.picking = true;
-                self.picking_back = View::Consolidate;
-                if self.at.as_os_str().is_empty() {
-                    self.go_to(job.base().to_path_buf());
-                }
-                self.view = View::Browse;
+                self.pick_folder(Naming::Destination, View::Extract);
             }
         });
+        let named = PathBuf::from(self.destination.trim());
+        if !self.destination.trim().is_empty() && !named.is_dir() {
+            ui.label(
+                egui::RichText::new("No folder of that name is there yet.")
+                    .small()
+                    .color(Cat::System.colour()),
+            );
+        }
+        if let Some(fault) = self.destination_fault()
+            && !self.destination.trim().is_empty()
+        {
+            ui.label(
+                egui::RichText::new(fault)
+                    .small()
+                    .color(Cat::System.colour()),
+            );
+        }
+        ui.add_space(6.0);
+
+        ui.label(egui::RichText::new("Laid out as").strong());
+        for top in [
+            consolidate::Top::Nothing,
+            consolidate::Top::Group,
+            consolidate::Top::Bundle,
+        ] {
+            if ui.radio_value(&mut self.top, top, top.label()).changed() {
+                self.across = None;
+            }
+        }
+        ui.label(
+            egui::RichText::new(
+                "A bundle keeps photos and video in one folder. A group gives each of \
+                 the nine a folder of its own.",
+            )
+            .small()
+            .weak(),
+        );
+        ui.add_space(6.0);
+
         ui.horizontal(|ui| {
             let mut levels = self.levels as i32;
             if ui
@@ -1285,9 +1995,129 @@ impl App {
             );
         });
 
+        // What the settings come to on one path. Cheaper to read than the rule.
+        let shown = Path::new("backup two/old/holiday/2019/beach.jpg");
+        let mut lands = PathBuf::from(self.destination.trim());
+        if let Some(folder) = self.top.folder("beach.jpg") {
+            lands.push(folder);
+        }
+        lands.push(consolidate::flatten(shown, self.levels));
+        ui.add_space(6.0);
+        ui.label(
+            egui::RichText::new(format!("{}", shown.display()))
+                .monospace()
+                .small()
+                .weak(),
+        );
+        ui.label(
+            egui::RichText::new(format!("lands at  {}", lands.display()))
+                .monospace()
+                .small(),
+        );
+    }
+
+    /// Reads the folders as one pool then works out what would be laid down.
+    fn start_extract(&mut self, ctx: &egui::Context) {
+        if let Some(old) = self.compare.take() {
+            old.stop();
+        }
+        if let Some(old) = self.working.take() {
+            old.stop.store(true, Relaxed);
+        }
+        self.across = None;
+        self.gathering = None;
+        self.groups = None;
+        self.filter.clear();
+        self.sources = dupes::without_nested(&self.sources);
+        self.extracting = true;
+        self.step = Step::Plan;
+        self.compare = Some(dupes::start(
+            self.sources.clone(),
+            dupes::Mode::Pooled,
+            self.pick.clone(),
+            ctx.clone(),
+        ));
+    }
+
+    /// Lays the plan down. The first thing here that writes anywhere.
+    fn start_copy(&mut self, across: &Arc<consolidate::Plan>, ctx: &egui::Context) {
+        let carry = gather::Plan {
+            items: across
+                .items
+                .iter()
+                .map(|i| gather::Item {
+                    from: i.from.clone(),
+                    to: i.to.clone(),
+                    size: i.size,
+                    cat: cats::of(&leaf(&i.from)),
+                    taken: i.to.exists(),
+                })
+                .collect(),
+            bytes: across.bytes,
+            taken: across.items.iter().filter(|i| i.to.exists()).count(),
+            renamed: across.renamed,
+            free: across.free,
+            destination: across.destination.clone(),
+        };
+        self.gathering = Some(gather::start(carry, gather::Action::Copy, ctx.clone()));
+        self.step = Step::Copy;
+    }
+
+    /// The search and the listing it feeds and what they came to.
+    fn plan_ui(&mut self, ui: &mut Ui, ctx: &egui::Context) {
+        if let Some(job) = self.compare.clone()
+            && !job.done.load(Relaxed)
+        {
+            ui.label(egui::RichText::new(job.stage()).strong());
+            let bytes_of = job.bytes_of.load(Relaxed);
+            if bytes_of > 0 {
+                let share = job.bytes_read.load(Relaxed) as f32 / bytes_of as f32;
+                ui.add(
+                    egui::ProgressBar::new(share.clamp(0.0, 1.0))
+                        .desired_height(6.0)
+                        .fill(Cat::Code.colour()),
+                );
+            }
+            ui.label(format!(
+                "{} files found  ·  {} read  ·  {} copies so far",
+                fmt::count(job.listed.load(Relaxed)),
+                fmt::count(job.read.load(Relaxed)),
+                fmt::count(job.found.load(Relaxed))
+            ));
+            ui.label(
+                egui::RichText::new(job.current())
+                    .monospace()
+                    .small()
+                    .weak(),
+            );
+            if ui.button("Stop").clicked() {
+                job.stop();
+                self.extracting = false;
+            }
+            ui.ctx().request_repaint_after(Duration::from_millis(150));
+            return;
+        }
+
+        // The search is done. The listing that feeds the plan follows it once.
+        if self.extracting
+            && let Some(job) = self.compare.clone()
+            && let Some(report) = job.report()
+        {
+            self.extracting = false;
+            self.working = Some(consolidate::start(
+                job.roots.clone(),
+                report.pairs.clone(),
+                job.pick.clone(),
+                PathBuf::from(self.destination.trim()),
+                self.levels,
+                self.top,
+                ctx.clone(),
+            ));
+        }
+
         if let Some(working) = self.working.clone() {
             if !working.done.load(Relaxed) {
-                ui.label("listing the folder");
+                ui.label("listing the folders");
                 ui.label(format!(
                     "{} files so far",
                     fmt::count(working.found.load(Relaxed))
@@ -1301,73 +2131,82 @@ impl App {
             }
         }
 
-        let ready = !self.destination.trim().is_empty();
-        if ui
-            .add_enabled(ready, egui::Button::new("Work out what would happen"))
-            .on_disabled_hover_text("Name a folder above first")
-            .clicked()
-        {
-            self.across = None;
-            self.working = Some(consolidate::start(
-                job.base().to_path_buf(),
-                report.pairs.clone(),
-                job.only.clone(),
-                PathBuf::from(self.destination.trim()),
-                self.levels,
-                ctx.clone(),
-            ));
-        }
-        ui.separator();
-
-        if let Some(running) = self.gathering.clone() {
-            self.copying_ui(ui, &running);
-            if running.done.load(Relaxed)
-                && let Some(across) = self.across.clone()
-                && ui.button("Write the list of what can go").clicked()
-            {
-                self.said = Some(match consolidate::write_removals(&across) {
-                    Ok((at, named)) => format!(
-                        "{} names {} files that can now be removed.",
-                        at.display(),
-                        fmt::count(named as u64)
-                    ),
-                    Err(why) => format!("the list could not be written: {why}"),
-                });
-            }
-            return;
-        }
-
         let Some(across) = self.across.clone() else {
             ui.label(
-                egui::RichText::new("Nothing is written until you have seen what would happen.")
-                    .small()
-                    .weak(),
+                egui::RichText::new(
+                    "Press Work out what would happen below. It reads the folders and \
+                     writes nothing.",
+                )
+                .small()
+                .weak(),
             );
             return;
         };
+        self.found_ui(ui, &across);
+    }
 
+    /// The copying and the list of what can go once it has finished.
+    fn copy_ui(&mut self, ui: &mut Ui) {
+        let Some(running) = self.gathering.clone() else {
+            // Cleared from under the step. The plan it came from is still the
+            // thing to act on.
+            self.step = Step::Plan;
+            return;
+        };
+        self.copying_ui(ui, &running);
+        if !running.done.load(Relaxed) {
+            return;
+        }
+        let Some(across) = self.across.clone() else {
+            return;
+        };
+        ui.separator();
+        ui.label(egui::RichText::new("The list of what can go").strong());
+        ui.label(
+            egui::RichText::new(
+                "Names every old path whose content is now standing in the new folder. \
+                 One path a line. Nothing is removed by writing it.",
+            )
+            .small()
+            .weak(),
+        );
+        if ui.button("Write the list of what can go").clicked() {
+            let arrived = running.arrived();
+            self.said = Some(match consolidate::write_removals(&across, &arrived) {
+                Ok((at, named)) => format!(
+                    "{} names {} files that can now be removed.",
+                    at.display(),
+                    fmt::count(named as u64)
+                ),
+                Err(why) => format!("the list could not be written: {why}"),
+            });
+        }
+    }
+
+    /// What the plan came to. Carrying it out is the step below.
+    fn found_ui(&mut self, ui: &mut Ui, across: &Arc<consolidate::Plan>) {
         ui.horizontal(|ui| {
             ui.heading(fmt::bytes(across.bytes));
             ui.label(format!(
-                "across {} files of their own into {}",
+                "across {} files of their own out of {} folders into {}",
                 fmt::count(across.items.len() as u64),
+                fmt::count(across.roots.len() as u64),
                 across.destination.display()
             ));
         });
         ui.label(format!(
-            "{} comes back once the old ones go  ·  {} files would be listed for removal",
-            fmt::bytes(across.frees),
-            fmt::count(across.removals as u64)
+            "{} files would be listed for removal. They hold {}.",
+            fmt::count(across.removals as u64),
+            fmt::bytes(across.frees)
         ));
-        // The slider can be moved after the plan was made so the plan says what
-        // it was actually built with.
-        if across.levels != self.levels {
+        // The layout can be changed after the plan was made so the plan says
+        // what it was actually built with.
+        if across.levels != self.levels || across.top != self.top {
             ui.label(
-                egui::RichText::new(format!(
-                    "this was worked out keeping {} parts of the path. The slider now \
-                     says {}. Work it out again to use that.",
-                    across.levels, self.levels
-                ))
+                egui::RichText::new(
+                    "This was worked out with the layout as it stood. Work it out again \
+                     to use the one set now.",
+                )
                 .small()
                 .color(Cat::System.colour()),
             );
@@ -1375,7 +2214,7 @@ impl App {
         if across.renamed > 0 {
             ui.label(
                 egui::RichText::new(format!(
-                    "{} had to be renamed because two different files flattened onto one place",
+                    "{} had to be renamed because two different files landed on one place",
                     fmt::count(across.renamed as u64)
                 ))
                 .small()
@@ -1402,32 +2241,6 @@ impl App {
             );
         }
 
-        if ui
-            .add_enabled(
-                !across.items.is_empty() && !across.too_big(),
-                egui::Button::new("Copy them across"),
-            )
-            .clicked()
-        {
-            let carry = gather::Plan {
-                items: across
-                    .items
-                    .iter()
-                    .map(|i| gather::Item {
-                        from: i.from.clone(),
-                        to: i.to.clone(),
-                        size: i.size,
-                        cat: cats::of(&leaf_of(&i.from)),
-                        taken: i.to.exists(),
-                    })
-                    .collect(),
-                bytes: across.bytes,
-                taken: across.items.iter().filter(|i| i.to.exists()).count(),
-                free: across.free,
-                destination: across.destination.clone(),
-            };
-            self.gathering = Some(gather::start(carry, gather::Action::Copy, ctx.clone()));
-        }
         ui.separator();
 
         let row = ui.text_style_height(&egui::TextStyle::Body) + 4.0;
@@ -1607,17 +2420,7 @@ impl App {
                 .on_hover_text("Opens the picker. It comes back here with what you pick")
                 .clicked()
             {
-                self.picking = true;
-                self.picking_back = View::Gather;
-                if self.at.as_os_str().is_empty() {
-                    let start = self
-                        .volumes
-                        .get(self.selected)
-                        .map(|v| v.path.clone())
-                        .unwrap_or_else(|| PathBuf::from("/"));
-                    self.go_to(start);
-                }
-                self.view = View::Browse;
+                self.pick_folder(Naming::Destination, View::Gather);
             }
             // A destination is only needed to copy. Asking for one before
             // anything can be cleared out sent people looking for a folder they
@@ -1631,7 +2434,7 @@ impl App {
             {
                 self.plan = Some(gather::plan(
                     &report.pairs,
-                    job.base(),
+                    &job.roots,
                     &gather::Choice {
                         cats: self.chosen.clone(),
                         destination: PathBuf::from(self.destination.trim()),
@@ -1693,6 +2496,16 @@ impl App {
                 .weak(),
             );
         }
+        if plan.renamed > 0 {
+            ui.label(
+                egui::RichText::new(format!(
+                    "{} had to be renamed because two different files landed on one place",
+                    fmt::count(plan.renamed as u64)
+                ))
+                .small()
+                .weak(),
+            );
+        }
 
         let has_where = !self.destination.trim().is_empty();
         let can_copy = !plan.items.is_empty() && !plan.too_big() && has_where;
@@ -1730,10 +2543,26 @@ impl App {
             && let Some(plan) = self.plan.take()
         {
             self.sure = false;
-            for item in &plan.items {
-                self.settled.insert(item.cat);
-            }
+            // What the job was asked to act on. Marked done only once it has
+            // finished and nothing was refused or failed. Because a mark put in
+            // at the start says a group is dealt with when the job may have
+            // been stopped or the disk may have filled, and the worklist then
+            // skips the group that still needs doing.
+            self.acting = plan.items.iter().map(|i| i.cat).collect();
             self.gathering = Some(gather::start(plan, action, ui.ctx().clone()));
+        }
+        // The job has finished. Only a clean finish settles the groups.
+        if let Some(job) = self.gathering.clone()
+            && job.done.load(Relaxed)
+            && !self.acting.is_empty()
+        {
+            let clean = job.refused.load(Relaxed) == 0
+                && job.failed.load(Relaxed) == 0
+                && !job.cancel.load(Relaxed);
+            if clean {
+                self.settled.extend(self.acting.iter().copied());
+            }
+            self.acting.clear();
         }
         ui.separator();
 
@@ -1961,8 +2790,7 @@ impl App {
 
     /// Gathers the pairs under the folder on side B that holds them.
     fn regroup(&mut self, report: &Arc<dupes::Report>) {
-        let key = Arc::as_ptr(report) as usize;
-        if matches!(&self.groups, Some((held, _)) if *held == key) {
+        if matches!(&self.groups, Some((held, _)) if Arc::ptr_eq(held, report)) {
             return;
         }
         let mut by: std::collections::HashMap<&Path, (u64, Vec<usize>)> =
@@ -1979,11 +2807,43 @@ impl App {
                 path: path.to_path_buf(),
                 bytes,
                 pairs,
+                shown: None,
             })
             .collect();
         groups.sort_by_key(|g| std::cmp::Reverse(g.bytes));
-        self.groups = Some((key, groups));
+        self.groups = Some((Arc::clone(report), groups));
+        self.filtered = String::new();
         self.held = store::Store::open().map(|held| held.counts());
+    }
+
+    /// Works the filter out once rather than on every frame.
+    ///
+    /// Reading every pair of a long report is the whole cost of this view. Done
+    /// per frame it is paid sixty times a second while nothing moves, and worst
+    /// while someone is typing because every keystroke redraws.
+    fn refilter(&mut self) {
+        let needle = self.filter.to_lowercase();
+        if self.filtered == needle && self.groups.is_some() {
+            return;
+        }
+        let Some((report, groups)) = &mut self.groups else {
+            return;
+        };
+        for folder in groups.iter_mut() {
+            folder.shown = if needle.is_empty() {
+                None
+            } else {
+                Some(
+                    folder
+                        .pairs
+                        .iter()
+                        .copied()
+                        .filter(|i| carries(&report.pairs[*i], &needle))
+                        .collect(),
+                )
+            };
+        }
+        self.filtered = needle;
     }
 
     /// The duplicates. It fills the window because two paths never fit a strip
@@ -2009,13 +2869,18 @@ impl App {
                 self.open_gather(&report);
             }
             if ui
-                .button("Bring one of each across")
-                .on_hover_text("Lays one copy of every file under a new folder")
+                .button("Take these folders across")
+                .on_hover_text(
+                    "Hands them to the extractor and lays one copy of each file into a new folder",
+                )
                 .clicked()
             {
                 self.across = None;
                 self.working = None;
-                self.view = View::Consolidate;
+                self.sources = dupes::without_nested(&job.roots);
+                self.present.clear();
+                self.step = Step::Files;
+                self.view = View::Extract;
             }
             if ui.button("Forget this comparison").clicked() {
                 job.stop();
@@ -2024,26 +2889,21 @@ impl App {
                 self.view = View::Map;
             }
         });
+        let against = job.mode == dupes::Mode::Against;
         let alone = job.alone();
-        if alone {
+        for (i, root) in job.roots.iter().enumerate() {
+            let tag = match (against, i) {
+                (true, 0) => "A   ".to_string(),
+                (true, _) => "B   ".to_string(),
+                (false, _) if alone => String::new(),
+                (false, _) => format!("{}   ", i + 1),
+            };
             ui.label(
-                egui::RichText::new(job.a_root.display().to_string())
+                egui::RichText::new(format!("{tag}{}", root.display()))
                     .monospace()
                     .small()
                     .weak(),
             );
-        } else {
-            for (tag, root) in [
-                ("A   ", job.a_root.clone()),
-                ("B   ", job.b_root.clone().unwrap_or_default()),
-            ] {
-                ui.label(
-                    egui::RichText::new(format!("{tag}{}", root.display()))
-                        .monospace()
-                        .small()
-                        .weak(),
-                );
-            }
         }
         ui.label(
             egui::RichText::new(format!(
@@ -2130,23 +2990,31 @@ impl App {
 
         ui.horizontal(|ui| {
             ui.heading(fmt::bytes(report.bytes));
-            ui.label(if alone {
-                format!("held in {} copies beyond the first", report.total)
-            } else {
+            ui.label(if against {
                 format!("across {} files in B that A already holds", report.total)
+            } else {
+                format!("held in {} copies beyond the first", report.total)
             });
         });
-        let mut read = if alone {
-            format!("{} files under the folder", fmt::count(report.a_files))
-        } else {
-            format!(
+        let read_files: Vec<String> = report.files.iter().map(|n| fmt::count(*n)).collect();
+        let mut read = match (against, alone) {
+            (true, _) => format!(
                 "{} files in A against {} in B",
-                fmt::count(report.a_files),
-                fmt::count(report.b_files)
-            )
+                read_files.first().cloned().unwrap_or_default(),
+                read_files.get(1).cloned().unwrap_or_default()
+            ),
+            (_, true) => format!(
+                "{} files under the folder",
+                read_files.first().cloned().unwrap_or_default()
+            ),
+            _ => format!(
+                "{} files across {} folders",
+                fmt::count(report.files.iter().sum()),
+                fmt::count(report.files.len() as u64)
+            ),
         };
         if report.from_cache {
-            read.push_str("  ·  neither folder had moved so this is the last answer");
+            read.push_str("  ·  nothing had moved so this is the last answer");
         } else {
             if report.cached > 0 {
                 read.push_str(&format!(
@@ -2211,7 +3079,7 @@ impl App {
         });
         ui.separator();
 
-        let needle = self.filter.to_lowercase();
+        self.refilter();
         let Some((_, groups)) = &self.groups else {
             return;
         };
@@ -2225,19 +3093,14 @@ impl App {
             .auto_shrink([false, false])
             .show(ui, |ui| {
                 for group in groups {
-                    let rows: Vec<usize> = group
-                        .pairs
-                        .iter()
-                        .copied()
-                        .filter(|i| carries(&report.pairs[*i], &needle))
-                        .collect();
+                    let rows = group.rows();
                     if rows.is_empty() {
                         continue;
                     }
                     let title = format!(
                         "{}   {}   ·   {} files",
                         fmt::bytes(group.bytes),
-                        under_root(&group.path, job.base()),
+                        consolidate::under(&group.path, &job.roots).display(),
                         rows.len()
                     );
                     egui::CollapsingHeader::new(egui::RichText::new(title).monospace())
@@ -2250,7 +3113,7 @@ impl App {
                                 .spacing([10.0, 2.0])
                                 .show(ui, |ui| {
                                     for i in rows {
-                                        let pair = &report.pairs[i];
+                                        let pair = &report.pairs[*i];
                                         ui.label(
                                             egui::RichText::new(fmt::bytes(pair.size))
                                                 .monospace()
@@ -2261,9 +3124,13 @@ impl App {
                                             sys::reveal(&pair.b);
                                         }
                                         ui.label(
-                                            egui::RichText::new(under_root(&pair.a, &job.a_root))
-                                                .monospace()
-                                                .weak(),
+                                            egui::RichText::new(
+                                                consolidate::under(&pair.a, &job.roots)
+                                                    .display()
+                                                    .to_string(),
+                                            )
+                                            .monospace()
+                                            .weak(),
                                         );
                                         if ui.small_button(kept_label).clicked() {
                                             sys::reveal(&pair.a);
@@ -2448,7 +3315,7 @@ impl App {
         if n.children.is_empty() {
             let fill = shade(n.cat.colour(), dim);
             painter.rect_filled(r, CornerRadius::same(1), fill);
-            label(painter, r, &n.name, ink(fill), 10.0);
+            label(painter, r, &n.name, cats::ink(fill), 10.0);
         } else {
             painter.rect_filled(r, CornerRadius::same(2), shade(Cat::Folder.colour(), dim));
             painter.rect_stroke(
@@ -2519,8 +3386,8 @@ impl App {
             View::Recycled => {
                 egui::CentralPanel::default_margins().show(ui, |ui| self.recycled_ui(ui));
             }
-            View::Consolidate if self.compare.is_some() => {
-                egui::CentralPanel::default_margins().show(ui, |ui| self.consolidate_ui(ui));
+            View::Extract => {
+                egui::CentralPanel::default_margins().show(ui, |ui| self.extract_ui(ui));
             }
             _ => {
                 egui::CentralPanel::no_frame().show(ui, |ui| self.map(ui));
@@ -2566,9 +3433,8 @@ fn cache_bytes() -> u64 {
 /// run then reads every file again.
 fn forget(job: &dupes::Job) {
     if let Some(mut held) = store::Store::open() {
-        held.forget(&job.a_root);
-        if let Some(b) = &job.b_root {
-            held.forget(b);
+        for root in &job.roots {
+            held.forget(root);
         }
     }
 }
@@ -2581,13 +3447,6 @@ fn carries(pair: &dupes::Pair, needle: &str) -> bool {
 }
 
 fn leaf(path: &Path) -> String {
-    path.file_name()
-        .unwrap_or_default()
-        .to_string_lossy()
-        .into_owned()
-}
-
-fn leaf_of(path: &Path) -> String {
     path.file_name()
         .unwrap_or_default()
         .to_string_lossy()
@@ -2607,16 +3466,6 @@ fn shade(c: Color32, dim: bool) -> Color32 {
     if dim { c.gamma_multiply(0.16) } else { c }
 }
 
-/// Dark text on a light fill and light text on a dark one.
-fn ink(c: Color32) -> Color32 {
-    let l = 0.299 * c.r() as f32 + 0.587 * c.g() as f32 + 0.114 * c.b() as f32;
-    if l > 140.0 {
-        Color32::from_gray(16)
-    } else {
-        Color32::from_gray(244)
-    }
-}
-
 fn label(painter: &egui::Painter, r: Rect, text: &str, colour: Color32, size: f32) {
     if r.width() < 32.0 || r.height() < size + 3.0 {
         return;
@@ -2632,8 +3481,9 @@ fn label(painter: &egui::Painter, r: Rect, text: &str, colour: Color32, size: f3
 
 #[cfg(test)]
 mod tests {
-    use super::{App, View};
-    use crate::cats::Cat;
+    use super::{App, Naming, Step, View};
+    use crate::cats::{self, Cat};
+    use crate::consolidate;
     use crate::scan;
     use eframe::egui::{self, Rect, pos2, vec2};
     use std::fs;
@@ -2658,6 +3508,35 @@ mod tests {
             screen_rect: Some(Rect::from_min_size(pos2(0.0, 0.0), vec2(1100.0, 760.0))),
             ..Default::default()
         }
+    }
+
+    /// Every piece of text a frame puts on screen.
+    ///
+    /// Two frames are drawn because the first frame of a panel has no size
+    /// stored for it yet so what it holds is not placed.
+    ///
+    /// A draw test that only counts shapes cannot fail. The top bar and the
+    /// status line draw on every frame whatever the view does, so the count is
+    /// never zero even with the view deleted. Asserting on what a view says is
+    /// the only check that holds.
+    fn shown(app: &mut App, ctx: &egui::Context) -> String {
+        fn words(shape: &egui::epaint::Shape, into: &mut Vec<String>) {
+            match shape {
+                egui::epaint::Shape::Text(t) => into.push(t.galley.text().replace('\n', " ")),
+                egui::epaint::Shape::Vec(many) => many.iter().for_each(|s| words(s, into)),
+                _ => {}
+            }
+        }
+        let mut found = Vec::new();
+        for _ in 0..2 {
+            let mut out = ctx.run_ui(input(), |ui| app.body(ui));
+            out.textures_delta.clear();
+            found.clear();
+            for shape in &out.shapes {
+                words(&shape.shape, &mut found);
+            }
+        }
+        found.join("\n")
     }
 
     /// Draws frames until the closure is happy or the deadline passes.
@@ -2817,8 +3696,7 @@ mod tests {
             ],
             bytes: 1500,
             total: 3,
-            a_files: 3,
-            b_files: 3,
+            files: vec![3, 3],
             cached: 0,
             confirmed: 0,
             from_cache: false,
@@ -2870,9 +3748,8 @@ mod tests {
                 .is_some_and(|j| j.done.load(Relaxed) && j.report().is_some())
         });
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Duplicates"), "{text}");
 
         let report = app.compare.as_ref().unwrap().report().unwrap();
         assert_eq!(report.total, 1);
@@ -2916,13 +3793,12 @@ mod tests {
                 .is_some_and(|j| j.done.load(Relaxed) && j.report().is_some())
         });
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Duplicates"), "{text}");
 
         let job = app.compare.as_ref().unwrap();
-        assert!(job.alone(), "one folder has no second side");
-        assert_eq!(job.base(), root.as_path());
+        assert!(job.alone(), "one folder is one side");
+        assert_eq!(job.roots, vec![root.clone()]);
         let report = job.report().unwrap();
         assert_eq!(report.total, 1);
         assert_eq!(report.bytes, 25_000);
@@ -2977,9 +3853,8 @@ mod tests {
             app.asking.as_ref().is_some_and(|a| a.answer().is_some())
         });
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Where the space went"), "{text}");
 
         let answer = app.asking.as_ref().unwrap().answer().unwrap();
         let ghosts = answer
@@ -3030,9 +3905,10 @@ mod tests {
         let mut app = App::new();
         app.view = View::Diagnostics;
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        // Not the heading. The top bar carries a button of the same name so a
+        // heading would pass with the page deleted.
+        assert!(text.contains("Read it again"), "{text}");
 
         // The report has to carry the cache path because that is the thing
         // anyone reporting a fault is asked to send.
@@ -3073,16 +3949,15 @@ mod tests {
         assert_eq!(app.by_cat[0].0, Cat::Video);
         assert_eq!(app.by_cat[0].2, 30_000, "and it holds the copy");
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Gather the copies"), "{text}");
 
         // A plan names the copy and never the file being kept.
         app.chosen.insert(Cat::Video);
         app.destination = root.join("gathered").display().to_string();
         app.plan = Some(crate::gather::plan(
             &report.pairs,
-            app.compare.as_ref().unwrap().base(),
+            &app.compare.as_ref().unwrap().roots,
             &crate::gather::Choice {
                 cats: app.chosen.clone(),
                 destination: PathBuf::from(&app.destination),
@@ -3124,9 +3999,9 @@ mod tests {
         assert_eq!(app.here.len(), 2, "the folders below are listed");
         assert!(app.here.contains(&root.join("music")));
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        // Not the heading. The top bar carries a button of the same name.
+        assert!(text.contains("Folders here"), "{text}");
 
         app.measure = Some(crate::browse::start(root.clone(), ctx.clone()));
         draw_until(&mut app, &ctx, |app| {
@@ -3288,7 +4163,7 @@ mod tests {
         // A plan can still be worked out with nowhere to copy to.
         app.plan = Some(crate::gather::plan(
             &report.pairs,
-            app.compare.as_ref().unwrap().base(),
+            &app.compare.as_ref().unwrap().roots,
             &crate::gather::Choice {
                 cats: app.chosen.clone(),
                 destination: PathBuf::from(app.destination.trim()),
@@ -3296,9 +4171,8 @@ mod tests {
         ));
         assert_eq!(app.plan.as_ref().unwrap().items.len(), 1);
 
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Gather the copies"), "{text}");
 
         app.compare.as_ref().unwrap().stop();
         fs::remove_dir_all(&root).unwrap();
@@ -3343,9 +4217,8 @@ mod tests {
         assert!(!seen.when.is_empty(), "it did not say when");
 
         app.view = View::Recycled;
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("The recycle bin"), "{text}");
 
         fs::remove_dir_all(&root).unwrap();
     }
@@ -3380,10 +4253,10 @@ mod tests {
         // Only takes one group and the plan covers that group alone.
         app.chosen.clear();
         app.chosen.insert(Cat::Video);
-        let base = app.compare.as_ref().unwrap().base().to_path_buf();
+        let roots = app.compare.as_ref().unwrap().roots.clone();
         let one = crate::gather::plan(
             &report.pairs,
-            &base,
+            &roots,
             &crate::gather::Choice {
                 cats: app.chosen.clone(),
                 destination: root.join("somewhere"),
@@ -3392,10 +4265,15 @@ mod tests {
         assert_eq!(one.items.len(), 1);
         assert_eq!(one.items[0].cat, Cat::Video);
 
-        // Acting on it marks that group and leaves the others to do.
-        for item in &one.items {
-            app.settled.insert(item.cat);
-        }
+        // A group is settled by a job that finished cleanly rather than by one
+        // that started. A stopped job or a full disk leaves it to do.
+        app.acting = one.items.iter().map(|i| i.cat).collect();
+        assert!(
+            !app.settled.contains(&Cat::Video),
+            "it was marked done before anything had been copied"
+        );
+        app.settled.extend(app.acting.iter().copied());
+        app.acting.clear();
         assert!(app.settled.contains(&Cat::Video));
         let next = app
             .by_cat
@@ -3404,17 +4282,28 @@ mod tests {
             .find(|c| !app.settled.contains(c));
         assert!(next.is_some_and(|c| c != Cat::Video), "{next:?}");
 
-        // The picker names somewhere and comes back with it.
-        app.view = View::Gather;
-        app.picking = true;
+        // Naming a folder to read and naming where the copies go are one
+        // move each. Doing the first must not leave the second in its mode.
+        app.pick_folder(Naming::Source, View::Extract);
+        assert_eq!(app.picking, Some((Naming::Source, View::Extract)));
+        app.picking = None; // the picker was cancelled rather than used
+        app.pick_folder(Naming::Destination, View::Gather);
+        assert_eq!(
+            app.picking,
+            Some((Naming::Destination, View::Gather)),
+            "the picker was still naming a folder to read"
+        );
+
         app.go_to(root.join("somewhere"));
-        app.view = View::Browse;
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the picker drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Choosing where the copies go"), "{text}");
+        assert!(
+            !text.contains("Choosing a folder to read"),
+            "it asked for the wrong thing: {text}"
+        );
 
         app.destination = app.at.display().to_string();
-        app.picking = false;
+        app.picking = None;
         app.view = View::Gather;
         assert_eq!(
             app.destination,
@@ -3464,13 +4353,24 @@ mod tests {
         assert_eq!(report.total, 2, "two of the three are copies");
 
         let stop = std::sync::atomic::AtomicBool::new(false);
-        let all = crate::consolidate::files_under(&root, None, &stop);
-        let across = crate::consolidate::plan(&all, &report.pairs, &root, &into, 3);
+        let roots = [root.clone()];
+        let all = crate::consolidate::files_under(&roots, &cats::Pick::default(), &stop);
+        let across = crate::consolidate::plan(
+            &all,
+            &report.pairs,
+            &roots,
+            &into,
+            3,
+            consolidate::Top::Nothing,
+        );
 
         // The four files hold two contents between them. One of each comes
         // across and the list it writes still names all four old paths.
         assert_eq!(across.items.len(), 2, "one of each was not kept");
-        assert_eq!(across.frees, 80_000, "the two extra copies come back");
+        assert_eq!(
+            across.frees, 129_000,
+            "the figure must cover every file the list names"
+        );
         assert_eq!(across.removals, 4, "every old file can go");
 
         // The deep one is cut to three parts and still says where it came from.
@@ -3495,7 +4395,9 @@ mod tests {
             "an old file went"
         );
 
-        let (at, named) = crate::consolidate::write_removals(&across).unwrap();
+        let arrived: std::collections::HashSet<PathBuf> =
+            across.items.iter().map(|i| i.to.clone()).collect();
+        let (at, named) = crate::consolidate::write_removals(&across, &arrived).unwrap();
         let text = fs::read_to_string(&at).unwrap();
         assert_eq!(named, 4);
         for gone in ["music/song.mp3", "backup/song.mp3", "backup/old/song.mp3"] {
@@ -3505,15 +4407,403 @@ mod tests {
             );
         }
 
-        app.view = View::Consolidate;
+        app.view = View::Extract;
+        app.step = Step::Plan;
         app.across = Some(std::sync::Arc::new(across));
         app.destination = into.display().to_string();
-        let mut out = ctx.run_ui(input(), |ui| app.body(ui));
-        out.textures_delta.clear();
-        assert!(!out.shapes.is_empty(), "the view drew nothing");
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Extract"), "{text}");
 
         app.compare.as_ref().unwrap().stop();
         fs::remove_dir_all(&root).unwrap();
+    }
+
+    /// The whole extractor against two backups. The pictures come out of both
+    /// of them. The one held twice arrives once and the film stays where it is.
+    #[test]
+    fn the_pictures_of_two_backups_come_across_once_each() {
+        let ground =
+            std::env::temp_dir().join(format!("spacemongor-extract-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&ground);
+        let one = ground.join("backup one");
+        let two = ground.join("backup two");
+        fs::create_dir_all(one.join("holiday/2019")).unwrap();
+        fs::create_dir_all(two.join("old/holiday/2019")).unwrap();
+        let shot = vec![b'p'; 30_000];
+        // One picture in both backups under different paths.
+        fs::write(one.join("holiday/2019/beach.jpg"), &shot).unwrap();
+        fs::write(two.join("old/holiday/2019/beach.jpg"), &shot).unwrap();
+        fs::write(two.join("old/rare.jpg"), vec![b'r'; 9_000]).unwrap();
+        fs::write(one.join("holiday/film.mp4"), vec![b'v'; 50_000]).unwrap();
+        let into = ground.join("one of each");
+        fs::create_dir_all(&into).unwrap();
+
+        let ctx = egui::Context::default();
+        let mut app = App::new();
+        app.view = View::Extract;
+        app.add_source(one.clone());
+        app.add_source(two.clone());
+        app.pick = cats::Pick::of_cats([Cat::Image]);
+        app.destination = into.display().to_string();
+        app.start_extract(&ctx);
+        draw_until(&mut app, &ctx, |app| app.across.is_some());
+
+        let across = app.across.clone().unwrap();
+        assert_eq!(across.roots, vec![one.clone(), two.clone()]);
+        assert_eq!(across.items.len(), 2, "one of each picture and no film");
+        assert_eq!(across.bytes, 39_000, "only what is laid down is counted");
+        assert_eq!(
+            across.frees, 69_000,
+            "the figure must cover every file the list names"
+        );
+        assert_eq!(
+            across.removals, 3,
+            "every old picture can go once it is across"
+        );
+        assert!(
+            !across.items.iter().any(|i| i.from.ends_with("film.mp4")),
+            "a film came across a picture extraction"
+        );
+
+        // Each picture keeps enough of its path to say where it came from.
+        let beach = across
+            .items
+            .iter()
+            .find(|i| i.from.ends_with("beach.jpg"))
+            .unwrap();
+        assert_eq!(beach.to, into.join("holiday/2019/beach.jpg"));
+        assert_eq!(beach.same.len(), 2, "both places are named for removal");
+
+        // Copying really lays them down and touches nothing in the backups.
+        for item in &across.items {
+            fs::create_dir_all(item.to.parent().unwrap()).unwrap();
+            fs::copy(&item.from, &item.to).unwrap();
+        }
+        assert!(
+            two.join("old/holiday/2019/beach.jpg").exists(),
+            "a backup lost a file"
+        );
+        let arrived: std::collections::HashSet<PathBuf> =
+            across.items.iter().map(|i| i.to.clone()).collect();
+        let (_, named) = crate::consolidate::write_removals(&across, &arrived).unwrap();
+        assert_eq!(named, 3);
+
+        let text = shown(&mut app, &ctx);
+        assert!(text.contains("Extract"), "{text}");
+
+        // The whole bundle instead. The film comes too and lands beside the
+        // photos rather than in a folder of its own.
+        app.pick = cats::Pick::of_cats(Cat::Image.bundle().cats.iter().copied());
+        app.top = consolidate::Top::Bundle;
+        app.destination = ground.join("by bundle").display().to_string();
+        app.start_extract(&ctx);
+        draw_until(&mut app, &ctx, |app| app.across.is_some());
+        let sorted = app.across.clone().unwrap();
+        assert_eq!(sorted.top, consolidate::Top::Bundle);
+        assert_eq!(sorted.items.len(), 3, "the film stayed behind");
+        let under = ground.join("by bundle").join("Photos and video");
+        assert!(
+            sorted.items.iter().all(|i| i.to.starts_with(&under)),
+            "the film and the photos did not land together: {:?}",
+            sorted.items.iter().map(|i| &i.to).collect::<Vec<_>>()
+        );
+
+        // Named extensions narrow the same bundle again.
+        app.pick.exts = cats::extensions("mp4");
+        app.destination = ground.join("films").display().to_string();
+        app.start_extract(&ctx);
+        draw_until(&mut app, &ctx, |app| app.across.is_some());
+        let films = app.across.clone().unwrap();
+        assert_eq!(films.items.len(), 1, "{:?}", films.items.len());
+        assert!(films.items[0].from.ends_with("film.mp4"));
+
+        app.compare.as_ref().unwrap().stop();
+        fs::remove_dir_all(&ground).unwrap();
+    }
+
+    /// No step can be opened before the steps it depends on are answered.
+    #[test]
+    fn a_step_opens_only_once_the_ones_before_it_are_answered() {
+        let mut app = App::new();
+        assert_eq!(
+            app.step,
+            Step::Folders,
+            "it did not start at the first step"
+        );
+        assert!(app.reachable(Step::Folders));
+        assert!(
+            !app.reachable(Step::Files),
+            "it asked what to take before it had a folder to take it from"
+        );
+
+        app.add_source(PathBuf::from("/backup"));
+        assert!(app.reachable(Step::Files));
+        // Nothing ticked is an answer so the step after it opens at once.
+        assert!(app.reachable(Step::Where));
+        assert!(
+            !app.reachable(Step::Plan),
+            "it offered a plan with nowhere to write it"
+        );
+
+        app.destination = "/one of each".to_string();
+        assert!(app.reachable(Step::Plan));
+        assert!(
+            !app.reachable(Step::Copy),
+            "it offered to copy before anything had been worked out"
+        );
+    }
+
+    /// A destination inside a folder being read lays every file on top of
+    /// itself and the removal list then names the only copy.
+    #[test]
+    fn a_destination_inside_a_folder_being_read_is_refused() {
+        let mut app = App::new();
+        app.add_source(PathBuf::from("/backup"));
+
+        app.destination = "/one of each".to_string();
+        assert!(
+            app.destination_fault().is_none(),
+            "a folder apart was refused"
+        );
+        assert!(app.settled(Step::Where));
+
+        app.destination = "/backup".to_string();
+        assert!(
+            app.destination_fault().is_some(),
+            "the folder being read was accepted as the folder to write into"
+        );
+        assert!(!app.settled(Step::Where));
+        assert!(!app.reachable(Step::Plan), "it offered to work out a plan");
+
+        app.destination = "/backup/one of each".to_string();
+        assert!(
+            app.destination_fault().is_some(),
+            "a folder inside the one being read was accepted"
+        );
+
+        // The other way round. The walk would read what it had just written.
+        app.destination = "/".to_string();
+        assert!(
+            app.destination_fault().is_some(),
+            "a folder holding the source was accepted"
+        );
+
+        app.destination = "  ".to_string();
+        assert!(
+            app.destination_fault().is_some(),
+            "nothing named was accepted"
+        );
+    }
+
+    /// Every step draws whatever it has been given so far.
+    #[test]
+    fn each_step_of_the_extractor_draws() {
+        let ctx = egui::Context::default();
+        let mut app = App::new();
+        app.view = View::Extract;
+        app.add_source(std::env::temp_dir());
+        app.destination = std::env::temp_dir().display().to_string();
+        app.pick = cats::Pick::of_cats(Cat::Image.bundle().cats.iter().copied());
+        app.pick.exts = cats::extensions("jpg mp4");
+
+        // Copying is left out. Nothing has been copied so the step has no
+        // answer and bounces back, which is checked on its own below.
+        for step in [Step::Folders, Step::Files, Step::Where, Step::Plan] {
+            app.step = step;
+            let text = shown(&mut app, &ctx);
+            // The title and the line saying what the step is for. Both come
+            // from the step itself so a view that drew nothing fails.
+            assert!(
+                text.contains(step.title()),
+                "{step:?} did not name itself: {text}"
+            );
+            let opening = step.says().split('.').next().unwrap_or_default();
+            assert!(
+                text.contains(opening),
+                "{step:?} did not say what it is for: {text}"
+            );
+            // The row along the top offers every step whichever one is open.
+            for other in Step::ALL {
+                assert!(
+                    text.contains(other.title()),
+                    "{step:?} did not offer {other:?}: {text}"
+                );
+            }
+        }
+
+        // Nothing has been copied so the copying step has nothing to show and
+        // hands back to the step that would start it.
+        app.step = Step::Copy;
+        let text = shown(&mut app, &ctx);
+        assert_eq!(
+            app.step,
+            Step::Plan,
+            "it stood on a step with nothing on it"
+        );
+        assert!(text.contains(Step::Plan.title()), "{text}");
+    }
+
+    /// Each step has to draw its own body rather than leaning on the bar and
+    /// the status line, which draw whatever the view does.
+    #[test]
+    fn each_step_of_the_extractor_draws_its_own_body() {
+        let ctx = egui::Context::default();
+        let mut app = App::new();
+        app.view = View::Extract;
+        app.add_source(std::env::temp_dir());
+        app.destination = "/one of each".to_string();
+        app.present = vec![(Cat::Image, 3, 30_000)];
+
+        let body = |app: &mut App, ctx: &egui::Context| -> String { shown(app, ctx) };
+
+        app.step = Step::Folders;
+        assert!(body(&mut app, &ctx).contains("Add a folder"));
+        app.step = Step::Files;
+        let text = body(&mut app, &ctx);
+        assert!(text.contains("Bundles"), "{text}");
+        assert!(text.contains("Photos and video"), "{text}");
+        assert!(text.contains("Certain extensions only"), "{text}");
+        app.step = Step::Where;
+        let text = body(&mut app, &ctx);
+        assert!(text.contains("Laid out as"), "{text}");
+        assert!(
+            text.contains("lands at"),
+            "the worked example is missing: {text}"
+        );
+        app.step = Step::Plan;
+        assert!(body(&mut app, &ctx).contains("Work out what would happen"));
+        // The copying step hands back when there is nothing to copy.
+        app.step = Step::Copy;
+        assert!(body(&mut app, &ctx).contains("What would happen"));
+        assert_eq!(app.step, Step::Plan);
+    }
+
+    /// How long a frame of the duplicates view takes against a long report.
+    /// Not a check. Run it with
+    /// `cargo test --release -- --ignored --nocapture how_long_a_dupes_frame_takes`.
+    #[test]
+    #[ignore = "timing probe"]
+    fn how_long_a_dupes_frame_takes() {
+        for total in [1_000usize, 50_000, 200_000] {
+            let mut pairs = Vec::with_capacity(total);
+            for i in 0..total {
+                pairs.push(crate::dupes::Pair {
+                    a: PathBuf::from(format!("/one/folder {}/file {i}.jpg", i % 400)),
+                    b: PathBuf::from(format!("/two/folder {}/file {i}.jpg", i % 400)),
+                    size: (i as u64 % 9_000) + 1,
+                });
+            }
+            let report = std::sync::Arc::new(crate::dupes::Report::of_pairs(pairs));
+
+            // The view draws nothing without a job behind it. One is run over
+            // an empty folder and handed the report built above.
+            let ground = std::env::temp_dir().join(format!("spacemongor-probe-{total}"));
+            let _ = fs::create_dir_all(&ground);
+            let ctx = egui::Context::default();
+            let job = crate::dupes::start(
+                vec![ground.clone()],
+                crate::dupes::Mode::Pooled,
+                cats::Pick::default(),
+                ctx.clone(),
+            );
+            while !job.done.load(Relaxed) {
+                std::thread::sleep(Duration::from_millis(5));
+            }
+            *job.report.lock().unwrap() = Some(std::sync::Arc::clone(&report));
+
+            let mut app = App::new();
+            app.view = View::Duplicates;
+            app.compare = Some(job);
+            app.regroup(&report);
+
+            let timed = |app: &mut App, what: &str| {
+                // One frame to settle then five to time.
+                let _ = ctx.run_ui(input(), |ui| app.dupes_ui(ui));
+                let at = Instant::now();
+                for _ in 0..5 {
+                    let mut out = ctx.run_ui(input(), |ui| app.dupes_ui(ui));
+                    out.textures_delta.clear();
+                }
+                println!(
+                    "{total:>7} pairs  {what:<14} {:>7.2} ms",
+                    at.elapsed().as_secs_f64() * 1000.0 / 5.0
+                );
+            };
+            timed(&mut app, "no filter");
+            app.filter = "file 1".to_string();
+            timed(&mut app, "filter typed");
+            let _ = fs::remove_dir_all(&ground);
+        }
+    }
+
+    /// Prints where each step of the extractor puts its text. Not a check.
+    ///
+    /// The only way to look at a layout on a machine with no display. It found
+    /// that a plain label in a wrapped row is drawn at the start of the row
+    /// rather than where the row put it. Run it with
+    /// `cargo test -- --ignored --nocapture step_probe`.
+    #[test]
+    #[ignore = "layout probe"]
+    fn step_probe() {
+        let ctx = egui::Context::default();
+        let mut app = App::new();
+        app.view = View::Extract;
+        app.add_source(std::env::temp_dir());
+        app.destination = std::env::temp_dir().display().to_string();
+        app.pick = cats::Pick::of_cats(Cat::Image.bundle().cats.iter().copied());
+
+        fn words(shape: &egui::epaint::Shape, into: &mut Vec<(f32, f32, String)>) {
+            match shape {
+                egui::epaint::Shape::Text(t) => {
+                    let text = t.galley.text().replace('\n', " ");
+                    if !text.trim().is_empty() {
+                        into.push((t.pos.y, t.pos.x, text));
+                    }
+                }
+                egui::epaint::Shape::Vec(many) => many.iter().for_each(|s| words(s, into)),
+                egui::epaint::Shape::Callback(_) => {}
+                _ => {}
+            }
+        }
+
+        for step in Step::ALL {
+            app.step = step;
+            // The first frame of a panel has no size stored for it yet so what
+            // it holds is not placed. The second frame is the one to read.
+            let mut found = Vec::new();
+            for _ in 0..2 {
+                let mut out = ctx.run_ui(input(), |ui| app.body(ui));
+                out.textures_delta.clear();
+                found.clear();
+                for shape in &out.shapes {
+                    words(&shape.shape, &mut found);
+                }
+            }
+            found.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            println!("\n==== {step:?} ====");
+            for (y, x, text) in found {
+                println!("  [{y:>5.0},{x:>5.0}]  {text}");
+            }
+        }
+    }
+
+    /// A folder already held inside another on the list is dropped rather than
+    /// read twice.
+    #[test]
+    fn the_extractor_never_holds_a_folder_and_the_folder_above_it() {
+        let mut app = App::new();
+        app.add_source(PathBuf::from("/backup/two"));
+        app.add_source(PathBuf::from("/backup"));
+        app.add_source(PathBuf::from("/elsewhere"));
+
+        assert_eq!(
+            app.sources,
+            vec![PathBuf::from("/backup"), PathBuf::from("/elsewhere")]
+        );
+        assert!(
+            app.said.is_some(),
+            "it said nothing about the one it dropped"
+        );
     }
 
     /// Timing probe. Not a check. Run it with
@@ -3571,6 +4861,19 @@ mod tests {
             count(&snap.root)
         );
         println!("frame         {per:?} drawing {} boxes", app.boxes.len());
+        // A box below the label gate carries no name, so colour is the only
+        // thing telling it from its neighbour. The share is what the colour
+        // decision in docs/decisions.md rests on.
+        let named = app
+            .boxes
+            .iter()
+            .filter(|b| b.rect.width() >= 32.0 && b.rect.height() >= 13.0)
+            .count();
+        println!(
+            "named         {named} of {} boxes carry a name ({:.0}% do not)",
+            app.boxes.len(),
+            100.0 - named as f32 * 100.0 / app.boxes.len().max(1) as f32
+        );
         sh.stop();
     }
 }

@@ -8,8 +8,10 @@ const fr: Messages = {
   nav: {
     month: 'Vue mensuelle',
     simple: 'Saisie rapide',
+    guided: 'Construction guidée',
     setup: 'Mes paramètres',
-    admin: 'Centres de coûts',
+    admin: 'Backoffice',
+    catalogue: 'Centres de coûts',
     jira: 'Jira',
   },
   auth: {
@@ -89,7 +91,7 @@ const fr: Messages = {
     workingWeekend: 'Week-end travaillé',
     notRequired: 'Non requis',
     pickCostCentre: 'Choisir un centre de coûts',
-    defaultSpecification: 'Spécification par défaut',
+    defaultSpecification: 'Rempli pour vous. Vérifiez-le et la marque disparaît.',
     unverifiedSpecification: 'Le centre de coûts n’a pas de spécification par défaut.',
     clearRow: 'Vider la ligne',
     copyLastFilled: 'Copier {id} depuis la dernière ligne remplie',
@@ -222,6 +224,30 @@ const fr: Messages = {
     skip: 'Passer',
     keys: 'Flèches pour se déplacer. Échap pour quitter.',
     steps: {
+      navMonth: {
+        title: 'La vue au démarrage',
+        body: 'La vue mensuelle donne l’ensemble de votre saisie.',
+      },
+      navQuick: {
+        title: 'Remplir par pourcentage',
+        body: 'Donnez à chaque centre de coûts une part du mois.',
+      },
+      navGuided: {
+        title: 'Une question à la fois',
+        body: 'Elle vous guide dans le mois. Le résultat est une saisie exacte.',
+      },
+      navJira: {
+        title: 'Le travail déjà saisi',
+        body: 'Importez vos temps Jira au lieu de les ressaisir.',
+      },
+      navCostCentres: {
+        title: 'Les consulter',
+        body: 'Chaque centre de coûts figure ici avec ses spécifications.',
+      },
+      navSetup: {
+        title: 'La base de chaque mois',
+        body: 'Réglez ici votre site et votre contrat.',
+      },
       period: {
         title: 'Indiquez les détails de ce mois',
         body: 'La langue et le site par défaut se règlent dans les réglages.',
@@ -229,38 +255,6 @@ const fr: Messages = {
       target: {
         title: 'Jours attendus',
         body: 'Les jours ouvrés cibles sont les jours possibles selon le contrat. À la main vous ne changez que ce mois. Réglez le contrat dans les réglages.',
-      },
-      grid: {
-        title: 'Saisissez vos données ici',
-        body: 'Les jours requis sont en blanc.',
-      },
-      costCentre: {
-        title: 'Choisir un centre de coûts',
-        body: 'Cherchez le centre de coûts par nom de projet ou par son identifiant.',
-      },
-      days: {
-        title: 'Journée entière ou demi-journée',
-        body: 'Les choix sont 0.5 ou 1.',
-      },
-      specification: {
-        title: 'Spécification du type de travail',
-        body: 'La première spécification applicable est préremplie. Si elle est marquée par défaut vérifiez-la.',
-      },
-      view: {
-        title: 'Choisissez comment un mois est présenté',
-        body: 'Préférence personnelle.',
-      },
-      board: {
-        title: 'Vue calendrier classique',
-        body: 'Les mêmes fonctions que l’autre vue.',
-      },
-      boardCell: {
-        title: 'Ouvrir un jour',
-        body: 'Cliquez sur une cellule. Tous les champs de la ligne du tableau s\'y trouvent. Échap la referme.',
-      },
-      progress: {
-        title: 'Avancement.',
-        body: 'Vous pouvez dépasser le mois. Ce n’est qu’un repère visuel. Il passe au vert quand le tracker est rempli.',
       },
       recent: {
         title: 'Centres de coûts les plus utilisés',
@@ -289,6 +283,26 @@ const fr: Messages = {
       quickApply: {
         title: 'Remplir le mois',
         body: 'Répartit les jours sur les semaines. Un temps partiel libère un jour par semaine.',
+      },
+      guidedDays: {
+        title: 'Commencez par vos jours d\'absence',
+        body: 'Indiquez un nombre pour chaque type d\'absence. L\'étape deux apparaît dès que l\'un dépasse zéro.',
+      },
+      guidedPlace: {
+        title: 'Placez chaque jour de congé à sa date',
+        body: 'Seuls les jours ouvrés sont proposés. Une absence se pose le jour où elle a été prise.',
+      },
+      guidedKind: {
+        title: 'Deux types dans un même mois',
+        body: 'Choisissez l\'absence que vous placez. Le prochain jour cliqué la reçoit.',
+      },
+      guidedProjects: {
+        title: 'Ce sur quoi vous avez travaillé',
+        body: 'Nommez chaque centre de coûts et sa part du mois. Les parts doivent faire cent.',
+      },
+      guidedBuild: {
+        title: 'Construire puis aller',
+        body: 'Le chiffre à côté est ce que le mois contiendra. Le bouton reste désactivé tant qu\'une étape manque.',
       },
       location: {
         title: 'Où vous travaillez',
@@ -333,6 +347,8 @@ const fr: Messages = {
     target: 'Cible',
     closedTitle: 'Terminés le mois dernier',
     closedIntro: 'Lu en votre nom. Rien n est écrit dans Jira. Les heures viennent d un worklog et ce site n en garde aucun donc la part ci dessous divise le mois.',
+    workedTitle: 'Terminés et en cours le mois dernier',
+    workedIntro: 'Lu depuis Jira. Un ticket que rien n a résolu porte son statut là où la date se trouverait.',
     relink: 'La connexion Jira a expiré.',
     loading: 'Lecture de Jira.',
     none: 'Vous n avez terminé aucun ticket le mois dernier.',
@@ -352,6 +368,15 @@ const fr: Messages = {
       none: 'aucune heure',
     },
     read: 'Lu depuis Jira à {at}.',
+    readStored: 'Lu depuis Jira à {at}. Actualiser interroge Jira de nouveau.',
+    refresh: 'Actualiser',
+    refreshing: 'Lecture',
+    refreshHint: 'Relire Jira plutôt que la copie enregistrée auparavant.',
+    stillOpen: 'Encore ouvert',
+    scope: {
+      closed: 'Terminés seulement',
+      all: 'Terminés et en cours',
+    },
     mapIntro: 'Sur quel centre de coûts {project} est il imputé ?',
     mapAll: 'Un centre de coûts peut aussi être fixé pour tout un projet. Il vaut pour chaque ticket dont Jira ne nomme aucun.',
     from: {
@@ -415,6 +440,44 @@ const fr: Messages = {
       title: 'Suppression de vos données',
       body: 'Tout ce que nous conservons sur vous est supprimé avec votre compte.',
     },
+  },
+  catalogue: {
+    title: 'Centres de coûts',
+    intro: 'Chaque centre de coûts et chaque projet du classeur. Ouvrez une ligne pour lire les spécifications imputables.',
+    search: 'Rechercher par identifiant ou titre',
+    count: '{shown} sur {total} affichés.',
+    source: 'Lu depuis {file}.',
+    none: 'Rien ici ne correspond.',
+    kind: 'Type',
+    specifications: 'Spécifications',
+    ownList: 'Celui-ci nomme sa propre liste. La plage est {range}.',
+    fullList: 'Le classeur laisse {range} vide, donc toutes les spécifications sont proposées.',
+    more: 'Afficher {count} de plus',
+    allTitle: 'Toutes les spécifications',
+    allIntro: 'La liste entière. Un centre de coûts sans liste propre peut imputer chacune.',
+  },
+  guided: {
+    title: 'Construction guidée',
+    intro: 'Trois réponses et le mois est écrit. Un jour de congé se pose le jour où vous l\'avez pris. Le travail se répartit sur le reste.',
+    step1: 'Combien de jours avez-vous été absent ?',
+    step1Hint: 'Ce mois attend {days} jours de vous.',
+    absenceType: 'Type d\'absence',
+    step2: 'Quels jours étaient-ce ?',
+    step2Left: 'Encore {count} à placer.',
+    step2Done: 'Les {count} sont placés.',
+    step3: 'Sur quels projets avez-vous travaillé ?',
+    step3Hint: 'Ils se partagent les {days} jours que votre absence laisse.',
+    willBook: 'Imputé à ce jour',
+    buildIntro: 'Ceci écrit le mois puis l\'ouvre. Cela remplace ce que le mois contient. Rien n\'est soumis.',
+    notReady: 'Placez chaque jour de congé. Répartissez cent pour cent entre les projets.',
+    build: 'Construire le mois',
+    step5: 'Le mois écrit',
+    builtSummary: '{absence} jours d\'absence et {work} jours de travail.',
+    shortBy: 'Il manque {days} jours au mois. Vos congés ont pris des jours dont la cible avait besoin.',
+    ignored: 'Rien n\'a été écrit pour ceux-ci car ce ne sont pas des jours ouvrés. {dates}',
+    openMonth: 'Ouvrir la vue mensuelle',
+    dismiss: 'Masquer',
+    again: 'Recommencer',
   },
   common: {
     none: 'Aucune',

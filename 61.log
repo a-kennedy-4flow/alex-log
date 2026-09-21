@@ -1,0 +1,23 @@
+Log 61. The GBA extension hangs on "loading the core" when it opens in the side bar. Three items. Default the log level to debug. Add a reload action. Suspend when the window is minimised. One line per command. UTC timestamp then command then result.
+2026-09-18T10:07:06Z cat memory rules and 60.log — logs live at the alex-log root so this is 61.log.
+2026-09-18T10:07:14Z cat -n src/extension.ts — the side bar path is GbaViewProvider.resolveWebviewView. It opens a Session exactly as the editor does.
+2026-09-18T10:10:23Z cat -n src/webviewHtml.ts and media/webview/boot.js — boot.js posts ready then waits for load. The host registers its listener after two awaits so a dropped ready leaves the page on "Loading the core" with no logs at all.
+2026-09-18T10:10:46Z python3 rewrite of package.json — gba.log now defaults to all. A gba.reload command is contributed with a refresh icon on both title bars. It parses.
+2026-09-18T10:11:00Z python3 rewrite of src/extension.ts — the page is now served after the message listener is registered. Session gained reload and reportVisibility.
+2026-09-18T10:11:16Z python3 rewrite of media/webview/boot.js — the machine suspends when the document is hidden while the host still reports the surface on screen.
+2026-09-18T10:11:33Z npm run typecheck — clean.
+2026-09-18T10:11:38Z npm run build — vendored 3.5 MiB and bundled out/extension.js.
+2026-09-18T10:13:18Z npm test — twelve assertions pass with the picture and the state round trip intact.
+2026-09-18T10:14:49Z grep setVolume in media/data/src/emulator.js — setVolume applies a level and never writes this.volume. The first restore read the wrong property and the new assertion caught it.
+2026-09-18T10:16:13Z npm test — seventeen assertions pass including the five new suspension ones.
+2026-09-18T10:16:21Z python3 rewrite of readme.md — a fifth platform constraint plus new Minimising and Reload sections.
+2026-09-18T10:16:29Z npm run typecheck and npm run package — clean and gba-webview-0.1.0.vsix rebuilt at 2.46 MB.
+2026-09-18T10:16:50Z git diff on pokemon — five files changed. Nothing outside pokemon was touched.
+2026-09-18T10:21:43Z new item — the picture sits off centre with a black bar on its left. Reproducing it in the screenshot harness before changing anything.
+2026-09-18T10:24:29Z WINDOW=800,600 and WINDOW=320,900 through the harness — no left bar either way. The harness page is missing the stylesheet VS Code injects into every webview.
+2026-09-18T10:25:16Z node test/run-webview.mjs with the injected stylesheet — leftBar 20 and rightBar 0. The body padding VS Code adds is the bar and 100vw runs the picture off the right edge.
+2026-09-18T10:28:30Z grep getVideoDimensions — the core reports its own aspect so the page need not guess between GBA and Game Boy.
+2026-09-18T10:30:41Z three shapes through the harness — 800x600 and 320x900 and 900x300 all centre to within one pixel.
+2026-09-18T10:31:39Z python3 rewrite of readme.md — a Layout section covering the injected padding and the core's own letterbox.
+2026-09-18T10:34:38Z npm test at 800x600 and 300x520 and 900x300 — twenty assertions pass at every shape.
+2026-09-18T10:34:51Z npm run package — gba-webview-0.1.0.vsix rebuilt with the layout fix.

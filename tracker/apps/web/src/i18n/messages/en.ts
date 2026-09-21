@@ -10,8 +10,12 @@ const en = {
   nav: {
     month: 'Month view',
     simple: 'Quick fill',
+    guided: 'Guided build',
     setup: 'My settings',
-    admin: 'Cost centres',
+    // The backoffice screen uploads the workbook. `catalogue` is the screen
+    // that reads what the upload put there.
+    admin: 'Backoffice',
+    catalogue: 'Cost centres',
     jira: 'Jira',
   },
   auth: {
@@ -91,7 +95,7 @@ const en = {
     workingWeekend: 'Working weekend',
     notRequired: 'Not required',
     pickCostCentre: 'Pick a cost centre',
-    defaultSpecification: 'Default Specification',
+    defaultSpecification: 'Filled in for you. Check it and the mark goes.',
     unverifiedSpecification: 'Cost center has no default specification.',
     clearRow: 'Clear row',
     copyLastFilled: 'Copy {id} from the last filled row',
@@ -227,49 +231,40 @@ const en = {
     skip: 'Skip',
     keys: 'Arrows to move. Escape to leave.',
     steps: {
+      navMonth: {
+        title: 'The view you open on',
+        body: 'The month view gives the overview of your submission.',
+      },
+      navQuick: {
+        title: 'Fill by percentage',
+        body: 'Give each cost centre a share of the month.',
+      },
+      navGuided: {
+        title: 'One question at a time',
+        body: 'It walks you through the month. The result is an accurate timesheet.',
+      },
+      navJira: {
+        title: 'Work already logged',
+        body: 'Import your Jira time tracking rather than typing it again.',
+      },
+      navCostCentres: {
+        title: 'Look one up',
+        body: 'Every cost centre is listed with its specifications.',
+      },
+      navSetup: {
+        title: 'What every month starts from',
+        body: 'Set your location and your contract here.',
+      },
       period: {
         title: 'Specify the details of this mounth',
         body: 'Language and location defaults can be adjusted in settings.',
       },
       target: {
         title: 'Days expected',
-        body: ' Target working days is total possible working days/contract. You may manually change this month only. Adjust contracted hours in settings.',
-      },
-    view: {
-        title: 'Pick how you prefer a mounth to be presented',
-        body: 'Personal preference.',
-      },
-      grid: {
-        title: 'Fill your data here',
-        body: 'Required days are in white.',
-      },
-      costCentre: {
-        title: 'Pick a cost centre',
-        body: 'Search for the cost center by project name or cost center id.',
-      },
-      days: {
-        title: 'Full or Half day',
-        body: 'Choices are 0.5 or 1.',
-      },
-      specification: {
-        title: 'Specification of what type of work it was',
-        body: 'Default fill is the first relevant specification. When flagged with default you should double check it.',
-      },
-
-      board: {
-        title: 'Traditional Calender View',
-        body: 'Same functionality as the other view.',
-      },
-      boardCell: {
-        title: 'Open a day',
-        body: 'Click a cell. Every field the grid row carries is inside. Escape closes it again.',
-      },
-      progress: {
-        title: 'Completion progress.',
-        body: 'You may over spec the mounth. This is just a visual aid. Turns green when the tracker is filled.',
+        body: 'This is the target for the tracker. This by default is calculated using the working days for this mounth/contracted hours as a percentage. Adjust defaults hours in settings.',
       },
       recent: {
-        title: 'Most frequently used cost centers',
+        title: 'Most frequently used cost centers. You can click on these to quickly fill up your timesheets.',
         body: 'Accross all mouths these are the cost centres you book most. Click it to fill the next free day.',
       },
       checks: {
@@ -277,12 +272,12 @@ const en = {
         body: 'The same checks the tracker spreadsheet runs.',
       },
       download: {
-        title: 'Download the ',
-        body: 'Download the tracker then email it. The app sends nothing on your behalf.',
+        title: 'Download the tracker',
+        body: 'Once complete and valid the tracker will become avalible for download. Email it to the tracker team once validated.',
       },
       quickRows: {
-        title: 'A cost centre a row',
-        body: 'Add the ones you worked on this month. The month is filled from these.',
+        title: 'One row a cost centre',
+        body: 'The cost centres of this month. The month is filled from them.',
       },
       quickShare: {
         title: 'Split the month',
@@ -295,6 +290,26 @@ const en = {
       quickApply: {
         title: 'Fill the month',
         body: 'Spreads the days across the weeks. A part time month drops a day a week rather than a run at the end.',
+      },
+      guidedDays: {
+        title: 'Start with the days you were away',
+        body: 'Give a count for each kind of absence. Step two opens once one of them is above zero.',
+      },
+      guidedPlace: {
+        title: 'Put each day off on its date',
+        body: 'Working days alone are offered. An absence belongs on the day it was taken.',
+      },
+      guidedKind: {
+        title: 'Two kinds in one month',
+        body: 'Pick the absence you are placing. The next day you click takes it.',
+      },
+      guidedProjects: {
+        title: 'What you worked on',
+        body: 'Name each cost centre and the share of the month it took. The shares have to reach a hundred.',
+      },
+      guidedBuild: {
+        title: 'Build and go',
+        body: 'The figure beside it is what the month will hold. The button stays disabled until every step is answered.',
       },
       location: {
         title: 'Where you work',
@@ -339,6 +354,8 @@ const en = {
     target: 'Target',
     closedTitle: 'Closed last month',
     closedIntro: 'Read from Jira. The hours come from whatever you have logged.',
+    workedTitle: 'Closed and in progress last month',
+    workedIntro: 'Read from Jira. A ticket nothing has resolved carries its status where the date would be.',
     relink: 'The Jira connection has expired.',
     loading: 'Reading Jira.',
     none: 'No ticket was closed by you last month.',
@@ -358,6 +375,15 @@ const en = {
       none: 'no hours',
     },
     read: 'Read from Jira at {at}.',
+    readStored: 'Read from Jira at {at}. Refresh to ask Jira again.',
+    refresh: 'Refresh',
+    refreshing: 'Reading',
+    refreshHint: 'Read Jira again rather than the copy from earlier.',
+    stillOpen: 'Still open',
+    scope: {
+      closed: 'Closed only',
+      all: 'Closed and in progress',
+    },
     mapIntro: 'Which cost centre does {project} book against?',
     mapAll: 'Sometimes the Costcenter for a Jira project cannot be found. Manually add it here.',
     from: {
@@ -421,6 +447,44 @@ const en = {
       title: 'Deleting your data',
       body: 'Everything we hold about you is deleted when your account is deleted.',
     },
+  },
+  catalogue: {
+    title: 'Cost centres',
+    intro: 'Every cost centre and project the workbook holds. Open a row to read the specifications it may book.',
+    search: 'Search by id or by title',
+    count: '{shown} of {total} shown.',
+    source: 'Read from {file}.',
+    none: 'Nothing here matches that.',
+    kind: 'Type',
+    specifications: 'Specifications',
+    ownList: 'This one names its own list. The range is {range}.',
+    fullList: 'The workbook leaves {range} empty so every specification is offered.',
+    more: 'Show {count} more',
+    allTitle: 'Every specification',
+    allIntro: 'The whole list. A cost centre naming no list of its own may book any of these.',
+  },
+  guided: {
+    title: 'Guided build',
+    intro: 'Three answers and the month is written. A day off lands on the day you took it. The work spreads over whatever is left.',
+    step1: 'How many days were you away?',
+    step1Hint: 'This month expects {days} days of you.',
+    absenceType: 'Kind of absence',
+    step2: 'Which days were they?',
+    step2Left: '{count} still to place.',
+    step2Done: 'All {count} are placed.',
+    step3: 'Which projects did you work on?',
+    step3Hint: 'These share the {days} days your absence leaves.',
+    willBook: 'Booked so far',
+    buildIntro: 'This writes the month then opens it. It replaces what the month holds. Nothing is submitted.',
+    notReady: 'Place every day off. Give the projects a hundred per cent between them.',
+    build: 'Build the month',
+    step5: 'The month it wrote',
+    builtSummary: '{absence} days away and {work} days of work.',
+    shortBy: 'The month is {days} days short. Your days off took days the target still needed.',
+    ignored: 'Nothing was written for these because they are not working days. {dates}',
+    openMonth: 'Open the month view',
+    dismiss: 'Hide this',
+    again: 'Start again',
   },
   common: {
     none: 'None',

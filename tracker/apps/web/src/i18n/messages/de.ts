@@ -8,8 +8,10 @@ const de: Messages = {
   nav: {
     month: 'Monatsansicht',
     simple: 'Schnellerfassung',
+    guided: 'Geführter Aufbau',
     setup: 'Meine Einstellungen',
-    admin: 'Kostenstellen',
+    admin: 'Backoffice',
+    catalogue: 'Kostenstellen',
     jira: 'Jira',
   },
   auth: {
@@ -89,7 +91,7 @@ const de: Messages = {
     workingWeekend: 'Arbeitswochenende',
     notRequired: 'Nicht erforderlich',
     pickCostCentre: 'Kostenstelle wählen',
-    defaultSpecification: 'Standardspezifikation',
+    defaultSpecification: 'Für Sie eingetragen. Prüfen Sie es und die Markierung verschwindet.',
     unverifiedSpecification: 'Die Kostenstelle hat keine Standardspezifikation.',
     clearRow: 'Zeile leeren',
     copyLastFilled: '{id} aus der letzten gefüllten Zeile kopieren',
@@ -222,6 +224,30 @@ const de: Messages = {
     skip: 'Überspringen',
     keys: 'Pfeiltasten zum Wechseln. Escape zum Verlassen.',
     steps: {
+      navMonth: {
+        title: 'Die Ansicht beim Start',
+        body: 'Die Monatsansicht zeigt Ihre Erfassung im Überblick.',
+      },
+      navQuick: {
+        title: 'Nach Prozent füllen',
+        body: 'Geben Sie jeder Kostenstelle einen Anteil am Monat.',
+      },
+      navGuided: {
+        title: 'Eine Frage nach der anderen',
+        body: 'Führt Sie durch den Monat. Das Ergebnis ist eine genaue Erfassung.',
+      },
+      navJira: {
+        title: 'Bereits erfasste Arbeit',
+        body: 'Übernehmen Sie Ihre Jira-Zeiten statt sie erneut zu tippen.',
+      },
+      navCostCentres: {
+        title: 'Nachschlagen',
+        body: 'Jede Kostenstelle steht hier mit ihren Spezifikationen.',
+      },
+      navSetup: {
+        title: 'Grundlage jedes Monats',
+        body: 'Standort und Vertrag stellen Sie hier ein.',
+      },
       period: {
         title: 'Die Angaben dieses Monats festlegen',
         body: 'Sprache und Standort lassen sich in den Einstellungen ändern.',
@@ -229,38 +255,6 @@ const de: Messages = {
       target: {
         title: 'Erwartete Tage',
         body: 'Die Zielarbeitstage sind die möglichen Arbeitstage nach Vertrag. Von Hand ändern lässt sich nur dieser Monat. Den Vertragsanteil stellen Sie in den Einstellungen ein.',
-      },
-      grid: {
-        title: 'Hier tragen Sie Ihre Daten ein',
-        body: 'Die geforderten Tage sind weiß.',
-      },
-      costCentre: {
-        title: 'Kostenstelle wählen',
-        body: 'Suchen Sie die Kostenstelle über den Projektnamen oder die Kostenstellennummer.',
-      },
-      days: {
-        title: 'Ganzer oder halber Tag',
-        body: 'Zur Wahl stehen 0.5 oder 1.',
-      },
-      specification: {
-        title: 'Spezifikation der Art der Arbeit',
-        body: 'Vorbelegt wird die erste passende Spezifikation. Ist sie als Standard markiert prüfen Sie sie nach.',
-      },
-      view: {
-        title: 'Wählen Sie wie ein Monat dargestellt wird',
-        body: 'Persönliche Vorliebe.',
-      },
-      board: {
-        title: 'Klassische Kalenderansicht',
-        body: 'Dieselben Funktionen wie die andere Ansicht.',
-      },
-      boardCell: {
-        title: 'Einen Tag öffnen',
-        body: 'Klicken Sie eine Zelle an. Jedes Feld der Tabellenzeile steht darin. Escape schließt sie wieder.',
-      },
-      progress: {
-        title: 'Fortschritt.',
-        body: 'Sie dürfen den Monat überbuchen. Dies ist nur eine Anzeige. Sie wird grün sobald der Tracker voll ist.',
       },
       recent: {
         title: 'Am häufigsten genutzte Kostenstellen',
@@ -289,6 +283,26 @@ const de: Messages = {
       quickApply: {
         title: 'Monat füllen',
         body: 'Verteilt die Tage über die Wochen. Teilzeit lässt pro Woche einen Tag frei.',
+      },
+      guidedDays: {
+        title: 'Beginnen Sie mit den Abwesenheitstagen',
+        body: 'Geben Sie je Art der Abwesenheit eine Anzahl an. Schritt zwei erscheint sobald eine davon über null liegt.',
+      },
+      guidedPlace: {
+        title: 'Jeden freien Tag auf sein Datum setzen',
+        body: 'Angeboten werden nur Arbeitstage. Eine Abwesenheit gehört auf den Tag an dem sie genommen wurde.',
+      },
+      guidedKind: {
+        title: 'Zwei Arten in einem Monat',
+        body: 'Wählen Sie die Abwesenheit die Sie setzen. Der nächste angeklickte Tag bekommt sie.',
+      },
+      guidedProjects: {
+        title: 'Woran Sie gearbeitet haben',
+        body: 'Nennen Sie jede Kostenstelle und ihren Anteil am Monat. Die Anteile müssen zusammen hundert ergeben.',
+      },
+      guidedBuild: {
+        title: 'Aufbauen und hin',
+        body: 'Die Zahl daneben ist der Inhalt des Monats. Der Knopf bleibt gesperrt bis jeder Schritt beantwortet ist.',
       },
       location: {
         title: 'Wo Sie arbeiten',
@@ -333,6 +347,8 @@ const de: Messages = {
     target: 'Ziel',
     closedTitle: 'Letzten Monat abgeschlossen',
     closedIntro: 'Als Sie gelesen. Nichts wird nach Jira zurückgeschrieben. Die Stunden kommen aus einem Worklog und diese Instanz hat keine also teilt der Anteil unten den Monat.',
+    workedTitle: 'Letzten Monat abgeschlossen und laufend',
+    workedIntro: 'Aus Jira gelesen. Ein Ticket, das nichts aufgelöst hat, zeigt seinen Status dort, wo das Datum stünde.',
     relink: 'Die Jira Verbindung ist abgelaufen.',
     loading: 'Jira wird gelesen.',
     none: 'Sie haben letzten Monat kein Ticket abgeschlossen.',
@@ -352,6 +368,15 @@ const de: Messages = {
       none: 'keine Stunden',
     },
     read: 'Aus Jira gelesen um {at}.',
+    readStored: 'Aus Jira gelesen um {at}. Aktualisieren fragt Jira erneut.',
+    refresh: 'Aktualisieren',
+    refreshing: 'Wird gelesen',
+    refreshHint: 'Jira erneut lesen statt der zuvor gespeicherten Kopie.',
+    stillOpen: 'Noch offen',
+    scope: {
+      closed: 'Nur abgeschlossene',
+      all: 'Abgeschlossene und laufende',
+    },
     mapIntro: 'Auf welche Kostenstelle bucht {project}?',
     mapAll: 'Eine Kostenstelle lässt sich auch für ein ganzes Projekt setzen. Sie gilt für jedes Ticket ohne eigene Angabe in Jira.',
     from: {
@@ -415,6 +440,44 @@ const de: Messages = {
       title: 'Löschung Ihrer Daten',
       body: 'Alles was wir über Sie speichern wird mit Ihrem Konto gelöscht.',
     },
+  },
+  catalogue: {
+    title: 'Kostenstellen',
+    intro: 'Jede Kostenstelle und jedes Projekt aus der Arbeitsmappe. Öffnen Sie eine Zeile, um die buchbaren Spezifikationen zu lesen.',
+    search: 'Nach ID oder Titel suchen',
+    count: '{shown} von {total} angezeigt.',
+    source: 'Gelesen aus {file}.',
+    none: 'Dazu passt hier nichts.',
+    kind: 'Art',
+    specifications: 'Spezifikationen',
+    ownList: 'Diese nennt eine eigene Liste. Der Bereich ist {range}.',
+    fullList: 'Die Arbeitsmappe lässt {range} leer, daher werden alle Spezifikationen angeboten.',
+    more: '{count} weitere anzeigen',
+    allTitle: 'Alle Spezifikationen',
+    allIntro: 'Die ganze Liste. Eine Kostenstelle ohne eigene Liste darf jede davon buchen.',
+  },
+  guided: {
+    title: 'Geführter Aufbau',
+    intro: 'Drei Antworten und der Monat steht. Ein freier Tag landet auf dem Tag, an dem Sie ihn genommen haben. Die Arbeit verteilt sich auf den Rest.',
+    step1: 'Wie viele Tage waren Sie abwesend?',
+    step1Hint: 'Dieser Monat erwartet {days} Tage von Ihnen.',
+    absenceType: 'Art der Abwesenheit',
+    step2: 'Welche Tage waren das?',
+    step2Left: 'Noch {count} zu setzen.',
+    step2Done: 'Alle {count} sind gesetzt.',
+    step3: 'An welchen Projekten haben Sie gearbeitet?',
+    step3Hint: 'Diese teilen sich die {days} Tage, die Ihre Abwesenheit übrig lässt.',
+    willBook: 'Bisher gebucht',
+    buildIntro: 'Das schreibt den Monat und öffnet ihn dann. Der Inhalt des Monats wird ersetzt. Eingereicht wird nichts.',
+    notReady: 'Setzen Sie jeden freien Tag. Verteilen Sie hundert Prozent auf die Projekte.',
+    build: 'Monat aufbauen',
+    step5: 'Der geschriebene Monat',
+    builtSummary: '{absence} Tage abwesend und {work} Tage Arbeit.',
+    shortBy: 'Dem Monat fehlen {days} Tage. Ihre freien Tage haben Tage genommen, die das Ziel noch brauchte.',
+    ignored: 'Für diese wurde nichts geschrieben, weil es keine Arbeitstage sind. {dates}',
+    openMonth: 'Monatsansicht öffnen',
+    dismiss: 'Ausblenden',
+    again: 'Neu beginnen',
   },
   common: {
     none: 'Keine',

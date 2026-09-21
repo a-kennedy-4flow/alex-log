@@ -13,7 +13,13 @@
 // Nothing here reads the catalogue either. The answer carries Workday IDs and
 // the browser resolves the titles from the catalogue it already holds.
 
-import type { CompletedTicket, CostCentreChoices } from '@tracker/core'
+import {
+  DEFAULT_TICKET_SCOPE,
+  isTicketScope,
+  type CompletedTicket,
+  type CostCentreChoices,
+  type TicketScope,
+} from '@tracker/core'
 
 import { json, problem, type ApiRequest, type ApiResponse, type Caller } from './handlers'
 import { JiraThrottledRefresh, accessTokenFor, linkFrom, type TokenDeps } from './jira-tokens'
@@ -60,9 +66,19 @@ function cacheWindow(period: string, now: Date): number {
   return period === currentPeriod(now) ? TICKET_CACHE_CURRENT_MS : TICKET_CACHE_CLOSED_MS
 }
 
-function cacheIsFresh(link: StoredJiraLink, period: string, now: Date): boolean {
+function cacheIsFresh(
+  link: StoredJiraLink,
+  period: string,
+  scope: TicketScope,
+  now: Date,
+): boolean {
   const cache = link.cache
   if (!cache || cache.period !== period) return false
+  // A month read as closed holds none of the tickets still being worked so it
+  // is not the answer to the wider question. The narrower one is a subset of
+  // the wider cache and is still refused. Because a) filtering it here would
+  // put the JQL rule in a second place. b) one search is what it costs.
+  if (cache.scope !== scope) return false
   // A cache written against an older ticket shape is not stale so much as the
   // wrong shape. Reading it would hand the screen a row missing its cost centre
   // and its days.
@@ -90,9 +106,17 @@ function mapped(tickets: CompletedTicket[], choices: CostCentreChoices): Complet
   }))
 }
 
+/**
+ * Reads one month of tickets.
+ *
+ * `fresh` is the refresh button. It skips the stored copy and asks Jira again.
+ * The answer still replaces the cache so the next read is served from it.
+ */
 async function readTickets(
   caller: Caller,
   period: string,
+  scope: TicketScope,
+  fresh: boolean,
   deps: JiraDeps,
 ): Promise<ApiResponse> {
   const link = await deps.repository.getJiraLink(caller.sub)
@@ -105,10 +129,11 @@ async function readTickets(
   }
   const now = deps.now()
 
-  if (cacheIsFresh(link, period, now)) {
+  if (!fresh && cacheIsFresh(link, period, scope, now)) {
     const cache = link.cache as NonNullable<StoredJiraLink['cache']>
     return json(200, {
       period,
+      scope,
       fetchedAt: cache.fetchedAt,
       cached: true,
       tickets: mapped(cache.tickets, choices),
@@ -118,7 +143,7 @@ async function readTickets(
   const access = await accessTokenFor(caller.sub, deps)
   if (access === null) return problem(409, 'this user has not linked Jira', { linked: false })
 
-  const tickets = await deps.jira.completed(access, period)
+  const tickets = await deps.jira.completed(access, period, scope)
   const fetchedAt = now.toISOString()
   // The link is read again rather than reused. Getting the access token may
   // have rotated the refresh token which moves the generation on. Writing the
@@ -130,13 +155,19 @@ async function readTickets(
       caller.sub,
       {
         ...current,
-        cache: { period, fetchedAt, version: TICKET_CACHE_VERSION, tickets },
+        cache: { period, scope, fetchedAt, version: TICKET_CACHE_VERSION, tickets },
         generation: current.generation + 1,
       },
       current.generation,
     )
   }
-  return json(200, { period, fetchedAt, cached: false, tickets: mapped(tickets, choices) })
+  return json(200, {
+    period,
+    scope,
+    fetchedAt,
+    cached: false,
+    tickets: mapped(tickets, choices),
+  })
 }
 
 export async function handleJira(request: ApiRequest, deps: JiraDeps): Promise<ApiResponse> {
@@ -176,14 +207,21 @@ export async function handleJira(request: ApiRequest, deps: JiraDeps): Promise<A
     return json(200, { linked: false })
   }
 
-  const completed = path.match(/^\/api\/jira\/completed\/([^/]+)$/)
-  if (method === 'GET' && completed) {
+  const completed = path.match(/^\/api\/jira\/completed\/([^/]+)(?:\/([^/]+))?$/)
+  if ((method === 'GET' || method === 'POST') && completed) {
     const period = completed[1] as string
-    // The month is a path segment rather than a query because neither adapter
-    // passes a query string through to a handler. `/api/timesheets/<period>`
-    // already addresses a month this way.
+    const asked = completed[2]
+    // The month and the scope are path segments rather than a query because
+    // neither adapter passes a query string through to a handler.
+    // `/api/timesheets/<period>` already addresses a month this way.
     if (!PERIOD.test(period)) return problem(400, 'period must be yyyy-mm')
-    return readTickets(caller, period, deps)
+    if (asked !== undefined && !isTicketScope(asked)) {
+      return problem(400, 'scope must be closed or all')
+    }
+    // POST is the refresh. It is the verb rather than a third segment because
+    // a read served from a store and a read that replaces it are the same
+    // question asked twice. Nothing else about the request differs.
+    return readTickets(caller, period, asked ?? DEFAULT_TICKET_SCOPE, method === 'POST', deps)
   }
 
   return problem(404, 'no such route')

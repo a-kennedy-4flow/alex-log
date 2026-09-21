@@ -1,0 +1,15 @@
+# The project test/live.mjs brings up. Two services and three published ports.
+# One of them binds the loopback address only and one of them is udp.
+name: pfdemo
+services:
+  web:
+    image: alpine:3.21
+    command: ["sh", "-c", "while true; do printf 'HTTP/1.1 200 OK\r\nContent-Length: 3\r\n\r\nhi\n' | nc -l -p 8080; done"]
+    ports:
+      - "18080:8080"
+  side:
+    image: alpine:3.21
+    command: ["sh", "-c", "sleep 100000"]
+    ports:
+      - "127.0.0.1:18081:9000"
+      - "18082:9001/udp"

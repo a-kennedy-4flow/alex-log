@@ -1,4 +1,4 @@
-// Routes are declared in code rather than generated from files. Seven screens
+// Routes are declared in code rather than generated from files. Nine screens
 // do not warrant a generator.
 //
 // `/jira/callback` is absent on purpose. `lib/jira.ts` handles it before the
@@ -23,6 +23,8 @@ const AdminPage = lazyRouteComponent(() => import('./pages/AdminPage.vue'))
 const JiraPage = lazyRouteComponent(() => import('./pages/JiraPage.vue'))
 const PrivacyPage = lazyRouteComponent(() => import('./pages/PrivacyPage.vue'))
 const CreditsPage = lazyRouteComponent(() => import('./pages/CreditsPage.vue'))
+const GuidedPage = lazyRouteComponent(() => import('./pages/GuidedPage.vue'))
+const CostCentresPage = lazyRouteComponent(() => import('./pages/CostCentresPage.vue'))
 
 const rootRoute = createRootRoute({ component: RootLayout })
 
@@ -36,6 +38,20 @@ const simpleRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/quick',
   component: SimplePage,
+})
+
+const guidedRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/guided',
+  component: GuidedPage,
+})
+
+// `/cost-centres` rather than `/catalogue`. The screen is named for what it
+// holds and the word the business uses for that is the cost centre.
+const costCentresRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/cost-centres',
+  component: CostCentresPage,
 })
 
 const setupRoute = createRoute({
@@ -68,7 +84,7 @@ const adminRoute = createRoute({
   component: AdminPage,
 })
 
-// An address matching no route goes to the month grid. Seven screens do not
+// An address matching no route goes to the month grid. Nine screens do not
 // warrant a page for a typo.
 const missingRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -81,7 +97,9 @@ const missingRoute = createRoute({
 export const routeTree = rootRoute.addChildren([
   monthRoute,
   simpleRoute,
+  guidedRoute,
   jiraRoute,
+  costCentresRoute,
   setupRoute,
   adminRoute,
   privacyRoute,

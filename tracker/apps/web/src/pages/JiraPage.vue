@@ -10,7 +10,9 @@ import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import {
   findProject,
+  isInProgress,
   labelOf,
+  TICKET_SCOPES,
   type CompletedTicket,
   type ResolvedCostCentre,
   type ResolvedSpecification,
@@ -25,6 +27,8 @@ import { consentError, startLink } from '@/lib/jira'
 import { router } from '@/router'
 import { profile, target } from '@/composables/useTimesheet'
 import {
+  cached,
+  chooseScope,
   choosePeriod,
   error,
   fetchedAt,
@@ -43,8 +47,11 @@ import {
   mode,
   offeredPeriods,
   period,
+  refreshing,
+  refreshMonth,
   relinkNeeded,
   rows,
+  scope,
   tickets,
   shareOf,
   shares,
@@ -132,6 +139,31 @@ const readMonth = computed(() => {
   const month = Number(period.value.split('-')[1])
   return monthName(locale.value, month)
 })
+
+/**
+ * What the closed column says for one row.
+ *
+ * A ticket still being worked carries no resolution date so the status stands
+ * in its place. Jira answers the name a project gave the status rather than one
+ * of a fixed set so it is shown as Jira wrote it.
+ */
+function whenLabel(ticket: CompletedTicket): string {
+  if (!isInProgress(ticket)) return ticket.resolvedAt.slice(0, 10)
+  return ticket.status === '' ? t('jira.stillOpen') : ticket.status
+}
+
+/**
+ * The heading over the table. It follows the scope.
+ *
+ * A heading reading `Closed last month` over a table holding tickets nothing
+ * has closed is the one thing the switch must not leave behind.
+ */
+const tableTitle = computed(() =>
+  scope.value === 'all' ? t('jira.workedTitle') : t('jira.closedTitle'),
+)
+const tableIntro = computed(() =>
+  scope.value === 'all' ? t('jira.workedIntro') : t('jira.closedIntro'),
+)
 
 function titleOf(workdayId: string): string {
   const project = findProject(workdayId)
@@ -246,6 +278,21 @@ async function run(): Promise<void> {
             >
               {{ monthName(locale, Number(option.split('-')[1])) }}
             </button>
+            <!--
+              The month is served from a copy the server holds for a day. So a
+              ticket closed since the last read is absent until something asks
+              for it again. This is that ask.
+            -->
+            <button
+              type="button"
+              class="btn refresh"
+              :disabled="loading || refreshing"
+              :title="t('jira.refreshHint')"
+              @click="refreshMonth()"
+            >
+              <LoadingRing v-if="refreshing" bare />
+              {{ refreshing ? t('jira.refreshing') : t('jira.refresh') }}
+            </button>
           </div>
         </div>
         <dl class="stats">
@@ -269,8 +316,25 @@ async function run(): Promise<void> {
       </section>
 
       <section class="pad band">
-        <h2 class="eyebrow">{{ t('jira.closedTitle') }}</h2>
-        <p class="intro">{{ t('jira.closedIntro') }}</p>
+        <h2 class="eyebrow">{{ tableTitle }}</h2>
+        <p class="intro">{{ tableIntro }}</p>
+
+        <!--
+          A ticket still being worked carries neither a resolution date nor an
+          hours figure. It is offered rather than read by default because the
+          month being booked is the closed one.
+        -->
+        <div class="switch">
+          <button
+            v-for="option in TICKET_SCOPES"
+            :key="option"
+            type="button"
+            :class="{ on: option === scope }"
+            @click="chooseScope(option)"
+          >
+            {{ t(`jira.scope.${option}`) }}
+          </button>
+        </div>
 
         <p v-if="relinkNeeded" class="note">
           {{ t('jira.relink') }}
@@ -317,7 +381,11 @@ async function run(): Promise<void> {
                   {{ row.ticket.parentSummary }}
                 </span>
               </td>
-              <td class="nowrap">{{ row.ticket.resolvedAt.slice(0, 10) }}</td>
+              <td class="nowrap">
+                <span :class="{ working: !row.ticket.resolvedAt }">
+                  {{ whenLabel(row.ticket) }}
+                </span>
+              </td>
               <!-- The figure then the line saying where its cost centre came from. -->
               <td class="cc">
                 <span v-if="row.found.workdayId" class="pill light num">
@@ -351,7 +419,9 @@ async function run(): Promise<void> {
           </tbody>
         </table>
 
-        <p v-if="fetchedAt" class="muted">{{ t('jira.read', { at: fetchedAt.slice(0, 16) }) }}</p>
+        <p v-if="fetchedAt" class="muted">
+          {{ t(cached ? 'jira.readStored' : 'jira.read', { at: fetchedAt.slice(0, 16) }) }}
+        </p>
 
         <!-- Every project holding a ticket that books against nothing. One row each. -->
         <div v-if="unmapped.length" class="maps">
@@ -581,6 +651,24 @@ async function run(): Promise<void> {
   font-weight: 700;
   font-size: 13px;
   margin: 0;
+}
+
+/*
+ * The refresh sits after the two months because it acts on whichever is open.
+ * It carries the ring the fill button carries so a read in flight reads the
+ * same way in both places.
+ */
+.months .btn.refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 8px;
+}
+
+/* A ticket nothing has resolved. The status stands where the date would. */
+.working {
+  color: var(--grey);
+  font-style: italic;
 }
 
 /* Leaving the connection is not the thing to reach for so it reads quieter. */

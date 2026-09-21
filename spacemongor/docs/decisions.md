@@ -25,6 +25,21 @@ points.
 holding the same bytes always share it. Two files with different bytes almost
 always differ in it.
 
+**Pool** — every folder a search was given read as one set of files. A file held
+in two of them is a copy wherever it sits. The extractor asks for this.
+
+**Group** — one of the nine sets of file types read off an extension. Each wears
+one colour.
+
+**Bundle** — a named set of groups. Photos and video are one bundle. Every group
+sits in exactly one.
+
+**Pick** — the groups and the extensions a search or an extraction is told to
+look at. Nothing set means every file.
+
+**Question** — the shape of a search and the folders it names. Two searches that
+share it share one stored answer.
+
 ## Answered by the brief
 
 | Question | Answer |
@@ -130,20 +145,42 @@ Every subset of the eight was then checked. Four hues is the largest set that
 passes. No set of five clears the normal vision floor of 15.
 
 Four groups is not enough to read a disk. The eight were kept and the loss is
-paid for elsewhere. Because a) every box carries its own name so colour is never
-the only way to tell one from another b) the pointer names the group for any box
-under it and c) clicking a group in the legend dims every other box which
-answers "where is all my video" exactly rather than by eye.
+paid for elsewhere. Because a) the pointer names the group for any box under it
+and b) clicking a group in the legend dims every other box which answers "where
+is all my video" exactly rather than by eye.
+
+A third reason used to stand here. It said every box carries its own name so
+colour is never the only way to tell one from another. It was not true. A name
+is drawn only where the box is at least 32 pixels wide and tall enough for the
+text, and `MIN_SHARE` keeps boxes far below that. Measured on `/usr` at ten
+levels, 230 of 3,471 boxes carry a name. For the other 93 per cent colour is the
+only cue, and those are the small boxes where a reader needs the help most. The
+trade now rests on the two reasons above.
+
+The text on a box that does carry a name is whichever of near black and near
+white reads further from the fill, measured as a contrast ratio on relative
+luminance. A brightness threshold was used before and it chose the worse of the
+two for five of the nine groups. `Image` read at 2.79 to one where 4.5 is the
+floor for text of this size. Every group now clears 4.5 and `every_group_label_clears_the_contrast_floor`
+holds it there. `Audio` sits exactly on the floor and is the group to watch if
+the palette moves.
 
 Revisit this if a reader reports confusing magenta with aqua. The fix is to cut
-`Document` or `Archive` and fold it into `Other`.
+`Document` or `Archive` and fold it into `Other`. A pattern on boxes below the
+label gate would buy back the reason that was withdrawn.
 
 ## Duplicates
 
-One folder on its own and two folders against each other are the same search.
-Both end in a set of files holding one content. Two folders keeps only the sets
-that reach both sides. One folder keeps every set holding more than one copy.
-That is why one engine serves both.
+A pool of any size and two folders against each other are the same search. Both
+end in a set of files holding one content. Two folders keeps only the sets that
+reach both sides. A pool keeps every set holding more than one copy. That is why
+one engine serves both. One folder on its own is a pool of one.
+
+A folder held inside another on the list is dropped before anything is read.
+Because a) the same file would otherwise be listed under both b) the two
+listings hold one path each rather than two names for one file so the hard link
+test cannot throw it out and c) the search would then report every file below
+the inner folder as a copy of itself.
 
 One folder needs the shortest path treated as the one to keep. Because a) some
 copy has to be the one that stays b) the shortest path is the least buried and
@@ -170,10 +207,13 @@ keeps the comparison cheap on a real disk.
 An empty file is left out. Every empty file matches every other one and saying
 so is noise.
 
-The two folders are held as plain paths rather than as places in the tree.
-Because a) they can sit on different disks b) only one walk lives at a time so
-marking the second would throw the first away and c) a path survives switching
-disks.
+The folders are held as plain paths rather than as places in the tree. Because
+a) they can sit on different disks b) only one walk lives at a time so marking
+the second would throw the first away and c) a path survives switching disks.
+
+One file reached under two of the folders is listed once. The first name it was
+found under is the one kept. Because a pool that held both names would pair the
+file with itself and offer a deletion that frees nothing.
 
 Deleting a duplicate is not built. The tool only reads.
 
@@ -193,7 +233,17 @@ text. Because a) the first question asked of any fault is what the machine was
 and b) asking someone to find a cache file in an application data folder they
 have never opened wastes both sides a round trip.
 
-## One answer for one pair of folders
+## One answer for one question
+
+An answer is keyed on the whole question. That is the shape of the search and
+every folder it names in order. Because a) a search now names any number of
+folders so no pair of columns can hold the key b) the same folders in another
+order are the same pool but not the same two sided comparison and c) a pool of
+two of three folders must never be handed the answer for all three.
+
+Which folders the answer covers and what each one held are kept in a table of
+their own. Because the cache is there to be queried by hand and a list folded
+into one text column cannot be.
 
 The stored answer is cleared before a new one lands rather than left to a unique
 constraint. Because SQLite counts two NULLs as different, so a search of one
@@ -220,10 +270,18 @@ The matching drops it again at the last moment rather than trusting the listing.
 Because the cache may still hold a digest for it from a wider run and a digest
 is all the matching needs to pull something in.
 
-Which groups were asked about is folded into the mark the stored answer is keyed
-on. Because the same folder searched for pictures and searched for everything
-are two different questions, nothing on the disk has to move between them, and
-without that the second would be handed the first one's answer.
+What was asked about is folded into the mark the stored answer is keyed on. Both
+halves of the pick go in. Because a) the same folder searched for pictures and
+searched for everything are two different questions b) nothing on the disk has
+to move between them and c) without it the second would be handed the first
+one's answer.
+
+The extensions are folded in after the groups and each one ends with a byte no
+extension can hold. Because otherwise `ab` and `c` would fold to what `a` and
+`bc` folds to.
+
+A pick that names every group folds to the same number as a pick that names
+none. Because they are one question and one question takes one stored answer.
 
 Each group carries a number written out by hand rather than taken from its place
 in the list. Because adding a group later would otherwise quietly change what an
@@ -305,6 +363,10 @@ A cache of an older shape is carried forward rather than thrown away. Because
 every digest in it cost a whole file read and losing them because a column was
 added makes the next run pay for all of them again.
 
+A stored answer of a shape that cannot be read is dropped while the digests
+under it are kept. Because an answer is only a list of pairs that the digests
+produce again in one matching pass.
+
 The work follows the shape rather than the version number. Because a real cache
 was found carrying a version of two over tables that already held the columns of
 three. The number is written last and a run that stops before it reaches the
@@ -380,16 +442,75 @@ operating system says a whole filesystem holds.
 The twenty largest files are kept and the rest are counted. A folder of millions
 then costs nothing to hold.
 
-## Bringing one of each across
+## Extracting by file type
 
-The folder is walked again rather than the search being trusted for the list.
+The folders are walked again rather than the search being trusted for the list.
 Because a search only names what it found more than once and this has to bring
 across everything, the one of a kind included.
 
+The extractor starts the search itself rather than waiting to be handed one.
+Because a) the search is the slow part and the listing that follows it costs
+nothing next to it and b) a person reorganising backups never wants the pairs on
+their own.
+
+Every path is flattened against the folder it was found under rather than
+against the first folder on the list. Because two backups laid out the same way
+would otherwise land on top of each other and the second would be renamed all
+the way through.
+
+A path none of the folders holds is cut to its name. Because joining a path that
+still names its old folder onto the new one writes outside the new one.
+
+A folder for each file type is offered and is not the default. Because a) the
+layout that says where a file came from and the layout that sorts by type answer
+different questions and b) the one that keeps the old paths is the one that can
+be checked against the backup it came from.
+
+A bundle is offered beside the group. Because a) nobody sorting a backup thinks
+of photos and video as two things b) the nine groups are read off an extension
+and are a fact about the file rather than a question anyone asked and c) a
+folder for each group scatters one holiday across Image and Video.
+
+Every group sits in exactly one bundle. Because a file whose group sat in none
+would have nowhere to land under a bundle layout.
+
+Extensions narrow what the groups already hold rather than replacing them.
+Because a) a raw photo hunt is a picture hunt cut down to three extensions b) an
+extension that replaced the groups would need its own answer to what a file with
+no extension is and c) the step can say when nothing ticked could ever match.
+
+A file deferring to a copy the listing never brought across comes across itself.
+Because a) the search and the listing pick their own name for a hard linked file
+and can disagree b) deferring to a name that is not coming loses the content
+altogether and c) the guard costs one set of the paths already in hand.
+
+What the folders hold by type is measured on demand. Because a) ticking a group
+that is not there wastes a search and b) the walk that counts them is the same
+one the picker already runs.
+
 The pair list is held to five hundred thousand rather than five thousand.
-Because a) the list is no longer only for reading b) a disk of fifty thousand
-copies is exactly the one worth doing this to and c) the view draws only the
-rows on screen so a long list costs it nothing.
+Because a) the list is no longer only for reading and b) a disk of fifty
+thousand copies is exactly the one worth doing this to.
+
+The cap throws the smallest pair away rather than refusing whatever arrives
+after the cap is reached. Because the walk hands pairs over in the order a hash
+map happened to store them, so refusing late arrivals keeps an arbitrary set and
+the set moves between runs over one unchanged disk.
+
+The filter is worked out once when it moves rather than on every frame. A third
+reason used to stand beside the two above saying the view draws only the rows on
+screen so a long list costs it nothing. That was not true. Every pair was read
+on every frame to work out which rows the filter left, and worst while someone
+was typing because each keystroke redraws. Measured with a filter typed:
+
+| Pairs | Per frame before | Per frame now |
+| --- | --- | --- |
+| 1,000 | 0.35 ms | 0.26 ms |
+| 50,000 | 7.72 ms | 0.73 ms |
+| 200,000 | 36.77 ms | 0.83 ms |
+
+The cost is now flat in the length of the list rather than linear in it.
+`how_long_a_dupes_frame_takes` is the probe.
 
 Flattening keeps the ends and drops the middle. The first part says broadly
 where a file lived and the part just above it says what it sat with. Neither of
@@ -406,6 +527,46 @@ a person can still change their mind.
 
 The list names a file only once its copy is really standing in the new folder.
 A list that named something whose copy never landed is a list that loses it.
+
+What arrived is taken from the copying rather than read off the disk. Asking
+whether the destination exists cannot tell our copy from someone else's file of
+the same name. The copying refuses that case and writes nothing, the destination
+exists all the same, and the list then named the only copy of the file it
+refused. The job records every destination it really put bytes at and the list
+is built from that.
+
+The folder written into cannot be one of the folders being read, nor hold one,
+nor sit inside one. Because every file would be laid on top of itself, the
+copying would report it as already there, and the list would name the original.
+
+What comes back covers every file the list names rather than the redundant
+copies alone. Because the two figures are shown side by side and one counting
+the copies while the other counted the copies plus the original described two
+different sets.
+
+The record of a clear out goes to the data folder beside the cache rather than
+beside the trashed files. Because a) a clear out is given no destination to
+write to b) inside the bin it is an entry with no record of its own, which the
+host shows as trashed and cannot put back, and c) emptying the bin would destroy
+the record of what the emptying removed.
+
+A group on the gather worklist is marked done when its job finishes with nothing
+refused and nothing failed. Marking it as the job starts says a group is dealt
+with when the job may have been stopped or the disk may have filled, and the
+worklist then skips the group that still needs doing.
+
+The extractor asks its five questions one step at a time. Because a) extracting
+is one question that nobody answers in one breath b) each part changes what the
+next part is worth asking c) the search costs minutes and is only worth starting
+once the first three are settled and d) a plan read at the moment it is made is
+a plan that can still be refused.
+
+A step ahead of the first unanswered one cannot be opened. Because its question
+has no meaning until the ones it rests on have answers.
+
+A step already answered can be gone back to and answering it again throws the
+plan away. Because a plan built against settings that have since moved is a plan
+that lies about what it would do.
 
 ## Gathering the copies
 
@@ -546,6 +707,20 @@ The drive picker against an optical drive holding no disc and against a mapped
 network drive that is no longer reachable. `volumes()` runs on the window thread
 and the free space call waits for the share. A stale network mount on Linux
 stalls it the same way.
+
+## Looking at a layout with no display
+
+`step_probe` in `src/app.rs` draws each step of the extractor into a headless
+context and prints every piece of text with the position it was given. It is
+marked ignored and is not a check.
+
+It found that a plain label in a wrapped row is drawn at the start of the row
+rather than where the row put it. The space is still reserved so the widgets
+around it sit correctly and only the label itself is wrong. The steps row and
+the group list were rebuilt without a label in a wrapped row.
+
+The first frame of a panel has no size stored for it yet so what it holds is not
+placed. The probe reads the second frame.
 
 ## Not built
 

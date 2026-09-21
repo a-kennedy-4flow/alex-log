@@ -1,0 +1,55 @@
+Log 60. Six items of user feedback in tracker/review.md. A Jira refresh button. A highlight on a missing specification. A Jira status filter. A cost centre browser. A guided timesheet page. The "Default" label replaced by a highlight. One line per command. UTC timestamp then command then result.
+2026-09-18T10:04:07Z cat review.md and the memory rules — six items to implement. Logs live at the alex-log root so this is 60.log.
+2026-09-18T10:04:07Z find apps/web/src and cat router.ts — Vue 3 with TanStack Router. Seven routes declared in code.
+2026-09-18T10:04:29Z read useJira.ts and JiraPage.vue and catalogue.ts and SpecPicker.vue — the month is cached server side so a refresh needs a bypass. The JQL is statusCategory = Done only.
+2026-09-18T10:04:51Z read useRowEdit.ts and validation.ts and useTimesheet.ts — specificationIsDefault already marks a filled-in specification so item 6 is a rendering change in SpecPicker.vue.
+2026-09-18T10:05:34Z read i18n.test.ts — every new English string needs a real translation in seven locales or the suite fails on copied text.
+2026-09-18T10:07:52Z read repository.ts and hours.ts and distribute.ts — the plan is core first then the API then the web. The ticket cache is keyed by period so a scope has to join it and the version has to move.
+2026-09-18T10:08:15Z python3 edit of packages/core/src/hours.ts — CompletedTicket now carries the Jira status and the two ticket scopes are named here.
+2026-09-18T10:08:45Z wrote packages/core/src/guided.ts and exported it — the absence lands on its own date and the work spreads over what is left.
+2026-09-18T10:09:05Z python3 edit of apps/api/src/jira.ts — added inProgressJql and pulled the status field through toTicket.
+2026-09-18T10:09:25Z python3 edit of apps/api/src/jira.ts — completed() takes a scope and runs the third search only for all.
+2026-09-18T10:09:49Z python3 edit of apps/api/src/jira-fake.ts — two open rows so the scope switch shows something in development.
+2026-09-18T10:10:02Z python3 edit of apps/api/src/repository.ts — the ticket cache now records its scope and the cache version moved to 3.
+2026-09-18T10:10:24Z python3 edit of apps/api/src/jira-handlers.ts — the scope is a path segment and POST on the same path is the refresh.
+2026-09-18T10:10:51Z pnpm --filter @tracker/core typecheck — clean once the two ticket builders in the tests gained the status field.
+2026-09-18T10:11:20Z pnpm --filter @tracker/api typecheck — clean once the stored cache in the dev test named its scope.
+2026-09-18T10:11:35Z pnpm --filter @tracker/api test — 201 tests pass with the scope and the refresh route in place.
+2026-09-18T10:11:35Z python3 edit of apps/web/src/lib/api.ts — jiraMonth carries the scope and refreshJiraMonth posts to the same path.
+2026-09-18T10:11:54Z python3 edit of apps/web/src/composables/useJira.ts — a scope ref and a refresh that keeps the table on screen.
+2026-09-18T10:12:09Z python3 edit of apps/web/src/pages/JiraPage.vue script — the closed column now reads the status where nothing resolved the ticket.
+2026-09-18T10:12:30Z python3 edit of apps/web/src/pages/JiraPage.vue template — a refresh button beside the months and a scope switch above the table.
+2026-09-18T10:12:48Z python3 edit of apps/web/src/composables/useRowEdit.ts — one predicate per field and confirmSpecification drops the default mark.
+2026-09-18T10:13:07Z python3 edit of apps/web/src/components/SpecPicker.vue — the default badge is gone and the field carries a Bright Blue rule that clears on a click or a key press.
+2026-09-18T10:13:22Z python3 edit of apps/web/src/components/MonthGrid.vue — each control takes its own mark and the days dropdown is marked at all now.
+2026-09-18T10:13:40Z python3 edit of apps/web/src/components/MonthCalendar.vue — the board view marks the same three fields the grid does.
+2026-09-18T10:13:47Z python3 edit of apps/web/src/components/MonthCalendar.vue — the board view marks the same three fields the grid does.
+2026-09-18T10:14:27Z wrote apps/web/src/pages/CostCentresPage.vue — the catalogue ranked by the same rule the picker uses with the specification list per row.
+2026-09-18T10:14:37Z python3 edit of apps/web/src/pages/CostCentresPage.vue — the source line reads projectListFile because CatalogueSource has no filename.
+2026-09-18T10:15:06Z wrote apps/web/src/composables/useGuided.ts — the four answers and the build that hands the grid to the store.
+2026-09-18T10:15:54Z wrote apps/web/src/pages/GuidedPage.vue — five numbered steps and the summary of what the build wrote.
+2026-09-18T10:16:08Z python3 edit of router.ts and App.vue — /guided and /cost-centres are routed and both sit in the nav bar.
+2026-09-18T10:16:46Z python3 edit of apps/web/src/i18n/messages/en.ts — nav gains guided and catalogue and the jira scope and refresh strings land beside the rest.
+2026-09-18T10:17:03Z python3 edit of the seven locale files — nav gains guided and catalogue and admin becomes the backoffice.
+2026-09-18T10:17:23Z python3 edit of the seven locale files — the Jira refresh and the two scope names are translated.
+2026-09-18T10:18:38Z python3 edit of the seven locale files — the catalogue and guided blocks are translated in all of them.
+2026-09-18T10:19:10Z pnpm --filter @tracker/web typecheck — clean once the two ticket fixtures gained the status field and the guided page dropped an unused import.
+2026-09-18T10:20:27Z python3 edit of the eight locale files — the default specification hint now says what the highlight asks for.
+2026-09-18T10:20:53Z pnpm --filter @tracker/web test — 326 tests pass. The nav counts and the two default marker tests were rewritten against the highlight.
+2026-09-18T10:21:35Z python3 edit of apps/api/src/__tests__/jira.test.ts — five tests over the refresh and the two scopes.
+2026-09-18T10:22:02Z pnpm --filter @tracker/api test — 206 tests pass with the five new route tests.
+2026-09-18T10:22:38Z pnpm --filter @tracker/core test — 221 tests pass including the eleven new guided month tests.
+2026-09-18T10:23:48Z pnpm --filter @tracker/web test — 329 tests pass with the three per field mark tests.
+2026-09-18T10:24:56Z pnpm --filter @tracker/web test — 334 tests pass with five tests over the cost centre list and the guided page.
+2026-09-18T10:25:05Z pnpm lint — eslint clean.
+2026-09-18T10:27:03Z pnpm typecheck and pnpm lint — clean across all seven workspaces.
+2026-09-18T10:27:30Z pnpm test — 819 tests pass across five packages.
+2026-09-18T10:28:06Z python3 edit of docs/jira.md — the third query and the refresh verb are recorded beside the two searches that were already there.
+2026-09-18T10:28:49Z appended five sections to readme.md — the per field mark and the Jira refresh and the scope and the two new pages.
+2026-09-18T10:29:39Z pnpm --filter @tracker/web test — 336 tests pass with the two guided build tests writing a real month.
+2026-09-18T10:31:00Z python3 edit of apps/web/src/pages/GuidedPage.vue — the build band carries its step number so the five steps read 1 to 5.
+2026-09-18T10:31:26Z git status --short and git diff --stat — the change spans core and the API and the web with the readme and the Jira doc alongside.
+2026-09-18T10:32:36Z pnpm typecheck and pnpm lint and pnpm test — seven workspaces typecheck, eslint is clean, 821 tests pass.
+2026-09-18T10:32:57Z python3 edit of 60.log — a second session wrote into this file before it took 62.log for itself. Its lines are dropped here because that file already holds them.
+2026-09-18T10:33:36Z python3 edit of the eight locale files — the table heading now follows the scope so the wider one no longer reads as closed.
+2026-09-18T10:34:55Z pnpm typecheck and pnpm lint and pnpm test — seven workspaces typecheck, eslint is clean, 821 tests pass. The six items are done.

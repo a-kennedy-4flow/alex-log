@@ -1,0 +1,35 @@
+# Session log. Making the extractor a stepped process with file type filtering in spacemongor.
+# One line per command. UTC timestamp then the command then what happened.
+
+2026-09-19T11:28:32Z  ls -1 *.log | sort -n | tail  Highest log was 64 so this session took 65.
+2026-09-19T11:28:32Z  cat src/consolidate.rs src/cats.rs  Read the plan builder and the nine file type groups.
+2026-09-19T11:31:42Z  grep/sed over src/app.rs src/dupes.rs src/browse.rs  Traced the extractor UI and the group filter plumbing through the search and the cache key.
+2026-09-19T11:32:53Z  cargo test --offline cats::  Nine pass. Bundles and the Pick filter are in cats.rs.
+2026-09-19T11:39:59Z  cargo test --offline  All 124 pass. Wizard steps and bundles and the extension filter are in.
+2026-09-19T11:40:37Z  cargo test --offline app:: dupes::  Step gating and the extension search both covered. 126 tests pass.
+2026-09-19T11:44:44Z  cargo test -- --ignored --nocapture step_probe  Headless layout probe. It showed labels in a wrapped row drawn at the row start so the steps row and the groups list were rebuilt.
+2026-09-19T11:44:44Z  cargo fmt && cargo clippy --offline --all-targets  Clean. 127 tests pass.
+2026-09-19T11:46:28Z  edit readme.md docs/decisions.md  Extractor section rewritten as five steps. Glossary gained bundle and group and pick.
+2026-09-19T11:47:29Z  cargo test --offline && cargo clippy --offline --all-targets  127 pass and no lints. The five step extractor is done.
+2026-09-19T11:48:09Z  edit readme.md testing section  Test count and the headless step probe recorded.
+2026-09-19T11:50:27Z  cargo build --offline --release  Release binary links clean.
+2026-09-19T11:53:33Z  node gate.mjs --list  Found no checks. It reads package.json and this crate is Rust so the gate was run by hand instead.
+2026-09-19T11:53:33Z  cargo fmt --check; cargo clippy --offline --all-targets; cargo test --offline  Gate green. Formatting clean. No lints. 127 pass.
+2026-09-19T11:53:33Z  launch three review agents  Correctness and design and concision briefs sent against the whole spacemongor crate.
+2026-09-19T11:59:25Z  (no command) three review agents stopped by the user  The review produced no findings. The gate results above still stand.
+2026-09-19T12:04:00Z  git ls-files; cat .gitignore; du -sh target  Scope fixed to 17 first party Rust files and tools/peinfo.py. target is 7.3 GB of build output and is ignored.
+2026-09-19T12:05:11Z  relaunch three review agents  Scoped to the 17 first party source files. Dependencies and target and Cargo.lock ruled out of scope.
+2026-09-19T12:23:50Z  spot check reviewer A findings 1 4 5 7 8 9 10 by reading the source  All seven held. No fabrication found. Two are data loss paths in the removal list.
+2026-09-19T12:24:10Z  grep -n picking_source src/app.rs; sed -n 2355,2372p src/app.rs  Reviewer C finding 1 holds. The Gather picker never clears the flag so it can add an extractor source instead of naming a destination.
+2026-09-19T12:29:09Z  gut extract_ui in a scratch copy and run each_step_of_the_extractor_draws  It passed with the whole view deleted. The draw test I wrote today asserts nothing.
+2026-09-19T12:29:09Z  cargo test --offline spotcheck -- --nocapture  says() returns a 92 character chain where everything() says every file. The readme example is the levels 2 output.
+2026-09-19T13:21:24Z  edit consolidate.rs gather.rs store.rs app.rs then cargo test --offline  Findings 1 3 13 15 fixed. The removal list is built from what really arrived. 128 pass.
+2026-09-19T13:22:43Z  edit app.rs sys/unix.rs then cargo test --offline  Findings 2 and 4 fixed. A destination inside a source is refused and the percent decoder reads bytes. 132 pass.
+2026-09-19T13:29:06Z  gut every view in a scratch copy and run the suite  11 tests now fail where 2 did before. The draw tests read the frame rather than counting it.
+2026-09-19T13:30:44Z  edit cats.rs dupes.rs readme.md then cargo test --offline  Findings 5 6 7 8 12 fixed. The pair cap now throws the smallest away. 134 pass.
+2026-09-19T13:32:58Z  edit cats.rs app.rs then cargo test --offline  Finding 9 fixed. Label colour is chosen by contrast and five groups went from under 3.6 to over 4.8. 137 pass.
+2026-09-19T13:40:43Z  cargo test --release -- --ignored how_long_a_dupes_frame_takes before and after  Findings 10 and 20 fixed. 200k pairs with a filter went from 36.77 ms a frame to 0.83 ms and is now flat.
+2026-09-19T13:40:43Z  edit app.rs then cargo test --offline  Finding 17 fixed. The picker triple is one field so a half set mode cannot exist. 137 pass.
+2026-09-19T13:46:31Z  edit scan.rs store.rs app.rs docs/decisions.md then cargo test --offline  Findings 11 14 16 fixed and the colour and pair list decisions corrected. 139 pass and no lints.
+2026-09-19T13:48:47Z  reintroduce five fixed defects in a scratch copy and run the suite  Nine tests fail. Every fix has a guard that catches it.
+2026-09-19T13:49:55Z  cargo build --offline --release  Release binary links clean in 2m 15s. The gate is green on every check that can run here.

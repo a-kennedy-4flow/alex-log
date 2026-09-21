@@ -11,6 +11,10 @@
  *
  * A hex outside this file fails the colour check in
  * `src/__tests__/colour.test.ts`. Add a shade here or not at all.
+ *
+ * Delta E is the distance between two colours in CIE Lab. Two colours under
+ * about 3 of each other read as one colour. It is the measure this file uses
+ * wherever two shades have to be told apart rather than merely read against.
  */
 
 :root {
@@ -24,7 +28,9 @@
 
   /* Shades of a theme colour. Each one has a job no theme colour can take. */
 
-  /* A non-working day. Warm Grey lightened so the tint reads under a cell. */
+  /* A day the tracker does not ask for. Warm Grey lightened so the tint reads
+     under a cell. It holds 2.98 from the sheet because a day a user may still
+     fill by hand is not the thing to read first. */
   --tint: #faf7f5;
   /* A dashed edge on white. It carries no text so it need clear no ratio. */
   --dash: #c9bfb7;
@@ -35,9 +41,39 @@
   --orange-hover: #ff6a2e;
   /* The cell being edited. Smart Blue on it reaches 14.69 to 1. */
   --open: #fff6f2;
-  /* A working day past the target. Bright Blue washed so it is not the Warm
-     Grey of a non-working day. Smart Blue on it reaches 14.33 to 1. */
-  --past-target: #edf6ff;
+  /* The weekend. Smart Blue washed to 2.1 chroma so the day is shaded rather
+     than coloured. It holds 5.15 from the sheet and 4.11 from the tint and 7.21
+     from Warm Grey so a select and a chip both still read on it. Smart Blue on
+     it reaches 13.90 to 1. */
+  --weekend: #eef2f5;
+
+  /*
+   * One wash a weekday. Monday first.
+   *
+   * The guided day picker is the one screen that carries these. A month view
+   * day is shaded by what it asks of the user instead.
+   *
+   * Bright Blue then Vibrant Orange then the sheet then Bold Pink then Smart
+   * Blue. Saturday and Sunday take `--tint` because the tracker books no
+   * weekend.
+   *
+   * Wednesday is the sheet itself. Because a) the palette holds four colours
+   * that survive as a light wash and not five. b) every light Grey wash and
+   * every light Warm Grey wash lands under 5 delta E of Warm Grey so the chip
+   * a board cell carries would vanish on it. c) an unwashed day reads as its
+   * own day against the four and invents no shade.
+   *
+   * No two of the five come within 9 delta E of each other and neighbours run
+   * from 12 to 26. Each of the four washes also clears every shade above by 6.
+   * Two near whites a pixel apart are the fault this guards against.
+   *
+   * Grey reaches 4.07 to 1 at best on these so Grey may not sit on one.
+   */
+  --dow-1: #daecff;
+  --dow-2: #ffdccd;
+  --dow-3: var(--white);
+  --dow-4: #ffebfd;
+  --dow-5: #dee3e6;
 
   /* Bright Blue at a weight that divides a row without drawing the eye. */
   --line: rgb(0 126 255 / 22%);

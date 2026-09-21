@@ -1,0 +1,9 @@
+Log 63. The tour in the tracker still shows entries that were removed and the tour text is to be English only. One line per command. UTC timestamp then command then result.
+2026-09-18T20:57:08Z grep for tour across the tracker — the tour lives in apps/web/src/composables/useTour.ts and apps/web/src/components/TourOverlay.vue and every messages file under apps/web/src/i18n/messages carries tour text.
+2026-09-18T20:58:23Z sed of useTour.ts and TourOverlay.vue and en.ts — found the cause. The step list lives in useTour.ts and the catalogue only holds the words so deleting the English text left every step running with no words.
+2026-09-18T20:58:23Z python3 edit of apps/web/src/composables/useTour.ts — dropped view and grid and costCentre and days and specification and board and boardCell and progress from the month list and progress from the quick list so the two lists match the English catalogue.
+2026-09-18T20:59:26Z python3 edit of the seven catalogues under apps/web/src/i18n/messages — the same eight steps are gone from cs and de and es and fr and hu and pt-BR and zh-CN. The removal is scoped to the steps block because view and board are also top level keys that stay.
+2026-09-18T20:59:26Z python3 edit of ViewSwitch.vue and MonthGrid.vue and MonthCalendar.vue and MonthProgress.vue — dropped the eight data-tour attributes nothing points at any more.
+2026-09-18T21:01:04Z pnpm -r typecheck — every project clean.
+2026-09-18T21:01:04Z pnpm -r test then pnpm lint — 336 web and 206 api and 221 core and 35 workbook-reader and 23 xlsm-writer pass and eslint is clean. The key parity test passes again now that all eight catalogues hold the same sixteen steps.
+2026-09-18T21:01:04Z python3 count of the steps block in all eight catalogues — sixteen keys each in the same order. The work is done.

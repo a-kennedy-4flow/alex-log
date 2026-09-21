@@ -1,0 +1,11 @@
+Log 68. The GBA extension swallows pad keys after the window is minimised. The keyboard guard is recomputed from live state instead of remembered. One line per command. UTC timestamp then command then result.
+2026-09-21T13:55:00Z read pokemon/readme.md pokemon/src/extension.ts pokemon/media/webview/boot.js; grep for WindowState; grep media/data/src for focus calls — gba.focused is cleared only by a blur posted from the page. Minimising fires no view state change so the guard survives it. onDidDispose deletes from the focused set behind reportFocus so the flip guard can never issue setContext false again.
+2026-09-21T13:58:00Z python3 rewrite of pokemon/src/extension.ts — reportFocus now mutates the set and defers to refreshGuard. refreshGuard recomputes from vscode.window.state.focused and the visibility of every remembered surface. onDidChangeWindowState added. Dispose and reload both clear their surface through reportFocus.
+2026-09-21T14:02:00Z npm run typecheck — clean.
+2026-09-21T14:06:00Z wrote pokemon/test/vscode-host-stub.mjs and pokemon/test/run-guard.mjs then node test/run-guard.mjs — eleven assertions pass. The extension runs under a stub vscode module so the guard needs no display.
+2026-09-21T14:09:00Z reverted the fix in a scratch copy then node scratch/pre/test/run-guard.mjs — five assertions fail and the key trace ends true with nobody playing. The test catches the fault it was written for.
+2026-09-21T14:14:00Z edited pokemon/package.json so npm test runs run-guard.mjs before the picture test.
+2026-09-21T14:18:00Z npm test — thirty one assertions pass and the run exits 0. Eleven guard assertions then the twenty the picture harness already carried.
+2026-09-21T14:24:00Z python3 edit of pokemon/readme.md — The keyboard section now states the three conditions the guard holds under. The Test section counts the eleven new assertions.
+2026-09-21T14:27:00Z npm run build; npx @vscode/vsce package --no-dependencies — gba-webview-0.1.0.vsix 51 files 2.47 MB.
+2026-09-21T14:30:00Z added test/** to pokemon/.vscodeignore then repackaged — 46 files 2.46 MB. src and scripts were already excluded so the harness being shipped was an oversight.

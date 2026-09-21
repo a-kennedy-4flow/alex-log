@@ -13,8 +13,10 @@
 import {
   ATLASSIAN_ACCOUNT_ID,
   DEFAULT_HOURS_FIELDS,
+  DEFAULT_TICKET_SCOPE,
   NO_HOURS_SOURCE,
   type CompletedTicket,
+  type TicketScope,
 } from '@tracker/core'
 
 /** Where a token is exchanged. Not the site host and not the API host. */
@@ -90,8 +92,15 @@ export interface Jira {
    *
    * Which user is the token owner unless the implementation was built to read
    * another one. Only the local server does that. See `AtlassianJira`.
+   *
+   * `scope` widens that to the tickets still being worked. `TicketScope` in
+   * core names the two.
    */
-  completed(accessToken: string, period: string): Promise<CompletedTicket[]>
+  completed(
+    accessToken: string,
+    period: string,
+    scope?: TicketScope,
+  ): Promise<CompletedTicket[]>
 }
 
 /**
@@ -216,6 +225,23 @@ export function completedJql(period: string, accountId: string | null = null): s
   )
 }
 
+/**
+ * The tickets this user is still working.
+ *
+ * Bounded by `updated` rather than by `resolutiondate`. Because a) nothing has
+ * resolved one of these so it carries no resolution date. b) an unbounded
+ * search returns the whole backlog of the account. c) a ticket touched inside
+ * the month is the one the month was spent on.
+ */
+export function inProgressJql(period: string, accountId: string | null = null): string {
+  const { from, to } = monthBounds(period)
+  return (
+    `assignee = ${theUser(accountId)} AND statusCategory = "In Progress"` +
+    ` AND updated >= "${from}" AND updated < "${to}"` +
+    ' ORDER BY updated DESC'
+  )
+}
+
 /** The tickets this user logged time against inside the month. */
 export function worklogJql(period: string, accountId: string | null = null): string {
   const { from, to } = monthBounds(period)
@@ -240,6 +266,7 @@ interface SearchIssue {
     project?: { key?: string }
     parent?: { key?: string; fields?: { summary?: string } }
     resolutiondate?: string
+    status?: { name?: string }
     /** The first twenty worklogs and the count of all of them. */
     worklog?: { total?: number; worklogs?: Worklog[] }
     /** Every link on the ticket. One side is filled and the other is absent. */
@@ -425,6 +452,7 @@ export class AtlassianJira implements Jira {
       'summary',
       'project',
       'resolutiondate',
+      'status',
       'parent',
       'worklog',
       'issuelinks',
@@ -617,21 +645,31 @@ export class AtlassianJira implements Jira {
    * export is about and a ticket logged against is where the hours are. Neither
    * set contains the other so both are read and the union is returned.
    */
-  async completed(accessToken: string, period: string): Promise<CompletedTicket[]> {
+  async completed(
+    accessToken: string,
+    period: string,
+    scope: TicketScope = DEFAULT_TICKET_SCOPE,
+  ): Promise<CompletedTicket[]> {
     const cost = await this.costCentreFields(accessToken)
     const fields = this.searchFields(cost)
-    const [accountId, closed, logged] = await Promise.all([
+    // The third search is made only where it was asked for. A month read as
+    // closed costs exactly what it cost before.
+    const [accountId, closed, logged, working] = await Promise.all([
       // A named account is already the answer `/myself` would give so the call
       // is not made. It is also the only account this token may not be.
       this.asUser === null ? this.accountId(accessToken) : Promise.resolve(this.asUser),
       this.search(accessToken, completedJql(period, this.asUser), fields),
       this.search(accessToken, worklogJql(period, this.asUser), fields),
+      scope === 'all'
+        ? this.search(accessToken, inProgressJql(period, this.asUser), fields)
+        : Promise.resolve([] as SearchIssue[]),
     ])
 
     // Closed first so a ticket both closed and logged against keeps the record
-    // carrying its resolution date.
+    // carrying its resolution date. The open ones come last for the same
+    // reason. One of them reopened inside the month is still the closed row.
     const issues = new Map<string, SearchIssue>()
-    for (const issue of [...closed, ...logged]) {
+    for (const issue of [...closed, ...logged, ...working]) {
       if (issue.key && !issues.has(issue.key)) issues.set(issue.key, issue)
     }
 
@@ -787,6 +825,7 @@ function toTicket(
     summary: issue.fields?.summary ?? key,
     projectKey: issue.fields?.project?.key ?? '',
     resolvedAt: issue.fields?.resolutiondate ?? '',
+    status: issue.fields?.status?.name ?? '',
     parentKey: issue.fields?.parent?.key ?? null,
     parentSummary: issue.fields?.parent?.fields?.summary ?? null,
     costCentre: centre.value,

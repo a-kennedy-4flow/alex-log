@@ -253,6 +253,9 @@ browser cannot talk past a check that also runs on the server.
     PUT  /api/timesheets/{yyyy-mm}
     POST /api/timesheets/{yyyy-mm}/check    validate without writing a file
     POST /api/timesheets/{yyyy-mm}/export   the workbook
+    GET  /api/jira/completed/{yyyy-mm}          the closed month
+    GET  /api/jira/completed/{yyyy-mm}/{scope}  `closed` or `all`
+    POST /api/jira/completed/{yyyy-mm}/{scope}  the same read past the stored copy
 
 The identity fields come from the token and never from the body. A user cannot
 read another user timesheet because the partition key is their subject claim.
@@ -413,13 +416,19 @@ This departs from the tracker. Cell O3 counts columns I and J and K and calls
 the sheet invalid unless all three hold the same number of entries. Under that
 rule those 44 cost centres could not be booked at all.
 
-The mark is a dashed muted field with a small `default` tag. It uses neither the
-orange of an error nor the amber of a cost centre whose list is missing from the
-workbook. Because a) a default is not a fault. b) those two colours already mean
-something else. c) three states need three looks.
+The mark is a Bright Blue rule under the field. It uses neither the orange of an
+error nor the amber of a cost centre whose list is missing from the workbook.
+Because a) a default is not a fault. b) those two colours already mean something
+else. c) three states need three looks.
 
-Choosing from the list clears the mark. Changing to a cost centre that disallows
-the current value replaces it with a new default rather than emptying the field.
+It carried a small `default` tag beside the field before. The tag went because
+it was the thing people read instead of reading the value under it. The field is
+highlighted for a double check now and nothing labels it.
+
+Reaching the field clears the mark. A click and a key press both count. A focus
+does not because tabbing past a field is not reading it and the tab order
+crosses every row of the month. Changing to a cost centre that disallows the
+current value replaces it with a new default rather than emptying the field.
 
 `specificationIsDefault` is stored on the half day so the mark survives a
 reload. The export ignores it because the tracker has no such column. A sheet
@@ -430,6 +439,58 @@ saved before the field existed reads as a confirmed pick.
 The grid is one block per calendar week rather than one per day. The week number
 is written once in a cell that spans every row of its week. April 2026 shows
 five numbers rather than sixty.
+
+# The shading of a day
+
+The month view carries no colour a weekday owns. A day the tracker asks you to
+fill is the sheet itself. A holiday and a day past the target take the tint. The
+weekend takes the shade above that.
+
+Because a) a colour a weekday owns says nothing about what that day asks of the
+user. b) two shades say it on their own. c) a row stays in the grid either way
+since any of these days may still be booked by hand.
+
+    a day to fill          the sheet   #ffffff
+    nothing is asked for   the tint    #faf7f5   2.98 from the sheet
+    the weekend            the shade   #eef2f5   5.15 from the sheet
+
+Delta E is the distance between two colours in CIE Lab. `tokens.css` defines it
+for the project. Two colours under about 3 of each other read as one colour. The
+tint holds that boundary on purpose because a day a user may still fill is not
+the thing to read first. The weekend stands 4.11 from the tint.
+
+Both shades clear Warm Grey by 6. A select in the grid and a chip in the board
+are Warm Grey and both sit on a shaded day. Neither shade reaches 3 chroma so
+each is a shade of the sheet rather than a colour on it. `colour.test.ts` holds
+every figure above.
+
+The grid shades the row and the board shades the column. The week number column
+is the one cell held out of it because it spans a whole week and would otherwise
+take the shade of the day that week starts on.
+
+# The wash of the weekday
+
+The guided day picker lists working days alone and washes each button by its
+weekday. Monday runs Bright Blue then Vibrant Orange then the sheet then Bold
+Pink then Smart Blue. It is the one screen left that reads the week as five
+days. The month view had the same wash until a day was shaded by what it asks of
+the user instead.
+
+Wednesday is the sheet itself. Because a) the palette holds four colours that
+survive as a light wash and not five. b) a light Grey wash and a light Warm Grey
+wash both land under 5 delta E of Warm Grey. c) an unwashed day reads as its own
+day against the four and invents no shade.
+
+The first cut of this used contrast alone and shipped a Monday and a Wednesday a
+pixel apart. Both cleared 13 to 1 under Smart Blue and neither could be told from
+the other. Contrast answers whether text on a ground can be read. It does not
+answer whether two grounds differ. `colour.test.ts` now holds three figures. No
+two weekdays come within 9 delta E. Neighbours hold 12. Every wash clears Warm
+Grey and the tint by 6.
+
+Grey reaches 4.07 to 1 at best on a wash and body text needs 4.5. So the weekday
+name and the day flag and the add mark on a board cell all left Grey for Smart
+Blue. Size and weight are what recede them now.
 
 # The specification placeholder
 
@@ -628,16 +689,23 @@ through a `data-tour` attribute. An attribute is used rather than a class
 because a class is there to be restyled and a rename would break the tour in
 silence.
 
-    month      10 steps   period, target, grid, cost centre, days,
-                          specification, progress, reference list, checks,
+    month      11 steps   six tabs, period, target, reference list, checks,
                           download
-    quick       5 steps   rows, share, even them out, fill, progress
+    quick       4 steps   rows, share, even them out, fill
+    guided      5 steps   days away, place them, which absence, projects, build
     settings    4 steps   location, entity, business line, contract
     admin       3 steps   drop, preview, replace
 
+The tabs are drawn by the shell so they stand on every page. They are toured
+from the month alone. Because a) a page offers its tour once and unasked. b) the
+same six tabs on every page would be six steps six times. c) the month is the
+page the app opens on.
+
 A step whose element is not on the page is dropped rather than shown pointing at
 nothing. The download panel is absent for a user with no API and the admin page
-is absent for anyone outside the backoffice group.
+is absent for anyone outside the backoffice group. The guided tour leans on the
+same rule. Step two of that page is drawn only once step one has been answered
+so a first visit is walked through three steps and a second through five.
 
 The steps are resolved when the tour opens rather than read on demand. Because
 a) the list depends on which elements are in the document. b) the document is
@@ -717,6 +785,30 @@ The demand blocks rather than informs. The open month is written first then the
 shell replaces the routed screen with the reload button. The wizard and the tour
 are withdrawn so nothing can cover it. A read that fails is ignored because an
 offline tab is not a new version.
+
+# The seed for local development
+
+`pnpm fixtures` reads every workbook in the repository root and writes
+`packages/fixtures/data`. It stands in for the API in the browser and it is what
+`apps/api/src/local.ts` serves.
+
+Two kinds of workbook go in. The tracker carries the hidden reference sheets and
+the catalogue is taken from the newest of them. The 4s project numbers list is
+the second workbook backoffice uploads and it is laid over that catalogue here.
+
+The absent numbers are added rather than left out. Because a) the seed is what a
+fresh deployment stores and a fresh deployment is set up by uploading both. b) a
+number the tracker has not got is unbookable until it is added. c) the admin page
+adds them by default so a seed that did not would differ from every real
+catalogue. The list names 462 rows the tracker left blank and adds 312 it has not
+got at all.
+
+`source.projectNumbers` records which list was laid over and when it was cut. A
+test reads the list back and checks every number in it is bookable in the seed.
+The two files can otherwise drift apart in silence the moment one is replaced.
+
+Any other spreadsheet in the root is skipped rather than reported. The reader
+throws `NotAnUpload` for a workbook that is not this list.
 
 # Where a cost centre comes from
 
@@ -814,3 +906,134 @@ formula quotes its zero. The export writes the number. A Days column that sums
 is worth more than the quoting slip.
 
 Every other cell of the block now matches the submitted workbook exactly.
+
+# One mark a field rather than one mark a row
+
+A row is part filled when it holds some of what it needs. The grid carried one
+mark for that state and every control in the row took the colour. A row missing
+only its day value therefore marked the cost centre that was filled in and the
+user read all three fields to find the empty one.
+
+There is one predicate a field now. `missingWorkday` and `missingSpecification`
+and `missingDays` in `useRowEdit.ts` each answer for one control. `incomplete`
+is the three of them together and it is what still marks the row.
+
+The day value was marked by nothing at all before. It is a required field so it
+is marked like the two beside it.
+
+`missingSpecification` reads `specificationIsRequired` from core. So a cost
+centre whose list the workbook leaves empty is no longer marked for a blank the
+validation allows. The grid and `validate` disagreed about those 44 cost centres
+before. The grid marked them and the export accepted them.
+
+The board view carries the same three marks. Both views read the one file so
+neither can drift from the other.
+
+# Reading Jira again
+
+A month is served from a copy the server holds. A closed month for a day and the
+current one for fifteen minutes. So a ticket closed this morning is absent from
+the screen until something asks for it again.
+
+The refresh button is that ask. It is `POST` on the path the `GET` already
+reads. Because a) the question is the one the read asks and only the stored
+answer is refused. b) a second path would state the same route twice. c) neither
+adapter passes a query string through to a handler.
+
+The table stays on the screen while a refresh runs. A table that empties itself
+for two seconds reads as a failure. The first read of a month has nothing to
+show so that one still takes the whole band.
+
+# The tickets still being worked
+
+The screen opened on the closed month alone. A month is often spent on work that
+is not finished and none of it was on the screen.
+
+The scope switch names two. `closed` is the month as it was. `all` adds a third
+search for the tickets still being worked.
+
+    assignee = currentUser()
+    AND statusCategory = "In Progress"
+    AND updated >= "2026-08-01"
+    AND updated <  "2026-09-01"
+
+Bounded by `updated` rather than by `resolutiondate`. Because a) nothing has
+resolved one of these so it carries no resolution date. b) an unbounded search
+returns the whole backlog of the account. c) a ticket touched inside the month
+is the one the month was spent on.
+
+The third search runs only where the wider scope was asked for. A month read as
+closed costs exactly what it cost before.
+
+A row with no resolution date shows its Jira status where the date would go.
+`CompletedTicket` gained `status` for that and the ticket cache version moved
+with it.
+
+The stored copy records which scope wrote it. A month read as closed holds none
+of the tickets still being worked so it is not the answer to the wider question.
+The narrower one is a subset of the wider cache and is still refused. Because a)
+filtering it would put the JQL rule in a second place. b) one search is what it
+costs.
+
+# The cost centre list
+
+`/cost-centres` reads the catalogue. The picker answers which one to book
+against and it is driven from the keyboard so it shows a few rows at a time.
+This answers what is there and what each one may book.
+
+The specification list of a row is the point of the page. A cost centre that
+names its own list may book those and nothing else. One whose list the workbook
+leaves empty may book anything and the row says which of the two it is.
+
+The ranking is `searchProjects`. That is what the picker reads so a search here
+answers what a search there would. A second ranking would leave the two screens
+disagreeing about which row comes first.
+
+The nav entry for the backoffice upload was called `Cost centres` and it now
+reads `Backoffice`. Two entries cannot carry one name and the upload screen is
+the backoffice one.
+
+# The guided build
+
+`/guided` writes a month from three answers. How many days you were away. Which
+days those were. Which projects you worked on.
+
+The split is the whole reason it exists. Absence has to be recorded on the day
+it was taken because that is the date the recipient checks. Work does not,
+because the tracker asks what was worked in the month and never on which day.
+The month view treats both the same so every day of both is placed by hand.
+
+`guidedMonth` in core writes the absence first and then closes that day to work.
+The work spreads over what is left through `bookableDays`, which is what the
+quick fill already spreads by. So a guided month divides its weeks the way every
+other built month does.
+
+A half day off closes the whole day rather than leaving the other half open.
+Because a) the work spread divides a month by week and knows nothing of a day
+already part booked. b) half a day is what such a month falls short by and
+`shortBy` says so. c) the user finishes that day in the month view where the
+other half is one click.
+
+A day off on a weekend or a bank holiday is dropped rather than booked. The
+tracker books no non working day so the row would be an error. The dates are
+reported so the miscount is visible.
+
+The result is a timesheet like any other. Nothing here submits it and the month
+view edits it.
+
+Step one asks for a count of each absence the catalogue holds rather than one
+count under one label. Because a) the workbook totals `Vacation or sickness`
+apart from `Other absence`. b) a month holding both is ordinary rather than the
+exception. c) a single label made the user build the month twice or correct the
+second kind by hand afterwards. A switch above the calendar says which absence
+the next placed day takes. It is drawn only where step one asked for two.
+
+The counts are capped together at the working days of the month. Two counts that
+could never be placed would otherwise leave the build button disabled with
+nothing on the screen saying why.
+
+The build opens the month view rather than offering a button to it. What the
+build has to report travels with the user because `GuidedResult.vue` on that
+page reads the same result. It names the days away and the days of work and it
+warns where the month fell short. It is dismissed by hand because the warnings
+name days a person has to decide about.

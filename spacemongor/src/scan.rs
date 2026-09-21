@@ -133,7 +133,12 @@ fn walk(root: PathBuf, sh: Arc<Shared>, ctx: egui::Context) {
                         }
                         let child = tree.add_dir(idx, &name);
                         tree.charge(child, size);
-                        stack.push((child, path.join(&name)));
+                        // The path the host gave rather than one rebuilt from
+                        // the name. Because a name that is not valid text comes
+                        // back with the broken parts replaced, and the rebuilt
+                        // path then names nothing so the whole subtree below it
+                        // is never walked and its bytes go missing.
+                        stack.push((child, entry.path()));
                         sh.dirs.fetch_add(1, Relaxed);
                     } else {
                         if let Some(key) = crate::sys::hard_link_key(&md)
@@ -206,6 +211,45 @@ fn publish(tree: &Tree, sh: &Shared, ctx: &egui::Context) {
 #[cfg(test)]
 mod tests {
     use super::plainly;
+
+    /// A folder whose name is not valid text still has to be walked. Rebuilding
+    /// the path from the name replaces the broken parts, so the rebuilt path
+    /// names nothing and everything below it goes missing from the total.
+    #[test]
+    #[cfg(unix)]
+    fn a_folder_whose_name_is_not_text_is_still_walked() {
+        use std::os::unix::ffi::OsStrExt;
+        use std::sync::atomic::Ordering::Relaxed;
+
+        let root = std::env::temp_dir().join(format!("spacemongor-odd-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        std::fs::create_dir_all(&root).unwrap();
+        let odd = root.join(std::ffi::OsStr::from_bytes(b"caf\xe9"));
+        std::fs::create_dir(&odd).unwrap();
+        std::fs::write(odd.join("inside.bin"), vec![b'x'; 4_096]).unwrap();
+        std::fs::write(root.join("beside.bin"), vec![b'y'; 4_096]).unwrap();
+
+        let ctx = eframe::egui::Context::default();
+        let sh = super::start(root.clone(), 3, ctx);
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(20);
+        while !sh.done.load(Relaxed) {
+            assert!(std::time::Instant::now() < deadline, "the walk never ended");
+            std::thread::sleep(std::time::Duration::from_millis(10));
+        }
+
+        assert_eq!(
+            sh.files.load(Relaxed),
+            2,
+            "the file inside the odd folder was never reached"
+        );
+        assert_eq!(
+            sh.denied.load(Relaxed),
+            0,
+            "it called the folder unreadable"
+        );
+
+        std::fs::remove_dir_all(&root).unwrap();
+    }
 
     #[test]
     fn the_host_is_quoted_in_words() {

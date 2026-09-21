@@ -11,6 +11,7 @@ import { computed, nextTick, reactive, ref } from 'vue'
 import {
   allocationsFromGroups,
   buildMonth,
+  DEFAULT_TICKET_SCOPE,
   defaultSpecificationFor,
   distribute,
   fitsMonth,
@@ -29,6 +30,7 @@ import {
   type ResolvedCostCentre,
   type ResolvedSpecification,
   type TicketHours,
+  type TicketScope,
 } from '@tracker/core'
 
 import { api, usingApi, type JiraLinkState } from '@/lib/api'
@@ -49,7 +51,16 @@ export const link = ref<JiraLinkState | null>(null)
 export const linkError = ref<string | null>(null)
 export const tickets = ref<CompletedTicket[]>([])
 export const loading = ref(false)
+/**
+ * Set while the refresh button is reading Jira again.
+ *
+ * Held apart from `loading` because the table stays on the screen during a
+ * refresh. The first read has nothing to show so it takes the whole band.
+ */
+export const refreshing = ref(false)
 export const filling = ref(false)
+/** True when the tickets on the screen came from the stored copy. */
+export const cached = ref(false)
 /** Set when Jira answered that the consent has gone. The screen offers to relink. */
 export const relinkNeeded = ref(false)
 export const error = ref<string | null>(null)
@@ -122,6 +133,21 @@ function initialPeriod(): string {
 }
 
 export const period = ref(initialPeriod())
+
+/**
+ * Which tickets the screen asks for.
+ *
+ * It opens on the closed month because that is the month being booked. A
+ * ticket still being worked carries no resolution date and no hours so it is
+ * offered rather than read by default.
+ */
+export const scope = ref<TicketScope>(DEFAULT_TICKET_SCOPE)
+
+export async function chooseScope(next: TicketScope): Promise<void> {
+  if (next === scope.value) return
+  scope.value = next
+  await loadMonth()
+}
 
 const calendarOfPeriod = computed(() => {
   const [year, month] = period.value.split('-').map(Number) as [number, number]
@@ -309,18 +335,34 @@ export async function unlink(): Promise<void> {
   await api.unlinkJira()
   tickets.value = []
   fetchedAt.value = null
+  cached.value = false
   relinkNeeded.value = false
   await loadLink()
 }
 
-export async function loadMonth(): Promise<void> {
-  loading.value = true
+/**
+ * Reads the month.
+ *
+ * `fresh` is the refresh button. It skips whatever the server stored and asks
+ * Jira again. The rows already on the screen are left there while it runs
+ * because a table that empties itself for two seconds reads as a failure.
+ */
+export async function loadMonth(fresh = false): Promise<void> {
+  if (fresh) refreshing.value = true
+  else loading.value = true
   error.value = null
   relinkNeeded.value = false
+  const asked = scope.value
   try {
-    const month = await api.jiraMonth(period.value)
+    const month = fresh
+      ? await api.refreshJiraMonth(period.value, asked)
+      : await api.jiraMonth(period.value, asked)
+    // A slow answer for a scope the user has already left is dropped. It would
+    // otherwise land under the switch that no longer asked for it.
+    if (asked !== scope.value) return
     tickets.value = month.tickets
     fetchedAt.value = month.fetchedAt
+    cached.value = month.cached
   } catch (raised) {
     const problem = raised as { codes?: string[]; message?: string; status?: number }
     // A revoked consent is not a failure the user can act on except by linking
@@ -330,7 +372,13 @@ export async function loadMonth(): Promise<void> {
     tickets.value = []
   } finally {
     loading.value = false
+    refreshing.value = false
   }
+}
+
+/** Reads Jira again rather than the copy the server stored. */
+export async function refreshMonth(): Promise<void> {
+  await loadMonth(true)
 }
 
 /**

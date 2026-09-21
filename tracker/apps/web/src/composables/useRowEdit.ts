@@ -5,7 +5,13 @@
 // on the total. b) the day value depends on what the other half of the day
 // holds. c) a rule copied into a second view is a rule that drifts.
 
-import { dayIsSplit, dayValueFor, defaultSpecificationFor, specificationsFor } from '@tracker/core'
+import {
+  dayIsSplit,
+  dayValueFor,
+  defaultSpecificationFor,
+  specificationIsRequired,
+  specificationsFor,
+} from '@tracker/core'
 import type { HalfDay } from '@tracker/core'
 
 import { clearRow, profile, rowsByDate } from './useTimesheet'
@@ -27,12 +33,41 @@ export function shownRows(date: string): HalfDay[] {
   return dayIsSplit(rows) ? rows : [first]
 }
 
-/** A row is part filled when some of the three required fields are missing. */
+/** True once a row holds anything. Nothing is asked of an empty one. */
+export function started(entry: HalfDay): boolean {
+  return entry.workdayId !== null || entry.specification !== null || entry.days !== null
+}
+
+/*
+ * The three below name one field each rather than the row.
+ *
+ * The row used to carry one mark and every control in it took the colour. A
+ * row missing only its day value therefore marked the cost centre that was
+ * filled in and the user had to read all three to find the empty one.
+ */
+
+export function missingWorkday(entry: HalfDay): boolean {
+  return started(entry) && entry.workdayId === null
+}
+
+/**
+ * A cost centre that names its own list must be told which of them applies. One
+ * whose list the workbook leaves empty has nothing that applies by right so a
+ * blank there is not missing. `validate` in core holds the same rule and the
+ * grid marked those rows against it before.
+ */
+export function missingSpecification(entry: HalfDay): boolean {
+  if (!started(entry) || entry.specification !== null) return false
+  return entry.workdayId !== null && specificationIsRequired(entry.workdayId)
+}
+
+export function missingDays(entry: HalfDay): boolean {
+  return started(entry) && entry.days === null
+}
+
+/** A row is part filled when any one of its required fields is missing. */
 export function incomplete(entry: HalfDay): boolean {
-  const parts = [entry.workdayId, entry.specification, entry.days].filter(
-    (v) => v !== null && v !== '',
-  )
-  return parts.length > 0 && parts.length < 3
+  return missingWorkday(entry) || missingSpecification(entry) || missingDays(entry)
 }
 
 export function specMismatch(entry: HalfDay): boolean {
@@ -102,5 +137,19 @@ export function setWorkday(entry: HalfDay, value: string | null): void {
 /** Choosing from the list makes it the user own pick rather than a default. */
 export function setSpecification(entry: HalfDay, value: string | null): void {
   entry.specification = value
+  entry.specificationIsDefault = false
+}
+
+/**
+ * Drops the mark on a specification that was filled in.
+ *
+ * Opening the list is the double check the mark asks for. So the mark goes on
+ * reaching the field rather than only on picking a different value. Because a)
+ * the value filled in is usually the right one and confirming it is not an
+ * edit. b) a mark that survives the check it asked for is a mark nobody can
+ * clear. c) the stored field is what the reload reads so the answer has to be
+ * written rather than held on the screen.
+ */
+export function confirmSpecification(entry: HalfDay): void {
   entry.specificationIsDefault = false
 }

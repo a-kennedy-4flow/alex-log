@@ -1,0 +1,70 @@
+# 69 - syslog post-mortem: why the machine died 2026-09-21
+1. ls -la debugging/  -> single file 'syslog', 8198037 bytes, 38125 lines
+2. head/tail syslog   -> covers 2026-09-20T00:00:03 to 2026-09-21T14:27:09 (CEST, +02:00)
+3. tail shows systemd-timesyncd 'Initial clock synchronization' at 14:26:52 -> fresh boot near 14:26
+4. grep boot markers -> line 34430 "Linux version 7.0.0-31-generic" at 14:26:22 = start of new boot
+5. sed -n 34380,34432p -> last line of old session is 14:24:43 "Out of memory: Killed process 3216 (code-tunnel)"
+6. No shutdown/reboot sequence between 14:24:43 and 14:26:22 -> hard death, machine was wedged and reset
+7. Mem-Info at OOM: anon 28.5GB of 32GB RAM, file cache 716kB, pagetables 1.4GB, kernel_stack 245MB (~15k threads)
+8. "Free swap = 0kB / Total swap = 8388604kB" -> all 8GB swap consumed
+9. OOM task dump truncated: lists 2128 tasks / 5.1GB RSS / 0.19GB pagetables vs 1.4GB reported -> real task count ~7x higher
+10. Dump composition: 1038 "git" + 1038 "post-index-chan" processes, exact 1:1 pairing
+11. git/post-index PID span 827072->851652 = ~24500 processes spawned
+12. Timeline: 14:09:11 _chain edited | 14:18:20 journald memory pressure | 14:19:56 TPM stall in alloc slowpath | 14:24:12 oom-killer | 14:24:43 killed code-tunnel (5MB, useless) | wedged | 14:26:22 boot
+13. git config core.hookspath=/home/alex/.config/git/hooks -> GLOBAL hooks, every repo
+14. post-index-change -> symlink to _chain (all 28 hook names symlink to the same _chain script)
+15. _chain is a pre-commit script: runs "git add" in a loop AND "git stash push -k -u" -> both mutate the index -> re-fire post-index-change -> unbounded recursion
+16. No recursion guard in _chain (read all 69 lines)
+17. No git repo tracking /home/alex/.config/git/hooks -> cannot diff the 14:09 edit
+18. git 2.43.0 supports post-index-change (since 2.22) -> symlink is live
+19. Leftover state: polaris-backend has 3 "pre-commit auto stash" stashes, PIDs 120320/160155/347706 = older runs not today's storm
+20. polaris-backend is the gradle repo matching the hook's squawk path, last reflog 13:44:37 on main; jcmd present in OOM dump = gradle/java running
+21. PROOF 1 (capped test repo): single "git add" re-entered post-index-change 5 levels, stopped only by artificial cap
+22. PROOF 2: read-only git commands (status/diff/ls-files/rev-parse) do NOT fire the hook -> trigger was a real index write
+23. PROOF 3: hook doing "git stash push -k -u" produced 70 stashes from ONE git add, while depth guard still read depth=1
+    -> git stash push spawns fresh hook processes that do not inherit an env-var guard, so recursion is uncontainable that way
+24. PROOF 4: reference-transaction fires twice per ref update (prepared/committed) and is symlinked to the same _chain
+    -> second independent bomb: stash push creates refs -> reference-transaction -> _chain -> stash push -> ...
+25. VERDICT: global core.hooksPath symlinks post-index-change AND reference-transaction to a pre-commit script that mutates
+    the index and refs. Unbounded git fork storm, ~24500 processes, 28.5GB anon + 8GB swap exhausted, OOM killer picked a
+    5MB victim (code-tunnel, oom_score_adj 200) which freed nothing, machine wedged, hard reset at 14:26:22.
+26. Two unrelated things live in /home/alex/.config/git/hooks:
+    a) prepare-commit-msg (real file 524B Sep 8) + lib/commit-stats.sh (6806B) = the commit-message work, dispatcher pattern,
+       prefers the repo's own prepare-commit-msg else falls through to commit-stats.sh, header says "Never rejects a commit"
+    b) _chain = a copy of polaris-backend/.git/hooks/pre-commit (Aug 4) = gradle/tofu/squawk build gate
+27. diff _chain vs polaris-backend pre-commit: ONLY the 14:09 edit adding "javadoc" to the gradle line plus a comment
+    -> today's edit is NOT the cause, the bomb was armed when the 28 symlinks were created
+28. _chain contains NO dispatch logic unlike prepare-combit-msg -> the "_chain" name and the all-hooks symlinking imply a
+    generic chain-to-repo-hook dispatcher was intended, but the file holds polaris-backend's pre-commit instead
+29. tofu and squawk are both NOT installed -> those branches only echo, the unconditional "git stash push -k -u" always runs
+30. journalctl --list-boots: boot -3 (Sep 17 10:59:37 -> 12:06:29) had 3 oom-killer invocations, killed wireplumber + code-tunnel
+31. Sep 17 OOM dump composition: 4596 post-index-chan + 4584 git -> SAME storm, larger than today's captured dump
+32. Sep 17 crash at 12:06:29 and the hooks dir mtime is Sep 17 12:21 -> the dir was touched right after that earlier crash
+33. boot -1 shows 0 oom in the journal because journald stopped writing at 14:22:43 while rsyslog captured to 14:24:43
+    -> journald was starved out, syslog is the only record of today's kill
+34. SECOND DEATH this session: boot -1 ran 14:26:16 -> 14:45:28
+35. polaris-backend/.git/index mtime 14:40:51 -> memory pressure 14:43:02 -> kernel task dump 14:45:28 (838 git + 838 post-index-chan)
+36. journald logged "Missed 22464 kernel messages" then died; no oom-kill line survived this time
+37. polaris-backend stash count unchanged at 18 -> "git stash push -k -u" with nothing to stash is a no-op that still
+    writes the index, so the storm recurses without leaving stashes behind
+38. VS Code has polaris-backend open with extension host + file watcher live -> its git extension refreshed the index at
+    14:40:51 with no user action, which is the trigger. No git write command was issued against polaris-backend from this session.
+39. MY SEQUENCING ERROR: the bomb was identified and reported as live at 14:36 and the user had approved the symlink cleanup.
+    I then spent ~20 minutes on further investigation before disarming. Disarm should have been the first action.
+40. DISARMED 14:48: removed all 27 hook symlinks from /home/alex/.config/git/hooks
+    Remaining: _chain (2489B), lib/commit-stats.sh, prepare-commit-msg (real file, safe, never writes the index)
+41. Rewrote the commit-message hook in Rust at repos/alex-log/commit-message (zero dependencies, edition 2024)
+    src/main.rs dispatcher + subject seeding | src/git.rs | src/classify.rs bucketing | src/stats.rs report | src/message.rs rewrite
+42. mawk has no multibyte support so the old "characters" row counted BYTES (length($0) on a 38 byte / 32 char line gave 38)
+    -> Rust counts characters, the label is now true. Only deviation from the old output.
+43. Validation: cargo test 14 passed. Against the shell version on an ASCII fixture the output is BYTE-FOR-BYTE IDENTICAL.
+    UTF-8 fixture differs by exactly 6 characters = the multibyte overhead in the fixture, as intended.
+44. Six edge cases all match: branch ahead of trunk | no-ticket branch | source=message | cleanup=verbatim | empty stage | first commit
+45. Rust version is also quiet on a first commit; the shell one printed "fatal: ambiguous argument 'HEAD'" every time
+46. End to end through real git: subject seeded, comments stripped, no index write, handover to a repo's own hook works,
+    inode self-exec guard stops a same-binary repo hook from recursing (exit 0, no hang)
+47. FINAL STATE
+    /home/alex/.config/git/hooks/  -> prepare-commit-msg (the Rust binary) and nothing else
+    polaris-backend/.git/hooks/    -> pre-commit (the old _chain, javadoc edit kept) + its own prepare-commit-msg (untouched)
+    lib/commit-stats.sh and _chain and all 27 symlinks removed from the global dir
+48. polaris-backend2/.git/hooks/pre-commit is still the Aug 4 copy without the javadoc edit. Left alone. Not asked for.
