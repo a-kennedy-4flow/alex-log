@@ -1,0 +1,1731 @@
+                                                                             Sep. 2018
+
+Reference:
+
+Delgado, P., Vargas, C., Ackerman, R., & Salmerón, L. (in press) Don't throw
+away your printed books: A meta-analysis on the effects of reading media on
+comprehension. Educational Research Review.
+
+
+
+                         Don't throw away your printed books:
+
+    A meta-analysis on the effects of reading media on reading comprehension
+
+     Pablo Delgado1, Cristina Vargas1, Rakefet Ackerman2, and Ladislao Salmerón1
+
+          1
+              University of Valencia; 2 Technion—Israel Institute of Technology
+
+Corresponding author: Ladislao Salmerón
+
+                  Ladislao.Salmeron@uv.es
+                  University of Valencia
+                  Avd. Blasco Ibáñez, 21
+                  Valencia 46010, Spain
+
+
+
+                                           Abstract
+With the increasing dominance of digital reading over paper reading, gaining
+understanding of the effects of the medium on reading comprehension has become
+critical. However, results from research comparing learning outcomes across printed
+and digital media are mixed, making conclusions difficult to reach. In the current meta-
+analysis, we examined research in recent years (2000-2017), comparing the reading of
+comparable texts on paper and on digital devices. We included studies with between-
+participant (n = 38) and within-participant designs (n = 16) involving 171,055
+participants. Both designs yielded the same advantage of paper over digital reading
+(Hedge’s g = -.21; dc = -.21). Analyses revealed three significant moderators: (1) time
+frame: the paper-based reading advantage increased in time-constrained reading
+compared to self-paced reading; (2) text genre: the paper-based reading advantage was
+consistent across studies using informational texts, or a mix of informational and
+narrative texts, but not on those using only narrative texts; (3) publication year: the
+advantage of paper-based reading increased over the years. Theoretical and educational
+implications are discussed.
+
+Keywords: reading comprehension, reading media differences, digital-based reading,
+paper-based reading, meta-analysis.
+
+                                              1
+                                      Introduction
+
+        There has been a gradual shift from paper-based reading to reading on digital
+devices, such as computers, tablets, and cell-phones. Although there are clear
+advantages of digital-based assessment and learning, including reduced costs and
+increased individualization, research indicates that there may be disadvantages as well,
+as described below. In addition, findings from previous reviews of studies on the effects
+of digital reading on comprehension have been inconclusive (Dillon, 1992; Kingston,
+2008; Noyes & Garland, 2008; Singer & Alexander, 2017; Wang, Jiao, Young, Brooks,
+& Olson, 2007). The current paper presents a meta-analysis of recent studies that
+investigated the effects of paper versus digital media on reading comprehension. In
+addition, we also explored the effects of several potential moderator variables whose
+influence may help to explain previous inconsistencies among study results.
+Text comprehension and the role of media
+        Theoretical models of reading comprehension have extensively considered the
+interplay among reader characteristics, text content and design, and reading instructions
+(for a review see McNamara & Magliano, 2009). However, the factor of the medium
+has been mostly ignored, despite empirical evidence suggesting that it influences
+reading outcomes (e.g., Lenhard, Schroeders, & Lenhard, 2017; Mangen, Walgermo, &
+Brønnick, 2013; Singer & Alexander, 2016). In particular, Ackerman and Lauterman
+(2012) considered media-related differences in learning outcomes from a metacognitive
+perspective. In addition to learning outcomes, they compared learners’ monitoring of
+their comprehension and allocation of their study time. On each medium, immediately
+after studying each text, participants predicted their success rates (in %) and were tested
+through multiple-choice questions. Moreover, to the best of our knowledge, these
+authors are the only ones who empirically considered the time frame as a potential
+moderating factor of media effects on learning outcomes. They examined the learners’
+adjustment to studying under time pressure, compared to free study time, on both
+media. Under time pressure, but not under free time, those who read from computers
+showed screen inferiority: they had more pronounced overconfidence than paper
+learners and achieved lower test scores. Moreover, only in paper-based reading,
+participants improved their efficiency under time pressure, compared to learning in a
+free time frame. Importantly, whereas theories of monitoring and allocation of study
+time assume close relationships between the two, Ackerman and Goldsmith (2011)
+found close relationships in paper-based reading, but more erratic time allocation
+decisions in digital-based reading. Before this study, conducted with young
+undergraduates, weak associations between monitoring and time allocation decisions
+were only found in elderly people and people with mental illnesses (Koren, Sneidman,
+Goldsmith, & Harvey, 2006; Pansky, Goldsmith, Koriat, & Pearlman-Avnion, 2009).
+Furthermore, several recent studies found that the preference for paper over digital-
+based reading persists despite technological advances (Baron, Calixte, & Havewala,
+2017; Mizrachi, 2015; Kurata, Ishita, Miyata, & Minami, 2017; but see Singer &
+Alexander, 2017a). Lauterman and Ackerman (2014) found that methods to overcome
+
+                                             2
+screen inferiority are effective only for people who prefer digital reading, but not for
+those who prefer paper reading. Together, the reviewed findings demonstrate several
+aspects of reading comprehension that have been overlooked so far in reading theories,
+highlighting the medium as an environment that affects reading outcomes, above and
+beyond reader and task characteristics.
+         In sum, the way the media affect reading comprehension outcomes is still
+unclear. Several researchers have explained screen inferiority under some conditions as
+being due to people’s stronger inclination toward shallow work in digital-based
+environments than in paper-based ones (see Annisette & Lafreniere, 2017; Wolf &
+Barzillai, 2009), particularly when the task design indicates its legitimacy, as when
+working under a limited time frame (Lauterman & Ackerman, 2014; Sidi, Shpigelman,
+Zalmanov, & Ackerman, 2017).
+        A meta-analysis provides an opportunity to examine media effects on learning
+outcomes while considering overall task characteristics, such as time frames, participant
+characteristics, and the display technology, across theoretical frameworks, populations,
+and methodologies. Importantly, a meta-analysis makes it possible to consider
+potentially moderating factors, even across studies that did not include these factors in
+their designs, by comparing enough studies that used each level of the factor (e.g., only
+limited time frame vs. only free time allocation). Exposing moderating factors can guide
+future theoretical development and practical recommendations.
+Previous reviews and meta-analyses
+        In the past ten years, only a few meta-analyses and literature reviews have been
+undertaken to determine the nature of the medium’s influence on reading outcomes.
+Wang et al. (2007) focused on K-12 student population. Their meta-analysis examined
+media effects on performance on standardized tests, and it included 11 primary studies
+that yielded 42 comparisons. They found better reading outcomes in paper-based testing
+than in digital-based testing. The mean effect size (.08) was significant, but small (see
+Cohen, 1988), and this difference between reading media was larger in studies that used
+fixed linear computerized tests (n = 37) than in those that used adaptive computerized
+tests (n = 5). Wang and colleagues concluded that differences between testing media are
+probably test specific, so that an analysis of potential media effects should be conducted
+for each type of test separately.
+        Kingston (2008) conducted a larger meta-analysis that included 81 effect sizes
+from 16 studies. This study focused on testing academic achievement across several
+academic topics in K-12 populations, and it showed a small advantage for digital
+administration in English Language Arts and Social Studies (effect sizes of .11 and .15,
+respectively), along with a small advantage for paper administration in Mathematics
+(effect size of −.06). More relevant to our focus, eight of the studies included in
+Kingston’s work assessed reading outcomes, five of which were included in Wang et
+al.’s (2007) meta-analysis, and found no effect of reading media. Regarding the digital
+disadvantage in Mathematics, Kingston alludes to possible difficulties when completing
+tests on a computer due to switching to sketch paper before answering. In sum, results
+from these meta-analyses are inconsistent. Some findings point to advantages of print
+                                            3
+text, whereas others favour digital text, and still other results indicate that media effects
+depend on the topic.
+        Recently, Kong, Seo & Zhai (2018) performed a meta-analysis with 17 studies
+dating from 2000 to 2016. Results revealed better performance when reading from
+paper than when reading from digital devices (effect size of -.21). This meta-analysis
+incoropated a relatively small number of studies which included great variability in
+terms of populations (e.g. second-language students), and tasks (e.g. perceived
+comprehension or proofreading). Interestingly, despite considering several potential
+moderating factors, this analysis did not reveal any significant effects. The authors
+acknowledged the need for considering additional moderating factors.
+        Two narrative literature reviews attempted to promote understanding of media
+effects on reading comprehension. Noyes and Garland (2008) reviewed media
+comparison studies that focused on reading outcomes but also on tasks such as
+examinations, writing, and filling in questionnaires (e.g., psychometric tests and
+surveys). They concluded that, although equivalence between the media was a
+challenge, differences, where found, appeared to be task specific. In particular, with
+respect to reading outcomes, the results were heterogeneous regarding comprehension
+and reading speed, with no clear conclusions about the influence of the media.
+         Recently, Singer and Alexander (2017b) described studies published from 1992
+to 2017. They found it difficult to reach conclusions and pointed to a lack of clarity in
+definitions of paper and digital reading, as well as a lack of important information in
+many studies, such as text features (genre and length), individual differences (e.g.,
+reading rate and vocabulary), validity and reliability of the tasks used to measure
+reading outcomes, characteristics of the reading tasks, levels of comprehension
+evaluated, and scoring criteria. Singer and Alexander called on researchers to
+investigate how various factors interact with media and potentially explain the mixed
+results found in the literature.
+        The main conclusion drawn from the above review of previous meta-analyses
+and narrative research synthesis is that media effects are inconsistent. This may be
+partially explained by the difficulty of comparing paper texts to digital texts which
+include incomparable features such as hyperlinks, animations, or adaptive tests which
+may confound and hide media effects on learning processes. Another potential reason
+for the inconsistent results is the fact that most of the previous reviews did not consider
+or did not find moderating factors. Finding robust moderating factors can shed light on
+the reasons for the seemingly inconsistent media effects found. As mentioned above,
+Ackerman and Lauterman (2012) found inferior comprehension in digital-based reading
+compared to paper-based reading under time pressure, but media equivalence in free
+time conditions. This finding raises the option that the time frame allowed for reading is
+a factor that differentiates between studies that find an advantage of paper and those that
+find media equivalence. Considering the time frame as a moderating factor across a
+large collection of studies can inform us whether this specific study exposed a pattern
+which is robust across methodologies and populations.
+        In the present meta-analysis we aimed to facilitate comparisons between print
+and digital media by including only studies that used linear reading materials, where the
+
+                                             4
+digital texts closely resembled the printed versions. This focus allowed us to eliminate
+some of the aforementioned complexities. In addition, by performing a comprehensive
+meta-analysis we aimed to examine the influence of several potential moderating factors
+on media effects, in addition to the time frame just mentioned. We see high importance
+in identifying moderating factors for pointing to conditions that yield an advantage of
+print across methodologies and conditions, those that yield an advantage of digital
+devices, and those that result in equivalent outcomes.
+Effects of experience with digital technologies
+         It could be argued that a potential straightforward moderator of digital text
+comprehension is experience using technology. In other words, potential comprehension
+difficulties in digital reading will disappear once students have enough experience with
+digital technologies. According to this view, as each new generation is surrounded by
+digital devices earlier and earlier in life (e.g. ASHA, 2015; Childwise, 2017), we should
+expect newer generations to achieve equivalent, or even better, comprehension levels in
+digital-based reading compared to paper-based reading (see illustration in Figure 1, left
+panel). To explore this view, we investigated whether the publication date reveals a
+decreasing advantage of paper in recent years due to greater exposure to technology
+than in earlier years. If this was the case, with enough experience with digital
+technologies, readers would be able to overcome any potential detrimental effect on
+comprehension. In our schematic presentation (Figure 1), we use paper comprehension
+as the reference level and illustrate potential changes in digital-based comprehension
+relative to it. Importantly, because we analyse effect sizes rather than objective
+measures of performance, we cannot know whether this paper-based reference level
+changes over time. In particular, one could also argue that because new generations may
+have less exposure to printed texts, paper comprehension will decrease rather than
+remaining constant. In any of those two cases, the prediction about the evolution of
+digital-based reading from this perspective is that reading ability on this medium will
+improve with further experience. Therefore, the advantage of print over digital-based
+reading will decrease over the years, regardless of the pattern of change in paper
+comprehension.
+         Several researchers have argued, however, that increasing exposure to
+technology, with its emphasis on speed and multitasking, may encourage a shallower
+kind of processing that leads to a decrease in deep comprehension in digital
+environments (e.g. Lauterman & Ackerman, 2014; Wolf & Barzillai, 2009). Indeed,
+current evidence supports the claim that mere experience with digital technology does
+not improve students’ comprehension skills, but instead has a detrimental effect
+(Duncan, McGeown, Griffiths, Stothard, & Dobai, 2015; Pfost, Dörfler, & Artelt,
+2013). This view leads to the alternative hypothesis that the paper advantage over
+digital media increases with time (Figure 1, right panel). If true, this would be a call for
+researchers, policy-makers, and education professionals to join forces to develop
+methods to support effective digital-based reading and learning.
+
+
+
+
+                                             5
+         Reading comprehension                     Reading comprehension
+
+                Paper                                    Paper
+
+
+
+
+                Screen                                   Screen
+
+
+
+             Experience with technology                Experience with technology
+
+
+    Figure 1. Schematic projection of trends for the effect of experience with
+    technology on reading comprehension differences between print and digital
+    devices. Left panel represents a situation in which more experience with
+    technology reduces the difference between print and digital reading outcomes.
+    Right panel represents a situation in which this potential difference increases
+    over the years.
+
+Objectives
+        The aim of this meta-analysis was to gain a broad perspective of empirical
+studies comparing digital and print reading outcomes. Specifically, we had two
+objectives:
+
+       1) Examine whether the reading medium affects reading comprehension
+       outcomes.
+
+       2) Identify moderating factors of the effects of the medium on reading
+       comprehension outcomes.
+
+                                          Method
+
+Selection criteria of the studies
+
+Studies included in the meta-analysis met the following criteria:
+
+   1. The study compares comprehension in paper-based and digital-based reading,
+      respectively defined as reading texts printed on paper and reading texts
+      displayed on digital screens, including computers, tablets, mobiles phones, and
+      e-readers.
+   2. Participants read individually and silently.
+   3. Reading materials are comparable across media in terms of text content,
+      structure, and presence of images. Therefore, specific features of digital
+      environments, such as hyperlinks or web navigation, are not present in the
+      digital-based condition.
+   4. The participants study in their daily-used language.
+
+
+
+                                            6
+    5. Participants are a sample from a normative population (i.e., typical development,
+        no reading difficulties, and no cognitive impairments or disorders).
+    6. The study makes an empirical contribution that includes the results of the
+        comparison (i.e. the paper is not a review or an opinion).
+    7. The study was published or presented from the year 2000 to 2017. Formal
+        publication was not required.
+    8. The report is written in English.
+    9. The report includes specification of the effect size or sufficient statistical
+        information to calculate it (or this information was provided by the authors
+        following a personal request).
+    10. The statistical data allow parametric analyses.
+Search procedure
+         Several literature search procedures were used to locate relevant studies and
+previous reviews. Firstly, some electronic databases were consulted: PsycInfo, Eric,
+Proquest Psychology, Web of Science, Scopus (Physical Sciences and Social Sciences
+& Humanities), dissertation and theses (Proquest), and Google Scholar. The search
+included the following terms1: “("computer reading" OR "online reading" OR “screen
+reading” OR “digital reading” OR "print reading" OR "paper versus screen" OR
+“differential test” OR “computer-based testing” OR “computerized testing” OR
+“Computer Assisted Testing” OR “electronic book” OR “electronic text” OR “media
+effects” OR “reading medium” OR “mode effect”) AND (memory OR comprehension
+OR retention OR “test performance” OR learning)”. These terms were searched as title,
+abstract, or keywords. As recommended by Card (2012), we complemented the search
+with additional strategies. Thus, secondly, references included in previous reviews were
+examined. Thirdly, we approached experts and societies in this area (The Society for
+Text and Discourse, Society for the Scientific Study of Reading, The European
+Association for Research on Learning and Instruction, and COST E-READ Action)
+asking for information about unpublished studies. Fourthly, a forward search was
+performed using Google Scholar to find studies that cited the works selected. Finally,
+references from the selected studies were also retrieved. The search ended in May 2017.
+         The search described above yielded 1,840 records. The selection process from
+this initial collection is described in Figure 2. We ended up with 54 studies that satisfied
+all the inclusion criteria. Some studies reported more than one media comparison due to
+considering additional independent factors (e.g., educational level, text genre, digital
+devices). See the effect size index section below for details about the use of these
+subgroups. The final sample consisted of 76 media comparisons, each contributing an
+individual effect size. The meta-analysis is based on 171,055 participants. See
+
+1
+  The study of media effects on reading comprehension has been the focus of several disciplines,
+including reading research, reading assessment, educational practice, media studies and learning
+technologies. Each discipline tends to use idiosyncratic words for similar, if not identical, scenarios. For
+example, the dependent variable in a situation where students read a text and answer comprehension
+questions is termed “test performance” in the assessment literature, but the term “comprehension scores”
+is used in the reading literature. Therefore, to avoid leaving out relevant studies from a particular field, we
+opted to include a broad range of search terms in our query.
+
+                                                      7
+Appendix (Table A1 and Table A2) for a detailed distribution of the participants among
+the studies.
+
+
+
+
+Note. 1Not reported in the study report and not provided by authors following a personal
+request.
+
+     Figure 2. Flowchart of the selection process.
+
+
+
+
+                                           8
+Coding the studies
+        Several characteristics were coded for each comparison. This allowed for
+descriptive information and the consideration of moderating variables for the reported
+effect sizes. When necessary information was not included in the paper for a particular
+variable, it was coded as “Not reported” (N/r). When available, the following variables
+were coded:
+Substantive variables:
+    1. Participants’ educational level: elementary, middle or high school,
+        undergraduates, or graduates and professionals.
+    2. Text length: number of words used in the reading task or other relevant
+        information, such as the number of pages. Once coded, text length was
+        categorized as (a) short (less than 1000 words) or (b) long
+    3. Allowed reading time frame: (a) free, when reading-time was self-paced by
+        participants, or (b) limited, when time was restricted by experimental
+        instructions.
+    4. Type of digital device: (a) computer (desktop or laptop) or (b) hand-held (tablet,
+        e-reader, or smartphone).
+    5. Text genre: (a) informational, when texts were expository, descriptive or
+        informative, (b) narrative, or (c) mixed, when both genre categories were used in
+        the same task.
+    6. Need for scrolling: whether participants needed to scroll down the texts when
+        reading in digital-based conditions. Coded as (a) yes or (b) no.
+    7. Open testing: whether participants could go back to texts when answering
+        questions. Coded as (a) yes or (b) no.
+    8. Type of comprehension: (a) textual, when reading tasks asked for specific details
+        or shallow level of comprehension; (b) inferential, high-level comprehension,
+        when tasks required inferences based on parts of the texts, across parts, or
+        involved previous knowledge; or (c) mixed, when tasks required both types of
+        comprehension.
+    9. Explicit strategy requirement: whether participants were prompted or asked to
+        implement a specific strategy in order to promote more in-depth reading, by
+        means of selecting keywords, the use of highlighting or note-taking, or the use
+        of reading strategies promoted by the experimental instructions. Coded as (a)
+        yes or (b) no.
+Extrinsic variables:
+    10. Publishing status: (a) published paper, (b) official report, (c) master or PhD
+        thesis, and (d) conference communication.
+    11. Year of publication/presentation: exact year.
+Methodological variables:
+    12. Sample size: number of participants.
+    13. Sampling method: (a) probability (some process or procedure that ensures that
+        the different units in the population have equal probabilities of being chosen) or
+        (b) non-probability.
+
+                                            9
+   14. Allocation of participants to media conditions: (a) random, (b) quasi-random,
+       (c) non-random but matched or controlled, (d) non-random and not controlled,
+       and (e) within-participant design.
+   15. Type of reading comprehension test: (a) standardized/official test or (b)
+       researcher-created task.
+   16. Testing medium: whether participants completed the comprehension test (a) on
+       the same medium used for reading the texts, (b) always on paper, or (c) always
+       on the digital device.
+
+       The coding process was conducted by two independent judges, based on a
+random sample (28%) of the studies included in the meta-analysis. Inter-rater reliability
+was adequate, showing a Cohen’s kappa equal to .89 (minimum = .71, maximum = 1)
+for qualitative variables, and an intra-class correlation (95% CI) yielding absolute
+agreement for continuous variables (ICC = 1). Disagreements were discussed. For
+transparency and objectivity, a coding manual was developed and is available by
+request from the last author. A descriptive overview of the studies included is given in
+the Results section and in the Appendix (Table A1 and Table A2).
+The effect size index
+        The effect size was calculated for each comparison, using means, standard
+deviations, and sample sizes (Borenstein, Hedges, Higgins, & Rothstein, 2009). When
+the studies used a between-participant design, the standardized mean difference,
+Hedges’ g, was used as the effect size index. This index was defined as the difference
+between the digital-based (treatment) and paper-based (control) groups’ means on the
+post-test, divided by a pooled within-group standard deviation (Cohen, 1988). In
+addition, to estimate unbiased effect sizes, the correction factor for small sample sizes
+proposed by Hedges and Olkin (1985) was used. A positive Hedges’ g indicates better
+comprehension results for the digital-based condition, whereas a negative Hedges’ g
+indicates better outcomes for the paper-based condition.
+        For studies that used a within-participant design (each participant read on both
+paper and digital presentations), the standardized mean change index, dc, was used to
+estimate the effect sizes. This effect size index is defined as subtracting the mean of the
+treatment group from the mean of the control group, and then dividing it by the standard
+deviation of the control group (Botella & Sánchez-Meca, 2015; Morris, 2000). In this
+case, in order to keep the interpretation of the direction of the mean effect size constant
+across both datasets (i.e., a positive value indicates better reading outcomes for the
+digital-based condition and vice versa), we used the digital-based condition as the
+control group. None of the studies reported the correlation coefficients, and thus, all
+values were imputed for a conservative estimate (r = .7), as recommended by Rosenthal
+(1991). As in the previous index, the correction factor for small sample sizes was
+applied to calculate this effect size index (Hedges & Olkin, 1985).
+        Finally, as indicated above, some studies reported multiple comparisons. In
+these cases, the following strategies were applied: a) when the study contained multiple
+between-participant treatments, the effect size for each subgroup was estimated; b)
+
+                                            10
+when there were multiple-treatment groups but they were dependent subgroups, effect
+sizes and their variances were combined into overall effect sizes and variances for these
+subgroups; c) if two digital-based groups were compared with the same control group,
+the sample size for the control group was divided by two to minimize dependence
+(Higgins & Green, 2011); and d) when the study provided data on multiple outcome
+measures, effect sizes and variances were averaged to create a single effect size and
+allow statistical independence of the data (Lipsey & Wilson, 2001). In one case, a
+combination of strategies b and c had to be applied due to the existence of three digital-
+based reading groups.
+Statistical analyses
+        Two separated meta-analyses were performed because it is not recommended to
+combine studies with between-participant and within-participant designs in one meta-
+analysis (Lipsey & Wilson, 2001). In each meta-analysis, a weighted mean effect size
+with its confidence interval (95%) was estimated, and a forest plot was made. Cochran’s
+Q statistic was used to assess the presence of heterogeneity (Huedo-Medina, Sánchez-
+Meca, Marín-Martínez, & Botella, 2006), and I2 indexes estimated the proportion of
+observed variance that is not due to sampling error. Furthermore, the prediction interval
+was calculated to provide additional context. A random-effects model was used to
+analyse effect sizes because it is generally regarded as more realistic (Borenstein et al.,
+2009; Borenstein, Higgins, Hedges and Rothstein, 2017; Cooper, Hedges, & Valentine,
+2009; Huedo-Medina et al., 2006).
+        Between-study heterogeneity was examined with ANOVAs for qualitative
+moderators and simple meta-regression for continuous moderators (Borenstein et al.
+2009; Cooper et al, 2009), applying the adjustment proposed by Knapp and Hartung
+(2003). The proportion of variance explained by moderators was estimated by the R2
+index (Raudenbush, 2009).
+        The normality assumption and outlier detection were assessed by examining the
+Q–Q normal plot, the Kolmogorov-Smirnov test with the Lilliefors correction, the
+Shapiro-Wilk test, and the standardized residuals (values greater than 3 in absolute
+magnitude were considered outliers). When potential outliers were identified, the robust
+model proposed by Beath (2014) was applied to confirm, removing effect sizes when a
+probability greater than .9 was found.
+        Sensitivity analysis was performed to evaluate the robustness of the results. The
+one-study-removal approach was used to evaluate the impact of each effect size on the
+mean estimate of the mean effect obtained (Borenstein et al., 2009). Moreover, when
+calculating the mean effect size for within-participant comparisons, due to the small
+number of effect sizes, additional methods were used to estimate τ2 (in particular, the
+DerSimonian and Laird method with Knapp and Hartung adjustment, the maximum
+likelihood estimator, and the restricted maximum likelihood estimator). Finally, we also
+estimated the mean effect sizes, imputing different correlation coefficients (range of
+values from .10 to .90).
+
+
+
+
+                                            11
+       Publication bias was evaluated using Rosenthal’s file drawer analysis
+(Rosenthal, 1979) and Egger’s linear regression (Card, 2012), and applying ANOVA to
+compare the mean effect size of the published versus unpublished studies.
+       The statistical analyses were conducted using Comprehensive Meta-analysis
+software Version 3 (Borenstein, Hedges, Higgins, & Rothstein, 2014), R 3.1.1 software
+with Metafor (Viechtbauer, 2010) and Metaplus (Beath, 2015) packages, and a
+Microsoft Excel spreadsheet for computing prediction intervals.
+                                           Results
+Descriptive characteristics of the studies
+        In the final sample (n = 54), 38 studies used a between-participant design. Of
+these 38 studies, 58 media comparisons (i.e., effect sizes) with 169,524 participants
+were initially included in the meta-analysis. Note that the majority of these participants
+(165,778) were from four large-scale studies (Eyre, Berg, Mazengarb, & Lawes, 2017;
+Lenhard et al., 2017; Pommerich, 2004; Puhan, Boughton, & Kim, 2005; see Appendix
+1, Table A1). In addition, 16 studies used a within-participant design, providing 18
+media comparisons with 1,531 participants. Within our dataset, two studies (Pomplun,
+Frey, & Becker, 2002; Pommerich, 2004) were included in both the Wang et al. (2007)
+and Kingston (2008) meta-analyses, mentioned above. Another study (Higgins, Russel,
+& Hoffman, 2005) was also included in Kingston’s work. The remaining studies
+included in these two meta-analyses did not meet our inclusion criteria.
+Between-participants studies
+        Focusing on the substantive variables described in the Appendix (Table A1), it
+is worth noting that the majority of the comparisons were conducted with undergraduate
+students (63.79%), used computers as digital devices (74.13%), included only
+informational texts (55.17%), and assessed comprehension by means of a mixture of
+textual and inferential questions (72.41%). In addition, in 44.83% of the comparisons,
+researchers imposed time constraints for reading the texts. Regarding extrinsic
+variables, 25 studies (39 effect sizes) were published papers, whereas the remaining 13
+studies (17 effect sizes) included PhD dissertations (n = 6), a master thesis (n = 1),
+conference communications (n = 4), and an official report (n = 1). Moreover, an
+overview of the between-participant studies shows that 11 studies (16 effect sizes) were
+published or presented between 2000 and 2010, and 27 studies (42 effect sizes) between
+2011 and 2017. Finally, regarding the methodological variables, 98.27% of the
+comparisons were from studies that recruited the sample through a non-probability
+sampling method, and 74.14% reported a randomized group allocation of participants.
+Researcher-created tasks were used in approximately 63.79% of the comparisons (see
+Appendix, Table A1, for additional information).
+        Finally, it is worth noting that several studies did not report information about
+some of the coded variables. However, they were included in the dataset whenever the
+information provided allowed us to calculate effect sizes because our purpose was to
+include a sample of studies in the meta-analysis that was as representative as possible
+
+
+
+                                             12
+Within-participant studies
+         The within-participant studies included are described in the Appendix (Table
+A2). Regarding substantive variables, a majority of the 18 comparisons reported that
+they were conducted with undergraduates (55.55%), used computers for digital-based
+reading (55.55%), used informational texts (61.11%), and assessed comprehension by
+means of a mixture of textual and inferential questions (55.55%). In relation to reading
+time, five comparisons imposed time constraints. Focusing on extrinsic variables, this
+dataset consisted of 11 published studies (13 effect sizes), a PhD dissertation, a bachelor
+thesis, and three conference communications (in all, 5 effect sizes from unpublished
+studies). Only four studies were reported before 2011. With regard to methodological
+variables, all the studies recruited the sample through a non-probability method, and
+eleven comparisons were conducted using researcher-created tasks.
+The mean effect size, heterogeneity, and sensitivity analyses
+        Before calculating the mean effect size, preliminary analyses were conducted to
+identify outliers and verify normality of the sample. Two effect sizes were identified as
+possible outliers (Duran, 2013; Nishizaki, 2015; see Appendix, Table A1) by examining
+standardized residuals (values > 3), the Q–Q normal plot, and the Kolmogorov-Smirnov
+test with the Lilliefors correction (p = .02) in the between-participant dataset. The
+robust model was applied to further analyse these potential outliers, with both obtaining
+probabilities greater than .90. Therefore, they were removed from posterior analyses,
+and so the final sample of between-participant studies included 56 effect sizes. After
+removing outliers, effect sizes were normally distributed (p = .40).
+        When examining the within-participant dataset, no effect size was identified as
+an outlier, and so the initial 18 effect sizes were all included in the analysis. The
+Shapiro-Wilk normality test (p = .52) indicated that the dataset was normally
+distributed.
+Media effect in between-participants designs
+        As explained above, comprehension in paper-based reading groups was used as
+the baseline. Therefore, negative values indicate that reading outcomes from digital-
+based devices were lower than their respective paper-based groups. The mean effect
+size of the sample was significant (Hedges’ g = -.21; 95% CI: -.28, -.14; k = 56),
+revealing an advantage of paper-based reading over digital-based reading. An overview
+of the effect sizes can be seen in Figure 3, which provides a graphical representation of
+the estimated results of each reading media comparison. Each result is represented by a
+blue line with a dot in the centre. The dot indicates the value of the effect size (note the
+vertical lines marking values from -2 to 2), and the line that emerges from both sides of
+the dot represents the confidence interval. The longer the line, the larger the confidence
+interval. Lines that do not reach the zero value indicate significant effect sizes.
+
+
+
+
+                                             13
+Note. Letters after the publication year differentiate several comparisons from the same
+study. Note that comparisons reported in the studies could have been recoded in the
+meta-analysis (see Method section). Please note that negative values indicate better
+outcomes for paper-based reading.
+       Figure 3. Forest plot of reading media effect sizes on reading comprehension
+       from studies using between-participant designs.
+
+
+
+
+                                           14
+        Regarding the variability of the effect sizes, the heterogeneity between
+individual effect sizes was medium-high (I2 = 72.24) and statistically significant (Q =
+208.96, p < .001). The prediction interval was -.56 to .14, and so it was expected that
+the true effect size would fall in this range in 95% of all populations. Hence, the effects
+are large in some populations, but moderated and trivial in other populations. The wide
+range of effects calls for further analyses to examine potential moderating factors that
+would shed light on sources of differences among the studies. Thus, analyses were
+conducted to examine effects of substantive, extrinsic, and methodological variables.
+The results are reported below.
+Sensitivity analyses for between-participant comparisons
+         The one-study-removal method (Borenstein, et al., 2009) showed that effect
+sizes fell between Hedges’ g = -.22 and -.20 (p < .001) and did not substantially affect
+the mean effect size, indicating a significant advantage of paper-based reading in all
+cases. Special attention should be paid to the four large-scale studies mentioned above
+(Eyre et al., 2017; Lenhard et al., 2017; Pommerich, 2004; Puhan et al., 2005). Given
+that their large samples yielded a small confidence interval for their effect sizes, their
+influence on the overall effect could skew the results. However, excluding these studies
+altogether (7 effect sizes), the mean effect size was Hedges’ g = -.22 (p < .001), which
+means they did not bias the overall effect of the reading media. Finally, given that we
+included “grey literature” (unpublished studies) in our meta-analysis, we repeated the
+meta-analysis without these studies in order to make sure that their inclusion does not
+compromise research quality. The mean effect size was Hedges’ g = -.19 (95% CI: -.27,
+-.11; k = 38) when excluding all the unpublished studies (i.e., official reports,
+conference communications, and dissertations) and Hedges’ g = -.20 (95% CI: -.28, -
+.13; k = 51) when only excluding the conference communications. Thus, “grey
+literature” did not substantially affect the overall mean effect size in this dataset.
+Media effect in within-participant designs
+        The mean effect size of this sample of studies was also significant, and it
+replicated the advantage of paper-based reading over digital-based reading (dc = -.21;
+95%; CI: -.37, -.06; k = 18). Figure 4, similarly to Figure 3, presents an overview of the
+effect sizes included in the dataset of studies that used a within-participant design.
+
+
+
+
+                                            15
+Note. Letters after the publication year differentiate several comparisons from the same
+study. Note that comparisons reported in the studies could have been recoded in the
+meta-analysis (see Method section). Please note that negative values indicate better
+outcomes for paper-based reading.
+      Figure 4. Forest plot of reading media effect sizes on reading comprehension
+      from studies using within-participant designs.
+
+         As in between-participant studies, heterogeneity of the effect sizes was high (I2
+= 89.88; Q = 167.94, p < .001), with the prediction interval ranging from -.90 to .47.
+Nevertheless, analyses of moderators were not performed in this dataset, due to the
+small number of effect sizes, and this should be taken into account when interpreting the
+results.
+Sensitivity analyses for within-participant comparisons
+        One-study-removal analysis (Borenstein et al., 2009) indicated that effect sizes
+fell between dc = -.18 and -.24 (p < .001), and were again significant, showing an
+advantage of paper-based reading in all cases. Additional results from Knapp and
+Hartung’s adjustment of the DerSimonian and Laird estimator (dc = -.21; 95% CI: -.33,
+-.09; k = 18), the maximum likelihood approach (dc = -.22; 95% CI: -.33, -.10; k = 18),
+and the restricted maximum likelihood method (dc = -.22; 95% CI: -.34, -.10; k = 18)
+were also consistent. Moreover, a sensitivity analysis imputing different correlation
+coefficients (range of values from .10 to .90) was carried out. The findings were
+essentially identical (the largest difference between mean effect sizes was smaller than
+3%) and revealed that the meta-analysis result was robust. Consequently, the result
+reported was based on a correlation of .70, as recommended by Rosenthal (1991). In
+addition, we also examined whether the inclusion of unpublished studies affected the
+overall effect of the reading media in this dataset. Thus, the mean effect size was dc = -
+
+                                            16
+.22 (95%; CI: -.42, -.13; k = 13) when excluding all the unpublished studies, and dc = -
+.23 (95%; CI: -41, -.04; k = 15) when only excluding the conference communications.
+Therefore, “grey literature” did not affect the overall mean effect size in within-
+participant studies either.
+Publication bias
+Publication bias for between-participant comparisons
+        The risk of publication bias was examined with three different methods. First,
+results from Classic fail safe-N analysis indicated that 1,727 null effect sizes would be
+necessary to nullify the mean effect size of the medium. This value meets Rosenthal’s
+criterion (5k + 10), which sets 290 as the minimum for this dataset. Second, Egger’s
+linear regression indicated a non-significant publication bias (p = .39). Finally, an
+ANOVA revealed that the mean effect sizes from published versus unpublished studies
+were not statistically different (QB (1, 54) = .14, p = .71). All these results suggested
+that there was no publication bias.
+Publication bias for within-participant comparisons
+        In this dataset, Classic fail Safe-N analysis indicated that 475 null effect sizes
+would be necessary to nullify the mean effect size of the media, which again was a
+higher value than Rosenthal’s criterion (5k + 10 = 100). Additionally, Egger’s linear
+regression yielded a non-significant publication bias (p = .20), and an ANOVA between
+published and unpublished studies showed no significant differences (QB (1, 16) = .02,
+p = .90. Likewise, these three indicators suggested no risk of publication bias.
+Moderating variables in between-participant comparisons
+        In the following analyses, we considered potential moderating variables,
+grouped by substantive, extrinsic, and methodological variables, for media effects on
+reading outcomes among the between-participant studies. As mentioned above, some
+studies lacked the necessary information about some of these variables, and so they
+were not included in the respective moderator analyses.
+Substantive variables
+        We conducted an ANOVA for each substantive variable considered. These
+analyses indicated significant moderating effects of the allowed reading time frame (i.e.,
+limited by task constraints vs. self-paced by participants) and text genre (i.e.,
+informational texts with or without narrative vs. narrative only texts). No moderating
+effects were found for educational level, text length, type of digital device, need for
+scrolling, open testing, or type of comprehension because QB values were not
+significant in all these cases (see Table 1). Examination of the reading time frame
+showed that comparisons in studies with time constraints yielded a significantly larger
+(QB = 4.12, p = .04) print advantage (Hedges’ g = -.26) than comparisons in studies in
+which participants were allowed to self-pace their reading (Hedges’ g = -.09). Thus,
+although there is an overall advantage of print over digital devices, the difference is
+larger with time constraints than with self-paced reading, which explains 5% of the
+mean effect size variance.
+
+
+                                            17
+        The moderator factor of text genre revealed a significant effect, explaining 31%
+of the mean effect size variance. Comparisons conducted with informational texts or a
+combination of informational and narrative texts showed significant mean effect sizes
+favouring paper-based reading over digital-based reading (Hedge’s g = -.27 and -.30,
+respectively), whereas comparisons conducted only with narrative texts showed no
+effect of media (Hedge’s g = .01) (see Table 1).
+
+        Two variables are worth mentioning, even though their moderating effects did
+not reach significance. The advantage of paper-based reading was significant when
+studies used computers (Hedges’ g = -.23, p < .001), but not when they used hand-held
+devices (Hedges’ g = -.12, p = .11). Similarly, the need for scrolling as a feature of
+digital-based reading resulted in a significant advantage of paper-based reading
+(Hedges’ g = -.25, p < .001), whereas the media effect was marginal and numerically
+smaller when scrolling was not necessary (Hedges’ g = -.13, p = .06) (see Table 1).
+        Finally, due to the small number of comparisons where in-depth reading was
+prompted by means of an explicit strategic requirement (k = 5), the moderating effect of
+this variable was not examined.
+                                  [Insert Table 1 here]
+Extrinsic variables
+        As reported above, the ANOVA with publishing status was not a significant
+moderator, as indicated by the QB value (see Table 2). However, a meta-regression
+analysis revealed that the date of publication or presentation of the studies has a
+significant moderating effect on the mean effect size of the media. The advantage of
+paper-based reading over digital-based reading increased since 2000, as hypothesised in
+the right panel of Figure 1. The beta coefficient of -.01 (QR = 4.95, p = .03) indicates
+that the effect size favouring paper-based reading increased by .01 points a year,
+explaining 64% of the mean effect size variance (see Table 3).
+Methodological variables
+        Four methodological variables were tested to examine their possible influence
+on the media effect. They were sample size, method of allocating participants to media
+conditions, the type of reading comprehension test, and the testing medium. Results
+revealed that none of these three methodological variables had a significant moderating
+effect, as indicated by the QB values (see Table 2 and Table 3). The sampling method
+variable was not analysed due to lack of variability (See Appendix, Table A1).
+                            [Insert Table 2 and Table 3 here]
+                                      Discussion
+
+    This study sought to address an issue of great importance in education and work-
+related contexts, namely, whether and under what conditions media have an effect on
+reading comprehension. The strong appeal of digital-based assessment and learning
+environments has led many educational systems to adopt them. As findings from the
+current work reveal, however, digital environments may not always be best suited to
+
+
+                                           18
+fostering deep comprehension and learning. The straightforward conclusion is that
+providing students with printed texts despite the appeal of computerized study
+environments might be an effective direction for improving comprehension outcomes.
+However, given the unavoidable inclusion of digital devices in our contemporary
+educational systems, more work must be done to train pupils on dealing with
+performing reading tasks in digital media, as well as to understand how to develop
+effective digital learning environments.
+     The results of the two meta-analyses in the present study yield a clear picture of
+screen inferiority, with lower reading comprehension outcomes for digital texts
+compared to printed texts, which corroborates and extends previous research (Kong et
+al., 2018; Singer & Alexander, 2017b; Wang et al. 2007). These results were consistent
+across methodologies and theoretical frameworks.
+     Although the effect sizes found for media (-.21) are small according to Cohen’s
+guidelines (1988), it is important to interpret this effect size in the context of reading
+comprehension studies. During elementary school, it is estimated that yearly growth in
+reading comprehension is .32 (ranging from .55 in grade 1, to .08 in grade 6) (Luyten,
+Merrel & Tymms, 2017). Intervention studies on reading comprehension yield a mean
+effect of .45 (Scammacca et al., 2015). Thus, the effects of media are relevant in the
+educational context because they represent approximately 2/3 of the yearly growth in
+comprehension in elementary school, and 1/2 of the effect of remedial interventions.
+     Our investigation of moderating factors indicated that the advantage of paper-based
+reading is significantly larger when a reading time limit is imposed, compared to self-
+paced reading. Such advantage is consistent across studies using informational texts (or
+a mix of informational and narrative), but no media effect is found when the studies
+used only narrative texts. In addition, the advantage of print reading significantly
+increased from 2000 to 2017. Furthermore, although they did not reach significance, the
+results suggest stronger media differences on computers than on hand-held devices, as
+well as disadvantages of digital texts that require scrolling. Finally, the results indicate
+that media differences do not vary according to the remaining substantive factors: age
+group (educational level), text length, type of comprehension assessed, or the option to
+revise the text to answer the questions; extrinsic factors: sample size and publishing
+status; or methodological factors: type of test, group allocation, and testing medium.
+         We discuss below the implications of the findings. In particular, how the screen
+inferiority effect is related to the reading practices of new generations, to theories of
+self-regulated learning, and to the genre of the reading materials. We then identify some
+of the limitations of the study and conclude by discussing several educational
+implications of our results.
+Media effect and new generations
+         The adoption of new media practices often involves activating a set of cognitive
+processes appropriate for taking full advantage of the media. For children growing up
+surrounded by digital technologies, skills such as the ability to search and navigate, read
+critically, and multitask are essential (e.g. Salmerón, García & Vidal-Abarca, 2018).
+Such skills place demands on attention and executive processes that may not be fully
+
+                                             19
+developed in children and adults reading digital texts. If simply being exposed to digital
+technologies were enough to gain these skills, then we would expect an increasing
+advantage of digital reading, or at least decreasing screen inferiority over the years.
+Contrary to this assumption, however, our results indicate that the screen inferiority
+effect has increased in the past 18 years, and that there were no differences in media
+effects between age groups. These surprising findings suggest that we cannot idly wait
+for screen inferiority to disappear as children are exposed to digital devices earlier and
+earlier in their lives, as adults gain more experience with the technology, or as
+technology improves. The data suggest that screen inferiority is a major challenge
+across age groups that becomes more severe as the presence of technology increases.
+Media effect and time frames for learning
+        Our results do not address the cause of this persistent screen inferiority, but they
+provide evidence that people adopt a shallower processing style in digital environments
+(e.g. Lauterman & Ackerman, 2014; Wolf & Barzillai, 2009). The increase in media
+differences as technology becomes more integrated into our lives may be related to
+poorer quality of attention (Courage, 2017), where deep immersion in the text is
+challenged (e.g. Mangen & Kuiken, 2014). The Shallowing Hypothesis suggests that
+because the use of most digital media consists of quick interactions driven by immediate
+rewards (e.g. number of “likes” of a post), readers using digital devices may find it
+difficult to engage in challenging tasks, such as reading comprehension, requiring
+sustained attention (Annisette & Lafreniere, 2017). According to this perspective, the
+more people use digital media for these shallow interactions, the less they will be able
+to use them for challenging tasks. Such arguments are consistent with negative
+correlations reported between the frequency of digital media use and text
+comprehension in adolescents (Duncan et al., 2015; Pfost et al., 2013), and they suggest
+that we should be cautious about the introduction of digital reading in classrooms.
+        A relevant moderator found for the screen inferiority effect was time frame. This
+finding sheds new light on the mixed results in the existing literature. Consistent with
+the findings by Ackerman and Lauterman (2012) with lengthy texts, mentioned above,
+Sidi et al. (2017) found that even when performing tasks involving reading only brief
+texts and no scrolling (solving challenging logic problems presented in an average of 77
+words), digital-based environments harm performance under time pressure conditions,
+but not under a loose time frame. In addition, they found a similar screen inferiority
+when solving problems under time pressure and under free time allocation, but framing
+the task as preliminary rather than central. Thus, the harmful effect of limited time on
+digital-based work is not limited to reading lengthy texts. Moreover, consistently across
+studies, Ackerman and colleagues found that people suffer from greater overconfidence
+in digital-based reading than in paper-based reading under these conditions that warrant
+shallow processing. Sidi et al. (2017) explained that time pressure and framing the task
+as preliminary both justify shallow processing, which has a stronger effect in digital
+environments where people are used to quick and shallow tasks (e.g., Facebook, chats;
+see also Lauterman & Ackerman, 2014). These empirical findings support Annisette
+
+
+                                            20
+and Lafreniere’s (2017) Shallowing Hypothesis, which had previously been based on
+self-reports.
+         Our findings call to extend existing theories about self-regulated learning (see
+Boekaerts, 2017, for a review). Effects of time frames on self-regulated learning have
+been discussed from various theoretical approaches. First, a metacognitive explanation
+suggests that time pressure encourages compromise in reaching learning objectives
+(Thiede & Dunlosky, 1999). Second, time pressure has been associated with cognitive
+load. Some studies found that time pressure increased cognitive load and harmed
+performance (Barrouillet, Bernardin, Portrat, Vergauwe, & Camos, 2007). However,
+others suggested that it can generate a germane (“good”) cognitive load by increasing
+task engagement (Gerjets & Scheiter, 2003). In these theoretical discussions, the
+potential effect of the medium in which the study is conducted has been overlooked. We
+see the robust finding in the present meta-analyses about the interaction between the
+time frame and the medium as a call to theorists to integrate the processing style
+adapted by learners in specific study environments into their theories.
+         The finding in this meta-analysis that most media effects come from tasks
+performed under limited time frames should be taken into account by designers of
+admission exams and educators. The disadvantage of digital-based reading would be
+especially critical if not all the examinees are tested in the same medium. Moreover, this
+could be also an influential factor even when they are all examined by means of digital
+tests, because of individual differences in adapting to the digital media. For instance,
+Lauterman and Ackerman (2014) found differences in media effects on learning
+outcomes based on people’s media preference. Clearly, additional individual difference
+should be considered. Thus, digital exams outcomes probably reflect not only the
+knowledge or skill at hand, but also such digital-specific competencies.
+        An encouraging finding from Lauterman and Ackerman (2014) and Sidi et al.
+(2017) is that simple methodologies (e.g., writing keywords summarizing the text,
+framing the task as central) that engage people in in-depth processing make it possible
+to eliminate screen inferiority, in terms of both performance and overconfidence, even
+under a limited time frame. Together, these findings strongly suggest that pedagogy
+should play a significant role in identifying individual differences and guiding students
+to develop skills they miss that support a thoughtful approach to digital information,
+even when the task design seems to indicate the legitimacy of shallow processing.
+Media effect and text genre
+        The text genre was another variable that moderated media effects. On the one
+hand, the paper-based reading advantage was consistent across studies using
+informational texts, or a mix of informational and narrative texts. On the other hand,
+studies using only narrative texts showed no effect of media on comprehension.
+Comprehending informational texts, compared to narratives, requires higher level
+processing, such as using complex academic vocabulary and structures, and these texts
+are less connected to real world knowledge, which makes them harder to comprehend
+(Graesser & McNamara, 2011). Thus, our finding may also point to the Shallowing
+Hypothesis as an explanation. Nevertheless, this result must be interpreted with caution
+                                            21
+due to the small number of comparisons that used only narrative texts. In addition,
+among the included studies that directly compared text genre and reading medium, only
+Simian et al. (2016) reported a significant interaction between these variables, revealing
+a positive effect of print-based reading only on informational texts, whereas two studies
+found no effect of text genre (Margolin et al., 2013; Rasmusson, 2015).
+Additional potential moderators of media effects
+        Future research should aim to identify other variables that may interact with
+media effects. In particular, moderators with effects that approached significance
+deserve further consideration (see Table 1), such as the influence of the type of device.
+It is important to determine whether screen inferiority is limited to desktop computers
+and eliminated when using hand-held devices. If this proves to be the case, it would be
+important to understand what cognitive processes could allow media equivalence on
+hand-held devices. Of the three studies included in this meta-analysis that specifically
+examined differences among digital devices (Chen, Cheng, Chang, Zheng, & Huang,
+2014; Hongler, 2015; Margolin et al., 2013), only Chen et al. (2014) found an
+interaction with media, reporting a negative impact of digital reading only on
+computers.
+        In addition, the need for scrolling was found to be a possible obstacle to
+comprehension during digital reading. Among the studies included in the meta-analysis,
+Pommerich (2004) and Higgins, Russel, and Hoffman (2005) found that participants
+who read non-scrolling digital texts outperformed those who read scrolling texts,
+although the differences were not significant. These studies, however, were performed
+more than a decade ago. Nonetheless, scrolling may add a cognitive load to the reading
+task by making spatial orientation to the text more difficult for readers than learning
+from printed text. One of the questions about the scrolling findings is whether the effect
+of scrolling is related to longer texts or some other artefact of mouse use while reading,
+although text length was not found to be a moderating factor in our meta-analyses.
+Limitations
+         We would like to call attention to some limitations in our meta-analyses. First,
+ten studies that met the inclusion criteria could not be included due to lack of necessary
+statistical data (n = 8) or non-normal distributions (n = 2).
+         Moreover, the effect sizes included in the meta-analyses showed high
+heterogeneity. The moderators considered captured some of this variance, but there is
+clearly unexplained variance. Consequently, additional factors potentially influencing
+the results could be affecting the mean effect size. In particular, factors related to
+research methods (e.g., the reliability of the testing tools) or to sample characteristics
+(e.g., SES or degree of use of digital texts for learning purposes) could be considered.
+These factors were missing from most of the reports we included in our meta-analyses.
+Therefore, we encourage researchers to investigate these possible moderators and
+describe their methods and samples in detail in future publications.
+         In addition, the interpretation of how the effect of reading media changes over
+generations was based on the studies’ publication dates. Clearly, using the date as
+
+                                            22
+indicator of generation is simplistic and may affect several aspects (e.g., research
+methods may change throughout the years). In particular, we considered it relevant to
+examine how different age groups interact with the publication date. However, the
+distribution of age groups over the years was not broad enough to allow reliable
+analysis of this possible effect in our dataset. Thus, we recommend considering how
+different factors interact with the year of publication.
+        Finally, given that our purpose was to isolate the effect of media, per se, on
+reading outcomes, we excluded digital affordances (except for scrolling) such as
+hypertext reading or navigation through webpages. Their effect on reading
+comprehension is still an open question that warrants further research efforts.
+                                        Conclusions
+     In conclusion, it is clear that digital-based reading is an unavoidable part of our
+daily lives and an integral part of the educational realm. Although the current results
+suggest that paper-based reading should be favoured over digital-based reading, it is
+unrealistic to recommend avoiding digital devices. Nevertheless, ignoring the evidence
+of a robust screen inferiority effect may mislead political and educational decisions, and
+even worse, it could prevent readers from fully benefiting from their reading
+comprehension abilities and keep children from developing these skills in the first place.
+Thus, we call on researchers to consider how to guide students and exam takers in
+dealing with digital tasks such as admission tests (e.g., SAT and GMAT), tasks in work
+contexts, and school-related tasks that are very often performed with informational texts
+and under limited time frames. In particular, an important conclusion from our analysis
+is that there are predictable conditions that seem to allow media equivalence. It is
+important to appreciate these conditions, examine their validity for the task at hand, and
+use them whenever possible and relevant. We hope our meta-analysis will guide
+evidence-based decisions by policy makers and point designers and researchers toward
+conditions that support effective digital-based reading.
+
+
+
+
+                                           23
+                                      References
+The complete list of the references included in the meta-analysis can be found in the
+Appendix.
+Ackerman, R., & Goldsmith, M. (2011). Metacognitive regulation of text learning: On
+    screen versus on paper. Journal of Experimental Psychology: Applied, 17, 18-32.
+    doi: 10.1037/a0022086
+Ackerman, R., & Lauterman, T. (2012). Taking reading comprehension exams on
+    screen or on paper? A metacognitive analysis of learning texts under time pressure.
+    Computers in Human Behavior, 28, 1816-1828. doi: 10.1016/j.chb.2012.04.023
+American Speech-Language-Hearing Association (2015). Parent pooling: better
+    hearing and speech month. Retrieved from
+    http://www.asha.org/uploadedFiles/BHSM-Parent-Poll.pdf
+Annisette, L. E., & Lafreniere, K. D. (2017). Social media, texting, and personality: A
+      test of the shallowing hypothesis. Personality and Individual Differences, 115,
+      154-158. doi: 10.1016/j.paid.2016.02.043
+Baron, N. S., Calixte, R. M., & Havewala, M. (2017). The persistence of print among
+      university students: An exploratory study. Telematics and Informatics, 34, 590-
+      604. doi: 10.1016/j.tele.2016.11.008
+Barrouillet, P., Bernardin, S., Portrat, S., Vergauwe, E., & Camos, V. (2007). Time and
+    cognitive load in working memory. Journal of Experimental Psychology: Learning,
+    Memory, and Cognition, 33, 570-585. doi: 10.1037/0278-7393.33.3.570
+Beath, K. J. (2014). A finite mixture method for outlier detection and robustness in
+    meta-analysis. Research Synthesis Methods, 5, 285-293. doi: 10.1002/jrsm.1114
+Beath, K. J. (2015). metaplus: Robust Meta-Analysis and Meta-Regression, 2016. R
+    package version 0.7-7.
+Boekaerts, M. (2017). Cognitive load and self-regulation: Attempts to build a bridge.
+    Learning and Instruction, 51, 90-97. doi: 10.1016/j.learninstruc.2017.07.001
+Borenstein, M., Hedges, L. V., Higgins, J., & Rothstein, H. (2009). Introduction to
+    meta-analysis. Chichester, UK: Wiley.
+Borenstein, M., Hedges, L. V., Higgins, J., & Rothstein, H. R. (2014). Comprehensive
+    Meta-analysis Version 3. Englewood, NJ: Biostat.
+Borenstein, M., Higgins, J.P., Hedges, L. V., & Rothstein, H. R. (2017). Basics of meta-
+    analysis: I2 is not an absolute measure of heterogeneity. Research Synthesis
+    Methods, 8, 5-18. doi: 10.1002/jrsm.1230
+Botella, J. & Sánchez-Meca, J. (2015). Meta-análisis en Ciencias Sociales y de la Salud
+    [Meta-analysis in Social and Health Sciences]. Madrid: Síntesis.
+Card, N. A. (2012). Applied meta-analysis for social science research. New York, NY:
+    Guilford Press.
+Chen, G., Cheng, W., Chang, T., Zheng, X., & Huang, R. (2014). A comparison of
+    reading comprehension across paper, computer screens, and tablets: Does tablet
+    familiarity matter? Journal of Computers in Education, 1, 213-225. doi:
+    10.1007/s40692-014-0012-z
+
+
+
+                                          24
+Childwise (2017). The monitor trends report 2017. Retrieved from
+    http://www.childwise.co.uk/reports.html#trendsreport
+Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd edition).
+    Hillsdale, NJ: Lawrence Erlbaum Associates.
+Cooper, H., Hedges, L.V., & Valentine, J.C. (2009). The handbook of research
+    synthesis and meta-analysis (2nd ed.). New York, NY: Russell Sage Foundation.
+Courage, M. L. (2017). Screen media and the youngest viewers: Implications for
+    attention and learning. In F. C. Blumberg and P. J. Brooks (Eds.), Cognitive
+    Development in Digital Contexts (pp. 3-28). London: Academic Press.
+Dillon, A. (1992). Reading from paper versus screens: a critical review of the empirical
+    literature. Ergonomics, 35, 1297-1236. doi: 10.1080/00140139208967394
+Daniel, D. B., & Woody, W. D. (2013). E-textbooks at what cost? Performance and use
+    of electronic v. print texts. Computers & Education, 62, 18-23. doi:
+    10.1016/j.compedu.2012.10.016
+Duncan, L. G., McGeown, S. P., Griffiths, Y. M., Stothard, S. E., & Dobai, A. (2015).
+    Adolescent reading skill and engagement with digital and traditional literacies as
+    predictors of reading comprehension. British Journal of Psychology, 107, 209–238.
+    doi: 10.1111/bjop.12134
+Duran, E. (2013). Efficiency in reading comprehension: A comparison of students'
+    competency in reading printed and digital texts. Educational Research and
+    Reviews, 8(6), 258-269. doi: 10.5897/ERR12.180
+Eyre, J., Berg, M., Mazengarb, J., & Lawes, E. (2017). Mode equivalency in PAT:
+    Reading comprehension. Wellington: NZCER. Retrieved from
+    http://www.nzcer.org.nz/system/files/PAT%20Modes_report.pdf
+Graesser, A. C., & McNamara, D. S. (2011). Computational analyses of multilevel
+    discourse comprehension. Topics in Cognitive Science, 3, 371-398.
+Gerjets, P., & Scheiter, K. (2003). Goal configurations and processing strategies as
+    moderators between instructional design and cognitive load: Evidence from
+    hypertext-based instruction. Educational Psychologist, 38, 33-41. doi:
+    10.1207/S15326985EP3801_5
+Higgins, J. P. T., & Green, S. (2011). Cochrane handbook for systematic reviews of
+    interventions. The Cochrane Collaboration: Version 5.1.0. [updated March 2011].
+    Available from http://www.cochrane-handbook.org
+Higgins, J., Russell, M., & Hoﬀmann, T. (2005). Examining the effect of computer-
+    based passage presentation on reading test performance. The Journal of
+    Technology, Learning, and Assessment, 3. Retrieved from
+    https://ejournals.bc.edu/ojs/index.php/jtla/article/view/1657
+Hedges, L.V. & Olkin, I. (1985). Statistical methods for meta-analysis. New York, NY:
+    Academic Press.
+Hongler, K. I. (2015). Superiority of paper as text presentation medium for effective and
+    efficient learning – is it just an illusion? (Master thesis). Retrieved from
+    http://www.mmi-basel.ch/wp-content/uploads/2016/04/hongler_masterarbeit.pdf
+
+
+
+                                           25
+Huedo-Medina, T.B., Sánchez-Meca, J., Marín-Martínez, F., & Botella, J. (2006).
+    Assessing heterogeneity in meta-analysis: Q statistic or I2 index? Psychological
+    Methods, 11, 193–206. doi: 10.1037/1082-989X.11.2.193
+Kerr, M., & Symons, S. (2006). Computerized presentation of text: Effects on
+    children’s reading of informational material. Reading and Writing, 19, 1-19. doi:
+    10.1007/s11145-003-8128-y
+Kingston, N.M. (2008). Comparability of computer- and paper- administered multiple-
+    choice tests for K–12 populations: A synthesis. Applied Measurement in Education,
+    22, 22-37. doi: 10.1080/08957340802558326
+Knapp, G., & Hartung, J. (2003). Improved tests for a random effects meta-regression
+    with a single covariate. Statistics in Medicine, 22, 2693-2710. doi:
+    10.1002/sim.1482
+Kong, Y., Seo, Y. S., & Zhai, L. (2018). Comparison of reading performance on screen
+    and on paper: A meta-analysis. Computers & Education, 123, 138-149. doi:
+    10.1016/j.compedu.2018.05.005
+Koren, D., Seidman, L. J., Goldsmith, M., & Harvey, P. D. (2006). Real-world
+    cognitive—and metacognitive—dysfunction in schizophrenia: a new approach for
+    measuring (and remediating) more “right stuff”. Schizophrenia Bulletin, 32, 310-
+    326. doi: 10.1093/schbul/sbj035
+Kurata, K., Ishita, E., Miyata, Y., & Minami, Y. (2017). Print or digital? Reading
+    behavior and preferences in Japan. Journal of the Association for Information
+    Science and Technology, 68, 884-894. doi: 10.1002/asi.23712
+Lauterman, T., & Ackerman, R. (2014). Overcoming screen inferiority in learning and
+    calibration. Computers in Human Behavior, 35, 455-463. doi:
+    10.1016/j.chb.2014.02.046
+Lenhard, W., Schroeders, U., & Lenhard, A. (2017). Equivalence of screen versus print
+    reading comprehension depends on task complexity and proficiency. Discourse
+    Processes, 54, 427-445. doi: 10.1080/0163853X.2017.1319653
+Lipsey, M. W., & Wilson, D.B. (2001). Practical meta-analysis. Thousand Oaks, CA:
+    Sage.
+Luyten, H., Merrell, C., & Tymms, P. (2017). The contribution of schooling to learning
+    gains of pupils in Years 1 to 6. School Effectiveness and School Improvement, 28,
+    374-405. doi: 10.1080/09243453.2017.1297312
+Mangen, A., & Kuiken, D. (2014). Lost in an iPad: Narrative engagement on paper and
+    tablet. Scientific Study of Literature, 4, 150-177. doi: 10.1075/ssol.4.2.02man
+Mangen, A., Walgermo, B. R., & Brønnick, K. (2013). Reading linear texts on paper
+    versus computer screen: Effects on reading comprehension. International Journal
+    of Educational Research, 58, 61-68. doi: 10.1016/j.ijer.2012.12.002
+Margolin, S. J., Driscoll, C., Toland, M. J., & Kegler, J. L. (2013). E-readers, computer
+    screens, or paper: Does reading comprehension change across media platforms?
+    Applied Cognitive Psychology, 27, 512-519. doi: 10.1002/acp.2930
+McNamara, D. S., & Magliano, J. (2009). Toward a comprehensive model of
+    comprehension. Psychology of Learning and Motivation, 51, 297-384. doi:
+    10.1016/S0079-7421(09)51009-2
+
+                                           26
+Mizrachi, D. (2015). Undergraduates' academic reading format preferences and
+    behaviors. The Journal of Academic Librarianship, 41, 301-311. doi:
+    10.1016/j.acalib.2015.03.009
+Morris, S. B. (2000). Distribution of the standardized mean change effect size for meta-
+    analysis on repeated measures. British Journal of Mathematical and Statistical
+    Psychology, 53, 17–29. doi: 10.1348/000711000159150
+Nishizaki, D. M. (2015). The effects of tablets on learning: Does studying from a tablet
+    computer affect student learning differently across educational levels (Senior
+    thesis) Retrieved from http://scholarship.claremont.edu/cmc_theses/1011/
+Noyes, J. M. & Garland K. J. (2008) Computer- vs. paper-based tasks: Are they
+    equivalent? Ergonomics, 51, 1352-1375. doi: 10.1080/00140130802170387
+Pansky, A., Goldsmith, M., Koriat, A., & Pearlman-Avnion, S. (2009). Memory
+    accuracy in old age: Cognitive, metacognitive, and neurocognitive determinants.
+    European Journal of Cognitive Psychology, 21, 303-329. doi:
+    10.1080/09541440802281183
+Pfost, M., Dörfler, T., & Artelt, C. (2013). Students' extracurricular reading behavior
+    and the development of vocabulary and reading comprehension. Learning and
+    Individual Differences, 26, 89-102. doi: 10.1016/j.lindif.2013.04.008
+Pommerich, M. (2004). Developing computerized versions of paper-and-pencil tests:
+    Mode effects for passage-based tests. Journal of Technology, Learning, and
+    Assessment, 2, n6. Retrieved from https://eric.ed.gov/?id=EJ905028
+Porion, A., Aparicio, X., Megalakaki, O., Robert, A., & Baccino, T. (2016). The impact
+    of paper-based versus computerized presentation on text comprehension and
+    memorization. Computers in Human Behavior, 54, 569-576. doi:
+    10.1016/j.chb.2015.08.002
+Pomplun, M., Frey, S., & Becker, D. F. (2002). The score equivalence of paper-and-
+    pencil and computerized versions of a speeded test of reading comprehension.
+    Educational and Psychological Measurement, 62, 337-354. doi:
+    10.1177/0013164402062002009
+Puhan, G., Boughton, K. A., & Kim, S. (2005). Evaluating the comparability of paper-
+    and-pencil and computerized versions of a large-scale certification test. ETS
+    Research Report Series, 2005, 1-15. doi: 10.1002/j.2333-8504.2005.tb01998.x
+Rosenthal, R. (1979). The file drawer problem and tolerance for null results.
+    Psychological Bulletin, 86, 638-641. doi: 10.1037/0033-2909.86.3.638
+Rosenthal, R. (1991). Meta-analytic procedures for social research (rev. Ed.). Newbury
+    Park, CA: Sage.
+Rasmusson, M. (2015). Reading paper – reading screen. Nordic Studies in Education,
+    35, 3. Retrieved from http://urn.kb.se/resolve?urn=urn:nbn:se:miun:diva-23417
+Raudenbush, S. W. (2009). Analyzing effect sizes: Random-effects models. In Cooper,
+    Hedges, & Valentine (Eds.), The handbook of research synthesis and meta-analysis
+    (pp. 295-316). New York: Russell Sage.
+Salmerón, L., García, A., & Vidal-Abarca, E. (2018). The development of adolescents’
+    comprehension-based Internet reading skills. Learning and Individual Differences,
+    61, 31-39. doi: 10.1016/j.lindif.2017.11.006
+
+                                           27
+Scammacca, N. K., Roberts, G., Vaughn, S., & Stuebing, K. K. (2015). A meta-analysis
+     of interventions for struggling readers in grades 4–12: 1980–2011. Journal of
+     Learning Disabilities, 48, 369–390. doi: 10.1177/0022219413504995
+Sidi, Y., Shpigelman, M., Zalmanov, H., & Ackerman, R. (2017). Understanding
+     metacognitive inferiority on screen by exposing cues for depth of processing.
+     Learning and Instruction, 51, 61-73. doi: 1016/j.learninstruc.2017.01.002
+Simian, M., Malbrán, C., Fonseca, L., Grinberg, S., Gattas, M. J., Tascón, R., &
+     Cirigliano, S. (2016). Reading narrative, expository and discontinuous texts on
+     paper versus screen: Impact on reading comprehension in Argentine high school
+     kids. Poster presented at 33rd annual meeting of the Society for the Scientific
+     Studies of Reading (SSSR), Porto, Portugal.
+Singer, L. M., & Alexander, P. A. (2017a). Reading across mediums: Effects of reading
+     digital and print texts on comprehension and calibration. The Journal of
+     Experimental Education, 85, 155-172. doi: 10.1080/00220973.2016.1143794
+Singer, L.M. & Alexander, P.A. (2017b). Reading on paper and digitally: What the past
+     decades of empirical research reveal. Review of Educational Research, 87, 1007-
+     1041. doi: 10.3102/0034654317722961
+Thiede, K. W., & Dunlosky, J. (1999). Toward a general model of self-regulated study:
+     An analysis of selection of items for study and self-paced study time. Journal of
+     Experimental Psychology: Learning, Memory, and Cognition, 25, 1024-1037. doi:
+     10.1037/0278-7393.25.4.1024
+Viechtbauer, W. (2010). “metafor: Meta-Analysis Package for R.” R package version
+     1.4-0.
+Wang, S., Jiao, H., Young, M.J., Brooks, T. & Olson, O. (2007). Comparability of
+     computer-based and paper-and-pencil testingin K–12 reading assessments. A
+     meta-analysis of testing mode effects. Educational and Psychological
+     Measurement, 68, 5-24. doi: 10.1177/0013164407305592
+Wolf, M., & Barzillai, M. (2009). The importance of deep reading. Educational
+     Leadership, 6, 32–37. Retrieved from
+     http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.461.7284&rep=rep1&typ
+     e=pdf
+
+
+
+
+                                         28
+Table 1
+One-way analysis of variance of substantive variables on mean effect sizes for reading media from the studies using between-participant designs.
+                                                                          Mean effect sizes
+           1
+Variable                     Categories              k          Hedges’ g                 95% CI            QB(df)             Qw(df)             R2
+Participants’ educational                                                                                   2.33(2)         131.33(49)***        .00
+level2
+                             Grades 1 to 6          8              -.19                  [-.35, -.03]
+                             Grades 7 to 12         8              -.15                  [-.29, -.02]
+                             Undergraduates         36             -.28                  [-.38, -.18]
+
+Text length                                                                                                  .14(1)        142.36(47)***        .14(1)
+                             Short                  22             -.25                  [-.34, -.16]
+                             Long                   26             -.22                  [-.33, -.11]
+
+Allowed reading time frame                                                                                  4.12(1)*        185.17(45)***        .05
+                             Self-paced             20             -.09                  [-.22, .05]
+                             Limited                27             -.26                  [-.35, -.16]
+Digital device                                                                                              1.55(1)         194.95(54)***        .02
+                             Computer               42             -.23                  [-.31, -.15]
+                             Hand-held              14             -.12                  [-.27, .03]
+Text genre                                                                                                  7.00(2)*         74.21(48)**         .31
+                             Informational          34             -.27                  [-.36, -.18]
+                             Narrative              7               .01                  [-.20, .20]
+                             Mixed                  10             -.30                  [-.40, -.21]
+Need for scrolling                                                                                          1.99(1)         133.40(47)***        .00
+                             No                     12             -.13                  [-.27, .01]
+                             Yes                    37             -.25                  [-.33, -.16]
+Open testing                                                                                                1.21(1)         183.46(47)***        .00
+                             No                     33             -.26                  [-.37, -.16]
+                             Yes                    16             -.18                  [-.29, -.07]
+Type of comprehension3                                                                                       .14(1)          153.99(51)          .00
+                             Textual                9              -.26                  [-.47, -.04]
+                             Mixed + Inferential    44             -.21                  [-.29, -.14]
+Note. k: number of effect sizes. Hedges’ g: mean effect size. QB: between-categories Q statistic. QW: within-categories Q statistic. R2: Proportion of
+total between-comparison variance explained. 1Non-reported values for each variable were not included in these analyses. 2Due to the small number of
+effect sizes, the category “Graduates or professionals” (k = 3) was not included in this analysis. 3Due to the small number of effect sizes, comparisons
+that examined only inferential comprehension (k = 3) were included in the same group as those that examined both types of comprehension. *p < .05.
+**p < .01. ***p < .001.
+                                                                                  29
+Table 2
+One-way analysis of variance of moderating effect of extrinsic and methodological variables on mean effect sizes for reading media from the
+studies using between-participant designs.
+                                                                        Mean effect sizes
+            1
+ Variable                   Categories              k         Hedges’ g               95% CI                QB(df)                 Qw(df)              R2
+ Publishing status                                                                                           .14(1)            186.47(54)***          .00
+                            Published               39           -.22                [-.31, -.13]
+                            Unpublished             17           -.19                [-.31, -.07]
+ Group allocation2                                                                                           .90(2)            167.33(49)***          .00
+                            Random                  44           -.20                [-.28, -.12]
+                            Non-random               7           -.28                [-.46, -.12]
+ Type of reading                                                                                             .01(1)            200.15(54)***          .00
+ comprehension test         Standard./official      22           -.21                [-.31, -.11]
+                            Researcher-created      34           -.21                [-.32, -.11]
+ Testing medium                                                                                               1.11             180.06(45)***          .00
+                            Same for reading        27           -.26                [-.35, -.17]
+                            Always on paper         20           -.17                [-.31, -.03]
+
+Note. k: number of effect sizes. Hedges’ g: mean effect size. QB: between-categories Q statistic. QW: within-categories Q statistic. R2: Proportion of total
+between-comparison variance explained. 1The variable sampling method was not included in the analyses due to lack of variability. 2Due to the small number
+of effect sizes categories “Non-random but controlled” (k = 3) and “Non-random not controlled” (k = 4) were combined (“Non-random”). ***p < .001.
+
+
+
+
+                                                                                30
+Table 3
+Meta-regression analysis of moderating effect of sample size and date of publication on mean effect sizes for reading media from the
+studies using between-participant designs.
+ Variable                      k                      b                         QR                        QE                       R2
+
+ Sample size                  56                    -.00                       3.11                   201.59***                   .42
+
+
+ Date of publication          56                    -.01                      4.95*                   201.59***                   .64
+
+
+Note. k: number of effect sizes. b: unstandardized regression coefficient. QR: statistical test of between-comparison effects. QE: statistical
+test of between-comparison homogeneity of the effect sizes. R2: Proportion of total between-comparison variance explained. *p < .05. ***p
+< .001.
+
+
+
+
+                                                                                31
+                                    APPENDIX
+
+                     References included in the meta-analysis
+Ackerman, R., & Goldsmith, M. (2011). Metacognitive regulation of text learning.
+      Journal of Experimental Psychology: Applied, 17, 18-32. doi: 10.1037/a0022086
+Ackerman, R., & Lauterman, T. (2012). Taking reading comprehension exams on
+      screen or on paper? A metacognitive analysis of learning texts under time
+      pressure. Computers in Human Behavior, 28, 1816-1828. doi:
+      10.1016/j.chb.2012.04.023
+Aydemir, Z., Öztürk, E., & Horzum, M. B. (2013). The effect of reading from screen on
+      the 5th grade elementary students' level of reading comprehension on informative
+      and narrative type of texts. Kuram Ve Uygulamada Egitim Bilimleri, 13, 2272-
+      2276. doi: 10.12738/estp.2013.4.1294
+Baker, R. D. (2010). Comparing the readability of text displays on paper, e-book
+      readers, and small screen devices (Doctoral dissertation). Retrieved from
+      https://search.proquest.com/openview/1bfe9d4c681f59fddc1860217b565037/1?pq
+      -origsite=gscholar&cbl=18750&diss=y
+Bansi, S., Oudega, M., Koornneef, A., & van den Broek, P. (2016). The influence of
+      presentation medium and induced beliefs on reading comprehension: An eye-
+      tracking study. Poster session presented at the Scandinavian Workshop on
+      Applied Eye Tracking 2016, Turku, Finland.
+Bartell, A. L., Schultz, L. D., & Spyridakis, J. H. (2006). The effect of heading
+      frequency on comprehension of print versus online information. Technical
+      Communication, 53, 416-426. Retrieved from
+      http://faculty.washington.edu/jansp/Publications/HeadingsPrintOnline.pdf
+Beach, K. L. (2008). The effect of media, text length, and reading rates on college
+      student reading comprehension levels (Doctoral dissertation). Retrieved from
+      https://search.proquest.com/docview/89266558
+Ben-Yehudah, G., & Eshet-Alkalai, Y. (2014). The influence of text annotation tools on
+      print and digital reading comprehension. Proceedings of the 9th Chais Conference
+      for Innovation in Learning Technologies, 28-35. Retrieved from
+      http://innovation.openu.ac.il/chais2014/download/B2-2.pdf
+Burkley, A. S. (2013). The effect of liquid crystal displays on reading comprehension
+      (Doctoral dissertation) Retrieved from
+      https://search.proquest.com/openview/ac8aba8b5933dc6fb7a4f1e1384a9264/1?p
+      q-origsite=gscholar&cbl=18750&diss=y
+Chen, D. (2015). Metacognitive prompts and the paper vs. screen debate: How both
+      factors influence reading behavior (Master thesis). Retrieved from
+      https://smartech.gatech.edu/handle/1853/53840
+Chen, G., Cheng, W., Chang, T., Zheng, X., & Huang, R. (2014). A comparison of
+      reading comprehension across paper, computer screens, and tablets: Does tablet
+      familiarity matter? Journal of Computers in Education, 1, 213-225. doi:
+      10.1007/s40692-014-0012-z
+Connell, C., Bayliss, L., & Farmer, W. (2012). Effects of eBook readers and tablet
+      computers on reading comprehension. International Journal of Instructional
+      Media, 39, 131-141.
+Daniel, D. B., & Woody, W. D. (2013). E-textbooks at what cost? Performance and use
+      of electronic v. print texts. Computers & Education, 62, 18-23. doi:
+      10.1016/j.compedu.2012.10.016
+
+
+                                         32
+Delgado, P., & Salmerón, L. (2017). Reading on print or on tablet: An eye-tracking
+      study. Poster session presented at the EARLI 2017 Conference, Tampere, Finland.
+Duran, E. (2013). Efficiency in reading comprehension: A comparison of students'
+      competency in reading printed and digital texts. Educational Research and
+      Reviews, 8, 258-269. doi: 10.5897/ERR12.180
+Eyre, J., Berg, M., Mazengarb, J., & Lawes, E. (2017). Mode equivalency in PAT:
+      Reading comprehension. Wellington: NZCER. Retrieved from
+      http://www.nzcer.org.nz/system/files/PAT%20Modes_report.pdf
+Green, T. D., Perera, R. A., Dance, L. A., & Myers, E. A. (2010). Impact of
+      presentation mode on recall of written text and numerical information: Hard copy
+      versus electronic. North American Journal of Psychology, 12, 233-242.
+Grimshaw, S., Dungworth, N., McKnight, C., & Morris, A. (2007). Electronic books:
+      Children’s reading and comprehension. British Journal of Educational
+      Technology, 38, 583-599. doi: 0.1111/j.1467-8535.2006.00640.x
+Heij, M., & van der Meij, H. (2014). The (in)effectiveness of PDF reading (Bachelor
+      thesis). Retrieved from http://essay.utwente.nl/65734/1/Heij%2C%20M.L.%20-
+      %20s1189026%20%28verslag%29.pdf
+Hermena, E. W., Sheen, M., AlJassmi, M., AlFalasi, K., AlMatroushi, M., & Jordan, T.
+      R. (2017). Reading rate and comprehension for text presented on tablet and paper:
+      Evidence from Arabic. Frontiers in Psychology, 8, 257. doi:
+      10.3389/fpsyg.2017.00257
+Higgins, J., Russell, M., & Hoﬀmann, T. (2005). Examining the effect of computer-
+      based passage presentation on reading test performance. The Journal of
+      Technology, Learning, and Assessment, 3. Retrieved from
+      https://ejournals.bc.edu/ojs/index.php/jtla/article/view/1657
+Hongler, K. I. (2015). Superiority of paper as text presentation medium for effective and
+      efficient learning – is it just an illusion? (Master thesis). Retrieved from
+      http://www.mmi-basel.ch/wp-content/uploads/2016/04/hongler_masterarbeit.pdf
+Jeong, H. (2012). A comparison of the influence of electronic books and paper books on
+      reading comprehension, eye fatigue, and perception. The Electronic Library, 30,
+      390-408. doi: 10.1108/02640471211241663
+Johnson, J. W. (2013). A comparison study of the use of paper versus digital textbooks
+      by undergraduate students (Doctoral dissertation). Retrieved from
+      http://scholars.indstate.edu/xmlui/bitstream/handle/10484/5376/Johnson,%20Jame
+      s%20Dissertation%20Final.pdf?sequence=2
+Jones, M. Y., Pentecost, R., & Requena, G. (2005). Memory for advertising and
+      information content: Comparing the printed page to the computer screen.
+      Psychology and Marketing, 22, 623-648. doi: 10.1002/mar.20077
+Kaufman, G., & Flanagan, M. (2016). High-low split: Divergent cognitive construal
+      levels triggered by digital and non-digital platforms. Proceedings of the 2016 CHI
+      Conference on Human Factors in Computing Systems, 2773-2777.
+      doi:10.1145/2858036.2858550
+Kerr, M., & Symons, S. (2006). Computerized presentation of text: Effects on
+      children’s reading of informational material. Reading and Writing, 19, 1-19. doi:
+      10.1007/s11145-003-8128-y
+Kim, D., & Huynh, H. (2008). Computer-based and paper-and-pencil administration
+      mode effects on a statewide end-of-course english test. Educational and
+      Psychological Measurement, 68, 554-570. doi: 10.1177/0013164407310132
+
+
+
+                                           33
+Kim, H. J., & Kim, J. (2013). Reading from an LCD monitor versus paper: Teenagers'
+     reading performance. International Journal of Research Studies in Educational
+     Technology, 2, 15-24. doi: 10.5861/ijrset.2012.170
+Kretzschmar, F., Pleimling, D., Hosemann, J., Füssel, S., Bornkessel-Schlesewsky, I., &
+     Schlesewsky, M. (2013). Subjective impressions do not mirror online reading
+     effort: Concurrent EEG-eyetracking evidence from the reading of books and
+     digital media. Plos One, 8, e56178. doi: 10.1371/journal.pone.0056178
+Lauterman, T., & Ackerman, R. (2014). Overcoming screen inferiority in learning and
+     calibration. Computers in Human Behavior, 35, 455-463. doi:
+     10.1016/j.chb.2014.02.046
+Lenhard, W., Schroeders, U., & Lenhard, A. (2017). Equivalence of screen versus print
+     reading comprehension depends on task complexity and proficiency. Discourse
+     Processes, 54, 427-445. doi: 10.1080/0163853X.2017.1319653
+Liang, T., & Huang, Y. (2014). An investigation of reading rate patterns and retrieval
+     outcomes of elementary school students with E-books. Journal of Educational
+     Technology & Society, 17, 218. Retrieved from
+     https://search.proquest.com/docview/1502989176
+Mangen, A., Walgermo, B. R., & Brønnick, K. (2013). Reading linear texts on paper
+     versus computer screen: Effects on reading comprehension. International Journal
+     of Educational Research, 58, 61-68. doi: 10.1016/j.ijer.2012.12.002
+Margolin, S. J., Driscoll, C., Toland, M. J., & Kegler, J. L. (2013). E-readers, computer
+     screens, or paper: Does reading comprehension change across media platforms?
+     Applied Cognitive Psychology, 27, 512-519. doi: 10.1002/acp.2930
+Mayes, D. K., Sims, V. K., & Koonce, J. M. (2001). Comprehension and workload
+     differences for VDT and paper-based reading. International Journal of Industrial
+     Ergonomics, 28, 367-378. doi: 10.1016/S0169-8141(01)00043-9
+McCrea-Andrews, H. J. (2014). A comparison of adolescents' digital and print reading
+     experiences: Does mode matter? (Doctoral dissertation). Retrieved from
+     http://tigerprints.clemson.edu/cgi/viewcontent.cgi?article=2337&context=all_diss
+     ertations
+Morineau, T., Blanche, C., Tobin, L., & Guéguen, N. (2005). The emergence of the
+     contextual role of the e-book in cognitive processes through an ecological and
+     functional analysis. International Journal of Human - Computer Studies, 62, 329-
+     348. doi: 10.1016/j.ijhcs.2004.10.002
+Niccoli, A. (2015). Paper or tablet reading recall and comprehension. EDUCAUSE
+     Review Online, 50. Retrieved from https://er.educause.edu/articles/2015/9/paper-
+     or-tablet-reading-recall-and-comprehension
+Nishizaki, D. M. (2015). The effects of tablets on learning: Does studying from a tablet
+     computer affect student learning differently across educational levels (Senior
+     thesis) Retrieved from http://scholarship.claremont.edu/cmc_theses/1011/
+Norman, E., & Furnes, B. (2016). The relationship between metacognitive experiences
+     and learning: Is there a difference between digital and non-digital study media?
+     Computers in Human Behavior, 54, 301-309. doi: 10.1016/j.chb.2015.07.043
+Pommerich, M. (2004). Developing computerized versions of paper-and-pencil tests:
+     Mode effects for passage-based tests. Journal of Technology, Learning, and
+     Assessment, 2(6). Retrieved from https://eric.ed.gov/?id=EJ905028
+Pomplun, M., Frey, S., & Becker, D. F. (2002). The score equivalence of paper-and-
+     pencil and computerized versions of a speeded test of reading comprehension.
+     Educational and Psychological Measurement, 62, 337-354. doi:
+     10.1177/0013164402062002009
+
+                                           34
+Porion, A., Aparicio, X., Megalakaki, O., Robert, A., & Baccino, T. (2016). The impact
+     of paper-based versus computerized presentation on text comprehension and
+     memorization. Computers in Human Behavior, 54, 569-576. doi:
+     10.1016/j.chb.2015.08.002
+Puhan, G., Boughton, K. A., & Kim, S. (2005). Evaluating the comparability of Paper-
+     and-Pencil and computerized versions of a Large-Scale certification test. ETS
+     Research Report Series, 2005(2), 1-15. doi: 10.1002/j.2333-8504.2005.tb01998.x
+Rasmusson, M. (2015). Reading paper – reading screen. Nordic Studies in Education,
+     35, 3-19. Retrieved from
+     https://www.idunn.no/np/2015/01/reading_paper__reading_screen_-
+     _a_comparison_of_reading_l
+Sackstein, S., Spark, L., & Jenkins, A. (2015). Are e-books effective tools for learning?
+     reading speed and comprehension: iPad vs. paper. South African Journal of
+     Education, 35(4), 1-14. doi: 10.15700/saje.v35n4a1202
+Seehafer, H. (2014). Effects of learning style on paper versus computer based reading
+     comprehension. The Red River Psychology Journal, 2014(1). Retrieved from
+     https://www.mnstate.edu/RRpsychjournal/
+Simian, M., Malbrán, C., Fonseca, L., Grinberg, S., Gattas, M. J., Tascón, R., &
+     Cirigliano, S. (2016). Reading narrative, expository and discontinuous texts on
+     paper versus screen: Impact on reading comprehension in Argentine high school
+     kids. Poster session presented at 33rd annual meeting of the Society for the
+     Scientific Studies of Reading (SSSR), Porto, Portugal.
+Singer, L. M., & Alexander, P. A. (2017). Reading across mediums: Effects of reading
+     digital and print texts on comprehension and calibration. The Journal of
+     Experimental Education, 85, 155-172. doi: 10.1080/00220973.2016.1143794
+Taylor, A. K. (2011). Students learn equally well from digital as from paperbound texts.
+     Teaching of Psychology, 38, 278-281. doi: 10.1177/0098628311421330
+Thompkins, P., Baker, L., & DeWeyngaert, L. (2013). Paper or pixel? The influence of
+     text format and metacognition on student reading comprehension.
+     Communication presented at the AERA 2016 Conference, Washington, DC, USA.
+Wästlund, E., Reinikka, H., Norlander, T., & Archer, T. (2005). Effects of VDT and
+     paper presentation on consumption and production of information: Psychological
+     and physiological factors. Computers in Human Behavior, 21, 377-394. doi:
+     10.1016/j.chb.2004.02.007
+Wells, C. L. (2012). Do students using electronic books display different reading
+     comprehension and motivation levels than students using traditional print books?
+     (Doctoral dissertation). Retrieved from
+     https://search.proquest.com/docview/1266822858
+
+
+
+
+                                           35
+Table A1
+Descriptive characteristics of the variables coded for each reading media comparison, from the studies using a between-participants design.
+                                                                                                                                       Reading                 Type Type of                         Explicit
+                               Publishing     Sampling          Group Sample Educational             Text       Testing    Digital       time                    of compre- Open                    strategic
+Study/Comparison*                status        method         allocation size   level               length      medium     device       frame Text genre Scroll test hension testing                   req.
+Ackerman & Goldsmith, 2011                                                                                      Same for
+         2                        Yes       Non-probability    Random    70        Undergraduates   Large                  Computer    Limited   Informational   Yes      R-C     Mix      No          No
+(Exp. 1)                                                                                                         reading
+Ackerman & Goldsmith, 2011                                                                                      Same for
+         2                        Yes       Non-probability    Random    74        Undergraduates   Large                  Computer     Free     Informational   Yes      R-C     Mix      No          No
+(Exp. 2)                                                                                                         reading
+Ackerman & Lauterman, 2012                                                                                      Same for
+          2                       Yes       Non-probability    Random    41        Undergraduates   Large                  Computer    Limited   Informational   Yes      R-C     Mix      No          No
+(Exp. 1)a                                                                                                        reading
+Ackerman & Lauterman, 2012                                                                                      Same for
+          2                       Yes       Non-probability    Random    39        Undergraduates   Large                  Computer     Free     Informational   Yes      R-C     Mix      No          No
+(Exp. 1)b                                                                                                        reading
+Ackerman & Lauterman, 2012                                                                                      Same for
+         2                        Yes       Non-probability    Random    76        Undergraduates   Large                  Computer    Limited   Informational   Yes      R-C     Mix      No          No
+(Exp. 2)                                                                                                         reading
+                       2                                                                                                                                   8
+Aydemir et al., 2013              Yes       Non-probability     N/r      60           Grade 5        N/r          N/r      Computer     Free         Mix         N/r      R-C     Mix      N/r         No
+
+                                                                                                                Same for
+Bartell et al., 2006              Yes       Non-probability Non-random   239       Undergraduates   Large                  Computer      N/r     Informational   Yes      R-C     N/r      No          No
+                                                                                                                 reading
+                                                                                                                Same for
+Beach, 2008a                      No        Non-probability    Random    30        Undergraduates   Large                  Computer      N/r     Informational   N/r      R-C     Mix      N/r         No
+                                                                                                                 reading
+                                                                                                                Same for
+Beach, 2008b                      No        Non-probability    Random    43        Undergraduates   Short                  Computer      N/r     Informational   N/r      R-C     Mix      N/r         No
+                                                                                                                 reading
+Ben-Yehudah & Eshet-Alkalai,                                                                                    Same for
+                                  Yes       Non-probability    Random    46        Undergraduates   Short                  Computer     Free     Informational   Yes      R-C     Mix      No         Yes
+2014a                                                                                                            reading
+Ben-Yehudah & Eshet-Alkalai,                                                                                    Same for
+                                  Yes       Non-probability    Random    47        Undergraduates   Short                  Computer     Free     Informational   Yes      R-C     Mix      No          No
+2014b                                                                                                            reading
+
+Burkley, 2013                     No        Non-probability    Random    33        Undergraduates    N/r         Paper     Computer      N/r         N/r         Yes      Std.    Mix      Yes         No
+
+                                                                              5
+Chen et al., 2014a                Yes       Non-probability    Random    45        Undergraduates   Large        Paper     Computer    Limited   Informational   Yes      Std.    Mix      No          No
+
+                                                                              5
+Chen et al., 2014b                Yes       Non-probability    Random    45        Undergraduates   Large        Paper     Hand-held   Limited   Informational   No       Std.    Mix      No          No
+
+Chen, 2015                        No        Non-probability     N/r      92        Undergraduates   Large        Paper     Computer     Free     Informational   Yes      R-C    Textual   No         Yes
+
+                       2                                                       5                            3                                                         3                         3
+Connell et al., 2012a             Yes       Non-probability    Random    104       Undergraduates   Large        Paper     Hand-held    Free     Informational   No       Std.    Mix      No          No
+
+                        2                                                     5                             3                                                         3                         3
+Connell et al., 2012b             Yes       Non-probability    Random    98        Undergraduates   Large        Paper     Hand-held    Free     Informational   No       Std.    Mix      No          No
+
+Daniel & Woody, 2013a             Yes       Non-probability    Random    59        Undergraduates   Large         N/r      Computer     Free     Informational   Yes      R-C     N/r      No          No
+
+              1
+Duran, 2013                       Yes       Non-probability    Random    207       Undergraduates    N/r          N/r      Computer      N/r         Mix         N/r      R-C     N/r      N/r         No
+
+
+
+                                                                                                    36
+                     2                                   3                                                        Same for
+Eyre et al., 2017a               No    Non-probability       Non-random 718183        Grades 4 to 6   Short
+                                                                                                              3
+                                                                                                                               Computer    Limited
+                                                                                                                                                        3
+                                                                                                                                                                Mix
+                                                                                                                                                                      3
+                                                                                                                                                                            Yes
+                                                                                                                                                                                  3
+                                                                                                                                                                                      Std.    Mix
+                                                                                                                                                                                                    3
+                                                                                                                                                                                                        Yes
+                                                                                                                                                                                                              3
+                                                                                                                                                                                                                  No
+                                                                                                                   reading
+                     2                                   3                                                        Same for
+Eyre et al., 2017b               No    Non-probability       Non-random 827593       Grades 7 to 10   Short
+                                                                                                              3
+                                                                                                                               Computer    Limited
+                                                                                                                                                        3
+                                                                                                                                                                Mix
+                                                                                                                                                                      3
+                                                                                                                                                                            Yes
+                                                                                                                                                                                  3
+                                                                                                                                                                                      Std.    Mix
+                                                                                                                                                                                                    3
+                                                                                                                                                                                                        Yes
+                                                                                                                                                                                                              3
+                                                                                                                                                                                                                  No
+                                                                                                                   reading
+                                                                                6                                 Same for
+Green et al., 2010               Yes   Non-probability        Random       54        Undergraduates    N/R                     Computer    Limited          Informational   Yes       R-C    Textual    No        No
+                                                                                                                   reading
+                                                                                      Elementary
+Grimshaw et al., 2007a           Yes   Non-probability       Controlled     51                        Large         N/r        Computer      N/r              Narrative     No        R-C     Mix       Yes       No
+                                                                                        school
+                                                                                      Elementary
+Grimshaw et al., 2007b           Yes   Non-probability       Controlled     55                        Large         N/r        Computer      N/r              Narrative     No        R-C     Mix       Yes       No
+                                                                                        school
+                                                                                 5                            3   Same for                                            3                             3
+Higgins et al., 2005a            Yes   Non-probability        Random       111          Grade 4       Short                    Computer      Free               Mix         No        Std.    Mix       Yes       No
+                                                                                                                   reading
+                                                                                 5                            3   Same for                                            3                             3
+Higgins et al., 2005b            Yes   Non-probability        Random       108          Grade 4       Short                    Computer      Free               Mix         Yes       Std.    Mix       Yes       No
+                                                                                                                   reading
+                                                                                5
+Hongler, 2015a                   No    Non-probability        Random       36        Undergraduates   Large       Digital      Computer      Free           Informational   Yes       R-C     Mix       No        No
+
+                                                                                5
+Hongler, 2015b                   No    Non-probability        Random       36        Undergraduates   Large       Digital      Hand-held     Free           Informational   Yes       R-C     Mix       No        No
+
+                                                                                                              3                                     3                             3                           3
+Johnson, 2013                    No    Non-probability        Random       233       Undergraduates   Large        Paper       Hand-held     Free           Informational   Yes       R-C     Mix       Yes       No
+
+Jones et al., 2005               Yes   Non-probability        Random        48            Mix4        Short        Paper       Computer      N/r            Informational   No        R-C    Textual    No        No
+
+Kaufman & Flanagan, 2016
+                                 No    Non-probability        Random        81       Undergraduates    N/r         Paper       Computer      N/r              Narrative     N/r       R-C     Mix       N/r       No
+(Study 2)
+Lauterman & Ackerman, 2014                                                                                        Same for
+         2                       Yes   Non-probability        Random        87       Undergraduates   Large                    Computer    Limited          Informational   Yes       R-C     Mix       No        No
+(Exp. 1)                                                                                                           reading
+Lauterman & Ackerman, 2014                                                                                        Same for
+         2                       Yes   Non-probability        Random        76       Undergraduates   Large                    Computer    Limited          Informational   Yes       R-C     Mix       No        Yes
+(Exp. 2)                                                                                                           reading
+                         2                                                                                    3   Same for                                                                                   3
+Lenhard et al., 2017             Yes     Probability          Random       2807       Grades 1 to 3   Short                    Computer    Limited              Mix         No        Std.    Mix       No        No
+                                                                                                                   reading
+                         2                                             3                                          Same for
+Mangen et al., 2013              Yes   Non-probability        Random        72          Grade 10      Large                    Computer    Limited              Mix         Yes       Std.    Mix       Yes       No
+                                                                                                                   reading
+                                                                                5
+Margolin et al., 2013a           Yes   Non-probability        Random       45        Undergraduates   Short        Paper       Computer      Free               Mix         Yes       R-C Inferential   No        No
+
+                                                                                5
+Margolin et al., 2013b           Yes   Non-probability        Random       45        Undergraduates   Short        Paper       Hand-held Inferential             No         No        R-C Inferential   No        No
+
+                                                                                                                  Same for
+Mayes et al., 2001 (Exp. 1)      Yes   Non-probability        Random        40       Undergraduates   Large                    Computer    Limited          Informational   Yes       R-C    Textual    N/r       No
+                                                                                                                   reading
+
+McCrea-Andrews, 2014             No    Non-probability        Random        36          Grade 6       Large         N/r        Hand-held     Free             Narrative     Yes       Std     Mix       N/r       Yes
+
+                                                                                      Graduates or
+Morineau et al., 2005            Yes   Non-probability        Random        40                         N/r         Paper       Hand-held     Free3            Narrative     Yes3      R-C     Mix3      No        No
+                                                                                         prof.
+                                                                                      Graduates or                         3                        3                             3                 3        3
+Niccoli, 2015                    Yes   Non-probability        Random       231                        Short        Paper       Hand-held     Free           Informational   Yes       R-C     Mix       No        No
+                                                                                         prof.
+                             1
+Nishizaki, 2015 (Exp. 1)a        No    Non-probability        Random        40          Grade 4       Short        Paper       Hand-held   Limited            Narrative     N/r       Std.    Mix       No        No
+
+
+
+
+                                                                                                      37
+Nishizaki, 2015 (Exp. 1)b         No    Non-probability    Random       40      Undergraduates   Short    Paper       Hand-held      Limited     Informational   N/r       Std.    Mix          No        No
+
+Nishizaki, 2015 (Exp. 2)          No    Non-probability    Random       80      Undergraduates   Short    Paper       Hand-held      Limited     Informational   N/r       Std.    Mix          No        No
+
+                                                                            5
+Norman & Furnes, 2016 (Exp. 1)a   Yes   Non-probability    Random      37       Undergraduates   Large    Paper       Computer       Limited     Informational   Yes       R-C    Textual       No        No
+
+Norman & Furnes, 2016 (Exp.                                                 5
+    7                             Yes   Non-probability    Random      63       Undergraduates   Large    Paper       Hand-held      Limited     Informational   Yes       R-C    Textual       No        No
+1)b
+
+Norman & Furnes, 2016 (Exp. 2)    Yes   Non-probability    Random       50      Undergraduates   Large    Paper       Computer       Limited     Informational   Yes       R-C    Textual       No        No
+
+                                                                                                         Same for
+Pommerich, 2004 (Exp. 1)          Yes   Non-probability    Random      1893     Grades 11 & 12    N/r                 Computer       Limited         N/r         Yes       Std.    Mix          Yes       No
+                                                                                                          reading
+                                                                                                         Same for
+Pommerich, 2004 (Exp. 2)a         Yes   Non-probability    Random      2175     Grades 11 & 12    N/r                 Computer       Limited         N/r         Yes       Std.    Mix          Yes       No
+                                                                                                          reading
+                                                                                                         Same for
+Pommerich, 2004 (Exp. 2)b         Yes   Non-probability    Random      2082     Grades 11 & 12    N/r                 Computer       Limited         N/r         No        Std.    Mix          Yes       No
+                                                                                                          reading
+
+Porion et al., 2016               Yes   Non-probability      N/r        72      Grades 9 & 10     N/r     Paper       Computer       Limited     Informational   No        R-C     Mix          No        No
+
+                                                                                 Graduates or            Same for
+Puhan et al., 2005                Yes     Probability     Non-random   2224                       N/r                 Computer       Limited         N/r         N/r       Std.     N/r         N/r       No
+                                                                                    prof.                 reading
+                                                                                                         Same for
+Seehafer, 2014                    Yes   Non-probability    Random       67      Undergraduates   Short                Computer         N/r         Narrative     No        R-C Inferential      N/r       No
+                                                                                                          reading
+                                                                                                                  3                          3                         3
+Simian et al., 2016               No    Non-probability      N/r        87         Grade 8       Short    Paper       Hand-held       Free           Mix         Yes       Std.    Mix          Yes       No
+
+                2                                                                                                                3           3                         3                    3
+Taylor, 2011a                     Yes   Non-probability    Random       34      Undergraduates   Large    Paper       Computer        Free       Informational   Yes       Std.   Textual       No        No
+
+                2                                                                                                                3           3                         3                    3
+Taylor, 2011b                     Yes   Non-probability    Random       35      Undergraduates   Large    Paper       Computer        Free       Informational   Yes       Std.   Textual       No        Yes
+
+                                                                                                         Same for                                Informational         3                              3
+Wästlund et al., 2005             Yes   Non-probability   Controlled    76      Undergraduates   Large                Computer       Limited           3         Yes       Std.    Mix          Yes       No
+                                                                                                          reading
+                                                                                                         Same for
+Wells, 2012                       No    Non-probability    Random      152       Grades 6-12     Short                Hand-held      Limited         Mix         No        Std.    Mix          Yes       No
+                                                                                                          reading
+
+Note. *Letters after the publication year differentiate several comparisons from the same study. 1Comparison excluded as it was identified as outlier. 2The
+necessary statistical data was provided by authors following a personal request. 3Information provided by authors following a personal request. 4Sample composed
+by undergraduates and professionals with various educational levels. 5Control group sample size was divided by two (see Method section). 6Whole sample size
+was 82, but they were randomly assigned to three groups and only two groups participated in the reading media comparison (each group was considered as
+consisting of 27 participants). 7Two comparisons with tablet and e-reader as digital device, respectively, were collapsed into this effect size. 8Authors personally
+provided necessary statistical data only from narrative texts.
+
+
+
+
+                                                                                                 38
+Table A2
+Descriptive characteristics of the variables coded for each reading media comparison, from the studies that used a within-participants design.
+                                                                                                                                                                        Type of
+                              Publishing Sampling Sample    Educational       Text       Testing    Digital     Reading time                                  Type      compre-        Open          Explicit
+Study/Comparison*               status    method    size       level         length      medium     device         frame           Text genre      Scroll     of test   hension       testing     strategic req.
+                                           Non-
+Baker, 2010                      No                   100   Undergraduates   Short        Paper     Hand-held       Free               N/r3         No         Std.        Mix          N/r            No
+                                        probabibily
+                 1                         Non-
+Bansi et al., 2016               No                   29    Undergraduates   Short         N/r      Computer        Free           Informational    No         R-C         Mix          No             No
+                                        probabibily
+                                           Non-                                          Same for
+Delgado & Salmerón, 2017         No                   69    Undergraduates   Short                  Hand-held       Free           Informational    No         R-C         Mix          No             No
+                                        probabibily                                       reading
+                                           Non-
+Heij & van der Meij, 2014        No                   16    Undergraduates   Large        Paper     Computer        Free           Informational    Yes        R-C         Mix          No             No
+                                        probabibily
+                                           Non-
+Hermena et al., 2017             Yes                  24    Undergraduates   Short        Orally    Hand-held       Free             Narrative      No         R-C         N/r          No             No
+                                        probabibily
+                                           Non-
+Jeong, 2012                      Yes                  56       Grade 6       Short         N/r      Computer         N/r             Narrative      Yes        R-C       Textual        N/r            No
+                                        probability
+                                           Non-
+Kerr & Symons, 2006              Yes                  60       Grade 5       Short         N/r      Computer        Free           Informational    Yes        R-C         Mix          No             No
+                                        probabibily
+                                           Non-             Middle & High                Same for
+Kim & Huynh, 2008                Yes                  439                    Short                  Computer        Free               N/r          No         Std.     Inferential    Yes             No
+                                        probabibily            School                     reading
+                                           Non-                                      2   Same for                          2                              2
+Kim & Kim, 2013                  Yes                  108     Grade 11       Short                  Computer        Free           Informational    Yes        Std.        N/r          N/r            No
+                                        probabibily                                       reading
+                                           Non-
+Kretzschmar et al., 2013a        Yes                  35    Undergraduates   Short        Orally    Hand-held       Free               Mix          Yes        R-C       Textual        N/r            No
+                                        probabibily
+                                           Non-                 Retired
+Kretzschmar et al., 2013b        Yes                  21                     Short        Orally    Hand-held       Free               Mix          Yes        R-C       Textual        N/r            No
+                                        probabibily          professionals
+                                           Non-
+Liang & Huang, 2013              Yes                  24       Grade 6       Large        Paper     Hand-held      Limited         Informational    Yes        R-C       Textual        No             No
+                                        probabibily
+                                           Non-                                          Same for
+Pomplun et al., 2002             Yes                  215   Undergraduates   Short                  Computer       Limited         Informational    Yes        Std.        Mix          No             No
+                                        probabibily                                       reading
+                                           Non-                                          Same for                              2                          2                                   2
+Rasmusson, 2015                  Yes                  117      Grade 9       Short                  Computer      Limited              Mix          Mix        Std.        Mix         Yes             No
+                                        probabibily                                       reading
+                          4                Non-                                      2
+Sackstein et al., 2015a          Yes                  54      Grade 10       Short         N/r      Hand-held       Free           Informational    No         Std.        Mix          No             No
+                                        probabibily
+                                           Non-                                      2
+Sackstein et al., 2015b          Yes                  14    Undergraduates   Short         N/r      Hand-held       Free           Informational    No         Std.        Mix          No             No
+                                        probabibily
+                                           Non-                                          Same for                          2                             2
+Singer & Alexander, 2017         Yes                  90    Undergraduates   Short                  Computer        Free           Informational    No         R-C         Mix          No             No
+                                        probabibily                                       reading
+                                           Non-                                                                                                           2                                  2
+Thompkins et al., 2016           No                   60    Undergraduates   Large         N/r      Computer       Limited         Informational    Yes        R-C       Textual        No             No
+                                        probabibily
+
+Note. *Letters in some references differentiate several comparisons from the same study. 1The necessary statistical data was provided by authors following a
+personal request. 2Information provided by authors following a personal request. 3A selection of some texts from a standardized test was used, but texts genre is
+not specified. 4Two different comparisons with Grade 10 students were collapsed into this effect size.
+
+                                                                                                     39
+

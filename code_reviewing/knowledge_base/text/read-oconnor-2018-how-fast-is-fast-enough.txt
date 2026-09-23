@@ -1,0 +1,676 @@
+691835
+research-article2017
+                       LDXXXX10.1177/0022219417691835Journal of Learning DisabilitiesO’Connor
+
+
+
+
+                                           Article
+                                                                                                                                                   Journal of Learning Disabilities
+
+                                           Reading Fluency and Students With
+                                                                                                                                                   2018, Vol. 51(2) 124­–136
+                                                                                                                                                   © Hammill Institute on Disabilities 2017
+                                                                                                                                                   Reprints and permissions:
+                                           Reading Disabilities: How Fast Is                                                                       sagepub.com/journalsPermissions.nav
+                                                                                                                                                   DOI: 10.1177/0022219417691835
+                                                                                                                                                   https://doi.org/10.1177/0022219417691835
+
+                                           Fast Enough to Promote Reading                                                                          journaloflearningdisabilities.sagepub.com
+
+
+                                           Comprehension?
+
+                                           Rollanda E. O’Connor, PhD1
+
+
+
+                                           Abstract
+                                           The goal of improving reading rate and fluency is to positively impact reading comprehension; however, it is unclear how
+                                           fast students with learning disabilities (LD) need to read to reap this benefit. The purpose of this research was to identify
+                                           the point of diminishing return for students who were dysfluent readers. Participants included 337 students with reading
+                                           difficulties in second and fourth grade (61% eligible for special education; 80% with a diagnosis of LD in the area of reading)
+                                           and 150 typical readers from the same general education classes. LOESS (LOcal regrESSion) plots (logistic regression) were
+                                           used to determine where linear relations between reading rate and comprehension broke down for these students: the
+                                           rate at which getting faster no longer contributed clearly to reading comprehension improvement. Although typical readers
+                                           in this sample showed patterns of oral reading rate and comprehension similar to students in other studies, patterns for
+                                           students with reading difficulties differed. For dysfluent readers, improving reading rate improved comprehension only in
+                                           the bands between 35 and 75 words correct per minute in second grade and between 40 and 90 words correct in fourth
+                                           grade. Reading at faster rates revealed no clear advantage for reading comprehension.
+
+                                           Keywords
+                                           reading rate, reading comprehension, fluency, LOESS, learning disabilities, reading disabilities, poor readers, asymptote
+
+
+                                           Good readers read with sufficient rate to process words              Fluency, or the rate and prosody of reading text, has long
+                                           effortlessly and think about what they read (LaBerge &            been considered one of many components of effective read-
+                                           Samuels, 1974; Paris, 2005). Effortless word reading enables      ing (National Reading Panel Reports of the Subgroups,
+                                           good readers to draw inferences from text and to link known       2000). Some reading components, such as phonemic aware-
+                                           with new ideas and information (e.g., see reviews by Chard,       ness (e.g., the ability to segment spoken words into speech
+                                           Vaughn, & Tyler, 2002; Kuhn, Schwanenflugel, Meisinger,           sounds) and recoding printed words as speech (e.g., decod-
+                                           Levy, & Rasinski, 2010). By contrast, dysfluent readers tend      ing words by associating printed letters with speech sounds),
+                                           to read slowly because the process of word recognition has        are considered constrained reading skills because they can
+                                           not been consolidated (Ehri, 1995); thus, considerable atten-     be mastered as a complete set in a year or two of instruction
+                                           tion is devoted to “getting words off the page,” which makes      (Paris, 2005). Others, such as vocabulary and reading com-
+                                           deep processing of text difficult, if not impossible (Jenkins,    prehension, are unconstrained and continue to grow over
+                                           Fuchs, van den Broek, Espin, & Deno, 2003; Perfetti &             time with sufficient text exposure. Learning in these areas is
+                                           Stafura, 2014; Thurlow & van den Broek, 1997). For students       never complete (Paris, 2005; Perfetti & Stafura, 2014).
+                                           with a learning disability (LD), reading fluency is often iden-   Fluency, and particularly oral reading fluency, falls in
+                                           tified as a major hindrance that spirals through many aspects     between the constrained and unconstrained components
+                                           of reading: When students read slowly, they tend also to read     because reading rate grows rapidly over the first several
+                                           less text (Adams, 1990; Allington, 2001; Jenkins et al., 2003),   years of instruction (Hasbrouck & Tindal, 2006; Kim, 2015),
+                                           which slows acquisition of vocabulary (Nagy & Townsend,
+                                           2012) and the world knowledge that contributes to reading         1
+                                                                                                              University of California at Riverside, USA
+                                           comprehension (Graesser, Singer, & Trabasso, 1994; Kintsch,
+                                                                                                             Corresponding Author:
+                                           1988). Thus, improving students’ reading rate may have            Rollanda E. O’Connor, University of California at Riverside, 1207 Sproul
+                                           implications that go beyond the mere acquisition of fluency       Hall, UCR, Riverside, CA 92521, USA.
+                                           in students’ overall reading development.                         Email: Rollanda.oconnor@ucr.edu
+O’Connor                                                                                                                    125
+
+improves gradually through the middle grades (Kim &                 Garcia and Cain also found evidence that characteristics of
+Wagner, 2015; Silberglitt, Burns, Madyun, & Lail, 2006),            the reading comprehension measure played a role in the
+and takes several years to attain optimal levels (Silberglitt &     strength of correlations between rate and comprehension, a
+Hintze, 2007), which many researchers suggest is the rate of        finding that echoes that of Cutting and Scarborough (2006)
+speech (Samuels, Ediger, & Fautsch-Patridge, 2005).                 and Keenan, Betjemann, and Olson (2008).
+Samuels et al. (2005) suggested that “the essential ingredient
+in fluency is the ability to decode and comprehend at the
+                                                                    Students With LD in Reading (RD)
+same time” (p. 2), or reading aloud as if listening to a speaker.
+Although prosody is clearly part of fluent reading, the mea-        A consistent problem across these studies is that few have
+sure in the current study refers only to oral reading rate.         considered the rate–comprehension relations specifically
+   Developing sufficient reading rate is thought to be              for students with RD, who may have the most to gain if
+important because studies consistently find strong correla-         reading rate is improved sufficiently. Although some level
+tions between reading rate and comprehension throughout             of reading fluency may be necessary for comprehension,
+the elementary school years (Fuchs, Fuchs, Hosp, &                  high levels of fluency may not necessarily contribute to the
+Jenkins, 2001; Roehrig, Petscher, Nettles, Hudson, &                text processing necessary for reading comprehension
+Torgesen, 2008). In Grades 1 through 6, Reschly, Busch,             (Sabatini, O’Reilly, Halderman, & Bruce, 2014). Studies
+Betts, Deno, and Long (2009) found an average correlation           have shown differences in fluency and growth in reading
+of .67 between rate and comprehension across studies. In            rate between students with and without RD across the ele-
+most studies, correlations between reading rate and compre-         mentary grades, and so it becomes important to establish
+hension appear to weaken by middle school. For example,             whether reading rates attained by average readers are
+Silberglitt et al. (2006) found that correlations between           needed for comprehension of text by students with RD. In a
+reading rate and comprehension gathered in Grade 7 were             study that compared rates of oral reading fluency growth
+smaller than for students in Grade 5. They also hinted at an        between students with RD and typical readers in second and
+asymptote for this relationship as reading rates approached         third grade, Wanzek, Al Otaiba, and Petscher (2014) found
+165 words correct per minute (wcpm), which is similar to            consistently lower reading rates for students with RD cou-
+the rate of speech. For students whose oral reading rate            pled with slower rate of growth during each school year.
+nears this upper desirable level, the influence of fluency          This finding was similar to that of Tindal, Nese, Stevens,
+becomes constrained, even though reading vocabulary and             and Alonzo (2016), who found that performance on mea-
+comprehension continue to grow. For this reason, Silberglitt        sures of oral reading fluency correlated significantly with
+et al. suggested that schools be wary of setting rate target        special education status. Like Wanzek et al., Tindal et al.
+scores as predictors of reading proficiency beyond the ele-         also found much less growth on these measures over time
+mentary school years.                                               for students with RD.
+   Along these lines, Garcia and Cain (2014) found evi-                 In a study of second and third grade students, Petscher
+dence that age was a significant predictor of the strength of       and Kim (2011) demonstrated weaker correlations between
+the relationship between word reading ability and reading           reading rate and comprehension for students at the low end
+comprehension, with younger readers showing stronger                of the reading distribution than for students reading in the
+relationships between word-level skills, such as decoding           average and above range. Due to different—and lower—
+and reading rate, and comprehension. In modeling oral               growth trajectories than typical readers, these researchers
+reading growth across grades, Silberglitt and Hintze (2007)         questioned whether using oral reading rate to measure the
+also found slower rates of growth in Grades 4 through 6             reading success of students with RD was appropriate. Tindal
+than in Grades 2 through 4. Students with initially slower          et al. also cautioned that students with RD may never reach
+reading rates also made less growth during the year. Kim            oral reading fluency that mirrors speech. None of these
+and Wagner (2015) also report declines in the strength of           studies considered whether optimal reading rates for ade-
+the relation between reading rate and comprehension across          quate reading comprehension might differ between students
+grades from .93 in first grade to .72 in fourth grade, suggest-     with and without RD.
+ing that studying the linkage across grades and stages of               Wolf and Bowers (1999) suggest this slower growth in
+reading development may be important. In these studies,             fluency may be related to the well-documented Rapid
+data for the students with LD were either not included in           Automatized Naming (RAN) deficits of students with LD,
+their sample or not disaggregated.                                  which are difficult to treat. In a longitudinal study of LD,
+   Garcia and Cain (2014) pointed out that the relationship         Elwer, Keenan, Olson, Byrne, and Samuelsson (2013)
+between reading rate and comprehension may not be not lin-          found RAN deficits in preschool that persisted through the
+ear (see also Nese et al., 2013) and, like Silberglitt et al.       fourth grade, which was as far as this team followed its
+(2006), found a flattening of the relationship for typical read-    sample (see also Johnston & Kirby, 2006; Lyytinen et al.,
+ers around age 10. Adding a new dimension to the discussion,        2006; Swanson & Siegel, 2001). Even when skills such as
+126                                                                                         Journal of Learning Disabilities 51(2)
+
+decoding accuracy are fully remediated, fluency tends to be       with reading comprehension. Perfetti and Stafura (2014)
+more difficult to improve (Torgesen, Alexander, & Wagner,         refer to this bridge as word-to-text integration, in which stu-
+2001; Vadasy & Sanders, 2008, 2009). Torgesen et al. rec-         dents begin to recognize words and make sense of short
+ommended we fix the subskills of reading and comprehen-           sentences in text. With experience, students process printed
+sion strategies and worry less about reading rate.                words faster and gradually shift from oral to silent reading
+    Identifying the levels at which one skill influences          comprehension in the later grades (Rasinski, 2012). Failure
+another can help interveners to know when one aspect of           to develop sufficient rate to enable silent reading compre-
+reading is sufficiently developed and when to turn the focus      hension is one of several “pressure points” in reading devel-
+of intervention toward other aspects of reading. As exam-         opment identified by Perfetti and Stafura.
+ples of these shifts in emphasis, plots of phoneme segmen-            A strong test of the rate–comprehension relationship
+tation ability and letter naming in kindergarten or first grade   would require generalized rate improvement that can be
+against word reading ability measured concurrently demon-         demonstrated in new passages students read only once,
+strate that identifying about 30 segments of spoken words         along with measures of comprehension before and after rate
+or naming 50 letters correctly in 1 minute is strongly related    improvement. Markell and Deno (1997) suggested that rate
+to students’ acquisition of decoding printed words                improvement may need to be large (e.g., gains of 20 words
+(O’Connor & Jenkins, 1999). Thus, improving these skills          per minute or more) to improve comprehension of text, and
+up to these rates may benefit overall reading development.        most experimental studies of the rate–comprehension rela-
+Nevertheless, identifying more than 30 phonemic segments          tions have been too brief to generate rate improvement this
+or more than 50 letters in a minute, as many children are         high. Studies that have focused on improving generalized
+able to do near the end of kindergarten or early in first         reading rate have documented that it takes considerable
+grade, offers little additional boost to learning to decode       time—often 6 to 8 weeks or more of practice with feedback
+(O’Connor & Jenkins). In other words, these levels of skill       (O’Connor, White, & Swanson, 2007; Therrien, Wickstrom,
+development are sufficient to generate positive impacts on        & Jones, 2006)—for this generalized rate improvement to
+word recognition.                                                 be reliable. Moreover, gains in fluency with intervention
+    Understanding points of asymptote among reading com-          tend to be stronger for younger than for older students in the
+ponents (i.e., the point at which getting better on a lower       elementary grades (O’Connor et al., 2013; Vadasy &
+level reading component fails to improve a higher level           Sanders, 2008, 2009).
+component) can inform instructional efficiency by helping             With the current focus on rate as a measurement tool to
+teachers understand when to stop teaching a low-level skill       assess reading progress in elementary school, some teachers
+in favor of a higher level skill. Several studies have sug-       consider improvement in reading rate as an end goal of
+gested reading rates that appear to offer some protection         instruction (O’Brien, Wallot, Haussmann, & Kloos, 2014),
+from comprehension failures (Good, Simmons, &                     which loses the thread of theory that ties reading rate to
+Kame’enui, 2001; Silberglitt et al., 2006); however, these        reading comprehension (Rasinski, 2012). It seems obvious
+studies did not examine students with RD specifically.            that recognition of printed words is necessary for compre-
+Thus, we know little about reading rates that might be suf-       hension of written sentences and passages; what is less well
+ficient for students with RD, especially during the middle        understood is how automatic that recognition must be,
+elementary grades (Grades 2 through 4) when building              especially when students have difficulty across multiple
+reading fluency is often an instructional priority. Although      reading components, as do many students with RD.
+research provides correlational evidence that faster reading      Perseverating on low-level reading skills past the point they
+rate is associated with higher levels of reading comprehen-       facilitate text comprehension denies students opportunities
+sion for typical-reader samples in the elementary grades,         to learn the more advanced skills needed for success in con-
+less is known about sufficient reading rate for poor readers      tent area learning (Claessens, Engel, & Curran, 2013).
+and students with RD.                                                 Depending on students’ reading ability and history, stud-
+                                                                  ies have found distinct differences in relations among com-
+                                                                  ponents formerly believed to develop concurrently. For
+Improving Reading Rate to Improve
+                                                                  example, Shankweiler et al. (1995) found students with
+Comprehension                                                     adequate comprehension and poor word reading ability and
+Researchers have explored the extent to which improving           fluency. Ferrer, Shaywitz, Holahan, Marchione, and
+reading rate causes better comprehension. Because accurate        Shaywitz (2010) used the Connecticut Longitudinal Study
+oral reading frees up processing resources for text compre-       (Shaywitz et al., 1995) to measure several aspects of cogni-
+hension (Ehri, 1995; Jenkins et al., 2003), fluency should        tion and reading over time in a sample that included typical
+act as a bridge toward comprehension that first helps stu-        readers, compensated readers (i.e., students who were poor
+dents to translate printed words to speech, which enables         readers in the primary grades but later became good read-
+them to use their understanding of oral language to assist        ers), and persistently poor readers. Although the relations
+O’Connor                                                                                                                    127
+
+among measures for typical readers were robust and bidi-           perceived relation between rate and comprehension. For
+rectional, with reading and cognitive skills sharing mutual        example, decoding skill—a major component of reading
+facilitation, for students who read poorly cognitive ability       rate—has been found to be more influential for measures of
+and reading skills uncoupled and the relation was both             sentence comprehension than for comprehension of longer
+weaker than for typical readers and decreased over time.           passages (Francis, Fletcher, Catts, & Tomblin, 2005;
+Compensated readers improved their reading skills such             Keenan et al., 2008). Keenan and Meenan (2014) also found
+that by ninth grade, their reading comprehension was in the        that the correlations between measures of sentence- and
+average range; nevertheless, their reading rate—despite            passage-level comprehension varied for younger and older
+adequate reading comprehension—remained significantly              students, suggesting again that these types of measures
+below average, calling into question whether rate should be        require differing demands. Overall, they suggest no one
+in the average range for adequate comprehension of text.           best way to assess comprehension but rather that research-
+Walczyk et al. (2007) suggested that slow reading rate can         ers broaden their approach to measuring comprehension
+provide a compensatory mechanism for students with read-           and incorporate more than one type of measure. The design
+ing difficulties, in which they read text at a rate that enables   of the current study follows their suggestion by using sen-
+their comprehension. They use compensatory-encoding                tence- and passage-level comprehension measures.
+theory to explain how nonfluent skills can combine with               Given grade-level differences in correlations between
+compensation to improve reading comprehension. As did              reading rate and comprehension, we measured rate and
+Sabatini et al. (2014), they suggest that reading at too fast a    comprehension of students with and without RD in second
+rate can interfere with reading comprehension.                     and fourth grade. The overarching goal of this research was
+                                                                   to identify the point of diminishing return for students in
+                                                                   Grades 2 and 4: the rate at which getting faster was no lon-
+The Current Study                                                  ger clearly associated with improved reading comprehen-
+Researchers have documented that improving the rate at             sion. The central issue was to identify likely reading rates
+which students with LD read text can have a positive impact        that may be “good enough” to enable comprehension of text
+on their reading comprehension (Markell & Deno, 1997;              for younger and older students with RD, using data com-
+O’Connor et al., 2013; Swanson & O’Connor, 2009;                   piled from four experiments in improving the reading rate
+Therrien et al., 2006). Nevertheless, improving reading rate       of students with RD.
+for these students takes considerable supported practice
+(Kuhn et al., 2010; O’Connor, Swanson, & Geraghty, 2010;
+Shany & Biemiller, 1995). Given the instructional time it          Method
+takes to improve reading rate, it becomes important theo-          Design
+retically and practically to understand how fast students
+need to read to take advantage of the theoretical compre-          Student data were pooled across four data sets in which the
+hension boost fluent reading enables. In other words, can          study purpose was to improve reading rate of students who
+we empirically identify reading rates for students with RD         were poor readers in second and fourth grade (O’Connor
+that are fast enough to facilitate comprehension of text?          et al., 2007, 2010, 2013; Swanson & O’Connor, 2009). Five
+    Moving beyond correlations is necessary for exploring          elementary schools in the Southwest United States partici-
+this question because the relation might not be linear, even       pated across 4 years, including 4 to 16 classes per year. In
+in samples of students in the same grade. Correlations can         the earlier studies from which the data from these partici-
+be misleading if the strength of the correlation is not uni-       pants were drawn, students who were poor readers were
+form across the range of scores. Smoothing a line—allow-           randomized to treatment or business as usual. None of the
+ing it to curve empirically—can show where correlations            students received researcher-delivered intervention in read-
+are strongest and the point at which relations weaken.             ing comprehension. In each class, three to six students met
+Moreover, exploring these points across grade and reading          criteria (see “Participants” section) for participation, and
+ability could further our understanding of these relations         two thirds of the students received training and practice in
+and inform instructional decisions. To capture these rela-         reading aloud for 14 to 18 weeks. Data were also collected
+tions, this study employed LOESS (LOcal regrESSion)                from two average readers in each of the same classes.
+curves, a nonparametric procedure built on least squares           Although gains in reading rate were significant for treated
+regression that builds a function to describe data point-by-       students, nearly all of them still read significantly slower
+point (Cleveland & Devlin, 1988).                                  than their average-reader classmates following the treat-
+    Taking into consideration Garcia and Cain’s (2014) find-       ments. For the current study, data were pooled across 4 con-
+ing that the fluency/comprehension connection may differ           secutive years to plot the relations between reading rate and
+across comprehension measures, this study also examined            reading comprehension for typical and RD readers in each
+how features of comprehension measures affect the                  grade.
+128                                                                                                  Journal of Learning Disabilities 51(2)
+
+Table 1. Means (Standard Deviations) on Reading Measures for Dysfluent (LD) and Typical Readers by Time and Grade.
+
+                                                                      Grade 2                                      Grade 4
+
+                                                      Dysfluent Readers        Typical Readers      Dysfluent Readers      Typical Readers
+Scores                                                    (n = 192)               (n = 72)              (n = 145)             (n = 78)
+October
+  Oral reading rate                                       31.49 (14.42)          78.92 (28.23)         65.76 (20.03)         114.15 (26.01)
+  WRMT passage comprehension–standardized                 92.63 (8.30)          106.90 (8.83)          84.45 (9.45)           97.63 (7.47)
+  GORT-4 comprehension–standardized                       76.33 (10.40)          98.76 (16.63)         72.63 (8.71)           97.21 (12.54)
+March
+  Oral reading rate                                       62.07 (23.76)         107.54 (25.28)         87.01 (23.29)         140.29 (25.52)
+  WRMT passage comprehension–raw                          21.79 (5.45)           28.98 (5.55)          28.15 (5.56)           33.82 (4.22)
+  WRMT passage comprehension–standardized                 96.32 (7.94)          103.55 (9.89)          90.10 (8.23)           95.48 (7.75)
+  GORT-4 comprehension–raw                                11.82 (4.75)           17.55 (6.15)          14.40 (6.53)           22.60 (9.32)
+  GORT-4 comprehension–standardized                       85.62 (10.52)         102.29 (15.45)         77.99 (12.12)          99.27 (10.43)
+
+Note. Standardized scores have a mean of 100. GORT-4 = The Gray Oral Reading Test 4; wcpm = words read correctly per minute; WRMT = Woodcock
+Reading Mastery Tests-R.
+
+
+Participants                                                              average readers with students with RD. To describe the
+                                                                          sample, Table 1 shows pretest and posttest means and stan-
+To be eligible for the fluency studies, second graders read               dard deviations (October scores) for reading rate and com-
+below 40 words per minute and fourth graders below 80                     prehension; however, only the posttests (March scores)
+words per minute as the median score of three AIMSweb                     were used for the analyses in the current study.
+(Academic Improvement Measurement System; Shinn &
+Shinn, 2002) passages. After securing parent permission
+(i.e., 93% of those from whom permission was requested),                  Measures
+participating students included 337 students with RD. One                    Oral reading rate. The dependent variable for reading
+hundred and ninety-two of these students were in second                   rate was median score on AIMSweb passages. AIMSweb
+grade and 145 in fourth grade. Sixty-one percent were eli-                (Shinn & Shinn, 2002) consists of 30 graded passages for
+gible for special education services (40% of second-grade                 monitoring change in oral reading rate over time. Students
+and 89% of fourth-grade students), with 80% of students                   read three different passages in October and March, and the
+receiving special education services under the category of                median score for words read correctly per minute (wcpm)
+LD that included RD. Placements for these students                        across passages was recorded as the final score. The reli-
+included general education and special education resource                 abilities across passages used for this sample ranged from
+room for up to 2.5 hours per day. No significant differences              .84 to .91. Only the March scores were used for generating
+were found in reading rate between students with and with-                plots.
+out formal identification for disabilities; therefore, all of the
+poor reader sample will be referenced as students with RD.                   Reading comprehension. Due to the differing nature of
+    Eighty-one percent were native English speakers, and                  comprehension tasks, two measures of reading comprehen-
+19% were English Learners (ELs) who spoke Spanish as                      sion were collected in March to evaluate their relations with
+their first language and scored 3, 4, or 5 on a 5-point scale of          reading rate. The Gray Oral Reading Test 4 (GORT-4; Wie-
+English Language Development. Thus, none of the EL par-                   derholt & Bryant, 2001) was selected to estimate reading
+ticipants were beginning English speakers and all possessed               comprehension of paragraph- to page-length passages of 50
+conversational ability in English. Reading rate did not differ            to 200 words each. Students read increasingly difficult pas-
+between students with RD with and without identified dis-                 sages orally, while the examiner notes errors and miscues.
+abilities or between ELs and native English speakers.                     Following oral reading, the examiner asks passage-depen-
+    Teachers were asked to identify four average-reader                   dent comprehension questions that tap a range of compre-
+classmates from the general education classes in which the                hension types, from literal to inferential. The reliability of
+students with RD spent the majority of the school day.                    the GORT-4 at ages 8 to 10 ranges from .89 to .91. Regarding
+Following parent permission, students’ average-reader sta-                validity, the correlation in our sample between the GORT-4
+tus was verified with measures of word and passage-level                  and the Woodcock Reading Mastery Tests-R (WRMT) com-
+reading, described later. Scores from the two students clos-              prehension subtests was .68, and between GORT-4 rate and
+est to the national norm average were used to compare                     AimsWeb rate was .88.
+O’Connor                                                                                                                  129
+
+    The WRMT (Woodcock, 1998) Passage Comprehension
+subtest requires students to read one or two sentences
+silently with a missing word signaled by a blank space and
+to supply a word that makes sense in that space. Split-half
+reliability estimates for Grades 2 through 5 on this subtest
+range from .89 to .92. The technical manual reports correla-
+tions of the total WRMT reading score with the Iowa Tests
+of Basic Skills (.83) and Wide Range Achievement Test
+Reading scale (.88). Descriptive statistics for all of these
+measures by grade and reader status are shown in Table 1.
+
+
+Results
+Data Analyses
+For this study, reading rates and reading comprehension
+were plotted in March of the school year using both mea-
+sures of reading comprehension, because one (WRMT pas-
+sage comprehension) measures sentence-level processing,
+whereas the other (GORT-4) measures comprehension of
+longer passages. LOESS (locally weighted scatterplot
+smoothing) was used to determine whether the linear rela-
+tionship between reading rate and comprehension was
+maintained, or broke down, in each set of data using the
+graphing function of SPSS. LOESS is a nonparametric pro-
+cedure that is built on linear and nonlinear least squares
+regression and fits simple models to localized subsets to
+build a function that describes the data point-by-point
+(Cleveland, 1981; Cleveland & Devlin, 1988). It is particu-
+larly useful for estimating asymptote values in discrete data
+sets.
+    Each figure shows scatterplots with oral reading rate
+along the horizontal axes and sentence (upper plot) or pas-     Figure 1. Oral Reading Rate and Comprehension for All
+sage comprehension (lower plot), respectively, along the        Second- and Fourth-Grade Student Participants.
+vertical axes. First, plots are shown for the entire data set
+(Figure 1). Next, to compare asymptotes for students with       Results for Grade 2
+and without RD, the plots are separated by grade level and
+reading ability, because expectations for reading rate differ   Figure 2 shows the LOESS plots between reading compre-
+between second and fourth grades, and the central question      hension and rate for the second-grade students with RD on
+of this study was to determine whether the relation between     the WRMT and the GORT-4. The upper plot shows the rela-
+rate and comprehension differed between students with and       tion between reading rate and sentence-level comprehen-
+without RD. The logic behind each analysis was to identify      sion (WRMT). The horizontal line at 29 for the WRMT
+bands of reading rate with a direct impact on comprehen-        indicates mean comprehension scores for the typical read-
+sion at each grade for each student type, and a point at        ers in that grade, and the line at 27 marks 0.5 standard devi-
+which faster rates had less impact on comprehension, rec-       ation below the mean. Most observers would consider
+ognizing that treated students were still comparatively slow    scores within half a standard deviation (above 27, equiva-
+readers following intervention.                                 lent to standard scores above 92.5) to be average compre-
+    Raw scores on the comprehension measures were used          hension for this grade. A linear trend is shown between
+to associate an amount of rate with an amount of compre-        about 40 and 75 wcpm, which suggests that improving rate
+hension. Figure 2 shows the plots for students with RD in       within this band has a positive relation with comprehension
+Grade 2, and the typical readers in the same classrooms are     of sentences. Note also that by 40 wcpm, several students
+shown in Figure 3. Figures 4 and 5 show the comparable          with RD were achieving average ability to comprehend sen-
+relations between reading rate and comprehension for            tences. At around 75 wcpm, the linear trend reached an
+fourth graders.                                                 asymptote, suggesting that reading faster than 75 wcpm
+130                                                                                    Journal of Learning Disabilities 51(2)
+
+
+
+
+Figure 2. Students With Reading Disability in Second Grade.
+
+
+showed no distinct advantage for reading comprehension.
+                                                              Figure 3. Typical Readers in Second Grade.
+Moreover, some students with faster rates scored more
+poorly on sentence comprehension than those who read
+slowly.                                                       comprehending more up to around 110 wcpm, which is a
+   Despite only a moderate correlation (.68) between the      range considered “not at risk” for comprehension difficul-
+comprehension measures, the asymptotes (point at which        ties on commonly administered fluency measures such as
+the linear relationship changes) were remarkably similar      Dynamic Indicators of Basic Early Literacy Skills (DIBELS)
+across measures for the second graders who were poor read-    or AIMSweb. The asymptote for typical readers was con-
+ers. The lower plot in Figure 2 shows a linear trend up to    siderably higher than for the RD sample of second graders.
+about 75 wcpm with comprehension of the longer passages
+on the GORT-4, with many students reading faster than 75
+wcpm scoring more poorly on comprehension. As with the
+                                                              Results for Grade 4
+WRMT, many students with RD reading in the 40 to 60           Figure 4 shows plots for fourth graders with RD. The linear
+wcpm range reached average levels of comprehension of         trend between rate and comprehension of sentences (upper
+longer passages.                                              plot) fell between 40 and 85 wcpm, with flattening of the
+   In Figure 3, these relations are shown for the typical     linear trend beginning around 80 wcpm and clear by 90
+readers in the same second-grade classes. Again, the hori-    wcpm. On the lower plot, the linear trend fell between 75
+zontal lines at 29 for the WRMT and 17.6 for the GORT-4       and 90 wcpm, with the asymptote around 90 wcpm. On
+mark average reader scores on these measures. In both the     both plots, many students with RD achieved average levels
+upper and lower plots, reading faster was associated with     of comprehension around 70 wcpm.
+O’Connor                                                                                                                   131
+
+
+
+
+Figure 4. Students With Reading Disability in Fourth Grade.     Figure 5. Typical Readers in Fourth Grade.
+
+
+   The plots of typical readers in fourth grade (Figure 5)      at which getting faster were no longer associated clearly
+show asymptotes at much higher reading rates, around 140        with higher levels of reading comprehension.
+wcpm for the WRMT and 150 wcpm for the GORT-4. As                  The first figure, in which scores are undifferentiated by
+with the second graders, several students reading at excep-     grade or disability status, shows the approximately linear
+tionally fast rates scored worse on comprehension than          trend identified in earlier studies by Good et al. (2001) and
+those who read more slowly.                                     others. Unfortunately, combining data into a single plot fails
+                                                                to discern differences in the relation between reading rate
+                                                                and comprehension due to grade and disability. Fourth
+Discussion                                                      graders (even those with disabilities) are faster readers, on
+Reading rate has long been used as a proxy for estimating       average, than second graders and also generate higher raw
+reading comprehension in the elementary grades (Deno,           scores on reading comprehension. Thus, when all data are
+1985). Moreover, improving the rate with which students         combined we cannot determine whether an asymptote exists
+with RD read text can have a positive impact on their read-     for poor readers and, if so, whether it falls in different loca-
+ing comprehension (O’Connor et al., 2013; O’Connor et al.,      tions for relatively younger or older students with RD. It
+2007; Swanson & O’Connor, 2009). Nevertheless, improv-          may be important to consider these differences prior to
+ing reading rate for these students takes considerable sup-     making recommendations about optimal rate for the pur-
+ported practice (O’Connor et al., 2010; Schwanenflugel          pose of improving reading comprehension, because as
+et al., 2006; Vadasy & Sanders, 2008). The goal of this         Torgesen (2004), Wanzek et al. (2014), and Tindal et al.
+study was to identify the point of diminishing return for the   (2016) suggest, fluency might be less predictive of reading
+reading rate of students with RD in Grades 2 and 4: the rates   comprehension for students with RD.
+132                                                                                           Journal of Learning Disabilities 51(2)
+
+    Often considered an exploratory graphical tool, LOESS           Students might read aloud faster than speech because teach-
+plots have an advantage over other types of analyses by             ers set goals students want to exceed, or students might set
+identifying asymptotes among specific sets of data. LOESS           high rate goals for themselves; regardless, the result is get-
+can enable insight into the way relations behave at different       ting faster for its own sake, rather than reading fluently with
+levels (or in this case, reading rates), which can then be          expression to better understand what they read.
+explored in other sets of data on the reading rates and com-           Within grade, the relation between reading rate and com-
+prehension of students with RD. Cleveland and Devlin                prehension was not linear (see Figures 2 through 5) for typi-
+(1988) suggest that the name LOESS even “has some                   cal readers or students with RD, which has also been
+semantic substance. A loess … is a deposit of fine clay or          suggested by others (Garcia & Cain, 2014; Nese et al.,
+silt along river valleys; in a vertical cross-section of earth, a   2013) but not shown graphically. Where other researchers
+loess would appear as a narrow, curve-like stratum running          have suggested potential asymptotes for fluency (Silberglitt
+through the section” (p. 597). In these data, the LOESS             et al., 2006), these figures show where the asymptotes lie.
+plots show how rate supports comprehension at the lower             Each plot reveals a range within which the relation between
+end and where the decoupling of rate and comprehension              reading rate and comprehension is linear, and these aspects
+begins to appear.                                                   of reading appear to be mutually supportive. Each plot also
+    As shown by the horizontal lines in Figures 2 and 4, the        shows where this relationship breaks down: the point at
+LOESS plots reveal numerous students with RD at each                which getting faster appears less supportive of comprehen-
+grade level who scored within the average range on com-             sion. The horizontal lines representing average levels of
+prehension despite their comparatively low reading rates—           reading comprehension reveal reading rates at which stu-
+a pattern similar to Ferrer et al.’s (2010) compensated             dents can achieve average reading comprehension scores on
+readers. Thus, the plots suggest that achieving rates compa-        the WRMT and the GORT-4. Although many of the students
+rable to those of typical readers (Figures 3 and 5) may not         with RD scored in the average range of reading comprehen-
+be necessary for a substantial portion of students with RD to       sion on these measures, a comparison of the asymptotes
+achieve adequate reading comprehension.                             across these plots reveals distinctly different patterns
+    The typical readers at both second and fourth grade             between the students with RD and typical readers at both
+showed reading rates similar to those reported in many              grade levels.
+studies (e.g., see Wanzek et al., 2014). Unlike Keenan and
+Meenan (2014), the plots shown here suggest that reading
+rate and comprehension are more tightly linked for typical
+                                                                    The Influence of the Comprehension Task
+than for poor readers, with most typical readers who are            Given the differing comprehension task demands and dif-
+good sentence comprehenders in fourth grade reading in              fering relations among decoding, fluency, and comprehen-
+excess of 120 wcpm. For reading longer passages (i.e., the          sion reported in earlier studies (Garcia & Cain, 2014;
+GORT-4 comprehension task), which require holding more              Keenan & Meenan, 2014), the asymptotes were expected to
+information in memory (recall that students may not look            differ between sentence- and passage-level comprehension.
+back at the passage while answering questions), fourth-             For example, the WRMT comprehension task should rely
+grade typical readers showed an advantage if rates were             less on reading rate than the GORT-4 because the task is
+between 120 and 140 wcpm, which approximates the rate of            untimed and students can reread phrases or the entire sen-
+conversational speech. Reading faster than the rate of              tence as they consider logical word choices. The WRMT
+speech, which many of these typical fourth graders were             should also place less stress on the cross-sentence para-
+able to do, was not associated with higher levels of compre-        phrase effect found by Perfetti and Stafura (2014) to influ-
+hension and may interfere with comprehension (see also              ence comprehension through word-to-text integration.
+Sabatini et al., 2014; Walczyk et al., 2007).                       Despite these differences, rates related to comprehension
+    The plots for both tasks show a trend that rates faster         did not differ across comprehension tasks for second grad-
+than average were often associated with poor comprehen-             ers with RD, nor did they differ across tasks for typical sec-
+sion. Some typical readers read close to 200 wcpm; how-             ond graders, although typical readers appeared to require
+ever, these exceptionally fast readers were not necessarily         faster rates to achieve average comprehension (i.e., rates
+those with the best comprehension. Others (e.g., Rasinski,          around 35 wcpm for RD but 70 wcpm for typical readers).
+2012; Schwanenflugel et al., 2006) have suggested the                  The fourth-grade RD sample revealed a marked differ-
+importance for comprehension of phrasing and prosody as             ence across comprehension tasks, with much slower rates
+students read aloud, and many fourth graders reading faster         related to adequate comprehension on sentence-level than
+than their rate of speech lacked both prosody and compre-           on paragraph-level tasks. Surprisingly, typical readers
+hension. Reading aloud faster than speech disrupts the pars-        showed no difference across tasks, likely due to a stronger
+ing of phrases, which contributes to reading comprehension.         coupling among the reading components by fourth grade.
+O’Connor                                                                                                                     133
+
+Implications                                                       comprehension may overestimate risk among slow readers.
+                                                                   Moreover, rate as an indicator of comprehension for stu-
+Teachers need to understand how fast is fast enough and the        dents with RD may be less accurate than in the general
+rates beyond which improvements in fluency make less dif-          population (Tindal et al., 2016; Wanzek et al., 2014). Clearly
+ference in what students understand and retain from what           these relations should be tested with other samples of stu-
+they read. Despite apparent differences between the task           dents; however, in the meantime, teachers of students with
+and memory demands of sentence-level and passage-level             slow reading rates might consider thinking less about
+reading, these rates were remarkably similar for the strug-        “benchmark” rates in Grades 2 through 4 and consider
+gling readers. Improving fluency for second graders with           instead the reading rates that appear to facilitate reading
+RD related to improved comprehension in the band between           comprehension, which for struggling readers may be lower
+35 and 75 wcpm. For fourth graders, achieving rates up to          than for typically developing readers.
+90 wcpm were related to improved comprehension. Beyond
+these oral reading rates, the two skills uncoupled for the
+students with RD.                                                  Limitations
+    Answering the question “How fast is fast enough for stu-       The data in this research were drawn from students across 4
+dents with RD?” is important in special education instruc-         years from five elementary schools in a single district. Over
+tion because it addresses instructional efficiency. Fluency        half of the students with RD in this study had participated in
+takes practice over several months to grow significantly for       intervention to improve reading rate that spanned 14 to 18
+this population (e.g., see O’Connor et al., 2007; Therrien         weeks, with growth of over 20 words correct per minute, on
+et al., 2006), and it takes instructional time several days per    average, even though their reading rate was still substan-
+week (O’Connor et al., 2013), which impinges on time to            tially below that of typical-reader classmates. Results could
+teach other key aspects of reading that also contribute to         have been influenced by the fluency practice in the earlier
+reading comprehension. On a practical level in classrooms,         studies or the reading instruction provided in this district.
+students with RD and other poor readers often need support         Replication of the study in school districts using other
+and instruction along multiple aspects of the reading task,        instructional procedures and curricula might find different
+including word decoding and recognition, word meanings             results.
+and syntax, and reading comprehension strategies, in addi-             Also, roughly 20% of the student participants were clas-
+tion to building rate of reading. Given the effort it takes to     sified as EL. Although all were in the intermediate to
+improve reading rate, it becomes important for teachers to         advanced English language range, it is likely that aspects of
+understand the points at which improving reading rate may          English language other than fluency exerted influences on
+facilitate reading comprehension and the point at which            their reading comprehension. The obvious possibility is that
+continuing to focus on rate is less likely to have a positive      limited English proficiency impacted their vocabulary in
+impact. If average rates of fluency are less useful for stimu-     English, which is known to affect reading rate and compre-
+lating comprehension for students with RD than for typical         hension, as has been found in other studies (e.g., Lesaux &
+readers, teachers could consider devoting more time to             Kieffer, 2010). The current study did not explore differential
+instruction in comprehension and less time to fluency once         impacts of these complex language features on EL and
+students reach these asymptotes.                                   native English speaker participants. As mentioned earlier,
+    These findings also have implications for tiered models        among the RD sample in this study, students who were EL
+of instruction and Responsiveness to Intervention (RtI)            did not differ from native English speakers statistically on
+models. Evaluation of reading progress in these models             reading rate or comprehension; nevertheless, we lack mea-
+often focuses on measures of reading rate; instruction in          sures of other aspects of language that support reading com-
+these models also focuses on increasing reading rate to meet       prehension. These possibilities warrant further consideration
+exit criteria. The findings in this study suggest that overreli-   as they relate to dimensions of fluency and comprehension.
+ance on fluency for poor readers might not be beneficial for
+the ultimate goal of reading comprehension. Good and
+Kaminski (2002) report that second graders reading below
+                                                                   Conclusions
+60 wcpm in the end of Grade 2 are at high risk for reading         Due to slower growth trajectories in fluency for students
+failure; however, their study did not include students beyond      with RD, several researchers have suggested that recom-
+third grade and so did not consider compensated readers,           mended levels of fluency in the elementary grades might be
+such as found among the older students in studies of Ferrer        inappropriate and unrealistic for these students (Tindal
+et al. (2010) and Torgesen et al. (2001). Of students with         et al., 2016; Wanzek et al., 2014). The approach in the cur-
+RD scoring in the average range on reading comprehension           rent study was to explore potential recommendations for
+in this study (32% of this sample), half read between 40 and       oral reading fluency that support comprehension for stu-
+60 wcpm, which suggests that rate as an indicator of reading       dents with RD.
+134                                                                                                  Journal of Learning Disabilities 51(2)
+
+    For average readers, as has been shown in many studies,              Cutting, L. E., & Scarborough, H. S. (2006). Prediction of reading
+reading rate was tightly related to reading comprehension up to              comprehension: Relative contributions of word recognition,
+about 120 words per minute. Facilitative rates for poor readers              language proficiency, and other cognitive skills can depend
+were much lower: For second-grade students with RD, the                      on how comprehension is measured. Scientific Studies of
+                                                                             Reading, 10, 277–299. doi: 10.1207/s1532799xssr1003_5
+points at which reading rate and comprehension decoupled
+                                                                         Deno, S. (1985). Curriculum-based measurement: The emerging
+were 75 and 77 words per minute, respectively, for the GORT-4
+                                                                             alternative. Exceptional Children, 52, 219–232.
+and WRMT, far lower than the end-of-year recommended rate                Ehri, L. C. (1995). Stages of development in learning to read
+of 120 wcpm (Good et al., 2001). For fourth-grade poor read-                 words by sight. Journal of Research in Reading, 18, 116–125.
+ers, these rates were 85 and 90 wcpm, respectively. Up to these          Elwer, A., Keenan, J. M., Olson, R. K., Byrne, B., & Samuelsson,
+rates, students with RD showed higher comprehension scores                   S. (2013). Longitudinal stability and predictors of poor oral
+as their reading rate increased. Thereafter, “getting faster” no             comprehenders and poor decoders. Journal of Experimental
+longer had these clear relations in any of the data sets.                    Child Psychology, 115, 497–516.
+    In essence, the results of this study can help teachers to           Ferrer, E., Shaywitz, B. A., Holahan, J. M., Marchione, K.,
+understand both how fast is sufficient and rates beyond                      & Shaywitz, S. E. (2010). Uncoupling of reading and IQ
+which improving rate is less likely to be associated with                    over time: Empirical evidence for a definition of dyslexia.
+                                                                             Psychological Science, 21, 93–101.
+comprehension growth. At the point where getting faster
+                                                                         Francis, D. J., Fletcher, J. M., Catts, H. W., & Tomblin, J. (2005).
+fails to generate increases in comprehension for struggling
+                                                                             Dimensions affecting the assessment of reading comprehen-
+readers (i.e., about 75 wcpm and 90 wcpm for second and                      sion. In S. G. Paris & S. A. Stahl (Eds.), Children’s reading
+fourth graders), it makes sense for teachers to stop devoting                comprehension and assessment (pp. 369–394). Mahwah, NJ:
+considerable time to improving rate and instead focus on                     Lawrence Erlbaum.
+comprehension strategies, world knowledge, and vocabu-                   Fuchs, L. S., Fuchs, D., Hosp, M. K., & Jenkins, J. R. (2001). Oral
+lary that can make text more accessible to students with RD                  reading ﬂuency as an indicator of reading competence: A the-
+late in elementary school and through the secondary grades.                  oretical, empirical, and historical analysis. Scientiﬁc Studies
+                                                                             of Reading, 5, 239–256.
+Declaration of Conflicting Interests                                     Garcia, J. R., & Cain, K. (2014). Decoding and reading compre-
+                                                                             hension: A meta-analysis to identify which reader and assess-
+The author declared no potential conflicts of interest with respect          ment characteristics influence the strength of the relationship
+to the research, authorship, and/or publication of this article.             in English. Review of Educational Research, 84, 74–111.
+                                                                         Good, R. H., & Kaminski, R. A. (Eds.). (2002). Dynamic Indicators
+Funding                                                                      of Basic Early Literacy Skills (6th ed.). Eugene, OR: Institute
+The author(s) disclosed receipt of the following financial support           for the Development of Educational Achievement. Available
+for the research, authorship, and/or publication of this article: This       at http://dibels.uoregon.edu/
+research was supported by the Institute of Education Sciences, U.S.      Good, R. H., Simmons, D. C., & Kame’enui, E. J. (2001). The
+Department of Education, through grant number R305G050122 to                 importance and decision-making utility of a continuum of flu-
+the University of California–Riverside. The opinions expressed               ency-based indicators of foundational reading skills for third-
+are those of the author and do not represent views of the Institute or       grade high-stakes outcomes. Scientific Studies of Reading,
+the U.S. Department of Education.                                            5(3), 257–288.
+                                                                         Graesser, A. C., Singer, M., & Trabasso, T. (1994). Constructing
+                                                                             inferences during narrative text comprehension. Psychological
+References
+                                                                             Review, 101, 371.
+Adams, M. (1990). Beginning to read: Thinking and learning               Hasbrouck, J., & Tindal, G. A. (2006). ORF norms: A valuable
+    about print. Cambridge, MA: MIT Press.                                   assessment tool for reading teachers. Reading Teacher, 59,
+Allington, R. (2001). What really matters for struggling readers?            636–644.
+    Designing research-based programs. New York: Longman.                Jenkins, J. R., Fuchs, L. S., van den Broek, P., Espin, C., & Deno,
+Chard, D. J., Vaughn, S., & Tyler, B. (2002). A synthesis of                 S. (2003). Sources of individual differences in reading com-
+    research on effective interventions for building fluency with            prehension and reading fluency. Journal of Educational
+    elementary students with learning disabilities. Journal of               Psychology, 95, 719–729.
+    Learning Disabilities, 35, 386–406.                                  Johnston, T. C., & Kirby, J. R. (2006). The contribution of naming
+Claessens, A., Engel, M., & Curran, F. C. (2013). Academic con-              speed to the simple view of reading. Reading and Writing, 19,
+    tent, student learning, and the persistence of preschool effects.        339–361. doi: 10.1007/s11145-005-4644-2
+    American Educational Research Journal, 51, 403–434.                  Keenan, J. M., Betjemann, R. S., & Olson, R. K. (2008). Reading
+Cleveland, W. S. (1981). LOWESS: A program for smooth-                       comprehension tests vary in the skills they assess: Differential
+    ing scatterplots by robust locally weighted regression. The              dependence on decoding and oral comprehension. Scientific
+    American Statistician, 35, 54.                                           Studies of Reading, 12, 281–300.
+Cleveland, W. S., & Devlin, S. J. (1988). Locally weighted regres-       Keenan, J. M., & Meenan, C. E. (2014). Test differences in diag-
+    sion: An approach to regression analysis by local fitting.               nosing reading comprehension deficits. Journal of Learning
+    Journal of the American Statistical Association, 83, 596–610.            Disabilities, 47, 125–135.
+O’Connor                                                                                                                            135
+
+Kim, Y. G. (2015). Developmental, component-based model               Paris, S. G. (2005). Reinterpreting the development of reading
+    of reading fluency: An investigation of predictors of                 skills. Reading Research Quarterly, 40, 184–202.
+    word-reading fluency, text-reading fluency, and reading com-      Perfetti, C., & Stafura, J. (2014). Word knowledge in a theory of
+    prehension. Reading Research Quarterly, 50, 459–481.                  reading comprehension. Scientific Studies of Reading, 18,
+Kim, Y. G., & Wagner, R. K. (2015). Text (oral) reading fluency           22–37.
+    as a construct in reading development: An investigation of        Petscher, Y., & Kim, Y. (2011). The utility and accuracy of oral
+    its mediating role for children from grades 1 to 4. Scientific        reading fluency score types in predicting reading comprehen-
+    Studies of Reading, 19, 224–242.                                      sion. Journal of School Psychology, 49, 107–129.
+Kintsch, W. (1988). The role of knowledge in discourse compre-        Rasinski, T. (2012). Why reading fluency should be hot. The
+    hension: A construction-integration model. Psychological              Reading Teacher, 65, 516–522.
+    Review, 95, 163.                                                  Reschly, A. L., Busch, T. W., Betts, J., Deno, S. L., & Long, J.
+Kuhn, M. R., Schwanenflugel, P. J., Meisinger, E. B., Levy, B.            D. (2009). Curriculum-based measurement oral reading as
+    A., & Rasinski, T. V. (2010). Aligning theory and assessment          an indicator of reading achievement: A meta-analysis of the
+    of reading fluency: Automaticity, prosody, and definitions of         correlational evidence. Journal of School Psychology, 47,
+    fluency. Reading Research Quarterly, 45, 230–251.                     427–469.
+LaBerge, D., & Samuels, J. (1974). Toward a theory of automatic       Roehrig, A. D., Petscher, Y., Nettles, S. M., Hudson, R. F.,
+    information processing in reading. Cognitive Psychology, 6,           & Torgesen, J. K. (2008). Accuracy of the DIBELS Oral
+    293–323.                                                              Reading Fluency measure for predicting third grade reading
+Lesaux, N., & Kieffer, M. (2010). Exploring sources of reading            comprehension outcomes. Journal of School Psychology, 46,
+    comprehension difficulties among language minority learn-             343–366.
+    ers and their classmates in early adolescence. American           Sabatini, J., O’Reilly, T., Halderman, L. K., & Bruce, K. (2014).
+    Educational Research Journal, 47, 596–632.                            Integrating scenario-based and component reading skill
+Lyytinen, H., Erskine, J., Tolvanen, A., Torppa, M., Poikkeus, A.,        measures to understand the reading behavior of struggling
+    & Lyytinen, P. (2006). Trajectories of reading development: A         readers. Learning Disabilities Research & Practice, 29,
+    follow-up from birth to school age of children with and with-         36–43.
+    out risk for dyslexia. Merrill-Palmer Quarterly, 52, 514–547.     Samuels, S. J., Ediger, K., & Fautsch-Patridge, R. (2005). The
+Markell, M. A., & Deno, S. L. (1997). Effects of increasing oral          importance of fluent reading. The New England Reading
+    reading: Generalization across reading tasks. Journal of              Association Journal, 41(1), 1–8.
+    Special Education, 31, 233–250.                                   Schwanenflugel, P. J., Meisinger, E. B., Wisenbaker, J. M., Kuhn,
+Nagy, W., & Townsend, D. (2012). Words as tools: Learning aca-            M. R., Strauss, G. P., & Morris, R. D. (2006). Becoming a flu-
+    demic vocabulary as language acquisition. Reading Research            ent and automatic reader in the early elementary school years.
+    Quarterly, 47, 91–108.                                                Reading Research Quarterly, 41, 496–522.
+National Reading Panel Reports of the Subgroups. (2000).              Shankweiler, D., Crain, S., Katz, L., Fowler, A. E., Liberman, A.
+    Teaching children to read: An evidence-based assessment               M., Brady, S. A., et al. (1995). Cognitive profiles of read-
+    of the scientific research literature on reading and its impli-       ing-disabled children: Comparison of language skills in pho-
+    cations for reading instruction. Washington, DC: National             nology, morphology, and syntax. Psychological Science, 6,
+    Institute of Child Health and Human Development.                      149–156.
+Nese, J. F. T., Biancarosa, G., Cummings, K., Kennedy, P.,            Shany, M. T., & Biemiller, A. (1995). Assisted reading practice:
+    Alonzo, J., & Tindal, G. (2013). In search of average growth:         Effects on performance for poor readers in Grades 3 and 4.
+    Describing within-year oral reading fluency growth across             Reading Research Quarterly, 30, 382–395.
+    grades 1-8. Journal of School Psychology, 52, 625–642.            Shaywitz, B. A., Holford, T. R., Holahan, J. M., Fletcher, J. M.,
+O’Brien, B., Wallot, S., Haussmann, A., & Kloos, H. (2014).               Stuebing, K. K., Francis, D. J., & Shaywitz, S. E. (1995). A
+    Using complexity metrics to assess silent reading fluency:            Matthew effect for IQ but not for reading: Results from a lon-
+    A cross-sectional study comparing oral and silent reading.            gitudinal study. Reading Research Quarterly, 30, 894–906.
+    Scientific Studies of Reading, 18, 235–254.                       Shinn, M. M., & Shinn, M. R. (2002). AIMSweb training work-
+O’Connor, R. E., Gutierrez, G., Knight-Teague, K., Checca, C. J.,         book: Administration and scoring of reading curriculum-
+    Sun, J., & Ho, T. (2013). Variations in practice time reading         based measurement (R-CBM) for use in general outcome
+    aloud: 10 versus 20 minutes. Scientific Studies of Reading,           measurement. Eden Prairie, MN: Edformation.
+    17, 134–162.                                                      Silberglitt, B., Burns, M. K., Madyun, N. H., & Lail, K. E. (2006).
+O’Connor, R. E., & Jenkins, J. R. (1999). The prediction of read-         Relationship of reading fluency assessment data with state
+    ing disabilities in kindergarten and first grade. Scientific          accountability test scores: A longitudinal comparison of grade
+    Studies of Reading, 3, 159–197.                                       levels. Psychology in the Schools, 43, 527–535.
+O’Connor, R. E., Swanson, H. L., & Geraghty, C. (2010).               Silberglitt, B., & Hintze, J. M. (2007). How much growth can we
+    Improvement in reading rate under independent and difficult           expect? A conditional analysis of R-CBM growth rates by
+    text levels: Influences on word and comprehension skills.             level of performance. Exceptional Children, 74, 71–84.
+    Journal of Educational Psychology, 102, 1–19.                     Swanson, H. L., & O’Connor, R. E. (2009). The role of work-
+O’Connor, R. E., White, A., & Swanson, H. L. (2007). Repeated             ing memory and fluency training on reading comprehension
+    reading versus continuous reading: Influences on reading flu-         in children who are dysfluent readers. Journal of Learning
+    ency and comprehension. Exceptional Children, 74, 31–46.              Disabilities, 42, 548–575.
+136                                                                                                 Journal of Learning Disabilities 51(2)
+
+Swanson, H. L., & Siegel, L. (2001). Learning disabilities as a              instructional approaches. Journal of Learning Disabilities,
+    working memory deficit. Issues in Education: Contributions               34, 33–58.
+    of Educational Psychology, 7, 1–48.                                   Vadasy, P. F., & Sanders, E. A. (2008). Repeated reading inter-
+Therrien, W. J., Wickstrom, K., & Jones, K. (2006). Effect of a              vention: Outcomes and interactions with readers’ skills and
+    combined repeated reading and question generation interven-              classroom instruction. Journal of Educational Psychology,
+    tion on reading achievement. Learning Disabilities Research              100, 272–290.
+    & Practice, 21, 89–97.                                                Vadasy, P. F., & Sanders, E. A. (2009). Supplemental fluency
+Thurlow, R., & van den Broek, P. (1997). Automaticity and infer-             intervention and determinants of reading uutcomes. Scientific
+    ence generation during reading comprehension. Reading &                  Studies of Reading, 13(5), 383–425.
+    Writing Quarterly: Overcoming Learning Difficulties, 13,              Walczyk, J. J., Wei, M., Griffeth-Ross, D. A., Goubert, S. E.,
+    165–181.                                                                 Cooper, A. L., & Zha, P. (2007). Development of the inter-
+Tindal, G., Nese, J. F. T., Stevens, J. J., & Alonzo, J. (2016). Growth      play between automatic processes and cognitive resources in
+    on oral reading fluency measures as a function of special edu-           reading. Journal of Educational Psychology, 99, 867–887.
+    cation and measurement sufficiency. Remedial and Special              Wanzek, J., Al Otaiba, S., & Petscher, Y. (2014). Oral reading
+    Education, 37, 28–40. doi: 10.1177/0741932515590234                      fluency development for children with emotional disturbance
+Torgesen, J. K. (2004). Lessons learned from research on inter-              or learning disabilities. Exceptional Children, 80, 187–204.
+    ventions for students who have difficulty learning to read.           Wiederholt, J., & Bryant, B. (2001). Gray Oral Reading Test-4.
+    In P. McArdle & V. Chhabra (Eds.), The voice of evidence                 Austin, TX: Pro-Ed.
+    in reading research (pp. 355–382). Baltimore, MD: Paul                Wolf, M., & Bowers, P. (1999). The double-deficit hypothesis
+    Brookes.                                                                 for the developmental dyslexias. Journal of Educational
+Torgesen, J. K., Alexander, A. W., & Wagner, R. K. (2001).                   Psychology, 91, 415–438.
+    Intensive remedial instruction for children with severe read-         Woodcock, R. (1998). The Woodcock Reading Mastery Tests-NU.
+    ing disabilities: Immediate and long-term outcomes from two              Circle Pines, MN: American Guidance Service, Inc.
+

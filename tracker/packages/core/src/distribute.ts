@@ -27,6 +27,58 @@ export function percentTotal(allocations: Allocation[]): number {
 }
 
 /**
+ * Holds the shares at a hundred when one of them moves.
+ *
+ * `moved` is the share the user has just set and `pinned` names the ones they
+ * have settled. Neither is rewritten. What is left of the hundred goes to the
+ * rest in the proportion they already held, so a row at twice another stays at
+ * twice it. The floors are dealt first and the remainder goes to the rows the
+ * division cut hardest, so the total lands on a hundred rather than on 99.
+ *
+ * Pass null for `moved` where nothing was dragged. Removing a cost centre is
+ * that case. The share it held is then shared out the same way.
+ *
+ * A move with every other row held has one legal value and the moved row is
+ * put on it. That is the handle stopping dead rather than the total leaving a
+ * hundred behind.
+ */
+export function balanceShares(
+  shares: number[],
+  moved: number | null,
+  pinned: ReadonlySet<number> = new Set(),
+): number[] {
+  const out = shares.slice()
+  if (out.length === 0) return out
+
+  const at = moved !== null && moved >= 0 && moved < out.length ? moved : null
+  const fixed = out.reduce((sum, share, i) => sum + (i !== at && pinned.has(i) ? share : 0), 0)
+  const room = Math.max(0, 100 - fixed)
+  if (at !== null) out[at] = Math.max(0, Math.min(room, out[at] ?? 0))
+
+  const free = out.map((_, i) => i).filter((i) => i !== at && !pinned.has(i))
+  if (free.length === 0) {
+    if (at !== null) out[at] = room
+    return out
+  }
+
+  const left = room - (at === null ? 0 : (out[at] as number))
+  const was = free.reduce((sum, i) => sum + (out[i] ?? 0), 0)
+  const exact = free.map((i) => (was === 0 ? left / free.length : ((out[i] as number) / was) * left))
+  const whole = exact.map(Math.floor)
+  let over = left - whole.reduce((sum, n) => sum + n, 0)
+  const order = exact
+    .map((value, i) => ({ i, part: value - Math.floor(value) }))
+    .sort((a, b) => b.part - a.part)
+  for (const item of order) {
+    if (over <= 0) break
+    whole[item.i] = (whole[item.i] as number) + 1
+    over -= 1
+  }
+  free.forEach((i, slot) => (out[i] = whole[slot] as number))
+  return out
+}
+
+/**
  * Converts shares into whole half days. Rounding leaves a remainder so the
  * largest share absorbs it. That keeps the month total exactly on target.
  */

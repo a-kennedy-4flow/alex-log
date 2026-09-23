@@ -1,0 +1,758 @@
+                      What Drives the Reading Order of Programmers?
+                                  An Eye Tracking Study
+                   Norman Peitek                                                Janet Siegmund                                       Sven Apel
+       Leibniz Institute for Neurobiology                           Chemnitz University of Technology                          Saarland University
+             Magdeburg, Germany                                           Chemnitz, Germany                                   Saarbrücken, Germany
+
+ABSTRACT                                                                                      ACM Reference format:
+Background: The way how programmers comprehend source code                                    Norman Peitek, Janet Siegmund, and Sven Apel. 2020. What Drives the
+                                                                                              Reading Order of Programmers? An Eye Tracking Study. In Proceedings of
+depends on several factors, including the source code itself and the
+                                                                                              28th International Conference on Program Comprehension, Seoul, Republic of
+programmer. Recent studies showed that novice programmers tend                                Korea, October 5–6, 2020 (ICPC ’20), 12 pages.
+to read source code more like natural language text, whereas experts                          https://doi.org/10.1145/3387904.3389279
+tend to follow the program execution flow. But, it is unknown
+how the linearity of source code and the comprehension strategy
+influence programmers’ linearity of reading order.                                            1    INTRODUCTION
+Objective: We replicate two previous studies with the aim of addi-                            In the past decades, much research has focused on how program-
+tionally providing empirical evidence on the influencing effects of                           mers comprehend source code, which is a central activity in soft-
+linearity of source code and programmers’ comprehension strategy                              ware development [26, 52]. The underlying cognitive process, pro-
+on linearity of reading order.                                                                gram comprehension, is a prerequisite for all subsequent program-
+Methods: To understand the effects of linearity of source code on                             mer activities, such as testing, debugging, and maintenance. Past
+reading order, we conducted a non-exact replication of studies by                             research theorized on two main strategies of how programmers
+Busjahn et al. and Peachock et al., which compared the reading                                comprehend software. Bottom-up comprehension is used when pro-
+order of novice and expert programmers. Like the original studies,                            grammers lack domain knowledge, experience, or context to effi-
+we used an eye-tracker to record the eye movements of participants                            ciently understand source code [39]. Instead, they have to under-
+(12 novice and 19 intermediate programmers).                                                  stand individual source code lines and statements and integrate
+Results: In line with Busjahn et al. (but different from Peachock                             their semantic meaning to eventually build an overarching un-
+et al.), we found that experience modulates the reading behavior                              derstanding (i.e., chunking [46]). Top-down comprehension is used
+of participants. However, the linearity of source code has an even                            when programmers take advantage of previous experience or do-
+stronger effect on reading order than experience, whereas the com-                            main knowledge for an efficient hypothesis-driven comprehension
+prehension strategy has a minor effect.                                                       process [51], for example, guided by variable identifiers [10].
+Implications: Our results demonstrate that studies on the reading                                Although there is some evidence for the validity of these exist-
+behavior of programmers must carefully select source code snippets                            ing comprehension models, there are still knowledge gaps, such as
+to control the influence of confounding factors. Furthermore, we                              when and how programmers are able to apply top-down comprehen-
+identify a need for further studies on how programmers should                                 sion. Program comprehension is an internal cognitive process and
+structure source code to align it with their natural reading behavior                         as such inherently difficult to measure [47]. Conventional methods,
+to ease program comprehension.                                                                such as think-aloud protocols or measuring task efficiency, cannot
+                                                                                              provide deep insights into the underlying cognitive processes of
+CCS CONCEPTS                                                                                  program comprehension.
+• Human-centered computing → Empirical studies in HCI ; HCI                                      One important aspect of program comprehension is observing
+design and evaluation methods;                                                                the way programmers read source code. Eye tracking has proved
+                                                                                              useful to observe programmers reading source code and answer
+KEYWORDS                                                                                      such fundamental research questions on program comprehension
+                                                                                              (e.g., [13, 44, 53]). For example, Sharif and Maletic replicated a
+program comprehension, eye tracking, source code linearity, lin-                              conventional study with eye tracking and found that naming style
+earity of reading order, programmer experience                                                affects program comprehension in that programmers are able to
+                                                                                              read under_score style faster than camelCase style [8, 44].
+                                                                                                 Previous research suggested that the linearity of the reading order
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed         could be an indicator of how efficient programmers comprehend
+for profit or commercial advantage and that copies bear this notice and the full citation     source code [13]. Busjahn et al.’s seminal study described several
+on the first page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+                                                                                              eye-gaze measures to gauge linearity of reading order. They showed
+to post on servers or to redistribute to lists, requires prior specific permission and/or a   that programmers read source code less linear than natural text and
+fee. Request permissions from permissions@acm.org.                                            also that expert programmers read source code less linearly than
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea
+                                                                                              novices [13]. This study indicates that comprehending source code
+© 2020 Association for Computing Machinery.
+ACM ISBN 978-1-4503-7958-8/20/05. . . $15.00                                                  is a skill that needs to be developed and honed with experience.
+https://doi.org/10.1145/3387904.3389279                                                       A replication of Busjahn et al.’s study by Peachock et al. supports
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea                                          Norman Peitek, Janet Siegmund, and Sven Apel
+
+
+the adequacy of the developed eye-gaze measures and partially             Participants. 7 of the 14 novices were females. They were be-
+corroborated Busjahn’s study results with student participants [38].    tween 19 and 33 years old, had, at most, little programming experi-
+   In this paper, we further dig into the role of the linearity of      ence, and all had, at least, a medium English proficiency (while Ger-
+reading order for program comprehension. Specifically, we aim           man being the native language). The experts were all professional
+at understanding how programmers’ comprehension strategy and            programmers with, at least, 5 years of programming experience,
+linearity of source code itself affect programmers’ reading behavior.   and were between 26 and 49 years old. One of the 6 experts was
+Understanding all factors that influence programmers’ linearity         female.
+of reading order is critical to more accurately measure program
+comprehension with eye tracking. To this end, we conducted a               Variables. The study of Busjahn et al. had two independent vari-
+non-exact replication of the studies by Busjahn et al. and Peachock     ables: programmer experience (novice or expert, between-subject)
+et al. with novice and intermediate programmers. Our study differs      and, for novices, whether the presented stimuli were source code or
+in the following details: First, based on the two studies, we further   natural text (within-subject). Busjahn et al. analyzed the data in two
+refined the materials with a more systematically varied source          steps: First, they contrasted how novices read source code versus
+code linearity. Second, we investigated in addition the interaction     natural text (within-subject). Second, they contrasted linearity of
+between comprehension strategy (i.e., top-down comprehension or         reading order between experts and novices (between-subject).
+bottom-up comprehension) with the linearity of reading order.
+                                                                           Dependent Variables. To quantify the participants’ linearity of
+   In short, we make the following contributions:
+                                                                        reading order, Busjahn et al. describe a set of six eye-gaze measures,
+   • We report on a non-exact replication of Busjahn et al.’s eye-
+                                                                        which we summarize in Table 1 and which we will also use for
+      tracking study on linearity of reading order.
+                                                                        our data analysis.1 In essence, Busjahn et al.’s eye-gaze measures
+   • We provide further evidence that more experienced program-
+                                                                        abstract a fixation sequence of (x,y) coordinates on the screen to
+      mers read source code less linearly than novices.
+                                                                        higher-level concepts, such as regressions. Regressions are a sign
+   • We present data that indicate that top-down and bottom-up
+                                                                        that a participant had to revisit a previous part, which could be due
+      comprehension affect linearity of reading order.
+                                                                        to an insufficient understanding or following a snippet’s execution
+   • We propose a method to systematize source code linearity and
+                                                                        (e.g., loop structures).
+      demonstrate that differences between source code snippets
+      can substantially influence programmers’ reading order.              Needleman-Wunsch Algorithm. In addition to the six fixation-
+                                                                        based eye-gaze measures, Busjahn et al. analyzed the order in which
+                                                                        each source code line was fixated and contrasted it with (a) the
+2     ORIGINAL STUDY AND REPLICATION
+                                                                        “story order” and (b) the execution order of a source code. The story
+In this section, we briefly summarize the original study by Busjahn     order of a source code snippet is the sequence of each line from
+et al. as well as the replication study by Peachock et al.              top to bottom, similar to natural text (e.g., 1, 2, 3, 4). The execution
+                                                                        order of a source code snippet is the sequence of lines in which
+                                                                        the code is executed, which may differ significantly from the story
+2.1    Original Study (Busjahn et al.)                                  order (e.g., 3, 4, 2, 1, 2, 4).
+Busjahn et al. conducted a novel study on programmers’ linearity           The presented source code snippets contained up to 30 lines of
+of reading order [13]. They compared the linearity of reading order     source code. To effectively compare long sequences of line numbers,
+of novice and expert programmers as well as the novices’ linearity      Busjahn et al. relied on the Needleman-Wunsch (N-W) algorithm,
+of reading order for natural text and for source code. They observed    which was originally designed for molecular comparisons of pro-
+the eye movements of 14 students while reading source code as well      teins [34] and later applied for use in eye-tracking research by
+as natural text in their weekly Java beginners course. The natural      Cristino et al. [16]. The N-W algorithm computes the similarity
+text were short English passages of four to five lines. In addition,    between two sequences. In this study, it can be interpreted as how
+they asked 6 professional programmers to comprehend the source          similar an observed linearity of reading order is to a line-by-line
+code and observed their eye movements. Due to the novelty of            reading order or a computer’s execution order of the source code.
+this research question, they also described appropriate eye-gaze        Furthermore, as programmers often cannot comprehend a piece
+measures to quantify the linearity of reading order.                    of source code in a single read, Busjahn et al. added a dynamic
+                                                                        version of the N-W algorithm that tolerates multiple reads. In our
+   Experiment Design. Ultimately, Busjahn et al. ran 17 trials of       data analysis, we will also use both versions of the N-W algorithm
+novices reading natural text, 101 trials of novices reading source      to assess the linearity of reading order of our participants.
+code, and 21 trials of experts reading source code. As the novices
+were still learning programming, their snippets were simpler than         Results. Busjahn et al. reported two main findings: First, novice
+the snippets for the expert participants. Only two snippets had         programmers read source code less linearly than natural text. Sec-
+to be comprehended by both participant groups. For all snippets,        ond, expert programmers read source code less linearly than novice
+participants were randomly asked one of three possible tasks: write     programmers.
+a summary of the source code, compute the output, or answer a
+multiple-choice question. To observe eye movements Busjahn et al.       1 Busjahn et al. also describe an element coverage measure, which we did not include
+used a SMI RED-m remote eye-tracker with a sample rate of 120 Hz.       due to technical limitations of our experiment setup.
+What Drives the Reading Order of Programmers? An Eye Tracking Study                       ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea
+
+Table 1: Overview of gaze-based measures taken from Table 1 from Busjahn et al. [13]. In each trial, F is the set of all recorded
+fixations. Fi (where i = 1, ..., n) is the fixation recorded at time index i. L(Fi ) is the line number of the fixation at index i. In each
+trial, W is the set of word indices in the text. W (Fi ) is the word number of the fixation at index i.
+
+ Measure                   Definition                                                   Computation
+                           % of forward saccades that either stay on the same line
+ Vertical Next Text                                                                     % of all Fi , where L (Fi ) − L (Fi+1 ) ∈ {0, −1}
+                           or move one line down
+                           % of forward saccades that either stay on the same line
+ Vertical Later Text                                                                    % of all Fi , where L (Fi ) ≤ L (Fi+1 )
+                           or move down any number of lines
+ Horizontal Later Text     % of forward saccades within a line                          % of all Fi , where L (Fi ) = L (Fi+1 ) ∧ W (Fi ) ≤ W (Fi+1 )
+ Regression Rate           % of backward saccades of any length                         % of all Fi , where W (Fi ) > W (Fi+1 )
+ Line Regression Rate      % of backward saccades within a line                         % of all Fi , where L (Fi ) = L (Fi+1 ) ∧ W (Fi ) > W (Fi+1 )
+                                                                                          i =1 Distance(F i , F i +1 )
+                                                                                        Ín−1
+                           Average Euclidean distance between every successive
+ Saccade Length                                                                                    |F |−1
+                           pair of fixations
+                           N-W alignment score of fixation order with linear text
+ Story Order                                                                            Alignment(L(F ), story-order pattern)
+                           reading order
+                           N-W alignment score of fixation order with the source
+ Execution Order                                                                        Alignment(L(F ), execution-order pattern)
+                           code’s execution order
+
+
+2.2    Replication Study (Peachock et al. )                                2.3     Implications for Future Research
+   Experiment Design. Peachock et al. replicated Busjahn et al.’s          Busjahn et al. developed a tested way to quantify program com-
+original study [38]: It was also a mixed-model experiment with two         prehension: How linear do programmers read source code? With
+independent variables (programmer experience, between-subject)             their methodology, researchers can tackle further research ques-
+and stimuli (source code or natural text, within-subject). They also       tions about source code readability and programmer education
+invited student programmers (33 overall, 18 male, 15 female) and           with affordable and reliable eye tracking. The two presented stud-
+asked them to comprehend seven short source code snippets and              ies by Busjahn et al. and Peachock et al. show consistently that
+three pieces of natural language text. They used the same natural          programmers read source code less linear than natural text.
+language snippets as Busjahn et al., but different source code snip-          As a next step, we were interested in how the linearity of the
+pets in C++. The source code contained some variety in complexity,         source code itself may affect programmers’ linearity of reading
+but all on a rather low level. Similar to Busjahn et al., Peachock         order. Since the two studies did not explicitly manipulate the source
+et al. asked three random comprehension questions after each task          code linearity, we conducted a non-exact replication.
+to ensure that participants fulfill the given task. Novice participants
+had no or only little contact with programming. The “expert” par-          3     EXPERIMENT DESIGN
+ticipants already had some programming experience, but were still          The overarching goal of our study is to gain a deeper understanding
+undergraduate students.                                                    of how source code, programmer experience, and comprehension
+   There were some differences in their experiment design to the           strategy affect linearity of reading order. We provide a replication
+original study. Specifically, Peachock et al. used C++ (instead of Java)   package, which includes all stimuli, acquired data, and analysis
+snippets; the natural language content was the same, but due to the        scripts.2 Specifically, we pose the following research questions:
+different participant pool, it was in their native language (English).     RQ1: Can we resolve the contradicting results of Busjahn et al. and
+Unlike Busjahn et al., they did not invite expert programmers, but              Peachock et al. regarding whether more experienced program-
+advanced undergraduate students, which they refer to as “non-                   mers read source code less linear than novice programmers?
+novice” participants. Peachock et al. used a Tobii X60 eye-tracker         RQ2: Does the comprehension strategy, that is, bottom-up and
+with a sample rate of 60 Hz.                                                    top-down comprehension, affect linearity of reading order?
+  Analysis. Peachock et al. analyzed the dependent variable eye            RQ3: Does the linearity of source code affect programmers’ linear-
+movements in terms of the Busjahn et al.’s linearity measures.                  ity of reading order?
+                                                                              To evaluate RQ1, we conducted a non-exact replication with
+  Results. Peachock et al. reported the following results:                 novice programmers as well as more experienced programmers
+  • Programmers read source code less linear than natural text             that can be classified as intermediate programmers according to
+    (replicated),                                                          Dreyfus’ taxonomy of skill acquisition [18, 32]. Since we presented
+  • There is no significant difference in linearity between novice         the same source code snippets to both groups, we can reduce the
+    and expert participants (not replicated), and                          risk of a confounding factor arising from within the source code
+  • There are significant differences between natural text and             snippets.
+    source code in terms of linearity of reading order based on the
+    N-W score (replicated).                                                2 https://github.com/brains-on-code/eyetracking-linearity-replication/
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea                                        Norman Peitek, Janet Siegmund, and Sven Apel
+
+
+   To address RQ2, we need to control the programmers’ compre-               Snippet Comparability with i. The source code linearity i allows
+hension strategy. We operationalized the comprehension strategy           us to compare source code snippets with higher sensitivity than
+by using meaningful versus obfuscated identifier names in the             other metrics (e.g., number or size of methods) with each other.
+source code snippets, which has been shown to induce top-down             The lower the source code linearity i, the more linear a source code
+or bottom-up comprehension (cf. Section 3.2, [50]).                       snippet is (i.e., the flow of calls follows the order from the top of
+   To address RQ3, we measure the linearity of source code. For this      the screen to the bottom). The higher i is, the less linear is a source
+purpose, we have developed and validated a metric that quantifies         code snippet (i.e., the methods in the source code are not located in
+source code execution order, which we describe next.                      a position corresponding to the sequence of their calls).
+
+3.1     Source Code Linearity i                                              Validation Study. To evaluate whether the source code linearity i
+                                                                          captures the intuitive notion of linearity, we conducted a valida-
+To investigate how source code linearity affects linearity of reading
+                                                                          tion study with 10 advanced graduate students. In the validation
+order, we define source code linearity i as follows:
+                                                                          study, participants compared two snippets regarding their perceived
+                                                                          linearity. To this end, we selected 20 snippets with a wide range
+      ∆
+                     |M |
+                     Õ                  1
+                                             |M |
+                                             Õ                            of linearity, as reflected in the source code linearity i. Then, we
+i=       , where ∆ =      δmi and Λ̄ =     ×      λm for mi ∈ M           divided the snippets into three categories: linear, medium, and non-
+      Λ̄             i=1
+                                       |M | i=1 i
+                                                                          linear, and asked participants to compare two snippets of different
+with                                                                      categories (e.g., a linear and a medium snippet) and of the same
+                                                                          category (e.g., two linear snippets). This way, we evaluated whether
+                     λm := length of a method
+                                                                          differences and similarity in linearity predicted by our source code
+                 M := {m | m ∈ P, m is a method)                          linearity i are also reflected in programmers’ intuitive notion of
+                         δm := |Cm − Dm |                                 linearity.
+                 Dm := ι e for e := Declaration(m)                           We found that, for most of the snippets, the linearity metric
+                                                                          reflected the perception of participants well. For the few snippets in
+                     Cm := ι e for e := Call(m)
+                                                                          which both judgements were different, we excluded such cases from
+                      ι e := index(e) for e ∈ P                           the actual study to avoid having different estimations of linearity. It
+                           P := ΩProgram                                  would be interesting to refine the definition of source code linearity i
+                                                                          in future studies.
+The linearity i of a source code snippet is the relation between the
+distances between jumps ∆ and the average method length Λ̄. A
+jump δm for a method m is the absolute distance between line ι
+                                                                          3.2    Material
+where it is called (Cm ) and the line where it is declared (Dm ).         In line with our research goals, we used source code snippets that
+    When programmers comprehend source code, they may follow              both novices and intermediate programmers are able to understand.
+its execution flow. When they encounter a method call while read-         To understand the effect of source code linearity, we calculated i for
+ing source code, their eyes may “jump” to the declaration of that         all candidate snippets and assigned them to a category (A, B, C, D,
+method. Throughout the process of a thorough understanding of a           or E). The category of a snippet indicates to which 20% percentile
+source code snippet, over time this adds up to an overall “jump dis-      its linearity i belongs. For example, a linearity i = 1.64 belongs to
+tance” ∆, which depends on the number of jumps and the distance           the 30% percentile and thus is part of category B.
+of each jump. The distance of a jump is substantially influenced by           We selected 10 snippets, 2 from each category (cf. Table 2). We
+method length, that is, when programmers have to jump to the sub-         re-used 8 Java snippets from the original study by Busjahn et al.
+sequent method, they have to skip the entire length of the current        (including both snippets that were shown to novices and experts). In
+method. Thus, we need to normalize the overall “jump distance” by         addition, we created 2 new snippets (CheckIfLetters, SumArray),
+the average length Λ̄ for each method λm of all methods in a given        comparable in complexity and content, to balance our snippets
+source code snippet.                                                      along our linearity i metric. All snippets are rather short with,
+    For example, the snippet Calculation in Listing 1 contains two        at most, 30 lines of code. The source code snippets implement
+methods, one with 7 and one with 4 lines. Thus, this source code          algorithms commonly used in computing education (e.g., insertion
+snippet has an average method length Λ̄ of 5.5 lines. The snippet         sort). For example, Listing 1 shows a snippet that calculates the
+contains only one method jump from line 11 to 2 (i.e., overall jump       cubed number of 2 (i = 1.64, Category B).
+distance ∆ is 9 lines). We divide the overall jump distance ∆ by Λ̄           Each snippet contains a single class with one main method, up
+and obtain a result of i = 1.64, a rather low value indicating a fairly   to 4 helper methods, and, at least, one System.out.print() state-
+linear snippet. We visualize the three large jumps of the less linear     ment composing the snippet’s result.
+snippet Student in Listing 2.
+                                                                             Obfuscated Snippets. After selecting the 10 snippets, we created
+   Prerequisites. For these definitions to work, we assume that a         a second version of all snippets, in which we removed semantic
+given source code is a syntactically correct Java program, containing     cues by obfuscating all identifier names. This method was initially
+the declaration of a package, a class, and a static main function.        used by Siegmund et al. to force participants to apply bottom-
+Although only evaluated for Java source code, this principle can          up comprehension [48]. The motivation to distinguish bottom-up
+also be applied to other programming languages.                           and top-down comprehension, and to observe them separately, is
+What Drives the Reading Order of Programmers? An Eye Tracking Study                  ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea
+
+
+                                                                         we aimed to eliminate the chance that the kind of task affects
+                                                                         participants’ comprehension strategy (in addition to the source
+                                                                         code linearity and snippet obfuscation).
+
+                                                                         3.4    Independent Variables
+                                                                         Our study design contains three independent variables:
+                                                                           • Programmer experience (novice vs. intermediate programmers,
+                                                                             between-subject)
+                                                                           • Top-down vs. bottom-up comprehension (meaningful vs. ob-
+ Listing 1: Source code snippet that elicits top-down com-                   fuscated identifier names, within-subject)
+ prehension with meaningful identifier names, which cal-                   • Linearity of snippets (5 categories of A, B, C, D, E, with A
+ culates the mathematical result of 23 . The source code can                 being most linear and E being least linear, within-subject, cf.
+ be largely read along its linear execution order from top                   Section 3.1)
+ to bottom (visualized with →).
+                                                                         3.5    Dependent Variables
+                                                                         We consider two dependent variables: behavioral data (i.e., response
+                                                                         time and correctness) and eye gaze. We define response time as the
+                                                                         time from a participant first viewing a snippet until the time they
+                                                                         submit their answer. The raw data of the observed eye gaze is a
+                                                                         stream of (x,y) coordinates on the screen, which we used to compute
+                                                                         the measures of the study by Busjahn et al. (cf. Table 1, [13]).
+
+                                                                         3.6    Participants
+                                                                         We recruited participants for both groups from three universities,
+                                                                         which we detail in Table 3. We offered to participate in a raffle for a
+                                                                         20€ Amazon gift card, see a visualized export of their eye-tracking
+                                                                         data, and receive results of the study as compensation.
+                                                                            Novice participants had a fundamental understanding of Java and
+                                                                         object-oriented programming (i.e., passed, at least, an introductory
+ Listing 2: Source code snippet with obfuscated identifiers              programming class). Our intermediate programmers were advanced
+ that prints a student’s age after a birthday. The snippet               graduate students of computer science (i.e., higher-level master or
+ requires programmers’ eyes to vertically jump between                   PhD students in computer science or a related field). We verified
+ methods to follow execution flow (visualized with →).                   our selection with small programming questionnaire during the
+                                                                         experiment [49]. We summarize our participants’ demographics
+                                                                         and programming experience in Table 4. The experience of our
+two-fold: First, bottom-up comprehension reduces the advantage           intermediate programmers lies between the two previous studies’
+of prior programming experience [39] as done by previous stud-           “expert” groups. We classified our participant groups as novice and
+ies [3, 23, 24, 27, 28, 33, 48]. Second, the direct contrast between     intermediate programmers according to Dreyfus’ taxonomy of skill
+meaningful and obfuscated identifier names allows us to investi-         acquisition [18, 32].
+gate how eye movements change depending on the comprehension                Due to the requirements of the eye-tracker, only programmers
+strategy (which is similar to the fMRI study by Siegmund et al. [50]).   without eye-vision conditions (e.g., strabismus; corrective glasses
+We show an example of an obfuscated snippet that computes the            or lenses were acceptable) were eligible to participate in our study.
+age after a birthday in Listing 2.
+   Table 2 lists all snippets, their linearity values, and an overview   3.7    Experiment Procedure
+of the behavioral results. All snippets in both versions, meaningful
+                                                                            Eye-Tracker. We used a Tobii EyeX eye-tracker with a sample
+and obfuscated, along with their solutions are available in our
+                                                                         rate of 60 Hz. Since we collected data at three different universi-
+replication package.
+                                                                         ties, different screen sizes and resolutions were in use: 1920×1200,
+                                                                         1920×1080, and 1680×1050. We scaled all analyses according to the
+3.3    Task
+                                                                         respective screen resolution.
+We asked participants of both experience levels and both snippet
+versions to enter the result of the final print statement for all           Data Collection. The experimenter led participants through an
+presented snippets. For example, for the snippet of Listing 1, the       explanation of the experiment, all program comprehension tasks,
+correct output is “8”. This is a simplified version from the original    and finally demographic and eligibility questions.
+study, where Busjahn et al. randomly selected between computing             We assigned most participants 10 snippets, except for the first
+output, a comprehension summary, or multiple-choice questions.           3 novices, who got only 7 snippets. The first three participants
+The rationale of fixing the task to computing the output is that         were faster than expected and reported little exhaustion from the
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea                                          Norman Peitek, Janet Siegmund, and Sven Apel
+
+Table 2: All snippets used in the study, their metric values, and experimental results. For the metrics columns, darker shading
+indicates higher values. Unless noted with *, all snippets were part of the study by Busjahn et al. [13]. How often a snippet
+had to be solved by a group is unbalanced due to a randomized presentation of snippets regarding linearity and variant.
+
+Snippet                        Metrics                  Variant                      Novices                  Intermediate Programmers
+                                         Linearity i
+                   LOC     # Methods                                   Correctness    Response Time [s̄]      Correctness    Response Time [s̄]
+                                         (Category)
+MoneyClass             8             1    0.00    (A)   Meaningful             7/7                    37.6           11/12                 31.0
+                                                        Obfuscated             5/5                    55.3             7/7                 44.2
+SumArray*             12             1    0.00    (A)   Meaningful             5/5                    38.7           14/15                 35.1
+                                                        Obfuscated             3/4                    42.7             4/4                 47.3
+CheckIfLetters*       21             2    1.56    (B)   Meaningful             7/7                    81.2            9/10                 64.9
+                                                        Obfuscated             2/2                    15.1             8/9                101.4
+Calculation           14             2    1.64    (B)   Meaningful             6/8                    72.4           12/14                 47.4
+                                                        Obfuscated             4/4                    78.4             5/5                 99.8
+InsertSort            29             3    3.24    (C)   Meaningful             2/9                   163.0            3/12                153.9
+                                                        Obfuscated               –                       –             4/7                218.1
+Vehicle               26             3    4.42    (C)   Meaningful             7/7                    86.1           16/16                 54.1
+                                                        Obfuscated             5/5                   107.4             3/3                 85.8
+Student               23             4    8.27    (D)   Meaningful             8/9                    29.1           12/12                 29.2
+                                                        Obfuscated             2/3                    64.1             7/7                 46.1
+SignChecker           26             3    9.90    (D)   Meaningful             8/8                    78.6           17/17                 56.7
+                                                        Obfuscated             2/4                   107.1             2/2                 68.7
+Street                21             4   10.57    (E)   Meaningful             6/6                    26.4           14/14                 30.1
+                                                        Obfuscated             5/6                   172.6             5/5                 45.7
+Rectangle             29             5   20.00    (E)   Meaningful             9/9                    94.6           11/11                 59.9
+                                                        Obfuscated             2/3                    77.2             8/8                 90.6
+                                                        Meaningful     65/75 (87%)             76.3 ± 54.0   120/133 (90%)          55.0 ± 39.9
+Overall
+                                                        Obfuscated     30/36 (83%)             96.9 ± 55.7     53/57 (93%)          89.6 ± 60.4
+
+
+          Table 3: Participant recruitment universities.                   3 obfuscated (bottom-up comprehension) snippets and 7 meaning-
+                                                                           ful (top-down comprehension) snippets, which led to an imbalance
+                       University    University    University              between the number of the two comprehension strategies (cf. Ta-
+                        Passau        Weimar       Magdeburg               ble 2). We pseudo-randomized the order and the selection in which
+                                                                           snippets were presented (i.e., we ensured the split between obfus-
+     Novices               5              2             5
+                                                                           cated and meaningful snippets, but besides that, everything else
+     Intermediate                                                          was random).
+                           0             17             2
+     Programmers
+                                                                              Execution. We obtained 15 eye-tracking data sets from novices
+                                                                           and 19 from intermediate programmers. We excluded three data
+Table 4: Demographic data of our participants. Our interme-
+                                                                           sets from novices, because the eye-tracker failed to track more than
+diate programmers tend to be older, but also have more ex-
+                                                                           one minute of data due to a setup issue. Therefore, all subsequent
+perience specific to Java and general programming.
+                                                                           data analyses (including behavioral data) are based on 12 novice
+                                                                           participants.
+                                                   Intermediate Pro-
+                                Novices (n=12)                                Deviation. Three obfuscated snippets contained (by mistake) an
+                                                   grammers (n=19)
+                                                                           error that would prevent compilation. We discuss an interesting
+ Male                                 9 (75%)            18 (95%)          observation on how programmers with different experience levels
+ Female                               3 (25%)             1 (5%)           handle this issue in Section 6.2.
+ Age (in Years)                     21.4 ± 2.3          29.9 ± 4.6
+ Years of Programming                3.3 ± 1.8          12.2 ± 6.1
+                                                                           4 DATA ANALYSIS
+ Years of Java Programming           3.0 ± 2.3           6.8 ± 5.5
+                                                                           4.1 Preparation and Preprocessing
+                                                                             Behavioral Data. To decide whether an answer was semantically
+meaningful snippets. Thus, we increased the number of meaningful           correct, we manually evaluated each response. We interpreted re-
+snippets from 4 to 7. For all subsequent participants, we presented        sponses with only minor formatting inaccuracies as semantically
+What Drives the Reading Order of Programmers? An Eye Tracking Study                       ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea
+
+
+correct (e.g., if a participant responded with a value of “1.4” instead    Table 5: Behavioral data separated by programming experi-
+of “1.40”).                                                                ence. Intermediate programmers are faster, but miss more
+                                                                           compiler errors. Gray font color marks non-significance.
+   Eye-Tracking Data. The eye-tracker provides a stream of (x,y)
+coordinates. We applied several preprocessing steps to ensure high
+                                                                                                                          Novices         Intermediate Pro-
+data quality and reliability.
+                                                                                                                          (n=12)          grammers (n=19)
+   First, we smoothed the stream of (x,y) coordinates with a Savitzky-
+Golay filter (window length of 5, polynomial order of 3) [35]. Next,          Correct Responses (All)                        86%                  91%
+we applied a velocity-based algorithm to detect fixations and sac-            Correct Responses (Meaningful)                 87%                  90%
+cades from the eye gaze. We used a velocity threshold of 150 pixel            Correct Responses (Obfuscated)                 83%                  93%
+in 100 milliseconds. If the velocity was below the threshold, it was          Response Time (All, in sec)                83.0 ± 55.1          65.4 ± 49.4
+                                                                              Response Time (Meaningful)                 76.3 ± 54.0          55.0 ± 39.9
+interpreted as a fixation, otherwise as a saccade [22].
+                                                                              Response Time (Obfuscated)                 96.9 ± 55.6          89.6 ± 60.4
+   Second, we created areas-of-interest (AOIs) for each line and
+                                                                              Compiler Errors Detected                  7 of 11 (64%)         2 of 7 (28%)
+block of each snippet. The AOIs allow us to compute the measures
+that describe the linearity of reading order as described by Busjahn
+et al. For all subsequent analyses based on AOIs, we filtered out all
+                                                                           91%, Mann-Whitney-U test3 : U = 11121, p = 0.072), they were
+fixations outside of defined AOIs (e.g., participants looking around
+                                                                           across all snippets significantly slower, on average (83 sec vs. 65
+the room). Following Busjahn et al., we included fixations with a
+                                                                           sec, U = 8001, p = 0.000). Intermediate programmers showed a
+maximum of a 100 pixel horizontal deviation (≈ 7–8 characters), as
+                                                                           faster comprehension when snippets contained meaningful iden-
+small AOIs can otherwise be easily missed (e.g., a closing bracket)
+                                                                           tifier names, which facilitate top-down comprehension (76 sec vs.
+and may distort the results.
+                                                                           55 sec, U = 3562, p = 0.000). But, when we obfuscated identi-
+4.2    Analysis Procedure for Eye-Tracking Data                            fier names enforcing bottom-up comprehension, intermediate pro-
+                                                                           grammers fall back close to the speed of novices (97 sec vs. 90 sec,
+After preprocessing, we computed the measures capturing linearity
+                                                                           U = 889, p = 0.142).
+of reading order developed by Busjahn et al. (cf. Table 1) for each
+                                                                               Unlike intermediate programmers, most novices found the acci-
+participant group and experimental factor.
+                                                                           dental compiler errors in the obfuscated snippets (cf. Section 3.7).
+   Since we have more than one independent variable, we compute
+                                                                           However, this difference is non-significant (U = 52, p = 0.079).
+a linear mixed regression model, which allows us to also detect
+possible interaction effects [30]. This analysis differs from Busjahn
+                                                                           5.2      Eye-Tracking Data
+et al., who only had one independent variable and used Mann-
+Whitney-U tests to test for significant differences. For each of the       In Table 6, we provide an overview of the eye-tracking results for
+Busjahn et al.’s measures described in Table 1, we computed a              all three RQs. In essence, we can partially replicate Busjahn et al.’s
+linear mixed regression model with three factors: programmer               results that intermediate programmers read source code less linear
+experience (novice or intermediate programmer), comprehension              and contradict Peachock et al.’s negative result (RQ1). Specifically,
+mode (top-down or bottom-up), and source-code linearity (in five           we found evidence that intermediate programmers show signifi-
+categories: A, B, C, D, E). We used the R lme4 package, version            cantly more vertical next and vertical later eye movements, that
+1.1.21, to compute the linear model [2]. Data across all measures          is, their eye gaze jumps to the next or a source code line further
+yielded in a converged model, indicating that the provided factors         down (cf. Table 1). In contrast to Busjahn et al., we observed that
+can explain the observed variance. We subsequently tested the fitted       intermediate programmers use more vertical regressions, that is,
+model for statistical significance with the car package [19], version      that the percentage of their eye gaze movements going upwards
+3.0.6, which internally uses a type II Wald chi-square test.               in source code is larger than that of novices. We cannot confirm
+   To avoid an inflated probability of the type-I error (i.e., incorrect   Busjahn et al.’s findings with the N-W algorithm in our data set,
+rejection of a null hypothesis) due to multiple statistical testing, we    which yielded non-significant results. In other words, novice and
+adjusted the significance threshold with a false-discovery-rate (FDR)      intermediate programmers’ reading order is not different for our
+correction [6]. This resulted in an adjusted p-level significance          sample.
+threshold of 0.033. Thus, we consider only results with a p-level              We observed mixed results about whether and how program-
+below 0.033 as statistically significant.                                  mers’ comprehension strategy affects their linearity of reading order
+                                                                           (RQ2). First, programmers using top-down comprehension show
+5     RESULTS                                                              percentage-wise less vertical regressions, but more horizontal later
+                                                                           eye movements than in bottom-up comprehension. In other words,
+In this section, we report the results of the behavioral and eye-
+                                                                           programmers’ eyes seem to move within a line more during top-
+tracking analysis, followed by our interpretation in Section 6.
+                                                                           down comprehension. Although programmers use longer saccades
+5.1    Behavioral Data                                                     during top-down comprehension, this effect is not significant (after
+                                                                           FDR correction). The N-W scores for bottom-up comprehension are
+We show a summary of the behavioral results between the two                significantly smaller than for top-down comprehension, indicating
+participant groups in Table 5 and a detailed version for each snip-
+pet, variant, and group in Table 2. While novices achieved a sim-          3 t tests are inappropriate as Shapiro-Wilk tests [42] showed non-normality for response
+
+ilar correctness rate as the intermediate programmers (86% vs.             correctness and times.
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea                                             Norman Peitek, Janet Siegmund, and Sven Apel
+
+Table 6: Overview of the three studies’ eye-tracking results. Inequality symbol > indicates in which direction the linearity of
+reading order is influenced. Gray font color marks non-significance. Text highlighted with green indicate replicated results ,
+while purple indicates that our results are different from Busjahn et al. We did not find any significant interaction effects.
+
+                             Busjahn [13]        Peachock [38]                                         Our Study
+                                                                                               Comprehension              Source Code Linearity i
+                              Experience*         Experience*             Experience**
+                                                                                                 Strategy**                  (A, B, C, D, E)**
+ Vertical Next              p < 0.001, E > N     p = 0.406           p = 0.031 , E > N        p = 0.148, TD > BU     p = 0.000, A > B > C > D > E
+ Vertical Later             p < 0.010, E > N     p = 0.461           p = 0.003 , E > N        p = 0.059, TD > BU     p = 0.000, D > E > C > B > A
+ Vertical Regressions       p < 0.001, N > E     p = 0.453           p = 0.010 , E > N        p = 0.000, BU > TD     p = 0.000, D > E > C > B > A
+ Horizontal Later           p < 0.001, E > N     p = 0.487           p = 0.008 , N > E        p = 0.001, TD > BU     p = 0.000, A > B > C > D > E
+ Horizontal Regressions     p = 0.970, E > N     p = 0.973           p = 0.044 , N > E        p = 0.450, TD > BU     p = 0.001, A > B > C > D > E
+ Saccade Length             p < 0.001, E > N     not provided        p = 0.903 , N > E        p = 0.046, TD > BU     p = 0.000, D > E > A > C > B
+ Story Order (Naïve)        p < 0.001            not provided        p = 0.909 , N > E        p = 0.000, TD > BU     p = 0.000, A > D > E > B > C
+ Story Order (Dynamic)      p < 0.0001           not provided        p = 0.557 , N > E        p = 0.000, TD > BU     p = 0.000, A > D > B > E > C
+ Exec. Order (Naïve)        not provided         not provided        p = 0.809 , N > E        p = 0.000, TD > BU     p = 0.000, A > D > B > E > C
+ Exec. Order (Dynamic)      not provided         not provided        p = 0.932 , N > E        p = 0.000, TD > BU     p = 0.000, A > B > D > E > C
+
+      * Matt-Whitney U Tests   ** Linear Mixed Model with Wald Chi-Square Test (Significance Threshold 0.033 after FDR Correction)
+                        N = Novice, E = Expert/Intermediate Programmers     BU = Bottom-Up, TD = Top-Down
+
+
+that bottom-up comprehension is closer to a top-to-bottom reading               identifiers that were undefined (e.g., the variable cjviij1 in List-
+order, whereas top-down comprehension expresses itself in more                  ing 3 should be cjviij). This results in a compiler error and there-
+wandering eye movements.                                                        fore not to a determined output. Interestingly, many novices spotted
+   In our study, source code linearity i significantly affects all ob-          this error, while most intermediate programmers did not.
+served linearity measures (RQ3). In general, a higher linearity score i
+                                                                            1    Cjviij cjviij = new Cjviij(5);
+(indicating source code with many large vertical jumps in its ex-           2    cjviij.cijTqmniv(15);
+ecution order) leads to longer vertical eye movements, but fewer            3    System.out.print(cjviij1.wijTqmniv());
+short eye movements (i.e., within one or two neighboring source
+code lines). While the order of the linearity categories A, B, C, D,
+E appear sensible for vertical and horizontal eye movements, they               Listing 3: Part of the obfuscated snippet Street, which con-
+are mostly inconsistent for saccade length and the N-W scores. In               tains a compiler error. Most intermediate programmers miss
+other words, source code linearity does not seem to influence the               the non-initialized variable in Line 3, while novices tend to
+average eye jump distance nor how similar the reading order is to               notice it.
+execution or story order.                                                          An early study of Shneiderman and Mayer showed that experts
+                                                                                focus on semantic aspects of source code, while novices concentrate
+6 DISCUSSION                                                                    on syntax [46]. We discussed this phenomenon with three of our
+                                                                                intermediate programmers. They generally confirmed that these
+6.1 Behavioral Data                                                             early results still hold true in modern times, especially with IDE
+We expected that more experienced programmers are generally                     support. They reported that, due to their daily work, they are used
+faster [31, 45], but when bottom-up comprehension is enforced, the              to an IDE highlighting basic compiler errors. One reported that
+differences may vanish based on a contradictory result from stud-               “you have to look for compiler errors to find them”, which due to
+ies of Soloway and Ehrlich [51] and Gilmore and Green [21]. We                  the missing IDE highlighting (e.g., red underline) may not be on the
+indeed observed that intermediate programmers are significantly                 mind of a programmer. In addition, one reported that “at that spot,
+faster than novices when meaningful identifier names facilitate top-            you recognize the object based on the name without checking every
+down comprehension. While the performance gap is significantly                  individual character”. Novices appear to be less likely to take such
+reduced during bottom-up comprehension, novices are still slower.               mental shortcuts and need to learn to focus on semantic aspects of
+We thus classify our result in between Soloway and Ehrlich’s van-               source code.
+ishing effect [51] and Gilmore and Green’s result that experienced
+programmers stay faster [21].                                                   6.3    Eye-Tracking Data
+                                                                                   RQ1: Comparing Study Results Regarding Linearity of Reading
+6.2    Spotting Compiler Errors in Snippets                                     Order. The two studies by Busjahn et al. and Peachock et al. did
+Three of the obfuscated snippets (i.e., Street, SignChecker,                    not draw a clear picture of whether there is a distinguishable dif-
+CheckIfLettersOnly) mistakenly contained function and variable                  ference in linearity of reading order with increased programming
+What Drives the Reading Order of Programmers? An Eye Tracking Study                     ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea
+
+
+experience: Busjahn et al.’s expert programmers were significantly          top-down comprehension. In other words, on average, the reading
+different across several reading linearity measures, while Peachock         patterns during bottom-up comprehension are closer to a snippet’s
+et al.’s “non-novices” were not. It is interesting to learn that our data   story order, whereas reading patterns during top-down comprehen-
+partially replicate Busjahn’s results with an intermediate program-         sion are closer to a snippet’s execution order. But, we note that all
+mer group, which brings us closer to learn with what experience             scores are rather low (smaller than −100), indicating that there still
+level programmers change their reading order.                               are large differences between expected reading order and actual
+   Unlike Busjahn et al., we find that intermediate programmers use         eye movements during program comprehension.
+significantly more eye movements across all three vertical measures.         RQ2: While we partly uncover a less linear reading order dur-
+This is consistent with the notion that experienced programmers’             ing top-down comprehension, most measures are inconclusive.
+eyes jump through source code, looking for “beacons” [10, 43].               Thus, a difference of eye-movement patterns between bottom-
+Intuitively, it also makes sense that all three measures capturing           up and top-down comprehension is unsupported by our data.
+vertical eye movements point in the same direction (in our case,
+intermediate programmers use more vertical eye movements).
+   Busjahn et al. also observed that experts more often stay on a              RQ3: Effect of Source Code Linearity on Linearity of Reading Order.
+single line and read it from left to right, which, however, appears         One goal of our study was to understand whether the linearity of
+contradictory to the interpretation that novices read source code           source code significantly affects programmers’ eye movements.
+more “book like” from top to bottom and left to right, while experts’       The linearity of source code showed a strong effect on reading
+eyes jump around more. Our data support the view that more                  order, for both novice and intermediate programmers and both
+experienced programmers use less horizontal eye movements than              comprehension strategies. In other words, linearity of source code
+novices. This is plausible, because novices use more bottom-up              seems to be the major driving factor that determines the reading
+comprehension, which leads to reading entire lines of source code           order, whereas experience and the comprehension strategy play
+from left to right. Our result is in general agreement with the notion      a more minor role. While this may not be surprising, we have
+that experts apply a more erratic but intentional search through            provided empirical evidence that this actually is the case.
+source code and novices a more repetitive gaze pattern [4].                    The two original studies paved the way to study programmers’
+   Again, in contrast to the results of Busjahn et al., we did not          reading order. We took one further step and varied source code
+observe significant differences in saccade length or reading order          linearity in a systematic way to understand its influence. With our
+between the two participant groups. We suspected that our results           setup, we found that there are two separate effects that influence
+diverge from Busjahn et al., because we showed both participant             the reading order: On the one hand, efficient program comprehen-
+groups the same snippets. The average saccade length for both               sion by more experienced programmers or top-down comprehen-
+participant groups was the same, while Busjahn et al. showed longer         sion leads to larger vertical eye movements, because programmers
+snippets to experts. However, when we normalize the observed                search for certain features to quickly verify their hypothesis of a
+saccade length with the snippet length, this actually reverses, such        snippet’s purpose. These are intentional eye movements that are
+that longer snippets lead to shorter (normalized) saccades. Thus,           necessary to adeptly comprehend source code. On the other hand,
+our results are inconclusive, and we cannot be certain how snippet          less linear source code forces programmers’ eyes to make unnec-
+length, saccades, and experience interact.                                  essary large vertical jumps when they try to follow a snippet’s
+ RQ1: Overall, we were able to partially corroborate Busjahn et             method call chain. Thus, while the former are eye movements initi-
+ al.’s result and contradict Peachock et al.’s result. Intermediate         ated by internal cognitive processes of the programmer to make the
+ programmers read source code less linear than novices.                     comprehension process efficient, the latter are eye movements that
+                                                                            are imposed by external factors. Both types of eye movements may
+   RQ2: Effect of Comprehension Strategy on Linearity of Reading            also interact, such that a less linear structure makes it more difficult
+Order. We aimed at understanding whether the comprehension                  for the programmer to make the intentional, hypothesis-confirming
+strategy, that is, top-down or bottom-up comprehension, leads to a          eye movements. In other words, linearly structured source code
+significant difference in programmers’ eye movements (RQ2). We              could reduce the required eye movements and make the compre-
+expected that programmers using top-down comprehension show                 hension process more efficient, if it supports the programmer’s
+more vertical eye movements and less horizontal eye movements,              hypothesis-confirming eye movements.
+as top-down comprehension is rather a hypothesis-driven com-                   However, our less linear snippets tend to be more complex, so
+prehension strategy, whereas bottom-up comprehension requires               we cannot draw robust conclusions with the conducted study. In-
+building up a source code snippet’s meaning by reading every line.          stead, we call for further dedicated studies that specifically contrast
+   However, our eye-tracking results are inconclusive: The differ-          source code with different internal structures but implementing the
+ences in the fixation-based linearity measures were only significant        same algorithm to understand how programmers shall organize
+for two measures, which do not converge to an apparent inter-               methods in a class [20]. Our source code linearity measure i, al-
+pretation. All other measures were non-significant, leading to an           though incomplete for some special cases, can be a starting point to
+overall unclear picture about whether top-down comprehension                systematically operationalize the linearity of a source code snippet.
+entail more vertical movements.                                              RQ3: The linearity of source code strongly affects programmers’
+   Interestingly, the reading order based on the N-W scores, which           reading order: Less linear source code leads to large unnecessary
+did not discriminate between our novice and intermediate program-            vertical eye movements.
+mers, shows highly significant differences between bottom-up and
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea                                        Norman Peitek, Janet Siegmund, and Sven Apel
+
+
+7 THREATS TO VALIDITY                                                     used eye tracking to observe program comprehension. For exam-
+                                                                          ple, Turner et al. used eye tracking to investigate the difference in
+7.1 Construct Validity
+                                                                          bug searching tasks between C++ and Python source code, which
+Several of our used eye-movement measures are based on matching           yielded no significant difference [53]. Binkley et al. investigated
+a fixation to a source code line. This leaves some room for inter-        the difference in identifier styles (under_score vs. camelCase) and
+pretation, as participants may use peripheral vision and do not           found that it is mostly a matter of preference, with experts’ com-
+need to focus exactly on a source code line [36]. Like Busjahn et         prehension being more affected by the identifier style [7, 44]. There
+al., we interpreted a fixation to be on a source code line if it was      are several other studies related to program comprehension cov-
+horizontally less than 100 pixels away.                                   ering method summarization [1, 41], syntax highlighting [5], code
+    Similarly, there is room for interpretation when computing the        review [43, 54], and programmer education and expertise [14, 40].
+execution order of source code. For example, how to interpret lines       They all investigate one specific aspect of program comprehension,
+that only contain a closing bracket (}) is debatable or whether class     but did not focus on reading order.
+definition code (public class Example) should be considered as
+part of the execution order. We included all brackets and boilerplate        Source Code Metrics and Readability. While there is a plethora of
+code in the execution flow (as an interpreter would step through the      source code metrics [55], we are not aware of one that is designed
+code). This technical interpretation may divert from how humans           to specifically capture the linearity of source code. We consider the
+read code and likely contributed to low N-W scores.                       linearity of source code as an element of code readability, which
+    To operationalize linearity, we developed a source code linear-       captures all syntactic factors that affect programmers. For example,
+ity metric and validated it with intuitive notions of linearity of        Buse and Weimer asked programmers how readable source code
+programmers. Although there are some deviations of the intuitive          is and, based on the results, build a predictive model to estimate
+perception and the linearity metric, this did not pose a threat to        source code readability [11, 12]. However, these readability studies
+construct validity, as we excluded such cases from our study.             work on individual methods rather than (small) classes. On a class-
+                                                                          level, many studies focus on maintainability [15] or complexity [29],
+7.2    Internal Validity                                                  rather than fundamental readability.
+There are several threats to validity arising from our participant
+sample. First, we have a skewness in gender distribution, which,
+                                                                          9    CONCLUSION
+however, is close to the actual population in computer science for        Inspired by Busjahn et al.’s seminal study [13], and the replication
+our universities. Second, we have to question whether our partici-        study by Peachock et al. [38], we set out to investigate the effect that
+pant group division was reasonable: Are our intermediate program-         source code linearity, programmer experience, and comprehension
+mers actually sufficiently experienced programmers? To ensure             strategy have on reading order of source code. Our results indicate
+a correct assignment, we asked participants a few questions re-           the linearity of source code is a major driving factor that determines
+garding their experience, based on a questionnaire developed by           programmers’ reading order, while experience and comprehension
+Siegmund et al. [49]. Furthermore, the behavioral data indicate that      strategy seem to play more minor roles. With our intermediate
+our assignment was reasonable.                                            programmers’ experience level lying between the two previous
+   Finally, regarding our eye-tracking data: We did not apply a man-      studies, we seem to have found a turning point when programmers
+ual correction of the scan paths, which can be error prone [37]. A        switch from a linear reading order to a reading order following the
+visual exploration of the obtained data showed reasonable precise-        execution order. The strong effect of linearity implicates that the
+ness, so we do not consider our results threatened without a manual       structure of the source code should be matched to programmer’s
+correction. We also did not apply a drift correction [22], as our ex-     expectations to avoid unnecessary eye movements, which may
+periment was comparably short, so we do not expect meaningful             make program comprehension more efficient. In future studies,
+drift.                                                                    we intend to dig deeper into the size of the effect of source code
+                                                                          linearity and programmer expectation, and the experience level.
+7.3    External Validity
+                                                                          ACKNOWLEDGMENTS
+Our study exhibits the typical threats of having small Java programs
+and recruited students. Our results can only be carefully generalized     We thank all participants of our study, Jennifer Bauer and Sandro
+to other contextual factors. Reading behavior of larger snippets with     Schulze for supporting data acquisition, Johannes Hofmeister for
+higher control-flow complexity may show different results [17, 25].       his contributions to the linearity metric, and Susanne Mayr for
+Nevertheless, our setting targets an important population.                fruitful discussions. Siegmund’s work is supported by DFG grant
+                                                                          SI 2045/2-2 and the Bavarian State Ministry of Education, Science
+8     RELATED WORK                                                        and the Arts in the framework of the Centre Digitisation.Bavaria
+                                                                          (ZD.B). Apel’s work has been supported by the German Research
+  Original Study and Replications. In addition to the original study
+                                                                          Foundation (AP 206/6).
+and its first replication introduced in Section 2, Blascheck and Sharif
+conducted another replication, albeit focused on introducing a new
+methodology of visualizing the linearity of reading order [9].
+   Eye Tracking on Program Comprehension. In addition to the orig-
+inal study and its replications, there are numerous studies that
+What Drives the Reading Order of Programmers? An Eye Tracking Study                                      ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea
+
+
+REFERENCES                                                                                     Cluster Computing 21, 1 (2018), 1097–1107.
+ [1] Nahla Abid, Bonita Sharif, Natalia Dragan, Hend Alrasheed, and Jonathan Maletic.     [28] SeolHwa Lee, Andrew Matteson, Danial Hooshyar, SongHyun Kim, JaeBum Jung,
+     2019. Developer Reading Behavior While Summarizing Java Methods: Size and                 GiChun Nam, and HeuiSeok Lim. 2016. Comparing Programming Language
+     Context Matters. In Proc. Int. Conf. Software Engineering (ICSE). IEEE, 384–395.          Comprehension between Novice and Expert Programmers Using EEG Analysis.
+ [2] Douglas Bates, Martin Mächler, Ben Bolker, and Steve Walker. 2015. Fitting                In Proc. Int. Conf. Bioinformatics and Bioengineering (BIBE). IEEE, 350–355.
+     Linear Mixed-Effects Models Using lme4. Journal of Statistical Software 67, 1        [29] Stefan Lessmann, Bart Baesens, Christophe Mues, and Swantje Pietsch. 2008.
+     (2015), 1–48.                                                                             Benchmarking Classification Models for Software Defect Prediction: A Proposed
+ [3] Jennifer Bauer, Janet Siegmund, Norman Peitek, Johannes Hofmeister, and Sven              Framework and Novel Findings. IEEE Transactions on Software Engineering 34, 4
+     Apel. 2019. Indentation: Simply a Matter of Style or Support for Program Com-             (2008), 485–496.
+     prehension?. In Proc. Int. Conf. Program Comprehension (ICPC). IEEE, 154–164.        [30] Mary Lindstrom and Douglas Bates. 1988. Newton-Raphson and EM Algorithms
+ [4] Roman Bednarik. 2012. Expertise-Dependent Visual Attention Strategies Develop             for Linear Mixed-Effects Models for Repeated-Measures Data. Journal of the
+     over Time during Debugging with Multiple Code Representations. Int’l Journal              American Statistical Association 83, 404 (1988), 1014–1022.
+     of Human-Computer Studies 70, 2 (2012), 143–155.                                     [31] Steve McConnell. 2011. What Does 10x Mean? Measuring Variations in Program-
+ [5] Tanya Beelders and Jean-Pierre du Plessis. 2016. The Influence of Syntax High-            mer Productivity. Making Software, O’Reilly 16 (2011).
+     lighting on Scanning and Reading Behaviour for Source Code. In Proc. Annual          [32] Jerry Mead, Simon Gray, John Hamer, Richard James, Juha Sorva, Caroline St
+     Conf. of the South African Institute of Computer Scientists and Information Tech-         Clair, and Lynda Thomas. 2006. A Cognitive Approach to Identifying Measurable
+     nologists (SAICSIT). ACM, 1–10.                                                           Milestones for Programming Skill Acquisition. ACM SIGCSE Bulletin 38, 4 (2006),
+ [6] Yoav Benjamini and Yosef Hochberg. 1995. Controlling the False Discovery Rate:            182–194.
+     A Practical and Powerful Approach to Multiple Testing. Journal of the Royal          [33] Takao Nakagawa, Yasutaka Kamei, Hidetake Uwano, Akito Monden, Kenichi
+     Statistical Society. Series B (Methodological) 57, 1 (1995), 289–300.                     Matsumoto, and Daniel M. German. 2014. Quantifying Programmers’ Mental
+ [7] Dave Binkley, Marcia Davis, Dawn Lawrie, Jonathan Maletic, Christopher Morrell,           Workload During Program Comprehension Based on Cerebral Blood Flow Mea-
+     and Bonita Sharif. 2013. The Impact of Identifier Style on Effort and Comprehen-          surement: A Controlled Experiment. In Proc. Int. Conf. Software Engineering (ICSE).
+     sion. Empirical Software Engineering 18, 2 (2013), 219–276.                               ACM, 448–451.
+ [8] David Binkley, Marcia Davis, Dawn Lawrie, and Christopher Morrell. 2009. To          [34] Saul Needleman and Christian Wunsch. 1970. A General Method Applicable to
+     CamelCase or Under_score. In Proc. Int. Conf. Program Comprehension (ICPC).               the Search for Similarities in the Amino Acid Sequence of Two Proteins. Journal
+     IEEE, 158–167.                                                                            of Molecular Biology 48, 3 (1970), 443–453.
+ [9] Tanja Blascheck and Bonita Sharif. 2019. Visually Analyzing Eye Movements on         [35] Marcus Nyström and Kenneth Holmqvist. 2010. An Adaptive Algorithm for
+     Natural Language Texts and Source Code Snippets. In Proc. Symposium on Eye                Fixation, Saccade, and Glissade Detection in Eyetracking Data. Behavior Research
+     Tracking Research & Applications (ETRA). ACM, 14:1–14:9.                                  Methods 42, 1 (2010), 188–204.
+[10] Ruven Brooks. 1983. Towards a Theory of the Comprehension of Computer                [36] Pavel Orlov. 2017. Ambient and Focal Attention During Source-Code Com-
+     Programs. Int. Journal of Man-Machine Studies 18, 6 (1983), 543–554.                      prehension. In Proc. Int’l Workshop on Eye Movements in Programming (EMIP).
+[11] Raymond Buse and Westley Weimer. 2008. A Metric for Software Readability. In              12–13.
+     Proc. Int’l Symposium on Software Testing and Analysis. ACM, 121–130.                [37] Christopher Palmer and Bonita Sharif. 2016. Towards Automating Fixation
+[12] Raymond Buse and Westley Weimer. 2010. Learning a Metric for Code Readability.            Correction for Source Code. In Proc. Symposium on Eye Tracking Research &
+     IEEE Transactions on Software Engineering 36, 4 (2010), 546–558.                          Applications (ETRA). ACM, 65–68.
+[13] Teresa Busjahn, Roman Bednarik, Andrew Begel, Martha Crosby, James H Pater-          [38] Patrick Peachock, Nicholas Iovino, and Bonita Sharif. 2017. Investigating Eye
+     son, Carsten Schulte, Bonita Sharif, and Sascha Tamm. 2015. Eye Movements in              Movements in Natural Language and C++ Source Code - A Replication Experi-
+     Code Reading: Relaxing the Linear Order. In Proc. Int. Conf. Program Comprehen-           ment. In Augmented Cognition. Neurocognition and Machine Learning. Springer
+     sion (ICPC). IEEE, 255–265.                                                               International Publishing, 206–218.
+[14] Teresa Busjahn, Carsten Schulte, Bonita Sharif, Andrew Begel, Michael Hansen,        [39] Nancy Pennington. 1987. Stimulus Structures and Mental Representations in
+     Roman Bednarik, Paul Orlov, Petri Ihantola, Galina Shchekotova, and Maria                 Expert Comprehension of Computer Programs. Cognitive Psychology 19, 3 (1987),
+     Antropova. 2014. Eye Tracking in Computing Education. In Proc. Conf. on Inter-            295–341.
+     national Computing Education Research. ACM, 3–10.                                    [40] Cole Peterson, Jonathan Saddler, Tanja Blascheck, and Bonita Sharif. 2019. Visu-
+[15] Don Coleman, Dan Ash, Bruce Lowther, and Paul Oman. 1994. Using Metrics to                ally Analyzing Students’ Gaze on C++ Code Snippets. In Proc. Int’l Workshop on
+     Evaluate Software System Maintainability. Computer 27, 8 (1994), 44–49.                   Eye Movements in Programming (EMIP). IEEE, 18–25.
+[16] Filipe Cristino, Sebastiaan Mathôt, Jan Theeuwes, and Iain Gilchrist. 2010. Scan-    [41] Paige Rodeghero and Collin McMillan. 2015. An Empirical Study on the Patterns
+     Match: A Novel Method for Comparing Fixation Sequences. Behavior Research                 of Eye Movement During Summarization Tasks. In Proc. Int. Symp. Empirical
+     Methods 42, 3 (2010), 692–700.                                                            Software Engineering and Measurement (ESEM). IEEE, 1–10.
+[17] Martha Crosby and Jan Stelovsky. 1990. How Do We Read Algorithms? A Case             [42] Samuel Shapiro and Martin Wilk. 1965. An Analysis of Variance Test for Nor-
+     Study. Computer 23, 1 (1990), 25–35.                                                      mality (Complete Samples). Biometrika 52, 3/4 (1965), 591–611.
+[18] Hubert Dreyfus and Stuart Dreyfus. 1986. Mind over Machine: The Power of             [43] Bonita Sharif, Michael Falcone, and Jonathan Maletic. 2012. An Eye-Tracking
+     Human Intuition and Expertise in the Era of the Computer. The Free Press (1986).          Study on the Role of Scan Time in Finding Source Code Defects. In Proc. Sympo-
+[19] John Fox and Sanford Weisberg. 2019. An R Companion to Applied Regression                 sium on Eye Tracking Research and Applications (ETRA). ACM, 381–384.
+     (third ed.). Sage, Thousand Oaks CA.                                                 [44] Bonita Sharif and Johnathon Maletic. 2010. An Eye Tracking Study on camelCase
+[20] Yorai Geffen and Shahar Maoz. 2016. On Method Ordering. In Proc. Int. Conf.               and under_score Identifier Styles. In Proc. Int. Conf. Program Comprehension
+     Program Comprehension (ICPC). IEEE, 1–10.                                                 (ICPC). IEEE, 196–205.
+[21] David Gilmore and Thomas Green. 1988. Programming Plans and Programming              [45] Ben Shneiderman. 1977. Measuring Computer Program Quality and Comprehen-
+     Expertise. The Quarterly Journal of Experimental Psychology 40, 3 (1988), 423–442.        sion. Int. J. Man-Machine Studies 9, 4 (1977), 465–478.
+[22] Kenneth Holmqvist, Marcus Nyström, Richard Andersson, Richard Dewhurst,              [46] Ben Shneiderman and Richard Mayer. 1979. Syntactic/Semantic Interactions
+     Halszka Jarodzka, and Joost Van de Weijer. 2011. Eye Tracking: A Comprehensive            in Programmer Behavior: A Model and Experimental Results. Int. J. Parallel
+     Guide to Methods and Measures. OUP Oxford.                                                Programming 8, 3 (1979), 219–238.
+[23] Yoshiharu Ikutani, Takatomi Kubo, Satoshi Nishida, Hideaki Hata, Kenichi Mat-        [47] Janet Siegmund. 2016. Program Comprehension: Past, Present, and Future. In
+     sumoto, Kazushi Ikeda, and Shinji Nishimoto. 2020. Expert Programmers have                Proc. Int. Conf. Software Analysis, Evolution, and Reengineering (SANER). IEEE,
+     Fine-Tuned Cortical Representations of Source Code. bioRxiv 2020.01.28.923953             13–20.
+     (2020).                                                                              [48] Janet Siegmund, Christian Kästner, Sven Apel, Chris Parnin, Anja Bethmann,
+[24] Yoshiharu Ikutani and Hidetake Uwano. 2014. Brain Activity Measurement during             Thomas Leich, Gunter Saake, and André Brechmann. 2014. Understanding
+     Program Comprehension with NIRS. In Proc. Int. Conf. Software Engineering,                Understanding Source Code with Functional Magnetic Resonance Imaging. In
+     Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD).            Proc. Int. Conf. Software Engineering (ICSE). ACM, 378–389.
+     IEEE, 1–6.                                                                           [49] Janet Siegmund, Christian Kästner, Jörg Liebig, Sven Apel, and Stefan Hanenberg.
+[25] Ahmad Jbara and Dror Feitelson. 2017. How Programmers Read Regular Code:                  2014. Measuring and Modeling Programming Experience. Empirical Software
+     A Controlled Experiment Using Eye Tracking. Empirical Software Engineering                Engineering 19, 5 (2014), 1299–1334.
+     22, 3 (2017), 1440–1477.                                                             [50] Janet Siegmund, Norman Peitek, Chris Parnin, Sven Apel, Johannes Hofmeister,
+[26] Thomas LaToza, Gina Venolia, and Robert DeLine. 2006. Maintaining Mental                  Christian Kästner, Andrew Begel, Anja Bethmann, and André Brechmann. 2017.
+     Models: A Study of Developer Work Habits. In Proc. Int. Conf. Software Engineering        Measuring Neural Efficiency of Program Comprehension. In Proc. Europ. Software
+     (ICSE). ACM, 492–501.                                                                     Engineering Conf./Foundations of Software Engineering (ESEC/FSE). ACM, 140–
+[27] Seolhwa Lee, Danial Hooshyar, Hyesung Ji, Kichun Nam, and Heuiseok Lim. 2018.             150.
+     Mining Biometric Data to Predict Programmer Expertise and Task Difficulty.           [51] Elliot Soloway and Kate Ehrlich. 1984. Empirical Studies of Programming Knowl-
+                                                                                               edge. IEEE Transactions on Software Engineering 10, 5 (1984), 595–609.
+ICPC ’20, October 5–6, 2020, Seoul, Republic of Korea                                  Norman Peitek, Janet Siegmund, and Sven Apel
+
+
+[52] Rebecca Tiarks. 2011. What Programmers Really Do: An Observational Study.
+     Softwaretechnik-Trends 31, 2 (2011), 36–37.
+[53] Rachel Turner, Michael Falcone, Bonita Sharif, and Alina Lazar. 2014. An Eye-
+     Tracking Study Assessing the Comprehension of C++ and Python Source Code.
+     In Proc. Symposium on Eye Tracking Research and Applications (ETRA). ACM,
+     231–234.
+[54] Hidetake Uwano, Masahide Nakamura, Akito Monden, and Ken-ichi Matsumoto.
+     2006. Analyzing Individual Performance of Source Code Review Using Reviewers’
+     Eye Movement. In Proc. Symposium on Eye Tracking Research & Applications
+     (ETRA). ACM, 133–140.
+[55] Alberto Salvador Núñez Varela, Hector G. Pérez-González, Francisco E. Martínez-
+     Perez, and Carlos Soubervielle-Montalvo. 2017. Source Code Metrics: A System-
+     atic Mapping Study. Journal of Systems and Software 128 (2017), 164–197.
+

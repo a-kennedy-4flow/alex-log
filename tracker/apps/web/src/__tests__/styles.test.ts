@@ -98,8 +98,9 @@ describe('the weekday wash', () => {
   }
 
   // The month view shades a day by what it asks of the user so the wash is the
-  // guided day picker alone.
-  const FILES = [['src/pages/GuidedPage.vue', '.days button']] as const
+  // guided day picker alone. The picker washes the column of the board because
+  // the board reads the week across and the weekday is the column it stands in.
+  const FILES = [['src/components/GuidedCalendar.vue', 'td']] as const
 
   it.each(FILES)('paints all seven days in %s', (path, selector) => {
     const styles = styleOf(path)
@@ -129,8 +130,8 @@ describe('the weekday wash', () => {
     expect(grid.slice(grid.indexOf('.flag {'), grid.indexOf('}', grid.indexOf('.flag {')))).not.toContain('--grey')
     const board = styleOf('src/components/MonthCalendar.vue')
     expect(board.slice(board.indexOf('.add {'), board.indexOf('}', board.indexOf('.add {')))).not.toContain('--grey')
-    const guided = styleOf('src/pages/GuidedPage.vue')
-    expect(guided.slice(guided.indexOf('.days .dow {'), guided.indexOf('}', guided.indexOf('.days .dow {')))).not.toContain('--grey')
+    const guided = styleOf('src/components/GuidedCalendar.vue')
+    expect(guided.slice(guided.indexOf('.lab {'), guided.indexOf('}', guided.indexOf('.lab {')))).not.toContain('--grey')
   })
 })
 
@@ -222,12 +223,15 @@ describe('the quick fill table', () => {
   const styles = () => view().slice(view().indexOf('<style'))
 
   it('scrolls sideways rather than letting the sheet clip it', () => {
-    // Five columns hold 674px and the month box beside the aside is 656px at a
+    // Five columns hold 684px and the month box beside the aside is 656px at a
     // 1280px window. `.sheet` carries `overflow: hidden` so the tasks column
     // and the remove button left the screen with nothing saying they were
     // there. `MonthGrid.vue` answers its own width the same way.
+    //
+    // 674px until the share became a slider. The share column went from 110px
+    // to 160px and the specification column gave 40px of that back.
     expect(styles()).toContain('overflow-x: auto')
-    expect(styles()).toMatch(/min-width: 674px/)
+    expect(styles()).toMatch(/min-width: 684px/)
     expect(view()).toContain('<div class="table-wrap">')
   })
 
@@ -316,10 +320,10 @@ describe('a number field', () => {
       .map((path) => relative(ROOT, path).replace(/\\/g, '/'))
     // Named so a new number field is a deliberate addition to this list.
     expect(fields.sort()).toEqual([
+      'src/components/NumberStepper.vue',
       'src/components/PeriodBar.vue',
       'src/components/SettingNumber.vue',
       'src/components/SetupWizard.vue',
-      'src/components/SimpleView.vue',
       'src/pages/GuidedPage.vue',
       'src/pages/JiraPage.vue',
     ])

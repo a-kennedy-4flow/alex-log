@@ -1,0 +1,1467 @@
+Examining oral reading fluency among
+rural Grade 5 English Second Language
+(ESL) learners in South Africa: An analysis
+of NEEDU 2013
+Corresponding author: Kim Draper, Centre for Development and Enterprise.*
+Nic Spaull, Stellenbosch University
+
+
+
+
+Abstract
+The ability to read for meaning and pleasure is arguably the most important skill children
+learn in primary school. One integral component of learning to read is oral reading
+fluency (ORF), defined as the ability to read text quickly, accurately, and with meaningful
+expression. Although widely acknowledged in the literature as important, to date
+there have been no large-scale studies on ORF in English in South Africa, despite this
+being the language of learning and teaching for 80% of English Second Language (ESL)
+students from Grade 4 onwards. We analyse data provided by the National Education
+and Evaluation Development Unit (NEEDU) of South Africa, which tested 4 667 Grade
+5 ESL students from 214 schools from rural areas in South Africa in 2013. This included
+ORF and comprehension measures for a subset of 1 772 students. We found that 41% of
+the sample were non-readers in English (<40 words correct per minute, or WCPM) and
+only 6% achieved comprehension scores above 60%. By calibrating comprehension levels
+and WCPM rates, we developed tentative benchmarks and argue that a range of 90-100
+WCPM in English is acceptable for Grade 5 ESL students in South Africa. In addition, we
+outline policy priorities for remedying the reading crisis in the country.
+Keywords: Oral reading fluency (ORF), English Second Language (ESL), South Africa,
+National Education and Evaluation Development Unit (NEEDU), words correct per
+minute (WCPM)
+
+
+
+
+*E-mail: kim@cde.org.za.
+
+South African Journal of Childhood Education | 2015 5(2): 44-77 | ISSN: 2223-7674 |© UJ
+                                     Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+The ability to read for meaning and pleasure is arguably the most important skill children
+learn in primary school. Since almost all future learning will depend on this fundamental
+understanding of the relation between print and spoken language, it is unsurprising
+that literacy, built upon a firm foundation of basic reading, is used as one of the primary
+measures of school efficacy. Apart from the obvious cognitive importance of learning to
+read, children who become novice readers within the first three years of primary school
+also have higher levels of socio-emotional well-being stemming from improved self-
+expression and communication as well as the self-confidence that comes from cracking
+this difficult code (Chapman, Tunmer & Prochnow 2000). Sadly, the opportunity of learning
+to read with fluency, accuracy, prosody and comprehension is one not afforded to the
+majority of South African children. Whether children are tested in their home language or
+in English, the conclusions are the same: the vast majority of South African children cannot
+read for meaning by the end of Grade 4 – even in their home language – and almost a third
+are still functionally illiterate in English by the end of Grade 6 (Spaull 2013).
+    The aim of the present study is to add to our understanding of the reading crisis in
+South Africa by focusing on the oral reading fluency (ORF) of Grade 5 English Second
+Language (ESL) learners in rural South Africa.1 To date there have been no large-scale
+studies focusing on ORF in English, despite this being the language of learning and
+teaching (LOLT) for 90% of students from Grade 4 onwards. There are two principle
+research questions that animate this study:
+1.   What are the levels of ORF among Grade 5 ESL students in rural areas in
+     South Africa?
+2.   Is it possible to identify tentative benchmarks or thresholds of ORF that
+     correspond to acceptable levels of comprehension?
+   To answer these questions we used the data collected by the National Education
+Evaluation and Development Unit (NEEDU),2 which in 2013 assessed a large sample of
+students, collecting data on ORF and comprehension for 1 776 Grade 5 ESL students
+from 214 rural schools in South Africa (NEEDU 2014b). As will become clear, there is an
+ongoing reading crisis in South African rural primary schools which, if not resolved, will
+become a binding constraint to future learning at higher grades.
+    After a brief overview of existing research on reading outcomes and large-scale reading
+interventions in South Africa, we turn to a discussion of the international literature on
+ORF. Thereafter we explain our methodology and provide background information on the
+sample and assessments that were used. This is followed by a descriptive analysis of the
+data, after which tentative benchmarks for ORF in English for ESL students in rural South
+African schools are developed. The final section provides some policy recommendations
+regarding reading and reading interventions in South Africa.
+
+1    For consistency we refer here to ESL (English Second Language) rather than ELL (English Language
+     Learner). The American literature usually refers to students whose home language is not English as
+     ELL while the South African literature usually refers to these students as ESL.
+2    A school evaluation unit that is independent of the Department of Basic Education and reports
+     directly to the Minister.
+
+                                                  45
+SAJCE– December 2015
+
+
+An overview of South African large-scale research on reading
+outcomes and large-scale reading interventions
+South Africa is in the fortunate position of having considerable amounts of data on
+educational outcomes in different subjects and at different grades. By implementing
+local assessments and agreeing to participate in cross-national assessments, the
+Department of Basic Education has ensured that there exists a solid foundation of
+nationally representative data on which to make evidence-based policy. The results
+of these assessments are stable, consistent, reliable and sobering. As far as reading
+outcomes in the primary grades are concerned, the three most recent and reliable
+assessments are the pre-Progress in International Reading Literacy Study (prePIRLS
+Grade 4, 2011), the Southern and Eastern African Consortium for Monitoring
+Educational Quality (SACMEQ, Grade 6, 2007) and the National School Effectiveness
+Study (NSES, Grades 3, 4 and 5, 2007, 2008 and 2009).
+    The NSES study assessed a nationally-representative sample of schools in
+South Africa (excluding Gauteng Province) and found that the average Grade 3
+student scored 20% on a Grade 3 test conducted in English (Taylor & Taylor 2013:47).
+Given that the LOLT of most Grade 3 students in South Africa is still an African
+language (the switch to English only happens in Grade 4), this is perhaps unsurprising.
+However, Spaull (2015:71) shows that, while better, the achievement of these students
+in their home language is still extremely low. Some students wrote both the Systemic
+Evaluation 2007 Grade 3, conducted in the LOLT of the school, and the NSES 2007
+Grade 3 – the same test, administered one month later in English. Spaull shows that
+the matched sample scored 34% in the Systemic Evaluation, and 23% in the NSES. While
+this shows that there is clearly a cost to writing the test in an unfamiliar language
+(particularly given that students had not yet switched to English), it also dispels the
+myth that students are performing acceptably in an African language before the
+switch to English in Grade 4.
+    The two cross-national assessments that focus on primary-school literacy provide
+complementary evidence, given that prePIRLS was conducted in an African language in
+Grade 4 (whatever the LOLT of the school was in Grades 1-3), while SACMEQ assessed
+students in English and Afrikaans in Grade 6 after the language transition. Howie, Van
+Staden, Tshele et al (2012:47) show that 58% of Grade 4 students did not achieve the
+Intermediate International Benchmark and 29% did not achieve the Low International
+Benchmark. That is to say that 58% of students could not interpret obvious reasons
+and causes and give simple explanations or retrieve and reproduce explicitly stated
+actions, events and feelings. One can think of these students as those that cannot read
+for meaning in any true sense of the word. More disconcerting is the 29% of students
+that could not reach the most rudimentary level of reading: locating and retrieving
+an explicitly stated detail in a short and simple text. It would not be incorrect to
+classify these 29% of students as illiterate or non-readers in their home language.3 The
+
+3   For the majority of students, the test was conducted in their home language. Only where a
+    student’s home language differed from the LOLT of the school in Grades 1-3 would this not be true.
+
+                                                46
+                                 Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+SACMEQ study of 2007 tested a nationally representative sample of learners in English
+and Afrikaans (the LOLTs in South Africa in Grade 6). It was found that 27% of learners
+were functionally illiterate in English or Afrikaans in the sense that they could not read
+a short and simple text and extract meaning (Spaull 2013:439). Among the poorest 20%
+of schools this figure rose to 43% of learners being functionally illiterate.
+    The crisis in basic literacy in South Africa has not gone unacknowledged by the
+Department of Basic Education. Since the early 2000s there have been a number of
+national policies, strategies, campaigns and interventions in an attempt to address
+this (see NEEDU 2013; 2014a for overviews, as well as Motshekga 2014; RSA DBE
+2008a; 2008b; 2008c; 2011; Piper, 2009; Hollingsworth, 2009, Meier, 2011 for specific
+interventions). Unfortunately, none of these interventions have been properly
+evaluated and thus it is not clear whether they have improved the reading outcomes
+of participants or not.
+
+
+Literature review
+Reading is a highly complex task phenomenon, comprising many cognitive-linguistic
+skills (Pretorius 2012). The importance of learning to read for meaning by the end of
+the third year of primary schooling is widely acknowledged and accepted throughout
+the local and international education literatures (Martin, Kennedy & Foy 2007). This
+is both to ensure future academic success at school, but also because this creates
+independent learners. As Good, Simmons and Smith (1998:45) expound:
+       Professional educators and the public at large have long known that reading is an
+       enabling process that spans academic disciplines and translates into meaningful
+       personal, social, and economic outcomes for individuals. Reading is the fulcrum
+       of academics, the pivotal process that stabilizes and leverages children’s
+       opportunities to success and become reflective, independent learners.
+
+     One of the essential components of competent reading is ORF, which is the
+speed at which written text is reproduced into spoken language (Adams 1990). In the
+literature ORF is generally regarded as the ability to read text quickly, accurately, and
+with meaningful expression (Valencia, Smith, Reece et al 2010; Fuchs, Fuchs, Hosp &
+Jenkins 2001; Rasinski & Hoffman 2003). This skill is believed to be critical to reading
+comprehension, and the speed at which print is translated into spoken language has
+been identified as a major component of reading proficiency (NICHHD 2000). When
+words cannot be read accurately and automatically, they must be analysed with
+conscious attention. If children use too much of their processing capacity trying to
+work out individual words, they are unlikely to successfully comprehend what they
+read (Hudson, Lane & Pullen 2005).
+    ORF can therefore be seen as a bridge between word recognition and reading
+comprehension. Problems in either oral fluency or reading comprehension will have
+a significant impact on learners’ ability to learn as they move through the phases of
+schooling. This has also been confirmed with longitudinal research which found high
+correlations between reading performance in early primary grades and reading skills
+later in school (Good et al 1998; Juel 1988). Reading fluency has also been found to be
+
+                                              47
+SAJCE– December 2015
+
+a significant variable in secondary students’ reading and overall academic achievement
+(Rasinski, Padak, McKeon et al 2005).
+
+ORF as a predictor of reading comprehension
+At the most basic level, the Early Grade Reading Assessment (EGRA) is an oral
+reading assessment designed to measure the most basic foundation skills for literacy
+acquisition in the very early grades: recognizing letters of the alphabet, reading
+simple words, understanding simple sentences and paragraphs, and listening with
+comprehension. The EGRA tests – developed by RTI International4 to orally assess
+basic literacy skills – have been used in over 40 countries (RTI International 2008;
+2009). For students in higher grades, ORF is generally measured by having an assessor
+ask a student to read a passage out loud for a period of time, typically one minute. A
+student’s score is calculated with the number of words read per minute (WPM) and/
+or the number of words correct per minute (WCPM). In order to counter criticism
+that such an assessment does not validly measure comprehension, the passages are
+frequently accompanied by comprehension questions, as in the present study.
+    In their comprehensive review of numerous studies, Fuchs, Fuchs, Hosp & Jenkins
+(2001) provide converging evidence supporting ORF’s validity as an indicator of reading
+comprehension. They conclude that: (1) ORF corresponds better with performance
+on commercial, standardized tests of reading comprehension than do more direct
+measures of reading comprehension; (2) text fluency (words read in context)
+compares positively to list fluency (words read in isolation) as an indicator of reading
+competence; and (3) ORF measured by reading aloud functions as a better correlate
+of reading comprehension than does silent reading fluency. In a recent study in South
+Africa (Pretorius 2012), a strong correlation was found between three measures of
+decoding skill and reading comprehension, with ORF emerging as a strong predictor
+of comprehension.
+    One explanation for the connection between fluency and comprehension comes
+from LaBerge and Samuels’s (1974) theory of automaticity in reading (Rasinski et al
+2005). According to this theory, readers who have not yet achieved reading fluency
+must consciously decode the words they have to read. This cognitive attention detracts
+from the more important task of comprehending the text. Poor reading fluency is thus
+directly linked to poor reading comprehension. As Fuchs et al (2001:242) explain:
+       Unfortunately, as poor readers rely on the conscious-attention mechanism, they
+       expend their capacity in prediction processes to aid word recognition. Little is left
+       over for integrative comprehension processes, which happens for readers with
+       strong word recognition skills, whereby new knowledge is constructed or new
+       material is integrated into existing knowledge structures.
+
+   For some languages, the practice of using WCPM as a predictor of comprehension
+has been criticized. In a quantitative study of early grade reading in two European
+(English and Dutch) and two African languages (Sabaot and Pokomo), Graham and
+
+4   RTI is an independent, non-profit institute that provides research, development and technical
+    services to governments and businesses around the world.
+
+                                               48
+                                Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+Van Ginkel (2014) analysed WCPM and comprehension scores of over 300 children
+in three countries and found that similar comprehension scores were associated
+with diverse WPM rates. This, they suggest, indicates that fluency measured as
+WCPM is not a reliable comparative measure of reading development since linguistic
+and orthographic features differ considerably between languages and are likely to
+influence the reading acquisition process.
+    Valencia and Buly’s study (2004) raised concerns regarding the widespread use of
+WCPM measures and benchmarks to identify students at risk of reading difficulty. In
+their study, ORF data and standardized comprehension test scores were analysed for
+students in Grades 2, 4 and 6 in two Pacific Northwest school districts in the United
+States (US) that had diverse student populations. One third of the student group spoke
+English as a second language. The results indicated that assessments designed to
+include multiple indicators of ORF provided a finer-grained understanding of ORF and
+fluency assessment and a stronger predictor of general comprehension. Comparisons
+across grade levels also revealed developmental differences in the relation between
+ORF and comprehension, and in the relative contributions of oral fluency indicators to
+comprehension. When commonly used benchmarks were applied to WCPM scores to
+identify students at risk of reading difficulty, both false positives and false negatives
+were found.
+    Valencia and Buly (2004) argue for a much more comprehensive assessment in
+order to understand the specific needs of different children. Their approach was to
+conduct individual reading assessments, working one-on-one with the children for
+approximately two hours over several days to gather information about their reading
+abilities. They administered a series of assessments that targeted key components of
+reading ability: word identification, meaning (comprehension and vocabulary) and
+fluency (rate and expression). Their research suggests that weak readers may not be
+weak in all three areas, and that there could be as many as six different profiles of
+readers, all needing different remedial attention. This approach may represent the
+‘gold standard’ of reading assessment but the reality in most countries, and particularly
+in South Africa, is that this sort of assessment is unlikely to be realistic or practical.
+
+Oral reading fluency among ESL earners
+The investigation of ORF for students reading in a second (or third) language is not
+as extensive as that for students reading in their first language. Notwithstanding the
+above, ORF studies on ESL students have been conducted in South Korea (Jeon 2012),
+Kenya (Piper & Zuilkowski 2015) and America (Al Otaiba, Petscher, Williams et al 2009;
+Jimerson, Hong, Stage & Gerber 2013). This does not include the numerous EGRA
+studies that have been conducted by RTI and USAID (Abadzi 2011).
+    For many second language readers, reading is a “suffocatingly slow process”
+(Anderson 1999:1); yet developing rapid reading – an essential skill for all students – is
+often neglected in the classroom. Data from Segalowitz, Poulsen and Komoda (1991)
+indicate that the ESL reading rates of highly bilingual readers can be 30% or more slower
+than English home-language (EHL) reading rates. Readers who do not understand
+
+                                           49
+SAJCE– December 2015
+
+often slow down their reading rates and then do not enjoy reading because the
+process becomes laborious. As a result, they do not read extensively, perpetuating the
+cycle of weak reading (Nuttall 1996, in Anderson 1999).
+    Conventional wisdom indicates that lack of oral English proficiency is the main
+impediment to successful literacy learning for young ESL students, but recent evidence
+suggests that this may not be true. Conflicting data exists regarding the optimal or
+sufficient reading rate (Anderson 1999). Some authorities suggest that 180 words
+per minute while reading silently «may be a threshold between immature and mature
+reading and that a speed below this is too slow for efficient comprehension or for the
+enjoyment of text» (Higgins & Wallace 1989, in Anderson 1999:3). Others suggest that
+silent reading rates of ESL readers should approximate those of EHL readers (closer
+to 300 WPM), especially if the ESL is also the LOLT for most learners beyond Grade 3,
+in order to come close to the reading rate and comprehension levels of EHL readers.
+    While research into reading in an ESL is not as extensive as its EHL counterpart,
+an increasing number of comparative EHL/ESL reading studies have been undertaken
+at different age levels. Pretorius (2012) argues that ESL reading theories tend to draw
+quite heavily on EHL reading theory, the assumption being that the underlying skills
+and processes involved in reading languages with similar writing systems are similar
+across languages. If these decoding processes are similar in alphabetic languages,
+then there is no reason why ESL reading rates should be so laborious. An area
+where differences between EHL and ESL LOLT readers may persistently occur will be
+vocabulary, but decoding per se should not be a stumbling block.
+     Jimerson et al (2013) tracked the ORF growth of sixty-eight students from first
+through fourth grade in one Southern California school district in the US, and used
+it to predict their achievement on a reading test. They found that both ESL students
+with low socio-economic status (SES), and other students with low SES showed
+low performance in their initial first-grade ORF, which later predicted fourth-grade
+performance. The trajectory was the same for EHL students with low SES who
+performed poorly at the first-grade level. The reading fluency trajectories (from the
+first grade) of the ESL and EHL students with low SES were not significantly different.
+Their study showed that initial pre-reading skills better explained fourth-grade
+performance than either ESL with low SES or low SES alone.
+
+Using ORF to set reading norms
+ORF has been part of national assessments in the US for decades and norms are well
+established, but the same cannot be said of most developing countries (Abadzi 2011).
+A search carried out in early 2010 showed that over fifty fluency studies have been
+conducted in various countries, but the studies often reported data in ways that were
+not easily comparable, and few had collected nationally representative data.
+   As early as 1992, researchers compiled norms for ORF in English based on reading
+data from eight geographically and demographically diverse school districts in the US.
+With the growing appreciation of the importance of reading fluency, new norms were
+
+
+                                          50
+                                 Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+developed in 2005 with greater detail, reporting percentiles from the 90th through the
+10th percentile levels (Hasbrouck & Tindal 2006).
+    The use of norms in reading assessments can be categorised to match four
+different decision-making purposes (Kame’enui 2002, in Hasbrouck & Tindal 2006):
+1.   Screening measures: Brief assessments that focus on critical reading skills that predict
+     future reading growth and development, conducted at the beginning of the school
+     year to identify children likely to need extra or alternative forms of instruction.
+2.   Diagnostic measures: Assessments conducted at any time during the school year
+     when a more in-depth analysis of a student’s strengths and needs is necessary to
+     guide instructional decisions.
+3.   Progress-monitoring measures: Assessments conducted a minimum of three
+     times a year or on a routine basis (for example, weekly, monthly or quarterly)
+     using comparable and multiple test forms to (a) estimate rates of reading
+     improvement, (b) identify students who are not demonstrating adequate
+     progress and may require additional or different forms of instruction and (c)
+     evaluate the effectiveness of different forms of instruction for struggling readers
+     and provide direction for developing more effective instructional programs for
+     those challenged learners.
+4.   Outcome measures: Assessments for the purpose of determining whether
+     students achieved grade-level performance or demonstrated improvement.
+    Such fluency-based assessments have been proven to be efficient, reliable and
+valid indicators of reading proficiency when used as screening measures (Fuchs
+et al 2001). This was also shown to be the case for ESL students, as shown by the
+work of Al Otaiba et al (2009). They examined American Latino students’ early ORF
+developmental trajectories to identify differences in proficiency levels and growth
+rates in ORF of Latino students who were (a) proficient in English, (b) not proficient
+and receiving ESL services and (c) proficient enough to have exited from ESL services.
+They found that ORF scores reliably distinguished between students with learning
+disabilities and typically developing students within each group.
+     Setting ESL reading norms in the South African schooling context is a new and,
+as yet, largely unexplored terrain. One could argue that in the initial stages of ESL
+reading for LOLT (perhaps Grade 4 learners), reading at 70% the rate of EHL readers is
+not surprising or unexpected. However, as children go higher up the academic ladder
+(approaching the end of the Senior Phase), the gap between EHL and ESL reading
+for LOLT purposes should start narrowing, and by the end of Grade 9, ESL norms
+should preferably start approximating EHL norms. One may also argue for a fluency
+continuum, with EHL and ESL LOLT reading norms divergent in the beginning stages
+of reading, but converging by high school. However, all of these suggestions are
+speculative in nature and are not based on empirical evidence, largely because such
+empirical evidence does not yet exist in South Africa. It is this gap in the South African
+literature to which this study hopes to contribute.
+
+
+                                             51
+SAJCE– December 2015
+
+
+The NEEDU methodology: Test development and
+sampling information
+To assess silent reading comprehension of Grade 5 ESL students in the written
+mode, NEEDU selected an appropriate Grade 5 level passage and developed a range
+of literal and inferential questions in a mixed-question format. In addition, Grade 4
+and 5 textbooks were used to select two reading passages appropriate to Grade 5
+ESL students to assess ORF. Each of the two ORF tests was accompanied by five oral
+comprehension questions (all test instruments, questionnaires and administrator
+protocols are available in the Online Appendix).5 Much of the background information
+included here can also be found in the NEEDU National Report 2013 (NEEDU, 2014), to
+which the reader is referred for further detail.
+
+Readability
+Readability refers, broadly, to the ease or difficulty with which texts are read. Since
+the 1940s, various readability formulae have been used to quantify aspects of texts
+that are deemed to play a role in determining the ease with which texts are read.
+These readability formulae invariably incorporate word length and sentence length in
+relation to overall text length, the assumption being that short words and sentences
+are easier to read than longer words and sentences. Examples of readability formulae
+include the Flesch Reading Ease, the Dale-Chall and the Grammatik formulae.
+Although the assumptions underlying the readability formulae have been criticised
+for oversimplifying the reading process (since there are several text-based and reader-
+based factors that affect reading ease), they continue to enjoy popularity as predictors
+of text difficulty (Klare 1974).
+    The Flesch Reading Ease (RE) formula was used in the creation of the NEEDU
+reading tests (NEEDU 2014b), primarily because it is easily available and in the
+educational context, serves as a useful guideline for establishing consistency across
+texts at specific grade levels. According to Hubbard (2005:56), the RE readability
+formula uses two factors, namely syllables per one hundred words and words per
+sentence. The exact formula is included below:
+    RE = 206,835 - (0,846 syllables per 100 words) - (1,015 words per sentence)6
+    The analysis also determines the number of passive constructions used in a text.
+Passives are considered slightly more difficult to read than actives. The higher the
+number obtained from the computation, the easier the text is regarded as being while
+the lower the number, the more difficult the text. The scores have been measured in
+terms of readability categories, as shown in Table 1.
+
+
+
+
+5   Available at https://nicspaull.files.wordpress.com/2015/06/draper-spaull-2015-online-appendix.pdf.
+6   See Flesch (1948) for a full discussion of the RE formula.
+
+                                                   52
+                                    Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+Table 1: Reading ease categories (based on the RE formula)
+
+     RE score                      Age/Level                     For average adult reader
+
+      90-100         10 years                             very easy
+
+       80-89         11 years                             easy
+
+       70-79         12 years                             fairly easy
+
+       60-69         13-14 years                          standard
+
+       50-59         15-17 years                          fairly difficult
+
+       30-49         18-21 years (undergraduate)          difficult
+
+       0-29          graduate                             very difficult
+
+
+     Most academic/scientific texts and research articles fall into the last two categories
+of RE. One would expect Grade 4 and 5 textbooks to fall within the 90-70 range of
+scores. Using American textbooks as the data base, the Flesch-Kincaid formula – which
+presents the score as a grade level – was used to determine the reading ease of texts
+written for the different grades. These scores reflect the actual grade level; for example,
+a score of six would indicate a text appropriate for Grade 6. This readability score does
+not reflect aspects such as the persuasiveness or credibility of a text or its interest level.
+It is to be expected that the RE score drops the more abstract and complex a topic is.
+The use of technical terms (for example, ‘pollution’, ‘precipitation’) and that of general
+academic terms (for example, ‘operates’, ‘features’) also affects RE.
+    A selection of Grade 4 and 5 textbooks across various subjects was obtained from
+primary schools in two townships near Tshwane, namely, Atteridgeville and Mamelodi
+respectively. From each textbook, four passages were selected: one from the
+beginning, two from the middle and one from the end. These passages were scanned
+and converted into MS Word text files; all the pictures and diagrams were removed
+and only running text used for the readability analysis. The results are given in Table 2
+and Table 3.
+
+
+
+
+                                               53
+SAJCE– December 2015
+
+Table 2: Flesch RE in Grade 4 textbooks
+
+                             English
+                                                                            Social
+                             1st Add       Maths          Life Skills                     Science†
+                                                                           Science
+                              Lang
+ Words in sample texts         1 057       1 060             777            963             918
+
+ Sentences                     105          101               58             74             76
+
+ Words per sentence            8.5          8.7              10.1           12.3            11.5
+
+ Characters per word            4           4.1              4.2             4.3            4.3
+
+ Passives                       1%          2%                5%             9%             10%
+
+ RE                            82.8         75.2              83            72.9            76.1
+
+ Flesh-Kincaid grade level     3.8          4.8               4              6.1            5.5
+
+† This textbook was entitled Our World (a Vivlia book), with no further indication of the
+content subject. It dealt with both physical geography and history topics.
+     The RE range of the Grade 4 textbooks was between 82-72, falling within the ‘easy’
+to ‘fairly easy’ categories, while that of the Grade 5 textbooks was between 84-68,
+falling between the ‘easy’ to ‘standard’ categories.
+
+Table 3: Flesch RE in Grade 5 textbooks
+
+                                                                               Social      Physical
+                             English FAL      Maths           Technology
+                                                                              Science      science
+ Words                           977              1 987             836            881       894
+
+ Sentences                      30.3               165              64             63         71
+
+ Words per sentence             10.4               9.9              12.5            13       11.8
+
+ Characters per word                4              4.2              4.4            4.6       4.3
+
+ Passives                        3%                7%               26%            12%       18%
+
+ RE                             84.8               78               74.7           68.5      75.9
+
+ Flesh-Kincaid grade level          4              4.8              5.9            6.9       5.6
+
+    As to be expected, there was a gradual decrease in RE scores from Grade 4 to
+Grade 5, with concomitant increases in the use of passives and more words per
+sentence, particularly in the content subjects. The latter textbooks also carry an
+increase in the use of specialist technical words as well as general academic words. It is
+interesting to note that across both grades the RE scores were higher (that is, easier)
+in the English and Maths texts than in the other content subject texts.
+   The outcome of the readability analysis served as a guideline for Steps 2 and 3,
+namely the selection of two passages appropriate to Grade 4 and 5 levels to assess
+
+
+                                                  54
+                                    Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+ORF, and the selection of a passage appropriate to Grade 5 level to assess silent
+reading comprehension in the written mode.
+
+The reading comprehension passage
+Two passages were selected as the base for written reading comprehension tests.
+Eleven questions were asked, five based on the first passage, and six based on the
+second. The readability score of the combined comprehension passages, as well as the
+readability score of the questions are shown in Table 4 while the question types are
+shown in Table 5. Based on the learner results, a Cronbach’s alpha analysis was done
+on the written comprehension passage. Cronbach’s alpha was 0,83 which indicates
+good reliability of the overall test.
+
+Table 4: Readability score of combined comprehension passages and questions
+
+                              Combined comprehension passages
+ Words                                537      Flesch RE                                       82.3
+ Words per sentence                  12.7      Flesch-Kincaid grade level                       4.9
+ Characters per word                  4,1
+ Passives                             4%
+                                             Questions
+ Words                               344       Flesch RE                                       92.2
+ Words per sentence                  11.9      Flesch-Kincaid grade level                       3.3
+ Characters per word                  3.8
+ Passives                             4%
+
+
+Table 5: Question types
+
+                                                                                     Total     Total
+ Information process                                         Questions
+                                                                                   Questions   Marks
+ Retrieve explicitly stated (literal) information
+                                                               1, 9, 10b               3         3
+ from a text
+ Make (straightforward) inferences from
+                                                         2, 3, 4, 5, 6, 10a, 10c       7         9
+ information given in a text
+ Integrate ideas and information across
+                                                                  7, 8                 2         5
+ the text
+ Examine and evaluate the text                                     1                   1         3
+ Total                                                                                13        20
+
+
+Oral reading fluency passages
+Two passages were chosen to test ORF. The first passage (A traditional story – How
+Leopard got his spots) was 205 words long (including the title), had a Flesch RE score of
+
+
+                                                    55
+SAJCE– December 2015
+
+84,7, making it suitable for testing learners at the end of Grade 3 (Table 6 below). The
+second passage (A traditional story from Africa – How Sanguru the Hare got his long ears)
+had 269 words (including the title) and a Flesch RE of 83,3, making it suitable for testing
+learners in the middle of their Grade 4 year (Table 6 below). These two passages were
+selected as suitable for testing learners at the start of their Grade 5 year.
+
+Table 6: Readability scores of passages (ORF 1 & ORF 2)
+
+      ORF 1: A traditional story - How
+          Leopard got his spots
+    Words                                        205                Flesch RE                 84.7
+    Words per sentence                           9.8        Flesch-Kincaid grade level         3.8
+
+
+    Characters per word                          4.1
+    Passives                                     4%
+      ORF 2: A traditional story from
+    Africa – How Hare got his long ears
+    Words                                       269                 Flesch RE                 83.3
+    Words per sentence                          10.8        Flesch-Kincaid grade level         4.3
+    Characters per word                          4.1
+    Passives                                     4%
+
+
+The NEEDU sample of schools and students
+The data used in this study comes from a non-random sample of 4 667 Grade 5 learners7
+in 214 rural schools across all nine provinces of South Africa. They were collected in
+2013 by NEEDU school evaluators as one part of NEEDU’s larger evaluation design. At
+the time one of the co-authors of the present study was working within NEEDU and
+managed the data collection exercise.
+    Very poor reading levels (poor letter and word recognition in the home language
+of learners) were identified in the first NEEDU evaluation cycle when Grade 2 learners
+were assessed using the EGRA instruments in 2012 (NEEDU 2013). Reading was thus
+identified as a critical factor inhibiting improvement in the sector. In the second
+NEEDU evaluation cycle conducted in 2013 – which evaluated pedagogical practices
+in 219 rural primary schools – Grade 5 learners’ reading was assessed in terms of their
+ORF and reading comprehension. It is these data that form the basis for this paper.
+    The labour-intensive nature of the approach to systemic evaluation adopted by
+NEEDU (NEEDU 2013), led to the number of schools selected for evaluation being
+limited and non-random. NEEDU aimed to assess one third of districts with the aim
+
+
+7      The original sample included thirty EHL students bringing the total to 4 697; however, given that
+       the focus of the current study is on ESL learners, these thirty EHL learners were dropped from
+       the analysis.
+
+                                                   56
+                                 Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+of covering all districts in three years. Within each district a district official was asked
+to select eight schools for inclusion in the sample. This non-random selection clearly
+affects the generalizability of the sample, but if anything, the results are positively
+biased (that is, better schools were put forward). The sample also seems to include
+more schools that were closer to amenities and fewer extremely remote schools. One
+further limitation is that the NEEDU school visits (and therefore the ORF assessments)
+were conducted throughout the year meaning that some schools were assessed earlier
+in the year and others later in the year. Analysis of the results by month and province
+shows no relation between the month of assessment and ORF or comprehension
+outcomes. Consequently, we do not disaggregate the results by month but treat the
+sample as a Grade 5 composite sample.
+    Notwithstanding the above, the sample of 214 schools is large by local and international
+standards and the number of students being assessed on ORF (1 772) is large relative
+to most of the literature, particularly for the literature looking at ESL students. Thus we
+would argue that this sample is sufficiently large to give a good indication of reading levels
+of Grade 5 ESL learners across rural areas in South Africa in 2013.
+    Within each school, one Grade 5 class was randomly selected. All learners in the
+class were tested on a 40-minute written reading comprehension test which had eleven
+questions (see online appendix). Based on the results of the written comprehension
+test, ten learners from each class were selected (three top, four middle and three
+bottom achievers) to participate in an ORF test. In schools with less than fifteen learners
+in the Grade 5 class, all learners were selected for the ORF test so as not to make them
+feel excluded. The sample for the first ORF passage consisted of 1 772.
+   Two NEEDU evaluators visited each school to conduct the NEEDU evaluation, and
+one of those evaluators was trained as a reading assessor. The learners selected for
+the ORF assessment read aloud to the reading assessor. The assessor recorded the
+number of words read correctly, and this together with the time taken to read the
+passage, calculated the total WCPM read by each learner assessed.
+     The assessment was discontinued for those learners who clearly could not read
+the first passage, and for those learners who read at such a slow pace that they
+failed to complete the first paragraph (fifty-six words) in one minute. To test their
+comprehension of the text, learners were asked five simple questions relating to the
+passage. Learners who did not read beyond the first paragraph were only asked those
+questions that were relevant to the sections read. Learners were allowed to refer to
+the passage to answer the comprehension questions. All learners that were able to
+read beyond the first paragraph in a minute were asked to read a second more difficult
+passage. This group consisted of 855 learners, and a similar process was followed for
+the second ORF passage.
+
+
+Descriptive analysis of ORF and comprehension data
+Table 7 below provides a range of descriptive statistics on each of the three tests (silent-
+comprehension, ORF 1 and ORF 2), reporting the number of students who completed the
+
+
+                                             57
+SAJCE– December 2015
+
+test, as well as the mean, standard error of the mean, minimum, maximum and standard
+deviation for each measure and reported by province, gender, LOLT in Grade 5 and grade
+arrangement. It is worth re-emphasizing that the sample was not randomly selected and
+is therefore not nationally or provincially representative. That being said, the rank order
+of the provinces in the silent reading comprehension test is broadly the same as the rank
+order of provinces using the 2007 Grade 6 SACMEQ reading test (Spaull 2011:21) with the
+exception of the Northern Cape. In the SACMEQ test the Northern Cape scored lower
+than the Western Cape and Gauteng whereas here it is the province with the highest
+average reading comprehension score. Unsurprisingly, this provincial rank order is
+roughly the same for the ORF 1 and ORF 2. While we do not stress the provincial results
+in this analysis, we would argue that there are enough boys (2 357) and girls (2 294) to
+interpret results by gender with some level of confidence. The same applies to reporting
+results by grade arrangement with 3 701 students in monograde classes and 966
+students in multigrade classes, and LOLT8 at Grade 5 level with 623 students in Afrikaans-
+medium schools and 3 867 students in English-medium schools.
+
+Table 7: Descriptive statistics for key variables and sub-groups
+
+                                 Silent reading comprehension (%)
+                                        Obs       Mean       SE Mean*        Min     Max       Std Dev
+ Eastern Cape                           1 231      15.8          0.35         0       80          12.3
+ Free State                             309        22.0          0.91         0       85          16.0
+ Gauteng                                647        25.6          0.67         0       95          17.0
+ KwaZulu-Natal                          804        18.1          0.45         0       80          12.7
+ Limpopo                                663        17.2          0.47         0       70          12.1
+ Mpumalanga                              85        19.7          1.58         0        75         14.6
+ Northern Cape                           327       32.3          1.18         0       100         21.3
+ North West                              379       23.5          1.05         0       90          20.4
+ Western Cape                            222       27.2          1.37         0       100         20.4
+ Girls                                  2 294      21.8          0.34         0       100         16.3
+ Boys                                   2 357      19.4          0.33         0       95          15.8
+ Afrikaans LOLT (Gr5)                    623       30.2          0.92         0       100         22.9
+ English LOLT (Gr5)                    3 867       19.1          0.23         0       95          14.2
+ Monograde                              3 701      20.2          0.26         0       95          16.0
+              Multigrade                966        21.7          0.53         0       100         16.6
+
+
+8    The reader will notice that the two categories ‘Afrikaans LOLT (Gr5)’ and ‘English LOLT (Gr5)’ do
+     not sum to the total number of students. This is because there were forty-six Grade 5 students
+     from one school in the Eastern Cape where the LOLT was recorded as isiXhosa. While this is
+     unusual, it is possible. The reason we do not include three categories for LOLT is that the results for
+     isiXhosa would be based on one school rather than a large number of schools, as is the case with
+     Afrikaans LOLT (forty-five schools) and English LOLT (161 schools). Apart from this, the remaining
+     differences in any of the categories are due to missing information.
+
+                                                    58
+                               Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+
+              National         4 667       20.5       0.24       0     100       16.1
+                                       ORF 1 (WCPM)
+                                Obs       Mean    SE Mean*     Min    Max      Std. Dev
+ Eastern Cape                    421       40.3       1.45       0     167       29.7
+ Free State                      93        52.0       3.59       0     154       34.6
+ Gauteng                         174       51.4       2.59       0     153       34.1
+ KwaZulu-Natal                  339        41.6       1.41       0     124       25.9
+ Limpopo                        245        40.2       1.83       0     133       28.6
+ Mpumalanga                      75        45.0       2.99       0      97       25.9
+ Northern Cape                   136       60.0       3.19       0     163       37.2
+ North West                      142       45.7       2.25       0     121       26.8
+ Western Cape                    147       60.9       2.79       0     182       33.9
+ Girls                          844        52.4       1.06       0     163       30.7
+ Boys                           918        40.3       1.00       0     182       30.4
+ Afrikaans LOLT (Gr5)           346        56.5       1.94       0     182       36.0
+ English LOLT (Gr5)             1 357      43.5       0.80       0     167       29.3
+ Monograde                      964        46.3       1.06       0     167       32.8
+ Multigrade                     808        45.9       1.02       0     182       28.9
+              National          1 772      46.1       0.74       0     182       31.1
+                                       ORF 2 (WCPM)
+                                Obs       Mean    SE Mean*     Min    Max      Std. Dev
+ Eastern Cape                    182       72.1       1.54      29     161       20.8
+ Free State                      51        80.3       3.17      28     140       22.7
+ Gauteng                         90        83.4       2.65      40     167       25.1
+ KwaZulu-Natal                   139       73.3       1.73      19     124       20.4
+ Limpopo                        108        75.3       2.41      17     161       25.1
+ Mpumalanga                      36        75.0       3.63      31     133       21.8
+ Northern Cape                   68        99.2       3.52      45     164       29.0
+ North West                      78        74.6       2.21      23     130       19.5
+ Western Cape                    103       83.5       2.51      35     177       25.5
+ Girls                          494        80.0       1.10      17     164       24.4
+ Boys                           356        76.1       1.26      19     177       23.8
+ Afrikaans LOLT (Gr5)           200        88.0       2.01      23     177       28.4
+ English LOLT (Gr5)              617       75.5       0.89      19     167       22.1
+ Monograde                      455        79.6       1.15      17     167       24.5
+ Multigrade                     400        76.8       1.19      19     177       23.8
+              National          855        78.3       0.83      17     177       24.2
+
+*SE Mean is the standard error of the mean
+
+                                           59
+SAJCE– December 2015
+
+    Although the silent reading comprehension passage was selected as a grade-
+appropriate text (with a Flesch-Kincaid grade level of 4,9), most of these students
+found the comprehension text and questions particularly challenging, scoring 20,5%
+on average (SD=16,1%). Girls scored statistically significantly higher (21,8%) than boys
+(19,4%) on this test. The scores of students in monograde classes were marginally lower
+(20,2%) than in multigrade classes (21,7%); however, this difference is not statistically
+significant (Figure 1). The largest difference between the three groupings is seen
+between students learning in English (19,1%) and students learning in Afrikaans (30,2%).
+The fact that students learning in Afrikaans do better on an English comprehension
+test than students learning in English requires investigation.
+     Firstly, the vast majority (92%) of students learning in Afrikaans in Grade 5 also spoke
+Afrikaans as their home language, and all of them had been learning in Afrikaans since
+Grade 1, taking English only as a subject. In contrast, all of the students learning in English in
+Grade 5 did not have English as home language, and 90% had learnt in an African language in
+Foundation Phase (Grades 1-3) (and taken English as a subject) before switching to English
+as LOLT in Grade 4 (and taking all subjects in English). Additionally, if one looks at the
+history of the different schools, the apartheid racial and linguistic segregation of schools
+is still evident. Of the forty-four Afrikaans schools for which we have data from former
+departments, thirty-five had been governed by the House of Representatives (HOR) under
+apartheid. The HOR was the schooling system reserved for the Coloured9 population only,
+largely based in the Western Cape. These schools were on average better managed, had
+more resources and more qualified teachers. In contrast, of the 161 English schools for
+which we have data on ex-departments in our sample, 153 were governed by either the
+Department of Education and Training (DET) or the ‘homelands’ under apartheid. The DET
+and homelands’ schools were reserved for the Black population only.
+
+
+
+
+9   The use of race as a form of classification and nomenclature in South Africa is still widespread in
+    the academic literature with the four largest race groups being Black African, Indian, Coloured
+    (mixed-race) and White. This serves a functional (rather than normative) purpose and any other
+    attempt to refer to these population groups would be cumbersome, impractical or inaccurate.
+
+                                                 60
+                                Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+
+
+
+Figure 1: Average silent reading comprehension score (%) and ORF 1 score (WCPM)
+          by gender and grade arrangement
+    These results are mirrored in ORF 1 where girls read statistically significantly more
+words correct per minute (52,4 WCPM) compared to boys (40,3 WCPM) with a similarly
+large and significant gap between English schools (43,5 WCPM) and Afrikaans schools
+(56,5). The difference between monograde classes (46,3 WCPM) and multigrade
+classes (45,9 WCPM) was not statistically significant.
+    The gaps between the sub-groups are smaller for ORF 2, as one might expect when
+there is a selection effect determining which students proceed to ORF 2. Only students
+that could read at least the first paragraph of ORF 1 proceeded to ORF 2. While the first
+paragraph contained fifty-six words, and therefore the minimum WCPM scores here might
+seem strange, students could have completed the first paragraph with many mistakes
+allowing them to proceed to ORF 2 while still having an extremely low WCPM score.
+
+Correlations between ORF and comprehension
+Table 8 below shows the correlations between five variables: (1) the silent reading
+comprehension test, (2) ORF 1 (Leopard), (3) five short comprehension questions on
+ORF 1, (4) ORF 2 (Hare), and (5) five short comprehension questions on ORF 2. Due to
+space constraints we did not include the full range of descriptive statistics for items
+(3) and (5). For ORF 1 comprehension the average score (out of five) was 1,3 with a
+standard deviation of 1,4. For the ORF 2 comprehension the average score was 1,5 with
+a standard deviation of 1,2.
+    Table 8 shows that the highest correlation of 0,83 was between ORF 1 WCPM
+and ORF 2 WCPM. This shows that 69% of the variation in ORF 2 can be explained by
+ORF 1 (and vice versa). In the present study there were two measures of ORF (ORF 1
+and ORF 2) and three measures of comprehension (silent reading comprehension,
+ORF 1 comprehension, and ORF 2 comprehension). The correlations between either
+of the two measures of ORF with any of the three comprehension measures ranged
+from 0,49 to 0,51. Hiebert, Samuels and Rasinski (2012:112) comment on Marston’s
+
+
+                                           61
+SAJCE– December 2015
+
+(1989) review of studies looking at the relationship between oral reading performances
+and comprehension and find that correlations range between 0,63 and 0,9 with most
+clustering around 0,8. However, other studies by Wiley and Deno (2005) and Pressley,
+Hildren and Shankland (2005) have reported lower correlations of between 0,4 and
+0,5. More recently, Piper and Zuilkowski (2015) found that the correlation between oral
+reading rate and silent reading comprehension for ESL second-graders in Kenya was 0,37
+when the test was conducted in English and 0,33 when it was conducted in Kiswahili.
+
+Table 8: Pearson correlations between key variables
+
+
+                   Silent reading ORF 1     Comprehension    ORF 2 Comprehension
+                  comprehension WCPM           (ORF 1)       WCPM     (ORF 2)
+
+ Silent reading
+                       1.00
+ comprehension
+ ORF 1 WCPM            0.49         1.00
+ Comprehension
+                       0.63         0.56         1.00
+ (ORF 1)
+ ORF 2 WCPM            0.50         0.83         0.53          1.00
+ Comprehension
+                       0.62         0.50         0.66          0.51         1.00
+ (ORF2)
+
+    Figures 2 and 3 show the scatter plots and respective histograms of silent reading
+comprehension and ORF 1 (Figure 2) and ORF 2 (Figure 3). These graphs show that
+the distributions of silent reading comprehension scores and WCPM was lower for
+the ORF 1 sample than for the ORF 2 sample, as would be expected given that ORF 1
+(n=1 772) was representative of the schools, while ORF 2 (n=855) included only those
+students who could read at least one paragraph in ORF 1. Figure 2 shows that a full 14%
+of the sample could only read 0-5 words correctly per minute.
+
+
+
+
+                                           62
+                              Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+
+
+
+Figure 2: Distributions of silent reading comprehension (in %) and ORF (in WCPM) for
+          the ORF 1 sample (correlation: 0.49; n=1 772)
+
+
+
+
+                                         63
+SAJCE– December 2015
+
+
+
+
+Figure 3: Distributions of silent reading comprehension (in percent) and ORF (in
+          WCPM) for the ORF 2 sample (correlation: 0.50; n=855)
+
+
+Intra-class variation in ORF
+While it is useful to understand average rates of WCPM, as well as overall standard
+deviations, it is also helpful to report the range of WCPM scores within a school. ORF
+1 results show large variation between the best performing learner and the worst
+performing learner within a school. If one looks at the distribution of the range
+(maximum WCPM – minimum WCPM), one can see that in 50% of schools this gap is
+more than 78 WCPM. In 25% of schools the gap is larger than 98 WCPM. The exact
+percentiles of the distribution of the range and corresponding WCPM figures (in
+brackets) are as follows: 10th percentile (50 WCPM), 25th percentile (63 WCPM), 50th
+percentile (78 WCPM), 75th percentile (98 WCPM), 90th percentile (120 WCPM). Two
+plausible explanations exist for the large intra-class gap: (1) the strong impact of home
+literacy practices, where some students are exposed to text and encouraged to read
+
+                                           64
+                                      Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+more than others; and (2) teachers teaching to the best learner(s) in the class, such
+that they continue to improve while students performing at the bottom end of the
+spectrum stagnate – essentially a manifestation of the Matthew Effect; that is, the
+more students read, the more they increase their reading abilities.
+
+The relationship between ORF and comprehension
+While the aim of the current paper is not to estimate the nature of the relationship
+between ORF and comprehension, it is still helpful to illustrate the broad trends
+between these two measures. Before this discussion it is helpful to explain two
+decisions: firstly, which measure of comprehension is used, and secondly, which
+measure of ORF is used.
+•    Measure of comprehension: Of the three measures of comprehension, the
+     more reliable measure of comprehension is the 40-minute silent reading
+     comprehension test that consisted of eleven questions and totalled twenty
+     marks. Although ORF 1 and ORF 2 comprehension questions were based on the
+     same text as the one used for the ORF measure, there were only five one-mark
+     questions asked after each passage. Hence, this measure is less nuanced and has
+     less variation. Consequently, we use the silent reading comprehension measure
+     for the remainder of the paper.
+•    Measure of ORF: Of the two measures of ORF (ORF 1 and ORF 2), we use the ORF 1
+     measure since this included the full sample of those tested for ORF (n=1 772).
+     Given that these students were selected from the top, middle and bottom of the
+     class, they are broadly representative of the classes from which they came. The
+     same cannot be said of ORF 2 results since only students that read past the first
+     paragraph proceeded to ORF 2, making this a selective sub-sample of students in
+     the class. Consequently, we focus on ORF 1 as the measure of ORF.
+    Figure 4 below shows the cumulative distribution functions (CDF)10 of WCPM on
+ORF 1 for three groups of students: (1) those achieving less than 30% on the silent
+reading comprehension test; (2) those achieving 30-59%; and (3) those achieving 60%+
+on the test. One can clearly see that the CDFs of the three groups differ substantially.
+If one looks at the 50th percentile (y-axis) together with Table 9, one can see that in
+Group 1 half of the 1 220 students were reading at 37 WCPM or lower, in Group 2 half
+of the 445 students were reading at 63 WCPM or lower, and in Group 3 half of the 107
+students were reading at 87 WCPM or lower.
+
+
+
+
+10   A CDF shows the probability that the value of a variable falls within a specified range. In this case
+     the thick red CDF here shows that 80% of students scoring less than 30% on the comprehension
+     test read at less than 50 WCPM.
+
+                                                   65
+SAJCE– December 2015
+
+
+
+
+Figure 4: CDF of WCPM on ORF 1 per category of performance on the silent reading
+          comprehension test
+
+Table 9: Percentile distributions of words correct per minute for ORF 1 (with sub-
+         groups of comprehension achievement) and ORF 2
+
+                                                                                  ORF 2
+                                       ORF 1 (WCPM)
+                                                                                 (WCPM)
+
+ Percentiles                   <30% silent    30-59% silent     60%+ silent
+               Full sample      reading         reading          reading        Full sample
+                (n=1 772)    comprehension   comprehension    comprehension      (n=855)
+                                 score           score            score
+
+     10th          0              0                39                56             51
+     25th          25             13               50                68             62
+    50th           46             37               63                87             74
+     75th
+                   64             52               82               104             92
+    90    th
+                   87             67               99               124            109
+
+   If one looks at the ORF rates in Table 9 and compares them to common benchmarks
+found internationally, there is clear evidence to conclude that there is a reading crisis in
+South African rural schools. International literature points to a threshold of 40 WCPM
+
+                                             66
+                                Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+as being an absolute lower-bound threshold, below which children do not understand
+what they are reading. Chard and Kameenui (2000) cite Deno (1997), who argues that
+“children in the first grade must be reading between thirty and forty words per minute
+to be able to understand what they are reading at a very basic level”. Similarly, in their
+research on the characteristics of students who are unresponsive to early literacy
+interventions, Al-Otaiba and Fuchs (2002:313) comment on earlier research: “Good,
+Simmons and Smith (1998) […] have argued that an oral reading fluency rate of less
+than forty words per minute at the end of first grade might be viewed as an important
+marker of unresponsiveness.” Of the 1 772 students assessed on ORF 1, 725 (41%) were
+reading at less than 40 WCPM, with an average of only 17 WCPM, and could therefore
+be considered non-readers. Unsurprisingly, these students are reading too slowly to
+make meaning of the text and almost all (88%) of those reading at 40 WCPM or lower
+scored less than 20% on the silent reading comprehension test.
+    The major problem with using existing WCPM benchmarks is that they have been
+calibrated based on EHL students in the US. While this 40-WCPM minimum threshold
+seems to apply to the South African context as well, it is not clear whether typical
+Hasbrouck and Tindal (2006) norms could be applied to the South African context.
+While it is possible to try and equate later grades in South Africa (say Grade 5) with
+earlier grades in the US (say Grade 2), it would still be helpful to observe ESL students
+in other contexts when developing benchmarks and trajectories.
+
+Developing ORF benchmarks for rural South African primary schools
+Abadzi (2011:13) provides a very rough summary of ORF averages by grade for
+seventeen countries. These countries were selected because they had information on
+both ORF (WCPM) and comprehension scores. Unfortunately, she does not identify
+what proportion of the studies were done in a student’s home language (local
+languages) and what proportion were done in a second language (typically English
+or French) in each country. This is obviously problematic since it is reasonable to
+expect that ORF rates would differ based on text type and difficulty, whether it is in
+a student’s home language or an additional language and whether the language is
+an agglutinating or fusional language. Notwithstanding the above, she recommends
+that as a broad rule of thumb, children should be reading at 45 WCPM by the end of
+Grade 2 and 90-120 WCPM by the end of primary school (ibid:27). Given the lack of
+additional information on language, sample-size, grade, etc., it is difficult to use these
+benchmarks in the South African context.
+   We follow Abadzi’s (2011) approach and use our assessments of both ORF in
+English and comprehension in English (a second language to these students) to create
+tentative ORF benchmarks. If one specifies some minimum level of comprehension
+and then observes the distribution of WCPM associated with those students, it
+becomes possible to develop benchmarks that are specific to the South African rural
+context, and particularly the linguistic context where students are being assessed in a
+second language (English) and have only been learning in that language for 1-2 years.
+
+
+
+                                           67
+SAJCE– December 2015
+
+    Following this approach, one can use Figure 4 and Table 9 to help identify logical
+thresholds of WCPM for South African ESL students. If students are performing below
+these thresholds, teachers have reasonable cause for concern. Table 9 shows that of
+those 107 Grade 5 students (from sixty-one schools) that are performing ‘acceptably’
+(here defined as 60% or higher on the silent reading comprehension test), almost no
+student achieved lower than 50 WCPM and the majority (75%) scored above 68 WCPM.
+In contrast, of those students scoring less than 30% on the comprehension test, the
+majority (75%) scored less than 52 WCPM.
+    The median student scoring acceptably on the comprehension test was reading at
+87 WCPM. Although there is clearly need for more research, we would argue that this
+benchmark of roughly 90 WCPM in English in Grade 5 in rural South Africa is a good
+starting point. If one raises the comprehension threshold to 80%, then the twenty-five
+students achieving this level read at 104 WCPM on average.
+    Interestingly, the WCPM distribution of Grade 5 South African students performing
+acceptably (60%+) is very similar to that of Grade 3 ESL students classified as
+‘Intermediate-English Speakers (B1)’ in Broward County, Florida, US (Table 10). The
+Broward County Public School System is the 6th largest public school system in the US
+and has a large proportion of ESL students. They have developed a range of materials,
+diagnostic tests and classification systems for ESL learners (Broward County 2012).
+There are five language level classifications: non-English speaker (A1), limited English
+speaker (A2), intermediate English speaker (B1); intermediate English speaker (B2) and
+advanced English speaker (C1). These are briefly described in Table 10 below.
+
+Table 10: Broward County language-level classifications and descriptions (Source:
+          Broward County 2012:1)
+
+ Language-level
+                                                  Descriptions
+ classifications
+                   Non-English speaker or minimal knowledge of English
+                   Demonstrates very little understanding
+       A1
+                   Cannot communicate meaning orally
+                   Unable to participate in regular classroom instruction
+                   Limited English speaker
+       A2          Demonstrates limited understanding
+                   Communicates orally in English with one- or two-word responses
+                   Intermediate English speaker
+                   Communicates orally in English, mostly with simple phrases and/or
+       B1
+                   sentence responses
+                   Makes significant grammatical errors which interfere with understanding
+
+
+
+
+                                             68
+                                 Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+
+ Language-level
+                                                   Descriptions
+ classifications
+                   Intermediate English speaker
+                   Communicates in English about everyday situations with little difficulty but
+       B2          lacks the academic language terminology
+                   Experiences some difficulty in following grade-level subject matter
+                   assignments
+                   Advanced English speaker
+                   Understands and speaks English fairly well
+       C1
+                   Makes occasional grammatical errors
+                   May read and write English with variant degrees of proficiency
+
+    The benefit of using Broward County classifications and materials is that they were
+created specifically for ESL learners. Table 11 below shows the ORF scores by grade for
+each of the three lowest categories A1, A2 and B1. If one compares these distributions
+to those shown in Table 9, one can see that the full sample of South African Grade 5
+ESL students (1 772) would be classified as A1 Grade 2 or B1 Grade 1. That is to say
+that South African rural Grade 5 ESLs are achieving at the same level as the lowest
+performing (A1) Grade 2 ESLs in Broward County, Florida. These students cannot orally
+communicate meaning in English and demonstrate very little understanding of English.
+     Figure 5 shows a histogram of South African rural Grade 5 ESLs with the kernel
+density distributions of Broward County B1 ESL learners in Grades 1 and 3 as well as the
+typical Hasbrouck & Tindal (2006) norms for American Grade 5 students. One can see
+that the South African Grade 5 (rural) ESLs and the Broward County Grade 1 ESLs (B1)
+have essentially the same distributions. As has been mentioned above, the Grade 3 B1
+ESL distribution shown here (the middle kernel density distribution) approximates
+the distribution of South African Grade 5 rural ESLs scoring 60% or higher on the silent
+reading comprehension test. From this it is possible to see that the Hasbrouck and Tindal
+(2006) norms for American students are probably inappropriate to use grade-for-grade,
+at least at the primary school level. ESL students in South African can attain acceptable
+levels of comprehension at lower WCPM scores than first-language students in America.
+    If one were looking for minimum benchmarks for South African ESL learners, then
+the Broward County ESL classification system is one starting point. If one used a higher
+comprehension threshold of 80% correct on the silent reading comprehension test (as
+opposed to 60% as earlier), then only twenty-five students (from fourteen schools)
+performed at this level in ORF 1. Their average fluency score was 104 WCPM on ORF 1.
+Thus one can see that comprehension scores of 60-80% among South African Grade 5
+ESLs correspond to WCPM ranges of 90-104 WCPM. Using the Broward County ESL
+classification system, this corresponds to B1 Grades 3-5. Thus one might consider using
+the Broward County B1 ESL ORF schema as a tentative benchmarking system for ESL
+students in Grades 1-5 in South Africa, at least until more data becomes available on ORF
+benchmarks in South Africa.
+
+
+                                              69
+     Table 11: ORF scores for ESL/ELL in Broward County Public Schools (Florida, US) (Broward County 2012)
+
+                                Non-English speaker (A1)               Limited English speaker (A2)        Intermediate English speaker (B1)
+       Percentiles       Fall          Winter         Spring                     Winter        Spring                  Winter
+                                                                  Fall WCPM                             Fall WCPM                 Spring WCPM
+                        WCPM           WCPM           WCPM                       WCPM          WCPM                    WCPM
+                90                       62                78                       71           80                      69             75
+                75                       48                61                       55           62                      55             61
+     Grade 1    50                       34                43                       38           43                      41             46
+                25                       20                24                       20           24                      27             30
+                                                                                                                                                SAJCE– December 2015
+
+
+
+
+                10                        6                7                        5             6                      13             17
+                90        47             79                82          70           73           92        93            95             100
+                75        36             61                64          53           58           73        76            80             86
+      Grade
+                50        23             41                44          35           41           52        57            62             69
+        2
+                25        11             21                24          18           24           31        39            45             53
+                10         0              3                7            1           9            11        22            30             38
+                90        58             73                85          90           98           114       98            106            124
+
+
+
+
+70
+                75        44             58                68          72           82           95        79            94             107
+      Grade
+                50        29             41                49          52           65           74        59            80             89
+        3
+                25        13             24                30          32           47           53        39            67             70
+                10         1              9                13          14           31           34        21            55             54
+                90        86             93             102            97          118           124       120           126            143
+                75        70             75                84          79           96           103       106           109            124
+      Grade
+                50        51             56                65          60           73           80        90            90             103
+        4
+                25        33             37                45          40           49           56        74            71             82
+                10        16             19                27          22           28           35        59            54             64
+                90        103            93             128            119         105           128       123           122            146
+                75        83             78             107            98           88           110       108           107            126
+      Grade
+                50        61             62                85          74           70           89        92            89             104
+        5
+                25        40             46                62          51           52           69        76            72             83
+                10        20             32                42          29           35           50        61            56             63
+               Approximates SA Rural Grade 5 ESL (Full ORF 1 sample)
+               Approximates SA Rural Grade 5 ESL sample scoring 60%+ on comprehension
+                               Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+    In order to develop accurate benchmarks and acceptable growth trajectories that
+are specific to South Africa, one would need a large data set of panel data on student
+ORF scores at successive grades, or at the very least, repeated cross-sections of large
+samples of students at successive grades. As this is not yet available, an improvised
+schema – such as that of Broward County – may be of value in the interim.
+
+
+
+
+Figure 5: Distribution of ORF scores (WCPM) for rural South African ESL learners
+          relative to Broward Country ESL learners (Source: Broward County 2012)
+
+
+Conclusions and policy discussion
+While the reading crisis in South Africa is widely acknowledged (Fleisch 2008; Spaull
+2013; Taylor, Van der Berg & Mabogoane 2013), almost no prior research exists
+on ORF in English, despite this being one of the major components of reading. The
+NEEDU Reading Study, supplemented by the present analysis, has begun to alleviate
+this paucity of information by analysing a large data set of Grade 5 rural ESL learners
+assessed in English. The four major findings emerging from the analysis are as follows:
+1.   The English ORF of rural Grade 5 ESL learners in South Africa is exceedingly low.
+     41% of the sample read at cripplingly slow speeds of less than 40 WCPM with an
+     average of only 17 WCPM and can be considered non-readers. These students
+     were reading so slow that they could not understand what they were reading at
+     even the most basic level. Almost all of these non-readers (88%) scored less than
+     20% on the comprehension test. A further 28% of the sample scored less than 30%
+
+                                          71
+SAJCE– December 2015
+
+     on the comprehension test bringing the total to 69% of Grade 5 students who
+     could not score 30% on the comprehension test. A quarter scored between 30%
+     and 60% and only 6% of the sample scored above 60% on the comprehension test.
+2.   The full sample of South African rural Grade 5 ESL students’ ORF scores are
+     approximately the same as the lowest category of Grade 2 ESL students in the US
+     (non-English Speaker: A1). These students cannot communicate meaning orally
+     in English.
+3.   The correlations between ORF and comprehension were approximately 0,5.
+     This is relatively low compared to most of the international literature. However,
+     that literature reflects largely work done with home-language speakers. More
+     research on ESL learners is needed before concluding whether these correlations
+     are low or high in international context. This may also provide support for the
+     argument that ORF is a necessary but not sufficient condition for comprehension.
+4.   Setting ORF benchmarks for South African ESL learners is a useful endeavour,
+     allowing teachers to identify and track struggling readers and to provide a yard-stick
+     against which teachers can compare their students’ progress or lack of progress.
+     Given that the Hasbrouck and Tindal (2006) norms were developed for the US
+     and primarily for EHL students, they are not appropriate for the South African
+     context. We argued that a benchmark of 90-100 WCPM in English in Grade 5 for ESL
+     students in South Africa is probably a good starting point until more data become
+     available. Only 6% of the sample achieved these ORF levels. We also highlighted the
+     potential of using the Broward County ESL classification chart and following the
+     ‘Intermediate English (B1)’ trajectory for South African ESL students.
+    From a policy perspective there are three main recommendations that we would
+put forward:
+1.   The majority of rural primary school teachers do not know how to teach reading
+     in either African languages or in English. This is evidenced by the cripplingly low
+     ORF scores in Grade 5. These students cannot engage with the curriculum (which
+     is now in English in Grade 5) and consequently fall further and further behind as
+     the reading material and cognitive demands become more and more complex.
+     While there are clearly other constraining factors that contribute to weak reading
+     outcomes (no books to read, large classes, low teacher morale, etc.), the extant
+     qualitative literature does also strongly point to the same conclusion (Hoadley
+     2012). There is a clear need to convene a group of literacy experts to develop a
+     course to teach Foundation Phase teachers how to teach reading. This course
+     should be piloted and evaluated and if it is of sufficient quality, should become
+     compulsory for all Foundation Phase teachers in schools where more than 50% of
+     students do not learn to read fluently in the LOLT by the end of Grade 3.
+2.   The clear need for evidence-based interventions, evaluations and sustained
+     support. Much of the policy energy that has been expended in the last ten years
+     has been sporadic and haphazard. Successful programs (like the Systematic
+
+
+                                            72
+                                 Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+     Method for Reading Success – SMRS) are not pursued while new initiatives are
+     funded (but not evaluated) without a clear understanding of how they improve
+     on or learn from previous initiatives. Any new national literacy drive needs to be
+     piloted, independently evaluated and only taken to scale if and when it is proved
+     to be effective. This should be seen as a medium- to long-term goal rather than a
+     short-term goal.
+3.   Reading as a unifying goal for early primary schooling. The single most important
+     goal for the first half of primary school should be the solid acquisition of reading
+     skills so that every child can read fluently in his or her home language by the
+     end of Grade 3 and read fluently in English by the end of Grade 4. This goal is
+     easily communicated and understood by parents, teachers and principals and is
+     relatively easy to measure and monitor. The benefit of having a single unifying
+     goal to focus attention, energy and resources should not be underestimated.
+4.   The Department and the research community at large need to research, develop
+     and set ORF benchmarks in English but especially for African languages for Grades
+     1-3. Given that ORF benchmarks do not translate across languages with different
+     orthographies, new research is required to set African language benchmarks.
+5.   Individual oral reading must be part of reading instruction that is insisted on by
+     departmental officials and subject advisors.
+6.   Declare early literacy research (particularly in African languages) a National
+     Research Foundation (NRF) research priority area. Given the scale of the reading
+     crisis and the lack of research on African languages at South African universities
+     (particularly relating to early literacy in African languages), the NRF should
+     declare this to be a national priority and dedicate significant resources to those
+     researchers and departments with the skills and expertise needed to understand
+     more about how children learn to read in African languages and which
+     interventions are most promising.
+    Acknowledging the extent of the reading crisis in South Africa is only the first step
+towards remedying it. Thereafter there is a need for sustained research and evidence-
+based interventions focusing on the Foundation Phase and teacher development.
+Only then can we expect the timely acquisition of core reading skills by all children,
+irrespective of their linguistic or socio-economic background.
+
+
+Acknowledgments
+The authors would like to thank NEEDU for providing access to the data used in the analysis.
+The authors would also like to acknowledge and thank the Programme to Support Pro-
+poor Policy Development (PSPPD), a partnership between the Presidency, the Republic of
+South Africa and the European Union, who provided funding for this research, as well as
+the Zenex Foundation for additional funding received. The views expressed in this paper
+are those of the authors and do not necessarily reflect the views of these organisations.
+
+
+
+                                            73
+SAJCE– December 2015
+
+
+References
+Abadzi, H. 2011. Reading Fluency Measurements in EFA FTI Partner Countries: Outcomes
+    and Improvement Prospects. Global Partnership for Education Working Paper
+    Series on Learning, No 1. Washington, DC: World Bank
+Adams, M.J. 1990. Beginning to read: Thinking and learning about print. Cambridge, MA:
+    MIT Press.
+Al Otaiba, S., Petscher, Y., Williams, R.S., Pappamihiel, N.E., Dyrlund, A.K. & Connor,
+     C. 2009. Modelling oral reading fluency development in Latino students:
+     A longitudinal study across second and third grade. Journal of Educational
+     Psychology, 101(2):315-329.
+Al-Otaiba, S.D. & Fuchs, D. 2002. Characteristics of children who are unresponsive
+     to early literacy intervention: A review of the literature. Remedial and Special
+     Education, 23(5):300-316.
+Anderson, N.J. 1999. Improving reading speed: Activities for the classroom. English
+    Teaching Forum, 32(2).
+Broward County. 2012. Oral Reading Fluency Data for English Language Learners
+    (ELL). Retrieved from http://www.broward.k12.fl.us/STUDENTSUPPORT/
+    psychologicalservices/pdf/ellchart.pdf (accessed 10 June 2015).
+Chapman, J.W., Tunmer, W.E. & Prochnow, J.E. 2000. Early reading-related skills and
+    performance, reading self-concept, and the development of academic self-
+    concept: A longitudinal study. Journal of Educational Psychology, 92(4):703-708.
+Chard, D.J. & Kameenui, E.J. 2000. Struggling first-grade readers: The frequency and
+     progress of their reading. Journal of Special Education, 34:28-39.
+Fleisch, B. 2008. Primary education in crisis: Why South African schoolchildren
+      underachieve in reading and mathematics. Cape Town: Juta & Co.
+Flesch, R. 1948. A new readability yardstick. Journal of Applied Psychology, 32(2):221-233.
+Fuchs, L.S., Fuchs, D., Hosp, M.K. & Jenkins, J. R. 2001. Oral Reading Fluency as an
+    indicator of reading competence: A theoretical, empirical, and historical analysis.
+    Scientific Studies of Reading, 5(3):239-256.
+Good, R.H. III, Simmons, D.C. & Smith, S.B. 1998. Effective academic interventions in
+    the United States: Evaluating and enhancing the acquisition of early reading skills.
+    School of Psychology Review, 27(1), 45-56.
+Graham, B.E. & Van Ginkel, A.J. 2014. Assessing early grade reading: the value and limits
+    of ‘words per minute’. Language, Culture and Curriculum, 27(3):244-259.
+Hasbrouck, J. & Tindal, G.A. 2006. Oral reading fluency norms: A valuable assessment
+    tool for reading teachers. The Reading Teacher, 5:636-644.
+Hiebert, E.H., Samuels, S.J. & Rasinski, T. 2012. Comprehension-based silent reading
+     rates: what do we know? What do we need to know? Literacy Research and
+     Instruction, 51(2):110-124.
+
+
+
+                                            74
+                                Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+Hoadley, U. 2012. What do we know about teaching and learning in South African
+    primary schools? Education as Change, 16(2):187-202.
+Hollingsworth, S. 2009. The Systematic Method for Reading Success (SMRS) in South
+      Africa: A Literacy Intervention Between EGRA Pre- and Post-Assessments. Research
+      Triangle Park, NC: USAID.
+Howie, S., Van Staden, S., Tshele, M., Dowse, C. & Zimmerman, L. 2012. PIRLS 2011: South
+    African Children’s Reading Literacy Achievement. Pretoria: Centre for Evaluation
+    and Assessment (CEA).
+Hubbard, E.H. 2005. Study Unit 3: Text-focused evaluation methods. In: P.J. Sanderson
+    (Ed.). LIN307-D Text quality: Theories, models and techniques. Pretoria: UNISA.
+Hudson, R.F., Lane, H.B. & Pullen, P.C. 2005. Reading Fluency Assessment and
+    Instruction: What, Why, and How? The Reading Teacher, 58(8):702-714.
+Jeon, E.H. 2012. Oral Reading Fluency in Second Language Reading. Reading in a Foreign
+     Language, 24(2):186-208.
+Jimerson, S.R., Hong, S., Stage, S. & Gerber, M. 2013. Examining Oral Reading Fluency
+     trajectories among English Language Learners and English-speaking students.
+     New Approaches in Educational Research, 2(1):3-11.
+Juel, C. 1988. Learning to read and write: A longitudinal study of 54 children from first
+      through fourth grades. Journal of Educational Psychology, 80:437-447.
+Klare, G.R. 1974. Assessing readability. Reading Research Quarterly, 10(1):62-102.
+LaBerge, D., & Samuels, S. (1974). Toward a theory of automatic information processing
+    in reading. Cognitive Psychology, 6, 293–323.
+Marston, D. 1989. A curriculum-based measurement approach to assessing academic
+    performance: What it is and why do it. In: M.R. Shinn (Ed.). Curriculum-based
+    measurement: Assessing special children. New York: Guilford. 18-78.
+Martin, M.O., Kennedy, A.M. & Foy, P. 2007. PIRLS 2006 International Report. TIMSS &
+     PIRLS Boston, MA: TIMSS & PIRLS Study Center.
+Meier, C. 2011. The Foundations for Learning Campaign: helping hand or hurdle?
+    South African Journal of Education, 31: 549-560.
+Motshekga, A. 2014. Speech on the release of the Annual National Assessments results
+    2014. Retrieved from http://www.gov.za/speech-minister-basic-education-mrs-an­gie-­
+    motshekga-mp-official-release-annual-national-assessments (accessed 30 June 2015).
+NEEDU (National Education Evaluation and Development Unit). 2013. National Report
+    2012: The State of Teaching and Learning in the Foundation Phase. Pretoria: NEEDU.
+NEEDU (National Education Evaluation and Development Unit). 2014a. National Report
+    2013: Teaching and Learning in Rural Primary Schools. Pretoria: NEEDU.
+NEEDU (National Education Evaluation and Development Unit). 2014b. NEEDU Grade 5
+    Reading Study. Pretoria: NEEDU.
+NICHHD (National Institute of Child Health and Human Development). 2000.
+    National Reading Panel: Teaching children to read. Retrieved from http://www.
+
+                                           75
+SAJCE– December 2015
+
+     nationalreadingpanel.org (accessed 30 June 2015).
+Piper, B. & Zuilkowski, S. 2015. Assessing reading fluency in Kenya: Oral or silent
+     assessment? International Review of Education, 61(2):153-171.
+Piper, B. 2009. Integrated Education Program: Impact study of SMRS using early grade
+     reading assessment in three provinces in South Africa. Research Triangle Park, NC:
+     USAID/RTI.
+ Pressley, M., Hildren, K. & Shankland, R. 2005. An evaluation of end-grade-3
+    Dynamic Indicators of Basic Early Literacy Skills (DIBELS): Speed reading without
+    comprehension, predicting little. East Lansing, MI: Michigan State University,
+    College of Education, Literacy Achievement Research Center.
+Pretorius, E.J. 2010. Issues of complexity in reading: Putting Occam’s razor aside for
+     now. Southern African Linguistics and Language Studies, 28(4):339-356.
+Pretorius, E.J. 2012. Butterfly effects in reading? The relationship between decoding and
+     comprehension in Grade 6 high-poverty schools. Journal for Language Teaching,
+     46(2):74-95.
+Rasinski, T.V. & Hoffman, J.V. 2003. Oral reading in the school literacy curriculum.
+     Reading Research Quarterly, 38: 510-522.
+Rasinski, T.V., Padak, N.D., McKeon, C.A., Wilfong, L.G., Friedauer, J.A. & Heim, P. 2005.
+     Is reading fluency a key for successful high school reading? Journal of Adolescent
+     and Adult Literacy, 49 (1):22-27.
+RSA DBE (Republic of South Africa. Department of Basic Education). 2008a. National
+    Reading Strategy. Pretoria: Department of Basic Education.
+RSA DBE. 2008b. Foundations for Learning Campaign: 2008-2011. Government Gazette,
+    No 30880. Pretoria: Government Printers.
+RSA DBE. 2008c. Teaching reading in the early grades. Pretoria: Department of
+    Basic Education. Retrieved from http://www.education.gov.za/LinkClick.
+    aspx?fileticket=G648EU//FXU (accessed 30 June 2015).
+RSA DBE. 2011. Integrated National Literacy and Numeracy Strategy: A Whole-School
+    Approach. Pretoria: Department of Basic Education.
+RTI International. 2008. EGRA: Frequently asked questions. Research Triangle Park, NC:
+      USAID. Retrieved from http://pdf.usaid.gov/pdf_docs/PNADL848.pdf (accessed
+      30 June 2015).
+RTI International. 2009. Early grade reading assessment toolkit. Research Triangle Park,
+      NC: USAID. Retrieved from https://www.eddataglobal.org/documents/index.
+      cfm?fuseaction=pubDetail&ID=149 (accessed 30 June 2015).
+Segalowitz, N., Poulsen, C. & Komoda, M. 1991. Lower level components of reading
+     skill in higher level bilinguals: Implications for reading instruction. AILA Review,
+     8(1):15-30.
+Spaull, N. 2011. Primary school performance in Botswana, Mozambique, Namibia and
+     South Africa. SACMEQ Working Papers No 8. Paris.
+
+
+                                           76
+                                 Kim Draper & Nic Spaull – Examining oral reading fluency...
+
+Spaull, N. 2013. Poverty & privilege: Primary school inequality in South Africa. International
+     Journal of Educational Development, 33(2013):436-447.
+Spaull, N. 2015. Education quality in South Africa and Sub-Saharan Africa: An economic
+     approach. Unpublished PhD thesis. Stellenbosch: Stellenbosch University.
+Taylor, N. & Taylor, S. 2013. Learner performance in the NSES. In: N. Taylor, S. van der
+     Berg & T. Mabogoane (Eds.). Creating Effective Schools. Cape Town: Pearson.
+     31- 60.
+Taylor, N., Van der Berg, S. & Mabogoane, T. 2013. Creating Effective Schools. Cape
+     Town: Pearson.
+Valencia, S.W. & Buly, M.R. 2004. Behind test scores: What struggling readers really
+     need? The Reading Teacher, 57(6):520-531.
+Valencia, S.W., Smith, A.T., Reece, A.M., Li, M., Wixson, K.K. & Newman, H. 2010. Oral
+     Reading Fluency Assessment: Issues of Construct, Criterion, and Consequential
+     Validity. Reading Research Quarterly, 45(3):270-291.
+Wiley, H. & Deno, S. 2005. Oral reading and maze measures as predictors of success for
+     English learners on a state standards assessment. Remedial and Special Education,
+     26(4):207-214.
+
+
+
+
+                                             77
+

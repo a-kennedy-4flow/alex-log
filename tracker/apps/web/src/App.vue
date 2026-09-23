@@ -108,31 +108,22 @@ function reload(): void {
           <span class="wordmark">{{ t('app.title') }}</span>
         </span>
 
-        <nav>
-          <Link
-            to="/"
-            :active-props="ACTIVE"
-            :active-options="{ exact: true }"
-            data-tour="navMonth"
-          >
+        <!-- The tour points at the strip rather than at each tab. -->
+        <nav data-tour="tabs">
+          <Link to="/" :active-props="ACTIVE" :active-options="{ exact: true }">
             {{ t('nav.month') }}
           </Link>
-          <Link to="/quick" :active-props="ACTIVE" data-tour="navQuick">
+          <Link to="/quick" :active-props="ACTIVE">
             {{ t('nav.simple') }}
           </Link>
-          <Link to="/guided" :active-props="ACTIVE" data-tour="navGuided">
+          <Link to="/guided" :active-props="ACTIVE">
             {{ t('nav.guided') }}
           </Link>
-          <Link to="/jira" :active-props="ACTIVE" data-tour="navJira">{{ t('nav.jira') }}</Link>
-          <Link to="/cost-centres" :active-props="ACTIVE" data-tour="navCostCentres">
+          <Link to="/jira" :active-props="ACTIVE">{{ t('nav.jira') }}</Link>
+          <Link to="/cost-centres" :active-props="ACTIVE">
             {{ t('nav.catalogue') }}
           </Link>
-          <Link
-            to="/settings"
-            :active-props="ACTIVE"
-            :class="{ nudge: !profileComplete }"
-            data-tour="navSetup"
-          >
+          <Link to="/settings" :active-props="ACTIVE" :class="{ nudge: !profileComplete }">
             {{ t('nav.setup') }}
           </Link>
           <Link v-if="isBackoffice()" to="/admin" :active-props="ACTIVE" class="admin">

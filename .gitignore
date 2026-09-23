@@ -6,3 +6,5 @@ dist/
 *.tsbuildinfo
 cdk.out/
 s3export/
+**/target/**
+*.mp4

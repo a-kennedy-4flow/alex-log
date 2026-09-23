@@ -112,8 +112,6 @@ function book(at: 'list' | 'absence', workdayId: string, specification: string |
     </ul>
 
     <p v-if="refused" class="full">{{ t('recent.full') }}</p>
-
-    <p class="muted footnote">{{ t('recent.hint') }}</p>
   </section>
 </template>
 

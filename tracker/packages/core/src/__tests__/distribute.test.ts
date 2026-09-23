@@ -7,6 +7,7 @@ import { loadCatalogue } from '@tracker/fixtures'
 
 import type { Allocation, HalfDay } from '../index'
 import {
+  balanceShares,
   bookableDays,
   buildMonth,
   collapseWholeDays,
@@ -343,5 +344,86 @@ describe('choosing which days of a week to book', () => {
     expect(daysBookedInWeek(1, 1, 0)).toEqual([1])
     expect(daysBookedInWeek(1, 0, 0)).toEqual([0])
     expect(daysBookedInWeek(0, 3, 0)).toEqual([])
+  })
+})
+
+/*
+ * The shares that hold a hundred. Quick fill option B.
+ *
+ * The invariant is the whole of it. Whatever the user drags and whatever they
+ * have pinned the shares add up to a hundred, because the page then never asks
+ * them to do the arithmetic it was built to do for them.
+ */
+describe('balancing the shares', () => {
+  const sum = (shares: number[]) => shares.reduce((a, b) => a + b, 0)
+
+  it('takes what one row gained from the rest in proportion', () => {
+    // 25 each. The first goes to 40 so the other three give up 5 between them
+    // and hold the 1 to 1 to 1 they had.
+    expect(balanceShares([40, 25, 25, 25], 0)).toEqual([40, 20, 20, 20])
+  })
+
+  it('gives back what one row released', () => {
+    expect(balanceShares([10, 30, 30, 30], 0)).toEqual([10, 30, 30, 30])
+    expect(sum(balanceShares([10, 30, 30, 30], 0))).toBe(100)
+  })
+
+  it('lands on a hundred exactly where the division does not', () => {
+    // A third of 70 is 23.333. The floors reach 69 and the remainder goes to
+    // the rows the division cut hardest.
+    const out = balanceShares([30, 10, 10, 10], 0)
+    expect(sum(out)).toBe(100)
+    expect(out[0]).toBe(30)
+  })
+
+  it('never moves a row that is held', () => {
+    const out = balanceShares([50, 20, 20, 10], 0, new Set([1]))
+    expect(out[0]).toBe(50)
+    expect(out[1]).toBe(20)
+    expect(sum(out)).toBe(100)
+  })
+
+  it('stops the handle dead when every other row is held', () => {
+    // 60 is not reachable. The held rows own 70 so the moved row has 30 and no
+    // other value. The total is still a hundred.
+    const out = balanceShares([60, 40, 30], 0, new Set([1, 2]))
+    expect(out).toEqual([30, 40, 30])
+    expect(sum(out)).toBe(100)
+  })
+
+  it('shares out what a removed row held', () => {
+    // Nothing was dragged. The row is already gone and 70 is what is left.
+    const out = balanceShares([30, 30, 10], null)
+    expect(sum(out)).toBe(100)
+    expect(out[0]).toBe(out[1])
+  })
+
+  it('spreads evenly onto rows that hold nothing', () => {
+    const out = balanceShares([40, 0, 0, 0], 0)
+    expect(out).toEqual([40, 20, 20, 20])
+  })
+
+  it('holds the hundred across every share one row can take', () => {
+    for (let share = 0; share <= 100; share += 1) {
+      const out = balanceShares([share, 30, 20, 10], 0)
+      expect(sum(out), `share ${share}`).toBe(100)
+      expect(out[0], `share ${share}`).toBe(share)
+      expect(out.every((n) => n >= 0 && Number.isInteger(n))).toBe(true)
+    }
+  })
+
+  it('holds the hundred with a row held at each position', () => {
+    for (let held = 0; held < 4; held += 1) {
+      for (let share = 0; share <= 100; share += 5) {
+        const shares = [share, 30, 20, 10]
+        const out = balanceShares(shares, 0, new Set([held]))
+        expect(sum(out), `held ${held} share ${share}`).toBe(100)
+      }
+    }
+  })
+
+  it('answers a single row by putting the whole month on it', () => {
+    expect(balanceShares([40], 0)).toEqual([100])
+    expect(balanceShares([], 0)).toEqual([])
   })
 })

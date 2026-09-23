@@ -11,10 +11,11 @@
 import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { shortDate, weekdayName } from '@/i18n'
 import { router } from '@/router'
 
 import CostCentrePicker from '@/components/CostCentrePicker.vue'
+import GuidedCalendar from '@/components/GuidedCalendar.vue'
+import NumberStepper from '@/components/NumberStepper.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import PeriodBar from '@/components/PeriodBar.vue'
 import SpecPicker from '@/components/SpecPicker.vue'
@@ -35,7 +36,6 @@ import {
   kindsInPlay,
   leftToPlace,
   maxFor,
-  placed,
   placing,
   removeRow,
   reset,
@@ -45,19 +45,13 @@ import {
   shareTotal,
   spreadEvenly,
   stillToPlace,
-  toggleDate,
-  workingDates,
   workTarget,
 } from '@/composables/useGuided'
 
-const { t, n, locale } = useI18n()
+const { t, n } = useI18n()
 
 setPage('guided')
 onMounted(() => startUnlessSeen())
-
-function onCount(label: string, event: Event): void {
-  setCount(label, Number((event.target as HTMLInputElement).value))
-}
 
 function onWorkdayChange(index: number, value: string | null): void {
   const row = rows[index]
@@ -104,14 +98,12 @@ async function openMonthView(): Promise<void> {
           <li v-for="option in absenceOptions" :key="option">
             <label>
               <span>{{ option }}</span>
-              <input
-                class="count num"
-                type="number"
-                min="0"
+              <NumberStepper
+                class="count"
+                :model-value="daysOffBy[option] ?? 0"
+                :min="0"
                 :max="maxFor(option)"
-                step="1"
-                :value="daysOffBy[option] ?? 0"
-                @input="onCount(option, $event)"
+                @update:model-value="setCount(option, $event)"
               />
             </label>
           </li>
@@ -149,21 +141,11 @@ async function openMonthView(): Promise<void> {
           </div>
         </div>
 
-        <!-- Working days alone. The tracker books no weekend and no holiday. -->
-        <ul class="days" data-tour="guidedPlace">
-          <li v-for="day in workingDates" :key="day.date">
-            <button
-              type="button"
-              :class="[`dow-${day.weekday}`, { on: placed[day.date] !== undefined }]"
-              :disabled="placed[day.date] === undefined && placing === null"
-              @click="toggleDate(day.date)"
-            >
-              <span class="dow">{{ weekdayName(locale, day.date) }}</span>
-              <span class="num">{{ shortDate(locale, day.date) }}</span>
-              <span v-if="placed[day.date]" class="held">{{ placed[day.date] }}</span>
-            </button>
-          </li>
-        </ul>
+        <!-- The month as a calendar. A day off is answered on the date it was
+             taken so the question is asked on a month rather than on a list.
+             Working days alone are offered. The tracker books no weekend and no
+             holiday. -->
+        <GuidedCalendar data-tour="guidedPlace" />
       </section>
 
       <!-- 3. Which projects were worked on. -->
@@ -226,7 +208,6 @@ async function openMonthView(): Promise<void> {
           <b class="num">{{ t('jira.ofTarget', { days: n(booked), target: n(target) }) }}</b>
         </div>
         <div class="say">
-          <p>{{ t('guided.buildIntro') }}</p>
           <p v-if="!ready" class="warn">{{ t('guided.notReady') }}</p>
         </div>
         <button type="button" class="btn btn-primary" :disabled="!ready" @click="buildAndOpen">
@@ -249,9 +230,6 @@ async function openMonthView(): Promise<void> {
           </p>
           <p v-if="built.shortBy > 0" class="warn">
             {{ t('guided.shortBy', { days: n(built.shortBy) }) }}
-          </p>
-          <p v-if="built.ignored.length" class="warn">
-            {{ t('guided.ignored', { dates: built.ignored.join(' ') }) }}
           </p>
           <div class="row">
             <button type="button" class="btn btn-primary" @click="openMonthView">
@@ -326,10 +304,10 @@ async function openMonthView(): Promise<void> {
   font-size: 13px;
 }
 
+/* The arrows stand inside the box so the field is wider than the count needs. */
 .count {
-  width: 96px;
+  width: 124px;
   font-size: 18px;
-  text-align: right;
 }
 
 /* The switch between the two absences. `ViewSwitch.vue` is the same control. */
@@ -370,99 +348,6 @@ async function openMonthView(): Promise<void> {
 .pick button.on {
   background: var(--white);
   font-weight: 700;
-}
-
-/* One button a working day. The month is 20 of them so they wrap. */
-.days {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 12px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* The item stretches to the tallest button on its line so a placed day naming
-   its absence does not leave the row beside it ragged. */
-.days li {
-  display: flex;
-}
-
-.days button {
-  display: grid;
-  align-content: start;
-  gap: 1px;
-  flex: 1;
-  min-width: 108px;
-  padding: 7px 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  color: inherit;
-  font-family: inherit;
-  text-align: left;
-}
-
-/* The wash of the weekday. `tokens.css` holds the five. A working weekend
-   falls through to the Warm Grey of a day the tracker books nothing on. */
-.days button.dow-1 {
-  background: var(--dow-1);
-}
-
-.days button.dow-2 {
-  background: var(--dow-2);
-}
-
-.days button.dow-3 {
-  background: var(--dow-3);
-}
-
-.days button.dow-4 {
-  background: var(--dow-4);
-}
-
-.days button.dow-5 {
-  background: var(--dow-5);
-}
-
-.days button.dow-6,
-.days button.dow-7 {
-  background: var(--tint);
-}
-
-.days button:hover:not(:disabled) {
-  border-color: var(--bright-blue);
-}
-
-.days button.on {
-  background: var(--smart-blue);
-  border-color: var(--smart-blue);
-  color: var(--white);
-}
-
-.days button:disabled {
-  opacity: 0.45;
-}
-
-/* Smart Blue rather than Grey. Grey reaches 4.06 to 1 on the weekday wash and
-   body text needs 4.5. Size and case are what recede the weekday name. */
-.days .dow {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-/* Which absence the day holds. The label runs to 20 characters and the button
-   is sized on the date so the name is cut. */
-.days .held {
-  font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.days button.on .dow,
-.days button.on .held {
-  color: var(--on-blue-label);
 }
 
 table {

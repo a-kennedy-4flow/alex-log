@@ -1,0 +1,826 @@
+                                                                                                          TYPE Original Research
+                                                                                                          PUBLISHED 07 May 2026
+                                                                                                          DOI 10.3389/feduc.2026.1790320
+
+
+
+
+                                             Playback speed and learning:
+                                             effects on objective
+EDITED BY
+Prakasha G. S.,
+                                             comprehension and
+Christ University, India
+
+REVIEWED BY
+                                             perceived clarity
+Salvador Bacio,
+West Visayas State University, Philippines
+Roberto Sagge,                               Augusto Rodríguez Orejuela1, Edwin Arango Espinal2 and
+West Visayas State University, Philippines
+                                             Carlos Fernando Osorio-Andrade1*
+*CORRESPONDENCE
+                                             1
+Carlos Fernando Osorio-Andrade               Marketing Research Group, Facultad de Ciencias de la Administración, Universidad del Valle, Cali,
+  carlos.fernando.osorio@                    Colombia, 2Research Group Innovation, and Development in Specialty Coffees Group (GiiDCE), System
+correounivalle.edu.co                        of Regionalization, Universidad del Valle, Caicedonia, Colombia
+RECEIVED 17 January 2026
+REVISED 29 March 2026
+ACCEPTED 13 April 2026                       Introduction: Playback Speed (PS)—the practice of reproducing audiovisual
+PUBLISHED 07 May 2026
+                                             content at speeds higher than standard—has established itself as a common
+CITATION                                     strategy in virtual learning environments, though its effects on the learning
+Rodríguez Orejuela A, Arango Espinal E
+and Osorio-Andrade CF (2026) Playback        experience are not fully understood. The empirical literature shows polarized
+speed and learning: effects on objective     results, and prior research has focused almost exclusively on objective
+comprehension and perceived clarity.         performance while ignoring the subjective processing experience, as well as
+Front. Educ. 11:1790320.
+doi: 10.3389/feduc.2026.1790320              overlooking sociodemographic moderators such as age and technological
+                                             familiarity. This study examined the effects of Playback Speed on objective
+COPYRIGHT
+© 2026 Rodríguez Orejuela, Arango            information comprehension and perceived information clarity, further
+Espinal and Osorio-Andrade. This is an       evaluating the moderating role of age and technological familiarity.
+open-access article distributed under        Methods: A quantitative between-subjects experimental design with one factor
+the terms of the Creative Commons
+Attribution License (CC BY). The use,        was applied, using three speed conditions (1.0×, 1.5×, and 2.0×). A sample of
+distribution or reproduction in other        328 participants, distributed across three generational cohorts (18–73 years),
+forums is permitted, provided the            was exposed to a standardized pre-recorded technical lesson on digital
+original author(s) and the copyright
+owner(s) are credited and that the           marketing of moderate duration (16 min 42 s at 1.0×). Objective
+original publication in this journal is      comprehension was assessed through a 10-item multiple-choice test, while
+cited, in accordance with accepted           perceived clarity and technological familiarity were measured using validated
+academic practice. No use, distribution
+or reproduction is permitted which does      Likert-scale instruments. Data were analyzed using Partial Least Squares
+not comply with these terms.                 Structural Equation Modeling (PLS-SEM) with 5,000 bootstrapping subsamples.
+                                             Results: Playback Speed did not significantly impair objective information
+                                             comprehension in any of the evaluated conditions (R² = 0.022). However, it
+                                             produced a progressive and statistically significant decline in perceived clarity,
+                                             particularly at 2.0× (β = −0.311, p < 0.001; f² = 0.104), while the effect at 1.5×
+                                             was marginal and lacked practical significance. Neither technological familiarity
+                                             nor age moderated the effect of Playback Speed on comprehension. The only
+                                             significant interaction found (age × 1.5× on perceived clarity) was of small
+                                             magnitude (f² = 0.013) and should be interpreted with caution.
+                                             Discussion: These findings highlight a dissociation between objective learning
+                                             outcomes and the subjective processing experience: Playback Speed operates
+                                             as an asymmetric exchange that preserves retention but increases the
+                                             perceived cost of processing. This pattern is consistent with Cognitive Load
+
+
+
+
+Frontiers in Education                                             01                                                           frontiersin.org
+Orejuela et al.                                                                                                      10.3389/feduc.2026.1790320
+
+
+
+
+                                              Theory, suggesting that moderate accelerations may not exceed the working
+                                              memory overload threshold required to disrupt encoding, yet are sufficient to
+                                              degrade processing fluency. The results have implications for the design of
+                                              digital educational content and for guiding students who use acceleration as a
+                                              time management strategy.
+
+                                              KEYWORDS
+
+                                              information clarity, information comprehension, playback speed, speedwatching, virtual
+                                              education
+
+
+
+
+1 Introduction                                                              experience and the user’s fluency. Understanding this latter
+                                                                            dimension is vital because a confusing or arduous experience,
+     Currently, society is immersed in a volume of digital content          even if it results in learning, can generate a false sense of failure
+that exceeds human consumption capacity, and as a direct                    that undermines student self-efficacy and long-term motivation
+response to this pressure, students and content consumers adopt             (Keehr and Reardon, 2025). Secondly, in the current context of
+strategies to optimize their learning processes (Imundo et al.,             virtual education and lifelong learning, it is problematic to
+2025). Simultaneously, technological platforms—from streaming               assume that all users process accelerated information equally.
+giants like Netflix to online learning environments (MOOCs)                 Sample homogeneity is a major limitation, as research has
+like Coursera—have responded to this demand by integrating                  centered on cohorts of young university adults (Murphy et al.,
+features that grant users control over their viewing experience             2023). This leaves a profound gap regarding how age, which
+(Kim et al., 2025). Within this set of tools, the function to               naturally slows neurological processing speed, alters cognitive
+control Playback Speed has become omnipresent, giving rise to               resilience when faced with accelerated educational video. Closely
+a behavioral phenomenon known as Playback Speed (PS) or                     linked to age, a third gap emerges: technological familiarity.
+speedwatching (Keehr and Reardon, 2025). This practice,                     Until now, research has ignored how a user’s prior digital
+defined as the consumption of audiovisual content at speeds                 competence moderates the cognitive load of interacting with
+higher than normal, has become popularized as a behavioral                  platforms at high speeds, erroneously assuming that all users
+adaptation to the abundance of available content (Merhavy                   possess the same proficiency (Kuhlmann et al., 2024).
+et al., 2023). Technically, Playback Speed allows viewers to                     In synthesis, although Playback Speed has become a standard,
+reproduce lectures, news, or educational material at speeds that            it remains unknown whether the objective assimilation of data
+commonly range between 1.25x and 2.0x, although some users                  dissociates from the subjective perceptual experience, and under
+report consuming content at 2.5x or higher (Chen et al., 2024).             which sociodemographic conditions this practice ceases to be
+     The growing adoption of this practice has sparked interest             efficient and becomes counterproductive. Resolving these
+within the scientific community, giving rise to a field of study            unknowns is imperative for educators and instructional
+oriented toward understanding its implications (Cheng et al.,               designers to create equitable and effective online learning
+2022). The premise driving this phenomenon is the pursuit of                environments. Therefore, the present study specifically tests how
+efficiency, understood as the ability to process more information           Playback Speed simultaneously affects objective information
+in less time (Ahn and Chan, 2025). User motivations are diverse,            comprehension and perceived clarity in the context of a virtual
+ranging from practical benefits such as time-saving to perceptions          technical class, introducing age (18 to 73 years) and
+of cognitive advantages, such as a purported improvement in                 technological familiarity as moderating variables. By rigorously
+learning and attention (Tharumalingam and Risko, 2025).                     contrasting learning with user experience and controlling for
+However, the empirical literature on the effects of Playback Speed          digital competencies, this study seeks to untangle the
+yields highly polarized results. On one hand, some studies suggest          contradictions in the literature and offer a precise model of who
+that speeds up to 2.5x do not affect objective retention and may            truly benefits from content acceleration.
+even optimize learning at moderate speeds (1.25x–1.5x) by
+reducing mind-wandering (Ahn and Chan, 2025; Kıyak et al.,
+2023). On the other hand, recent research and experimental                  2 Theoretical framework
+analyses warn of significant impairments in performance and
+memory starting at thresholds of 1.5x and 2.0x (Liu and Jia, 2025;          2.1 Playback speed: definition and cognitive
+Tharumalingam et al., 2025; Tran et al., 2024).                             adaptation in the digital era
+     This polarization highlights that the impact of acceleration is
+not universal, revealing critical research gaps that prevent a                  PS is defined as the practice of reproducing audiovisual
+comprehensive understanding of the phenomenon. In the first                 content at a speed higher than normal, usually between 1.5 and
+place, studies have focused almost exclusively on objective                 2 times the standard playback speed (Wilson et al., 2018). This
+performance (comprehension), ignoring “perceived clarity.”                  technique has emerged as a response to the overwhelming
+Distinguishing between both constructs is fundamental and                   amount of information available in the digital age and the need
+warrants separate investigation: while comprehension measures               to process this information more efficiently. Originating within
+pure data retention, perceived clarity captures the metacognitive           the technological community, PS has been rapidly adopted by a
+
+
+
+Frontiers in Education                                                 02                                                          frontiersin.org
+Orejuela et al.                                                                                                        10.3389/feduc.2026.1790320
+
+
+
+
+broader audience, becoming a predominant trend, especially                   and reducing mind-wandering, but exceeding the individual
+among young people (Lang et al., 2020).                                      threshold produces an overload that saturates working memory
+     Historically, media consumption occurred at a pace pre-                 and prevents the proper encoding of information into long-term
+established by content creators; however, with the advent of digital         memory, thus affecting comprehension (Kintsch, 1988). In this
+platforms and streaming services, viewers have gained greater                sense, limited information processing postulates that the cognitive
+control over the way they consume information (De’Sperati and                system requires physical and mental time to perform essential
+Baud Bovy, 2017). YouTube, Netflix, and other platforms have                 operations such as speech segmentation. When extrinsic overload
+incorporated options that allow users to adjust the playback speed,          exhausts valuable resources intended for the construction of
+facilitating PS. This practice is not limited solely to entertainment        knowledge schemas, it inevitably results in a decrease in encoding
+but has also extended to the educational field and news                      (Cárdenas, 2018). Therefore, it is proposed that:
+consumption, where users seek to optimize their time and absorb
+large volumes of information rapidly (Cheng et al., 2021).                       H1: Playback Speed has a negative effect on objective
+     The popularity of PS reflects a broader trend toward efficiency             information comprehension when it exceeds certain thresholds.
+and time optimization in modern life. Young people, in
+particular, resort to this technique to stay up-to-date in a world               Beyond objective information comprehension, this study
+where information is constantly updated and the pressure to stay             analyzes perceived information clarity, understood as the user’s
+informed is high (Wingralek et al., 2022), mitigating                        subjective evaluation of how easy to follow, organized, and
+contemporary psychological pressures such as FOMO (Fear Of                   understandable the presented information is (Sidelinger and
+Missing Out). Nevertheless, this phenomenon also raises                      McCroskey, 1997). In this study, perceived clarity is
+important questions about its long-term effects on                           conceptualized as a dual construct: on one hand, it has a
+comprehension and information retention, as well as on the                   communicational nature reflecting the structure of the message;
+general user experience. The practice of PS might be changing the            on the other hand, it is a deeply metacognitive construct
+way we process information, challenging our cognitive capacities             representing the individual’s subjective self-assessment of their
+and altering our perception of viewed content (Murphy et al., 2023).         own processing fluency (Keehr and Reardon, 2025). While
+                                                                             comprehension evaluates the processing outcome, clarity reflects
+                                                                             the subjective experience of it. As PS increases, the cognitive
+2.2 Cognitive load theory and limited                                        effort required to decode the message also intensifies. Although
+processing: links to comprehension and                                       the user may maintain comprehension through greater
+perceived clarity                                                            attentional effort, processing fluency decreases. Divided
+                                                                             attention and the constant need to reprocess accelerated stimuli
+    Research on the impact of PS on learning outcomes is                     interrupt the natural flow of cognition (Pérez et al., 2024). This
+characterized by a marked contradiction (Murphy et al., 2023).               perceived difficulty can reduce the sense of control and
+On one hand, a current of studies suggests that acceleration has             confidence in what has been learned and lead to a negative
+minimal or no effects on comprehension. Some findings show                   evaluation of message clarity (Keehr and Reardon, 2025).
+that speeds up to 2.0x or 2.5x do not significantly affect                   Consequently, the following hypothesis is proposed:
+information retention (Chen et al., 2024; Kıyak et al., 2023), and
+an optimization of learning has even been reported at moderate                   H2: Playback Speed has a negative effect on the perceived
+speeds (1.25x or 1.5x), possibly because a faster pace demands                   information clarity when it exceeds certain thresholds.
+greater attention and reduces mind-wandering (Ahn and Chan,
+2025; Murphy et al., 2023). On the other hand, an equally solid
+line of research warns about the detriments of acceleration.
+A recent meta-analysis concluded that increasing playback speed              2.3 Moderation logic: effects of
+negatively affects exam performance (Tharumalingam et al.,                   technological familiarity and age
+2025), and some experimental studies support this conclusion,
+pointing to performance decrements even at speeds of 1.5x (Liu                    The contradictions in the literature suggest that the relationship
+and Jia, 2025) and memory impairment when exceeding the 2x                   between PS and comprehension is not universal but is instead
+threshold (Tran et al., 2024).                                               mediated by individual variables (Liu and Jia, 2025; Mo et al.,
+    This apparent paradox can be explained through Cognitive                 2022). This study focuses on two key moderators that have been
+Load Theory (CLT) proposed by Sweller (1988) and limited                     underestimated: age and technological familiarity. Linked to age,
+information processing models (Kintsch, 1988). Rather than                   technological familiarity (TF) emerges as a potential confounding
+observing learning as an “all or nothing” phenomenon, CLT                    factor. TF is conceptualized here within the framework of
+allows us to untangle how mental effort is divided between pure              Computer Self-Efficacy Theory (Compeau and Higgins, 1995) and
+retention and the processing experience (Wilson et al., 2018).               digital literacy, where a high level of familiarity implies that the
+This theory maintains that human working memory is limited.                  individual has developed automated schemas to process
+As PS increases, both intrinsic load (more units of information              information in digital environments (Getenet, 2024). The
+per second) and extrinsic load (the additional effort of decoding            difficulties attributed to cognitive aging might be exacerbated by
+compressed speech and visual elements) increase (Mo et al.,                  lower fluency in navigating digital interfaces. Applying Cognitive
+2022). It is likely that an optimal threshold exists: moderate               Load Theory, interacting with an unfamiliar tool (such as speed
+speeds could optimize cognitive load by keeping the user focused             controls) imposes an additional extrinsic cognitive load (Sweller,
+
+
+Frontiers in Education                                                  03                                                            frontiersin.org
+Orejuela et al.                                                                                                    10.3389/feduc.2026.1790320
+
+
+
+
+1988). This extraneous load consumes working memory resources
+that would otherwise be available for processing the lesson
+content. Conversely, an individual with high TF manages the
+interface automatically and without anxiety, dedicating their
+cognitive resources fully to learning and mitigating the negative
+impact of PS. Therefore, low TF would aggravate the negative
+effects of PS, while high TF could mitigate them by allowing for
+effective comprehension at higher speeds. Based on this, the
+following hypothesis is proposed:
+
+    H3: Technological familiarity moderates the effect of Playback
+    Speed on objective information comprehension and perceived
+    clarity such that the negative effect will be more pronounced
+    in individuals with low technological familiarity.
+                                                                              FIGURE 1
+                                                                              Research model.
+    On the other hand, age is a critical moderator given that most
+studies have focused almost exclusively on young adults (Kıyak
+et al., 2023). Processing-Speed Theory postulates a general
+slowing of basic cognitive and neurological operations with aging          interaction effects proposed in the moderation hypotheses. The
+(Salthouse, 1996). This slowing implies that, since older adults           proposed research model is presented below in Figure 1.
+intrinsically require more time to process sensory-perceptual
+tasks, the cognitive overload “threshold” is reached at lower
+playback speeds in older adults (Park and Reuter-Lorenz, 2009;             3 Materials and methods
+Sweller, 1988). Evidence supports this: Murphy et al. (2023)
+found that while young adults showed no memory deficits with               3.1 Research design and ethical
+PS, the performance of older adults was indeed affected.                   considerations
+Similarly, Sheng et al. (2022) observed age-differentiated effects.
+Therefore, the following hypothesis is proposed:                               To evaluate the effects of PS on objective information
+                                                                           comprehension and perceived information clarity, as well as to
+    H4: Age moderates the effect of Playback Speed on objective            explore the moderating role of age and technological familiarity,
+    information comprehension and perceived clarity such that              a quantitative between-subjects experimental design with one
+    the negative effect will be more pronounced in older adults.           factor (Playback Speed: 1.0x, 1.5x, and 2.0x) was applied. This
+                                                                           design is appropriate because it combines the active
+                                                                           manipulation of the independent variable with the random
+                                                                           assignment of participants to experimental conditions, allowing
+2.4 Conceptual synthesis of the research                                   for the establishment of causal relationships and the systematic
+model                                                                      control of extraneous variables (Gerber and Green, 2012;
+                                                                           Shadish, Cook and Campbell, 2002). Although the sample was
+    Overall, the presented theoretical framework articulates a             recruited through an online convenience panel, randomization
+system of interdependent relationships that seeks to explain               operated at the level of individual assignment to groups—a
+the phenomenon of PS. As illustrated in Figure 1, the                      criterion that, following Campbell and Stanley (1963), is the
+model postulates that reproduction speed acts as the central               defining element of a true experiment. To ensure ethical rigor,
+cognitive stressor (independent variable). The effects of this             the research adhered to institutional guidelines and the
+acceleration bifurcate into two learning dimensions that                   Declaration of Helsinki. Before starting, all participants read and
+respond to different processing logics: objective information              accepted a digital informed consent form on the platform,
+comprehension (as a measurable cognitive outcome, H1) and                  which guaranteed anonymity, strict data confidentiality, and the
+perceived clarity (as a metacognitive and communicational                  voluntary nature of their participation.
+experience, H2), which constitute the dependent variables. In
+turn, this system does not operate in a vacuum but is
+conditioned by the individual characteristics of the user:                 3.2 Participants and sampling
+technological familiarity (H3) and age (H4) function as
+moderating variables. These variables intervene orthogonally                   The total sample consisted of 328 participants (n = 328)
+upon the main effects, theoretically suggesting that they                  distributed nationwide in Spain. During the period between
+possess the capacity to buffer (in the case of high familiarity)           October 5 and 15, 2025, participants were assigned in a balanced
+or exacerbate (in the case of older age) the impact of the                 manner to three experimental conditions: Group 1 (1.0x): 110
+cognitive stressor on learning and perception. The direct                  people (33.54%); Group 2 (1.5x): 106 people (32.32%); and Group
+arrows in Figure 1 represent the expected direct effects, while            3 (2.0x): 112 people (34.15%). Given that the impact of aging on
+the perpendicular arrows mathematically illustrate the                     cognitive processing is a central axis of the study, the
+
+
+Frontiers in Education                                                04                                                         frontiersin.org
+Orejuela et al.                                                                                                                          10.3389/feduc.2026.1790320
+
+
+
+
+characteristics of the sample were directly aligned with this purpose,                          according to the experimental condition: the 1.5x group completed
+achieving an equitable representation of three generational cohorts                             the video in approximately 11 min and the 2.0x group in
+that formed part of the conceptual framework: young adults aged 18                              approximately 8 min. This difference in exposure time does not
+to 30 (n = 104; 31.7%), middle-aged adults aged 31 to 45 (n = 116;                              constitute a confounding variable, but rather the central operational
+35.4%), and older adults aged 46 to 73 (n = 108; 32.9%), with an                                mechanism of the experimental manipulation. To ensure fairness in
+overall mean age of 39.14 years. Recruitment and fieldwork were                                 the evaluation, all groups had unlimited time to complete the post-
+outsourced to a specialized market research firm, which                                         test questionnaire.
+administered an online panel under a non-probability
+convenience sampling scheme. Its technical infrastructure
+guaranteed the automated random assignment of participants to                                   3.4 Instruments and validation
+the different experimental conditions. To ensure the internal
+validity of the study, baseline demographic equivalence was                                         Prior to the fieldwork, a pilot pretest was conducted with 25
+verified. A one-way analysis of variance (ANOVA) confirmed that                                 people to validate the translation and wording of the items and
+there were no statistically significant differences in the average age                          to confirm that both the scales and the video were
+between the groups assigned to 1.0x, 1.5x, and 2.0x [F(2,                                       understandable for the wide age spectrum of the sample. The
+325) = 0.84, p = 0.433]. As detailed in Table 1, this empirically                               instruments used are described below: a) objective information
+demonstrates that the three playback conditions were completely                                 comprehension dependent variable): This was evaluated through
+comparable from the baseline.                                                                   a 10-question multiple-choice test with five alternatives each,
+    It is also important to note that to control for potential                                  designed and validated by five professors with doctorates and
+confounding variables, an initial filter was implemented to                                     scientific publications in marketing. The questions were
+exclude any individual with prior knowledge or academic                                         extracted directly and exclusively from the video script; thus, the
+background in the video’s topic, thus ensuring a cognitive                                      pilot pretest confirmed they measured objective retention of the
+“blank slate” to avoid bias in the comprehension results.                                       content and could not be answered through intuition or general
+                                                                                                knowledge. Each item was weighted at 0.5 points, with a
+                                                                                                maximum score of 5 points. b) perceived information clarity
+                                                                                                (dependent variable): This was measured as a construct using an
+3.3 Materials and procedure                                                                     adaptation of the Sidelinger and McCroskey (1997) scale, which
+                                                                                                is widely validated in communication literature. The scale
+    Participants were exposed to a standardized pre-recorded class on                           consisted of 5 items evaluated on a 5-point Likert scale
+digital marketing, specifically focused on the construction and                                 (1 = Strongly disagree, 5 = Strongly agree). c) Technological
+implementation of e-commerce websites. This topic was selected                                  familiarity (moderating variable): This was measured through an
+for its contemporary relevance and its technical nature, which                                  adaptation of the Kirsch et al. (1998) instrument, composed of 4
+allows for the precise evaluation of conceptual comprehension. The                              items that evaluate self-efficacy and the frequency of use of
+content covered: the essential infrastructure for website operation                             technological tools. Responses were coded on a 5-point Likert
+and the role of hosting platforms; the risks of not having a private                            scale adjusted to the nature of each item (from 1 = Very poor/
+domain (loss of brand credibility, SEO limitations, and dependence                              Very uncomfortable/Never, to 5 = Very good/Very comfortable/
+on free platforms); hosting services in their various modalities                                Daily). d) Age (moderating variable): This was collected as a
+(shared, VPS, and dedicated), with an emphasis on availability,                                 continuous sociodemographic variable. The extraction of
+security, and scalability; content management systems (CMS) such                                scales b) and c) from academic literature ensures their initial
+as WordPress or PrestaShop, highlighting their ease of use, plugin                              construct validity, while the pilot pretest allowed for verification
+ecosystems, and development agility; and payment gateways as an                                 of their suitability for the specific context of this research.
+indispensable component for validating payment methods,
+applying robust authentication, and mitigating fraud risks. The
+video was developed using everyday language and followed a                                      4 Results
+progressive educational flow, from the creation of the digital
+environment to the full operation of the virtual store. The standard                            4.1 Sample description
+duration of the video (1.0x) was 16 min 42 s. Since the intrinsic
+objective of PS is efficiency, the exposure time inherently varied                                  The sample was selected using a non-probabilistic approach,
+                                                                                                collecting a total of 328 participants (n = 328), a size considered
+                                                                                                sufficient to ensure the validity of the quasi-experimental
+TABLE 1 Analysis of variance (ANOVA) for Age by experimental group.
+                                                                                                analysis. The sample exhibited a diverse demographic
+ Source of                 Sum of            df        Mean            F          p             distribution. Regarding gender, participation was nearly
+ variation                 squares                    square                                    equitable, consisting of 50.30% men (n = 165), 49.39% women
+ Between groups               314.52          2         157.26        0.84      0.433
+                                                                                                (n = 162), and 0.30% (n = 1) identifying with another gender.
+                                                                                                    The educational level of the participants varied, with a
+ Within groups              60,842.15        325        187.20
+                                                                                                majority holding a professional degree (43.29%, n = 142).
+ Total                      61,156.67        327                                                Secondary/primary education levels (22.26%, n = 73) and
+df = degrees of freedom. A p-value > 0.05 confirms demographic equivalence regarding age        technical/technological education (21.65%, n = 71) had similar
+across the experimental groups.                                                                 representation, while 12.80% (n = 42) had completed
+
+
+Frontiers in Education                                                                     05                                                          frontiersin.org
+Orejuela et al.                                                                                                      10.3389/feduc.2026.1790320
+
+
+
+
+postgraduate studies. In terms of socioeconomic status, the sample        its predictive orientation is particularly relevant given the study’s
+was primarily concentrated in levels 3 (40.55%, n = 133) and 4            objective, and its architecture allows for the integration of
+(28.35%, n = 93), which together accounted for 68.9% of the total.        reflective latent constructs, manifest variables, and the nominal
+    For the moderating variable of age, it was analyzed as a              independent variable coded as dummies into a single model.
+continuous variable. The age range of participants was 18 to 73                To incorporate PS (a categorical variable with three levels)
+years, with an average age of 39.14 years and a standard                  into the structural model, dummy variable coding was
+deviation of 12.21. Finally, participants were evenly assigned to         implemented using the control group (1.0x) as the reference
+the three experimental conditions (video speed). Group 1 (1.0x            category (coded as 0, 0). Two indicator variables were created:
+speed) included 110 people (33.54%), Group 2 (1.5x speed) had             Speed 1.5x (1 for that group, 0 for the rest) and Speed 2.0x
+106 participants (32.32%), and Group 3 (2.0x speed) consisted             (1 for that group, 0 for the rest). The analysis plan followed a
+of 112 participants (34.15%) (See Table 2).                               systematic two-stage procedure (Hair et al., 2019). Stage 1
+                                                                          involved the evaluation of the measurement model, where
+                                                                          indicator reliability (outer loadings > 0.708), internal
+4.2 Data analysis                                                         consistency (Cronbach’s Alpha and Composite Reliability >
+                                                                          0.70), convergent validity (AVE > 0.50), and discriminant
+     To test the hypotheses, Partial Least Squares Structural             validity through the HTMT criterion (Heterotrait-Monotrait
+Equation Modeling (PLS-SEM) was utilized through SmartPLS 4               Ratio < 0.85) were examined. Only once the validity of the
+software. Although the between-subjects experimental design               measurement model was established did the evaluation of the
+would conventionally suggest the use of ANOVA or general                  structural model proceed.
+linear models, the choice of PLS-SEM is justified by three                     Stage 2 consisted of the structural model evaluation to test the
+reasons. First, it allows for the simultaneous evaluation of the          proposed hypotheses. First, the direct effects corresponding to H1
+measurement model—validating the reliability and validity of              and H2 were analyzed by examining the path coefficients (β)
+reflective latent constructs (perceived clarity and technological         connecting the dummy variables to the dependent variables
+familiarity)—and the structural model, something that ANOVA               (objective information comprehension and perceived clarity). In
+does not permit. Second, it is statistically superior for modeling        this context, a negative and statistically significant β coefficient
+complex relationships that include multiple simultaneous                  compared to the reference group (1.0x) was interpreted as
+moderation effects, thereby reducing measurement error (Hair              evidence of the detrimental effect proposed in the hypotheses.
+et al., 2020; Sarstedt et al., 2020). Third, as a non-parametric          Subsequently, the moderation effects associated with H3 and H4
+method, it does not require multivariate normality assumptions,           were evaluated using the two-stage approach recommended
+a condition frequently unmet when working with Likert scales              within the PLS-SEM framework when working with continuous
+and comprehension test scores (Hair et al., 2019). Furthermore,           moderators. This procedure involved creating interaction terms
+
+
+TABLE 2 Sample distribution.
+
+
+ Characteristic                         Category                                Frequency (n)                           Percentage (%)
+ Gender                                 Male                                           165                                    50.30%
+
+                                        Female                                         162                                    49.39%
+
+                                        Other gender                                    1                                     0.30%
+
+ Educational level                      Secondary/Primary                               73                                    22.26%
+
+                                        Technical/Technological                         71                                    21.65%
+
+                                        Professional                                   142                                    43.29%
+
+                                        Postgraduate                                    42                                    12.80%
+
+ Socioeconomic stratum                  1                                               7                                     2.13%
+
+                                        2                                               56                                    17.07%
+
+                                        3                                              133                                    40.55%
+
+                                        4                                               93                                    28.35%
+
+                                        5                                               39                                    11.89%
+
+ Experimental group (speed)             Group 1 (Speed 1.0x)                           110                                    33.54%
+
+                                        Group 2 (Speed 1.5x)                           106                                    32.32%
+
+                                        Group 3 (Speed 2.0x)                           112                                    34.15%
+
+ Age                                    Mean                                                                 39.14
+
+                                        Std. Dev.                                                            12.21
+
+                                        Min                                                                   18
+
+                                        Max                                                                   73
+
+
+
+
+Frontiers in Education                                               06                                                           frontiersin.org
+Orejuela et al.                                                                                                                                        10.3389/feduc.2026.1790320
+
+
+
+
+by multiplying the dummy variables by the standardized scores of                                  the systematic procedure recommended by Hair et al.
+technological familiarity (modeled as a construct) and age                                        (2017), which includes analyzing path coefficients (β), their
+(considered a manifest variable). These interaction terms were                                    statistical significance ( p-values), the coefficient of
+subsequently incorporated into the structural model to estimate                                   determination (R2), predictive relevance (Q2), and effect size
+the moderating effects. Finally, to ensure the robustness of the                                  (f2). To establish the statistical significance of the
+findings, the statistical significance of all coefficients (p-values                              relationships, the bootstrapping technique with 5,000
+and confidence intervals) was determined through bootstrapping                                    subsamples was applied (Hair et al., 2017). The results of
+with 5,000 subsamples, providing a robust empirical estimation                                    the structural model are presented below in Table 4.
+against potential distributional biases.                                                               The descriptive analysis of the structural model provides a
+                                                                                                  detailed view of the impact of PS and the moderating variables.
+                                                                                                  First, it is crucial to interpret the model’s explanatory power (R2)
+4.3 Validity and reliability                                                                      with caution due to the substantial differences between the two
+                                                                                                  dependent variables. The model explains 30.2% (R2 = 0.302) of the
+     The validity and reliability of the reflective constructs (Perceived                         variance in “Perceived information clarity,” indicating moderate
+Information Clarity and Technological Familiarity) were evaluated                                 explanatory power. In contrast, its ability to explain “objective
+following standard procedures (Hair et al., 2017). First, the                                     information comprehension” is extremely weak, reaching only
+collinearity of the indicators was examined using the Variance                                    2.2% (R2 = 0.022) This suggests that the model explains very little
+Inflation Factor (VIF), finding that all values were below the                                    variance in this outcome and that comprehension is presumably
+threshold of 5.0 (the highest was item 3 of perceived information                                 determined by other external factors not addressed in this study.
+clarity with a VIF=4.778, ruling out collinearity issues).                                        Regarding the direct effect hypotheses (H1 and H2), the results are
+     Regarding the reliability of the scales, as shown in Table 3, the                            mixed. Hypothesis H1, which postulated a negative effect of speed
+Perceived Information construct demonstrated excellent reliability                                on “objective information comprehension,” was not supported by
+(Cronbach’s Alpha=0.937; CR = 0.952) and convergent validity                                      the data. Neither 1.5x speed (β = 0.052, p = 0.419) nor 2.0x speed
+(AVE=0.800), with all its factor loadings above 0.80. The adjusted                                (β = −0.019, p = 0.782) showed a statistically significant effect on
+Technological Familiarity construct presented acceptable reliability                              objective content comprehension, and their effect sizes (f2) were
+(Cronbach’s Alpha=0.691; CR = 0.826) and robust convergent                                        practically null.
+validity (AVE=0.616). Although the Cronbach’s Alpha is slightly                                        Regarding hypothesis H2, which anticipated a negative impact
+below the 0.7 threshold, the Composite Reliability (CR) exceeds                                   on “Perceived clarity,” the data offer descriptive support
+this minimum (Hair et al., 2017). Additionally, the items were                                    conditioned on speed. Increasing to 1.5x generated a marginally
+retained since the AVE of the construct was well above 0.5 (Hair                                  significant decrease (β = −0.086, p = 0.055); however, its effect
+et al., 2017). Finally, discriminant validity was evaluated using the                             size (f2 = 0.008) falls below the minimum threshold of 0.02,
+HTMT (Heterotrait-Monotrait ratio) criterion. The value                                           which should be interpreted as a lack of practical significance.
+obtained between the two latent constructs was 0.547, well                                        On the other hand, the effect of 2.0x speed was considerably
+below the strict 0.90 threshold, confirming that Perceived                                        more pronounced, showing a statistically significant negative
+Information Clarity and Technological Familiarity are empirically                                 impact (β = −0.311, p = 0.000) and a medium or practically
+distinct constructs.                                                                              relevant effect size (f2 = 0.104). Analyzing control and
+                                                                                                  moderating variables, “Technological Familiarity” had no direct
+                                                                                                  effect on “objective information comprehension” (β = 0.092,
+4.4 Structural model results                                                                      p = 0.166), but emerged as the strongest positive predictor of
+                                                                                                  “Perceived clarity” (β = 0.471, p = 0.000) with a considerable
+    Once the measurement model was validated, the                                                 effect size (f2 = 0.309). “Age” presented a similar pattern: no
+structural model was evaluated using PLS-SEM to examine                                           effect on “objective information comprehension” (β = −0.055,
+the proposed causal relationships. This evaluation followed                                       p = 0.341), but a positive direct effect on “Perceived clarity”
+
+
+TABLE 3 Validity and reliability results of reflective constructs.
+
+
+ Construct                                               Indicator                Loading                    Alpha                            CR                           AVE
+  Perceived information clarity (PC)                     Cp1                         0.919                     0.937                         0.952                         0.800
+
+                                                         Cp2                         0.904
+
+                                                         Cp3                         0.932
+
+                                                         Cp4                         0.906
+
+                                                         Cp5                         0.806
+
+  Technological familiarity (FT)                         Ft2                         0.815                     0.691                         0.826                         0.616
+
+                                                         Ft3                         0.872
+
+                                                         Ft4                         0.649
+
+For reflective indicators (R), it is expected that Cronbach’s Alpha > 0.7, Composite Reliability (CR) > 0.7, factor loading > 0.5, and Average Variance Extracted (AVE) > 0.5.
+
+
+
+Frontiers in Education                                                                       07                                                                           frontiersin.org
+Orejuela et al.                                                                                                                                     10.3389/feduc.2026.1790320
+
+
+
+
+TABLE 4 Structural model results.
+                                                                                                         given that the effect size is small (f2 = 0.013) and the Ages ×2.0x
+                                                                                                         interaction was non-significant (p = 0.330), these results must be
+ Path                            Information                           Perceived
+ relationship                  comprehension                          information                        interpreted with caution.
+                                 (R2 = 0.022)                            clarity
+                                                                      (R2 = 0.302)
+  Direct effects (H1,          β (t-value, p-value) [f2]          β (t-value, p-value) [f2]
+                                                                                                         4.5 Evaluation of the structural model
+  H2)
+                                                                                                              To assess the predictive relevance and overall fit of the model,
+  1.5x (vs. 1.0x)            0.052 (t = 0.809, p = 0.419)             −0.086 (t = 1.925,                 the Stone-Geisser Q2, Goodness of Fit (GoF), and Standardized
+                                        [0.002]                       p = 0.055) [0.008]                 Root Mean Square Residual (SRMR) indices were analyzed, with
+  2.0x (vs. 1.0x)           −0.019 (t = 0.277, p = 0.782)             −0.311 (t = 6.164,                 results presented in Table 5.
+                                        [0.000]                       p = 0.000) [0.104]                      Regarding predictive relevance (Q2), the blindfolding
+                                                                                                         procedure proposed by Chin et al. (2008) was applied. The Q2
+  Controls (direct effects)
+                                                                                                         value for the “Perceived Information Clarity” variable was
+  Age                       −0.055 (t = 0.954, p = 0.341)              0.117 (t = 2.365,                 positive and substantial (Q2 = 0.235), indicating adequate
+                                        [0.003]                       p = 0.018) [0.019]                 predictive capacity of the model for this variable. In contrast,
+  Technological              0.092 (t = 1.389, p = 0.166)              0.471 (t = 8.821,                 the value obtained for the “objective information
+  familiarity                           [0.009]                       p = 0.000) [0.309]                 comprehension” variable was negative (Q2 = −0.041), indicating
+                                                                                                         a lack of predictive relevance, consistent with the low coefficient
+  Technological familiarity moderation (H3)
+                                                                                                         of determination (R2) associated with this variable.
+  TF. × 1.5x                −0.073 (t = 0.993, p = 0.321)              0.001 (t = 0.018,
+                                                                                                              Regarding the overall fit of the model (GoF), it was calculated
+                                        [0.004]                      p = 0.986) [$0.000]                 following the proposal by Wetzels et al. (2009), obtaining a value
+  TFx 2.0x                  −0.006 (t = 0.075, p = 0.940)             −0.029 (t = 0.399,                 of 0.338, which suggests a medium-to-high fit, above the 0.25
+                                       [$0.000]                       p = 0.690) [0.001]                 threshold considered representative of a medium level of fit.
+                                                                                                              Finally, regarding the model fit (SRMR), the obtained value
+  Age moderation (H4)
+                                                                                                         was 0.067. Since this value is below the 0.08 threshold
+  Age × 1.5x                 0.013 (t = 0.200, p = 0.842)              0.111 (t = 2.752,
+                                                                                                         established by Hu and Bentler (1999), it is concluded that the
+                                        [0.000]                       p = 0.006) [0.013]                 model presents a good overall fit to the data.
+  Age × 2.0x                 0.044 (t = 0.656, p = 0.512)              0.059 (t = 0.976,                      Regarding predictive relevance (Q2), the blindfolding procedure
+                                        [0.001]                       p = 0.330) [0.004]                 proposed by Chin et al. (2008) was applied. The (Q2), value for
+Exact p-values are reported. Thresholds for effect sizes [f2 are: small (f2 ≥ 0.02), medium
+                                                                                                         “Perceived information clarity” was positive and substantial
+(f2 ≥ 0.15), and large (f2 ≥ 0.35)]. Values below 0.02 indicate a lack of practical significance.        (Q2 = 0.235), demonstrating adequate predictive capacity of the
+                                                                                                         model for this construct. In contrast, the value obtained for
+                                                                                                         “objective      information     comprehension”       was     negative
+(β = 0.117, p = 0.018), albeit with low practical significance                                           (Q2 = −0.041), indicating a total absence of predictive relevance; a
+(f2 = 0.019). Finally, moderation hypotheses (H3 and H4) were                                            result that is directly consistent with the low coefficient of
+evaluated. Hypothesis H3 was not supported, as “Technological                                            determination (R2) associated with this variable. Regarding the
+Familiarity” did not significantly interact with speeds for either                                       global Goodness of Fit (GoF), it was calculated following the
+comprehension or clarity (p > 0.300 in all cases). Hypothesis H4,                                        approach by Wetzels et al. (2009), yielding a value of 0.338. This
+regarding “Age,” received partial statistical support.                                                   suggests a medium-to-high level of fit, as it exceeds the 0.25
+A statistically significant interaction (β = 0.111, p = 0.006) was                                       threshold. Finally, concerning the standardized root mean square
+observed between Age and the 1.5x speed condition on                                                     residual (SRMR), the value obtained was 0.067. Since this
+“Perceived clarity,” descriptively indicating that age alters how                                        indicator is below the conservative threshold of 0.08 established
+clarity is perceived at this speed. Nevertheless, the size of this                                       by Hu and Bentler (1999), it is concluded that, in global terms, the
+interaction effect is very small (f2 = 0.013), placing it below the                                      model presents a good fit to the empirical data obtained.
+threshold of practical relevance. Below, Figure 2 illustrates the
+estimated simple slopes for each age group across the three
+speed conditions.                                                                                        5 Discussion
+     As illustrated in Figure 2, the three slopes descend as speed
+increases, which is consistent with the general negative effect on                                            The results of this study offer a nuanced and, in certain respects,
+perceived clarity. However, the magnitude of the decrease differs                                        counterintuitive view of the PS phenomenon, situating the findings
+by age group. Younger participants (≈27 years) exhibit the most                                          at the intersection of cognition, perception, and individual
+pronounced drop, with perceived clarity values of 4.10 at 1.0x,                                          differences. The most significant contribution of this research lies
+3.91 at 1.5x, and 3.75 at 2.0x. In contrast, older participants                                          in the observed dissociation between objective information
+(≈51 years) show a notably different pattern: their perceived                                            comprehension and perceived information clarity —a dualism
+clarity remains stable between 1.0x (M = 4.35) and 1.5x                                                  that, far from being contradictory, can be interpreted as a
+(M = 4.38), with a slight drop only at 2.0x (M = 4.10). This                                             manifestation of the differentiated levels of processing described
+pattern suggests that age might act as a factor that buffers the                                         by Cognitive Load Theory (CLT; Sweller, 1988): while long-term
+negative effect of moderately increased speeds. Nevertheless,                                            memory encoding can be preserved under moderate load, the
+
+
+Frontiers in Education                                                                              08                                                             frontiersin.org
+Orejuela et al.                                                                                                                 10.3389/feduc.2026.1790320
+
+
+
+
+     FIGURE 2
+     Moderating effect of age on the relationship between PS and perceived clarity.
+
+
+
+processing fluency experienced subjectively as clarity deteriorates                    effects of PS emerge in tasks of greater complexity, in delayed
+before objective retention collapses. The central finding is that H1                   evaluations, or in content with higher conceptual density.
+was not supported and H2 received partial statistical support                              The near-zero explanatory power of the model regarding
+conditioned on speed. The results indicate that PS, even at 2.0x,                      comprehension (R2 = 0.022) should be treated as a central
+did not have a statistically significant impact on objective content                   explanatory limitation of this study. The proposed model explains
+comprehension. This result is consistent with a strand of                              very little variance in this outcome, suggesting that the included
+literature documenting certain cognitive tolerance to time                             variables (speed, age, and technological familiarity) are
+compression (Chen et al., 2024; Kıyak et al., 2023), although it                       insufficient to predict performance on the knowledge test. This is
+contradicts studies that reported performance impairments (Liu                         theoretically coherent with Kintsch’s (1988) postulates on limited
+and Jia, 2025; Tharumalingam et al., 2025). A possible                                 processing: objective information comprehension in tasks of
+explanation, coherent with CLT, is that the speeds employed in                         moderate duration might be primarily determined by
+this study did not exceed the individual working memory                                dispositional variables not measured here, such as individual
+overload threshold necessary to disrupt encoding; instead, they                        working memory capacity, rather than by the experimental
+were sufficient to increase extraneous load and degrade perceptual                     manipulation of speed. In marked contrast, H2 received statistical
+fluency. Nevertheless, it is important to note that comprehension                      support conditioned on speed, revealing a dose-response
+was measured immediately through a brief test, which limits the                        relationship between acceleration and perceptual deterioration.
+generalization of this finding: it is possible that the negative                       This pattern is consistent with the threshold logic implicit in CLT
+                                                                                       (Sweller, 1988): at 1.5x, the additional extraneous load was
+                                                                                       marginally perceptible but without practical relevance, whereas at
+TABLE 5 Evaluation of the structural model.                                            2.0x, the temporal compression imposed a sustained demand on
+                                                                                       attentional resources that participants experienced as arduous,
+ Metric         Construct                        Value       Criterion
+                                                                                       non-fluent, and difficult-to-follow processing. It is notable that
+     2
+ Q              Perceived information clarity      0.235     > 0 (Substantial)         this perceptual deterioration occurs in the absence of equivalent
+ (CVR)          Information comprehension         −0.041     < 0 (Null)                damage to objective information comprehension Following Keehr
+ GoF            (Global fit)                       0.338     > 0.25 (Medium)/
+                                                                                       and Reardon (2025), this gap could have relevant metacognitive
+                                                                                       implications: users who experience low clarity might
+                                                             ∼0.36 (High)
+                                                                                       underestimate their own learning, generating an “illusion of non-
+ SRMR           (Standardized root mean            0.067     < 0.08 (Good Fit)
+                                                                                       learning” with potential consequences for self-efficacy and
+                square residual)
+                                                                                       motivation. However, since this study did not directly measure
+ 2
+Q (Chin et al., 2008), GoF (Wetzels et al., 2009), SRMR (Hu and Bentler, 1999).        metacognitive beliefs or perceived self-efficacy after exposure, this
+
+
+Frontiers in Education                                                            09                                                          frontiersin.org
+Orejuela et al.                                                                                                      10.3389/feduc.2026.1790320
+
+
+
+
+interpretation should be considered speculative and constitutes a          6.1 Implications practice
+priority direction for future research.
+    Regarding the moderation hypotheses, H3 was not supported:                 For students using PS as a time management strategy, the
+technological familiarity (TF) did not moderate the relationship           findings of this study suggest that, at least for technical content of
+between PS and either of the dependent variables, despite                  moderate duration, acceleration does not necessarily compromise
+emerging as the strongest direct predictor of perceived clarity.           objective retention. However, the feeling of confusion
+This result nuances the postulates of Computer Self-Efficacy               accompanying high speeds is real and could lead to
+Theory (Compeau and Higgins, 1995): individuals with high TF               underestimating one’s own learning, making it advisable for
+seem to have developed automated schemas to process                        students to develop active verification strategies for their
+information in digital environments, which translates into                 comprehension. For educators and instructional designers, these
+higher perceived clarity in baseline conditions. However, this             results point to the importance of structuring content with clear
+proficiency does not confer differential protection against speed          visual supports and explicit segmentation, especially if it is
+increases. In other words, TF raises the perceptual starting point         anticipated that the material will be consumed at accelerated speeds.
+but does not buffer the slope of deterioration when speed
+increases, suggesting that the impact of PS on clarity operates
+relatively independently of the user’s prior digital competence.
+    H4 obtained partial and limited statistical support. The only          6.2 Limitations and future directions
+significant interaction found (between Age and the 1.5x
+condition on perceived clarity) indicates that the negative effect             This study presents limitations that narrow the scope of its
+of moderate speed was less pronounced in older participants,               conclusions. First, the exposure was brief (17 min) and confined
+which is counterintuitive relative to Processing-Speed Theory              to a specific technical topic; therefore, the findings cannot be
+(Salthouse, 1996), which predicts greater cognitive vulnerability          extrapolated to materials of longer duration, greater conceptual
+in older adults facing accelerated processing demands, and                 abstraction, or different disciplines. Second, comprehension was
+relative to previous findings that reported greater impact in this         measured immediately through a brief test, which precludes
+group (Murphy et al., 2023). This finding allows for at least two          conclusions regarding delayed retention; it is possible that the
+alternative readings that must be considered with caution. On              effects of PS on long-term learning differ from those observed
+one hand, it could reflect that older participants, who reported           here. Third, the model explained very little variance in objective
+slightly higher baseline clarity, possess more flexible processing         information comprehension (R2 = 0.022), indicating that
+expectations or lower metacognitive sensitivity to moderate                unmeasured variables, such as individual working memory
+speed increments (Tharumalingam and Risko, 2025). On the                   capacity, likely carry greater explanatory weight than the
+other hand, it could be due to uncontrolled differences in prior           manipulated variables. Finally, perceived clarity was measured
+video content consumption patterns or familiarity with the                 through self-report, which introduces the limitations inherent to
+experimental task. In any case, given that the effect size is small        subjective methods, including potential social desirability or
+and the interaction did not replicate in the higher acceleration           response biases. Future research should examine whether there
+condition, these conclusions should be treated as exploratory              is a duration or complexity threshold at which comprehension is
+and require verification in larger and more diverse samples.               finally compromised, evaluate delayed retention after periods of
+                                                                           days or weeks, control for individual working memory capacity
+                                                                           as a covariate, and complement self-report measures with
+                                                                           behavioral or physiological indicators of cognitive effort.
+6 Conclusions
+     This study provides empirical evidence of the dissociation            Data availability statement
+between two dimensions of learning frequently treated as
+equivalent: objective information comprehension and perceived                  The datasets presented in this study can be found in online
+information clarity. Under the specific conditions of this study           repositories. The names of the repository/repositories and
+(a technical lesson of moderate duration evaluated immediately),           accession number(s) can be found below: The data presented in
+increasing PS up to 2.0x did not significantly impair objective            this study are openly available in ZENODO at https://doi.org/10.
+content retention, although it did produce a progressive and               5281/zenodo.17783418, reference number 17783418.
+statistically robust deterioration in the perception of clarity,
+especially at 2.0x. This pattern suggests that PS operates as an
+asymmetric exchange: it preserves the learning outcome but
+increases the cost of its subjective experience. Regarding                 Ethics statement
+individual differences, neither technological familiarity nor age
+moderated the impact of PS on comprehension. Technological                     The studies involving humans were approved by Ethics
+familiarity predicted higher perceived clarity in baseline                 Committee for Research of the Faculty of Administrative
+conditions but did not buffer its deterioration in the face of             Sciences (CEICA), Universidad del Valle, Cali, Colombia. The
+acceleration. The only significant interaction found (age × 1.5x           studies were conducted in accordance with the local legislation
+on perceived clarity) was of small magnitude and should be                 and institutional requirements. The participants provided their
+treated as an exploratory finding that requires replication.               written informed consent to participate in this study.
+
+
+Frontiers in Education                                                10                                                           frontiersin.org
+Orejuela et al.                                                                                                                                         10.3389/feduc.2026.1790320
+
+
+
+
+Author contributions                                                                               Generative AI statement
+    AR: Project administration, Resources, Supervision,                                                 The author(s) declared that generative AI was used in the
+Investigation, Writing – review & editing, Conceptualization,                                      creation of this manuscript. In the creation of this article,
+Funding acquisition. EA: Validation, Writing – review & editing,                                   Anthropic’s Claude 3.7 Sonnet generative artificial intelligence
+Supervision, Investigation, Visualization, Conceptualization,                                      was used to improve the orthotypographic quality of the
+Resources. CO-A: Writing – original draft, Formal analysis,                                        manuscript content in English.
+Validation, Methodology, Software, Investigation.                                                       Any alternative text (alt text) provided alongside figures in this
+                                                                                                   article has been generated by Frontiers with the support of
+                                                                                                   artificial intelligence and reasonable efforts have been made to
+Funding                                                                                            ensure accuracy, including review by the authors wherever
+                                                                                                   possible. If you identify any issues, please contact us.
+    The author(s) declared that financial support was received for
+this work and/or its publication. This research was funded by
+Universidad del Valle, grant number 8183, under the project
+“Speedwatching y cognición: explorando los límites del
+procesamiento acelerado de información”.                                                           Publisher’s note
+                                                                                                       All claims expressed in this article are solely those of the
+Conflict of interest                                                                               authors and do not necessarily represent those of their affiliated
+                                                                                                   organizations, or those of the publisher, the editors and the
+    The author(s) declared that this work was conducted in the                                     reviewers. Any product that may be evaluated in this article, or
+absence of any commercial or financial relationships that could                                    claim that may be made by its manufacturer, is not guaranteed
+be construed as a potential conflict of interest.                                                  or endorsed by the publisher.
+
+
+
+
+References
+Ahn, D., and Chan, J. C. K. (2025). What drives student engagement and learning in                 Hu, L. T., and Bentler, P. M. (1999). Cutoff criteria for fit indexes in covariance
+video lectures? An investigation into instructor visibility, playback speed, and student           structure analysis: conventional criteria versus new alternatives. Struct. Equ.
+preferences. Appl. Cogn. Psychol. 39 (2), e70026. doi: 10.1002/acp.70026                           Modeling. 6 (1), 1–55. doi: 10.1080/10705519909540118
+Campbell, D. T., and Stanley, J. (1963). C. Experimental and Quasi-Experimental                    Imundo, M. N., Sanchez, R. L. R., Gonzalez, B., Adler, R. M., and Bjork, E. L. (2025).
+Designs for Research. Chicago: Rand Medially.                                                      Note-taking in the time of COVID-19: changes in students’ note-taking practices
+                                                                                                   between in-person and online instruction. Appl. Cogn. Psychol. 39 (3), e70068.
+Cárdenas, M. P. (2018). Carga cognitiva en la lectura de hipertexto. Rev. Colomb.
+                                                                                                   doi: 10.1002/acp.70068
+Psicol. 27 (1), 42–53. doi: 10.14482/zp.28.9505
+                                                                                                   Keehr, J., and Reardon, R. (2025). Is watching videos on fast speed a good idea?
+Chen, A., Kumar, S. E., Varkhedi, R., and Murphy, D. H. (2024). The effect of
+                                                                                                   Possible metacognitive complications while watching instructional videos at
+playback speed and distractions on the comprehension of audiovisual and audio
+                                                                                                   increased speeds. Comput. Human. Behav. 165, 108556. doi: 10.1016/j.chb.2025.108556
+materials. Educ. Psychol. Rev. 36 (3), 79. doi: 10.1007/s10648-024-09917-7
+                                                                                                   Kim, E., Oh, S., and Park, S. (2025). An empirical study of user interactions and
+Cheng, L., Pastore, R., and Ritzhaupt, A. (2021). Examining the accelerated playback
+                                                                                                   engagement in mobile video viewing. IEEE. Access. 13, 78272–78289. doi: 10.1109/
+hypothesis of time-compression in multimedia learning environments: a meta-
+                                                                                                   ACCESS.2025.3566402
+analysis study. J. Educ. Comput. Res. 60, 579–598. doi: 10.1177/07356331211043535
+                                                                                                   Kintsch, W. (1988). The role of knowledge in discourse comprehension: a
+Cheng, L., Pastore, R., and Ritzhaupt, A. D. (2022). Analyzing the speed-watching
+                                                                                                   construction–integration model. Psychol. Rev. 95 (2), 163–182. doi: 10.1037/0033-
+hypothesis of time-compression in multimedia learning environments: a meta-
+                                                                                                   295X.95.2.163
+analysis study. J. Educ. Comput. Res. 60 (3), 579–598. doi: 10.1177/
+07356331211043535                                                                                  Kirsch, I., Jamieson, J., Taylor, C., and Eignor, D. (1998). Computer familiarity
+                                                                                                   among TOEFL examinees. ETS Res. Rep. Ser. 1998 (1), i-23. doi: 10.1002/j.2333-
+Chin, W. W., Peterson, R. A., and Brown, S. P. (2008). Structural equation modelling
+                                                                                                   8504.1998.tb01755.x
+in marketing: some practical reminders. J. Mark. Theory Pract. 16, 287–298. doi: 10.
+2753/MTP1069-6679160402                                                                            Kıyak, Y. S., Budakoğlu, Iİ, Masters, K., and Coşkun, Ö (2023). The effect of watching
+                                                                                                   lecture videos at double speed on the memory retention performance of medical
+Compeau, D. R., and Higgins, C. A. (1995). Computer self-efficacy: Development of a
+                                                                                                   students: an experimental study. Med. Teach. 45 (8), 913–917. doi: 10.1080/
+measure and initial test. MIS Q. 19 (2), 189–211. doi: 10.2307/249688
+                                                                                                   0142159X.2023.2189537
+de’Sperati, C., and Baud Bovy, G. (2017). Low perceptual sensitivity to altered video speed
+                                                                                                   Kuhlmann, S. L., Plumley, R., Evans, Z., Bernacki, M. L., Greene, J. A., Hogan, K. A.,
+in viewing a soccer match. Sci. Rep. 7 (1), 15379. doi: 10.1038/s41598-017-15619-8
+                                                                                                   et al. (2024). Students’ active cognitive engagement with instructional videos predicts
+Gerber, A. S., and Green, D. P. (2012). Field Experiments: Design, Analysis, and                   STEM learning. Comput. Educ. 216, 105050. doi: 10.1016/j.compedu.2024.105050
+Interpretation. New York, NY: W. W. Norton and Company.
+                                                                                                   Lang, D., Chen, G., Mirzaei, K., and Paepcke, A. (2020). “Is faster better?: A study of
+Getenet, S. (2024). Students’ digital technology attitude, literacy and self-efficacy and          video playback speed,” in Proceedings of the Tenth International Conference on
+their effect on online learning engagement. Educ. Inf. Technol. 29, 1045–1068. doi: 10.            Learning Analytics & Knowledge, (New York, NY: Association for Computing
+1186/s41239-023-00437-y                                                                            Machinery), 260–269. doi: 10.1145/3375462.3375466
+Hair, J. F. Jr., Howard, M. C., and Nitzl, C. (2020). Assessing measurement model                  Liu, R., and Jia, H. (2025). Effects of instructional video playback speed and pre-
+quality in PLS-SEM using confirmatory composite analysis. J. Bus. Res. 109,                        embedded questions on learning. Asia Pac. Educ. Rev. 26 (2), 383–395. doi: 10.
+101–110. doi: 10.1016/j.jbusres.2019.11.069                                                        1007/s12564-024-09964-3
+Hair, J. F., Hult, G. T. M., Ringle, C. M., and Sarstedt, M. (2017). A Primer on Partial           Merhavy, Z. I., Bassett, L., Melchiorre, M., and Hall, M. P. M. (2023). The impact of
+Least Squares Structural Equation Modeling (PLS-SEM) (2nd ed.). Thousand Oaks,                     lecture playback speed on concentration and memory. BMC. Med. Educ. 23 (1), 515.
+CA: Sage.                                                                                          doi: 10.1186/s12909-023-04491-y
+Hair, J. F., Risher, J. J., Sarstedt, M., and Ringle, C. M. (2019). When to use and how            Mo, C.-Y., Wang, C., Dai, J., and Jin, P. (2022). Influence of video playback speed on
+to report the results of PLS-SEM. Eur. Bus. Rev. 31 (1), 2–24. doi: 10.1108/EBR-11-                the learning effect: a study based on cognitive load theory. Front. Psychol. 13, 839982.
+2018-0203                                                                                          doi: 10.3389/fpsyg.2022.839982
+
+
+
+Frontiers in Education                                                                        11                                                                          frontiersin.org
+Orejuela et al.                                                                                                                                       10.3389/feduc.2026.1790320
+
+
+
+
+Murphy, D. H., Hoover, K. M., Agadzhanyan, K., Kuehn, J. C., and Castel, A. D. (2023).           Sweller, J. (1988). Cognitive load during problem solving: effects on learning. Cogn.
+The effect of video playback speed on learning and mind-wandering in younger and                 Sci. 12 (2), 257–285. doi: 10.1207/s15516709cog1202_4
+older adults. Memory 31(6), 802–817. doi: 10.1080/09658211.2023.2198326
+                                                                                                 Tharumalingam, T., and Risko, E. F. (2025). Altering the playback speed of
+Park, D. C., and Reuter-Lorenz, P. (2009). The adaptive brain: Aging and                         recorded lectures as a learning technique: Examining student practices,
+neurocognitive scaffolding. Annu. Rev. Psychol. 60, 173–196. doi: 10.1146/annurev.               motivations, and beliefs. J. Res. Technol. Educ., 1–20. doi: 10.1080/15391523.
+psych.59.103006.093656                                                                           2025.2459130
+Pérez, N. D., Kleiman, M. J., and Barenholtz, E. (2024). Visual fixations during the             Tharumalingam, T., Roberts, B. R. T., Fawcett, J. M., and Risko, E. F. (2025).
+processing of time-compressed audiovisual presentations. Atten. Percept.                         Increasing the playback speed of video lectures can affect test performance: a
+Psychophys. 86 (2), 367–372. doi: 10.3758/s13414-023-02838-7                                     meta-analysis. Educ. Psychol. Rev. 37, doi: 10.1007/s10648-025-10003-9
+Salthouse, T. A. (1996). The processing-speed theory of adult age differences in                 Tran, S., Bianchi, L. J., and Risko, E. F. (2024). Examining increased playback speed in
+cognition. Psychol. Rev. 103 (3), 403–428. doi: 10.1037/0033-295X.103.3.403                      recorded lectures on memory, attention, and experience. J. Exp. Educ. 94 (1), 1–19.
+Sarstedt, M., Hair, J. F. Jr., Nitzl, C., Ringle, C. M., and Howard, M. C. (2020). Beyond        doi: 10.1080/00220973.2024.2306399
+a tandem analysis of SEM and PROCESS: use of PLS-SEM for mediation analyses!.                    Wetzels, M., Odekerken-Schröder, G., and van Oppen, C. (2009). Using PLS path
+Int. J. Mark. Res. 62 (3), 288–299. doi: 10.1177/1470785320915686                                modeling for assessing hierarchical construct models: guidelines and empirical
+Shadish, W. R., Cook, T. D., and Campbell, D. T. (2002). Experimental and Quasi-                 illustration. MIS. Q. 33 (1), 177–195. doi: 10.2307/20650284
+Experimental Designs for Generalized Causal Inference. Boston, MA: Houghton,                     Wilson, K. E., Martin, L., Smilek, D., and Risko, E. F. (2018). The benefits and costs of
+Mifflin and Company.                                                                             speed watching video lectures. Sch. Teach. Learn. Psychol. 4 (4), 243–257. doi: 10.
+Sheng, X., Mo, T., and Zhou, X. (2022). The moderating role of age in the effect of              1037/stl0000127
+video playback speed on urgency perception in the context of climate change.
+                                                                                                 Wingralek, Z., Banaszek, A., Giermasiński, A., Goliszek, K., Karakuła-
+Sustainability. 14 (14), 8923. doi: 10.3390/su14148923
+                                                                                                 Juchnowicz, H., and Wróbel-Knybel, P. (2022). Streaming trap–the occurrence
+Sidelinger, R. J., and McCroskey, J. C. (1997). Communication correlates of teacher              of the phenomenon of binge-watching and the mean world syndrome: a
+clarity in the college classroom. Commun. Res. Rep. 14 (1), 1–10. doi: 10.1080/                  narrative review. Curr. Probl. Psychiatry. 23 (3), 118–127. doi: 10.2478/cpp-
+08824099709388640                                                                                2022-0012
+
+
+
+
+Frontiers in Education                                                                      12                                                                          frontiersin.org
+

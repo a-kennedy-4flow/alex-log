@@ -1,0 +1,1120 @@
+South African Journal of Childhood Education
+ISSN: (Online) 2223-7682, (Print) 2223-7674
+                                                          Page 1 of 14      Original Research
+
+
+
+
+      Investigating the comprehension iceberg: Developing
+          empirical benchmarks for early-grade reading
+                in agglutinating African languages
+
+ Authors:                              Background: Reading development in agglutinating African languages is a relatively under-
+ Nicholas Spaull1
+                                       researched area. While numerous studies highlight the low comprehension levels among
+ Elizabeth Pretorius2
+ Nompumelelo                           learners reading in African languages in South Africa, little has been done to probe beneath
+ Mohohlwane3                           this ‘comprehension iceberg’ in terms of decoding skills.
+
+ Affiliations:                         Aim: As a tentative step towards benchmarking in African languages, we analyse the sub-
+ 1
+  ReSEP, Department of                 components of reading across three languages (Northern Sotho, Xitsonga and isiZulu), to better
+ Economics, Stellenbosch
+                                       understand the nature of alphabetic knowledge, word reading and fluency in these languages,
+ University, Stellenbosch,
+ South Africa                          how these relate to one another, and how accuracy and speed relate to comprehension.
+
+                                       Setting: Data was obtained from 785 Grade 3 learners across three African languages in three
+ 2
+  Department of Linguistics
+ and Modern Languages,                 provinces in South Africa.
+ University of South Africa,
+ Pretoria, South Africa
+                                       Methods: The early grade reading assessment (EGRA) framework was adapted to the written
+                                       features of the three languages to assess letter-sounds, single-word reading, non-word reading,
+ 3
+  Department of Basic                  oral reading fluency (ORF) and oral comprehension.
+ Education, Research
+ Coordination, Monitoring and          Results: We present results on fluency, accuracy and comprehension and their interrelationships
+ Evaluation, Pretoria,                 in these morphologically rich languages. While differences emerged between the conjunctive
+ South Africa                          and disjunctive orthographies, strong relations occurred across the languages between letter-
+ Corresponding author:                 sound knowledge and word reading, word reading and oral reading fluency, and ORF and
+ Nicholas Spaull,                      reading comprehension. Results suggest minimum thresholds of accuracy and ORF in each
+ nicholasspaull@gmail.com              language, below which it is virtually impossible to read for meaning.
+ Dates:                                Conclusion: There is a strong need for language-specific norms and benchmarks for African
+ Received: 04 May 2019                 languages. Preliminary minimum decoding thresholds for comprehension found in these
+ Accepted: 02 Nov. 2019
+ Published: 18 Feb. 2020               three languages serve as a move in that direction.
+
+ How to cite this article:
+                                       Keywords: early literacy; EGRA; letter sound knowledge; word reading; oral reading fluency;
+ Spaull, N., Pretorius, E. &           reading comprehension; African languages; reading benchmarks; South Africa.
+ Mohohlwane, N., 2020,
+ ‘Investigating the
+ comprehension iceberg:
+ Developing empirical                 Introduction
+ benchmarks for early-grade           Given the important role of reading in scholastic performance, it is important to ensure that
+ reading in agglutinating
+                                      children are launched on successful reading trajectories from the start of schooling. The Progress
+ African languages’,
+ South African Journal of             in International Reading Literacy Study (PIRLS) is an international reading comprehension
+ Childhood Education 10(1),           assessment conducted at Grade 4 levels in which South Africa has participated for over a number
+ a773. https://doi.org/               of years (2006, 2011 and 2016). The PIRLS results show that Grade 4 children in South Africa
+ 10.4102/sajce.v10i1.773
+                                      perform very poorly in reading comprehension, even when reading in their African home
+ Copyright:                           language (Howie et al. 2006, 2012, 2017; Spaull & Pretorius 2019). The latest round (2016) showed
+ © 2020. The Authors.                 that 78% of South African Grade 4 learners have not learnt to read for meaning in any language
+ Licensee: AOSIS. This work           by Grade 4 (Howie et al. 2017), suggesting unsuccessful reading trajectories. Yet, this does not tell
+ is licensed under the
+ Creative Commons
+                                      us much about which components of the reading processes children are struggling with. In this
+ Attribution License.                 article, we analyse data from one-on-one assessments of Grade 3 learners across three languages
+                                      (Northern Sotho, Xitsonga and isiZulu) with the aim to better understand the levels and
+                                      distributions of these underlying reading processes.
+     Read online:
+                    Scan this QR      There are several factors that contribute to children’s ability to read for meaning. These include the
+                    code with your
+                    smart phone or    richness of children’s vocabulary and grammatical knowledge of the language in which the text is
+                    mobile device     written, the technical ability to decode the written text, home factors and formal school practices
+                    to read online.
+                                      that enculturate children into reading and making meaning of written texts, as well as children’s
+
+
+                                                http://www.sajce.co.za      Open Access
+                                                                    Page 2 of 14     Original Research
+
+
+
+familiarity with different written genres of text and use of                         results of the large-scale comprehension assessments
+strategies of how to ‘read them’. Thus, while the PIRLS results                      undertaken in South Africa, what is lacking is not accurate
+provide information about reading comprehension, and                                 information on reading outcomes but accurate information
+clearly signal challenges within the education system                                on what is less visible beneath the comprehension iceberg. As
+regarding comprehension, they do not tell us why South                               De Vos, Van der Merwe and Van der Mescht (2014:168) point
+African children struggle with reading comprehension. The                            out, very little has been done on the ‘cognitive-linguistic
+very high number of children who could not read for meaning                          processes involved in reading in African languages’. We do
+at all (78%) also raises questions inter alia about the                              not yet know what successful early reading trajectories look
+development of early decoding skills, and how these enable                           like in African languages, and how they are similar or
+comprehension, particularly in the African languages.                                different across the different African languages. The metaphor
+                                                                                     of the comprehension iceberg refers to what is still unknown
+Decades of research into reading in English has provided                             and invisible beneath reading comprehension results in the
+education stakeholders with an evidence-based framework                              South African context. A strong empirical base is needed to
+for profiling what successful reading in English looks like                          gain insight into early reading development in African
+(Adams 1990; National Reading Panel 2000). For example, by                           languages and make sound judgements about ways to reduce
+the end of Grade 3 children at the 50th percentile in the                            the literacy inequalities within the education system.
+United States can, on average, read 107 words correct per
+minute (wcpm) in English (Hasbrouck & Tindal 2006), while                            Given the relative paucity of research on decoding in African
+children reading slower than 40 wcpm at the end of Grade 1                           languages, this article uses Grade 3 reading data from three
+are considered to be at reading risk. This information in and                        African languages in South Africa to examine the nature of
+of itself cannot tell us anything directly about reading                             alphabetic knowledge, word reading and oral reading fluency
+comprehension, but given the robust correlations typically                           (ORF) in these languages (looking at means and dispersion
+found between reading rate and reading comprehension                                 within the cohort), how these relate to one another and how
+(Cummings & Petcher 2016), it enables teachers to deduce                             accuracy and speed in different decoding components relate
+with some measure of confidence that if readers with English                         to one another and to reading comprehension. These findings
+as their home language are only reading at 60 wcpm in Grade                          are then used to identify minimal decoding thresholds, below
+3, they are likely to struggle to read with meaning on their                         which reading comprehension is difficult to achieve. This is a
+own1 (Hasbrouck & Tindal 2006). Notwithstanding the                                  first, tentative step towards suggestions for benchmarking in
+importance of this contribution to our general understanding                         African languages.
+of reading in alphabetic languages, identifying what is
+generic and what is language-specific in early reading                               Focusing attention on these foundational reading skills does
+development calls for a research base that includes alphabetic                       not imply that decoding forms the bulk of the comprehension
+languages that are typologically different and have different                        iceberg. Indeed, Snow and Kim (2007) state that decoding
+orthographic systems. The African languages spoken in                                skills comprise a small problem space in relation to the large
+South Africa are agglutinating, syllabic languages with a                            problem space of vocabulary and comprehension. However,
+transparent orthography, as opposed to English being a                               if skills in the small problem space are not well developed,
+partially analytic, stress-timed language with an opaque                             then reading comprehension is severely compromised. As
+orthography. What would an average Grade 3 or an at-risk                             Adams (1994:838) has long argued, if decoding skills such as
+Grade 1 reader in an African language look like? At present,                         word recognition do not operate properly, ‘nothing else in
+we cannot say for sure because relatively little reading                             the system can either’.
+research has been conducted in these languages (Pretorius
+2018). Currently, anecdotal experience, intuitions and                               Before turning to the research, we first discuss some features
+linguistic hunches tend to underlie educational judgements                           of early reading in alphabetic languages, briefly outline ways
+about how young African language readers are faring. In                              in which African languages differ from English and the
+many cases, teachers are poorly trained in how to teach                              implications this may have for reading, and then look at the
+reading (Taylor & Taylor 2013) and do little reading                                 role of alphabetic knowledge, word reading and ORF in early
+themselves (Pretorius & Knoetze 2012).                                               reading development.
+
+South Africa has prioritised the large-scale measurement and                         Early reading development
+monitoring of reading comprehension outcomes across the
+country2. While there are several nuances in the successive
+                                                                                     in alphabetic languages
+1.Note that learners may follow a text and be able to answer various comprehension
+                                                                                     The first 3 years of schooling are typically dedicated to laying
+  questions orally if the text is read to them and the questions are mediated by a   a sound foundation for the development of numeracy and
+  teacher. That, however, falls within the domain of listening comprehension:
+  reading comprehension requires learners to read and answer questions on a text     literacy skills on which all subsequent schooling depends.
+  on their own.
+                                                                                     By the end of Grade 3, readers are expected to read accurately
+2.These include PIRLS, the Southern and East African Consortium for Monitoring       – on their own – at a steady rate or speed (appropriate to their
+  Education Quality (SEACMEQ), Annual National Assessments (ANA) and the National
+  Integrated Assessment Framework (NIAF) referred to as the National Assessment      grade level), with comprehension and with enjoyment.
+  Programme (NAP). These are undertaken nationwide by the Department of Basic
+  Education.                                                                         Comprehension is the sine qua non of reading: we read to
+
+
+                                                        http://www.sajce.co.za       Open Access
+                                                           Page 3 of 14   Original Research
+
+
+
+comprehend information in written text. The aim of reading                accuracy, speed and reading comprehension plays out in
+instruction is for children to understand how the written                 different ways in different African languages.
+code represents spoken language, and to be able to decipher
+the code in any text (i.e. decode) accurately and rapidly so
+that meaning can be constructed from the text when children
+                                                                          Typological and orthographic
+read on their own.                                                        features of agglutinating African
+                                                                          languages
+Accuracy in decoding supports comprehension. The ability to               This section highlights some features that distinguish
+identify letter-sounds accurately and use this knowledge to               agglutinating African languages and their orthographies
+read words accurately reduces comprehension complications                 from English, and identifies in what ways these features
+(Adams 1994; Spear-Swerling 2006). For example, it is
+                                                                          might impact early reading development.
+important to distinguish three from tree in English, or abafundi
+[learners] from bafunda [they read] in isiZulu. Speed also
+matters in text processing, and hence in reading. A difference            Agglutinating languages: Morphological
+of a few milliseconds can signal difficulty or success in text            complexity
+processing. While speed does not translate directly to reading            In linguistic typology, a distinction is made between isolating,
+comprehension (children may read quickly without                          inflectional and agglutinating languages, depending on the
+understanding what they are reading), processing speed                    extent to which morphemes are added to stems or roots by
+tends to be strongly associated with word reading and reading             way of prefixes, infixes and suffixes to mark grammatical
+comprehension (Cummings & Petscher 2016; Fuchs et al.                     meanings, such as gender, number, tense, aspect and locus.
+2001; Siedenberg 2017; Wolf & Katzir-Cohen 2001). As children             The differences between these categories are not absolute;
+become more accurate in their decoding, they process words                rather, morphosyntactic features can be viewed as being on a
+more quickly as their eyes move across the text. The more the             continuum of lesser or greater complexity, with isolating
+effort expended on processing the alphabetic code and words,              languages having less and agglutinating languages having
+the less is the attentional capacity for comprehension. Finally,          greater morphological density. English has features of an
+affect and motivation are linked to reading; children who                 isolating language while languages such as Latin, Greek,
+enjoy reading are more likely to engage in reading, do more               Spanish and German are regarded as inflectional languages.
+reading and hence become better readers (Guthrie et al. 2007).            The nine African languages spoken in South Africa belong to
+                                                                          the family of Southern African Bantu languages. They are all
+Research into the acquisition of literacy has shown that
+                                                                          agglutinating languages with a rich and complex morphology
+individual differences between learners in accuracy, speed
+                                                                          whereby prefixes, infixes and suffixes are added to noun and
+and comprehension can emerge early, and if weaknesses in
+                                                                          verb roots. The verbal elements in a sentence are especially
+these areas are overlooked and not remediated, reading
+                                                                          complex, marking subject and object noun class, but they do
+problems will persist throughout schooling (Spear-Swerling
+                                                                          so in slightly different ways, depending on the different
+2006). Such differences also create spill-over effects. If some
+                                                                          language family clusters. The nine South African languages
+children find reading effortful and frustrating, they will not
+                                                                          are divided into the Nguni (isiZulu, isiXhosa, Siswati and
+perceive it as meaningful or pleasurable, and therefore would
+                                                                          isiNdebele) and Sotho (Northern Sotho, Southern Sotho and
+be less inclined to actively engage in it. It is difficult to interpret
+                                                                          Setswana) subfamilies, and two smaller subfamilies
+reading differences between children unless one knows what
+                                                                          (Tshivenda and Xitsonga, related to languages in Zimbabwe
+typical or (un)successful reading trajectories look like at
+                                                                          and Mozambique). The reading data presented in this article
+different grade levels. Thal et al. (1997:241) argue that ‘if there
+                                                                          were collected for isiZulu (n = 514), Northern Sotho, also
+are no clear criteria for identifying what is “normal”, then it is
+especially difficult to be certain that a child is delayed or             called Sepedi (n = 143) and Xitsonga (n = 128) Grade 3 readers,
+precocious’. For example, if a learner reads at 25 wcpm, is he            and thus reflect the three main linguistic subgroups, as
+or she a good, average or struggling reader? If we are further            highlighted in Figure 1.
+told that the learner is in Grade 2 and is reading at 25 wcpm in
+isiZulu, can we now tell if he or she is a good, average or
+struggling reader? And if a Grade 2 learner reads at 25 wcpm                                       Southern Bantu language
+                                                                                                     family in South Africa
+in Northern Sotho, does this change our assessment of how
+well he or she reads? Given the paucity of research on early
+reading trajectories in different African languages, it is very                Nguni language            Sotho language          Minority languages
+difficult to know whether a Grade 2 learner reading at 25                         family                      family             (Mainly disjuncve
+wcpm is a delayed, average or precocious reader, and whether                    (Conjuncve              (Disjuncve             orthogrphy)
+                                                                                orthography)             orthograhy)             Tshivenda
+the African language in which he or she reads makes a                           isiZulu                  Northern sotho          Xitsonga
+difference to this assessment. These are the as-yet unobserved                  isiXhosa                 Southern sotho
+                                                                                Siswa                   Setswana
+and unexamined issues underlying the reading comprehension                      isiNdebele
+iceberg in the South African context that this article addresses.
+In particular, it examines whether the relationship between               FIGURE 1: The Southern Bantu language families in South Africa.
+
+
+                                                http://www.sajce.co.za    Open Access
+                                                                    Page 4 of 14            Original Research
+
+
+
+Other agglutinating languages include Finnish, Turkish and                                  transparent orthographies; an inconsistent orthography in
+Basque. Morphological complexity is a distinctive feature of                                agglutinating languages would make reading ‘intolerable’.
+all these languages, and a single orthographic word with a
+stem and morphemes stacked onto it can represent a whole                                    Although the orthography in African languages is transparent,
+sentence. In Turkish and Finnish, the morphemes tend to                                     a distinction is made between conjunctive and disjunctive
+stack up as a series of suffixes attached to the root (Miller,                              orthographies. This distinction coincides with language
+Guldenoglu & Kargin 2019; Silven, Poskiparta & Niemi 2004),                                 family groupings; the Nguni languages having a conjunctive
+while in African languages the morphemes stack up before                                    orthography and the Sotho languages have a disjunctive
+and after the root, as prefixes, infixes and suffixes. For                                  orthography.
+example, the word Andizithandi in isiXhosa (‘I don’t like
+them’, i.e. cakes) has the root -thand(a)- ‘like’ with the                                  Morphophonological features specific to the different African
+morphemes a-ndi-zi and -i attached: the prefix a and the suffix                             languages (e.g. vowel elision in the Nguni languages) have
+i signal the negative; ndi denotes first-person singular subject                            influenced to some extent the development of different
+and zi refers to ‘them’ (cakes) that belong to the isi- or izi-                             transparent orthographies for these languages. For example,
+                                                                                            in the conjunctive orthography of the Nguni languages,
+noun class denoting, inter alia, foodstuffs. The agglutinative
+                                                                                            nominal and verbal elements in a sentence tend to be written
+nature of these languages has implications for early reading
+                                                                                            together as single orthographic ‘words’. In contrast, the Sotho
+development, as explained further.
+                                                                                            languages evolved a disjunctive orthography, where some of
+                                                                                            the verbal elements in a sentence (e.g. noun class markers and
+Writing systems: Transparency and orthographic                                              suffixes) are written separately. For example, ‘They used to
+boundaries                                                                                  read it’ is written conjunctively as a single orthographic word
+Phonology refers to the sound system of a language, while                                   Babeyifunda in isiZulu, while it is written disjunctively as five
+orthography refers to the way in which oral or spoken                                       separate words Ba be ba e bala in Northern Sotho. Xitsonga
+language is represented in written form. In languages with                                  orthography is somewhere in between, having elements of
+                                                                                            both conjunctive and disjunctive orthography, as shown
+an alphabetic orthography, spoken language is represented
+                                                                                            in Table 1. The conjunctive or disjunctive distinction has
+in written form at the phonemic level. In other words,
+                                                                                            implications for early reading, measurement and benchmarks.
+written symbols (i.e. the various letters of the alphabet)
+represent the distinctive sound units of a language
+                                                                                            Conjunctive orthography gives rise to long word units that
+(i.e. phonemes). While there are 26 basic letters of the
+                                                                                            create ‘dense’ texts; conversely, disjunctive orthography
+alphabet, languages use these letters in different
+                                                                                            results in much shorter word units (often single syllables
+configurations to map them to their particular phonology.
+                                                                                            comprising vowel (V) or consonant vowel (CV). Because of
+For example, the phoneme /ʧ/ occurs in various languages:                                   its conjunctive orthography, there are typically few free
+in English the sound is represented by the letters ‘ch’ or ‘tch’                            morphemes in a Nguni language sentence – bound
+as in church or watch, while the same sound is represented by                               morphemes by way of prefixes, infixes and suffixes are added
+the letters ‘tsh’ in Northern Sotho (tshela [cross over]),                                  to noun and verb stems. Single-syllable words are practically
+Xitsonga (tshama [sit]) and Zulu (utshani [grass]).                                         non-existent (they are mainly exclamations) and two-syllable
+                                                                                            words are not common in the conjunctive orthography.
+Orthography is transparent in all nine African languages –                                  Because of the noun class prefix attached to a noun stem,
+this means that letters represent specific sounds in a one-to-                              nouns typically contain three or more syllables. In terms of
+one mapping relationship. This is unlike English with its                                   text length, equivalent texts translated into the conjunctive
+opaque orthography, where one letter can represent different                                Nguni texts will yield short texts with long words, while the
+sounds (the vowel a is sounded differently in car, call, cane,                              same text in a disjunctive Sotho language will yield longer
+alone), or where the same sound can be represented by                                       texts with many short words. To illustrate these orthographic
+different letters (/f/ can be written as f, ph, or -gh in frog,                             differences, examples taken from the first three sentences in a
+phone and cough). Seidenberg (2017:136) points out that                                     Grade 3 reader, in isiZulu, Northern Sotho and Xitsonga,
+languages with complex morphological systems all have                                       respectively, are given in Table 1.
+
+TABLE 1a: Words per sentence in conjunctive or disjunctive orthographies.
+Language            Text
+Northern Sotho      Ka le lengwe la matšatši mosepedi yo a bego a na le tlala. O fihlile motseng wo mongwe a kgopela dijo. Go be go se na yo a bego a na le dijo
+Xitsonga            Siku rin’wana mufambi loyi a ri na ndlala. U fikile emugangeni. A kombela swakudya, kambe a ku nga ri na loyi
+isiZulu             Kunesihambi esasilambile kakhulu. Sahamba sicela ukudla emizini yabantu. Abantu abengenakho ukudla
+Gloss               There was a stranger who was very hungry. He came to a village and asked for food. Nobody had any food
+
+
+TABLE 1b: Words per sentence in conjunctive or disjunctive orthographies.
+Language           Words in sentence 1 Words in sentence 2 Words in sentence 3        Total words Words per sentence Letters per word Total single-syllable words: V/CV
+Northern Sotho             13                     8                     12                 33                 11                    3.2                       21
+Tsonga                      8                     3                     10                 21                 7                     4                         9
+Zulu                        3                     5                      3                 11                3.6                    8                         0
+
+
+
+                                                       http://www.sajce.co.za               Open Access
+                                                      Page 5 of 14   Original Research
+
+
+
+As can be seen, similar sentences yield texts with different         window (Ouelette & Haley 2013). Using measures of alphabetic
+profiles. While the first sentence contains 13 words in              knowledge with preschool children can lead to floor effects
+Northern Sotho and 8 in Xitsonga, there are only 3 long              (Burgess & Lonigan 1998), while using it with older learners
+words in the isiZulu text. In isiZulu, the words are longer and      can produce ceiling effects3 (Wise et al. 2007). However, given
+sentences are shorter on average, compared to Northern               the slow rate of reading development and the low literacy
+Sotho and Xitsonga. The agglutinating nature of African              levels that are usually prevalent in developing countries,
+languages, their complex consonants and the conjunctive or           assessing alphabetic knowledge with older learners may help
+disjunctive orthographies may have important implications            to distinguish readers from non-readers who have not yet
+for reading development in these languages.                          grasped the relationship between print and sound.
+
+Foundational reading skills                                          Word and non-word reading
+To optimise reading instruction and to look out for those who        The most basic task of reading is being able to process the
+fall behind their grade peers, it is important to understand         meaning of individual words from print, their relationship to
+the dynamics of how the different components of decoding             other words in a sentence and to construct the overall
+and comprehension interact and mesh, and where and why               meaning of the text in which the words and sentences occur.
+reading fallout happens. Skills that are key to learning to read     Although the ability to read words quickly and accurately is
+the alphabetic code are foregrounded in the initial stages of        but one aspect of reading, successful text reading and
+learning to read and may predict early reading skill in grades       comprehension rest on this ability. In alphabetic scripts, this
+1 or 2. When mastery is achieved, these skills become                is not possible without initial letter–sound knowledge
+automatised and recede to the background, while qualitatively        (Adams 1994; Share 1995). However, to build fluency, children
+different processes and skills (e.g. inferencing, perspective        need to become aware of recurring letter patterns in their
+taking and comprehension monitoring) become foregrounded             own language, based on morphological and orthographic
+and push reading development to another level (Adams                 information, incorporating smaller and larger word chunks
+1990; Castles, Rastle & Nation 2018; Spear-Swerling 2006).           until full word recognition is reached (Castles et al. 2018; Ehri
+The ways in which these components interact may be                   2005; Share 1995). After several encounters, words become
+sensitive to specific linguistic and orthographic constraints        known and familiar, readers recognise word chunks and so
+associated with different languages that share the same              build up word-specific knowledge that helps to speed up and
+alphabetic code.                                                     automatise the reading process so that attention is freed up
+                                                                     for comprehension. Over the decades, a number of researchers
+                                                                     have shown a strong association between speed and accuracy
+Alphabetic knowledge
+                                                                     of word reading and reading comprehension (e.g. Adams
+Alphabetic knowledge refers to knowledge that written                1990; Perfetti 2007; Stanovich 1986).
+symbols stand for the phonemes of the spoken language.
+Inability to grasp this principle negatively affects the             Assessing children’s word reading ability is a good way to
+development of decoding (Nieto 2005). This is typically              assess their decoding ability. Context-free word reading by
+assessed as knowledge of letter–sound relationships. Letter–         way of word lists containing increasingly longer and more
+sound knowledge is a critical foundational skill of early            complex words is a significant predictor of reading (Jenkins
+literacy acquisition (e.g. Muter & Diethelm 2001) and                et al. 2003). The use of non-words is also commonly used to
+becomes the main processing stage in word reading, where             assess decoding ability. Non-words meet the phonological
+children use their letter–sound knowledge to sound out               criteria of a language but do not exist, for example, brillig,
+new words not previously encountered. Letter–sound                   slithy and toves in English. Because these words lack meaning
+knowledge is also related to phonological awareness,                 and readers have no orthographic representations of such
+especially at the phonemic level, which has been found to be         words, non-words eliminate lexical processing and reveal a
+important in learning to read across alphabetic languages.           reader’s phonological recoding ability. Research shows that
+When children learn letter–sound relationships, they                 real words are processed faster and more accurately than
+develop an awareness of individual sounds within words               non-words. This seems to apply not only in opaque
+(Ziegler & Goswami 2005).                                            orthographies but also in transparent agglutinating languages
+                                                                     such as Turkish (Miller, Kargin & Guldenoglu 2014; Miller et
+Letter–sound knowledge is a critical foundational skill of           al. 2019). This aspect has not yet been explored in African
+early literacy acquisition (e.g. Muter & Diethelm 2001) and          reading research.
+becomes the main processing stage in word reading, where
+children use their letter–sound knowledge to sound out new           Because of the opaque orthography of English, developing
+words not previously encountered. Blaiklock (2004) suggests          rapid and accurate word reading skills takes longer time than
+that the role between phonological awareness and reading             in transparent orthographies like Greek, Welsh, German or
+development is mediated by letter knowledge.                         Spanish. In these languages, letter–sound mapping occurs
+                                                                     3. Floor and ceiling effects are obtained when scores either cluster towards the
+Because of its strong link with early reading instruction,              bottom end of the distribution (floor), suggesting that a test is too difficult for the
+                                                                        testees, or when scores cluster towards the top end of the distribution (ceiling),
+alphabetic knowledge seems to have a narrow developmental               suggesting that a test is too easy (Richards & Schmidt 2010:61).
+
+
+
+                                            http://www.sajce.co.za   Open Access
+                                                       Page 6 of 14   Original Research
+
+
+
+without much difficulty because of its regularity, and children       for measuring small increases in improvement, unlike many
+can become efficient decoders within a year or so (Ellis &            other standard measures of performance that can only detect
+Hooper 2001; Aro & Wimmer 2003; Ziegler & Goswami 2005).              large changes in the outcome (Blachowicz et al. 2006).
+This has also been found in agglutinating languages such as           Typically, from Grade 4 onwards, the effects of ORF start to
+Turkish (Babayağit & Stainthorp 2007; Oney & Durgunogu                level off (Fuchs et al. 2001; Spear-Swerling 2006). Once
+1997). In their study of differences in reading long, inflected       reading becomes relatively fast and accurate, other variables
+words in Basque (an agglutinating language) Acha, Laka and            account for differences in reading comprehension, such as
+Perea (2010) found that while Grade 3 children relied mainly          vocabulary knowledge, inferencing abilities and text, genre
+on letter–sound decoding, word identification was faster and          and background knowledge.
+more efficient with Grade 6 readers, who besides phonological
+decoding seemed also to rely on basic orthographic and                Oral reading fluency norms have been established for English
+inflectional patterns in the language as they became exposed          readers, showing how children from different grades and
+to less frequent words during reading. Children learning to           with different percentiles typically perform. However, very
+read in African languages thus have an advantage in reading           little research has been conducted on ORF in African
+a transparent orthography, but this advantage may be offset           languages.
+by a complex consonant sound system and ineffective
+classroom practices.                                                  Research on early reading
+                                                                      development in African languages
+Oral reading fluency
+                                                                      In approximately 70% of primary schools in South Africa,
+Oral reading fluency reflects the speed, accuracy and                 children complete the first 3 years of schooling in their
+naturalness that readers display when reading a text aloud,           African home language, with English taught as an additional
+following the intonation and rhythm of spoken language.               language (Pretorius & Spaull 2016:1450). The situation then
+Oral reading fluency is seen as a general indicator of reading        changes from Grade 4 onwards, with 90% of all learners now
+competence (Cummings & Petcher 2016; National Reading                 learning with English as the medium of instruction (the
+Panel 2000). Because intonation is more difficult and                 remaining 10% learn in Afrikaans), with African languages
+subjective to assess, speed and accuracy form the main focus          taught as a home language subject. As the majority of learners
+of ORF assessment. Typically, readers are given a text to read        learn to read and write in an African language, one would
+within a minute, with errors subtracted from the total number         expect much of the research on early reading in South Africa
+of words read in a minute, giving a score of wcpm. To control         to focus on reading in the African languages, or on early
+for decoding without understanding, a short oral reading              bilingual reading in an African language and English.
+comprehension follows.
+                                                                      However, there are currently not many studies on early
+Research shows a strong association between ORF and                   reading in African languages and a rather uneven picture
+reading comprehension (Fuchs et al. 2001; Spear-Swerling              emerges from them as not all studies focus on the same
+2006) despite differences in socio-economic status and                factors, use the same measures or use similar measures in the
+instructional programmes; it occurs in children without               same way (e.g. some studies use timed word reading
+reading difficulties as well as those with learning disabilities      measures and others do not). Research findings from the
+(Wolf & Katzir-Cohen 2001). It has also been found in second-         Nguni (isiZulu and isiXhosa) and Sotho (Northern Sotho and
+language reading (Jimerson et al. 2013), also in South Africa,        Setswana) languages are available, but often come from
+the country of analysis here (Draper & Spaull 2015; Pretorius &       small-scale studies, as indicated in an annotated bibliography
+Spaull 2016).                                                         on research on reading in African languages (Pretorius 2018),
+                                                                      and as yet no research seems to have been conducted on
+Because ORF scores can be affected by several factors such            reading in Xitsonga.
+as text difficulty, practice effects, topic and genre familiarity,
+an ORF score should ideally be derived from the mean                  Letter–sound knowledge: Because there are many complex
+obtained from reading more than one text. However, the                consonant sounds in African languages, with many digraphs
+relationship between ORF and reading comprehension seems              (hl, ph, tj), trigraphs (tsh) and also four-letter consonant
+to still prevail, despite variations in these factors. For            sequences (mpfh, ntlh), it is important that children learning
+example, in their assessment of ORF in Kiswahili and                  to read in African languages master these consonants.
+English, Piper and Zuilkowski (2016) tested 4385 grades 1             Children learning to read in African languages need to be
+and 2 learners and found strong correlations between ORF              able to distinguish between the different letter shapes, their
+and reading comprehension, on both timed and untimed                  sounds and combinations in order to get on with the task of
+tasks. They also found that learners did not perform                  learning to read words that combine single consonants,
+significantly better in ORF or comprehension levels when              digraphs and trigraphs. Surprisingly, however, only a few
+the assessment was untimed.                                           studies have included measures of alphabetic knowledge in
+                                                                      their assessment of early reading skills in African languages.
+The greatest growth in ORF seems to occur in the early school         These include Setswana (Lekgoko & Winskel 2008; Taylor
+years between grades 1 and 4. Oral reading fluency is useful          et al. 2017), Northern Sotho (Wilsenach 2015) and Kenyan
+
+
+                                             http://www.sajce.co.za   Open Access
+                                                      Page 7 of 14   Original Research
+
+
+
+African languages (Kim & Piper 2019). In the South African
+studies, with the exception of the EGRS I study (Taylor et al.
+                                                                     Methodology
+2017), the sample sizes are relatively small, ranging from 36        In February 2017, Grade 3 reading data were collected and
+to 108 learners. Although these studies have shown a                 analysed from 61 schools across three provinces in South
+relationship between letter–sound knowledge and early                Africa, representing both conjunctive and disjunctive
+literacy in African languages, the relationship has not yet          transparent orthographies.
+been examined closely.
+                                                                     Background of the study
+Word reading and ORF: Results on word reading and ORF in
+                                                                     The data presented in this article draw on a larger study
+both Nguni and Sotho languages can be gleaned from a few
+                                                                     formally known as the ‘Leadership for Literacy’ project. The
+studies. The three studies looking at Nguni languages are
+                                                                     schools selected for the study are typical of those which serve
+those of Pretorius (2015:isiZulu Grade 4), Diemer (2015:isiXhosa
+                                                                     the majority of learners and come from three South African
+Grade 3) and Rees (2016: isiXhosa Grade 3). All three studies
+                                                                     provinces – Gauteng, KwaZulu-Natal and Limpopo. Of the
+found low ORF scores (19 wcpm), with Pretorius also finding          61 schools in the study, 56 are from the poorest 60% of schools
+low accuracy (53% of words read correctly) and Diemer low            in the country (quintile 1–3) which are no-fee schools, and 5
+comprehension levels (23% on the assessment). The two                are from Quintile 4 where some charge relatively low fees
+authors analysing Northern Sotho that has a disjunctive              (<R3000/year; €190/year). The aim of the sampling process
+orthography were Wilsenach (2013, 2015) and Makaure (2017)           was to ensure that there was the full range of performance
+who both found higher rates of accuracy (67% – 79% on word           across quintile 1–3 schools in these provinces. A matched-pair
+reading) and slightly higher ORF scores (35 wcpm), compared          design was used where the (allegedly) highest performing
+to the findings in the Nguni studies. Performance on single-         schools, as reported by government officials and non-
+word and text-word reading was highly correlated in Northern         governmental organisations (NGOs), were matched with
+Sotho (r = 0.78).                                                    socio-economically-similar schools in the area (Wills 2017). In
+                                                                     reality, all no-fee schools performed poorly. In total, there
+It is clear that while interest in early reading in African          were 21 schools from Gauteng, 21 in KwaZulu-Natal and 19
+languages is emerging, there are still many issues that need         in Limpopo.
+to be further researched:
+• There are surprisingly few studies that directly examine           Because the Grade 3 reading test was part of a larger study,
+  the role of alphabetic knowledge in early African language         where leadership issues were also being assessed (not
+  reading.                                                           reported in this article), time and budget constraints limited
+• There has been little research in African language reading         the amount of reading data that could be collected. Only
+  on the relationship between reading words and non-words.           part of one morning was set aside per school for reading
+• Although English reading research shows strong                     assessment, so the test could not be too long, and only about
+  correlations between word reading and ORF measures                 15 Grade 3 learners could be assessed in the allotted time
+  with comprehension, in early African language reading              per school.
+  the relationship varies from mild to robust.
+• Despite their transparency, conjunctive or disjunctive             Procedures
+  orthographies seem to affect early reading rates
+                                                                     The data were collected between February and March 2017 in
+  differentially. The reading rates from the Nguni studies
+                                                                     all three provinces. Ethical approval for the study was
+  are uniformly slow, while the reading rates from the
+                                                                     obtained from the university and the national and provincial
+  Sotho languages are relatively faster. However, there is as
+                                                                     education departments. Parents were sent letters of consent
+  yet no clear picture of the range of performance at                and learners gave either verbal or written consent. The
+  different percentiles within the different languages.              reading tests were administered one-on-one by trained
+• No studies to date have examined possible decoding                 fieldworkers, with information captured electronically on
+  thresholds in the different African languages, below               tablets using an early-grade reading assessment (EGRA)-
+  which it is difficult for learners to make sense of a text         specific software (Tangerine). Each test was designed to be
+  when they read on their own.                                       completed within 15 min. In all, 785 Grade 3 learners were
+• Many of the studies reviewed involve fairly small sample           assessed: 514 in isiZulu, 143 in Northern Sotho and 128 in
+  sizes from a small number of schools (never more than              Xitsonga. All fieldworkers were native speakers of the
+  4–5 schools); therefore, generalisation is constrained. A          language they were assessing, held at least a bachelor’s degree
+  much larger and more varied empirical base is needed for           or 3 year diploma and received 3-days of intensive training.
+  theory building and benchmarking.
+
+This article presents findings that address these issues and         Grade 3 reading assessment
+proposes, as a tentative first step in the direction of              The Grade 3 learner assessment was an adapted form of the
+benchmarking, an approach that identifies possible decoding          EGRA that already existed for these three African languages4.
+thresholds across the three different orthographic languages
+                                                                     4. RTI International, together with reading experts, developed the Early Grade Reading
+that enable reading comprehension.                                      Assessment known as EGRA, funded by USAID, the World Bank and other donors.
+
+
+
+                                            http://www.sajce.co.za   Open Access
+                                                                             Page 8 of 14               Original Research
+
+
+
+Each home language assessment consisted of five subtests:                                               Table 1earlier). The words in all three language word reading
+(1) a timed letter–sound subtest specific to each language                                              tasks were nouns or infinitive forms of verbs, ranging in
+containing rows of letters that learners must sound aloud;                                              length from two to seven syllables.
+(2) a timed word subtest, consisting of a list of words that
+learners must read out aloud; (3) a timed non-word subtest;                                             The ORF passage was ‘Rock Soup’, a narrative text from a
+(4) reading the title of the ORF passage story and (5) an ORF                                           South African graded-reading series (Vula Bula). Although
+passage read aloud within 1 min. Following the ORF subtest,                                             this was the same story, given the conjunctive or disjunctive
+learners were asked oral comprehension questions based on                                               features of the three languages, there were 120 words in the
+                                                                                                        Northern Sotho passage, 105 in the Xitsonga passage and 67
+the passage. Various opt-out rules were applied in the various
+                                                                                                        in the isiZulu passage.
+subtests to protect learners who could not read at all.
+
+In each of the assessed languages, the letter sound section                                             Ethical considerations
+had 110 items, with 10 letters per row. In addition to the                                              Ethical approval for this study was obtained from
+standard EGRA test of lowercase and uppercase letters,                                                  the University of Stellenbosch (ethical clearance number
+this subtest was adapted to include, after the first row, an                                            SU-HSD-003116).
+array of digraphs, trigraphs and quadgraphs that
+characterise the complex consonant sounds of the African
+languages, interspersed amongst the single letters. (The
+                                                                                                        Data results and analysis
+effect of these complex consonant sounds on letter–sound                                                Table 2 reports a range of descriptive statistics for each of the
+fluency is not examined here but is the topic of another                                                EGRA subtasks by language group, including the number of
+                                                                                                        learners in the sample, the 10th, 25th, 50th, 75th and 90th
+paper.)
+                                                                                                        percentiles of the distribution as well as the minimum, mean,
+                                                                                                        maximum and standard deviation (SD).
+Across the three languages, for both the word and the non-
+word reading tasks, there were 60 words per task, starting
+                                                                                                        The Cronbach’s alpha reliability index for the eight-item oral
+with shorter words and ending with longer words (e.g. from
+                                                                                                        reading comprehension sub-task was 0.74, which is within the
+ikati to intothoviyane in isiZulu; from pula to kanagelokopana in                                       normally acceptable range of 0.7–0.9 (Tavakol & Dennick
+Northern Sotho; and from teka to mpfampfarhuta in Xitsonga).                                            2011), indicating an acceptable level of inter-relatedness.
+In order to keep the word reading tests comparable across the                                           Because the other four of the five subtasks were timed, an
+three African languages, no single-syllable function words,                                             alpha index cannot be computed for them. There were
+uncommon in the conjunctive orthographies but common in                                                 moderate to very strong correlations between the various
+the disjunctive Sotho orthographies, were included in the                                               sub-components of reading across the three African languages,
+Northern Sotho word lists (e.g. a, na, go, le etc., as shown in                                         as shown in Table 3, suggesting internal consistency reliability
+
+TABLE 2: Descriptive statistics for early-grade reading assessment sub-components by language.
+Language                Rcpm                               Sample       10th Perc     25th Perc     50th Perc   75th Perc   90th Perc   Min   Mean      Max        SD
+Northern Sotho          Total letters rcpm                   135            11            19            31         41          48        1    30.4       62       14.0
+                        Total single words rcpm              135            1             8             22         29          35        0    19.3       40       12.1
+                        Total non-words rcpm                 135            0             4             13         20          25        0    12.5       30       8.9
+                        Total ORF rcpm                       135            0             11            41         55          67        0    36.2      109       25.7
+                        Story title                          132            0             1             2          2           2         0     1.4       2        0.8
+                        Oral comprehension                   135            0             0             1          3           4         0     1.7       6        1.7
+Xitsonga                Total letters rcpm                   111            5             17            38         48          60        0    34.3       69       19.5
+                        Total single words rcpm              111            1             9             20         27          31        0    18.2       48       11.5
+                        Total non-words rcpm                 111            1             6             16         22          26        0    14.8       42       9.9
+                        Total ORF rcpm                       111            0             13            47         57          71        0    39.8       91       25.9
+                        Story title                          111            0             2             2          2           2         0     1.6       2        0.8
+                        Oral comprehension                   111            0             2             4          5           6         0     3.4       8        2.2
+isiZulu                 Total letters rcpm                   494            4             13            25         39          49        0    26.4       85       17.1
+                        Total single words rcpm              494            0             8             19         27          33        0    17.8       44       11.5
+                        Total non-words rcpm                 494            0             5             14         21          25        0    13.5       45       9.2
+                        Total ORF rcpm                       494            0             6             21         33          42        0    21.0       67       15.6
+                        Story title                          488            0             1             2          2           2         0     1.4       2        0.8
+                        Oral comprehension                   494            0             0             2,5        4           5         0     2.4       6        2.0
+Total                   Total letters rcpm                   740            5             15            28         41          51        0    28.3       85       17.2
+                        Total single words rcpm              740            0             8             20         27          33        0    18.2       48       11.6
+                        Total non-words rcpm                 740            0             5             14         21          26        0    13.5       45       9.3
+                        Total ORF rcpm                       740            0             8             26         42          54        0    26.6      109       21.1
+                        Story title                          731            0             1             2          2           2         0     1.4       2        0.8
+                        Oral comprehension                   740            0             0             2          4           5         0     2.4       8        2.1
+Rcpm, read correctly per minute; ORF, oral reading fluency; perc, percentile; SD, standard deviation.
+
+
+
+                                                               http://www.sajce.co.za                   Open Access
+                                                                     Page 9 of 14           Original Research
+
+
+
+for these adapted versions of the EGRA. Performance in one                                    Northern Sotho, the higher mean ORF rates at the 50th
+foundational reading sub-task was related to performance in                                   percentile in Xitsonga compared to Northern Sotho may
+the other reading subtasks. For example, learners who could                                   be somewhat surprising. Further analysis shows that the
+only read a few words were also only likely to know a few                                     disjunctive or conjunctive continuum affects reading
+letter-sounds; conversely, learners who could read more                                       rates accordingly.)
+words also knew more letter-sounds.                                                         • Oral reading comprehension: Reading comprehension was
+                                                                                              generally low, with the median score being 2 out of 8
+Some of the notable findings are listed below:                                                across the sample.
+• Letter-sounds correct per minute: On the whole, letter–
+  sound knowledge was low, with a mean of 28 letters                                        Fluency and accuracy
+  rcpm. Of the 740 learners assessed, only a quarter of                                     Table 4 shows the mean for letter-sounds attempted and the
+  learners could name at least 40 letter-sounds correctly per                               percentage of letters sounded incorrectly. It would seem that
+  minute. Across all languages, 25% could only sound out                                    while those learners in ORF decile-1 make more errors than
+  at most 15 letters correctly in 1 min.                                                    those in the higher ORF deciles, almost the entire sample
+• Word reading: Word reading, irrespective of orthography,                                  read 15% – 20% of the attempted letter–sounds incorrectly.
+  was fairly similar across the three languages, from 22                                    This low level of letter–sound knowledge and accuracy
+  wcpm in Northern Sotho, 20 wcpm in Xitsonga to 19
+                                                                                            might be a reflection of early reading instructional practices,
+  wcpm in isiZulu at the 50th percentile. Interestingly,
+                                                                                            where teachers may not be spending time effectively on
+  when single-syllable function words typical of the
+                                                                                            systematic phonics instruction, especially of the complex
+  disjunctive orthographies are excluded from a word
+                                                                                            consonant system. This result may also reflect lower levels of
+  reading list, learners in Northern Sotho and Xitsonga
+                                                                                            accuracy in letter–sound reading than in word reading,
+  read at rates similar to learners in isiZulu. Predictably,
+                                                                                            where words provide a context for the letter-sounds. Perhaps
+  reading non-words was slower than reading words.
+                                                                                            most importantly, those who read the ORF passage at very
+• Although word reading was slow across all the three
+                                                                                            slow rates (0 wcpm or 1–10 wcpm) also have exceedingly
+  languages, the reading of words was slightly faster and
+                                                                                            high rates of inaccuracy, making mistakes on every second
+  more accurate than the reading of non-words.
+                                                                                            letter–sound attempted. This is not an insignificant
+• Oral reading fluency: The ORF scores in isiZulu (21 wcpm
+                                                                                            percentage of the sample, accounting for 27% of all learners
+  at the 50th percentile) were considerably lower than those
+                                                                                            (202/740). If learners are as likely to get letter-sounds right as
+  in Northern Sotho (41 wcpm) and Tsonga (47 wcpm). The
+                                                                                            wrong, it will be almost impossible for them to read words or
+  longer words in written isiZulu texts result in slower
+                                                                                            connected text with understanding.
+  reading rates. The occurrence of several short grammatical
+  morphemes that are written separately in the more
+                                                                                            Table 5 provides the same information but for the mean
+  disjunctive orthographies of Northern Sotho and Xitsonga
+                                                                                            number of words attempted by learners in the ORF task, as
+  results in faster reading rates in ORF passages in those
+                                                                                            well as the percentage of words read incorrectly. This is
+  languages. (Given that Xitsonga is less disjunctive than
+                                                                                            reported for deciles of wcpm in the ORF passage. For example,
+                                                                                            it shows that the nine Northern Sotho learners in decile`-1
+TABLE 3: Correlations between sub-components of reading.
+Correlations r                      Northern Sotho      Xitsonga       isiZulu
+                                                                                            (reading at 0→10 wcpm) actually attempted 16 words on
+letter-sound × word reading               0.74            0.76          0.60
+                                                                                            average but read half (52%) of these words incorrectly. Across
+letter sound × non-word reading           0.69            0.75          0.58                all three language groups, faster readers are more accurate
+letter-sound × ORF                        0.68            0.75          0.55                than slower readers. Comparison across the languages shows
+word reading × non-word reading           0.91            0.92          0.91                that accuracy seems to be more important for fluent reading
+word reading × ORF                        0.92            0.92          0.91                in isiZulu than in Northern Sotho or Xitsonga. The isiZulu
+ORF × comprehension                       0.87            0.78          0.81                learners reading at 21 wcpm or faster read with 95% accuracy
+ORF, oral reading fluency.                                                                  or higher. In contrast, 95% accuracy is only associated with
+
+TABLE 4: Mean letter-sounds attempted and percentage incorrect by decile of oral reading fluency words correct per minute.
+Wcpm                                   Northern Sotho                                       Xitsonga                                     isiZulu
+                        Letters attempted % Incorrect      Sample       Letters attempted   % Incorrect     Sample   letters attempted    % Incorrect   Sample
+0 wcpm                         11                46          24                  10              47             22           11                55        101
+Decile 1 (1‡10)                21                41              9               7               60             3            20                38         43
+Decile 2 (11‡20)               26                26          11                  21              25             4            26                29         95
+Decile 3 (21‡30)               27                28              9               32              14             4            29                25        104
+Decile 4 (31‡40)               35                18          13                  34              12             10           34                19         97
+Decile 5 (41‡50)               37                19          26                  39              16             26           42                15         46
+Decile 6 (51‡60)               41                19          18                  44              13             21           40                18         6
+Decile 7 (61‡70)               37                16          17                  43              23             9            43                18         2
+Decile 8 (71‡80)               36                11              4               57              13             7            -                     -      -
+Decile 9 (81‡90)               48                7               2               56              16             4            -                     -      -
+Decile 10 (91‡100)             43                7               2               53              43             1            -                     -      -
+Wcpm, words correct per minute.
+
+
+
+                                                        http://www.sajce.co.za              Open Access
+                                                                  Page 10 of 14         Original Research
+
+
+
+TABLE 5: Mean oral reading fluency words attempted and percentage incorrect by decile of oral reading fluency words correct per minute.
+Wcpm                                   Northern Sotho                                   Xitsonga                                          isiZulu
+                       Words attempted % Incorrect        Sample      Words attempted    % Incorrect    Sample       Words attempted       % incorrect   Sample
+Decile 1 (1‡10)                   16          52             9               6               39             3               9                   36         43
+Decile 2 (11‡20)                  21          26             11              19              24             4               18                  10         95
+Decile 3 (21‡30)                  34          24             9               29              7              4               26                      4     104
+Decile 4 (31‡40)                  40          8              13              36              2              10              36                      3      97
+Decile 5 (41‡50)                  49          7              26              47              2              26              46                      2      46
+Decile 6 (51‡60)                  57          4              18              55              0              21              53                      1      6
+Decile 7 (61‡70)                  67          3              17              63              1              9               68                      3      2
+Decile 8 (71‡80)                  75          2              4               76              0              7                -                      -      -
+Decile 9 (81‡90)                  86          3              2               87              1              4                -                             -
+Decile 10 (91‡100)            107             0              2               91              0              1                -                      -      -
+Wcpm, words correct per minute.
+
+
+reading at 51 wcpm or faster in Northern Sotho and 31 wcpm                              contrast to both Northern Sotho and Xitsonga which exhibit
+or faster in Xitsonga. One of the reasons why decile-1 learners                         flatter slopes, that is, these learners are reading fewer single
+are reading so slowly is that they are making mistakes on                               words correct in a minute than ORF words. For example, in
+every second or third word. The fastest Northern Sotho                                  Northern Sotho, learners in ORF decile-5 (ORF scores of 40–
+readers (wcpm = 107) and Xitsonga readers (wcpm = 91) in                                50 wcpm) are only reading 22–30 single wcpm. While this
+the sample made no mistakes whatsoever.                                                 may initially seem surprising, a closer inspection of the
+                                                                                        EGRA assessment provides a logical explanation: the single-
+Relationships between letter-                                                           word assessment included only lexical words and excluded
+                                                                                        all function words, as explained earlier.
+sounds, word reading and oral
+reading fluency                                                                         Developing a framework for early
+The results show robust and significant correlations between                            reading development in African
+all the sub-components of reading (Table 3). Knowledge of
+letter–sounds is strongly associated with the ability to read                           languages
+words and non-words, as well as with ORF, although to a                                 Setting up reading benchmarks helps establish expectations
+slightly lesser degree in the conjunctive reading of isiZulu –                          for reading performance and helps schools identify children
+an aspect that requires further investigation. Oral reading                             in need of support. When developing benchmarks for
+fluency and comprehension also show a very strong                                       languages or grades one can take the approach of norming to
+relationship. A more nuanced view of skills in these subtasks                           the population as a whole. For example, Hasbrouck and
+and their relationships can clearly be seen in the box plots in                         Tindal (2006:637) collected ORF data from students across the
+Figure 2, showing increasing skill across the deciles.                                  performance spectrum including gifted as well as dyslexic
+                                                                                        readers. However, this approach becomes problematic in
+Figure 2 shows the strong and predictable relationship                                  South Africa where the level of reading achievement in the
+between both letters read correctly per minute and ORF (panels                          country is so low that any population norms would be
+A, C and E), as well as between single words read correctly per                         unacceptably low. To illustrate, while 96% of American Grade
+minute and ORF (panels B, D and F). Decile-0 in the graph                               4 learners reached the Low International Benchmark on
+represents learners who scored zero on the ORF task; decile-1                           PIRLS, only 22% of South African Grade 4 learners reached
+represents those scoring 0→10 wcpm; decile-2 those who                                  this rudimentary benchmark (Mullis et al. 2007:69).
+scored 11–20 wcpm and so on. Looking across the three
+language groups we can see that approximately 75% of the                                If one cannot benchmark to national norms, what are the
+learners in decile-0 could only pronounce 15 or fewer letter                            alternatives? As in earlier work (Draper & Spaull 2015), we
+sounds in 1 min and less than five single words in 1 min.                               argue that benchmarking to comprehension outcomes is a
+                                                                                        feasible and justifiable alternative. Given that comprehension
+The similarities between Northern Sotho and Xitsonga are                                is the goal of reading, linking reading benchmarks to this
+clear, particularly when looking at the right panel graphs                              outcome seems logical, and this is the approach we take in the
+(single words correct per minute and ORF). There is a tight                             present study. Ideally, to this end it is desirable to obtain ORF
+interquartile range of approximately 5–10 single words per                              measures from at least two text passages, and to obtain a
+ORF decile. This shows the lock-step relationship between                               comprehension score independently of the comprehension
+reading single words correctly and connected text fluently.                             score obtained from the ORF text. However, given the
+                                                                                        time and budget constraints of the project, the EGRA ORF
+The ‘slope’ of the right panel graphs is clearly steeper for                            and oral reading comprehension subtasks were used as a
+isiZulu, showing a strong relationship where the interquartile                          preliminary step in exploring whether there was a
+range of single words roughly maps to the ORF decile,                                   comprehension ‘tolerance level’ in foundational reading skills,
+that is, for the ORF decile-3 (ORF scores of 20–30 wcpm) the                            that is, whether decoding skills below a certain configuration
+single-word interquartile range is about 19–25. This is in                              seriously jeopardised comprehension.
+
+
+                                                        http://www.sajce.co.za          Open Access
+                                                                                                 Page 11 of 14                                              Original Research
+
+
+
+
+                                    70                                                                         a                                                                                                                             b
+
+
+
+
+                                                                                                                   Single words read correctly per minute
+                                                                                                                                                            70
+ Leers road correctly per minute
+
+
+
+
+                                    60                                                                                                                      60
+
+                                    50                                                                                                                      50
+
+                                    40                                                                                                                      40
+
+                                    30                                                                                                                      30
+
+                                    20                                                                                                                      20
+
+                                    10                                                                                                                      10
+
+                                    0                                                                                                                        0
+                                         0   1       2       3    4       5       6     7    8        9   10                                                       0      1       2      3       4       5       6   7      8       9   10
+
+                                                         Deciles of ORF - Northern Sotho                                                                                              Deciles of ORF - Northern Sotho
+
+                                                                                                               c                                                                                                                             d
+
+
+
+                                                                                                                   Single words read correctly per minute
+                                    70                                                                                                                      70
+ Leers read correctly per minute
+
+
+
+
+                                    60                                                                                                                      60
+                                    50                                                                                                                      50
+                                    40                                                                                                                      40
+                                    30                                                                                                                      30
+                                    20                                                                                                                      20
+                                    10                                                                                                                      10
+                                     0                                                                                                                       0
+                                         0   1       2       3    4       5       6     7    8        9   10                                                       0      1       2      3       4       5       6   7      8       9   10
+                                                            Deciles of ORF - Xitsonga                                                                                                    Deciles of ORF - Xitsonga
+                                                                                                               e                                                                                                                             f
+                                                                                                                   Single words read correctly per minute
+
+
+
+
+                                    90
+                                                                                                                                                            90
+ Leers read correctly per minute
+
+
+
+
+                                    80
+                                                                                                                                                            80
+                                    70
+                                                                                                                                                            70
+                                    60
+                                                                                                                                                            60
+                                    50                                                                                                                      50
+                                    40                                                                                                                      40
+                                    30                                                                                                                      30
+                                    20                                                                                                                      20
+                                    10                                                                                                                      10
+                                     0                                                                                                                       0
+                                         0       1          2         3       4         5         6       7                                                        0          1         2            3       4          5       6       7
+
+                                                             Deciles of ORF - isiZulu                                                                                                       Deciles of OR F - isiZulu
+Note: For oral reading fluency eciles 0 = 0 words correct per minute; 1 = 0à10 words correct per minute; 2 = 11à20 words correct per minute; 3 = 21à30 words correct per minute, et cetera.
+ORF, oral reading fluency.
+FIGURE 2: Boxplots of total letters read correctly per minute and total single words read correctly per minute by oral reading fluency deciles.
+
+
+As part of the adapted EGRA there were eight oral                                                                                                           non-words and connected text for previously unexamined
+comprehension questions presented to learners after their                                                                                                   languages. Part of this is identifying the levels of each
+minute of ORF reading. Using the total scores on these                                                                                                      subcomponent that are typically found together for the
+comprehension questions as a rough classification tool, we                                                                                                  same learner. We believe that there is a similar underlying
+group learners into one of the four categories: (1) non-readers                                                                                             cognitive-linguistic data generating process that is consistent
+(those who could not read the title of the story properly), (2)                                                                                             within a language. Our descriptive statistics seem to support
+pre-readers (1–2 on comprehension; < 25%), (3) emergent                                                                                                     this given the relatively narrow range of letter–sound and
+readers (3–4 on comprehension; 26–50%) and (4) basic readers                                                                                                single-word scores associated with certain ORF deciles.
+(5+ on comprehension; 62.5%+).                                                                                                                              Table 6 shows a similarly narrow interquartile range for ORF
+                                                                                                                                                            scores relative to comprehension categories.
+While these are somewhat arbitrary categories, and a short
+oral comprehension assessment is not ideal as the metric of                                                                                                 What Table 6 seems to show is that there are certain ‘minimum
+comprehension, we argue that this is less of a problem                                                                                                      thresholds’ below which one cannot find learners that
+for our purposes. Ultimately, we are trying to establish                                                                                                    have the requisite comprehension outcomes. To identify
+nascent benchmarks for reading letter-sounds, single words,                                                                                                 these, we look at the 25th percentile score for the emergent
+
+
+                                                                                      http://www.sajce.co.za                                                Open Access
+                                                               Page 12 of 14          Original Research
+
+
+
+TABLE 6: Early-grade reading assessment subtest distributions by comprehension categories showing median scores with interquartile ranges presented in brackets.
+Language                   Comprehension                                  Read correctly per minute                                             Sample
+                           Categories
+                                                 Letters             Single words            Non-words         Connected text (ORF)        n               %
+Northern Sotho             Non-readers         24 (17–31)              8 (3–11)                4 (2–8)              14 (7–25)              15              11
+                           Pre-readers         25 (28–41)             23 (18–28)             14 (9–19)              43 (34–48)             48              36
+                           Emergent            42 (29–49)             30 (27–35)             21 (18–26)             58 (52–62)             27              20
+                           Basic               43 (39–46)             33 (27–36)             24 (21–26)             70 (66–84)             12              9
+Xitsonga                   Non-readers         16 (10–25)              6 (3–11)                6 (4–9)              12 (7–18)              4               4
+                           Pre-readers         33 (18–41)             16 (13–20)             15 (9–18)              40 (32–50)             16              14
+                           Emergent            39 (34–48)             19 (15–23)             16 (11–20)             48 (39–51)             30              27
+                           Basic               46 (38–55)             28 (21–31)             21 (15–26)             57 (48–71)             43              39
+isiZulu                    Non-readers          19 (9–23)              6 (3–13)                5 (3–9)               4 (1–15)              37              7
+                           Pre-readers         26 (15–38)             15 (10–20)             11 (7–16)              13 (9–22)              83              17
+                           Emergent            34 (20–43)             23 (18–29)             17 (13–23)             28 (20–35)            145              29
+                           Basic               34 (24–48)             30 (26–33)             22 (19–26)             37 (32–43)            102              21
+ORF, oral reading fluency; n, sample size.
+
+
+readers category. For example, to get 25% or more on the                              of comprehension were learners who read faster and more
+comprehension questions (emergent-reader) one would need                              accurately than their peers.
+to read at least 53 wcpm in Northern Sotho, 39 wcpm in
+Xitsonga and 20 wcpm in isiZulu. We will refer to these as the                        The knowledge of letter–sounds showed strong relationships
+‘minimum fluency thresholds’ for reading in these languages.                          with both word and non-word reading, suggesting that in the
+Interestingly, these figures are very similar to the lowest                           early stages, readers in transparent orthographies rely on
+levels at which learners had 95% accuracy in reading                                  letter-sound conversion to decode words accurately. Learners
+connected text (ORF). These were 51+ wcpm (Northern                                   who could not sound out, minimally, 25–30 letters correctly
+Sotho), 31+ wcpm (Xitsonga) and 21+ wcpm (isiZulu) – see                              per minute on this subcomponent of the test fell into the non-
+Table 4. If one takes a more reasonable comprehension metric                          reader or pre-reader categories, suggesting that although
+that learners should achieve 62.5% or more, then learners                             they were entering their third year of schooling, they had not
+need to be reading at least 66 wcpm in Northern Sotho, 48                             yet been launched on a successful reading trajectory. Letter-
+wcpm in Xitsonga and 32 wcpm in isiZulu. We will refer to                             sound knowledge of the complex consonant system in
+these as the ‘minimum comprehension thresholds’ for reading                           African languages may help to fine-tune phonological
+in these languages. It is important to note that the sample
+                                                                                      awareness, enabling readers to make finer distinctions at the
+sizes across the languages are not the same, and the numbers
+                                                                                      phonemic level, which in turn improves word processing.
+of learners in each category are also not equal. While we still
+                                                                                      The reason why learners in Grade 3 are still struggling to
+think that it is helpful to report the ranges for non-readers
+                                                                                      master the alphabetic principle is likely linked to ineffective
+and pre-readers for Xitsonga and Northern Sotho, given their
+                                                                                      classroom practices; more research is needed to examine this.
+small sample sizes we would caution against over-
+                                                                                      Systematic phonics instruction early in the Foundation Phase
+interpreting the results in these categories.
+                                                                                      may help to mitigate this backlog in grasping the alphabetic
+                                                                                      principle.
+Concluding remarks
+The concern about low literacy levels in developing countries                         Performance was better on the word than on non-word
+such as South Africa is a valid and urgent one. Factors such                          reading tasks, with weaker readers (in the lower percentiles)
+as reduced time on task, inadequate access to reading                                 performing more poorly in the non-word task. Performance
+materials in African languages and poor quality early reading                         on the two-word subtasks was highly correlated. All these
+instruction in high-poverty contexts all contribute to low                            three findings resonate with reading research in other
+literacy levels (e.g. De Stefano 2012). In this article, we have                      agglutinating languages (Miller at al. 2019). Although reading
+probed beneath the comprehension iceberg to better                                    scores did not differ much across languages in the word and
+understand how different components of reading promote or                             non-word subtasks when function words were excluded,
+hinder reading in agglutinating African languages with                                large differences in ORF scores showed up when learners
+transparent disjunctive and conjunctive orthographies. The                            read extended text. Differences in word length in the
+results show that across all three languages, alphabetic                              disjunctive and conjunctive orthographies of Northern Sotho
+knowledge, accuracy and speed matter in reading. This                                 and isiZulu, respectively, affect the reading rate. This has
+finding is supported by research into reading in other                                important implications for benchmarking and identifying
+alphabetic languages elsewhere in the world (Jenkins et al.                           at-risk readers at different grade levels.
+2003; Siedenberg 2017). Accuracy and speed were reflected in
+all the sub-components of the reading test, with a knock-on                           Although more research is still needed, the differential
+effect from the most basic reading level, namely, letter-                             reading rates in the conjunctive or disjunctive orthographies
+sounds, through word reading to ORF passage reading. Not                              have implications for streamlining the benchmarking process;
+surprisingly, the learners who demonstrated the highest level                         rather than establish benchmarks for each individual African
+
+
+                                                     http://www.sajce.co.za           Open Access
+                                                     Page 13 of 14   Original Research
+
+
+
+language (a costly and time-consuming process), sets of              Competing interests
+benchmarks for the conjunctive and disjunctive orthographies,
+                                                                     There were no competing interests.
+respectively, may suffice, derived from large-scale systematic
+and rigorous collection and analysis of performance on EGRA
+tasks, such as letter sounds, ORF and reading comprehension          Authors’ contributions
+across grades and language groups. Separate, intermediate            E.P. attended to the literature review of the article, N.M.
+benchmarks for languages that show features of both                  wrote the methodology section and N.S. analysed the data
+orthographies, such as Xitsonga, should also be established.         and presented the Results section. All the authors contributed
+                                                                     to the Introduction, Discussion and concluding sections.
+Comprehension was compromised when speed and accuracy
+dropped below the minimum thresholds. Reading below 50
+wcpm and 40 wcpm in Grade 3 seems to signal at-risk readers          Funding information
+in Northern Sotho and Xitsonga, respectively, while reading          This study is funded by the Economic and Social Research
+below 20 wcpm signals an at-risk reader in isiZulu. If a             Council (ESRC) and the Department for International
+comprehension threshold of at least 60% is desired, then             Development (DFID) of the United Kingdom under the
+learners should be reading at least 10 wcpm faster than the          Raising Learning Outcomes in Education Systems 2015
+above scores in the respective languages. Obviously, more            research grants.
+research is needed before benchmarks in different African
+languages can be established with empirical confidence, but
+                                                                     Data availability statement
+minimum threshold such as these can help teachers develop
+a sense of what reading success or failure might look like in        All data used in the analysis of this paper are now publicly
+different languages in the Foundation Phase.                         available for researchers to download. This can be done via
+                                                                     DataFirst’s Open Data Portal. Title “South Africa – Leadership
+Irrespective of whether languages are analytic or agglutinating,     for Literacy 2017” (REF: zaf-resep-lfl-2017-v1). Available:
+have transparent or opaque scripts, systematic phonics               https://www.datafirst.uct.ac.za/dataportal/index.php/
+instruction tailored to language-specific orthographic               catalog/726/related_citations.
+characteristics can provide children learning to read an
+alphabetic script with letter–sound knowledge that forms             Disclaimer
+accurate building blocks pertinent for word reading in their
+                                                                     The views and opinions expressed in this article are those of
+language. Easy access to reading material will also be critical.
+                                                                     the authors and do not necessarily reflect the official policy or
+Fluency in word and passage reading is built up through
+                                                                     position of any affiliated agency of the authors.
+daily opportunities to practise reading extended texts in and
+out of the classroom (National Reading Panel 2000; Spear-
+Swerling 2006).                                                      References
+                                                                     Acha, J., Laka, I. & Perea, M., 2010, ‘Reading development in agglutinative languages:
+It is also important to identify learners who get off to a slow         Evidence form beginning, intermediate and adult Basque readers’, Journal of
+                                                                        Experimental Child Psychology 105(4), 359–375. https://doi.org/10.1016/j.
+start in reading in the first 3 years of schooling. There is            jecp.2009.10.008
+no ‘one-size-fits-all’ approach; reading benchmarks are              Adams, M., 1990, Beginning to read: Thinking and learning about print, MIT Press,
+                                                                        Cambridge, MA.
+specific to languages or language families. In order to reduce       Adams, M.J., 1994, ‘Modeling the connections between word recognition and
+inequalities in literacy, it is important for teachers in               reading’, in R.B. Ruddell, M.R. Ruddell & H. Singer (eds.), Theoretical models and
+                                                                        processes of reading, pp. 838–863, International Reading Association, Newark, NJ.
+developing countries to be aware of appropriate reading
+                                                                     Aro, M. & Wimmer, H., 2003, ‘Learning to read: English in comparison to six more
+benchmarks in different languages in which reading is                    regular orthographies’, Applied psycholinguistics 24(4), 621–635. https://doi.
+                                                                         org/10.1017/S0142716403000316
+taught. We argue here that we need to move beyond a
+                                                                     Babayağit, S. & Stainthorp, R., 2007, ‘Preliterate phonological awareness and early
+repetitive focus on low comprehension outcomes; this is the             literacy skills in Turkish’, Journal of Research in Reading 30(4), 394–413. https://
+                                                                        doi.org/10.1111/j.1467-9817.2007.00350.x
+tip of the iceberg. Below the surface, there is widespread
+                                                                     Blachowicz, C.L.Z., Moskal, M.K., Massarelli, J.R., Obrochta, C.M., Fogelberg, E. &
+evidence that most children have not acquired the basic                  Fisher, P., 2006, ‘“Everybody reads”: Fluency as a focus for staff development’, in
+‘tools’ for reading success – the ability to accurately and              T. Rasinksi, C. Blachowicz & K. Lems (eds.), Fluency instruction: Research-based
+                                                                         practices, pp. 141–154, The Guilford Press, New York, NY.
+fluently decode letters and words and move from an effortful         Blaiklock, K., 2004, ‘The importance of letter knowledge in the relationship between
+activity to an automated skill.                                          phonological awareness and reading’, Journal of Research in Reading 27(1),
+                                                                         36–57. https://doi.org/10.1111/j.1467-9817.2004.00213.x
+                                                                     Burgess, S.R. & Lonigan, C.J., 1998, ‘Bi-directional relations of phonological sensitivity
+Acknowledgements                                                         and pre-reading abilities: Evidence from a pre-school sample’, Journal of Experimental
+                                                                         Child Psychology 70(2), 117–141. https://doi.org/10.1006/jecp.​1998.2450
+
+This article first appeared as a Research on Socio-Economic          Castles, A., Rastle, K. & Nation, K., 2018, ‘Ending the reading wars: Reading acquisition
+                                                                         from novice to expert’, Psychological Science in the Public Interest 19(1), 5–51.
+Policy (ReSEP) working paper with the same title (series no.             https://doi.org/10.1177/1529100618772271
+WP01/2018) from the Department of Economics, University              Cummings, K.D. & Petcher, Y. (eds.), 2016, The fluency construct: Curriculum-based
+                                                                        measurement, concepts and applications, Springer, New York.
+of Stellenbosch. The data in this article come from the              De Stefano, J., 2012, ‘State of the art knowledge in education: Opportunities to learn,
+Leadership for Literacy Project funded by the Economic and               USAID/EQUIP2, FHI360, Washington, DC.
+Social Research Council (ESRC) and the Department for                De Vos, M., Van der Merwe, K. & Van der Mescht, C., 2014, ‘A linguistic research
+                                                                        programme for reading in African languages to underpin CAPS’, Journal for
+International Development (DFID) of the United Kingdom.                 Language Teaching 48(2), 149–177. https://doi.org/10.4314/jlt.v48i2.7
+
+
+
+                                            http://www.sajce.co.za   Open Access
+                                                                             Page 14 of 14        Original Research
+
+
+
+Diemer, M.N., 2015, ‘The contributions of phonological awareness and naming speed                 Pretorius, E.J., 2015, ‘Failure to launch: Matching language policy with literacy
+   to the reading fluency, accuracy, comprehension and spelling of Grade 3 isiXhosa                   accomplishment in South African schools’, International Journal for the Sociology
+   readers’, unpublished MA dissertation, Rhodes University, Grahamstown.                             of Language 234, 47–76. https://doi.org/10.1515/ijsl-2015-0004
+Draper, K. & Spaull, N., 2015, ‘Examining oral reading fluency among Grade 5 rural ESL            Pretorius, E.J., 2018, Reading in the African languages: An annotated bibliography
+   learners in South Africa: An analysis of NEEDU 2013’, South African Journal of                     2004-2017, viewed 06 October 2019, from https://www.jet.org.za/clearinghouse/
+   Childhood Education 5(2), 44–77. https://doi.org/10.4102/sajce.v5i2.382                            primted/resources/language-and-literacy-resources.
+Ehri, L.C., 2005, ‘Learning to read words: Theory, findings and issues’, Scientific Studies       Pretorius, E.J. & Knoetze, J.J., 2012, ‘The teachers’ book club: Broadening teachers’
+    of Reading 9(2), 167–188. https://doi.org/10.1207/s1532799xssr0902_4                              knowledge and building self-confidence’, Musaion 31(1), 27–46.
+Ellis, N.C. & Hooper, M., 2001, ‘Why learning to read is easier in Welsh than in English:         Pretorius, E.J. & Spaull, N., 2016, ‘Exploring relationships between oral reading fluency
+     Orthographic transparency effects evinced with frequency matched tests’, Applied                 and reading comprehension amongst English second language readers in South
+     Psycholinguistics 22(4), 571–599. https://doi.org/10.1017/S0142716401004052                      Africa’, International Journal: Reading and Writing 29(9), 1449–1471. https://doi.
+                                                                                                      org/10.1007/s11145-016-9645-9
+Fuchs, L.S., Fuchs, D., Hosp, M.K. & Jenkins, J.R., 2001, ‘Oral reading fluency as an indicator
+    of reading competence: A theoretical, empirical, and historical analysis’, Scientific         Ouellette, G.P. & Haley, A., 2013, ‘One complicated extended family: The influence of
+    Studies of Reading 5(3), 239–256. https://doi.org/10.1207/S1532799XSSR0503_3                     alphabetic knowledge and vocabulary on phonemic awareness’, Journal of
+                                                                                                     Research in Reading, 36(1), 29–41. https://doi.org/10.1111/j.1467-9817.​2010.​
+Guthrie, J.T., Hoa, A.L.W., Wigfield, A., Tonks, S.M., Humenick, N.M & Littles, E., 2007,            01486.x
+   ‘Reading motivation and reading comprehension growth in the later elementary
+   years’, Contemporary Educational Psychology 32(3), 282–313. https://doi.                       Rees, S.A., 2016, ‘Morphological awareness in readers of isiXhosa’, unpublished MA
+   org/10.1016/j.cedpsych.2006.05.004                                                                dissertation, Rhodes, University, Grahamstown.
+Hasbrouck, J. & Tindal, G.A., 2006, ‘Oral reading fluency norms: A valuable assessment            Richards, J.C. & Schmidt, R., 2010, Longman dictionary of language teaching and
+   tool for reading teachers’, The Reading Teacher 59(7), 636–644. https://doi.                       applied linguistics, Longman, London.
+   org/10.1598/RT.59.7.3
+                                                                                                  Share, D.L., 1995, ‘Phonological recoding and self-teaching: Sine qua non of
+Howie, S., Combrinck, C., Roux, K., Tshele, M., Mokoena, G.M. & McLeod Palane, N.,                   reading acquisition’, Cognition, 55(2), 151–218. https://doi.org/10.1016/0010-
+   2017, ‘PIRLS LITRACY 2016: South African Highlight Report’, Centre for Evaluation                 0277(94)00645-2
+   and Assessment, University of Pretoria, Pretoria.
+                                                                                                  Siedenberg, M., 2017, Language at the speed of sight: How we read, why so many
+Howie, S., Van Staden, S., Tshele, M., Dowse, C. & Zimmerman, L., 2012. ‘PIRLS 2011:                  can’t, and what can be done about it, Basic Books, New York.
+   Progress in International Reading Literacy Study 2011: South African children’s
+   reading literacy achievement: summary report’, Summary Report, Centre for                      Silven, M., Posikiparta, E. & Niemi, P., 2004, ‘The odds of becoming a precocious
+   Evaluation and Assessment, University of Pretoria, Pretoria.                                        reader of Finnish’, Journal of Educational Psychology 96(1), 152–164. https://doi.
+                                                                                                       org/10.1037/0022-0663.96.1.152
+Howie, S., Venter, E., Van Staden, S., Zimmerman, L., Long, C., Du Toit, C. et al., 2006,
+   ‘Progress in International Reading Literacy Study 2006’, Centre for Evaluation and             Snow, C.A. & Kim, Y.-S., 2007, ‘Large problem spaces: The challenge of vocabulary for
+   Assessment, University of Pretoria.                                                               English language learners’, in R.K. Wagner, A.E. Muse & K.R. Tannenbaum (eds.),
+                                                                                                     Vocabulary acquisition: Implications for reading comprehension, Guilford Press,
+Jenkins, J.R., Fuchs, L.S., Van den Broek, P., Espin, C. & Deno, S.L., 2003, ‘Sources of             New York.
+    individual differences in reading comprehension and fluency’, Journal of Educational
+    Psychology 95(4), 719–729. https://doi.org/10.1037/0022-0663.95.4.719                         Spaull, N. & Pretorius, E, 2019, ‘Still falling at the first hurdle: Examining early grade
+                                                                                                     reading in South Africa’, in N. Spaull & J. Jansen, J (eds.), South African schooling:
+Jimerson, S.R., Hong, S., Stage, S. & Gerber, M., 2013, ‘Examining oral reading fluency              The enigma of inequality, Springer, Cham.
+    trajectories among English language learners and English speaking students’, New
+    Approaches in Educational Research 2(1), 3–11. https://doi.org/10.7821/naer.2.1.3-11          Spear-Swerling L., 2006, ‘Children’s reading comprehension and oral reading fluency
+                                                                                                     in easy text’, Reading and Writing: An Interdisciplinary Journal 19, 199–220.
+Kim, Y.-S.G. & Piper, B., 2019, ‘Component skills of reading and their structural                    https://doi.org/10.1007/s11145-005-4114-x
+   relations: Evidence from three sub-Saharan African languages with transparent
+   orthographies’, Journal of Research in Reading 42(2), 1–23. https://doi.                       Stanovich, K.E., 1986, ‘Matthew effects in reading: Some consequences of individual
+   org/10.1111/1467-9817.12271                                                                        differences in the acquisition of literacy’, Reading Research Quarterly 21,
+                                                                                                      360–406.
+Lekgoko, O. & Winskel, H., 2008, ‘Learning to read in Setswana and English: Cross-
+    language transference of letter-knowledge, phonological awareness and word                    Tavakol, M. & Dennick, R., 2011, ‘Making sense of Cronbach’s alpha’, International
+    reading skills’, Perspectives in Education 26(4), 57–73.                                          Journal of Medical Education 2, 53–55. https://doi.org/10.5116/ijme.4dfb.8dfd
+Makaure, Z.P., 2017, ‘Phonological processing and reading development in Northern-                Taylor, N. & Taylor, S., 2013, ‘Teacher knowledge and professional habitus’, in
+   Sotho – English bilinguals’, Unpublished MA dissertation, University of                            N. Taylor, S. Van den Berg & T. Mabogoane (eds.), Creating effective schools:
+   South Africa, Pretoria.                                                                            Report of South Africa’s national schools effectiveness study, Pearson, Cape
+                                                                                                      Town, pp. 201–232.
+Miller, P., Guldenoglu, B. & Kargin, T., 2019, ‘Reading failure in a completely transparent
+    orthography representing a morphologically highly complex agglutinative                       Taylor, S., Cilliers, J., Prinsloo C., Fleisch B. & Reddy V., 2017, ‘The early grade reading
+    language: The case of Turkish’, Journal of Developmental and Physical Disabilities.               study: Impact evaluation after two years of interventions’, Technical report,
+    31(5), 669–689. https://doi.org/10.1007/s10882-019-09667                                          Department of Basic Education, Pretoria.
+Miller, P., Kargin, T. & Guldenoglu, B., 2014, ‘Differences in the reading of shallow and         Thal, D.J., Bates, E., Goodman, J. & Jahn-Samilo, J., 1997, ‘Continuity of language
+    deep orthography: Developmental evidence from Hebrew and Turkish                                 abilities. An exploratory study of late- and early-talking toddlers’,
+    readers’, Journal of Research in Reading 37(4), 409–432. https://doi.org/10.1111/                Developmental Neuropsychology 13(3), 239–273. https://doi.org/10.1080/​
+    j.1467-9817.2012.01540.x                                                                         87565649709540681
+Mullis, I., Martin, M., Kennedy, A. & Foy, F., 2007, PIRLS 2006 International Report: The         Wills, G., 2017, What do you mean by “good”? ‘The search for exceptional primary
+   Progress in International Reading Literacy Study in Primary Schools in 40 Countries,               schools in South Africa’s no-fee school system’, Stellenbosch Economic Working
+   TIMSS & PIRLS International Study Center, Boston, MA.                                              Papers, WP 16/2017, Stellenbosch.
+Muter, V. & Diethelm, K., 2001, ‘The contribution of phonological skills and letter               Wilsenach, C., 2013, ‘Phonological skills as predictor of reading success: An
+   knowledge to early reading development in a multilingual population’, Language                     investigation of emergent bilingual Northern Sotho/English learners’, Per
+   Learning 51(2), 187–219. https://doi.org/10.1111/1467-9922.00153                                   Linguam: a Journal of Language Learning/Tydskrif vir Taalaanleer 29(2), 17–32.
+                                                                                                      https://doi.org/10.5785/29-2-554
+National Reading Panel, 2000, Teaching children to read: An evidence-based
+    assessment of the scientific literature on reading and its implications for reading           Wilsenach, C., 2015, ‘Receptive vocabulary and early literacy skills in bilingual
+    instruction, US Government Printing Office, Washington, DC.                                       Northern Sotho-English bilinguals’, Reading and Writing 6(1), Art. #77, 11 pages.
+                                                                                                      https://doi.org/10.4102/rw.v6i1.77
+Nieto, J.E., 2005, ‘Analysis of difficulties in understanding and applying the alphabetic
+    principle’, Journal of Research in Educational Psychology 2(2), 75–104.                       Wise, J.C., Sevcik, R.A., Morris, R.D., Lovett, M.W. & Wolf, M., 2007, ‘The growth of
+                                                                                                     phonological awareness by children with reading disabilities: A result of
+Oney, B. & Durgunoglu, A.Y., 1997, ‘Beginning to read in Turkish: A phonologically                   semantic knowledge or knowledge of grapheme-phoneme correspondences?’,
+   transparent orthography’, Applied Psycholinguistics 18(1), 1–15. https://doi.                     Scientific Studies of Reading 11(2), 151–164. https://doi.org/10.1080/10888​
+   org/10.1017/S014271640000984X                                                                     430709336557
+Perfetti, C.A., 2007, ‘Reading ability: Lexical quality to comprehension’, Scientific             Wolf, M. & Katzir-Cohen, T., 2001, ‘Reading fluency and its intervention’, Scientific
+    Studies of Reading 11(4), 357–383. https://doi.org/10.1080/10888430701530730                     Studies of Reading 5(3), 211–239. https://doi.org/10.1207/S1532799XSSR0503_2
+Piper, B. & Zuilkowski, S.S., 2016, ‘Role of timing in assessing oral reading fluency             Ziegler, J. & Goswami, U., 2005, ‘Reading acquisition, developmental dyslexia and
+    and comprehension in Kenya’, Language Testing 31(1), 75–98. https://doi.org/​                     skilled reading across languages: A psycholinguistic grain size theory’, Psychological
+    10.1177/0265532215579529                                                                          Bulletin 131(1), 3–29. https://doi.org/10.1037/0033-2909.131.1.3
+
+
+
+
+                                                                 http://www.sajce.co.za           Open Access
+

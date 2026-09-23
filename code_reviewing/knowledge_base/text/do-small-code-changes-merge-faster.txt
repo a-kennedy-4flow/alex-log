@@ -1,0 +1,966 @@
+                                                                          Do Small Code Changes Merge Faster?
+                                                                         A Multi-Language Empirical Investigation
+                                                       Gunnar Kudrjavets                                          Nachiappan Nagappan                                    Ayushi Rastogi
+                                                      University of Groningen                                         Meta Platforms, Inc.                           University of Groningen
+                                                      Groningen, Netherlands                                          Menlo Park, CA, USA                            Groningen, Netherlands
+                                                       g.kudrjavets@rug.nl                                              nnachi@fb.com                                   a.rastogi@rug.nl
+
+                                        ABSTRACT                                                                                      Conference on Mining Software Repositories (MSR 2022). ACM, New York, NY,
+                                        Code velocity, or the speed with which code changes are integrated                            USA, 12 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn
+arXiv:2203.05045v1 [cs.SE] 9 Mar 2022
+
+
+
+
+                                        into a production environment, plays a crucial role in Continu-
+                                        ous Integration and Continuous Deployment. Many studies report
+                                        factors influencing code velocity. However, solutions to increase                             1    INTRODUCTION
+                                        code velocity are unclear. Meanwhile, the industry continues to                               Continuous deployment is a software development methodology
+                                        issue guidelines on “ideal” code change size, believing it increases                          that deploys a continuous stream of software updates into the
+                                        code velocity despite lacking evidence validating the practice. Sur-                          production environment [63, 65]. For engineers working in fast-
+                                        prisingly, this fundamental question has not been studied to date.                            paced environments, continuous deployment and particularly the
+                                        This study investigates the practicality of improving code velocity                           speed at which code changes are integrated into the production
+                                        by optimizing pull request size and composition (ratio of insertions,                         environment (also referred to as code velocity) are essential [21]. In
+                                        deletions, and modifications).                                                                these environments, since code changes constantly flow to the main
+                                           We start with a hypothesis that a moderate correlation exists                              branch from multiple sources, frequently fetching from and pushing
+                                        between pull request size and time-to-merge. We selected 100 most                             changes to the main branch prevents merge conflicts and ensures
+                                        popular, actively developed projects from 10 programming lan-                                 timely deployment. The practice has widespread adoption across
+                                        guages on GitHub. We analyzed our dataset of 845,316 pull requests                            high-profile internet and social media companies like Amazon,
+                                        by size, composition, and context to explore its relationship to time-                        Facebook, Google, Netflix, and Twitter.
+                                        to-merge—a proxy to measure code velocity. Our study shows that                                   Studies show many factors influence code velocity [9, 12, 32, 37,
+                                        pull request size and composition do not relate to time-to-merge.                             39, 55, 64, 77, 78, 80], often referred to and measured as time-to-
+                                        Regardless of the contextual factors that can influence pull request                          accept and/or time-to-merge. These include code characteristics (e.g.,
+                                        size or composition (e.g., programming language), the observation                             code churn [37, 77, 78]), project characteristics (e.g., age [77, 78] and
+                                        holds. Pull request data from two other platforms: Gerrit and Phabri-                         the number of open pull requests [77, 78]), and human and social
+                                        cator (401,790 code reviews) confirms the lack of relationship. This                          factors (e.g., contributor affiliation [8, 9, 37, 55, 64] and strength of
+                                        negative result as in “. . . eliminate useless hypotheses . . . ” [72] chal-                  social connection [77, 78]). Notably, only a few of these factors can
+                                        lenges a widespread belief by showing that small code changes do                              be controlled by a pull request author to increase code velocity.
+                                        not merge faster to increase code velocity.                                                       Our goal is to explore the practicality of improving code velocity
+                                                                                                                                      by exploring solutions within the direct control of an engineer. For
+                                        CCS CONCEPTS                                                                                  example, engineers can control the size of a proposed code change
+                                                                                                                                      but not their reputation. This study investigates two such factors
+                                        • Software and its engineering → Open source model; Software
+                                                                                                                                      that can be adapted to increase code velocity: pull request size and
+                                        evolution; Software libraries and repositories.
+                                                                                                                                      composition. To investigate whether pull request size and compo-
+                                                                                                                                      sition can be meaningfully changed to increase code velocity (using
+                                        KEYWORDS
+                                                                                                                                      time-to-merge as its proxy), we ask three research questions:
+                                        Pull request, code review velocity, pull request size, GitHub
+                                                                                                                                             RQ1: What characterizes pull request size, composition,
+                                        ACM Reference Format:                                                                                and time-to-merge?
+                                        Gunnar Kudrjavets, Nachiappan Nagappan, and Ayushi Rastogi. 2022. Do
+                                        Small Code Changes Merge Faster? A Multi-Language Empirical Inves-                               The objective of the first research question is to give insights into
+                                        tigation. In Proceedings of MSR ’22: Proceedings of the 19th International                    the characteristics and distribution of the data. This understanding
+                                                                                                                                      is crucial to identify the scope for improvements (e.g., the extent
+                                        Permission to make digital or hard copies of all or part of this work for personal or         to which time-to-merge can be decreased) and offer a preliminary
+                                        classroom use is granted without fee provided that copies are not made or distributed         understanding (e.g., degree of variability in pull request size) for
+                                        for profit or commercial advantage and that copies bear this notice and the full citation
+                                        on the first page. Copyrights for components of this work owned by others than ACM            deeper investigations later.
+                                        must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,          The following two questions explore direct (RQ2) and mediated
+                                        to post on servers or to redistribute to lists, requires prior specific permission and/or a
+                                        fee. Request permissions from permissions@acm.org.
+                                                                                                                                      (RQ3) relationships of pull request size and composition to time-to-
+                                        MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                merge for improving code velocity.
+                                        © 2022 Association for Computing Machinery.
+                                        ACM ISBN 978-x-xxxx-xxxx-x/YY/MM. . . $15.00                                                         RQ2: What is the relationship of pull request size and
+                                        https://doi.org/10.1145/nnnnnnn.nnnnnnn                                                              composition to time-to-merge?; and
+MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                                                           1, 2, and 3
+
+
+        RQ3: Does context influence the relationship of pull              Gerrit and Phabricator expose timestamps which enable us to de-
+        request size and composition to time-to-merge?                    termine when code reviews are approved (accepted). GitHub only
+Note that a pull request author cannot control contextual factors in      added the functionality to explicitly approve changes in 2016, and
+itself; however, they can influence pull request size and composition,    none of the projects we mined in this study use it consistently [24].
+potentially influencing the ways to increase code velocity.               Another conceptual difference between the tools listed above is
+   We collected information on 100 GitHub repositories: 10 most           their default approach to merging approved changes. The policy
+popular repositories each from the 10 most popular programming            for Gerrit is to start the merging process automatically. For both
+languages on GitHub. We report descriptive statistics answering           GitHub and Phabricator, manual action is required.
+RQ1 and the correlation of pull request size and composition to
+the time-to-merge (in RQ2) in the presence of confounding fac-            2.2    Code velocity
+tors (RQ3). We confirm our findings by replicating our analysis on        Studies show that a wide range of factors influences a pull request’s
+smaller datasets from code review platforms Gerrit and Phabricator.       time-to-merge [9, 12, 32, 37, 39, 55, 64, 77, 78, 80]. These include
+   We found that pull request size and its composition do not influence   personal characteristics of the author (e.g., affiliation), project char-
+time-to-merge, regardless of the day of the week the pull request         acteristics (e.g., project age), and pull request characteristics (e.g.,
+is created, programming language, and organizational affiliation.         code churn). See Table 1 for a complete list of factors found to
+There are no patterns even though:                                        influence the time-to-merge of projects hosted on GitHub [79]. We,
+     • code velocity is not the same for industry and non-industry        on the contrary, explore solution space to increase code velocity by
+       repositories: repositories affiliated with industry have larger    manipulating controllable factors to reduce time-to-merge.
+       pull request sizes, but lower time-to-merge compared to                To decrease time-to-merge, one should be able to control and/or
+       non-industry repositories; and                                     manipulate some or all of these factors. By control, we mean some-
+     • expressiveness of programming language influences both             thing that an engineer proposing the change can influence in a
+       pull request size and time-to-merge.                               reasonable amount of time. Unfortunately, out of the 29 factors
+                                                                          listed in Table 1, only 8 can be controlled by an engineer in a non-
+   Challenging popular beliefs, our study suggests that neither time-     trivial manner.
+to-accept nor time-to-merge decreases with reduced pull request               The ability to control or change a characteristic in a reason-
+size or the composition of code changes. Splitting pull requests into     able amount of time is important for several reasons. First, a study
+smaller and isolated chunks may help with increasing the chances          of five OSS projects reported that more than 80% of developers
+of acceptance [75] or make code changes “reviewable” [59], but it         are newcomers or leavers [22]. This implies that most contribu-
+does not decrease the overall time it takes to review or merge them.      tors may not have the time, interest, or ability to become a core
+Likewise, we do not observe that certain types of code changes            member and/or increase their social strength—factors important
+merge faster than others.                                                 for improving time-to-merge. Second, factors such as reputation
+                                                                          may be within an engineer’s control but take months or years to
+2 BACKGROUND AND RELATED WORK                                             change. Reputational factors are practically infeasible to optimize
+2.1 Introduction to Modern Code Review                                    for a given pull request. Third, most other remaining factors cannot
+                                                                          be controlled by an individual at all. For example, project-related
+Most present-day software development organizations and open-
+                                                                          factor, such as the number of open pull requests, depends on various
+source software (OSS) projects have embraced a process known as
+                                                                          circumstances that an individual cannot easily influence.
+Modern Code Review (MCR) [64]. The MCR process starts with an
+                                                                              Table 1 classifies each factor influencing time-to-merge accord-
+engineer proposing a set of changes (insertions, deletions, and mod-
+                                                                          ing to our assessment of controllability. These factors are taken
+ifications) to a source code and submitting the collection of code
+                                                                          from [31, 79]. Table 1 shows that no known author and project char-
+changes for review. Depending on the organization and context, the
+                                                                          acteristics influencing time-to-merge can be controlled. Some of the
+collection of code modifications is referred to as “change”, “change-
+                                                                          factors that can be controlled relate to the size and composition of a
+list”, “diff”, “patch” or a “pull request”. For example, Facebook uses
+                                                                          pull request (see Section 3.3). Obviously, attributes such as descrip-
+“diff”, GitHub uses “pull requests”, Google uses “changelist”, and
+                                                                          tion of code changes can be optimized for grammatical errors and
+most of the OSS projects use the term “patch”. Given that the data
+                                                                          relevance to a change, but the semantic value of these concepts are
+analysis in this paper is mainly based on GitHub, we use the term
+                                                                          hard to quantify. We expect that the same factors will also influence
+pull request. After the changes are submitted for review, the author
+                                                                          code reviews performed using either Gerrit or Phabricator because
+and reviewer(s) discuss the proposed changes. Code review discus-
+                                                                          these code reviewing platforms are semantically similar.
+sion may result in no critique of the original pull request, changes
+being outright rejected, or some amount of code churn. Every revi-
+sion to the pull request will cause the review process to be repeated     2.3    Code size
+until a conclusion is achieved. If the changes are approved, the          A study focusing on the Mozilla project finds that developers feel
+engineer can then propagate the changes to the destination branch,        that the size-related factors are the most important for code review
+provided the changes pass the required automated validation tests.        time and decision [36]. Another study based on interviews with 10
+    A variety of tools are used to conduct MCR. This paper mainly         participants (8 from industry and 2 from OSS community with a
+uses the data mined from GitHub and compares our findings with            median experience of 9.5 years) finds that the smaller the change,
+the code review data fetched from Gerrit and Phabricator [23, 53].        the more reviewable it is, but the precise sizes for categories such
+Do Small Code Changes Merge Faster?
+A Multi-Language Empirical Investigation                                                               MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA
+
+
+Table 1: Factors influencing pull request (PR) time-to-merge.           significantly influenced the acceptance time [75]. Another study
+                                                                        researching the patch acceptance in Linux kernel found a link be-
+ Entity      Factor                                        Control-     tween patch size and time to review the changes, but not the patch
+                                                            lable       integration time [34].
+                                                                            A study on GitHub concludes that “the size of a pull request
+ Author      Contributor affiliation [37, 55]                 No
+                                                                        matters: the shorter it is, the faster it will be reviewed” [77]. A
+             Core member [12, 39, 77, 78]                     No
+                                                                        more detailed version of the same study by a subset of the original
+             First pull request [39]                          No
+                                                                        authors states that “the more succinct a pull-request is, the faster
+             First response time [77, 78]                     No
+                                                                        it will be reviewed” [78]. For clarity, we need to point out that
+             Followers [77, 78]                               No
+                                                                        though the term “reviewed” is used, the authors of the study use
+             Integrator affiliation [9, 64]                   No
+                                                                        the terms “pull request latency” and “review latency” synonymously.
+             Prev pull requests [37]                          No
+                                                                        However, those two terms mark different states in a pull request
+             Social strength [77, 78]                         No
+                                                                        life cycle. Pull request latency is the difference between the pull
+ Project     Integrator availability [77, 78]                 No        request closing and creation times. The proposed code changes are
+             Open pull request count [77, 78]                 No        considered to be reviewed when another engineer either formally
+             Project age [77, 78]                             No        or informally approves the changes or requests additional changes
+             Requester success rate [77]                      No        that must be implemented before the pull request can be merged.
+             team_size [77, 78]                               No        Changes being reviewed do not mean that a pull request has been
+                                                                        merged or closed.
+ PR          Continuous integration exists [32, 80]           No
+                                                                            Another study focusing on a single GitHub project (Shopify’s
+             Continuous integration latency [77, 78]          No
+                                                                        Active Merchant) shows that the size of a pull request had a statis-
+             Continuous integration test passed [77, 78]      No
+                                                                        tically significant effect on review time [37]. The study consisted
+             Commits on files touched [77, 78]                No
+                                                                        of a dataset of 1,475 pull requests. Another study of 97,463 pull re-
+             Friday effect [77, 78]                           No
+                                                                        quests from 30 projects suggests a relationship between the number
+             Number of comments [77, 78]                      No
+                                                                        of source lines of code (SLOC) modified and pull request lifetime
+             Number of participants [37]                      No
+                                                                        but concludes that there are no means to establish that an increase
+             Participants in PR/commit comments [37]          No
+                                                                        in SLOC implies a longer pull request lifetime [46].
+             Test inclusion [78]                              Yes
+             At tag [77, 78]                                  Yes
+                                                                        2.3.2 Size-related recommendations. Reflecting on the assumption
+             Hash tag [77, 78]                                Yes
+                                                                        that size matters to MCR, industry and OSS projects recommend
+             Churn addition [9, 77, 78]                       Yes
+                                                                        that pull request size be “small”. The guidance, however, is general
+             Churn deletion [9, 77, 78]                       Yes
+                                                                        and vague. Projects suggest isolated changes of reasonable size. Pop-
+             Source code churn [37]                           Yes
+                                                                        ular OSS projects such as (i) Linux directs contributors to “Separate
+             Number of commits [77, 78, 80]                   Yes
+                                                                        each logical change into a separate patch” and suggests that “It
+             Description length [77, 78]                      Yes
+                                                                        cannot be bigger than 100 lines . . . ” [40, 41], (ii) LLVM recommends
+                                                                        that the patch should “be an isolated change” [42], (iii) Chromium
+                                                                        contribution guidelines say that “Patches should be a reasonable
+as extra small, small, medium and large are unknown [59]. In the
+                                                                        size to review” [14], and (iv) PostgreSQL patch submission guidance
+same study, one of the interviewees states that “for a change to be
+                                                                        suggests “Start with submitting a patch that is small and uncontro-
+reviewable it must be at most 250 lines long”.
+                                                                        versial” [56].
+   A study on GitHub finds that pull requests with small commit
+                                                                            What exactly is a small size to submit for a pull request? Chal-
+sizes were more likely to be accepted [73]. However, a large patch
+                                                                        lenging the perceptions of developers, a study shows that what
+size by itself was not a reason for rejecting the code changes. A
+                                                                        engineers think about the size of commits differs from reality by
+study examining the patch history of Eclipse and Mozilla found that
+                                                                        more than an order of magnitude [60]. Even if we consider small as
+only 0.3% of the rejections were attributed to the patch size being
+                                                                        a recommended size, the suggested range differs depending on the
+too large [71]. The need for the patches to be small and concise is
+                                                                        source. A study on commits in GNU Compiler Collection codebase
+affirmed by the study with participants stating that “large patch
+                                                                        classifies the changes based on SLOC into the following categories:
+sets are difficult to review and require a lot of time to read, thus
+                                                                        (i) extra-small (0–5), (ii) small (6–46), (iii) medium (47–106), (iv) large
+this may delay the acceptance of the patches” and “having small
+                                                                        (107–166), and (v) extra-large (167–203,359) [3].
+patches is very important for making it easier to revert them” [52].
+                                                                            Guidelines from industry, while also emphasizing small and
+2.3.1 No consistent relations. The relationship between the speed       incremental changes, are likewise vague. (i) Google engineering
+of patch acceptance and size is not uniformly established. In one       practices suggest that 100 lines are a reasonable size, and 1,000
+of the earliest attempts to investigate the relationship between        lines are considered too large [28], (ii) Phabricator, the code review
+the patch size and its acceptance speed, the authors found that         platform utilized at Facebook, uses “Each commit should be as small
+smaller patches (defined as 15 lines or less for FLAC and 24 lines or   as possible, but no smaller” as guidance [54], and (iii) Microsoft’s
+less for OpenAFS) have a higher chance of acceptance than aver-         recommended practices state that “Authors should aim for small,
+age. However, they could not conclusively state that the patch size     incremental changes that are easier to understand” [43].
+MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                                                          1, 2, and 3
+
+
+2.3.3 Empirical data on code review size. A study on code review              To obtain GitHub data, we considered the following approaches:
+practices at Google reported that the median number of lines modi-        (i) GHTorrent dataset and tool suite [29], (ii) GH Archive [4], and
+fied is 24 [64]. At Facebook, each deployed software update (code         (iii) GitHub API [25]. We chose the GitHub API to fetch up-to-date
+change reviewed, committed, and then deployed to production)              information about the state of GitHub directly. GitHub API exposes
+is on average 92 lines [63]. Another investigation covering both          a set of functionality that enables callers to query and search public
+industrial and OSS projects found that the median change size for         repositories and fetch various entities associated with them (e.g.,
+Android and AMD is 44 lines; Apache is 25 lines; Linux is 32 lines;       commits, pull requests, and users). The other methods provide only
+and Chrome is 78 lines [61]. However, the same study also found           historical snapshots. Utilizing the GitHub API gave us the most
+that for Lucent, the change size was an order of magnitude bigger,        flexibility in determining how and what data to collect.
+with the median being 263 lines. A study exploring the review-then-           A collection of code review data from various Gerrit projects
+commit type of changes reported median churn between 11 and 32            is available for researchers [76]. The dataset is in the form of a
+lines [62]. One of the first studies that investigated the relationship   MySQL database and as of July 2nd of 2021, it contains code review
+between patch size and its acceptance time in two OSS projects            data about Eclipse, GerritHub, LibreOffice, and OpenStack. Several
+(FLAC and OpenAFS) noted that for FLAC more than half of the              major OSS projects also use Phabricator to perform code reviews.
+submitted patches change one or two lines of code; for OpenAFS,           We utilize Phabry to mine the publicly accessible code review data
+one-third of the patches change at most two lines [75]. Finally, anal-    for Blender, FreeBSD, LLVM, and Mozilla [15, 16].
+ysis of many GitHub repositories shows that the median number
+of lines changed by pull requests is 20 [30].                             3.2    Selection and elimination criteria
+   Observation 1. Both industrial and OSS projects recommend              To note popularity, GitHub uses the concept of stars. This idea
+“small” or “reasonable” sizes for pull requests, but the guidance is      is similar to likes used in social media networks like Facebook,
+vague. Empirical data shows that actual median code change size           Instagram, and Twitter. Another paradigm used is forks, which
+differs by orders of magnitude across projects in practice. The lack of   allows a user to create their own copy of a repository without
+concrete guidance may be a driving factor for the wide variance.          affecting the original repository. Forks, stars, and the number of
+                                                                          pull requests in a particular repository have all been used as criteria
+2.4     Code composition                                                  for selecting GitHub projects [11, 32, 46].
+                                                                             Existing studies investigating factors that impact the popularity
+When referring to code change size, most studies define code churn
+                                                                          of GitHub repositories have found a strong positive correlation
+as the sum of added and deleted lines [8, 34, 59, 75, 77, 78]. Only
+                                                                          between stars and forks, making both suitable proxies to measure
+two studies classify code changes in detail. One study uses the
+                                                                          popularity [11, 51]. Stars, however, have multiple uses in GitHub:
+term change to describe technical contributions with no specific
+                                                                          as bookmarks, as a way to show appreciation to repository contrib-
+definition [73]. Another study investigating the characteristics of
+                                                                          utors for their work, and as a way to improve GitHub recommen-
+commit sizes separates change types into add, modify, and delete [3].
+                                                                          dations for similar projects. Contrastingly, when a developer forks
+   Most of the data gathered in the above studies are produced by
+                                                                          their copy of a repository, this act signifies an intent to modify the
+the various diff analysis tools or fetched from GitHub. GitHub uses
+                                                                          original code. We find the number of forks as a better selection
+the output of the git diff command (addition and deletion) as
+                                                                          criterion for active development in a particular repository.
+one of the attributes describing a pull request. Unfortunately, using
+                                                                             We used GitHub’s report ranking the 10 most popular program-
+only insertions and deletions to estimate the code churn results
+                                                                          ming languages for October 2019 through September 2020 [27]
+in an erroneous estimate of the amount of code changed because
+                                                                          to select programming languages. The top 10 languages were: C,
+moves and updates are not accounted for [13].
+                                                                          C++, C#, Java, JavaScript, PHP, Python, Ruby, Shell, and TypeScript.
+                                                                          Our collection covers object-oriented, procedural, and scripting
+3 STUDY DESIGN                                                            languages.
+3.1 Choice of data
+We sought data from GitHub repositories that are popular, actively        3.3    Choice of metrics
+developed, and cover a wide range of programming languages. Our           3.3.1 Code size. The code size is expressed as the number of com-
+dataset is available here1 for replication. In the final version, we      mits, files, or SLOC included in a pull request. We choose to quantify
+will also share the scripts, which as of now, contain personally          the size in SLOC because it is a metric easily comprehended, has
+identifiable information.                                                 support in the Gerrit, GitHub, and Phabricator infrastructure, and
+   By analyzing the most popular and actively developed repos-            is already used as a primary numeric value to guide the size of code
+itories we gain many benefits: (i) a larger dataset populated by          contributions for various projects [28, 40, 59].
+a continuous flow of incoming pull requests by a variety of con-
+                                                                          3.3.2 Code composition. We added modified lines as a separate
+tributors, (ii) a larger number of core developers with permission
+                                                                          category from insertions and deletions to improve the granularity
+to approve merges (thus eliminating artificial bottlenecks in the
+                                                                          with which code churn is measured. Modifications are conceptually
+pull request review process), and (iii) an accurate representation of
+                                                                          different from insertions and deletions. With the current metric,
+the dynamics of collaboration on GitHub among a diverse set of
+                                                                          one modification is erroneously reported as one insertion and one
+individuals.
+                                                                          deletion (e.g., a trivial example of removing an extra semicolon
+1 https://figshare.com/s/37af0f90d3d2a15f1762                             from the end of the line). We believe that differentiating the types
+Do Small Code Changes Merge Faster?
+A Multi-Language Empirical Investigation                                                                               MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA
+
+
+of code changes will enable greater insight into how different types                      suite which were not executed during early validation.), (ii) only a
+of code changes impact time-to-merge. To analyze code changes in                          few projects on GitHub formally track when the proposed changes
+each pull request and extract the number of modifications of each                         were accepted, leaving us, therefore, with a limited dataset for anal-
+type, we use the diffstat tool.                                                           ysis, and (iii) industry experience indicates that time-to-merge is
+   Below is an example showing the difference between the two                             a critical factor to measure. A study about Xen Project’s (hypervi-
+approaches for a minor bug fix from the OpenSSL codebase [50].                            sor software) code review experience states that “Xen agreed that
+See code Listing 1.                                                                       [time-to-merge] was the most important parameter to track when
+                                                                                          considering delays imposed by the review process” [33].
+              Listing 1: Sample OpenSSL code snippet.
+diff -- git a / crypto / evp / m_sigver . c b / crypto / evp / m_sigver . c                  Observation 2. The time-to-merge is a more accurate descriptor
+index bdcac90078 ..57 c8ce78a4 100644
+--- a / crypto / evp / m_sigver . c                                                       for code changes being included into a repository than code review
++++ b / crypto / evp / m_sigver . c                                                       acceptance time.
+@@ -60 ,7 +60 ,7 @@ static int do_sigver_init ( EVP_MD_CTX * ctx , EVP_PKEY_CTX ** pctx
+         ,
+      }                                                                                       To identify when a particular pull request was created, we used
+     if ( ctx - > pctx == NULL ) {
+                                                                                          the created_at property of pull requests. To calculate the time-to-
+-         if ( libctx != NULL )                                                           merge, we considered two pull request attributes available through
++         if ( e == NULL )
+                ctx - > pctx = EVP_PKEY_CTX_new_from_pkey ( libctx , pkey , props ) ;
+                                                                                          GitHub API: closed_at and merged_at. Semantically, merged_at
+          else                                                                            is the better value because we care about when the physical code
+                ctx - > pctx = EVP_PKEY_CTX_new ( pkey , e ) ;
+                                                                                          changes are merged versus when the pull request is marked as
+    When using:                                                                           closed. The difference between merged_at and created_at repre-
+git show 5 b888e931b64a132a -- shortstat                                                  sents the time it took for a pull request to be merged.
+
+    the result is                                                                         3.4    Data extraction
+1 file changed , 1 insertion (+) , 1 deletion ( -)                                        We deployed a custom tool in C# that uses a GitHub API client
+    as opposed to the output from diffstat -Cm                                            library for .NET to gather data about the most forked reposito-
+1 file changed , 1 modification (!)
+                                                                                          ries for each programming language [26]. For each programming
+                                                                                          language, we retrieved a list of the 100 most forked projects and
+   The difference in estimating the total changes, even for a trivial                     the number of merged pull requests per project. We ordered the
+example above, is two times. This describes and quantifies the intent                     list by the number of merged pull requests in descending order.
+behind the choice of code composition metric with greater accu-                           After manual inspection and elimination of projects not directly
+racy. Still, we cannot distinguish actions such as moving chunks of                       related to developing software (e.g., code samples, coding interview
+source code from one location to another. This paper uses insertions,                     study guide, solutions to the programming problems, and storage),
+deletions, and modifications only.                                                        we picked 10 projects per language with the most merged pull re-
+3.3.3 Code velocity. Modern code review systems (such as Code-                            quests. Finally, we used curl to fetch the contents of code changes
+Flow, Critique, Gerrit, and Phabricator) typically track the amount                       included in each pull request and parsed the resulting data locally
+of time it takes for code changes to be accepted or signed off (i.e.,                     using diffstat [18].
+someone other than the author formally decides that the proposed                              We obtained 845,316 pull requests in our raw dataset for analysis.
+changes can be merged either in their original form or with some                          After removing entries that did not have any code changes (e.g.,
+modifications). We refer to that point in time as the time-to-accept.                     changes to the binary files and generally anything not considered
+However, for our study, we believe that a more relevant metric                            text by the diff tools), we ended up with 842,303 pull requests. We
+is the time it takes for code changes to deploy. Code changes are                         removed one pull request with inconsistent timestamp (the time of
+not “real” until they have been merged into a destination branch.                         the merge was set to earlier than its creation time). We also removed
+The change will be available for building, profiling, testing, and                        all entries that appeared to have zero time-to-merge to ensure that
+execution in the production or test environments only after it has                        the dataset reflects pull requests that involve meaningful review.
+been merged into the main branch.                                                         Our final sample set contains 826,259 pull requests.
+    We use the term time-to-merge to indicate “. . . the time since the
+proposal of a change (. . . ) to the merging in the codebase . . . ”) [33].               3.5    Data preprocessing
+Terms like “pull request latency” and “pull request lifetime” have                        During the manual inspection of pull requests, we noticed that
+been used synonymously to describe the same concept. However,                             several pull requests contain millions of SLOC. To investigate the
+we will use the term “time-to-merge” as we believe it precisely                           impact of large pull requests on total code churn, we sorted the pull
+conveys our intent.                                                                       requests in the descending order of the SLOC modified. We then
+    Other reasons justifying our focus on time-to-merge instead of                        calculated what percentage of total code churn the outlier values are
+time-to-accept are: (i) even after the formal acceptance of code                          responsible for. Our analysis shows that 100 pull requests (0.01%
+changes, a non-trivial amount of time may be spent on getting                             of total) are responsible for 23%; 1,000 (0.12% of total) for 53%;
+the changes ready to be merged (e.g., applying the code review                            and 10,000 (1.21% of total) for 76% of total code churn.
+feedback, resolving merge conflicts, repeating some of the initial                           Initial sampling and manual review indicated that these outlier
+validation, and investigating test case failures in an extended test                      pull requests represent mostly classical merges between branches
+MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                                                                                                           1, 2, and 3
+
+
+and, for our study, are not representative of the types of pull re-      and composition to time-to-merge. We repeat our analysis on Gerrit
+quests we want to investigate. We applied Tukey 1.5 × 𝐼𝑄𝑅 fence          and Phabricator (as is feasible), with the addition of time-to-accept.
+exclusion criteria to identify outliers to understand their character-
+istics and whether the merges are a majority of the outliers [74].       4 RESULTS
+We then selected 100 random pull requests from the entries we            RQ1: What characterizes pull request size,
+would potentially remove to avoid distortion of our dataset and
+categorized them further. The results from the manual classification
+                                                                         composition, and time-to-merge?
+are shown in Table 2.                                                    Earlier, in Section 3.4, we described the method and reasoning
+                                                                         behind not removing the outliers. We observe that the presence of
+Table 2: Distribution of outliers excluded based on SLOC.                outliers has a significant impact on the measures of central tendency.
+Random sample of N = 100.                                                Median values differ by approximately two times, and the mean
+                                                                         differs by orders of magnitude (see Table 3).
+
+             Reason                               Count                  Table 3: Time-to-merge (hours) and SLOC per pull request
+             New code (feature, scenario)              31                before and after removing the outliers using Tukey 1.5×𝐼𝑄𝑅
+             Major refactoring (move, rename)          25                fence. N = total number, M = mean, Mdn = median, SD = stan-
+             Backporting                               12                dard deviation.
+             Dependency update                          8
+             Bug fix                                    7                                                                       Time-to-merge                                 SLOC
+             Documentation update                       7
+             Merge between branches                     6                   Type                                          N     M        Mdn          SD           M      Mdn              SD
+             Dead code removal                          4                   Before                              826,259       182            17      860          584         22        17,123
+                                                                            After                               613,007        28             9       43           32         12            44
+
+   In our random sample, most outliers are new code, major refac-
+toring, or backporting existing code. Therefore, we decided not to          Given the prevailing guidelines and beliefs surrounding the re-
+trim the initial dataset by removing the potential outliers. To ensure   lationship between the size of a proposed change and the time-to-
+the validity of our conclusions, we analyzed the data both with and      merge, we expected that both the pull request size and time-to-
+without the outliers. Without the outliers, the size of our dataset is   merge distribution would be skewed towards the smaller values. As
+613,007 pull requests.                                                   expected, Figure 1 and Figure 2 show the size of the pull request and
+                                                                         time-to-merge clusters towards smaller values. Both distributions
+3.6     Statistical analysis                                             are visually heavily right-skewed.
+
+To answer RQ1, we report descriptive statistics and visualizations
+indicating the distribution of pull request size, composition, and                                                              Pull request size distribution
+                                                                                                          80
+
+
+
+
+time-to-merge in our data. We report statistically significant results
+at a 𝑝 < .001 and use APA conventions [5]. For RQ2, we compute
+Spearman rank correlation coefficients [70] of pull request size
+and composition to time-to-merge. We choose a non-parametric
+                                                                                                          60
+
+
+
+
+measurement because Shapiro-Wilk tests [67] show that neither the
+                                                                               % of total pull requests
+
+
+
+
+pull request size (𝑊 = 0.031, 𝑝 < .001) nor time-to-merge (𝑊 =
+0.12, 𝑝 < .001) are normally distributed. In addition, Spearman
+                                                                                                          40
+
+
+
+
+correlation is considered to be robust to outlier values [17].
+    For RQ3, we examine the influence of three contextual factors:
+choice of programming language, affiliation (industry versus non-
+industry), and the day of the week the pull request was created.
+                                                                                                          20
+
+
+
+
+These factors can potentially influence pull request size and compo-
+sition, and hence the time-to-merge. For example, existing studies
+show that the amount of SLOC needed to solve the same problem
+                                                                                                          0
+
+
+
+
+varies greatly depending upon which programming language is                                                     1 − 100   201 − 300    401 − 500    601 − 700     801 − 900    > 1000
+used [48, 57]. A study finds that “Java programs are on average                                                                       Pull request size in SLOC
+2.2–2.9 times longer than programs in functional and scripting
+languages” [48]. Given that we are investigating the relationship
+between SLOC and time-to-merge, it is essential to differentiate                                               Figure 1: A barplot of pull request sizes.
+between the various groups of programming languages.
+    We investigate the influence of contextual factors on pull request      This finding is consistent with what has been observed in the
+size and composition. In the case of differences in distribution, we     industry. A study that mined data from 9 million Google code re-
+investigate whether it influences the relations of pull request size     views determined that modifications involving a single line account
+Do Small Code Changes Merge Faster?
+A Multi-Language Empirical Investigation                                                                                                                  MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA
+
+
+
+                                               Distribution of time−to−merge in days
+                                                                                                      RQ2: What is the relationship of pull request
+                                                                                                      size and composition to time-to-merge?
+                                  60
+
+
+
+
+                                                                                                      In Section 2.3.1, we presented many studies investigating the rela-
+                                                                                                      tions of pull request size to merge speed. These studies have reached
+                                  50
+
+
+
+
+                                                                                                      contradictory conclusions. When we calculate the Spearman corre-
+                                                                                                      lation coefficient between pull request size and time-to-merge on
+                                  40
+       % of total pull requests
+
+
+
+
+                                                                                                      our dataset, the strength of the relation is weak (𝑟𝑠 = 0.26, 𝑝 < .001).
+                                                                                                      Our interpretation of correlation coefficients relies on well-accepted
+                                  30
+
+
+
+
+                                                                                                      guidance used in medicine and psychology [2, 47, 66]. We even
+                                                                                                      looked at the scatter plot of 1,000 randomly selected pull requests
+                                  20
+
+
+
+
+                                                                                                      from our dataset for other patterns (see Figure 3). Both axes use
+                                                                                                      a logarithmic scale for better display. We observed no patterns
+                                                                                                      and a lack of a strong relationship between pull request size and
+                                  10
+
+
+
+
+                                                                                                      time-to-merge.
+                                  0
+
+
+
+
+                                       1   2     3    4       5    6     7        8   9   10   > 10                               104
+
+                                                          Time−to−merge in days
+
+
+                                                                                                                                  103
+
+   Figure 2: A barplot of time-to-merge for pull requests.
+
+                                                                                                                                  102
+
+
+                                                                                                            Merge time in hours
+
+
+                                                                                                                                  101
+for > 10% of changes [64]. In our dataset, single line modifica-
+tions account for > 11% of changes, and unsurprisingly, the mode
+value for SLOC changed is 1. Our observation also closely matches                                                                 100
+
+what another study has observed after inspecting the code change
+patterns in a codebase of 2 million SLOC over a decade: “nearly
+                                                                                                                                  10−1
+10 percent of all the changes made during the maintenance of a
+software under consideration are one-line changes” [58].
+   This finding raises a question about the link between the guid-                                                                10−2
+ance and the size of code changes we observe in our dataset. Are the                                                                     100   101            102              103           104   105
+                                                                                                                                                     Total changes (SLOC) per pull request
+changes small because engineers follow the community guidance
+about pull request size, or are they small due to the distribution
+                                                                                                      Figure 3: A scatter plot of pull request sizes and time-to-
+and nature of changes made? For example, does our dataset reflect
+                                                                                                      merge. Random sample of 𝑁 = 1,000 pull requests.
+more bug fixes that tend to be smaller versus larger modifications
+such as implementing a new feature? Unfortunately, most of the
+repositories we included in our study do not formally categorize                                         Another factor that we expected to impact the time-to-merge
+their pull requests based on the issue type (e.g., code defect, fea-                                  was the ratio of different change types to the total size of a pull
+ture, refactoring), and we do not have enough data to answer this                                     request. Intuitively, one can expect that the deletions or modifica-
+question.                                                                                             tions of code would be reviewed and merged faster than insertions
+   Existing literature about the distribution of insertions, deletions,                               of new code. Therefore, the pull requests, which mainly consist of
+and modifications in various codebases is limited. Most studies                                       insertions, should take longer than those where most of the changes
+use only insertions and deletions as code type changes. Existing                                      are deletions.
+anecdotal industry experience prompts us to expect engineers to                                          Our study shows that the strength of correlation coefficients
+insert or delete more code than they modify. Our dataset shows a                                      between time-to-merge and ratios of different change types is neg-
+similar trend.                                                                                        ligible for insertions (𝑟𝑠 = 0.18, 𝑝 < .001), deletions (𝑟𝑠 = 0.06, 𝑝 <
+                                                                                                      .001), and modifications (𝑟𝑠 = −0.14, 𝑝 < .001). One interesting
+                                                                                                      observation is a minor negative correlation between time-to-merge
+  RQ1: Most pull requests are relatively small (50% ≤ 22 SLOC,                                        and the modification ratio, which is not present for either insertion
+  75% ≤ 101 SLOC, and 90% ≤ 381 SLOC). Half of the pull                                               or deletion ratios. As the ratio of modifications in a pull request
+  requests get merged in a matter of hours (50% ≤ 18 hrs, 75% ≤                                       increases, the less time it takes to review that pull request, resulting
+  82 hrs, and 90% ≤ 318 hrs). Insertions outnumber modifications                                      in a reduced time-to-merge. A possible explanation for this is that
+  by a 3 : 1 ratio. Deletions outnumber modifications by a 3 : 2                                      given the nature of the modification as a change type (existing code
+  ratio.                                                                                              that has already been reviewed), the reviewer assumes that the
+                                                                                                      existing code is correct and gives less scrutiny to the modifications.
+MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                                                               1, 2, and 3
+
+
+                                                                                (IDE) is available. Using a good IDE enables engineers to generate
+  RQ2: We do not observe a strong relationship between the time-                more code. On the other hand, Shell, which has the smallest median
+  to-merge and the pull request size. The finding is consistent across          SLOC value, is a more concise language and lacks IDE support
+  the various compositions of a pull request.                                   available to other programming languages [48]. The various types
+                                                                                of code changes in a pull request are not significantly different
+                                                                                among programming languages.
+RQ3: Does context influence the relationship of                                     We expected the time-to-merge to differ between programming
+pull request size and composition to                                            languages. Section 3.6 pointed out that the SLOC to solve a prob-
+time-to-merge?                                                                  lem can differ among programming languages. Our assumption
+In RQ2, we found no strong relationship of the pull request size and            is that reviewing pull requests with a smaller size takes less time
+composition to the time-to-merge. In this section, we study whether             than reviewing larger pull requests. There is a possibility that pull
+different contexts influence pull request size and composition, and             requests in some languages merge faster than others. Therefore, by
+hence time-to-merge.                                                            only looking at the entire dataset, we may be missing these details.
+                                                                                To investigate the relationship between pull request size and time-
+                                                                                to-merge in detail, we divide the pull requests by programming
+Table 4: Time-to-merge (hours) and SLOC per pull request.                       languages. Table 5 presents the Spearman correlation coefficient
+N = total number, M = mean, Mdn = median, SD = standard                         between the time-to-merge in hours and total changes for each pro-
+deviation.                                                                      gramming language. Given that we consider the same data points
+                                                                                repeatedly, the p-values are adjusted using Benjamini–Yekutieli
+                                                                                procedure [10].
+                                 Time-to-merge                  SLOC
+ Language                N      M     Mdn          SD      M    Mdn       SD    Table 5: Spearman correlation coefficient 𝑟𝑠 (𝑝 < .001) be-
+                                                                                tween time-to-merge (hours) and total SLOC. N = total num-
+ C                45,555      154       15         654    313    21     5,603   ber.
+ C++             136,308      190       19         769    721    21    14,574
+ C#               82,387      161       22         639   1416    40    23,422
+ Java             64,495      173       17         886    425    43     9,169                      Language             N      𝑟𝑠
+ JavaScript       72,510      140       11         654    307    15     6,904                      C              45,555     0.31
+ PHP              82,074      194       16         809    550    15    13,795                      C++           136,308     0.21
+ Python          137,365      228       21         978    229    21     7,476                      C#             82,387     0.25
+ Ruby             78,814      183       10         961    187    13     9,096                      Java           64,495     0.23
+ Shell            14,212      545       15       2,715    173     8     1,811                      JavaScript     72,510     0.23
+ TypeScript      112,539      122       12         523    979    35    33,703                      PHP            82,074     0.25
+                                                                                                   Python        137,365     0.37
+                                                                                                   Ruby           78,814     0.34
+4.0.1 Programming language. Table 4 presents the descriptive sta-
+                                                                                                   Shell          14,212     0.23
+tistics for SLOC and time-to-merge for different programming
+                                                                                                   TypeScript    112,539     0.20
+languages. The medians for both time-to-merge and pull request
+size vary by 2—3 times. A Kruskal-Wallis test for stochastic domi-
+                                                                                   We anticipated that changes in low-level languages such as C
+nance [38] revealed that there was a statistically significant differ-
+                                                                                and C++ would take longer to review and merge. Mainly because
+ence between the mean ranks of time-to-merge for at least one pair
+                                                                                of the amount of meticulous effort required in verifying the correct-
+of languages (𝐻 (9) = 9,788.44, 𝑝 < .001). After performing a post
+                                                                                ness of basic frequent and rudimentary operations like handling
+hoc pairwise Dunn test [19, 20] with a Bonferroni correction [1]
+                                                                                strings (e.g., checking arguments to strncpy), managing heap al-
+we observe a difference between all languages (𝑝 < .001) except
+                                                                                locations (e.g., handling either NULL returned by malloc, or excep-
+the following pairs: C versus Java, C versus Shell, Java versus Shell,
+                                                                                tions thrown by new), verifying the error handling of return codes,
+and JavaScript versus Ruby.
+                                                                                etc. Other languages under review use either built-in string types
+   Similarly, a statistically significant difference between the mean
+                                                                                or utilize garbage collection as a memory management paradigm.
+ranks of pull request size was present between at least one pair
+                                                                                These expectations were not confirmed.
+of languages (𝐻 (9) = 23,475.83, 𝑝 < .001). Based on a Dunn test
+with a Bonferroni correction we observe a difference between all                4.0.2 Affiliation. We explored differences in the time-to-merge
+pairs of languages (𝑝 < .001) except the following pairs: C versus              per pull request between repositories owned by companies (Ap-
+C++, C versus Python, C++ versus Python, and C# versus Java.                    ple, Facebook, Microsoft, and Square) and those that are not. We
+We notice that object-oriented and scripting languages such as                  hypothesized that engineers working as employees of those com-
+C#, Java, and TypeScript tend to have larger median pull request                panies have different incentives than volunteer contributors (e.g.,
+sizes. Interestingly, TypeScript (a typed superset of JavaScript) has a         adherence to specific deadlines, metrics associated with active pull
+noticeably larger mean pull request size than JavaScript. A possible            requests, and organizational pressure to “ship faster”). These differ-
+explanation for the larger pull request size for these languages may            ences can cause engineers working in the industry to approach the
+be that a more evolved set of integrated development environments               pull request review process more aggressively.
+Do Small Code Changes Merge Faster?
+A Multi-Language Empirical Investigation                                                             MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA
+
+
+   To test our hypothesis, we scanned our projects and identified       do not observe any significant difference in the ratio of different
+a total of 12 projects where the GitHub repository is owned by          types of code changes and median size of pull requests between
+one of the industrial organizations mentioned above, indicating a       various days of week. This finding suggests no particular period
+non-trivial amount of involvement by those companies. The pull          during the week when engineers tend to make changes of a certain
+request size for GitHub repositories owned by industrial organi-        type or size.
+zations (𝑀𝑑𝑛 = 43) is higher than those that are not (𝑀𝑑𝑛 = 20).
+A Mann-Whitney U test [44] indicated that this difference was             RQ3: The SLOC and time-to-merge differ between the program-
+statistically significant 𝑈 (𝑁𝐼𝑛𝑑𝑢𝑠𝑡𝑟 𝑦 = 100,000, 𝑁 𝑁 𝑜𝑛−𝑖𝑛𝑑𝑢𝑠𝑡𝑟 𝑦 =     ming languages. Industry projects tend to have shorter time-to-
+100,000) = 10,923,542,062.5, 𝑧 = 71.58, 𝑝 < .001. The time-to-            merge and contain more SLOC per pull request. Day of the week
+merge for GitHub repositories owned by industrial organizations           when pull request was created influences the pull request count.
+(𝑀𝑑𝑛 = 14.13) is lower than those that are not (𝑀𝑑𝑛 = 17.43).
+A Mann-Whitney U test indicated that this difference too was
+statistically significant 𝑈 (𝑁𝐼𝑛𝑑𝑢𝑠𝑡𝑟 𝑦 = 100,000, 𝑁 𝑁 𝑜𝑛−𝑖𝑛𝑑𝑢𝑠𝑡𝑟 𝑦 =   Replication
+100,000) = 9,727,540,456.5, 𝑧 = −21.11, 𝑝 < .001. However, we           To determine whether our findings could be replicated across differ-
+do not see any significant difference in the correlation coefficients   ent datasets, we applied a subset of our analysis to projects using
+between time-to-merge and total size of the pull request. For in-       Gerrit and Phabricator. Gerrit and Phabricator datasets have the
+dustry projects (𝑟𝑠 = 0.25, 𝑝 < .001) and for non-industry projects     added benefit of being able to track both the time-to-accept and
+(𝑟𝑠 = 0.27, 𝑝 < .001) the ratio of different types of code changes      time-to-merge. Though the number of projects in Gerrit and Phabri-
+and their relationship to time-to-merge is almost identical.            cator datasets is smaller (8 projects with 401,790 code reviews) than
+4.0.3 Day of the week. One potential issue with how we inter-           we extracted from GitHub, and more homogeneous (mainly in C or
+preted our data was a failure to account for the weekend. It would      C++), the results of the analysis are the same: the size of the pull re-
+be reasonable to assume that most engineers do not constantly           quest and its composition has a weak correlation to time-to-accept
+work over the weekends for typical industrial projects. Such a prac-    and time-to-merge (refer to Table 7).
+tice would systematically introduce longer time-to-merge periods
+for pull requests submitted on a Friday versus Monday.                  Table 7: Spearman correlation coefficient 𝑟𝑠 (𝑝 < .001) for
+   However, we would argue that the context on GitHub is different      time-to-accept (TTA) and time-to-merge (TTM) in hours ver-
+from industrial projects, mitigating the impact of the weekend.         sus total changes. N = total number.
+Engineers working on a GitHub project may work in their spare
+time (evenings, holidays, weekends). Contributors are distributed             Project        Review tool            N     𝑟𝑠 TTA    𝑟𝑠 TTM
+around the world and therefore originate from different time zones.
+                                                                              Eclipse        Gerrit            8,962        0.25       0.24
+The working week may start and end on different days depending
+                                                                              GerritHub      Gerrit           31,826        0.27       0.26
+on the country.
+                                                                              LibreOffice    Gerrit           17,534        0.11       0.13
+                                                                              OpenStack      Gerrit          151,743        0.28       0.28
+Table 6: Spearman correlation coefficient 𝑟𝑠 (𝑝 < .001) be-                   Blender        Phabricator       5,224        0.26       0.26
+tween time-to-merge in hours and total SLOC in a pull re-                     FreeBSD        Phabricator      15,984        0.28       0.27
+quest by pull request creation day. N = total number.                         LLVM           Phabricator      71,082        0.32       0.30
+                                                                              Mozilla        Phabricator      99,435        0.28       0.30
+                     Day created            N      𝑟𝑠
+                     Monday            132,488   0.26
+                     Tuesday           145,908   0.27                   5 DISCUSSION
+                     Wednesday         146,326   0.27                   5.1 Interpretation of our results
+                     Thursday          143,626   0.27
+                                                                        Regardless of how the pull requests are partitioned (day of creation,
+                     Friday            131,587   0.27
+                                                                        language, and affiliation), the data shows no significant correlation
+                     Saturday           65,845   0.25
+                                                                        between the size and composition of pull request and time-to-merge.
+                     Sunday             60,479   0.28
+                                                                        The size of a pull request is not a factor that can be meaningfully
+                                                                        changed to speed up code changes. Engineers will need to set
+   We decided not to apply any special treatment to the pull requests   realistic expectations about how much of an actual control they
+submitted over the weekend for the above-mentioned reasons. One         have over how fast their changes will be merged. It is possible
+observation we can make from Table 6 is that the number of pull         that social characteristics identified in earlier studies, such as an
+requests submitted over the weekend significantly drops. Given the      engineer’s experience or reputation, are more meaningful variables
+nature of the typical workweek, this finding is expected. However,      in improving code velocity [30, 73].
+regardless of when a pull request was created [69], we still do not        One unexpected finding is that no code change type merged
+see any relationship between the time-to-merge and pull request         faster than others. Intuitively, one would expect that adding new
+size. Given that we consider the same data points repeatedly, the       code to the repository should take more time than removing or
+p-values are adjusted using Benjamini–Yekutieli procedure. We also      modifying the existing code. There are many possibilities that can
+MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                                                          1, 2, and 3
+
+
+explain the lack of differences in the time-to-merge (i) reviews             Using the number of forks as a proxy for the popularity of a
+of deletions or modifications are accepted faster, but the review         GitHub repository creates an issue with construct validity. Like any
+process itself represents a minor part in the overall time-to-merge       metric, the number of forks per repository is pliable for manipula-
+and, therefore, the differences are not noticeable, (ii) reviewers lack   tion (e.g., forks can be created in an automated manner, a number
+sufficient domain knowledge about the history of the codebase and,        of forks can be inactive, and a repository is forked with no pull
+therefore, require the same amount of time to inspect modifications       requests). We mitigated these concerns by picking the repositories
+and deletions as it would take for new code, and (iii) projects based     with the largest number of pull requests and manually verifying
+on the repositories we mined do not treat removing obsolete code          that a repository is under active development.
+as a priority.                                                               One of the concerns for internal validity is a potential presence of
+    Our study shows that a programming language matters when              methodological errors in the way analysis and collection of the pull
+it comes to the “verbosity” of changes. We see that more readable         request data is perfomed. There are various perils associated with
+and expressive languages such as C#, Java, and TypeScript tend            mining GitHub for data [35]. We carry the following limitations: we
+to have bigger pull requests. In contrast, more concise languages         trust GitHub data about the pull request being successfully merged
+such as various dialects of shell scripts have 2–3 times smaller          (or not) without manually mining the commits in Git history. We
+median change size. While not related to time-to-merge, our study         rely on GitHub to adequately summarize all the commits included
+highlights the need to account for programming language when              in the pull request and generate the correct diff describing them.
+measuring an engineer’s productivity [49].                                   Threats to external validity are related to the application of our
+    Evidence suggests that changes will be accepted faster on in-         findings in other contexts. We did not analyze the development of
+dustry projects than non-industry projects and that the median            widely used OSS projects such as Linux, OpenBSD, and PostgreSQL,
+SLOC per pull request is higher for industry projects. This finding       where the code reviews are conducted by submitting patches to
+seems reasonable because most industrial projects are based on a          various mailing lists. However, we confirmed the essence of our
+set of deadlines and are driven by various metrics such as an active      findings in Section 4 with a subset of OSS projects where Gerrit
+bug count, code velocity, and outstanding pull request count. In          or Phabricator code review data was available. Focusing on OSS
+other words, engineers in the industry are incentivized to merge          code versus closed source code is another issue in this category.
+incoming pull requests faster. We noted in Section 2.3.3 that indus-      Though many organizations developing commercial software (e.g.,
+try projects generally tend to have a bigger median size for the size     Apple, Facebook, Google, Microsoft, and Twitter) have embraced
+of code changes.                                                          the GitHub software development model for selected projects, most
+                                                                          of their code is still developed in a closed-source model. Therefore,
+5.2     Implications for research and practice                            we cannot verify that our findings are valid in a closed-source
+                                                                          model.
+Better understanding of the composition of CI/CD pipelines. Existing
+studies and recommendations about pull request size and compo-
+sition are focused on optimizing the code review acceptance time          7    CONCLUSIONS AND FUTURE WORK
+(time-to-accept). However, there is not much publicly available data
+                                                                          This study presents whether the pull request size and composition
+about the ratio of time-to-accept to time-to-merge. Therefore, it
+                                                                          can be meaningfully changed to increase code velocity. We selected
+is unknown if focusing on reducing time-to-accept versus other
+                                                                          100 popular, actively developed projects on GitHub to study the
+parts of the CI/CD pipeline is the optimal way to reduce the time-
+                                                                          relations of pull request size and composition to code velocity
+to-merge and thus increase the code velocity. Getting more insight
+                                                                          measured as time-to-merge. Our analysis shows no relationship of
+into the composition of the CI/CD pipeline will help various orga-
+                                                                          pull request size and composition to the time-to-merge, regardless
+nizations to determine what parts of the process may need to be
+                                                                          of how we partition the data: day of the week the pull request
+optimized and where the actual bottlenecks are.
+                                                                          was created, affiliation to industry, and programming language.
+   Simplify the pull request size related guidance. In Observation 1,
+                                                                          We found no patterns even though pull requests affiliated with the
+we note that the existing guidance is non-specific and varies by
+                                                                          industry are larger and take less time than non-industry equivalents.
+project. To avoid misinterpreting subjective quantifiers such as “iso-
+                                                                          Our results remain the same on two other platforms: Gerrit and
+lated” and “small”, a project or organization may consider specifying
+                                                                          Phabricator, which also offered another indicator of code velocity—
+a number. An intriguing suggestion would be a number such as 7±2
+                                                                          time-to-accept.
+to ensure optimal cognitive comprehension of code changes under
+                                                                             Our finding that changing size or composition does not influence
+review [45]. Previous research has shown that smaller changes are
+                                                                          code velocity prompts new questions. For instance,
+easier to understand and solicit actionable feedback [6]. Utilizing
+                                                                             Influence of personal traits and interpersonal relationships to time-
+automatic decomposition of code changes may also help avoid en-
+                                                                          to-merge. Other than pull request size and composition, engineers
+gineers manually partitioning their changes if reviewers consider
+                                                                          have limited control over their behavior, communication, and man-
+them “too big” [7].
+                                                                          nerism while interacting with other team members. A study has
+                                                                          shown that an engineer’s reputation in the general community
+6     THREATS TO VALIDITY                                                 and the project is a good predictor for pull request acceptance [8].
+Like any other study, the results we present in our paper are subject     Intuitively, it makes sense that engineers who have good commu-
+to certain categories of threats. In this section we enumerate the        nication skills, are well-versed in conflict resolution, and display
+threats to construct, internal, and external validity [68].               empathy towards other participants will receive more cooperation.
+Do Small Code Changes Merge Faster?
+A Multi-Language Empirical Investigation                                                                                        MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA
+
+
+REFERENCES                                                                                  [26] GitHub. 2021. Octokit — GitHub API Client Library for .NET. Retrieved January
+ [1] Hervé Abdi. 2007. The Bonferonni and Šidák Corrections for Multiple Compar-                 20, 2022 from https://github.com/octokit/octokit.net
+     isons. Encyclopedia of measurement and statistics 3 (01 2007).                         [27] GitHub. 2021. The State of the Octoverse. Retrieved January 20, 2022 from
+ [2] Haldun Akoglu. 2018. User's Guide to Correlation Coefficients. Turkish Journal              https://octoverse.github.com/
+     of Emergency Medicine 18, 3 (Sept. 2018), 91–93. https://doi.org/10.1016/j.tjem.       [28] Google. 2021. Small CLs. Retrieved January 20, 2022 from https://google.github.
+     2018.08.001                                                                                 io/eng-practices/review/developer/small-cls.html
+ [3] A. Alali, H. Kagdi, and J.I. Maletic. 2008. What's a Typical Commit? A Charac-         [29] Georgios Gousios. 2013. The GHTorrent Dataset and Tool Suite. In Proceedings
+     terization of Open Source Software Repositories. In 2008 16th IEEE International            of the 10th Working Conference on Mining Software Repositories (MSR ’13). IEEE
+     Conference on Program Comprehension. IEEE. https://doi.org/10.1109/icpc.2008.24             Press, San Francisco, CA, USA, 233–236.
+ [4] GH Archive. 2021. GH Archive Project. Retrieved January 20, 2022 from https:           [30] Georgios Gousios, Martin Pinzger, and Arie van Deursen. 2014. An Exploratory
+     //www.gharchive.org/                                                                        Study of the Pull-Based Software Development Model. In Proceedings of the
+ [5] American Psychological Association. 2020. Publication Manual of the American                36th International Conference on Software Engineering (ICSE 2014). Association
+     Psychological Association, Seventh Edition (2020). Retrieved January 20, 2022 from          for Computing Machinery, Hyderabad, India, 345–355. https://doi.org/10.1145/
+     https://apastyle.apa.org/products/publication-manual-7th-edition                            2568225.2568260
+ [6] Alberto Bacchelli and Christian Bird. 2013. Expectations, Outcomes, and Chal-          [31] Georgios Gousios and Andy Zaidman. 2014. A Dataset for Pull-based Develop-
+     lenges of Modern Code Review. In Proceedings of the 2013 International Conference           ment Research. In Proceedings of the 11th Working Conference on Mining Software
+     on Software Engineering (San Francisco, CA, USA) (ICSE ’13). IEEE Press, 712–721.           Repositories (Hyderabad, India) (MSR 2014). ACM, New York, NY, USA, 368–371.
+ [7] Mike Barnett, Christian Bird, João Brunet, and Shuvendu K. Lahiri. 2015. Helping            https://doi.org/10.1145/2597073.2597122
+     Developers Help Themselves: Automatic Decomposition of Code Review Change-             [32] Michael Hilton, Timothy Tunnell, Kai Huang, Darko Marinov, and Danny Dig.
+     sets. In Proceedings of the 37th International Conference on Software Engineering -         2016. Usage, Costs, and Benefits of Continuous Integration in Open-Source
+     Volume 1 (ICSE ’15). IEEE Press, Florence, Italy, 134–144.                                  Projects. In Proceedings of the 31st IEEE/ACM International Conference on Auto-
+ [8] O. Baysal, O. Kononenko, R. Holmes, and M. W. Godfrey. 2013. The Influence                  mated Software Engineering (Singapore, Singapore) (ASE 2016). Association for
+     of Non-Technical Factors on Code Review. In 2013 20th Working Conference                    Computing Machinery, New York, NY, USA, 426–437. https://doi.org/10.1145/
+     on Reverse Engineering (WCRE). 122–131. https://doi.org/10.1109/WCRE.2013.                  2970276.2970358
+     6671287 ISSN: 2375-5369.                                                               [33] Daniel Izquierdo-Cortazar, Nelson Sekitoleko, Jesus M. Gonzalez-Barahona, and
+ [9] Olga Baysal, Oleksii Kononenko, Reid Holmes, and Michael W. Godfrey. 2016.                  Lars Kurth. 2017. Using Metrics to Track Code Review Performance. In Proceed-
+     Investigating Technical and Non-Technical Factors Influencing Modern Code                   ings of the 21st International Conference on Evaluation and Assessment in Software
+     Review. Empirical Software Engineering 21, 3 (01 Jun 2016), 932–959. https:                 Engineering (EASE’17). Association for Computing Machinery, Karlskrona, Swe-
+     //doi.org/10.1007/s10664-015-9366-8                                                         den, 214–223. https://doi.org/10.1145/3084226.3084247
+[10] Yoav Benjamini and Daniel Yekutieli. 2001. The Control of the False Discovery          [34] Yujuan Jiang, Bram Adams, and Daniel M. German. 2013. Will My Patch Make
+     Rate in Multiple Testing Under Dependency. The Annals of Statistics 29, 4 (Aug.             It? And How Fast? Case Study on the Linux Kernel. In Proceedings of the 10th
+     2001). https://doi.org/10.1214/aos/1013699998                                               Working Conference on Mining Software Repositories (MSR ’13). IEEE Press, San
+[11] H. Borges, A. Hora, and M. T. Valente. 2016. Understanding the Factors                      Francisco, CA, USA, 101–110.
+     That Impact the Popularity of GitHub Repositories. In 2016 IEEE International          [35] Eirini Kalliamvakou, Georgios Gousios, Kelly Blincoe, Leif Singer, Daniel M.
+     Conference on Software Maintenance and Evolution (ICSME). 334–344. https:                   German, and Daniela Damian. 2016. An In-Depth Study of the Promises and
+     //doi.org/10.1109/ICSME.2016.31                                                             Perils of Mining Github. Empirical Software Engineering 21, 5 (Oct. 2016), 2035–
+[12] Amiangshu Bosu and Jeffrey C. Carver. 2014. Impact of Developer Repu-                       2071. https://doi.org/10.1007/s10664-015-9393-5
+     tation on Code Review Outcomes in OSS Projects: An Empirical Investiga-                [36] Oleksii Kononenko, Olga Baysal, and Michael W. Godfrey. 2016. Code Review
+     tion. In Proceedings of the 8th ACM/IEEE International Symposium on Empir-                  Quality: How Developers See It. In Proceedings of the 38th International Conference
+     ical Software Engineering and Measurement (Torino, Italy) (ESEM ’14). Asso-                 on Software Engineering (ICSE ’16). Association for Computing Machinery, Austin,
+     ciation for Computing Machinery, New York, NY, USA, Article 33, 10 pages.                   Texas, 1028–1038. https://doi.org/10.1145/2884781.2884840
+     https://doi.org/10.1145/2652524.2652544                                                [37] Oleksii Kononenko, Tresa Rose, Olga Baysal, Michael Godfrey, Dennis Theisen,
+[13] G. Canfora, L. Cerulo, and M. Di Penta. 2007. Identifying Changed Source Code               and Bart de Water. 2018. Studying Pull Request Merges: A Case Study of Shopify’s
+     Lines from Version Repositories. In Fourth International Workshop on Mining                 Active Merchant. In Proceedings of the 40th International Conference on Software
+     Software Repositories (MSR’07:ICSE Workshops 2007). 14–14. https://doi.org/10.              Engineering: Software Engineering in Practice (Gothenburg, Sweden) (ICSE-SEIP
+     1109/MSR.2007.14 ISSN: 2160-1860.                                                           ’18). Association for Computing Machinery, New York, NY, USA, 124–133. https:
+[14] Chromium. 2021.         Contributing to Chromium.           Retrieved January 20,           //doi.org/10.1145/3183519.3183542
+     2022 from https://chromium.googlesource.com/chromium/src/+/HEAD/docs/                  [38] William H. Kruskal and W. Allen Wallis. 1952. Use of Ranks in One-Criterion
+     contributing.md#Creating-a-change                                                           Variance Analysis. J. Amer. Statist. Assoc. 47, 260 (Dec. 1952), 583–621. https:
+[15] Dumitru Cotet. 2019. Crawling Code Review Data From Phabricator. Master’s                   //doi.org/10.1080/01621459.1952.10483441
+     thesis. Friedrich–Alexander University Erlangen–Nürnberg.                              [39] Amanda Lee and Jeffrey C. Carver. 2017. Are One-Time Contributors Different?
+[16] Dumitru Cotet. 2021. Phabry. Retrieved January 20, 2022 from https://github.                A Comparison to Core and Periphery Developers in FLOSS Repositories. In
+     com/dimonco/Phabry                                                                          Proceedings of the 11th ACM/IEEE International Symposium on Empirical Software
+[17] Christophe Croux and Catherine Dehon. 2010. Influence Functions of the Spear-               Engineering and Measurement (Markham, Ontario, Canada) (ESEM ’17). IEEE
+     man and Kendall Correlation Measures. Statistical Methods & Applications 19, 4              Press, 1–10. https://doi.org/10.1109/ESEM.2017.7
+     (May 2010), 497–515. https://doi.org/10.1007/s10260-010-0142-z                         [40] Linux. 2021. Everything You Ever Wanted to Know About Linux -stable Releases.
+[18] Thomas E. Dickey. 2021. diffstat manual. Retrieved January 20, 2022 from                    Retrieved January 20, 2022 from https://www.kernel.org/doc/html/v4.15/process/
+     https://invisible-island.net/diffstat/diffstat.html                                         stable-kernel-rules.html
+[19] Olive Jean Dunn. 1961. Multiple Comparisons Among Means. J. Amer. Statist. As-         [41] Linux. 2021. Submitting Patches: The Essential Guide to Getting Your Code Into
+     soc. 56, 293 (March 1961), 52–64. https://doi.org/10.1080/01621459.1961.10482090            the Kernel - The Linux Kernel Documentation. Retrieved January 20, 2022
+[20] Olive Jean Dunn. 1964. Multiple Comparisons Using Rank Sums. Technometrics                  from https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html#
+     6, 3 (1964), 241–252. https://doi.org/10.1080/00401706.1964.10490181                        split-changes
+[21] D. G. Feitelson, E. Frachtenberg, and K. L. Beck. 2013. Development and De-            [42] LLVM. 2021. Contributing to LLVM – LLVM 12 Documentation. Retrieved January
+     ployment at Facebook. IEEE Internet Computing 17, 4 (2013), 8–17. https:                    20, 2022 from https://llvm.org/docs/Contributing.html#format-patches
+     //doi.org/10.1109/MIC.2013.25                                                          [43] Laura MacLeod, Michaela Greiler, Margaret-Anne Storey, Christian Bird, and
+[22] Matthieu Foucault, Marc Palyart, Xavier Blanc, Gail C. Murphy, and Jean-Rémy                Jacek Czerwonka. 2018. Code Reviewing in the Trenches: Challenges and Best
+     Falleri. 2015. Impact of Developer Turnover on Quality in Open-Source Software.             Practices. IEEE Software 35, 4 (July 2018), 34–42. https://doi.org/10.1109/MS.
+     In Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering        2017.265100500
+     (Bergamo, Italy) (ESEC/FSE 2015). Association for Computing Machinery, New             [44] H. B. Mann and D. R. Whitney. 1947. On a Test of Whether One of Two Random
+     York, NY, USA, 829–841. https://doi.org/10.1145/2786805.2786870                             Variables is Stochastically Larger than the Other. The Annals of Mathematical
+[23] Gerrit. 2021. Gerrit’s History | Gerrit Code Review. Retrieved January 20, 2022             Statistics 18, 1 (March 1947), 50–60. https://doi.org/10.1214/aoms/1177730491
+     from https://www.gerritcodereview.com/about.html                                       [45] George A. Miller. 1956. The Magical Number Seven, Plus or Minus Two: Some
+[24] GitHub. 2016. A Whole New Github Universe: Announcing New Tools, Forums,                    Limits on Our Capacity for Processing Information. Psychological Review 63, 2
+     and Features. Retrieved January 20, 2022 from https://github.blog/2016-09-14-a-             (1956), 81–97. https://doi.org/10.1037/h0043158
+     whole-new-github-universe-announcing-new-tools-forums-and-features/                    [46] Daricélio Moreira Soares, Manoel Limeira de Lima Júnior, Leonardo Murta, and
+[25] GitHub. 2021. GitHub REST API Documentation. Retrieved January 20, 2022 from                Alexandre Plastino. 2021. What Factors Influence the Lifetime of Pull Requests?
+     https://docs.github.com/en/rest                                                             Software: Practice and Experience 51, 6 (2021), 1173–1193. https://doi.org/10.1002/
+                                                                                                 spe.2946
+MSR 2022, May 23–24, 2022, Pittsburgh, PA, USA                                                                                                                         1, 2, and 3
+
+
+[47] MM Mukaka. 2012. A Guide to Appropriate Use of Correlation Coefficient in                 Mining Software Repositories (St. Louis, Missouri) (MSR ’05). Association for
+     Medical Research. Malawi Medical Journal : The Journal of Medical Association of          Computing Machinery, New York, NY, USA, 1–5. https://doi.org/10.1145/1083142.
+     Malawi 24, 3 (Sept. 2012), 69–71. https://www.ncbi.nlm.nih.gov/pmc/articles/              1083147
+     PMC3576830/                                                                          [70] C. Spearman. 1904. The Proof and Measurement of Association Between Two
+[48] Sebastian Nanz and Carlo A. Furia. 2015. A Comparative Study of Programming               Things. The American Journal of Psychology 15, 1 (1904), 72–101. http://www.
+     Languages in Rosetta Code. In Proceedings of the 37th International Conference on         jstor.org/stable/1412159
+     Software Engineering - Volume 1 (Florence, Italy) (ICSE ’15). IEEE Press, 778–788.   [71] Yida Tao, Donggyun Han, and Sunghun Kim. 2014. Writing Acceptable Patches:
+[49] Vu Nguyen, Sophia Deeds-rubin, Thomas Tan, and Barry Boehm. 2007. A SLOC                  An Empirical Study of Open Source Project Patches. In 2014 IEEE International
+     Counting Standard. In COCOMO II Forum 2007.                                               Conference on Software Maintenance and Evolution. IEEE, Victoria, BC, Canada,
+[50] OpenSSL. 2021.          Small Code Change in OpenSSL.              Retrieved Jan-         271–280. https://doi.org/10.1109/ICSME.2014.49
+     uary      20,    2022      from     https://github.com/openssl/openssl/commit/       [72] Walter F. Tichy. 2000. Hints for Reviewing Empirical Work in Software Engineer-
+     5b888e931b64a132a0cd33b24344dc6cdac74727                                                  ing. Empirical Software Engineering 5, 4 (2000), 309–312. https://doi.org/10.1023/a:
+[51] M. Papamichail, T. Diamantopoulos, and A. Symeonidis. 2016. User-Perceived                1009844119158
+     Source Code Quality Estimation Based on Static Analysis Metrics. In 2016 IEEE        [73] Jason Tsay, Laura Dabbish, and James Herbsleb. 2014. Influence of Social and
+     International Conference on Software Quality, Reliability and Security (QRS). 100–        Technical Factors for Evaluating Contribution in Github. In Proceedings of the
+     107. https://doi.org/10.1109/QRS.2016.22                                                  36th International Conference on Software Engineering (ICSE 2014). Association
+[52] Luca Pascarella, Davide Spadini, Fabio Palomba, Magiel Bruntink, and Alberto              for Computing Machinery, Hyderabad, India, 356–366. https://doi.org/10.1145/
+     Bacchelli. 2018. Information Needs in Contemporary Code Review. Proceedings               2568225.2568315
+     of the ACM on Human-Computer Interaction 2, CSCW (Nov. 2018), 135:1–135:27.          [74] John Tukey. 1981. Exploratory Data Analysis. Biometrical Journal 23, 4 (1981),
+     https://doi.org/10.1145/3274404                                                           413–414. https://doi.org/10.1002/bimj.4710230408
+[53] Phabricator. 2021. Phabricator Project History. Retrieved January 20, 2022 from      [75] Peter Weißgerber, Daniel Neu, and Stephan Diehl. 2008. Small Patches Get In!.
+     https://secure.phabricator.com/book/phabflavor/article/project_history/                   In Proceedings of the 2008 international working conference on Mining software
+[54] Phabricator. 2021.         Writing Reviewable Code.            Retrieved January          repositories (MSR ’08). Association for Computing Machinery, Leipzig, Germany,
+     20, 2022 from https://secure.phabricator.com/book/phabflavor/article/writing_             67–76. https://doi.org/10.1145/1370750.1370767
+     reviewable_code/#many-small-commits                                                  [76] Xin Yang, Raula Gaikovina Kula, Norihiro Yoshida, and Hajimu Iida. 2016. Mining
+[55] Gustavo Pinto, Luiz Felipe Dias, and Igor Steinmacher. 2018. Who Gets a Patch             the Modern Code Review Repositories: A Dataset of People, Process and Product.
+     Accepted First? Comparing the Contributions of Employees and Volunteers. In               In Proceedings of the 13th International Conference on Mining Software Repositories.
+     Proceedings of the 11th International Workshop on Cooperative and Human Aspects           460–463.
+     of Software Engineering (CHASE ’18). Association for Computing Machinery,            [77] Y. Yu, H. Wang, V. Filkov, P. Devanbu, and B. Vasilescu. 2015. Wait for It: De-
+     Gothenburg, Sweden, 110–113. https://doi.org/10.1145/3195836.3195858                      terminants of Pull Request Evaluation Latency on GitHub. In 2015 IEEE/ACM
+[56] PostgreSQL. 2021. Submitting a Patch - PostgreSQL Wiki. Retrieved January 20,             12th Working Conference on Mining Software Repositories. 367–371. https:
+     2022 from https://wiki.postgresql.org/wiki/Submitting_a_Patch                             //doi.org/10.1109/MSR.2015.42 ISSN: 2160-1860.
+[57] Lutz Prechelt. 2000. An Empirical Comparison of Seven Programming Languages.         [78] Yue Yu, Gang Yin, Tao Wang, Cheng Yang, and Huaimin Wang. 2016. De-
+     Computer 33, 10 (Oct. 2000), 23–29. https://doi.org/10.1109/2.876288                      terminants of Pull-Based Development in the Context of Continuous Integra-
+[58] R. Purushothaman and D. E. Perry. 2005. Toward Understanding the Rhetoric                 tion. Science China Information Sciences 59, 8 (July 2016), 080104. https:
+     of Small Source Code Changes. IEEE Transactions on Software Engineering 31, 6             //doi.org/10.1007/s11432-016-5595-8
+     (June 2005), 511–526. https://doi.org/10.1109/TSE.2005.74                            [79] Xunhui Zhang, Ayushi Rastogi, and Yue Yu. 2020. On the Shoulders of Giants: A
+[59] Achyudh Ram, Anand Ashok Sawant, Marco Castelluccio, and Alberto Bacchelli.               New Dataset for Pull-Based Development Research. Association for Computing Ma-
+     2018. What Makes a Code Change Easier to Review: An Empirical Investigation               chinery, New York, NY, USA, 543–547. https://doi.org/10.1145/3379597.3387489
+     on Code Change Reviewability. In Proceedings of the 2018 26th ACM Joint Meeting      [80] Y. Zhao, A. Serebrenik, Y. Zhou, V. Filkov, and B. Vasilescu. 2017. The Impact of
+     on European Software Engineering Conference and Symposium on the Foundations              Continuous Integration on Other Software Development Practices: A Large-Scale
+     of Software Engineering (ESEC/FSE 2018). Association for Computing Machinery,             Empirical Study. In 2017 32nd IEEE/ACM International Conference on Automated
+     Lake Buena Vista, FL, USA, 201–212. https://doi.org/10.1145/3236024.3236080               Software Engineering (ASE). 60–71. https://doi.org/10.1109/ASE.2017.8115619
+[60] Dirk Riehle, Carsten Kolassa, and Michel A. Salim. 2012. Developer Belief vs.
+     Reality: The Case of the Commit Size Distribution. Software Engineering 2012,
+     GI-Edition Lecture Notes in Informatics (2012), pp. 59–70.
+[61] Peter C. Rigby and Christian Bird. 2013. Convergent Contemporary Software
+     Peer Review Practices. In Proceedings of the 2013 9th Joint Meeting on Foundations
+     of Software Engineering (ESEC/FSE 2013). Association for Computing Machinery,
+     Saint Petersburg, Russia, 202–212. https://doi.org/10.1145/2491411.2491444
+[62] Peter C. Rigby, Daniel M. German, Laura Cowen, and Margaret-Anne Storey.
+     2014. Peer Review on Open-Source Software Projects: Parameters, Statistical
+     Models, and Theory. ACM Transactions on Software Engineering and Methodology
+     23, 4 (Sept. 2014), 35:1–35:33. https://doi.org/10.1145/2594458
+[63] Chuck Rossi, Elisa Shibley, Shi Su, Kent Beck, Tony Savor, and Michael Stumm.
+     2016. Continuous Deployment of Mobile Software at Facebook (Showcase). In
+     Proceedings of the 2016 24th ACM SIGSOFT International Symposium on Founda-
+     tions of Software Engineering (FSE 2016). Association for Computing Machinery,
+     Seattle, WA, USA, 12–23. https://doi.org/10.1145/2950290.2994157
+[64] Caitlin Sadowski, Emma Söderberg, Luke Church, Michal Sipko, and Alberto
+     Bacchelli. 2018. Modern Code Review: A Case Study at Google. In Proceedings of
+     the 40th International Conference on Software Engineering: Software Engineering
+     in Practice (ICSE-SEIP ’18). Association for Computing Machinery, Gothenburg,
+     Sweden, 181–190. https://doi.org/10.1145/3183519.3183525
+[65] T. Savor, M. Douglas, M. Gentili, L. Williams, K. Beck, and M. Stumm. 2016.
+     Continuous Deployment at Facebook and OANDA. In 2016 IEEE/ACM 38th Inter-
+     national Conference on Software Engineering Companion (ICSE-C). 21–30.
+[66] Patrick Schober, Christa Boer, and Lothar A. Schwarte. 2018. Correlation Coeffi-
+     cients: Appropriate Use and Interpretation. Anesthesia & Analgesia 126, 5 (May
+     2018), 1763–1768. https://doi.org/10.1213/ANE.0000000000002864
+[67] S. S. Shapiro and M. B. Wilk. 1965. An Analysis of Variance Test for Normality
+     (Complete Samples). Biometrika 52, 3-4 (Dec. 1965), 591–611. https://doi.org/10.
+     1093/biomet/52.3-4.591
+[68] Forrest Shull, Janice Singer, and Dag I. K. Sjøberg. 2008. Guide to Advanced
+     Empirical Software Engineering. Springer, London.
+[69] Jacek Śliwerski, Thomas Zimmermann, and Andreas Zeller. 2005. When Do
+     Changes Induce Fixes?. In Proceedings of the 2005 International Workshop on
+

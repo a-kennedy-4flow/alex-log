@@ -161,9 +161,8 @@ function whenLabel(ticket: CompletedTicket): string {
 const tableTitle = computed(() =>
   scope.value === 'all' ? t('jira.workedTitle') : t('jira.closedTitle'),
 )
-const tableIntro = computed(() =>
-  scope.value === 'all' ? t('jira.workedIntro') : t('jira.closedIntro'),
-)
+/** Only the worked scope carries an intro. The closed scope lost its copy. */
+const tableIntro = computed(() => (scope.value === 'all' ? t('jira.workedIntro') : ''))
 
 function titleOf(workdayId: string): string {
   const project = findProject(workdayId)
@@ -317,7 +316,7 @@ async function run(): Promise<void> {
 
       <section class="pad band">
         <h2 class="eyebrow">{{ tableTitle }}</h2>
-        <p class="intro">{{ tableIntro }}</p>
+        <p v-if="tableIntro" class="intro">{{ tableIntro }}</p>
 
         <!--
           A ticket still being worked carries neither a resolution date nor an

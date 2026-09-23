@@ -1,0 +1,757 @@
+                                           An Empirical Validation of Cognitive Complexity as a Measure
+                                                         of Source Code Understandability
+                                                   Marvin Muñoz Barón                                  Marvin Wyrich                                Stefan Wagner
+                                                    University of Stuttgart                       University of Stuttgart                          University of Stuttgart
+                                                      Stuttgart, Germany                            Stuttgart, Germany                              Stuttgart, Germany
+                                                st141535@stud.uni-stuttgart.de              marvin.wyrich@iste.uni-stuttgart.de             stefan.wagner@iste.uni-stuttgart.de
+
+                                         ABSTRACT                                                                 1    INTRODUCTION
+                                         Background: Developers spend a lot of their time on understand-          Understanding source code is an integral part of the software devel-
+                                         ing source code. Static code analysis tools can draw attention to        opment process. On average, professional developers spend more
+arXiv:2007.12520v1 [cs.SE] 24 Jul 2020
+
+
+
+
+                                         code that is difficult for developers to understand. However, most of    than 50% of their time on activities related to program comprehen-
+                                         the findings are based on non-validated metrics, which can lead to       sion [23, 43]. Consequently, it is vital to provide them with suffi-
+                                         confusion and code, that is hard to understand, not being identified.    cient information to assess the understandability of their code and
+                                         Aims: In this work, we validate a metric called Cognitive Complexity     identify potential for improvement. In a comprehensive study in-
+                                         which was explicitly designed to measure code understandability          vestigating 121 different existing code- and documentation-related
+                                         and which is already widely used due to its integration in well-         metrics as well as metrics relating to a developer’s background and
+                                         known static code analysis tools.                                        experience, Scalabrino et al. found that none significantly corre-
+                                         Method: We conducted a systematic literature search to obtain data       lated with code understandability [30]. Even though none of them
+                                         sets from studies which measured code understandability. This way        were originally intended to measure understandability, they are
+                                         we obtained about 24,000 understandability evaluations of 427 code       commonly assumed to do so.
+                                         snippets. We calculated the correlations of these measurements              At the same time, a metric called Cognitive Complexity was in-
+                                         with the corresponding metric values and statistically summarized        troduced, which was explicitly designed to measure source code
+                                         the correlation coefficients through a meta-analysis.                    understandability [10]. The metric is already being reported to a
+                                         Results: Cognitive Complexity positively correlates with compre-         significant number of developers, as it has become a default mea-
+                                         hension time and subjective ratings of understandability. The metric     sure in the SonarSource1 tool landscape. A preliminary evalua-
+                                         showed mixed results for the correlation with the correctness of         tion showed that developers accept the metric to the extent that
+                                         comprehension tasks and with physiological measures.                     they mostly resolve findings of high Cognitive Complexity in their
+                                         Conclusions: It is the first validated and solely code-based metric      source code [10]. However, it has not yet been evaluated whether
+                                         which is able to reflect at least some aspects of code understand-       or not Cognitive Complexity captures code understandability.
+                                         ability. Moreover, due to its methodology, this work shows that             Unfortunately, a lack of empirical evaluation seems to be the
+                                         code understanding is currently measured in many different ways,         reality for most software metrics employed in today’s static analysis
+                                         which we also do not know how they are related. This makes it            tools. Recent reports indicate that out of the hundreds of metrics
+                                         difficult to compare the results of individual studies as well as to     used for analysis, only as few as twelve are validated in scientific
+                                         develop a metric that measures code understanding in all its facets.     studies [25]. Using metrics without proper validation can lead to
+                                                                                                                  unsound decisions from developers and maintainers. The refactor-
+                                         CCS CONCEPTS                                                             ing of already well understandable code is not only time consuming
+                                         • Software and its engineering → Empirical software validation.          but can also introduce new defects. At the same time, the absence
+                                                                                                                  of proper detection of incomprehensible pieces of code, prevents a
+                                         KEYWORDS                                                                 shared understanding of the codebase among developers.
+                                         cognitive complexity, source code understandability, source code            Therefore, we present an empirical validation of Cognitive Com-
+                                         comprehension, software metrics, meta-analysis                           plexity as a measure of source code understandability. Using a sys-
+                                                                                                                  tematic literature search, we identified studies that measure code
+                                         ACM Reference Format:
+                                                                                                                  comprehension from a human developer’s point of view and built
+                                         Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner. 2020. An Em-
+                                                                                                                  an aggregated data set with data from 10 studies spanning over
+                                         pirical Validation of Cognitive Complexity as a Measure of Source Code
+                                         Understandability. In ESEM ’20: ACM / IEEE International Symposium on    427 code snippets and approximately 24,000 individual human
+                                         Empirical Software Engineering and Measurement (ESEM) (ESEM ’20), Oc-    evaluations. Using this data, we performed a comprehensive meta-
+                                         tober 8–9, 2020, Bari, Italy. ACM, New York, NY, USA, 12 pages. https:   analysis to investigate the correlation of Cognitive Complexity with
+                                         //doi.org/10.1145/3382494.3410636                                        measures of source code understandability.
+
+                                                                                                                  2    BACKGROUND
+                                                                                                                  This section describes what source code understandability is, in-
+                                                                                                                  troduces the central metric evaluated in this paper, and discusses
+
+                                                                                                                  1 https://www.sonarsource.com/
+ESEM ’20, October 8–9, 2020, Bari, Italy                                                       Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner
+
+
+related work that has attempted to correlate software metrics with        2.2    Software Metrics for Understandability
+understandability.                                                        Since it would not be feasible in practice to conduct an experiment
+                                                                          to assess whether new code is understandable each time, it is of
+                                                                          great interest to find a way to automatically measure the under-
+                                                                          standability of any code snippet. Previous efforts have been made
+                                                                          to validate whether existing software metrics can capture code
+2.1     Source Code Understandability
+                                                                          understandability.
+There have been numerous efforts to describe what code under-                Scalabrino et al. [30] conducted a study where they calculated
+standability is and what other software quality attributes could          correlations between 121 metrics and proxy variables for under-
+be considered as its influencing factors. In essence, understand-         standability gathered in an experiment with professional developers.
+ing source code is to read it and deduce its meaning. Boehm et            In their experiment, they investigated code-metrics like LOC and
+al. describe understandability as the extent to which “code pos-          Cyclomatic Complexity, documentation-related metrics such as
+sesses the characteristic of understandability to the extent that its     comment readability and metrics relating to a developer’s experi-
+purpose is clear to the inspector” [4]. In this work, in particular,      ence and background. They concluded that none of the investigated
+we consider bottom-up comprehension, in which the programmer              metrics could accurately represent code understandability. Even af-
+analyzes the source code line-by-line and from several lines, de-         ter repeating the study with an increased sample size, the results did
+duces ‘chunks’ of higher abstraction and finally aggregates these         not change. However, they noted that, although the combination of
+chunks into high-level plans [26]. This approach stands in contrast       metrics in the models still did not fully capture the understandabil-
+to top-down comprehension, which is usually applied when one is           ity of the source code, it improved their effectiveness. Trockman
+already familiar with the code or the type of code [37].                  et al. [35] reanalyzed the data set from Scalabrino et al. and put
+   Some terms are closely related to understandability, such as read-     a renewed focus on combined metrics. They employed different
+ability and complexity. Boehm et al. state that legibility is necessary   statistical methods and found that code features had a small but
+for understandability [4]. Intuitively, it seems likely that if code is   significant correlation with understandability. In conclusion, they
+harder to read, it is harder to understand. But on the other hand,        suggest that a useful metric for understandability could be created
+while a piece of code might be considered as readable, developers         but more data would be needed to confirm that notion.
+might still have difficulties understanding it [30]. Therefore we ex-        Peitek et al. [27] investigated the correlation of software metrics
+plicitly consider understandability and readability distinct factors      with the brain deactivation strength, used as an indicator of concen-
+that nevertheless are closely related. Unfortunately, there is not a      tration levels, captured while performing comprehension tasks in
+field-wide standard and in some other works, the distinction is not       an fMRI scanner. They found that for all deactivated areas, higher
+as clear. For example, readability is sometimes described as “the         values for the metric DepDegree and Halstead’s measures indicated
+amount of mental effort required to understand the code” [31] or          more concentration. Lines of code showed the weakest correlations
+“the judgment about how easy a block of code is to understand” [9].       with concentration during comprehension tasks. For Cyclomatic
+   In an experimental setting, the understandability of source code       Complexity, they found that higher values were associated with
+has been measured in a plethora of different ways. First, several         lower concentration among participants. They did warn, however,
+different tasks can be performed to find out whether a partici-           that due to the small sample size and due to the snippets not being
+pant has understood a program. Such tasks include answering               designed to answer whether there is a correlation, the results might
+comprehension-related questions [12, 29], filling out blank program       not necessarily be statistically significant despite high values of
+parts [8], or more advanced tasks, such as extending or modifying         correlation for some of the metrics.
+existing code or finding bugs [18].                                          Kasto et al. [20] attempted to find a connection between a mul-
+   Usually, different types of measures are then taken when con-          titude of different code metrics and comprehension difficulty by
+ducting the experiment to assess the degree with which a program          analyzing the student answers of a final exam in an introductory
+was understood. Most record whether the comprehension task was            Java programming course. The comprehension tasks included code
+completed successfully [20, 39, 42]. Others also record the time          tracing tasks, where students figured out the output of the source
+taken to answer questions or perform a task on the code such as           code by hand and "explain in plain English" questions, where they
+locating or fixing a bug [13, 18]. This is not the norm, however,         explained the functionality of the code in words. They found that
+as some studies prescribe the time the subjects have to complete          some of the investigated metrics, i. e. Cyclomatic Complexity, nested
+the comprehension task [2, 28, 40]. A more recent trend in the            block depth, and two dynamic metrics, correlated significantly with
+field of program comprehension research is the usage of physio-           the student performance in code tracing exam questions. No signifi-
+logical measures by employing fMRI scanners [14, 27], biometrics          cant correlation could be found with the explanation questions. One
+sensors [15, 16, 44] or eye-tracking devices [15, 36]. Lastly, some       limitation of their results was that the exam questions contained
+studies measure perceived understandability [30] which we explicitly      a low number of program commands and did not exceed one or
+distinguish from the other measures. In these studies, participants       two methods as they were part of a first-year programming course.
+are asked to rate code according to its understandability. While          They also noted that depending on the way the comprehension
+both constructs of understandability are of interest to us, it is pos-    questions are posed, they might test other areas besides program-
+sible that different factors influence how developers perceive the        ming knowledge. They mention that, for example, the validity of
+understandability of a code snippet compared to how they would
+perform in comprehension tasks regarding said snippet.
+An Empirical Validation of Cognitive Complexity as a Measure of Source Code Understandability                                  ESEM ’20, October 8–9, 2020, Bari, Italy
+
+
+public static List < Integer > primes ( int [] input ) { // Cycl Cogn                       public static void slots () {                           // Cycl Cogn
+    List < Integer > primes = new ArrayList < >() ;                                             int temp = rand . nextInt (1000) ;
+                                                                                                switch ( temp )                                     //       +1
+      for (i : input ; i ++) {                                        // +1      +1                 case 777:                                       // +1
+          if ( isPrime ( i ) ) {                                      // +1      +2                       System . out . println ( " Jackpot " ) ;
+                primes . add ( i ) ;                                                                case 123:                                       // +1
+          }                                                                                               result () ;
+      }                                                                                             default :                                       // +1
+      return primes ; }                                                                                   System . out . println ( " Game Over " ) ; }
+
+
+Figure 1: Measuring of Cyclomatic and Cognitive Complexity. (In total: Cyclomatic Complexity=2|3, Cognitive Complex-
+ity=3|1)
+
+
+answers to questions including mathematical concepts or operators                      open-source projects, they assessed whether a development team
+might be influenced by the student’s mathematical knowledge.                           ’accepted’ the metric based on whether they fixed code areas of
+   Feigenspan et al. [13] measured the correlation of software mea-                    high Cognitive Complexity as reported by the tool. They found
+sures with program comprehension from the data of maintenance                          that the metric had a 77% acceptance rate among developers. They
+tasks taken in an experiment with graduate students. The inves-                        pose that “for a metric formulated to bridge Cyclomatic Complex-
+tigated variables for understandability were the correctness and                       ity’s understandability gap, the most important measure of success
+response time of the performed tasks. They could not find a corre-                     must be developer response” [10]. However, they also acknowledge
+lation between software measures and code comprehension.                               that more studies are needed to assess the validity and utility of
+   In summary, most existing studies investigate the correlation                       Cognitive Complexity. We agree with their sentiment and do not
+of software metrics with proxy variables of understandability in                       consider this to be a sufficient validation of Cognitive Complexity
+laboratory experiments. There are major differences in their ap-                       since its primary goal of capturing understandability has not yet
+proaches, especially concerning the understandability measures                         been evaluated.
+and the comprehension tasks they employ. Most results indicate
+that existing metrics fail to capture understandability. This, com-                     3       METHODS
+bined with the lack of empirical validation of industry-employed                        Based on the preliminary research, we found a need for an evalua-
+source code metrics in general demonstrates a need for the com-                         tion of the Cognitive Complexity on its merits as a measure of code
+prehensive evaluation of more metrics in terms of their ability to                      understandability. We formulated our research question as follows:
+measure understandability.                                                              RQ1: Does Cognitive Complexity correlate with measures of source
+                                                                                        code understandability from existing studies?
+2.3     Cognitive Complexity                                                               To validate Cognitive Complexity as a measure of source code
+                                                                                        understandability, we chose a three-step approach. First, we con-
+In 2017, SonarSource introduced Cognitive Complexity [10] as a
+                                                                                        ducted a literature search to find data sets from studies that measure
+new metric for measuring the understandability of any given piece
+                                                                                        the understandability of source code from the perspective of a hu-
+of code. On the surface, Cognitive Complexity appears to be quite
+                                                                                        man developer. We then filtered them with regards to whether or
+similar to the Cyclomatic Complexity metric by McCabe [22]. In
+                                                                                        not we could gain access to their source code and experimental
+fact, Cognitive Complexity was specifically designed to address
+                                                                                        data. Finally, we used these data sets to investigate whether there
+some of the common critiques and shortcomings of Cyclomatic
+                                                                                        was a correlation between the Cognitive Complexity of source code
+Complexity such as the nesting problem [34] and fill what they call
+                                                                                        and measures of understandability through a meta-analysis.
+the “understandability gap” [10]. Figure 1 shows how Cognitive
+Complexity assigns different values to structures such as nested if
+                                                                                        3.1      Systematic Literature Search
+statements and switch case structures.
+   In essence, Cognitive Complexity is built on three basic rules [10].                 While carrying out our systematic literature search, we mainly
+First, ignore structures that allow multiple statements to be short-                    followed the guidelines described by Kitchenham et al. [21] for per-
+handed into one. This means that there is no increment for a method                     forming systematic literature reviews in software engineering. The
+declaration or null-coalescing operators like ?? in C# or PHP. Sec-                     main difference between our approach and the one described by
+ond, there is an increment for breaks in the linear flow. This in-                      Kitchenham et al. was that our goal was to identify potential data
+cludes structures like loops, conditionals, gotos, catch statements,                    sets published alongside experiments rather than conducting a sys-
+sequences of logical operators and recursive methods. Third, there                      tematic review of the studies. While we describe the general search
+is an increment for nested control flow structures. For example, a                      strategy and briefly summarize the results here, more detailed in-
+nested loop declaration would increase the complexity value by                          formation can be found in the supplemental materials. There, the
+two, an additional structure nested within this loop would increase                     papers excluded in each step of the systematic search, technical
+the value by three and so on.                                                           details on how it was performed, and which tools were used are
+   The initial paper [10] included a small investigation of the devel-                  available.
+opers’ reaction to the introduction of Cognitive Complexity in the
+static code analysis tool service SonarCloud. In an analysis of 22
+ESEM ’20, October 8–9, 2020, Bari, Italy                                                        Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner
+
+
+3.1.1    Search Strategy.                                                             Table 1: Inclusion and exclusion criteria
+
+  Search Terms. The search string should return all studies on the
+subject of code understandability. To construct it, we included un-         Inclusion criteria
+derstandability, its synonyms, and some other closely related terms         • Title matches the search string
+and made sure that the results would relate to software engineering         • Published in a peer-reviewed journal, conference or workshop
+and program source code. The search string was as follows:                  • Published after 2010
+                                                                            • Reports on an experiment measuring the understandability
+  (code OR software OR program) AND                                         of code from a human perspective
+  (understandability OR comprehension OR readability
+  OR complexity OR analyzability OR "cognitive load")
+                                                                            Exclusion criteria
+   The first part of the string, (code OR software OR program),             • Paper is not related to the field of software engineering
+was used to make sure that the results would relate to software             • Paper is a duplicate entry
+engineering and program source code. This qualifier was then com-           • Paper is not available in English
+bined with understandability, its synonyms and other terms that             • Full text is not available
+were closely related to it.
+   Data Sources. The aim of gathering a sufficient amount of data
+sets from papers warranted the use of multiple online data sources.        filtering steps as it is described by Wohlin [41]. Each reference then
+Google Scholar2 , the ACM Digital Library3 , IEEE Xplore4 and Else-        was put through the same filtering steps of duplicate removal and
+vier ScienceDirect5 were used to search for literature.                    inclusion/exclusion criteria, except for the time period cutoff. Spe-
+                                                                           cial importance was put on this snowballing step since the initial
+   Search Period. All works published between 2010 and July 2019,
+                                                                           search restricted the results to the years 2010 and later. This way,
+the date of the literature search, were included in the search results.
+                                                                           the studies conducted before the time cutoff were still included in
+This was done because our initial search terms were very broad and
+                                                                           the final search results as long as they were mentioned in one of
+we wanted to limit the number of irrelevant papers that had to go
+                                                                           the identified studies.
+through the manual filtering process. Since the main objective of
+this literature search was to find data sets from understandability           Data Extraction. At this point, it was assumed that all papers
+studies that could be used in the data analysis, a special focus was       on relevant source code understandability studies were found. The
+placed on identifying studies with open data sets. Open Science has        full text of each paper was then explored to identify whether they
+been a trend for some years now, but only recently has it gained           had a publicly published data set. Where this was not the case, but
+momentum. Due to this development, it made sense to limit the              the study mentioned appeared to be of value to the analysis, the
+search period to more recent years, as the studies published then          authors were contacted to request access to the code snippets and
+were most likely to have openly published their data sets.                 experimental data. All papers for which we could not obtain a data
+   While this reduced the number of studies to be checked against          set were then removed. For the remaining papers, we then extracted
+the criteria, it also meant that some relevant studies might have          information on the study methodology, the programming language,
+been excluded even though they would meet all other criteria. To           number of participants, demographic as well as the employed com-
+mitigate this effect, a backward snowballing step was added to the         prehension tasks and measures. This information can be seen in
+search strategy, which ignored the search period restriction.              table 2. Lastly, we followed the references to the published data sets
+   Inclusion and Exclusion Criteria. From this point on, a more fine-      given by the authors and retrieved the source code snippets and
+grained approach was used to filter and obtain appropriate studies.        experimental data to be used in the analysis.
+The search results were constrained to peer-reviewed journals,                The experimental data consisted of tables with the identification
+conferences and workshops, as we suspected that this was where             of the code snippets and the understandability measures that were
+the majority of the experiments were reported and where we could           obtained during the experiments. Depending on the study, these
+find published data to be used in our analysis. A summary of the           measures either were the time taken to comprehend a snippet
+criteria used to filter the retrieved literature from the search results   (time), the degree to which a comprehension task on the snippet was
+is given in table 1.                                                       completed (correctness), a subjective rating of the understandability
+                                                                           of the snippet (rating) and physiological data gathered during the
+   Snowballing. Kitchenham et al. [21] suggest looking for addi-           comprehension of a snippet (physiological). Which measures were
+tional papers in the reference lists of relevant primary studies, a        taken by each of the studies can be found in table 2.
+process commonly referred to as snowballing. New papers are ex-
+tracted from the references given in papers that were previously              Data Synthesis. The data synthesis step differed from the usual
+marked as relevant. Here, a single iteration of backward snow-             systematic literature review process due to the nature of the search
+balling was applied to the papers remaining after going through all        results. Instead of just using the full-text to review the study method-
+                                                                           ology or subjects, the actual data sets resulting from these studies
+2 http://scholar.google.com/
+3 https://dl.acm.org/                                                      were the main objective of this literature search. In addition, the
+4 https://ieeexplore.ieee.org/                                             code snippets had to be modified so that they could be compiled and
+5 https://www.sciencedirect.com/                                           the Cognitive Complexity metric could be measured automatically
+An Empirical Validation of Cognitive Complexity as a Measure of Source Code Understandability                               ESEM ’20, October 8–9, 2020, Bari, Italy
+
+
+
+
+                              Figure 2: Number of literature search results included and excluded in each step
+
+
+as described in section 3.2.1. The methodology of the subsequent                        the Cognitive Complexity metric is suited to measure code com-
+analysis can be found in section 3.2 and the results in section 4.                      prehension, we used this data and calculated correlations between
+                                                                                        Cognitive Complexity and measures of understandability.
+3.1.2 Search Results. Figure 2 shows the data flow of papers that                          However, the data included a variety of variables to measure un-
+were analyzed during the filtering stages of the literature search                      derstandability, namely time, correctness, subjective ratings, phys-
+with the number of excluded literature annotated for each step.                         iological measures, and combinations thereof. Specifically, out of
+Without any filters applied, most literature was found through                          the ten studies, nine reported time, six reported correctness, four
+Google Scholar, with the ACM Digital Library and IEEE Xplore                            reported ratings and one reported physiological variables. This last
+closely following. Only Elsevier ScienceDirect showed a signifi-                        study provided the physiological measures in the form of the brain
+cantly smaller number of relevant results, only making up about 6%                      deactivation as a proxy of concentration levels during program
+of the total amount. In total, out of the initial 7,068 papers, 28 were                 comprehension gathered with an fMRI scanner [27].
+deemed suitable for this study. The biggest filter was the restric-                        We do not know if these different constructs used in the studies
+tion on the time period for publishing. Even with all the automatic                     correlate with each other in the context of code understanding,
+filtering steps removing about 4,711 entries, the number of papers                      let alone if all of them are a good proxy for code comprehension.
+that had to be manually checked for suitability was still significant                   With this discovery in mind, once we had gathered all our data, we
+(2,357).                                                                                made the decision to calculate and report the correlation values
+    Snowballing proved to be an effective tool to widen the focus of                    grouped by the type of understandability measure. In this way, we
+the search, raising the number of relevant papers from 28 to 56. The                    could interpret the individual correlation values in their entirety
+majority of the new papers, 20 out of 28, were published before 2010.                   in a meaningful way and were able to reach an overall conclu-
+Of the 56 relevant papers, only 22 published their experimental                         sion. Moreover, we introduce the following sub-questions to better
+data, source code, or a replication package. We contacted 12 authors                    represent this separation:
+of relevant papers that did not publish their data alongside their                              • RQ1.1 How do Cognitive Complexity and the time taken to
+study. Of the six researchers that replied, three offered to share their                          understand a code snippet correlate?
+source code and data with us. The number of data sets we could                                  • RQ1.2 How do Cognitive Complexity and the percentage
+use ended up being lower than initially thought, as eight papers                                  of correctly answered comprehension questions on a code
+reported on the same four studies, leading to only four unique data                               snippet correlate?
+sets. Additionally, we had to eliminate five data sets as they were                             • RQ1.3 How do Cognitive Complexity and a participant’s
+not fit for the purpose of our analysis because either only the source                            subjective ratings of a comprehension task correlate?
+code or only the experimental data was published, but not both. In                              • RQ1.4 How do Cognitive Complexity and physiological mea-
+one case, the experimental results could not be assigned to specific                              sures on a participant correlate?
+code snippets since they were aggregated per subject. The data sets                             • RQ1.5 How do Cognitive Complexity and composite vari-
+of two of the studies were no longer accessible and could not be                                  ables for code understandability correlate?
+retrieved by contacting the authors. In total, out of the 22 papers
+with an open data set, ten could be used in our data analysis.                          3.2.1 Data Preparation. There was a significant amount of hetero-
+                                                                                        geneity among the way the code snippets were provided in each
+                                                                                        study. Not all studies provided the code snippets in source code
+3.2     Data Analysis                                                                   files. For data set 6, only the URLs to the corresponding projects
+The resulting data sets provided us with a total of 427 code snip-                      that included the code snippets were provided. Since the compila-
+pets of varying Cognitive Complexity. In addition, the data sets                        tion of all of these projects proved to be difficult, just the methods
+contained about 24,000 individual human evaluations of the under-                       themselves were extracted. Additionally, the code snippets from
+standability of these code snippets. To answer RQ1 of how well                          data sets 1, 2, 4, 5, and 9 were provided in PDF files, so they first
+ESEM ’20, October 8–9, 2020, Bari, Italy                                                                Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner
+
+
+                                       Table 2: Data sets and their properties extracted from relevant studies
+
+                                             Cognitive Complexity
+  DID      Ref      Language         SNo    Med Min Max SD              PNo     Demographic          Task                    Measures
+     1     [33]     Java               23     3.0     0      9   2.43      41   Students             Calculate output        Time, correctness, rating
+     2     [27]     Java               12     2.0     0      6   1.88      16   Students             Calculate output        Time, physiological
+     3      [9]     Java              100     1.0     0     10   1.74     121   Students             Rate snippet            Rating
+     4     [12]     C/C++              20     2.0     0      8   2.35      51   Prof. & Stud.        Answer questions        Time, correctness
+     5     [29]     Scala              20     2.0     0      7   1.82      38   Students             Answer questions        Time, correctness
+     6     [30]     Java               50     7.5     0     46   8.53      63   Professionals        Rate and answer         Time, correctness, rating
+     7     [18]     C#                  6     2.0     1      4   1.33      72   Professionals        Find bug                Time
+     8      [1]     JavaScript         40     4.0     1     14   3.60     222   Professionals        Calculate output        Time
+     9      [8]     Java               30     4.0     0     16   6.81     259   Students             Rate and cloze test     Time, correctness, rating
+    10     [17]     C/C++             126     1.0     0      8   1.40      48   Students             Calculate output        Time, correctness
+
+
+had to be copied into the appropriate source code files. For data               common reason for most of the data sets was that the cognitive
+set 10, the source code was provided on the project website in text             complexity of the code snippets was far from a normal distribution.
+form. These snippets were also copied into source code files.                      On top of the data provided by the studies, additional composite
+   We used SonarQube6 to analyze the source code snippets of each               variables were calculated for studies where both time and correct-
+study as it allows us to automatically measure Cognitive Complex-               ness of comprehension tasks were measured for the same code
+ity. To make this analysis work, all source code snippets had to be             snippets. We followed a similar approach to Scalabrino et al. [30]
+compilable, meaning free of syntax errors and dependency issues.                who also calculated a composite variable from time and correct-
+Unfortunately most of the code provided alongside the studies did               ness as a proxy of understandability. In our study, the formula
+not fulfill these criteria. Additional efforts had to be made to change         shown in eq. (1) was used to calculate the composite variable timed
+the snippets in ways that allowed automatic analysis without al-                correctness for each snippet.
+tering the Cognitive Complexity values. These changes included,                                      Time          Correctness
+for example, adding additional import statements or libraries (data                              (          )(1 −                 )              (1)
+                                                                                                   Timemax        Correctnessmax
+sets 1, 2, 6, 9), creating dummy classes and methods (data sets 3, 6,
+                                                                                Here, Time and Correctness refer to the median time and average
+9) and fixing syntax errors (data sets 3, 4).
+                                                                                correctness for this snippet. Timemax and Correctnessmax refer to
+3.2.2    Statistical Methods and Interpretation.                                the highest median time and average correctness calculated for all
+                                                                                code snippets in the corresponding study.
+   Correlation Analysis. Each data set contained several code snip-
+pets and usually also several measurements of code understand-                     Data Synthesis. At this point, we had a set of correlation values,
+ability. For example, data set 5 originates from a study in which               each of which provides information on the strength of the relation-
+the time and correctness were measured for 20 different code snip-              ship of a proxy variable to Cognitive Complexity within a particular
+pets using 38 participants (see Table 2). For each code snippet, we             study. Kendall’s correlation coefficients were transformed to Pear-
+first calculated the mean value of the measurements grouped by                  son’s r [38] and then all correlation coefficients were converted to
+proxy variable. We are aware of an open debate [24] on whether                  the Fisher’s z scale for a meta-analysis using the random-effects
+Likert scales represent ordinal or continuous intervals. While the              model [5, 6]. This model takes into account that the true effect size
+debate still does not have clear indications, we opted to consider the          of the studies varies, which can be reasonably assumed in our case.
+subjective ratings using a Likert scale to be continuous in nature              None of the studies in their original form referred to Cognitive
+when calculating their mean. Moreover, we consider Likert items                 Complexity and even when the same proxy variable was measured,
+as discrete values on a continuous scale.                                       the resulting data were based on different study designs. For that
+   To stay with the example of data set 5, this meant that we ob-               reason, we first made sure that every variable we included in the
+tained 20 aggregated data points each for time and correctness,                 correlation analysis measures the same construct, given the def-
+which serve as a proxy for the understandability of 20 code snippets.           inition of understandability in section 2 of this paper. Then we
+Together with the respective values for the Cognitive Complexity                grouped the different ways of measuring code understandability
+of each code snippet we performed a correlation calculation. We                 into the research questions defined above. With this approach, we
+used Pearson’s correlation coefficient where its assumptions are                believe that a combined analysis allows a meaningful interpretation
+met, and Kendall’s rank correlation coefficient (tau) otherwise, for            and therefore contributes to answering the research questions [7].
+example, if the test for normality of the underlying data failed. Only          For the calculations, we used R and the ‘meta’ package7 in version
+two of the variables from two of the data sets ended up fulfilling all          4.11-0.
+of the criteria for using Pearson’s correlation coefficient. The most              All correlation coefficients and their respective combined values
+                                                                                are presented as forest plots in the following chapter. First, such
+6 https://www.sonarqube.org/                                                    7 https://CRAN.R-project.org/package=meta
+An Empirical Validation of Cognitive Complexity as a Measure of Source Code Understandability                                                  ESEM ’20, October 8–9, 2020, Bari, Italy
+
+
+a visualization indicates a tendency, for example, whether for cor-                     to understand a code snippet or the time taken to complete a com-
+rectness the majority of the data sets show a positive, negative, or                    prehension task on the code such as answering a question or finding
+no correlation with Cognitive Complexity. Second, the summary                           a bug. In expectation, we would assume that more difficult code
+effect represents a weighted mean and is often in line with this                        snippets would take longer to understand. For Cognitive Complex-
+visually observable tendency, but can also deviate from it. Under                       ity, higher values should indicate that code is less understandable
+the random-effects model it can be seen as an estimate of the mean                      and result in longer comprehension times. If Cognitive Complexity
+of the distribution of effect sizes [6]. In addition to the correlation                 can accurately measure the understandability of source code, we
+coefficients, we provide p-values but we would like to stress that                      would expect a positive correlation between Cognitive Complexity
+they should be taken with the usual caution. For example, some of                       and time taken to understand code.
+the data sets contained only a small number of code snippets and                           Nine studies were included in the analysis totaling 327 code snip-
+therefore only as many data points for the correlation analysis.                        pets. Overall, we observed positive results with regards to RQ1.1
+                                                                                        for the correlation of Cognitive Complexity and time variables. The
+3.2.3 Data Set and Supplemental Material. According to the prin-
+                                                                                        effect sizes ranged from a small negative correlation of −0.03 to a
+ciples of Open Science, we decided to publish the data [3] used in
+                                                                                        large positive correlation of 0.94. The weighted mean of all studies
+and generated by our data analysis and literature search to ensure
+                                                                                        showed a large positive correlation of 0.54.
+reproducibility, repeatability, and transparency. This includes the
+data for our correlation analysis and the R scripts used to calculate                    Study                      Total             Correlation            COR       95%−CI Weight
+the correlation coefficients. Additionally, we provide descriptions
+                                                                                         1_time                        23                                    0.73 [ 0.46; 0.88]   11.5%
+of each of the understandability studies. Finally, we describe all the                   2_response_time               12                                    0.44 [−0.18; 0.81]    9.6%
+                                                                                         4_pooled_time                 20                                    0.94 [ 0.85; 0.98]   11.2%
+technical details of our literature search process step-by-step and                      5_time_for_all_answers        20                                    0.80 [ 0.55; 0.92]   11.2%
+list which literature was excluded in each step. In the future, this                     6_tnpu                        50                                    0.25 [−0.03; 0.49]   12.7%
+                                                                                         7_pooled_time                  6                                   −0.03 [−0.82; 0.80]    6.0%
+data could be further enriched with more understandability studies                       8_correct_and_wrong           40                                    0.08 [−0.23; 0.39]   12.5%
+and used to evaluate other source code understandability metrics.                        9_pooled_time                 30                                    0.48 [ 0.14; 0.72]   12.0%
+                                                                                         10_duration                  126                                    0.27 [ 0.10; 0.42]   13.3%
+
+4    RESULTS                                                                             Random effects model         327
+                                                                                         Heterogeneity: I 2 = 85%, τ2 = 0.2553, p < 0.01
+                                                                                                                                                              0.54 [ 0.24; 0.75] 100.0%
+
+In this chapter, we will present and describe the results of our                                                                 −0.5      0        0.5
+
+random-effects meta-analysis of Cognitive Complexity and its cor-
+                                                                                                          Figure 3: Forest plot for time variables
+relation with measures of the understandability of source code.
+   Overall, we used the data of 10 studies spanning over 427 code
+snippets which were evaluated in terms of understandability. The
+final list of data sets used to calculate correlations and their proper-                Correctness variables
+ties can be seen in table 2. The studies differed in their methodology,                 RQ1.2 How do Cognitive Complexity and the percentage of correctly
+demographic, and materials. The DID represents a unique identifier                      answered comprehension questions on a code snippet correlate? Cor-
+for each of the data sets and will be used continuing from this point                   rectness describes the degree to which the comprehension task in
+on. The table also shows some information on the code snippets pro-                     an experiment on source code was completed correctly. This could,
+vided by the study such as the programming language, the number                         for example, be the percentage of correct answers to questions
+of snippets (SNo), and the distribution of Cognitive Complexity for                     regarding code behavior or the percentage of correctly identified
+these snippets. Finally, it shows some methodological information                       errors in the code. In general, we would expect that the easier to un-
+on the studies with the number of participants (PNo), the performed                     derstand a piece of code is, the higher the correctness. For Cognitive
+comprehension tasks, and which measures were taken as proxy                             Complexity, lower values should indicate better understandability
+variables for understandability.                                                        and should result in higher correctness. In other words, if Cognitive
+   As not all studies measured each type of proxy variable for under-                   Complexity can accurately measure the understandability of source
+standability, the number of studies and snippets that could be used                     code, we would expect a negative correlation between Cognitive
+to answer the individual research questions RQ1.1 to RQ1.5 varied.                      Complexity and correctness of comprehension tasks.
+In the forest plots, the first column (Study) describes which mea-                         Six studies were included in the analysis totaling 269 code snip-
+surement of a study was used for the synthesis. Variables marked                        pets. Overall, we observed mixed results with regards to RQ1.2 for
+as pooled represent combined effect sizes of multiple outcomes or                       the correlation of Cognitive Complexity and correctness variables.
+subgroups within a study. The studies were either conducted with                        The effect sizes ranged from a large negative correlation of −0.52
+university students, professional developers, or both. To interpret                     to a large positive correlation of 0.57. The weighted mean of all
+the effect sizes we used the guidelines by Cohen [11] and consider                      studies showed a small negative correlation of −0.13.
+an effect size >0.1 to be small, >0.3 to be medium and >0.5 to be
+large.                                                                                  Rating variables
+                                                                                        RQ1.3 How do Cognitive Complexity and a participant’s subjective
+Time variables                                                                          ratings of a comprehension task correlate? A rating refers to how dif-
+RQ1.1 How do Cognitive Complexity and the time taken to under-                          ficult a subject believes a piece of code is to understand, sometimes
+stand a code snippet correlate? In code understandability experi-                       called perceived understandability [30]. For the studies included
+ments, understandability is sometimes measured by the time taken                        in this meta-analysis higher ratings meant that the code snippet
+ESEM ’20, October 8–9, 2020, Bari, Italy                                                                                       Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner
+
+
+Study                       Total            Correlation         COR         95%−CI Weight
+                                                                                                negative correlation −0.20 to a small positive correlation 0.20. The
+1_correct                     23                                 −0.35 [−0.67; 0.07]    15.6%   weighted mean of all studies showed no correlation with an effect
+4_pooled_correctness          20                                 −0.41 [−0.72; 0.04]    15.0%
+5_correctness                 20                                 −0.52 [−0.78; −0.10]   15.0%   size of 0.00.
+6_au                          50                                 −0.20 [−0.45; 0.09]    18.2%
+9_acc                         30                                  0.57 [ 0.27; 0.77]    16.7%   Study                       Total                Correlation            COR        95%−CI Weight
+10_correct                   126                                  0.00 [−0.17; 0.18]    19.6%
+                                                                                                2_BA32                         12                                        0.00 [−0.57; 0.57]   33.3%
+Random effects model         269                                 −0.13 [−0.45; 0.21] 100.0%     2_BA31post                     12                                        0.20 [−0.42; 0.70]   33.3%
+Heterogeneity: I 2 = 79%, τ2 = 0.1542, p < 0.01                                                 2_BA31ant                      12                                       −0.20 [−0.70; 0.42]   33.3%
+                                      −0.5        0        0.5
+                                                                                                Random effects model           36                                        0.00 [−0.37; 0.37] 100.0%
+                                                                                                Heterogeneity: I 2 = 0%, τ2 = 0.0085, p = 0.68
+            Figure 4: Forest plot for correctness variables                                                                         −0.6−0.4−0.2 0        0.2 0.4 0.6
+
+
+                                                                                                         Figure 6: Forest plot for physiological variables
+was easier to understand. In this case, higher values of Cognitive
+Complexity, as a measure of understandability, should correspond
+with lower ratings for code snippets. In other words, if Cognitive
+Complexity can accurately measure the understandability of source                               Composite variables
+code, we would expect a negative correlation between Cognitive                                  RQ1.5 How do Cognitive Complexity and composite variables for
+Complexity and subjective rating of the understandability of code                               code understandability correlate? The composite variables in this
+snippets.                                                                                       study are composed of measures of the time and correctness of
+   Four studies were included in the analysis totaling 203 code snip-                           the comprehension of source code snippets. None of the composite
+pets. Overall, we observed positive results with regards to RQ1.3                               variables were provided by the studies themselves. Instead, they
+for the correlation of Cognitive Complexity and rating variables.                               were calculated for the studies that reported both time and correct-
+The effect sizes ranged from a large negative correlation of −0.57                              ness of comprehension for the same snippets. The formula used to
+to a small negative correlation of −0.04. The weighted mean of all                              calculate the composite variables can be found in eq. (1). Higher
+studies showed a medium negative correlation of −0.29.                                          values for composite variables indicate that a code snippet is harder
+                                                                                                to understand. Therefore, for Cognitive Complexity, higher val-
+Study                      Total             Correlation         COR         95%−CI Weight      ues should correspond to higher values for composite variables.
+1_pooled_rating               23                                 −0.57 [−0.79; −0.20]   18.0%
+                                                                                                In other words, if Cognitive Complexity can accurately measure
+3_perceived_readability      100                                 −0.29 [−0.46; −0.10]   33.7%   the understandability of source code, we would expect a positive
+6_pbu                         50                                 −0.04 [−0.31; 0.24]    27.1%
+9_pooled_rating               30                                 −0.33 [−0.62; 0.03]    21.2%   correlation between Cognitive Complexity and composite variables
+                                                                                                for the understandability of code snippets.
+Random effects model         203                                 −0.29 [−0.49; −0.06] 100.0%
+Heterogeneity: I 2 = 46%, τ2 = 0.0350, p = 0.13                                                     Six studies were included in the analysis totaling 269 code snip-
+                                      −0.5        0        0.5
+                                                                                                pets. Overall, we observed positive results with regards to RQ1.5
+                                                                                                for the correlation of Cognitive Complexity and composite vari-
+                 Figure 5: Forest plot for rating variables
+                                                                                                ables. The effect sizes ranged from a small negative correlation of
+                                                                                                −0.10 to a large positive correlation of 0.68. The weighted mean of
+                                                                                                all studies showed a medium positive correlation of 0.40.
+Physiological variables
+                                                                                                Study                       Total                Correlation            COR        95%−CI Weight
+RQ1.4 How do Cognitive Complexity and physiological measures on
+a participant correlate? Physiological variables are measures taken                             1_tc                          23                                         0.62 [ 0.28; 0.82]   15.3%
+                                                                                                4_pooled_tc                   20                                         0.68 [ 0.34; 0.86]   14.5%
+on the human body during code comprehension such as bio-metric                                  5_tc                          20                                         0.65 [ 0.30; 0.85]   14.5%
+data from EKGs or fMRIs or eye-tracking information. In this case,                              6_tc                          50                                         0.38 [ 0.11; 0.59]   18.5%
+                                                                                                9_tc                          30                                        −0.10 [−0.44; 0.27]   16.6%
+the only physiological variable was the strength of brain deactiva-                             10_tc                        126                                         0.09 [−0.09; 0.26]   20.5%
+tion measured as a proxy for concentration through the usage of an                              Random effects model         269                                         0.40 [ 0.11; 0.62] 100.0%
+fMRI scanner [27]. In general, we would expect less understandable                              Heterogeneity: I 2 = 78%, τ2 = 0.1161, p < 0.01
+                                                                                                                                        −0.5          0        0.5
+snippets to require a higher level of concentration, resulting in a
+stronger deactivation and lower values of the physiological variable.
+                                                                                                            Figure 7: Forest plot for composite variables
+If Cognitive Complexity can accurately measure the understandabil-
+ity of source code, we would expect a negative correlation between
+Cognitive Complexity and the brain deactivation during compre-
+hension of source code. As there was only one study measuring
+                                                                                                5     DISCUSSION
+physiological variables and providing their data, fig. 6 shows the                              We discuss the results, limitations and implications of the study.
+results for all three physiological variables from said study. The
+variables refer to different Brodmann areas (BA) of the brain.                                  5.1      Findings
+    One study was included in the analysis totaling 12 code snippets.                           With respect to the results of our meta-analysis, we found that
+Overall, we observed negative results with regards to RQ1.4 for the                             Cognitive Complexity correlates with the time taken to compre-
+correlation of Cognitive Complexity and physiological variables.                                hend code snippets (0.54) and with the perceived understandability
+For physiological variables the effect sizes ranged from a small                                ratings from developers (−0.29). When comparing these results
+An Empirical Validation of Cognitive Complexity as a Measure of Source Code Understandability                                ESEM ’20, October 8–9, 2020, Bari, Italy
+
+
+with previous studies, Scalabrino et al. [30] found in their study of                   to be a metric that can achieve these goals based on the empirical
+code metrics that for time variables, only 1 out of 121 metrics had a                   evidence provided by this study.
+weak correlation of 0.11 and only 8 out of 121 had a weak correla-                          Our systematic literature search revealed a multitude of insights
+tion with ratings, with the highest being −0.13. Other studies have                     into the way understandability studies are conducted. We found
+also reported that in some cases there is no correlation between                        that there a many different ways researchers define, measure and
+different software metrics and time [13, 19]. When comparing the                        correlate understandability. When attempting to summarize and
+results it has to be kept in mind that these studies report the results                 combine the results from different studies and different measures,
+of a single experiment, while our results pertain to combined effect                    our efforts ultimately revealed that studies on source code compre-
+sizes of multiple studies.                                                              hension require a uniform understanding of the studied construct
+   Our results showed little to no support for the assumption that                      as well as comparable and validated measures. While it is a tempt-
+Cognitive Complexity correlates with the correctness of code com-                       ing thought to combine the types of variables rather than dividing
+prehension tasks. Other studies have shown similar results for other                    each of them into separate research questions, in our case the lack
+source code metrics [13, 19, 30]. This does not, however, imply that                    of information on the relationships and validity of these measures
+each code snippet was equally easy to understand. It is likely that                     prevented us from doing so. Without sound reasoning and thorough
+while participants experienced more difficulties with some snippets,                    scientific analysis, there is no conclusive evidence as to how these
+this was not reflected in the values for correctness, as they may have                  measures correlate with each other and furthermore which of them
+compensated for this by spending more time with the snippet to                          are a valid way to express code understanding. We have to address
+ensure their answers were correct. This concept is also mentioned                       this issue in the future to make the results comparable and to find
+by Borstler et al. [8] who noticed that negative impacts of snippets                    a validated way of measuring code comprehension.
+sizes could be compensated by subjects by spending more time on                             With the results of our literature search we created an aggregated
+larger snippets. Correlations with time and subjective ratings but                      data set of measurements of the Cognitive Complexity and under-
+not correctness suggest that there might be a correlation with the                      standability of code snippets. In line with the studies we extracted
+cognitive load required for understanding a piece of code. Lastly,                      data from, we openly publish our data and methods to ensure repro-
+when combining the values for time and correctness of the same                          ducibility and transparency. While we used this aggregated data set
+code snippet, we again observed similar results to time variables,                      to evaluate the Cognitive Complexity metric, future works could
+with a combined effect size of 0.40, which is slightly lower than the                   expand on our work and use the data set in order to measure the
+0.54 for time variables. Physiological measures could play an im-                       correlations of other metrics with proxy variables of understandabil-
+portant role in finding an answer to these questions as they might                      ity. Unfortunately we were not able to republish the code snippets
+be good indicators of the cognitive load of code comprehension                          alongside the data we used to calculate the correlations, as we were
+tasks.                                                                                  not able to obtain licenses of the published code. We did, however,
+   With the given data in our study, we could not identify a corre-                     provide a link to the code snippets and their unique identification
+lation between Cognitive Complexity and the brain deactivation                          for each of the data points. While the data provided by the studies
+during code comprehension. When comparing the results of our                            was in good shape, publishing code snippets under a specific license
+study to Peitek et al. [27], the source of data for our study, we                       is still something that is not common.
+find similar results. While Cognitive Complexity performs slightly                          Around 40% of relevant studies openly publish their data sets.
+better than Cyclomatic Complexity in BA31post region, the corre-                        While there is still room for improvement, we can observe a positive
+lations are overall small and insignificant. Peitek et al. themselves                   trend with regards to open accessibility of scientific data, especially
+mention that these results should be taken with a grain of salt as                      in recent years. Overall, collecting data from existing studies in an
+the sample size and number of code snippets was quite small. Re-                        effort to validate a metric allowed us to have a much larger sampling
+gardless, both analyses show possibilities as to how physiological                      size in comparison to similar studies. Using preexisting data sets
+measures can be used in understandability studies to investigate                        also comes with some difficulties, as searching and aggregating
+correlations with software metrics. Larger data sets might reveal                       experimental data and preparing code snippets to gather metrics
+more conclusive evidence as to how Cognitive Complexity or other                        can be quite complex and time consuming. Other limitations with
+metrics correlate with physiological measures such as the strength                      the approach used in this study are discussed in more detail in the
+of brain deactivation during code comprehension.                                        following subsection 5.2.
+   To answer RQ1, we conclude that with respect to the results of
+this analysis, Cognitive Complexity is the first validated and solely
+code-based metric that is able to reflect at least some aspects of                      5.2     Limitations
+code understandability. While there are some mixed results for the                      Our work consists of two main parts: the search for relevant exist-
+correctness and physiological variables, the results for time, com-                     ing data sets in which code snippets have been evaluated in their
+posite and rating variables show empirical support for Cognitive                        understandability and the synthesis of these data for the purpose
+Complexity as a measure of source code understandability. Both in                       of validating a metric. The results of both parts should be seen in
+terms of industry-appliance and research contexts, being able to                        the light of some limitations.
+estimate the time it takes a developer to understand a source code                         We started the systematic literature search with database searches.
+snippet as well as how they might perceive it in terms of under-                        The search term had to be broad and therefore produced a very
+standability can be of great value. Cognitive Complexity appears                        large number of irrelevant search results that had to be filtered
+                                                                                        manually. This process can be error-prone. We have countered this
+ESEM ’20, October 8–9, 2020, Bari, Italy                                                       Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner
+
+
+by having one author perform the filtering and a second one vali-            Finally, few of the original studies focused on the evaluation of
+dating the results. In the future a comparable systematic literature      source code metrics, which meant that most code snippets were
+search could benefit from a pure snowballing approach, where less         not necessarily intended for a comprehensive metric evaluation.
+irrelevant results are suspected [41].                                    Although our analysis is based on a large number of 427 different
+   We decided to limit the initial results of the literature search to    code snippets from different languages and projects, almost all of
+publications published after the year 2010 as we suspected those to       them were of relatively low Cognitive Complexity. Only two of
+most likely have an open data set provided alongside their study          the studies included code snippets with a value greater than 15,
+or their authors be most likely to share their data with us. This         which is the default threshold in SonarQube for reporting on too
+possibly introduced a sampling bias as more recent studies had            complex functions. The correlations that were found are still mean-
+a higher probability of being included in the search results. We          ingful, but we have little information about how well the metric
+attempted to alleviate this limitation by additionally including a        works for higher values of Cognitive Complexity and accordingly
+snowballing step without the publishing period restriction.               no recommendation for a meaningful threshold.
+   Then we had to search the texts of all studies in question for a
+reference to their data set, whereby we might have missed refer-
+ences. Unfortunately, there is no publisher-independent uniform           5.3    Implications
+system or paper meta-data for identifying supplemental material.          We found Cognitive Complexity to be a good indicator of how long
+This would have allowed us to efficiently access the corresponding        it takes developers to understand a piece of code and we found the
+data record. Many publishers do not reference supplemental mate-          composition of time and correctness to correlate positively with
+rial at all. However, missed data set references are not an issue, as     understandability. In addition, code snippets with higher Cognitive
+in such cases we have contacted the authors of relevant studies to        Complexity are also rated as more difficult to understand. Since
+request access to the code snippets and experimental data.                developers already spend a large part of their time trying to under-
+   Additionally, some code snippets had to be altered in order to         stand code, it is worthwhile to reduce this effort by simplifying code
+free them of syntax errors and dependency issues so that their            sections that are difficult to understand. The metric helps to point
+Cognitive Complexity could be calculated automatically by Sonar-          out such sections. Unfortunately, the question remains open as to
+Qube. This could potentially represent a threat to the validity of the    when a section of code can actually be described as too complex.
+study, as altering the code snippets manually might change their          Future work will have to investigate what an appropriate threshold
+value for Cognitive Complexity. In order to mitigate this, we made        value could be. Until then the recommendation is to keep Cognitive
+sure to only make changes that would not influence the Cognitive          Complexity of a code snippet as low as possible.
+Complexity of a snippet, such as adding closing brackets or fixing            By validating the metric, we realized that the measurement of
+dependency issues. None of the 427 snippets had to be changed             code understandability is still in its very beginnings. The compa-
+in a way that would have introduced new control-flow structures.          rability of results, let alone their synthesis, requires a better un-
+The alternative to this solution would have been to manually cal-         derstanding of the different ways to measure code understanding.
+culate the Cognitive Complexity for each of the snippets. While           When understanding is measured in different ways, such as process-
+this would have eliminated the need for altering the code, it would       ing time and correctness of answers to comprehension questions,
+also have introduced a large amount of additional manual labor,           we need to understand how they are related and what measures
+increasing the risk for human error. Due to the large number of           are actually appropriate in which context. Otherwise, researchers
+snippets and the aforementioned conditions, we chose to go with           will continue to have difficulties in developing a suitable design for
+the first solution.                                                       their code understanding experiment [32], and we will not know
+   Then we came to the actual analysis part, which can be described       afterwards which findings are actually comparable. Then we have
+in summary as meta-analysis using the random-effects model and            no choice but to do what we did and, for example, break down the
+effect sizes based on correlations. First, it is not a meta-analysis in   validation of a metric into five different research questions.
+the classical sense, which is due to the fact that most underlying
+studies did not answer the same research questions as we did. In
+other words, most of the synthesized studies did not focus on the         6     CONCLUSION
+validation of metrics, and none focused on the metric that our            Understanding code is an essential part of the developer’s day-to-
+paper is about. This is not a limitation in itself, one only has to be    day work. It is therefore important to write source code in such a
+aware that the original studies had different objectives and therefore    way that the time and mental effort required for understanding it
+varied in their designs. We made sure that the measured data aimed        is as low as possible. We showed that Cognitive Complexity is a
+at the same construct of code understandability and we used the           promising metric for automatically measuring different facets of
+random-effects model, which takes into account that the true effect       code comprehension, making it easier to identify sections of code
+size of the studies varies due to the different study designs and         that are hard to understand. The metric correlates with the time it
+sample characteristics. How well the respective study designs and         takes a developer to understand source code, with a combination of
+collected data reflect code understanding in practice, however, is a      time and correctness, and with subjective ratings of understandabil-
+threat to external validity and a question that we cannot answer in       ity. This means that Cognitive Complexity is the first validated and
+the scope of this work. At least one positive aspect is that the data     purely code-based metric that can measure code understandability.
+comes from many different contexts, which applies to the reality in       Although we do not know at what metric value a section of code
+which code must be understood in different scenarios.                     can be considered too complex, our recommendation is to keep the
+An Empirical Validation of Cognitive Complexity as a Measure of Source Code Understandability                                            ESEM ’20, October 8–9, 2020, Bari, Italy
+
+
+metric value as low as possible to reduce the effort of understanding                           NY, USA, 57âĂŞ58. https://doi.org/10.1145/3194164.3194186
+source code.                                                                               [11] Jacob Cohen. 1977. CHAPTER 3 - The Significance of a Product Moment rs. In
+                                                                                                Statistical Power Analysis for the Behavioral Sciences, Jacob Cohen (Ed.). Academic
+   To validate the metric, we first conducted a systematic literature                           Press, 75 – 107. https://doi.org/10.1016/B978-0-12-179060-8.50008-6
+search to find data sets that evaluate source code by human par-                           [12] José Javier Dolado, Mark Harman, Mari Carmen Otero, and Lin Hu. 2003. An
+                                                                                                empirical investigation of the influence of a type of side effects on program
+ticipants for its understandability. We then synthesized the data                               comprehension. IEEE Transactions on Software Engineering 29, 7 (2003), 665–670.
+sets in a meta-study to investigate whether Cognitive Complexity                                https://doi.org/10.1109/TSE.2003.1214329
+correlates with the evaluations provided by the data sets. Since                           [13] Janet Feigenspan, Sven Apel, Jorg Liebig, and Christian Kastner. 2011. Exploring
+                                                                                                Software Measures to Assess Program Comprehension. In International Sympo-
+different studies measure code understandability in different ways,                             sium on Empirical Software Engineering and Measurement (ESEM), 2011. IEEE,
+we divided the synthesis into different research questions to sum-                              Piscataway, NJ, 127–136. https://doi.org/10.1109/ESEM.2011.21
+marize the data in a meaningful way. The steps and intermediate                            [14] Benjamin Floyd, Tyler Santander, and Westley Weimer. 2017. Decoding the
+                                                                                                Representation of Code in the Brain: An FMRI Study of Code Review and
+results of the literature search as well as all data generated during                           Expertise. In Proceedings of the 39th International Conference on Software En-
+the analysis are made available in a public data set. This enables                              gineering (Buenos Aires, Argentina) (ICSE âĂŹ17). IEEE Press, 175âĂŞ186.
+                                                                                                https://doi.org/10.1109/ICSE.2017.24
+not only reproducibility and repeatability, but also the validation                        [15] Thomas Fritz, Andrew Begel, Sebastian C. Müller, Serap Yigit-Elliott, and Manuela
+of other code understanding metrics in the future.                                              Züger. 2014. Using Psycho-Physiological Measures to Assess Task Difficulty in
+   For the metric of Cognitive Complexity itself, a meaningful                                  Software Development. In Proceedings of the 36th International Conference on
+                                                                                                Software Engineering (Hyderabad, India) (ICSE 2014). Association for Computing
+threshold value has yet to be identified. We also know too little                               Machinery, New York, NY, USA, 402âĂŞ413. https://doi.org/10.1145/2568225.
+about how well the metric reflects physiological measures in the                                2568266
+context of code understanding. The number of studies carrying                              [16] Davide Fucci, Daniela Girardi, Nicole Novielli, Luigi Quaranta, and Filippo Lanu-
+                                                                                                bile. 2019. A Replication Study on Code Comprehension and Expertise Using
+out such measurements is growing, so the resulting data could be                                Lightweight Biometric Sensors. In Proceedings of the 27th International Conference
+used for further validation in the near future. Finally, this study                             on Program Comprehension (Montreal, Quebec, Canada) (ICPC âĂŹ19). IEEE Press,
+already provided us with exciting discoveries by revealing that cur-                            311âĂŞ322. https://doi.org/10.1109/ICPC.2019.00050
+                                                                                           [17] Dan Gopstein, Jake Iannacone, Yu Yan, Lois DeLong, Yanyan Zhuang, Martin
+rently, source code understandability is measured in many different                             K.-C. Yeh, and Justin Cappos. 2017. Understanding misunderstandings in source
+ways with no clear agreement as to how those ways relate to each                                code. In Proceedings of the 2017 11th Joint Meeting on Foundations of Software
+                                                                                                Engineering - ESEC/FSE 2017. ACM Press, New York, New York, USA, 129–139.
+other. This motivates us to expand the systematic literature search                             https://doi.org/10.1145/3106237.3106264
+into a more comprehensive review to gain further insights into                             [18] Johannes Hofmeister, Janet Siegmund, and Daniel V. Holt. 2017. Shorter identifier
+the investigated research questions, the measures used, and the                                 names take longer to comprehend. In 2017 IEEE 24th International Conference on
+                                                                                                Software Analysis, Evolution and Reengineering (SANER). IEEE, 217–227. https:
+difficulties in designing understandability experiments. In this way,                           //doi.org/10.1109/SANER.2017.7884623
+our long-term goal is to make the results of code comprehension                            [19] Ahmad Jbara and Dror G. Feitelson. 2014. On the Effect of Code Regularity
+studies more comparable and allow others to conduct meta-studies                                on Comprehension. In Proceedings of the 22nd International Conference on Pro-
+                                                                                                gram Comprehension (Hyderabad, India) (ICPC 2014). Association for Computing
+like the present one.                                                                           Machinery, New York, NY, USA, 189âĂŞ200. https://doi.org/10.1145/2597008.
+                                                                                                2597140
+REFERENCES                                                                                 [20] Nadia Kasto and Jacqueline Whalley. 2013. Measuring the difficulty of code
+                                                                                                comprehension tasks using software metrics. In 15th Australasian Computer
+ [1] Shulamyt Ajami, Yonatan Woodbridge, and Dror G. Feitelson. 2017. Syntax,                   Education Conference (ACE 2013), Vol. 136. Adelaide, South Australia, Australian
+     Predicates, Idioms–What Really Affects Code Complexity?. In 2017 IEEE/ACM                  Computer Society, Inc., AUS, 59–65.
+     25th International Conference on Program Comprehension (ICPC). IEEE, 66–76.           [21] Barbara Kitchenham and Stuart Charters. 2007. Guidelines for performing Sys-
+     https://doi.org/10.1109/ICPC.2017.39                                                       tematic Literature Reviews in Software Engineering.
+ [2] Syed Ahmad Aljunid, Abdullah Mohd Zin, and Zarina Shukur. 2012. A Study on            [22] Thomas J McCabe. 1976. A complexity measure. IEEE Transactions on Software
+     the Program Comprehension and Debugging Processes of Novice Programmers.                   Engineering SE-2, 4 (1976), 308–320. https://doi.org/10.1109/TSE.1976.233837
+     Journal of Software Engineering 6, 1 (2012), 1–9. https://doi.org/10.3923/jse.2012.   [23] Roberto Minelli, Andrea Mocci, and Michele Lanza. 2015. I know what you did
+     1.9                                                                                        last summer-an investigation of how developers spend their time. In 2015 IEEE
+ [3] Marvin MuÃśoz BarÃşn, Marvin Wyrich, and Stefan Wagner. 2020. An Empirical                 23rd International Conference on Program Comprehension. IEEE, IEEE, 25–35.
+     Validation of Cognitive Complexity as a Measure of Source Code Understandability      [24] Jacqueline Murray. 2013. Likert data: what to use, parametric or non-parametric?
+     - Data, Code and Documentation. https://doi.org/10.5281/zenodo.3949828                     International Journal of Business and Social Science 4, 11 (2013).
+ [4] Barry W. Boehm, John R. Brown, and Mlity Lipow. 1976. Quantitative Evaluation         [25] Mayra Nilson, Vard Antinyan, and Lucas Gren. 2019. Do Internal Software Quality
+     of Software Quality. In Proceedings of the 2Nd International Conference on Software        Tools Measure Validated Metrics? In International Conference on Product-Focused
+     Engineering (San Francisco, California, USA) (ICSE ’76). IEEE Computer Society             Software Process Improvement. Lecture Notes in Computer Science, Vol. 11915.
+     Press, Los Alamitos, CA, USA, 592–605.                                                     Springer, Cham, Switzerland, 637–648. https://doi.org/10.1007/978-3-030-35333-
+ [5] Michael Borenstein, Larry V Hedges, Julian PT Higgins, and Hannah R Rothstein.             9_50
+     2009. Effect Sizes Based on Correlations. In Introduction to meta-analysis. John      [26] Michael P. O’Brien, Jim Buckley, and Teresa M. Shaft. 2004. Expectation-based,
+     Wiley & Sons, Chichester, United Kingdom, 40–43.                                           inference-based, and bottom-up software comprehension. Journal of Software
+ [6] Michael Borenstein, Larry V Hedges, Julian PT Higgins, and Hannah R Rothstein.             Maintenance and Evolution: Research and Practice 16, 6 (2004), 427–447. https:
+     2009. Random-Effects Model. In Introduction to meta-analysis. John Wiley &                 //doi.org/10.1002/smr.307
+     Sons, Chichester, United Kingdom, 68–75.                                              [27] N. Peitek, J. Siegmund, S. Apel, C. KÃďstner, C. Parnin, A. Bethmann, T. Leich,
+ [7] Michael Borenstein, Larry V Hedges, Julian PT Higgins, and Hannah R Rothstein.             G. Saake, and A. Brechmann. 2018. A Look into Programmers’ Heads. IEEE
+     2009. When does it make sense to perform a meta-analysis. In Introduction to               Transactions on Software Engineering (2018), 1–1. https://doi.org/10.1109/TSE.
+     meta-analysis. John Wiley & Sons, Chichester, United Kingdom, 357–64.                      2018.2863303
+ [8] Jürgen Börstler and Barbara Paech. 2016. The Role of Method Chains and Com-           [28] Vennila Ramalingam and Susan Wiedenbeck. 1997. An empirical study of novice
+     ments in Software Readability and Comprehension—An Experiment. IEEE Trans-                 program comprehension in the imperative and object-oriented styles. In Papers
+     actions on Software Engineering 42, 9 (2016), 886–898. https://doi.org/10.1109/            presented at the seventh workshop on Empirical studies of programmers - ESP ’97.
+     TSE.2016.2527791                                                                           ACM Press, New York, New York, USA, 124–139. https://doi.org/10.1145/266399.
+ [9] Raymond P. L. Buse and Westley R. Weimer. 2010. Learning a Metric for Code                 266411
+     Readability. IEEE Transactions on Software Engineering 36, 4 (2010), 546–558.         [29] Guido Salvaneschi, Sven Amann, Sebastian Proksch, and Mira Mezini. 2014.
+     https://doi.org/10.1109/TSE.2009.70                                                        An empirical study on program comprehension with reactive programming. In
+[10] G. Ann Campbell. 2018. Cognitive Complexity: An Overview and Evaluation. In                Proceedings of the 22nd ACM SIGSOFT International Symposium on Foundations of
+     Proceedings of the 2018 International Conference on Technical Debt (Gothenburg,            Software Engineering - FSE 2014. ACM Press, New York, New York, USA, 564–575.
+     Sweden) (TechDebt âĂŹ18). Association for Computing Machinery, New York,
+ESEM ’20, October 8–9, 2020, Bari, Italy                                                                           Marvin Muñoz Barón, Marvin Wyrich, and Stefan Wagner
+
+
+     https://doi.org/10.1145/2635868.2635895                                                  NY, USA, 231âĂŞ234. https://doi.org/10.1145/2578153.2578218
+[30] Simone Scalabrino, Gabriele Bavota, Christopher Vendome, Mario Linares-             [37] Anneliese von Mayrhauser and A. Marie Vans. 1995. Program comprehension
+     Vasquez, Denys Poshyvanyk, and Rocco Oliveto. 2019. Automatically Assessing              during software maintenance and evolution. Computer 28, 8 (1995), 44–55. https:
+     Code Understandability. IEEE Transactions on Software Engineering (2019), 1.             //doi.org/10.1109/2.402076
+     https://doi.org/10.1109/TSE.2019.2901468                                            [38] David A Walker. 2003. JMASM9: converting KendallâĂŹs tau for correlational or
+[31] Todd Sedano. 2016. Code Readability Testing, an Empirical Study. In 2016 IEEE            meta-analytic analyses. Journal of Modern Applied Statistical Methods 2, 2 (2003),
+     29th Conference on Software Engineering Education and Training. Conference               26.
+     Publishing Services, IEEE Computer Society, Los Alamitos, California and Wash-      [39] Susan Wiedenbeck and Vennila Ramalingam. 1999. Novice comprehension of
+     ington and Tokyo, 111–117. https://doi.org/10.1109/CSEET.2016.36                         small programs written in the procedural and object-oriented styles. International
+[32] Janet Siegmund. 2016. Program comprehension: Past, present, and future. In               Journal of Human-Computer Studies 51, 1 (1999), 71–87. https://doi.org/10.1006/
+     2016 IEEE 23rd International Conference on Software Analysis, Evolution, and             ijhc.1999.0269
+     Reengineering (SANER), Vol. 5. IEEE, 13–20.                                         [40] Susan Wiedenbeck, Vennila Ramalingam, Suseela Sarasamma, and Cynthia L
+[33] Janet Siegmund, André Brechmann, Sven Apel, Christian Kästner, Jörg Liebig,              Corritore. 1999. A comparison of the comprehension of object-oriented and
+     Thomas Leich, and Gunter Saake. 2012. Toward measuring program compre-                   procedural programs by novice programmers. Interacting with Computers 11, 3
+     hension with functional magnetic resonance imaging. In Proceedings of the ACM            (1999), 255–282. https://doi.org/10.1016/S0953-5438(98)00029-0
+     SIGSOFT 20th International Symposium on the Foundations of Software Engineer-       [41] Claes Wohlin. 2014. Guidelines for snowballing in systematic literature studies
+     ing (FSE-20). Association for Computing Machinery, New York, New York, 1–4.              and a replication in software engineering. In Proceedings of the 18th international
+     https://doi.org/10.1145/2393596.2393624                                                  conference on evaluation and assessment in software engineering (EASE). ACM,
+[34] Mir Muhammd Suleman Sarwar, Sara Shahzad, and Ibrar Ahmad. 2013. Cyclo-                  1–10. https://doi.org/10.1145/2601248.2601268
+     matic complexity: The nesting problem. In Eighth International Conference on        [42] Scott N. Woodfield, Hubert E. Dunsmore, and Vincent Yun Shen. 1981. The Effect
+     Digital Information Management (ICDIM 2013). IEEE, 274–279. https://doi.org/             of Modularization and Comments on Program Comprehension. In Proceedings of
+     10.1109/ICDIM.2013.6693981                                                               the 5th International Conference on Software Engineering (ICSE ’81). IEEE Press,
+[35] Asher Trockman, Keenen Cates, Mark Mozina, Tuan Nguyen, Christian Kästner,               215–223.
+     and Bogdan Vasilescu. 2018. "Automatically assessing code understandability"        [43] Xin Xia, Lingfeng Bao, David Lo, Zhenchang Xing, Ahmed E. Hassan, and Shan-
+     reanalyzed: combined metrics matter. In Proceedings of the 15th International            ping Li. 2018. Measuring Program Comprehension: A Large-Scale Field Study
+     Conference on Mining Software Repositories. ACM, 314–318. https://doi.org/10.            with Professionals. IEEE Transactions on Software Engineering 44, 10 (2018),
+     1145/3196398.3196441                                                                     951–976. https://doi.org/10.1109/TSE.2017.2734091
+[36] Rachel Turner, Michael Falcone, Bonita Sharif, and Alina Lazar. 2014. An Eye-       [44] M. C. Yeh, D. Gopstein, Y. Yan, and Y. Zhuang. 2017. Detecting and comparing
+     Tracking Study Assessing the Comprehension of C++ and Python Source Code.                brain activity in short program comprehension using EEG. In 2017 IEEE Frontiers
+     In Proceedings of the Symposium on Eye Tracking Research and Applications (Safety        in Education Conference (FIE). IEEE Computer Society, Los Alamitos, CA, USA,
+     Harbor, Florida) (ETRA âĂŹ14). Association for Computing Machinery, New York,            1–5. https://doi.org/10.1109/FIE.2017.8190486
+

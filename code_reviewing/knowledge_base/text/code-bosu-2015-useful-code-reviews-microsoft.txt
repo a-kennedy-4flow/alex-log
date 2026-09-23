@@ -1,0 +1,990 @@
+               Characteristics of Useful Code Reviews:
+                  An Empirical Study at Microsoft
+                                Amiangshu Bosu∗ , Michaela Greiler† , and Christian Bird†
+                                                ∗ Department of Computer Science
+                                           University of Alabama, Tuscaloosa, Alabama
+                                                      Email: asbosu@ua.edu
+                                            † Microsoft Research, Redmond, WA USA
+                                            Email: {mgreiler, cbird}@microsoft.com
+
+
+    Abstract—Over the past decade, both open source and com-      and the reviewer) is spent wisely. The main building blocks
+mercial software projects have adopted contemporary peer code     of code reviews are comments that reviewers add as feedback
+review practices as a quality control mechanism. Prior research   and suggestions for change that the code review author can
+has shown that developers spend a large amount of time and
+                                                                  address. The usefulness of those comments highly influence
+effort performing code reviews. Therefore, identifying factors that
+lead to useful code reviews can benefit projects by increasing    the effectiveness of the code review practices. Comments that
+code review effectiveness and quality. In a three-stage mixed     point out bugs, suggest improved ways of solving problems,
+research study, we qualitatively investigated what aspects of     or point out violations of team practices can help the author
+code reviews make them useful to developers, used our findings    submit a higher quality change to the codebase, improve the
+to build and verify a classification model that can distinguish
+between useful and not useful code review feedback, and finally   author’s development skills, or both. Other comments may
+we used this classifier to classify review comments enabling us   contain incorrect information or may ask questions that are not
+                                                                  relevant and require the author’s time to respond to without
+to empirically investigate factors that lead to more effective code
+review feedback.                                                  improving the code.
+    In total, we analyzed 1.5 millions review comments from five     As the primary goal of code review is to ensure that a
+Microsoft projects and uncovered many factors that affect the
+usefulness of review feedback. For example, we found that the     change is free from defects, follows team conventions, solves
+proportion of useful comments made by a reviewer increases        a problem in a reasonable way, and is of high quality [6], we
+dramatically in the first year that he or she is at Microsoft but consider review feedback useful if it is judged useful by author
+tends to plateau afterwards. In contrast, we found that the more  of the change to enable him or her to meet these goals. We
+files that are in a change, the lower the proportion of comments  have observed that one of the top requests from teams using
+in the code review that will be of value to the author of the
+change. Based on our findings, we provide recommendations for     code review in their development process is a way to track
+practitioners to improve effectiveness of code reviews.           the effectiveness of code review feedback and identify what
+                                                                  they can do to improve effectiveness. As one team manager
+                      I. I NTRODUCTION                            indicated, he’d like to know “was this an impactful review, a
+   In recent years, many open source software (OSS) and useful comment on the review? You know, not just a comment,
+commercial projects have adopted peer code review [1], the but did it result in a change that wouldn’t have been there
+process of analyzing code written by another developer on before.” The primary purpose of this paper is to address both
+the project to judge whether it is of sufficient quality to challenges. Our objective is to identify the factors that impact
+be integrated into the main project codebase. The formal the usefulness of code reviews, and to derive recommendations
+variant of peer code review, which is better known as software for effectiveness improvements.
+inspection or Fagan-inspection [2], has been an effective quality    To achieve this goal, we conducted a three-stage empirical
+improvement practice for a long time [3]. Even with the benefits study of code review usefulness at Microsoft. In the first stage,
+offered by software inspections, their relatively high cost and we conducted an exploratory study in which we interviewed
+formal requirements have reduced the prevalence with which developers to understand their perception of what “useful”
+software teams adopt them [4], [5]. On the other hand, projects means in the context of code review feedback. In the second
+have recently adopted lightweight, informal, and tool-based stage, we used our findings from the first stage to build and
+code review practices, which researchers have termed modern verify an automated classifier able to distinguish between
+or contemporary code review [6].                                  useful and not useful review comments. Finally, we applied
+   This modern code review has shown increasing adoption the classifier to ∼1.5 million code review comments from
+both in industrial and open source contexts [7], [8], [9] For five Microsoft projects, distinguishing comments that were
+example, in January of 2015, more than 50,000 Microsoft em- useful from those that were not. Using this large-scale dataset,
+ployees practiced tool-based code review. A recent survey [10] we quantitatively investigated factors that are associated with
+found that on average developers spend about six hours per useful review comments.
+week preparing code for review or reviewing others’ code.            The primary contributions of this study are:
+Therefore increasing the effectiveness of code review practices      • An exploratory qualitative analysis of authors’ perceptions
+is beneficial for ensuring developers’ time (both the author           on useful code review comments.
+  •  An empirically validated automatic model for classifying
+     the usefulness of review comments.
+   • An empirical study of factors influencing review comment
+     usefulness.
+   • A set of implications and recommendations for teams
+     using code review to achieve a high rate of useful
+     comments during review.
+   In this paper we start (Section II) by providing a brief
+overview of the code review process at Microsoft. We then
+(Section III) introduce the research questions that drive the
+three stages of our study. Section IV, V, and VI describes the
+methodology and results for the three stages. We then address
+the threats to the validity of our findings (Section VII), discuss
+the implications of the results (Section VIII), and position our
+work relative to prior studies on code review (Section IX).
+              II. C ODE R EVIEW AT M ICROSOFT
+                                                                           Fig. 1: Example of Code Review using CodeFlow
+   Most Microsoft developers practice code review using
+CodeFlow, an internal tool for reviewing code, which is under         iteration 2, and the final change in iteration five. Reviewers
+active development and regularly used by more than 50,000             can continue to provide feedback in the form of comments on
+developers. CodeFlow is a collaborative code review tool              each iteration and this process repeats until the reviewers are
+similar to other popular review tools such as Gerrit [11],            happy with the change. Once a reviewer is comfortable that
+Phabricator [12], and ReviewBoard [13].                               a change is of sufficient quality, he or she indicates this by
+   The single desktop view of CodeFlow (shown in Figure 1)            setting their status to “signed off”. After enough people sign
+features several panes to display important information about         off (sign off policies differ by team), the author checks the
+the code review. Such information includes the list the files         changes into the source code repository.
+involved in the change (A), the reviewers and their status (B),                        III. R ESEARCH Q UESTIONS
+diff-highlighted content of the file currently selected by the
+user (C), a summary of all the comments made during the                  The goal of our study is to derive insight regarding what leads
+review (D), and tabs for the individual iterations (explained         to high quality reviews in an effort to help teams understand
+below) of the review (E). Bacchelli and Bird provide a more           the impact of and change (if needed) their code reviewing
+detailed description of CodeFlow [6].                                 practices and behaviors so that their reviews are most effective.
+                                                                         We accomplish this by identifying how characteristics of
+   The workflow in CodeFlow is relatively straightforward. An
+                                                                      reviewers performing the review, of changes under review,
+author submits a change for review and reviewers are notified
+                                                                      and of temporal aspects of the review, influence usefulness of
+via email and can examine the change in the tool. If they
+                                                                      review comments.
+would like to provide feedback, they highlight a portion of
+                                                                         We decompose this high level objective into three concrete
+the code and type a comment which is then overlayed in the
+                                                                      research questions.
+user interface with a line to the highlighted code as shown in
+Figure 1-F and seen by all involved in the review. For example,          RQ1. What are the characteristics of code review comments
+the comment shown is for the highlighted portions of line 66.                   that are perceived as useful by change authors?
+These comments can start threads of discussion and are the               RQ2. What methods and features are needed to automat-
+interaction points for the people involved in the review. Each                  ically classify review comments into useful and not
+such thread has a status that participants can modify over the                  useful?
+course of the review. The status is initially ‘Active’, but can be       RQ3. What factors have a relationship with the density of
+changed to ‘Pending’, ‘Resolved’, ‘Won’t Fix’, and ‘Closed’                     useful code review comments?
+by anyone. There is no proscribed universal definition for each          Each of the following three sections focuses on one research
+status label and no enforced policies to enforce resolving or         question. We describe the study methods and findings separately
+closing threads of discussion. Many teams find these useful for       for each. These three questions represent high level steps
+tracking work status and decide which labels to use and how           in our study. We first aimed to understand what constitutes
+to use them independently. The author may take feedback               usefulness from the developer perspective (RQ1), then we used
+in comments, update the change, and submit the updated                these insights as we set out to build an automatic classifier
+change for additional feedback. In CodeFlow parlance, each            to distinguish between useful and not useful code review
+updated change submitted for review is termed an iteration            comments (RQ2). Finally we used this classifier to classify over
+and constitutes another review cycle. It is not unusual to see        one million comments that we then investigated quantitatively
+two, three, or four iterations before a change is ready to check      to help uncover the characteristics of reviewers and their team
+into the source code repository. In the review shown, there           and the code under review that influence the usefulness of code
+are five iterations (indicated by the tabs labeled “1”, “2”, etc.),   review comments (RQ3). Figure 2 shows an overview of our
+with the original change in iteration 1, an updated change in         three-stage research methodology.
+                                                                                                              Not Useful   Somewhat Useful   Useful
+
+
+
+
+                                                                        Percentage of overall
+                                                                                                20%
+
+
+
+
+                                                                             comments
+                                                                                                10%
+
+
+
+                                                                                                0%
+
+
+
+
+                                                                                                                     ry
+                                                                                                                       n
+
+                                                                                                                       n
+
+                                                                                                                       n
+
+                                                                                                                    ch
+
+
+                                                                                                                       e
+
+
+
+
+                                                                                                                        l
+
+                                                                                                                       n
+
+
+
+
+                                                                                                                      ls
+
+
+
+
+                                                                                                                     er
+                                                                                                                       t
+                                                                                                                      n
+
+
+
+
+                                                                                                                      e
+                                                                                                                    ca
+
+
+
+
+                                                                                                                   ec
+                                                                                                                  tio
+
+
+                                                                                                                   io
+
+                                                                                                                   to
+
+
+
+
+                                                                                                                   rc
+
+
+
+
+                                                                                                                   io
+                                                                                                                   io
+
+
+
+
+                                                                                                                  tiv
+                                                                                                                   al
+                                                                                                                 ra
+
+
+
+
+                                                                                                                 th
+                                                                                                                oa
+
+
+
+
+                                                                                                                gi
+                                                                                                                at
+
+
+
+
+                                                                                                                at
+
+
+
+
+                                                                                                                ef
+                                                                                                                ai
+
+
+
+
+                                                                                                               ou
+
+
+                                                                                                                at
+
+
+
+
+                                                                                                               Ic
+                                                                                                               ta
+
+
+
+
+                                                                                                               si
+                                                                                                              lib
+
+
+
+
+                                                                                                              .O
+                                                                                                           Lo
+                                                                                                            nt
+
+
+                                                                                                             iz
+
+                                                                                                            pr
+
+
+
+
+                                                                                                             iz
+
+
+
+
+                                                                                                           .D
+                                                                                                           lid
+
+
+
+
+                                                                                                          Po
+                                                                                                         en
+
+
+
+
+                                                                                                         es
+
+
+
+
+                                                                                                         AP
+
+
+
+
+                                                                                                        13
+                                                                                                        an
+
+
+
+
+                                                                                                        on
+
+
+                                                                                                          g
+                                                                                                       se
+
+
+
+
+                                                                                                      Ap
+
+
+
+
+                                                                                                        7.
+
+
+
+
+                                                                                                      10
+                                                                                                      Va
+
+
+
+
+                                                                                                     tin
+                                                                                                    um
+
+
+
+
+                                                                                                      R
+
+
+
+
+                                                                                                    se
+                                                                                                       .
+                                                                                                    rg
+
+
+
+
+                                                                                                    hr
+                                                                                                    re
+
+
+
+
+                                                                                                   11
+                                                                                                    5.
+
+                                                                                                   6.
+                                                                                                   n
+
+
+
+
+                                                                                                  or
+
+
+
+
+                                                                                                  al
+                                                                                                  O
+
+
+
+
+                                                                                                 nc
+                                                                                                 oc
+
+                                                                                                 ep
+
+
+
+
+                                                                                                tio
+
+
+
+
+                                                                                               pp
+
+
+
+
+                                                                                               .F
+                                                                                               3.
+
+
+
+
+                                                                                             Sy
+                                                                                               D
+
+                                                                                               R
+
+
+
+
+                                                                                              lu
+
+
+
+
+                                                                                            12
+                                                                                           Su
+                                                                                            1.
+
+
+
+
+                                                                                          So
+                                                                                           al
+
+
+
+
+                                                                                           8.
+                                                                                        su
+
+
+
+
+                                                                                         9.
+                                                                                       4.
+                                                                                      Vi
+                                                                                    2.
+                                                                                                Fig. 3: Distribution of comment categories
+            Fig. 2: Three-stage Research Method
+                                                                   2) briefly explain why they selected that particular rating for
+ IV. Q UALITATIVE E XPLORATORY S TUDY ON C OMMENT                     the comment, and
+                     U SEFULNESS                                   3) assign the comment to a comment category (e.g., comment
+   In the first phase, we conducted an exploratory qualitative        about documentation, functional, and structure).
+study to understand what code review comment usefulness To assist with the classification, we supplied the interviewee
+means to developers. Further, with the help of the interviewees with a printed copy of the comment classification scheme
+we identified signals suited to distinguish between useful including a brief description for each category. In the last
+and not useful code review comments. In the following phase (≈ 5 minutes), we asked the interviewee if they could
+subsections, we describe the study method and our findings. indicate other types of useful comments that were not covered
+We deliberately focused on understanding comment usefulness in the interview. Prior to our interviews we performed pilot
+from the perspective of the authors of source code changes interviews with a separate set of developers to assess whether
+because they are the people that actually make changes to the the question were clear and timing was appropriate. During
+code based on feedback and they are the primary target for the interviews, we wrote down all answers, categories and
+code review comments.                                            ratings of the review comments on a printed interview form and
+                                                                 immediately after the interview completed the notes with further
+A. Developer Interviews                                          details and observations. We used purposeful sampling until
+   We chose interview research because interviewing is a we reached saturation (new interviews were not providing any
+frequently used exploratory technique used to gain insight into new information). During the interviews, the seven participants
+the opinions and thoughts of the participants – which cannot rated and categorized 145 review comments.
+be obtained by quantitative measures, such as data mining [14].
+We conducted semi-structured individual interviews with seven B. Insights from the Interviews
+developers, selected from four different Microsoft projects         Prior literature has found that the primary goal of code
+based on their varying level of development / code-review reviews is most often to improve the quality of software by
+experiences. Semi-structured interviews allowed us to combine identifying defects, identify better approaches for a source code
+open-ended questions to elicit information on their perception change or help to improve the maintainability of code [16].
+on code reviews and comments with specific questions revealing There are, however, other secondary benefits of code reviews
+the perceived usefulness of individual code review comments. such as knowledge dissemination, and team awareness [6].
+Each interview lasted 30 minutes and was structured into three We found similar sentiments at Microsoft, as developers at
+phases. First (≈ 5 minutes), we asked the interviewee about Microsoft consider a code review effective if the review
+their job role, their experience, and what role comments play comments help to improve the quality of code. On the other
+during code reviewing. In the second phase (≈ 20 minutes), hand, comments whose sole purpose can be attributed to
+we showed the interviewee 20 ∼ 25 randomly selected review knowledge dissemination and team awareness are perceived as
+comments from recently submitted code reviews for which the less useful by developers.
+interviewee was the author. We asked the interviewee to rate        Figure 3 shows the distribution of comments categorized by
+the usefulness of each comment and categorize it based on a the interviewees and their ratings. The interviewees rated almost
+classification scheme adopted from a prior study to identify the 69% comments as either useful or somewhat useful. Most of
+types of issues detected during code reviews [15] (see 3 for the the comments identifying functional defects (categories from
+list of categories). We used the ratings from the author because 5 to 11 in Figure 3) were rated as ‘Useful’. More than 60%
+they are the only ones with the “ground truth” of the usefulness of the “Somewhat Useful” comments belong to the first four
+of the comment (i.e. the author is the best judge of whether categories: documentation in the code, visual representation
+the comment was helpful to him or her and/or the change). of the code (e.g. blank lines, indentation), organization of the
+For each of these comments, we asked the interviewees to         code (e.g. how functionality is divided into methods), and
+  1) rate the comment on a 3-point scale (1- Not useful, 2- solution approach. These four all belong to the class termed
+      Somewhat useful, and 3- Useful),                           “evolvability defects” as classified by Mantyla et al. [15] and
+represent issues that affect future development effort rather             be useful to the reviewers for knowledge dissemination,
+runtime behavior.                                                         but are not considered useful by the author as they do not
+   On the other hand, most of the ‘Not useful’ comments are               improve the code.
+either false positives (e.g., when a reviewer incorrectly indicates    – Some of the review comments praise code segments.
+a problem in the code, perhaps due to lack of expertise) or               Those comments may help building positive impressions
+don’t fall into a predefined category, which we therefore label           between the team members, and encourage good coding,
+as ‘Other’. Although, most of the review comments (≈ 73%)                 but interviewees rated those as ‘Not useful’.
+fell into one of the categories from Mantyla et al.’s study, we        – Some comments pointed out work that needed to occur
+identified four additional categories based on recurring labels           in the future, but not during the current development
+interviewees gave to comments in the ‘Other’ category. The                cycle. In a few cases, these comments were about code
+new categories were: 1) questions from reviewers, 2) praise               that was not related to the change at all, but simply
+for the implementation, 3) suggestions for alternate output or            existed in the changed files. If immediate actions based
+error messages, and 4) discussions on design or new features.             on these comments are not foreseeable, authors rated such
+The interviewees did not consider comments from the first two             comments as not useful.
+categories useful, while in most of the cases they considered          During the classification of the useful/not useful comments
+the last two categories as useful comments.                         by the interviewees, we looked for signals that could be used to
+   Based on the interviewee answers and additional post- automatically classify comment usefulness. We observed that
+interview analysis of the rated comments we gained insights useful comments very often trigger changes in close proximity
+about participants’ perception of usefulness and identified to the comment-highlighted lines (recall that a comment is
+suitable signals, as described below. We first describe our associated with a highlighted portion of the code) in subsequent
+insights regarding the three usefulness ratings.                    iterations. We refer to these comments that appear to induce a
+  1) ‘Useful’ comments                                              change in the code as change triggers. Therefore, automatically
+   – Authors consider identification of any functional is- identifying these change triggers can provide a valuable feature
+      sues [15] as useful review comments. However, most for classifying the usefulness of review comments.
+      of the review comments are unrelated to any types of             We found that examining the status of comments can give
+      functional defects.                                           some indication of comment usefulness. When a comment
+   – Sometimes reviewers identify validation issues or al- was marked as ‘Won’t Fix’, authors often also perceived the
+      ternate scenarios (i.e. corner cases) where the current comment as not useful (though occasionally authors flag useful
+      implementation may fail. If the author lacks knowledge comments as ‘Won’t Fix’ to defer a change). On the other
+      about particular execution environments or scenarios, an hand, most of the times that the status was set to ‘Resolved’,
+      experienced reviewer may help him through validating the it indicated that the author perceived the comment as useful
+      implementation. Authors indicated that review comments and addressed it.
+      related to such validations are very useful.                     The insights gathered from the interviews were crucial for
+   – Code review is very useful for the new members to learn our understanding of review authors’ perception of usefulness.
+      the project design, constraints, available tools, and APIs. In the next research phase, we leverage our findings as they
+      Authors that were new to the team considered comments allow us to manually classify a large amount of review
+      with suggestions regarding APIs to use, designs to follow, comments independent from developers. Further, we identified
+      team coding conventions, etc. to be useful.                   two valuable features (whether a comment has changes in
+                                                                    close proximity in subsequent iterations and comment status)
+  2) ‘Somewhat Useful’ comments
+                                                                    that can be computed automatically and used in an automated
+   – Many of the review comments identify what some devel- classifier for useful comments.
+      opers refer to as “nit-picking issues” (e.g., indentation,
+      comments, style, identifier naming, and typos). Some of
+      the interviewees rated nit-picking issues as ‘Somewhat               V. AUTOMATED C LASSIFICATION OF C OMMENT
+      useful’, while others rated those as ‘Useful’. As a rationale                            U SEFULNESS
+      for those ratings, interviewees indicated that resolving nit-    In the second phase of the study, we built upon the findings
+      picking issues may not be essential, but the identification from the interviews to create an automated classifier to
+      and resolution of nit-picking issues help long-term project distinguish between useful and not useful comments. The
+      maintenance.                                                  purpose behind this is that an accurate automatic classifier
+   – Sometimes review feedback / questions help the authors allows us to classify a large number of review comments,
+      to think about an alternate implementation or a way to enabling a large scale quantitative study of review comment
+      refactor the code to make it more comprehensible (even effectiveness (as we conduct and describe in Section VI),
+      if the current implementation may be correct). Authors as manual classification of code review comments is time
+      consider those comments ‘Somewhat useful’.                    consuming and does not scale. Note that our goal in building a
+  3) ‘Not Useful’ comments                                          classifier is not to predict comment usefulness at the time that
+   – Sometimes reviewers comment on a code segment not to the comment is written. Such a classifier would not be useful
+      point out an issue in the code, but rather to ask questions to developers (an author of a change under review likely wants
+      to understand the implementation. Those comments may to read every comment on the review) and the features that
+such a classifier could use are constrained (e.g., the status of         authors classified the hundred comments independently, using
+the comment isn’t known at the time a comment is made).                  the findings from Section IV-B as a guide. Our classifications
+   In order to build a classifier, we have to first identify potential   differed for only three out of the hundred. Since we used
+signals (metrics), then select a classification approach, and            more than two raters for the transcriptions we calculated inter-
+finally implement, train and evaluate the classifier. A crucial          rater reliability using Fleiss’ Kappa [17] on the individually
+part of training and evaluating a classifier is obtaining a standard     coded responses. The inter-rater reliability kappa κ value was
+dataset which contains information about whether or not a code           0.947, which Landis and Koch classify as “almost perfect
+review comment is useful, a so called oracle. Relying on the             agreement” [18]. Thus we have confidence that the ratings are
+145 comments rated during the interviews is not sufficient               valid and consistent.
+as that dataset is too small to build a reliable classifier. To             We combined the comment classifications from the inter-
+rectify this, we manually analyzed and separately validated              views and the manual classification into one dataset that we
+an additional 844 comments to enhance the oracle. In the                 used as our oracle to build our comment usefulness classifier.
+following, we describe the manual classification, the oracle
+generation process, the selected signals and their calculation,          B. Attributes of Useful Comments
+the classifier, and the validation of our model. We end this         Based on the insights from the interviews and our manual
+section by highlighting the results of the classification approach.
+                                                                  analysis, we identified eight attributes of comments which we
+                                                                  anticipate distinguish useful from not useful comments.
+A. Manual Classification                                             Some of these attributes of comments are not known at the
+   Based on our insights from the developer interviews, we time that the comment is made such as whether a comment
+manually classified 844 review comments from five projects will be a change trigger. Using attributes that are not available
+across Microsoft: Azure, Bing, Exchange, Office, and Visual until a review is complete would be a problem if we were
+Studio.                                                           trying to build a predictor of comment usefulness to be used
+   We classified each of the comments into one of the two at the time a comment was made. However, since our goal is
+categories: Not Useful, and Useful. Although our exploratory to classify the usefulness of a large number of comments in
+interviews included three classifications, authors in those an effort to enable an empirical investigation of what leads to
+interviews indicated that Somewhat Useful comments still were useful comments, this is not an issue for our study.
+valuable enough to improve their code. For example, as we            The first attribute we considered was the thread status
+observed disagreements between authors related to how they (discussed in Section IV-B). Further, to measure the engagement
+classify nit-picking comments (Section IV-B), we discussed and activity of a comment we count the number of participants
+with them how to rate nit-picking comments. Since nit-picking commenting on one thread (including the author), the number
+comments are useful for long-term project maintenance and of comments constituting the thread, whether or not there was
+often led to changes in the code, we agreed to rate them as a reply from the author to a comment, and the number of
+‘Useful’. Similar discussions happened for the other types of iterations in the code review.
+somewhat useful comments, thus we consider comments that             In addition, we hypothesize three more signals that may be
+would fall into the Somewhat Useful category as described in good candidates for our classifier: from the interviews we saw
+Section IV-B to be useful.                                        that a comment that was a change trigger was often deemed
+   For the manual analysis, we randomly selected reviews with useful. We also observed anecdotally that ‘Useful‘ comments
+at least two iterations and two comments. Multiple iterations frequently contained a different set of keywords (e.g., ‘fixed’,
+allow us to determine if a comment is in proximity to, and thus ‘bug’ or ‘remove’) than ‘Not useful’ comments. Finally we
+likely caused, a code change (i.e., we can tell if a comment believe that the sentiment of a comment (i.e. whether or not
+in iteration 1 caused a code change or not based on the code a comment is formulated in a positive or negative tone) may
+submitted in iteration 2).                                        related to comment usefulness.
+   We read each comment thread and examined the code that
+the comment thread was referring to in an effort to understand C. Attributes calculation
+the question or concern raised by the reviewer and how the           While the first set of signals can be derived easily from
+author responded to it. If the author did not participate in the the code review data itself, the latter three signals (i.e. if a
+comment thread, we also examined the subsequent iteration(s) comment is a change trigger, the keywords in a comment, and
+to determine if the suggested changes were implemented by the comment sentiment) require additional work to compute. We
+author. Our assessment of comment usefulness was primarily briefly describe our approaches below.
+based on insights drawn from interviews such as the categories       Change trigger. From the manual analysis and interviews, we
+that comments fell into, the topics addressed in the comments observed that most changes triggered by a comment happen in
+and the types of action that the comments suggested. For close proximity to the comment-highlighted line(s). To see if a
+example, if the author pointed out a valid defect and a suggested comment triggered a change we look at differences between the
+fix, we classified it as useful, whereas a question about how file containing the comment and versions of the file submitted
+the changed component was tested was termed not useful.           in subsequent iterations of the code review. For example, if a
+   To assess validity and subjectivity, we used inter-rater comment is made on a particular line of code in foo.cs in the
+reliability. A sample of one hundred comments was selected first iteration of a code review, then we track the position of
+randomly from the set of 844 comments and each of the three that same line of code in subsequent versions of foo.cs in the
+subsequent iterations, even if the location of the line is affected
+by other additions or deletions. If there was a change in any
+later iteration that is in close proximity to the line of code
+associated with the comment then the comment is considered
+a change trigger.
+   Sometimes review comments trigger changes before or
+after the code highlighted by the comment, as illustrated                          (a) Changes at three lines after the comment highlighted lines
+by Figure 4(a). We investigated this by varying the level of
+proximity in our analysis (i.e., the number of lines a change
+is away from the code associated with a comment). At the
+lowest level, we only associated changes on the same line as
+the highlighted code, while at the highest level, we considered
+changes within ten lines of the comment. Based on analysis of
+the false positives (sometimes changes close to a comment are
+not related to the comment) and false negatives (if a change is
+more than a few lines away from the comment, we might not                                  (b) Two comments within a close proximity
+categorize it as a change trigger) at each level of proximity,                Fig. 4: Identifying changes triggered by review comments
+we found that the best results occurred when we associated
+code changes to comments that were at most one line away (Section V-B) of the comments in our oracle. To validate our
+from the change.                                                            tree-based model, we employed 10-fold cross-validation [26]
+   Keyword-based Classifier. As Naive Bayes classifiers have and repeated the process 100 times.
+been used to successfully classify natural language in different               Finally, to validate our model via review participants, we sent
+domains (e.g. filtering spam emails [19]), we implemented five developers (three of them were not part of the interviews)
+such a classifier based on the multi-variate Bernoulli document a list of review comments they received for their recent code
+model [20] to classify comments. As the training corpus, reviews and asked them to classify each comment as ‘Useful’
+we used comments from our previously established oracle. or ‘Not Useful’. We then compared these classifications with
+We performed standard pre-processing of the corpus [21] by the classifications produced by the decision tree. The results
+removing white-space, punctuation, and numbers, converting of this validation are discussed below (Section V-F).
+all words to lower case, applying a Porter-stemmer [22] to
+generate stems of the words and removing common English E. Effects of individual attributes
+stop-words. We also limited keywords to those appearing in at                  We examined each of the features individually to understand
+least ten comments. After these steps, there were 349 unique the decision characteristics of attributes and the strength of
+keywords. After the Naive Bayes model is trained using our relationship with usefulness. Due to space restriction we
+oracle, the frequencies of each keyword in a new comment report some interesting observation, but omit detail correlation
+are fed into the model to generate a classification of useful or outcomes.
+not useful. This classification is then used as a feature in our               If a comment triggered changes within one line distance
+main classifier.                                                            to comment-highlighted lines, it was highly likely to be
+   Comment sentiment. Sentiment analysis has been widely used useful (precision: 88% and recall: 78%). If the author did
+to classify natural language text [23]. To use the sentiment of not participate in a comment-thread, it was more likely to be
+a comment as a probable predictor of usefulness, we used the useful (88%) than those threads where the author did (49%). A
+Microsoft Research Statistical Parsing and Linguistic Analysis manual investigation of comments showed that absence of the
+Toolkit (MSR-Splat) [24] service to calculate the sentiment author in a comment-thread very often indicated an implicit
+of the comments. MSR-Splat calculates the probability of acknowledgment by the author and a useful comment. On
+a comment having a positive sentiment as a floating point the other hand, author participation indicated either a useful
+number between 0.0 and 1.0. Similar to prior literature [23], we comment with explicit acknowledgment (e.g., ‘done’, ‘fixed’,
+categorized the comments based on sentiment probability into and ‘nice catch’) from the author or a not useful question /
+five categories, each category spanning a 0.2 probability range false positive, which the author responded to.
+from the previous category: extremely negative, somewhat                       Comment-threads with only one comment or participant were
+negative, neutral, somewhat positive, and strongly positive. more likely to be useful (88%), than those with more than
+The sentiment category for the text of the comment was used one comment or participant (51%). The explanation is similar
+as an input feature for our main classifier.                                as the explanation for author participation, as participation
+D. Classification process and validation                                    of several engineers indicated a discussion which might or
+                                                                            might not be useful. No discussion often indicated implicit
+   After calculating the attributes (section V-B) for the com- agreement. Our keyword based classification also showed
+ments in our oracle, we used a classification tree algorithm1 [25] promising results. Table I shows keywords, which belonged
+to build a decision tree model based on the discussed features to at least 15 comments in our oracle and are at least twice
+1    A machine learning technique in which the goal is to predict the value more likely to be in a particular class of comments (i.e. either
+     of a target variable based on several input variables                  useful or not useful) than the other. We found that comments
+                   TABLE I: Keywords distribution                                                   TABLE II: Comment usefulness density
+               Useful                                 Not Useful                                                        # of       # of
+                                                                                                                                               # of
+                                                                                                                                                         Usefulness
+                                                                                    Project             Domain                                Useful
+  assert, int, big, expand, least,   leave, yes, message, store, doesn’t, keep,                                        Reviews   Comments
+                                                                                                                                             Comments
+                                                                                                                                                          Density
+  nit, space, log, fix, match, ac-   result, first, let, default, actual, which,    Azure             Cloud             15,410    126,520       86,914       68.6%
+  tion, line, rather, please, cor-   why, current, happen, time, else, exist,                         software
+  rect, should, remove, may be,      reason, type, work, how, item, want,           Bing              Search engine     92,987    664,619      426,513       64.2%
+  move                               really, not, fail, test, already               Visual Studio     Development       12,802    113,208       75,378       66.6%
+                                                                                                      tools
+                                                                                    Exchange          Email server      29,272     246,566     155,971       63.3%
+                                                                                    Office            Office suite      33,351     299,919     204,045       68.0%
+with command verbs (assert, expand, fix, remove, and move)                                                     Total   190,050   1,496,340     979,440       65.5%
+or request (e.g., please, should, may be) are more likely to be
+useful. On the other hand, questions (e.g., why, which, and                        Microsoft projects, i.e., Azure, Bing, Visual Studio, Exchange
+how), acknowledgment (e.g., yes, already) or denial (doesn’t,                      and Office, the same projects that the comments used to train
+and not) are more likely to be in not useful comments.                             the decision tree were drawn from. We selected those projects as
+   Most of the comments (83%) are made during the first two                        they represent a wide range of domains, development practices,
+iterations. Comments made after the first two iterations are less                  and include both services and traditional desktop applications.
+likely to be useful. Also, comments where a change within                          Each project has a substantial code base, comprising millions
+one line of the comment highlighted text could be detected                         of lines of code. Based on these data sets, we examine the
+where much more likely to be useful. Most of the comments                          relationship of comment usefulness density (i.e. the proportion
+(92%) with Won’t fix status are Not Useful, while most of the                      of comments in a review that are considered useful) with a
+comments with Resolved/ Closed status are (≈ 80%) Useful.                          number of factors related to the reviewers and what is being
+   Finally, although majority (51%) of the comments had                            reviewed. Table II provides summary information for each of
+‘Extremely Negative’ tones, only 57% of those comments                             the five projects, including the overall comment usefulness
+were useful. On the other hand, comments with ‘Neutral’ or                         density. Interestingly, all projects have a similar comment
+‘Somewhat Negative’ tones were more likely to be ‘Useful’                          usefulness density between 64% and 68%. In this section, we
+(≈ 79% were considered useful).                                                    explore the influence of the two aforementioned factors on
+                                                                                   comment usefulness.
+F. Model performance
+   Figure 5 shows the decision tree model built from our oracle. A. Reviewer characteristics
+The root node of the tree is ChangeTrigger 1 (i.e. changes           Prior studies on software inspection found wide variation
+within one line distance to a comment-highlighted line).          in the effectiveness of different inspectors (i.e., the person
+   Comment status is the second most important attribute for the examining the code), even when they are using the same
+classification. These two most important signals were evident technique on the same artifact [27]. Similarly Rigby et al.
+to us during the first stage of this study (Section IV-B), and suggested using experienced members or co-developers as
+our model provides confirmation. The other useful attributes reviewers [29]. Since those studies suggest that reviewer
+for the model are number of comments, iteration number, and characteristics can have an influence on review usefulness, we
+sentiment group.                                                  studied the following three aspects of reviewer characteristics:
+   Based on one hundred 10-fold cross-validations of the 1) experience with the artifacts in the review, 2) experience in
+decision tree model, our model had a mean precision of 89.1%, the organization, and 3) being in the same team as the change
+mean recall of 85.1%, and mean classification error of 16.6%. author. We also examined one aspect of the project the reviews
+Finally, the review participants that we contacted rated 97 out belongs to: how the effectiveness of comments in an entire
+of the 125 comments as Useful. Our model classified 105 of project changes over time.
+those review comments as ‘Useful’, of which 91 were correct.         1) Do reviewers that have prior experience with a software
+In this step, our model had 86.7% precision, and 93.8% recall. artifact give more useful comments?: We investigated two
+                                                                  aspects of experience: first, experience in changing, and second
+VI. E MPIRICAL S TUDY OF FACTORS INFLUENCING R EVIEW experience in reviewing an artifact. We used a source code file
+                          U SEFULNESS                             as the level of granularity for experience. We compared the
+   The ultimate goal of our study is to understand the influences density of useful comments for developers who had previously
+of different factors on the usefulness of code reviews feedback. made changes to the files in a review to the density of useful
+Specifically, we investigate two types of factors: 1) character- comments made by developers who had not made changes. The
+istics of the reviewers and their team and 2) characteristics of developers who had made prior changes to files in a change
+the changeset under review. The selection of those factors was under review had a higher proportion of useful comments
+guided by prior studies on software inspection [27], [28], and in four out of the five projects (all but Exchange which
+suggestions for code review practices [29], [16]. To identify shows marginal increases), but we did not see a difference in
+the influence of each factor on the usefulness of code review effectiveness based on the number of times that a developer
+comments we used our trained decision tree to classify review had worked on a file. That is, comments from developers who
+comments in useful and not useful comments (as described in had changed a file ten times had the same usefulness density
+Section V-C) and then examined the relationship of various as from developers how had only changed a file once. In detail,
+factors with usefulness. In total, we analyzed ≈ 1.5 million experience in changing a file at least once increases the density
+comments from 190,050 review requests from five major of useful comments from 66% to 74% for Azure, from 60%
+                                                                  Fig. 5: Decision Tree Model to Classify Useful Comments
+                                                                                                   Exchange), reviewers that spend more time in the organization
+                                       Azure   Bing      Exchange       Office     Visual Studio   have a higher density of useful comments. The effect is
+                             80%
+                                                                                                   especially visible for new hires, who in the first three months
+        Usefulness Density
+
+
+
+
+                             70%
+                             60%
+                                                                                                   had the lowest density of useful comments. During the first
+                             50%
+                                                                                                   three quarters, the usefulness density increases the most, and
+                             40%                                                                   stays relatively stable after the first year. The first year at
+                                   0             5             10              15            20
+                                                                                                   Microsoft is often considered “ramp up” time for the new
+                                           Reviewers’ Number of Prior Reviews in the File
+                                                                                                   hires. During that time employees become more familiar with
+Fig. 6: Prior experience reviewing the artifact vs. comment                                        the code review process, project design, and coding practices
+usefulness density                                                                                 at Microsoft. After the ramp up period, they can be as useful
+                                                                                                   reviewers as their senior Microsoft peers. In detail, we saw
+to 71% for Bing, from 66% to 70% for Visual Studio, from                                           for Azure an increased density of useful comments from 60%
+67% to 72% for Office and from 62% to 63% for Exchange.                                            to 66%, for Bing from 62% to 67%, for Visual Studio from
+   Our analysis of the effect of experience in reviewing a                                         60% to 70% and for Office from 60% to 68% after the first
+file showed strong effects on the density of useful comments                                       year. For Exchange, we could not see a steady trendline, and
+(Figure 6). For all the five projects, reviewers who had reviewed                                  usefulness ratios vary between 60% to 65%.
+a file before were almost twice more useful (65% -71%) than                                           2) Do reviewers from the same team give more useful
+the first time reviewers (32% -37%). Comment usefulness                                            comments?: We hypothesize that a reviewer may give more
+densities also show an increasing trend with the number of prior                                   useful comments to member of his or her own team because
+reviews up to around five reviews, after which the usefulness                                      they are familiar with that person, their abilities, and are more
+density plateaued between 70% and 80%.                                                             invested in the quality of the code that the team ships. A team
+   Based on these results, we conclude that developers who                                         in this sense is a group of usually four to ten developers all
+have either changed or reviewed an artifact before give more                                       working under the same manager or developer lead (i.e., each
+useful comments. One possible explanation for these results                                        project in our analysis comprises many teams). We found that
+is that reviewers who have changed or reviewed a file before                                       roughly three quarters (76%) of review comments come from
+have more knowledge about the design constraints and the                                           reviewers on the same team as the author. Although cross-
+implementation. Therefore, they are able to provide more                                           team reviewers were less frequent, we found that reviewers
+relevant comments. Also, a first time reviewer may not know                                        from different teams gave slightly more useful comments than
+the design and context, they may ask questions to understand                                       reviewers from the same team in all the five projects. As
+the implementation, or identify false issues based on their                                        Table III shows however, the magnitude of the difference
+incorrect assumption. Unsurprisingly, first time reviewers of                                      is quite small (under 1.5% for all but one project) and is
+an artifact are providing less valuable feedback.                                                  statistically significant only because of the large sample used
+   We assume that review experience shows more drastic effects                                     (over one million comments in total). Based on this, we
+on comment usefulness than change experience because many                                          conclude that there is no noticeable difference in comment
+teams have a practice of letting new developers first review the                                   usefulness density between reviewers who are on the same
+code before they are allowed to change the code. Therefore, a                                      team or on different teams than the author.
+developer who makes the first change to a file has most likely                                        3) How do comment usefulness densities vary over time?:
+already reviewed it before.                                                                        Porter et al. found in their study on software inspection that
+   We calculated a reviewer’s experience based on his or her                                       effectiveness and defect discovery rates vary over different time
+tenure at Microsoft. In four out of the five projects (all but                                     periods [28]. We investigated whether reviewers are becoming
+            TABLE III: Usefulness density vs. team
+                                                               Visual                                                             Azure   Bing   Exchange       Office       Visual Studio
+  Reviewer and Author                     Azure    Bing                    Exchange   Office
+                                                               Studio
+  in the same team
+  Yes                                     68.0%    67.8%           66.0%      62.5%    66.7%
+
+
+
+
+                                                                                                   Usefulness Density
+  No                                      69.4%    68.6%           69.1%      63.7%    66.9%                            70%
+
+                                  72.5%                                                                                 65%
+             Usefulness Density
+
+
+
+
+                                  70.0%
+                                                                                                                        60%
+                                  67.5%
+
+                                                                                                                              0           10            20             30             40
+                                  65.0%
+                                                                                                                                          Number of Files in the Changeset
+
+                                                     Time Period
+                                                                                                                         Fig. 8: Usefulness density vs. Number of files
+                                                  (a) Office
+                                 65%
+                                                                                               to false positives or more questions to the author in an effort
+            Usefulness Density
+
+
+
+
+                                                                                               to understand the change, causing lower usefulness densities.
+                                 64%
+
+                                 63%
+
+                                 62%
+                                                                                                  2) Do the types of files under review have any effect on
+                                 61%                                                           comment usefulness?: We grouped the files into four groups
+                                                     Time Period                               based on the purpose of the file: 1) Source code (e.g., C#,
+                                                  (b) Bing                                     C++, Visual Basic or C-header files), 2) Scripts (e.g., SQL
+                                                                                               or command line scripts), 3) Configuration (e.g., .Config or
+        Fig. 7: Temporal Trends of Usefulness density                                          .INI) files), and 4) Build (e.g., Project or make files). We
+more efficient in making comments on the same project over                                     observed that source code files had the highest density of
+time by looking at the the comment usefulnesss density of the                                  useful comments (70%). On the other hand, build files had
+entire project for different periods of time. We found that for                                the lowest comment usefulness densities (65%). As notable
+four out of the five projects the density of useful comments                                   outliers, Visual studio solution files (a type of configuration
+increases over time and we suspect this can be attributed to both                              file) (57%) and make files (53%) had a low proportion of useful
+increased experience with the project, similar to our findings                                 comments. We expect that this may be due to the complexity
+in Section VI-A1 and also refinement of the code reviewing                                     of the these files (e.g., McIntosh et al. have demonstrated the
+process (more training of developers, better tracking of code                                  complexity of build files [30]) where the impact of changes
+review data, etc.). Figure 7 (a) shows the temporal trend for a                                on the overall system are sometimes harder to assess than for
+snapshot of time for the Office project. Even though the long                                  source code. Code reviewing tools and practices also often
+term trend shows an increase density of useful comments, for                                   emphasize the review of code, whereas review of configuration
+three out of the five projects we noticed peaks and valleys in the                             files and build files are given less attention.
+density of useful comments for limited periods. For example,
+                                                                                                                                     VII. T HREATS T O VALIDITY
+Figure 7:(b) shows a temporary drop for the Bing project.
+Examining trends of usefulness density can help managers                                          All projects selected for this study belong to the same
+determine whether or not code review practices are improving.                                  organization practicing code reviews using the same tool. While
+For example, during times where the usefulness density drops,                                  the tool itself may be specific, prior work has shown that most
+managers can be alerted and can easily “drill-down” to the                                     reviewing performed today follows a similar workflow. Code
+specific reviews, reviewers, changes, or components, that are                                  reviews via CodeFlow are similar to the processes based on
+contributing to the drop and can take corrective action.                                       other popular tools such as Gerrit, ReviewBoard, GitHub pull
+                                                                                               requests, and Phabricator. Many companies and open source
+B. Changeset characteristics                                                                   projects that practice review are using tools such as these rather
+   Porter et al. found that software inspection effectiveness                                  than email. Like CodeFlow, these tools facilitate feedback from
+depends on code unit factors such as code size, or functional-                                 reviewers about the change, often allowing reviewers to indicate
+ity [28] and Rigby et al., suggested that reviews should contain                               specific parts of the change [7], [31].
+small, incremental and complete changesets [29]. Therefore,                                       Most of the attributes calculated for this study can be
+we investigated whether size of the changeset or type of file                                  also calculated for code reviews conducted with these other
+under review has any effect of review usefulness.                                              tools. Also, prior study results suggest that there are large
+   1) Do larger code reviews (i.e., with higher number of files)                               similarities between the code review practices of different
+get less useful comments?: Figure 8 illustrates how comment                                    OSS and commercial projects [7]. We have attempted to
+usefulness density change with the number of files in a change                                 mitigate threats to external validity by including projects in
+under review. The trendline shows that as number of files in the                               this study that represent diverse product domains and platforms.
+change increases, the proportion of comments that are useful                                   Nonetheless, some biases remain; all projects are large-scale,
+drops. This result supports Rigby’s recommendation for smaller                                 relatively mature, and come from the same company.
+changesets. Developers have indicated that if there are more                                      We attempted to validate the model training data and
+files to review, then a thorough review takes more time and                                    the results of the model’s classification in multiple ways,
+effort. As a result, reviewers may opt for cursory review of                                   checking consistency with inter-rater reliability, using k-fold
+large changesets and may miss some changes. This may lead                                      cross validation, and comparing classification results with
+ratings from the authors that received the comments. While              less effective. Teams can also continuously monitor themselves
+the model achieves high levels of accuracy with precision and           and address issues when they arise. For example, one team that
+recall values between 85% and 90%, the mean classification              we talked to indicated that they have been manually reading
+error rate is around 15%. It is possible that those incorrect           through the comments in reviews each week to see if there are
+classifications may have altered our results, however this can          patterns that need to be addressed. Our classifier can help by
+only lead to incorrect findings and conclusions if there is a           automatically identifying the less useful comments which can
+systematic relationship between the comments that the model             speed up the process of determining areas of code experiencing
+incorrectly classifies and the factors examined in phase three          problems or can reduce the number of comments that team
+of our study (if, for example, our model incorrectly classifies         members need to read. Project management can also identify
+the usefulness of comments in large reviews far more than               weak reviewers and take necessary steps to help them become
+those with fewer files). We have no reason to believe such a            efficient.
+relationship exists, but have no empirical evidence.
+   Lastly, a common misinterpretation of empirical studies
+                                                                                             IX. R ELATED W ORK
+is that nothing new is learned (e.g., “I already knew this
+result”). However, such wisdom has rarely been shown to be
+                                                                           Prior studies exist that have examined the effects of different
+true and is often quoted without scientific evidence. This paper
+                                                                        factors on the effectiveness of traditional Fagan-inspection [2].
+provides such evidence: Most common wisdom and intuition
+                                                                        Porter et al. studied the effect of three types of factors (i.e.
+is confirmed (e.g., “prior experience in artifacts help useful
+                                                                        code unit, reviewer, and team) on inspection effectiveness. They
+reviews”) while some is challenged (e.g., “reviewers from the
+                                                                        found code unit factors (e.g., code size, and functionality) and
+same team are more useful”).
+                                                                        reviewer factors (e.g., presence of certain reviewers) as the
+            VIII. I MPLICATIONS OF THE R ESULTS                         most influential factors [28]. Although tool-based contemporary
+                                                                        code review practices differ a lot from the traditional inspection
+   The results of this study have several implications for both         techniques [7], we also observed the effect of changeset size
+code review participants and researchers.                               and reviewer experience in this study.
+   Reviewer Selection: This study showed that experience                   Most of the earlier studies examined traditional software
+with the code base is an important factor to increase the               inspection techniques, only a few recent studies have examined
+density of useful comments in code reviews. Therefore, we               informal code review practices. Rigby has published a series of
+suggest that reviewers should be selected carefully. Automatic          studies examining informal peer code review practices in OSS
+review suggestion systems can help to identify the right set of         projects [34], [35], and comparing the review process between
+developers that should be involved in a review. Few studies [32],       commercial and open source projects [7]. In the later study,
+[33] have attempted to suggest reviewers for code changes,              Rigby and Bird found that despite differences between different
+and in some popular code review tools such as Crucible and              projects, many of the characteristics of contemporary code
+CodeFlow automatic reviewer suggestion features already exist.          review practices (i.e. review interval, number of comments,
+   However, such tools should be used with caution. As our              number of reviewers) were very similar [7]. Bacchelli and
+results suggest that new hires and reviewers with limited               Bird investigated the purposes and outcomes (i.e., accept or
+experience provide feedback with limited utility, one might             reject) of modern code reviews and found that although finding
+be tempted to exclude them from the reviewing process. Due              defects is the primary motivation, only a fraction of review
+to the knowledge dissemination aspects of code review [6],              comments finds defects. On the other hand, code reviews
+we recommend including inexperienced reviewers so that they             provide additional benefits such as knowledge dissemination,
+can gain the knowledge and experience required to provide               team awareness, and identifying better solutions [6]. Baysal et
+useful comments to change authors. Rather than excluding the            al. found a variety of factors (such as review size, component,
+inexperienced, authors of changes should include at least one           reviewer characteristics, or author experience) to have signifi-
+or two experienced reviewers to ensure useful feedback.                 cation effects on code review response time and outcome [36].
+   Managing changesets: Our results suggest that review
+                                                                           While most of the studies on modern code reviews have
+effectiveness decreases with the number of files in the change
+                                                                        examined the code review process and factors that affect review
+set. Therefore, we recommend that developers submit smaller
+                                                                        interval or outcome, we are not aware of any study that has
+and incremental changes whenever possible, in contrast to
+                                                                        explored the factors influencing the effectiveness of modern
+waiting for a large feature to be completed. Special care should
+                                                                        code review.
+be taken when non-code files, such as configuration or build
+files, are included in reviews, as these elicit less useful feedback.
+Reviewers should be encouraged to give them more attention                                     X. C ONCLUSION
+and authors can be of help by providing more details of the
+changes to these files in the change description prior to sending          In this study, we have identified a set of factors affecting
+the change out for review.                                              the usefulness of code reviews. We provided recommendations
+   Identifying weak areas: As comment usefulness density                to both practitioners and researchers to improve code reviews.
+can be calculated and compared along various dimensions such            It is our hope that the insights discovered in this study will
+as types of files or particular modules of a system, this measure       be helpful to improve code review process as well as to build
+can be used by teams to identify areas where code reviews are           better code review tools.
+                              R EFERENCES                                         [21] G. Antoniol, G. Canfora, G. Casazza, A. De Lucia, and E. Merlo,
+                                                                                       “Recovering traceability links between code and documentation,” IEEE
+ [1] P. Rigby, B. Cleary, F. Painchaud, M. Storey, and D. German, “Contem-             Transactions on Software Engineering, vol. 28, no. 10, pp. 970–983,
+     porary peer review in action: Lessons from open source development,”              2002.
+     Software, IEEE, vol. 29, no. 6, pp. 56–61, Nov 2012.
+                                                                                  [22] M. F. Porter, “Snowball: A language for stemming algorithms,” http:
+ [2] M. E. Fagan, “Design and code inspections to reduce errors in program
+                                                                                       //www.tartarus.org/\∼{}martin/PorterStemmer, 2001.
+     development,” IBM Systems Journal, vol. 15, no. 3, pp. 182 –211, 1976.
+ [3] M. Fagan, “A history of software inspections,” in Software pioneers.         [23] A. Agarwal, B. Xie, I. Vovsha, O. Rambow, and R. Passonneau,
+     Springer, 2002, pp. 562–573.                                                      “Sentiment analysis of twitter data,” in Proceedings of the Workshop on
+ [4] L. G. Votta Jr, “Does every inspection need a meeting?” in ACM SIGSOFT            Languages in Social Media. Association for Computational Linguistics,
+     Soft. Eng. Notes, vol. 18. ACM, 1993, pp. 107–114.                                2011, pp. 30–38.
+ [5] P. M. Johnson, “Reengineering inspection,” Comm. of the ACM, vol. 41,        [24] C. Quirk, P. Choudhury, J. Gao, H. Suzuki, K. Toutanova, M. Gamon,
+     no. 2, pp. 49–52, 1998.                                                           W. tau Yih, L. Vanderwende, and C. Cherry, “Msr splat, a language
+ [6] A. Bacchelli and C. Bird, “Expectations, outcomes, and challenges                 analysis toolkit,” in Proceedings of NAACL-HLT 2012. Association
+     of modern code review,” in Proceedings of the 2013 International                  for Computational Linguistics, June 2012. [Online]. Available:
+     Conference on Software Engineering. IEEE Press, 2013, pp. 712–721.                http://research.microsoft.com/apps/pubs/default.aspx?id=173539
+ [7] P. C. Rigby and C. Bird, “Convergent contemporary software peer review       [25] L. Breiman, J. Friedman, C. J. Stone, and R. A. Olshen, Classification
+     practices,” in Proceedings of the 2013 9th Joint Meeting on Foundations           and regression trees. CRC press, 1984.
+     of Software Engineering, ser. ESEC/FSE 2013, 2013, pp. 202–212.              [26] L. Breiman and P. Spector, “Submodel selection and evaluation in
+ [8] S. McIntosh, Y. Kamei, B. Adams, and A. E. Hassan, “The impact of                 regression. the x-random case,” International statistical review/revue
+     code review coverage and code review participation on software quality:           internationale de Statistique, pp. 291–319, 1992.
+     A case study of the qt, vtk, and itk projects,” in Proceedings of the 11th
+                                                                                  [27] J. Carver, “The impact of background and experience on software
+     Working Conference on Mining Software Repositories. ACM, 2014, pp.
+                                                                                       inspections,” 2003.
+     192–201.
+ [9] V. Balachandran, “Reducing human effort and improving quality in peer        [28] A. Porter, H. Siy, A. Mockus, and L. Votta, “Understanding the sources
+     code reviews using automatic static analysis and reviewer recommenda-             of variation in software inspections,” ACM Transactions on Software
+     tion,” in Proceedings of the 2013 International Conference on Software            Engineering and Methodology (TOSEM), vol. 7, no. 1, pp. 41–79, 1998.
+     Engineering. IEEE Press, 2013, pp. 931–940.                                  [29] P. Rigby, B. Cleary, F. Painchaud, M.-A. Storey, and D. German, “Con-
+[10] A. Bosu and J. C. Carver, “Impact of peer code review on peer impression          temporary peer review in action: Lessons from open source development,”
+     formation: A survey,” in 2013 ACM / IEEE International Symposium on               IEEE Software, vol. 29, no. 6, pp. 56–61, 2012.
+     Empirical Software Engineering and Measurement, 2013, pp. 133–142.           [30] S. McIntosh, M. Nagappan, B. Adams, A. Mockus, and A. E. Hassan, “A
+[11] “Gerrit code review.” [Online]. Available: https://code.google.com/p/             large-scale empirical study of the relationship between build technology
+     gerrit/                                                                           and build maintenance,” Empirical Software Engineering, pp. 1–47, 2014.
+[12] “Phabricator.” [Online]. Available: http://phabricator.org/                  [31] G. Gousios, M. Pinzger, and A. v. Deursen, “An exploratory study of
+[13] “Review board.” [Online]. Available: https://www.reviewboard.org/                 the pull-based software development model,” in Proceedings of the 36th
+[14] T. R. Lindlof and B. C. Taylor, Qualitative communication research                International Conference on Software Engineering. ACM, 2014, pp.
+     methods. Sage, 2010.                                                              345–355.
+[15] M. Mantyla and C. Lassenius, “What types of defects are really discovered    [32] J. B. Lee, A. Ihara, A. Monden, and K.-i. Matsumoto, “Patch reviewer
+     in code reviews?” Software Engineering, IEEE Transactions on, vol. 35,            recommendation in oss projects,” in Software Engineering Conference
+     no. 3, pp. 430–448, May 2009.                                                     (APSEC, 2013 20th Asia-Pacific. IEEE, 2013, pp. 1–6.
+[16] J. Cohen, E. Brown, B. DuRette, and S. Teleki, Best Kept Secrets of          [33] G. Jeong, S. Kim, T. Zimmermann, and K. Yi, “Improving code review
+     Peer Code Review. Smart Bear, 2006.                                               by predicting reviewers and acceptance of patches,” Research on Software
+[17] J. L. Fleiss, “Measuring nominal scale agreement among many raters.”              Analysis for Error-free Computing Center Tech-Memo (ROSAEC MEMO
+     Psychological bulletin, vol. 76, no. 5, p. 378, 1971.                             2009-006), 2009.
+[18] J. R. Landis and G. G. Koch, “The measurement of observer agreement
+     for categorical data,” biometrics, pp. 159–174, 1977.                        [34] P. C. Rigby, D. M. German, and M.-A. Storey, “Open source software
+[19] M. Sahami, S. Dumais, D. Heckerman, and E. Horvitz, “A bayesian                   peer review practices: a case study of the apache server,” in Proceedings
+     approach to filtering junk e-mail,” in Learning for Text Categorization:          of the 30th international conference on Software engineering. ACM,
+     Papers from the 1998 workshop, vol. 62, 1998, pp. 98–105.                         2008, pp. 541–550.
+[20] A. McCallum, K. Nigam et al., “A comparison of event models for              [35] P. C. Rigby and M.-A. Storey, “Understanding broadcast based peer
+     naive bayes text classification,” in AAAI-98 workshop on learning for             review on open source software projects,” in Proceedings of the 33rd
+     text categorization, vol. 752. Citeseer, 1998, pp. 41–48.                         International Conference on Software Engineering. ACM, 2011, pp.
+[21] G. Antoniol, G. Canfora, G. Casazza, A. De Lucia, and E. Merlo,                   541–550.
+     “Recovering traceability links between code and documentation,” IEEE         [36] O. Baysal, O. Kononenko, R. Holmes, and M. W. Godfrey, “The influence
+                                                                                       of non-technical factors on code review,” in Reverse Engineering (WCRE),
+                                                                                  2013 20th Working Conference on. IEEE, 2013, pp. 122–131.
+

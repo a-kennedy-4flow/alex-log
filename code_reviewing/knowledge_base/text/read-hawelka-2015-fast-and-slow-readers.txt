@@ -1,0 +1,600 @@
+          OPEN            On forward inferences of fast and slow
+   SUBJECT AREAS:
+                          readers. An eye movement study
+ HUMAN BEHAVIOUR          Stefan Hawelka, Sarah Schuster, Benjamin Gagl* & Florian Hutzler
+             READING
+
+                          Centre for Cognitive Neuroscience, University Salzburg, Hellbrunnerstr. 34, 5020 Salzburg, Austria.
+         Received
+18 September 2014
+                          Unimpaired readers process words incredibly fast and hence it was assumed that top-down processing, such
+          Accepted        as predicting upcoming words, would be too slow to play an appreciable role in reading. This runs counter
+   19 January 2015        the major postulate of the predictive coding framework that our brain continually predicts probable
+                          upcoming sensory events. This means, it may generate predictions about the probable upcoming word
+          Published       during reading (dubbed forward inferences). Trying to asses these contradictory assumptions, we evaluated
+  13 February 2015        the effect of the predictability of words in sentences on eye movement control during silent reading.
+                          Participants were a group of fluent (i.e., fast) and a group of speed-impaired (i.e., slow) readers. The findings
+                          indicate that fast readers generate forward inferences, whereas speed-impaired readers do so to a reduced
+                          extent - indicating a significant role of predictive coding for fluent reading.
+ Correspondence and
+ requests for materials
+
+
+
+                          T
+should be addressed to          he present eye movement study investigated the role of predicting upcoming words during silent reading
+S.H. (stefan.hawelka@           and the potential differences between fast and slow readers in this cognitive process. We plunge into the
+            sbg.ac.at)          topic with an analogy to spoken language comprehension: The speed of speech is fast (,6 syllables per
+                          second; Ref. 1). Thus, it was argued that predicting the speaker’s upcoming utterance can not facilitate compre-
+                          hension on behalf of the listener (e.g., Ref. 2). Silent reading is even faster. It proceeds at rates of up to 500 words
+    * Current address:    per minute. After a period of about two decades (around the 1970ies), in which reading was considered a
+        Department of     ‘‘psycholinguistic guessing game’’ (e.g., Ref. 3), theories about reading adopted the view that reading is primarily
+  Psychology, Goethe      a bottom-up process – similar to theories of speech perception (e.g., Ref. 4). To illustrate, the lexical quality
+  University Frankfurt,
+                          hypothesis of reading5,6 postulates that lexical representations of words are characterized by the coupling between
+                          the words’ orthography (i.e., the visual word form), its phonology (the sound of the word) and its meaning (i.e.,
+  Grueneburgplatz 1,
+                          semantics). However, for skilled (i.e., fast) readers word recognition is considered to proceed from the activation
+  60323 Frankfurt am      of the orthographic representation towards the activation of phonology and semantics without notable influence
+     Main, Germany.       from semantic on orthographic processing. In other words, there is little top-down processing in reading. This
+                          unidirectional bottom-up process was termed ‘‘context-free decoding’’ – referring to the activation of meaning
+                          from the visual percept of a word before a context-based prediction about the word’s identity can be generated7,8.
+                              Following the lexical quality hypothesis, this would mean that the predictability of words in sentences has little
+                          influence on the processing times of fast readers (or merely a rather small and late influence during the semantic
+                          integration of the words into the sentence context; see below). Another important prediction of the hypothesis is
+                          that context affects fast and slow readers differently. The hypothesis states that fast readers possess well specified
+                          (high-quality) lexical representations (enabling fast bottom-up processing and hence context-free decoding). For
+                          less proficient (slow) readers, the assumption of the hypothesis is that their slower reading rate is due to under-
+                          specified lexical representations. Specifically, it is the orthographic and the phonological representations which
+                          are supposed to be impaired – preventing fast bottom-up processing. Thus, in slow readers, top-down, context-
+                          based processing has the time to wield influence. As a consequence, slow readers benefit from sentential context9.
+                              That sentential context has little effect on fast readers contradicts the view of our brain as a proactive organ – a
+                          view which has become increasingly prominent in the last decade. Proactive means (quite simplified) that our
+                          brain generates expectancies of future events. This view is known as the predictive coding framework10. In short,
+                          the predictive coding framework postulates that every biological system – including our brain – adheres to the
+                          principle of trying to minimize ‘‘surprise’’ (e.g., neuronal excitation; Ref. 11). This is accomplished by generating
+                          ‘‘forward inferences’’ (also ‘‘active inferences’’; Ref. 12) of probable upcoming sensory events. These inferences (or
+                          predictions) can be based on prior experiences (e.g., anticipating the appearance of a target in response to a cue
+                          dependent on the validity of previous cues; Ref. 13). Concerning object recognition, the fast processing of partial
+                          visual information accounts for predictive coding. According to Bar and colleagues14, the low spatial frequencies
+                          (LSF) of an object are projected rapidly to an anterior brain region (i.e., the orbitofrontal cortex). Then, predictions
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                          1
+                                                                                                          www.nature.com/scientificreports
+
+
+are generated on the basis of the LSF which pre-activate – top-down –         findings are inconsistent (e.g., Ref. 27; see Discussion). However,
+probable objects before the bottom-up stream arrives at the respective        strong evidence that the predictability of an upcoming word has an
+brain region (i.e., the inferior temporal lobe).                              effect before the word is encountered was provided by a study of
+   In line with the predictive coding account, there was a paradig-           Kliegl and colleagues28. The study reported (for an impressively large
+matic shift in the perspective on the influence of top-down generated         sample; n 5 222) prolonged fixations on words preceding high-pre-
+predictions in language processing. Nowadays, there is a broad                dictable words (which were not skipped). The effect could not be
+agreement that predictions play a significant role. A wealth of evid-         attributed to visually preprocessing the upcoming word, because it
+ence, that listeners predict upcoming utterances, was provided by             was evident even when the visual quality of the preview of the
+electrophysiological studies (i.e., EEG; e.g., Ref. 15, 16) and by eye        upcoming word was decreased (unlike, e.g., the effect of word fre-
+movement studies (assessing anticipatory looking; e.g., Ref. 17, 18).         quency). Thus, the authors interpreted the prolongation of fixations
+The role of forward inferences in reading has, as yet, been studied           in case of predictable upcoming words as evidence that the sentence
+primarily from a ‘‘macro-perspective’’, that is, for narrative compre-        context made it possible: ‘‘to retrieve word n 1 1 from memory’’ (p.
+hension (e.g., Ref. 19). In such studies participants usually read whole      29; ‘‘word n 1 1’’ refers to the upcoming word). They termed this
+paragraphs and inferential processing is inferred from the processing         process ‘‘cued memory retrieval’’. In the present study we will, how-
+times of sentences (rather than single words). The empirical evidence         ever, retain the term forward inference from the predictive coding
+of these studies is mixed, but it seems that low-skill readers draw           framework.
+inferences less automatic (i.e., slower) than high-skill readers (e.g.,
+Ref. 19, 20; in this context ‘‘skill’’ refers to global reading ability       The present study. We assessed the effect of the predictability of
+including vocabulary and comprehension). This finding concurs                 (upcoming) words during silent reading with the same sentences as
+with an early suggestion Kintsch21 made, implying that high reading           the study by Kliegl and colleagues28, that is, the sentences from the
+skill enables automatic access to context-based inferences, whereas           Potsdam corpus29 which provides predictability norms for each
+readers with lower reading skills must do so in a controlled (i.e., non-      word. Predictability refers to the probability (p; range: 0–1) with
+automatic) manner.                                                            which a word can be guessed on the basis of the preceding
+   Two recent neuroimaging studies took a more ‘‘nuclear’’ view by            sentence context. Our participants were fast readers and speed-
+assessing the effect of the predictability of single words in sen-            impaired (i.e., slow) readers. Of specific interest will be:
+tences22,23. Note, however, that they did not assess the predictability       1.   The difference in the effect of word predictability between the
+effect during ‘‘natural’’ reading, but for the serial, one-by-one pre-             slow and the fast readers.
+sentation of the words of sentences. Their findings concur with the           2.   The relation of the effect of predictability with the individual
+expectation from the predictive coding framework. One of the stud-                 reading rate of our participants.
+ies reported a very early effect of word predictability at a posterior        3.   The time-course of the predictability effect.
+brain region, that is, at 50–90 ms after the presentation of high-
+predictable compared to unpredictable words22. Notably, the effect               Ad (1.), for the fast readers, we expect to replicate the original
+is almost as early as visual information reaches the primary visual           finding, that is, prolonged fixation duration on words preceding
+cortex (the minimum of the retina-brain lag lies within 40–60 ms;             predictable compared to unpredictable words28. For the slow readers,
+e.g., Ref. 24). The only explanation for such an early effect of pre-         we may expect that this effect is substantially subdued, if the reported
+dictability probably is that generating a forward inference about the         reading-skill related differences in inferential processing for narrat-
+likely identity of a (predictable) word pre-activated a visual template       ive comprehension (i.e., less automatic in low-skill readers) gener-
+of the word. The other study showed that reading predictable com-             alizes to visual word recognition on sentence-level. Surprisingly, a
+pared to unpredictable words requires less brain metabolism in the            previous eye movement study found small effects of reading pro-
+visual cortex (i.e., in the occipital lobe; Ref. 23). Furthermore, a recent   ficiency for processing predictable versus unpredictable words30. The
+eye movement study showed that predictability does not require a              authors concluded that the differences between proficient and less
+large amount of preceding context to build-up, but can arise very             proficient readers are merely ‘‘ones of degree rather than type’’ (p.
+quickly on the basis of bits of circumscribed, local information (i.e., a     1066). If we find significant differences in the extent to which fast and
+single prediction-inducing adjective is sufficient to elicit an effect on     slow readers generate forward inferences during reading, then the
+the skipping probability of an upcoming noun; Ref. 25).                       difference might not be merely one of ‘‘degree’’, but a more fun-
+   These recent studies provide strong evidence that upcoming                 damental discrepancy - accounting, at least in part, for the slow
+words are indeed predicted; a perspective dubbed prediction view              readers’ speed impairment. Accordingly, it may be that (ad 2.) the
+in the research domain of language comprehension in order to dis-             most reading-speed impaired participants exhibit the least effect of
+                                                                              the predictability of wordn11 (our index for the generation of forward
+tinguish it from the integration view (e.g., Ref. 16). The latter per-
+                                                                              inferences). On the other hand, they may exhibit the most profound
+spective assumes that the effect of predictability arises late, that is,
+                                                                              facilitation by the predictability of wordn. The hypothesized reason is
+during the integration of a word in the sentence context (easier and
+                                                                              that (ad 3.) word predictability exerts a late effect in the slow readers,
+hence faster for predictable words). From the prediction view, one
+                                                                              because of less automatized inferential processing21.
+can infer the following (interrelated) expectancies with regard to
+(silent) reading. First, predictable words are frequently skipped
+(i.e., they do not receive a fixation). This is indeed a well-documented      Methods
+                                                                              Participants. We assessed the eye movements of a total of 70 participants (including
+fact (reviewed in Ref. 26): During reading, about 30% of the words do         those of Ref. 31). In both groups (i.e., the fast and the slow readers), 18 were recruited
+not receive a fixation (i.e., are skipped) and word predictability is a       from the Salzburg longitudinal sample for the study of reading development (e.g., Ref.
+main factor accounting for the phenomenon. However, current the-              32). These participants (exclusively males) repeatedly took part in studies of our
+ories of eye movement control do not (directly) acknowledge that              group. Reading speed was assessed at all participations and the speed-deficit of the
+                                                                              slow readers was confirmed by every assessment32. At the time of the current study,
+predicting the identity of upcoming words is the driving force of word        these participants were young adults (mean age: 17 y; see 31 for more details). The
+skipping (see Discussion). Second, predicting upcoming words may              additional participants were adults who self-reported that they had been suffering
+lead to elevated fixation times on words preceding predictable words          from persistent reading difficulties since the beginning of their formal education and
+(because the generation of predictions takes a certain amount of              adult fluent reading controls (primarily university students; mean age: 24 y). We
+                                                                              administered a paper-and-pencil reading speed test prior to the eye tracking study.
+time). Thus, one would expect elevated fixation times prior to word           The test required to silently read sentences and mark them as correct (e.g., ‘‘A week
+skippings, if these skippings are based on a forward inference about          has seven days’’) or incorrect (e.g., ‘‘A weighing machine measures the height of a
+the identity of upcoming words. For this expectation, the existing            person’’). The incorrect statements were obvious violations of common knowledge
+
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                                2
+                                                                                                                         www.nature.com/scientificreports
+
+
+ Table 1 | Means and standard errors of eye movement characteristics of the fast and the slow readers and the corresponding t-values of the
+ group comparisons
+                                                            Fast readers                                                 Slow readers
+
+                                                  M                              SE                             M                               SE                           t-valuea
+ Fixation probabilities[p]
+    Skipping                                         .30                         .013                            .13                            .011                          10
+    Single fixations                                 .53                         .012                            .34                            .018                           9.0
+    Multiple fixations                               .17                         .009                            .53                            .023                          15
+ Durations [ms]
+    First fixation                             190                             4.2                          228                              4.4                                7.5
+    Single fixation                            191                             2.9                          238                              4.8                                8.6
+    Gaze                                       222                             3.4                          386                             22.9                                7.4
+ Note. adf 5 65.
+
+
+
+
+and hence judging the correctness was easy (M , 1 incorrect marking in both                  Data treatment and analyses. Saccades were identified with the eyetrackR package
+groups). Thus, the measure (number of correctly marked sentences within 3 minutes)           (version 0.16) in the R environment for statistical computing (version 3.1.1). Fixation
+is an index of reading speed. The preliminary norms of the test are based on a sample        durations were obtained with an in-house Perl script. We observed 70,635 and 33,192
+of 309 University students. All slow readers exhibited a reading rate of less than           fixations in the groups of the slow and fast readers, respectively. Fixations of less than
+percentile 16; all fluent readers had a reading rate greater than percentile 30.             80 ms were discarded (,1% of the data). We analyzed the effect of predictability (of
+   The final selection of the participants relied on the reading speed of the sentences of   word n and n 1 1) by linear mixed models (LMM) and generalized linear mixed
+the eye movement assessment. We converted the reading times of the sentences into a          models (GLMM) from the lme4-package (version 1.1–7; Ref. 36). LMM deal well with
+measure of words per minute (wpm). The criteria for inclusion in the group of the            unbalanced designs (e.g., due to skippings) and estimate robust coefficients for
+slow and the fast readers were reading rates of less than 180 and greater than 250 wpm,      correlated predictors. In the sentence corpus of the present study, word predictability
+respectively. These criteria were fulfilled by all of the fast readers (n 5 35) and by 17    was moderately correlated with word frequency (r 5 .30). Our dependent measures
+(out of the 18) slow readers from the Salzburg longitudinal sample and by 15 (of 17)         were skipping probability, single fixation probability, first fixation duration (FFD),
+additional slow reading adults (final n 5 32). The mean reading rate of the slow             single fixation duration (SFD) and gaze duration (GD). Skipping probability is the
+readers was less than half the rate of the fast readers with means of 138 wpm (SD 5 32)      probability that a word did not receive a fixation during first-pass reading (i.e., during
+and 303 wpm (SD 5 46), respectively. Impaired reading speed is the hallmark                  the first encounter of the word); skipped words may be fixated after they had been
+symptom of developmental dyslexia in regular orthographies (whereas reading                  skipped initially (i.e., during second-pass reading). Single fixation probability and
+accuracy and comprehension are preserved; Ref. 32, 33). Furthermore, the criterion           duration refers to instances in which a word received a sole fixation during first-pass
+that our slow readers suffered from persistent reading difficulties throughout their         reading (i.e., a fixation on a word was not considered a single fixation when the word
+school careers is a diagnostic criterion for specific reading disorder (i.e., devel-         had previously been skipped). FFD is the first fixation on a word during first-pass
+opmental dyslexia). However, we refer to our sample as slow readers, because some of         reading (regardless whether it was the single fixation on a word or the first of multiple
+them did not have a formal diagnosis of dyslexia. Moreover, in the recently revised          fixations). GD is the sum of the duration of all fixations on a word during first-pass
+diagnostic and statistical manual of mental disorders (DSM-5) developmental dys-             reading. FFD are sometimes considered as an ‘‘early’’ measure (because it reflects
+lexia is not a separate diagnosis anymore34. All participants had normal or corrected-       instantaneous effects), whereas GD is considered as a ‘‘late’’ measure (because it also
+to-normal vision. They gave an informed consent before inclusion in the study. The           reflects effects which occur later in visual word recognition; e.g., Ref. 37).
+study was conducted in accordance with the national legislation for the protection of
+human volunteers in non-clinical research settings and the Declaration of Helsinki.
+The ethics committee of the University of Salzburg (‘‘Ethikkommission der
+Universität Salzburg’’) approved the experimental protocol of the study.
+
+Material. We presented the 144 sentences of the Potsdam Corpus29. Sentence length
+varied from 5 to 11 words (M 5 7.9). The corpus comprises 1138 words (994 for
+analyses after omitting the sentence-initial word). Word predictability is expressed as
+the probability [p; range: 0–1] with which the participants of the norming sample
+correctly guessed the upcoming word on the basis of the preceding sentence context29.
+Word frequency are the log-transformed occurrences per million (range: 0.0–4.4)
+from the CELEX database35. Word length ranged from 2 to 20 letters (2 and 3 letter
+words were considered as single category as were words with more than 12 letters).
+Predictability was transformed into logit-units29. Word length was transformed into
+reciprocal values (1/number of letters). This made it possible to generate better fitting
+models (see below). Effects of word length and frequency are not reported in the
+current study (they were reported in Ref. 31).
+
+Procedure. Eye movements were recorded monocular from the participants’ right eye
+with an SR-Research (Ontario, Canada) EyeLink CL eye tracker (sampling rate:
+1 kHz). A 9-point calibration routine was administered before the presentation of 12
+familiarization trials, repeated after familiarization and after a short break halfway
+through the experiment. The tracking error was kept below 0.5u of visual angle.
+Sentences were typed in mono-spaced, bold font (Courier New, 14 pt.) presented on a
+CRT monitor (1024 3 768 pixel resolution, 120 Hz refresh rate). The participant’s
+head was stabilized by a chin and forehead rest. From the viewing distance of ,52 cm,
+a single character had a width of ,0.3u.
+   Prior to the presentation of a sentence, a fixation cross was presented near the
+middle of the left screen frame. After detecting a fixation (minimum duration:
+100 ms) at the fixation cross, the sentences were presented in such a way that the
+participants centrally fixated the sentence-initial word. When the system did not            Figure 1 | Skipping and single fixation probability in relation to wordn
+detect a fixation at the fixation cross within 5 seconds the system was recalibrated.        predictability for the fast and the slow readers. For the purpose of
+Participants read the sentence silently for comprehension. Looking at an ‘‘x’’ at the
+                                                                                             illustration, the predictability values [p] were summarized into 11
+bottom right corner of the monitor terminated the trial and triggered the reappear-
+ance of the fixation cross. After 24 of the sentences the experimenter verbally pre-         predictability categories (i.e. rounded to 1 decimal). The CI represents 1
+sented a simple comprehension question.                                                      SEM.
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                                                3
+                                                                                                                        www.nature.com/scientificreports
+
+
+                                                                                                word skipping and single fixations. Furthermore, all measures of
+                                                                                                processing times were longer in the slow than in the fast readers;
+                                                                                                the group difference was particularly pronounced for GD (Mdiff .
+                                                                                                160 ms).
+
+                                                                                                Costs of skipping and the effect of predictability on skipping rate
+                                                                                                and single fixation probability. We compared the GD prior to word
+                                                                                                skips with the GD when the upcoming word was fixated. The means
+                                                                                                of the fast readers were 226 and 216 ms, respectively; the means the
+                                                                                                slow readers were 413 and 379 ms. Thus, we found a small ‘‘cost’’ of
+                                                                                                skipping in the fast readers (Mdiff 5 10 ms; t34 5 3.8); and a larger
+                                                                                                ‘‘cost’’ in the slow readers (33 ms; t31 5 3.7). The group difference in
+                                                                                                the size of the effect was significant (t65 5 2.6). Next we assessed the
+                                                                                                effect of predictability on the skipping rate of the fast and the slow
+                                                                                                readers; presented in the left panel of Figure 1. Increasing word
+                                                                                                predictability led to an increase in skipping probability (b
+                                                                                                51.7521, SE 5 1.9022, Z 5 9.2) similarly in both groups (group
+                                                                                                by predictability: b 5 1.6822, SE 5 1.0522, Z 5 1.6). The right panel
+                                                                                                of the Figure shows the single fixation (SF) probability in relation to
+                                                                                                predictability. In the group of the fast readers, SF probability
+                                                                                                decreased with increasing predictability of the words (because they
+                                                                                                frequently skipped predictable words; b 5 3.3622, SE 5 1.7722, Z
+                                                                                                5 1.9). For the slow readers, the SF probability steeply increased with
+                                                                                                predictability resulting in a significant interaction of group by
+                                                                                                predictability (b 5 2.6522, SE 5 8.3923, Z 5 32).
+Figure 2 | The effect of word predictability of wordn and wordn11 on
+                                                                                                The effects of predictability on fixation and gaze duration and its
+single fixation duration of the fast and the slow readers. The CI represents
+                                                                                                relation to reading rate. Figure 2 depicts the effect of predictability
+1 SEM.
+                                                                                                of wordn and wordn11 on SFD. As evident from the left panel of the
+                                                                                                Figure, the fast readers exhibited little effect of wordn pre-
+   Skipping probability and single fixation probability were analyzed with GLMM
+(i.e., logistic regression), because these probabilities are binary measures (the models’
+                                                                                                dictability, whereas the slow readers exhibited increasingly shorter
+family was ‘‘binomial’’; test statistic: Wald’s Z). As predictors (i.e., fixed effects, b) we   SFD with increasing predictability. The right panel of Figure 2
+considered the group (fast versus slow readers) and the length, the predictability and          shows that the fast readers exhibited increasingly longer SFD with
+the frequency of wordn. We modeled the interactions between frequency X predict-                increasing predictability of wordn11. This effect was less pronounced
+ability and group X predictability. For the LMM analyses of first fixation duration
+(FFD), single fixation duration (SFD) and gaze duration (GD) we considered the
+                                                                                                in the slow readers. The fixed effects of wordn and wordn11
+group of readers (fast versus slow) and the length, the frequency and the predictability        predictability on FFD, SFD and GD are shown by a coefficient plot
+of wordn and the predictability of wordn11 as fixed effects. We modeled the inter-              in Figure 3. As evident from the Figure, the slow readers exhibited
+action between group X predictability, group X frequency and predictability X fre-              reliable facilitatory effects of wordn predictability for every measure,
+quency of wordn and group X wordn11 predictability. Note that differences between               but the effect was particularly pronounced for GD. For the fast
+the fast and the slow readers in the wordn and wordn11 predictability effect will be
+reflected by interactions of predictability X group (with the fast readers as the ref-          readers, wordn predictability exerted a reliable facilitatory effect
+erence group). The values of these interactions are coefficients (their sign indicating         only for GD. Their effects of wordn11 predictability, in contrast,
+the direction of the group difference). Their significance is, similar to the other fixed       were reliable for each measure: Their FFD, SFD and GD on wordn
+effects, tested against zero (test statistic: t-value). SFD, FFD and GD were log-trans-         were increasingly longer with increasing wordn11 predictability.
+formed (natural logarithm), because their distributions were considerably right
+skewed (Fig. 1 and Fig. 2, however, present our findings with untransformed data).              Within the group of slow readers, this effect was markedly less
+Due to the log-transformation of the dependent measures (and due to modeling                    pronounced. The group differences of the effect of wordn and
+interactions of effects), the estimates of fixed effects are numerically very small. Thus,      wordn11 predictability were all significant (group by wordn and
+for an easier grasp of the fixed effects, we report them with a scientific notation (e.g.       group by wordn11 predictability: all ts . 3.2). Put differently, we
+the value 0.00345 is reported as 3.4523, i.e., the original value is obtained by
+3.45*1023). For the graphical depiction of the fixed effects we obtained 95% confid-
+                                                                                                found significantly higher facilitation of wordn predictability, but
+ence intervals (CI) with the confint-function (of the stats-package; version 2.15.3). As        significantly lower effects of wordn11 predictability in the group of
+random effects on the models’ intercept we considered participants, the sentences and           slow readers compared to the fast readers.
+the individual words.                                                                              Next we looked at the association of the effects of predictability
+                                                                                                with the reading rate of the participants. To this end, we estimated
+Results                                                                                         the individual effect of predictability (on GD) by inserting a random
+Comprehension and descriptive measures. The means of correct                                    slope for the fixed effect of predictability in the LMM. The ‘‘random’’
+answers to the 24 comprehension questions was greater than 23 in                                slope expresses the magnitude with which the slope of the effect of an
+both the slow and the fast readers (M 5 23.16 and 23.57, respectively;                          individual participant deviates from the mean slope of the whole
+min 5 21 and 20). Despite the close-to-ceiling performance in both                              group. The findings are depicted by ‘‘caterpillar plots’’ in Figure 4.
+groups, a Wilcoxon rank sum test revealed a significant group                                   The left panel shows the individual reading rate (in words per min-
+difference (W 5 419). This significant difference was due to the                                ute; wpm) of the fast and the slow readers (sorted – top-to-bottom –
+fact that 25 (,71%) of the fast readers, but only 16 (i.e., 50%) of                             in descending order from the fastest to the slowest reader). The
+the slow readers answered all 24 comprehension questions correctly.                             middle and the right panels show the individual effects of the pre-
+An inspection of the erroneous answers of the slow readers revealed                             dictability of wordn and wordn11, respectively. It is evident from the
+that the majority committed a specific error for one particular                                 Figure that, in the group of the fast readers, increasing predictability
+sentence (see Discussion). Table 1 provides descriptive measures of                             of wordn led to shorter GD. The fastest readers, however, exhibited
+fixation probabilities and measures of processing time of the 994                               the least facilitation (i.e., the smallest fixed effects). The correlation of
+words of the sentence corpus. As evident from the Table, the slow                               reading rate with the fixed effect of wordn predictability was, among
+readers exhibited much smaller probabilities than the fast readers for                          the fast readers, moderate (Pearson’s r 5 .44). In the group of the
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                                     4
+                                                                                                             www.nature.com/scientificreports
+
+
+                                                                                     with the most aggravated speed deficit exhibited the smallest effects
+                                                                                     of wordn11 predictability.
+
+                                                                                     The time course of the predictability effect. We assessed when
+                                                                                     predictability exerts its effect. To this end, we distinguished –
+                                                                                     individually for each participant – between the 33% shortest FFD
+                                                                                     (i.e., percentile , 33), FFD between the percentiles 33 and 66 and the
+                                                                                     33% longest FFD (percentile . 66). We refer to the categories as
+                                                                                     short, medium and long FFD (S, M and L in Fig. 5). The group
+                                                                                     specific means of the categories were 138, 182 and 251 ms for the
+                                                                                     fast readers, and 151, 216 and 318 ms for the slow readers,
+                                                                                     respectively. Separately for each of the categories, we repeated the
+                                                                                     analyses of the predictability effect. The rationale of the analysis is
+Figure 3 | This coefficient plot shows the fixed effect (vertical bars) of           that an early effect of predictability would be more evident in short
+logit-predictability on the log-transformed first fixation duration (FFD),           than in long FFD. Conversely, a late effect of predictability would be
+single fixation duration (SFD) and gaze duration (GD) for wordn and                  more pronounced in long FFD38,39. The fixed effects of the
+wordn11 of the slow and the fast readers. Fixed effects left of the vertical         predictability of wordn and wordn11 are displayed by the
+midline (i.e., with a negative sign) indicate facilitation by predictability.        coefficient plot in Figure 5. As evident from the left panel of
+Fixed effects to the right of the midline indicate increasing duration of the        Figure 5, the fast readers exhibited no reliable effects of wordn
+measures with increasing predictability. The horizontal bars represent the           predictability. The direction of the effect was from a negative slope
+95% CI. If the CI includes 0 (i.e., if it crosses the midline), then the effect is   (i.e., indicating facilitation, if it were significant) for short FFD
+non-significant.                                                                     towards a positive slope for long FFD. The important finding here
+                                                                                     is that the slow readers exhibited a time course of wordn
+slow readers this correlation was much higher (r 5 .72): The slowest                 predictability in the opposite direction: They exhibited increasingly
+readers exhibited the most pronounced facilitation by wordn predict-                 stronger effects towards facilitation from short to long FFD.
+ability. The left panel of Figure 4 reveals that not a single one of the             Accordingly, a LMM with type of FFD (i.e., short to long) as
+fast reader exhibited a negative slope of wordn11 predictability. Put                additional fixed effect revealed a significant three-way interaction
+differently, for each of the fast readers the LMM estimated increasing               between wordn predictability, type of fixation and group (b 5
+GD with increasing predictability of the upcoming word.                              28.7923, SE 5 1.8323, t 5 4.8). The right panel of Figure 5
+Furthermore, Figure 4 indicates that there is no notable correlation                 depicts the effect of the predictability of wordn11. It is evident
+between wordn11 predictability and the individual reading rate of the                from the Figure that wordn11 predictability wielded its influence
+fast readers (r 5 .01). Within the group of the slow readers, in                     on long FFD. Moreover, the effect was stronger in the fast readers
+contrast, we observed a strong correlation of reading rate with                      (b 5 9.9823, SE 5 1.5723, t 5 4.9) than in the slow readers (group
+wordn11 predictability (r 5 .69) in the direction that the readers                   by wordn11 predictability: b 5 25.8123, SE 5 2.4923, t 5 2.3).
+
+                                                                                     Discussion
+                                                                                     The main objective of the present eye movement study was to assess
+                                                                                     to what extent fast and slow reader exhibit evidence for generating
+                                                                                     forward inferences during reading. The generation of forward infer-
+                                                                                     ences, a term adopted from the predictive coding framework10,11,
+                                                                                     refers to predicting upcoming words. Accordingly, we assessed the
+                                                                                     relation between various eye movement measures with word predict-
+                                                                                     ability. The measures were the probability with which words are
+                                                                                     skipped or processed with a single fixation and the duration of first
+                                                                                     fixations, single fixations and gazes (FFD, SFD and GD). We exam-
+                                                                                     ined effects of the predictability of the current (wordn) and of the
+
+
+
+
+Figure 4 | ‘‘Caterpillar plots’’ of the reading rate and the effects of wordn
+and wordn11 predictability on gaze duration (GD) of the slow and the fast            Figure 5 | This coefficient plot shows the fixed effects (vertical bars) of
+readers. The vertical bars represent the 95% prediction intervals. Fixed             predictability of wordn and wordn11 for short, medium and long first
+effects with a negative sign (i.e., left of the vertical mid-line) indicates         fixation duration (S, M and L, respectively) of the fast and the slow
+decreasing GD with increasing predictability; fixed effects with a positive          readers. The horizontal bars show the 95% CI of the effects. Fixed effects to
+sign indicate increasingly longer gaze duration with increasing                      the right of the vertical midline indicate increasing fixation duration with
+predictability. Participants are ordered by reading rate.                            increasing predictability.
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                          5
+                                                                                                     www.nature.com/scientificreports
+
+
+upcoming word (wordn11). Moreover, we assessed the relation of the            not concur with the substantial group differences we found concern-
+individual effects of word predictability with the reading rate of our        ing the effects of predictability as well as the strong association of the
+participants and examined the time-course of the predictability               predictability effect with the reading rate of our slow readers. A
+effect.                                                                       possible reason that the previous study found comparatively little
+    In brief, our findings indicate that readers generate forward infer-      differences with regard to word predictability is that the study com-
+ences about the probable identity of upcoming words, but slow read-           pared high-proficiency readers with average-proficiency readers. We
+ers do so to a smaller extent than fast readers. In the latter group, the     compared fast readers and readers with serious speed impairment.
+individual effects of word predictability were strongly associated with       Indeed, it were the readers with the most severe reading speed
+reading rate: The most speed-impaired readers exhibited the stron-            impairment which exhibited the most pronounced (facilitatory)
+gest facilitation by the predictability of the currently fixated word,        effect of wordn predictability - accompanied by a comparative
+whereas they exhibited the least effect of the predictability of the          absence of an effect of wordn11 predictability. The profound group
+upcoming word. Moreover, the effect of predictability emerged late            difference in the capability (or the automaticity) of generating for-
+in the slow readers. They exhibited the strongest effects of wordn            ward inferences during reading between slow and fast readers, would
+predictability for the measure of GD (a measure which captures late           explain a seemingly paradox finding of the protagonists of the lexical
+effects; Ref. 37) and the effect was more expressed in long compared          quality hypothesis41. In one of their experiments short stories were
+to short FFD. In the group of the fast readers, we found that a word’s        presented. The presentations were unpredictably halted and the par-
+predictability has a reliable effect before the word is encountered (i.e.,    ticipants (children differing in reading skill) had to guess the con-
+the effect of wordn11 predictability). This finding shows that, in fast       tinuation word of the last and uncompleted sentence. The authors
+readers, predictability exerts an early influence during silent reading.      summarized the findings as follows (p. 281):
+However, the influence of the predictability of wordn11 was only                 ‘‘The paradox is that less skilled readers [...] are not as good as
+evident in long FFD (on wordn). This finding indicates that generat-          skilled readers at producing contextually constrained words. [...]
+ing forward inferences about the identity of upcoming words occurs            skilled readers predicted word targets significantly more accurately
+when the processing of the currently fixated word is well-advanced.           than less skilled readers. This accuracy advantage included exact tar-
+Now we proceed to a detailed discussion of these findings and their           get prediction, not just contextually appropriate nontargets.’’
+implications.                                                                    However, the interpretation that predictive coding (i.e., the gen-
+    The first indication that an upcoming word can influence proces-          eration of forward inferences) plays a significant role in reading and
+sing times before it is encountered was provided by the effects of            that slow readers are less capable to predict upcoming words does not
+predictability on measures of fixation probability. In line with a            imply that guessing upcoming words would a be valuable reading
+wealth of previous research (reviewed, e.g., in Ref. 26), predictable         strategy (see below). The view of reading as a ‘‘psycholinguistic gues-
+words were more often skipped than unpredictable words. The influ-            sing game’’ (e.g., Ref. 3) has been refuted (and rightly so; Ref. 42). A
+ence of predictability on skipping probability was of similar mag-            plausible account of how forward inferences wield influence in read-
+nitude in our fast and slow readers. However, the skipping rate of the        ing is as follows. As mentioned in the Introduction, predictive coding
+slow readers was, in general, extremely low (13%; fast readers: 30%).         relies on two different mechanisms. First, predictions can be based on
+Even for the most predictable words, the slow readers exhibited a             prior experience (e.g., Ref. 13). Second, predictions can arise from the
+skipping probability of only about 20% (fast readers: ,40%). We               extremely rapid processing of the low spatial frequencies (LSF) of a
+consider this as a first indication that predicting upcoming words            visual percept. This partial information is rapidly transmitted to the
+is impaired in slow readers. With regard to processing times prior to         orbitofrontal cortex where predictions are generated. These predic-
+skips, both groups exhibited prolonged GD (i.e., while their eyes were        tions are transferred – top-down – to brain regions in the inferior
+on wordn21). Put differently, we observed costs of skipping (a con-           temporal cortex where they are integrated with the slower arriving,
+troversial finding in the literature of eye movement control during           but more detailed bottom-up information14. In reading both these
+reading, e.g., Ref. 27, 40). This cost was substantially higher in the        mechanisms probably interact43. On the one hand, the sentential
+slow (,30 ms) than in the fast readers (,10 ms). In the light that the        context (i.e., the prior experience) makes – in some instances – pre-
+average GD of our slow readers were substantially longer than those           dictions possible. Parafoveal preprocessing, on the other hand, pro-
+of the fast readers (,160 ms), we consider this as a first indication         vides coarse visual information about the upcoming word. The more
+that the time course of generating forward inferences differs between         constraining the preceding sentence context is, the more visual
+readers: It is considerably delayed in slow readers.                          information about a parafoveal word is utilized for narrowing down
+    A further indication that predictability had a strong, but compara-       the set of potential continuation words43. Notably, such an inter-
+tively late effect in the slow readers is that their probability of recog-    action of predictability and parafoveal preprocessing is suggested
+nizing a word with a single fixation steeply increased with increasing        by the SWIFT model40, a computational model of eye movements
+predictability of wordn. For the most predictable words (which were           control during reading. The model’s engine for visual word recog-
+very often skipped by the fast readers), the slow readers exhibited a         nition does not (always) require that a word is fully processed – an
+single fixation probability which was similar to the average single           assumption which is particularly relevant for word skipping. A
+fixation probability of the fast readers (i.e., for all words regardless of   recent study indeed showed that the processing of words, which
+predictability). In a nutshell, the slow readers processed those words        are skipped during first pass reading, is more shallow than the pro-
+with a single fixation which the fast readers skipped. This finding           cessing of fixated words (Ref. 44; but see also Ref. 27).
+indicates that, in the slow readers, predictability exerted its effect           Supposedly, generating a prediction of upcoming words and align
+often too late to warrant word skipping, but facilitated word recog-          it with the parafoveal visual percept of the word must occur timely
+nition when the word was fixated. Accordingly, we observed reliable           well synchronized to prevent (an overabundance of) prediction
+facilitatory effects of wordn predictability on the FFD, SFD and GD of        errors which would hinder reading more than it would accelerate
+the slow readers. The effect was least pronounced for FFD and most            the process. We suppose that in slow readers the orchestration of the
+pronounced for GD. This pattern also supports the notion that the             two processes is ‘‘out of tune’’ due to a mismatch in the timing of
+predictability effect emerges late in the slow readers, because FFD is a      bottom-up and top-down processing. An illustrative demonstration
+sensitive measure for early effects, whereas GD also captures late            of this assumption is provided by the erroneous answer which many
+effects37.                                                                    of the slow readers (12/31, i.e., .30%) gave to one of the compre-
+    The notion of a previous study30 that the difference between highly       hension questions. The question was ‘‘What should be read?’’. The
+proficient and less proficient readers is merely ‘‘one of degree’’ does       sentence was ‘‘Lies mir bitte die Angaben vor’’ [approx. translation:
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                6
+                                                                                                          www.nature.com/scientificreports
+
+
+Please read me the specifications]. The erroneous answer always was           characters was spatially filtered so that processing required the LSF
+‘‘die Aufgaben’’ [the instructions] which would be a plausible con-           sensitivity of the M-cells. However, we note that the magnocellular
+tinuation of the preceding sentence context. Note that the presented          theory of dyslexia and visual-attentional deficits in dyslexic readers
+word and the erroneous response are visually similar. However, they           are discussed controversially (M-cell theory: e.g., Ref. 57; attention:
+start with a different phoneme. The initial phoneme of the one word           e.g., Ref. 58).
+is/a/(as in art); the other word starts with the diphtongue /a / (as in          Finally, a reconciliation of the lexical quality hypothesis (which
+how). Thus, they slow readers, who committed the error, generated             supposes little influence of context-based predictions in reading)
+an incorrect prediction; bottom-up processing was too slow to cor-            with the predictive coding framework could be as follows. As postu-
+rect the error. To become aware of the false prediction, bottom-up            lated by the lexical quality hypothesis, a tight coupling of the semant-
+processing would only have required accessing the phonology of the            ics of a word, its orthography and its phonology is the bedrock of fast
+very beginning of the word. (That phonological codes are activated            and efficient reading. It is entirely conceivable that generating a
+early – even during silent reading – has been shown for unimpaired            prediction of upcoming words and finding it confirmed by the visual
+readers; e.g., Ref. 45). Thus, the error is telling with regard to the slow   input plays a crucial role for establishing such tight connections in
+reader’s timely ill-aligned orchestration of bottom-up and top-down           the triangle of meaning, phonology and orthography which charac-
+processing. Noteworthy, speed-impaired access to phonology is con-            terizes high-quality lexical representations (6). From this perspective,
+sidered as a potential core deficit of disordered reading (i.e., devel-       generating predictions about probably upcoming words during read-
+opmental dyslexia; Ref. 33, 46).                                              ing acquisition could be a causal factor in forming high-quality
+   We can only speculate on the cause-and-effect relationship                 representations. A recent intervention study provided evidence for
+between the, compared to the fast readers, limited generation of              this suggestion. The study reported that (pre-)activating the semant-
+forward inferences during reading and the speed-impaired bottom-              ics of to-be-learned words helped beginning readers with the acquisi-
+up processing in slow readers. An interpretation in terms of causality        tion of stable associations between the phonological and the
+would require an experimental study with beginning readers.                   orthographic properties of words59. Whether the comparative lack
+However, we confirmed a core assumption of the lexical quality                of generating forward inferences in slow compared to fast readers is a
+hypothesis, that is, that fast readers efficiently process even the most      symptom of a reading disorder or whether it plays a more direct and
+unpredictable words (i.e., mostly by a single fixation). To illustrate,       causal role in accounting for the speed impairment of slow readers is
+the fast readers singly fixated approx. 60% of the words which had a          subject to future studies. As a concluding remark, we believe that
+predictability of p 5 0. The slow readers, to the contrary, recognized        investigating reading from the perspective of predictive coding pro-
+less than 30% of these words with a single fixation. Thus, in fast            mises to shed new light on this intriguing feat which seems so effort-
+readers word recognition is evidently effortless even when the pro-           less for most of us, but which is a matter of continuous struggle for
+cessing of a word must proceed bottom-up. For the slow readers, to            many.
+the contrary, this process is more effortful and much more time
+consuming. Thus, it is plausible that the difficulties with processing        1. Pellegrino, F., Coupé, C. & Marisco, E. A cross-language perspective on speech
+the currently fixated word prevent preprocessing the upcoming                     information rate. Language 87, 539–558 (2011).
+word. This interpretation coincides with the foveal load hypothesis47         2. Forster, K. I. [Basic issues in lexical processing] Lexical representation and process
+and the notion of a dynamic perceptual span48. In brief, the perceptual           [Marsen-Wilson, W. D. (Ed.)] [75–107] (Cambridge, MIT Press, 1989).
+                                                                              3. Smith, F. Understanding reading (New York: Holt, Rinehart & Winston, 1971).
+span is the effective field of vision from which information is
+                                                                              4. Norris, D. Shortlist: A connectionist model of continuous speech recognition.
+extracted during a fixation49. The span is dynamic which means that               Cognition 52, 189–234 (1994).
+its size is adjusted depending on the difficulty of the currently fixated     5. Perfetti, C. A. & Hart, L. On the consequences of meaning selection. [67–86]
+word (i.e., the foveal load; Ref. 47). The perceptual span of slow                (Psychological Association, Washington; 2001).
+readers may be, on average, smaller than that of a fast reader due            6. Perfetti, C. A. Reading ability: Lexical quality to comprehension. Sci Stud Read. 11,
+                                                                                  357–383 (2007).
+to their frequent difficulties with visual word recognition (i.e., they       7. Perfetti, C. A. Reading acquisition [145–174] (Erlbaum, Hillsdale; 1992).
+need to devote more of their attentional resources to the foveal              8. Perfetti, C. A. Reading ability (Oxford University Press, New York; 1985).
+words). A small span would prevent obtaining (coarse) visual                  9. Hersch, J. & Andrews, S. Lexical quality and reading skill: Bottom-up and top-
+information from the upcoming word which would support the                        down contributions to sentence processing. Sci Stud Read. 16, 240–262 (2012).
+generation of forward inferences by interacting with context-based            10. Rao, R. P. & Ballard, D. H. Predictive coding in the visual cortex: A functional
+                                                                                  interpretation of some extra-classical receptive field effects. Nat Neurosci 2, 79–87
+predictions50. It has been shown that beginning readers have a smal-              (1998).
+ler perceptual span than skilled (adult) readers51,52 and there is recent     11. Friston, K. J. The free-energy principle: a unified brain theory? Nat Rev Neurosci.
+evidence that, during reading, dyslexic readers53 and less experienced            11, 127–138 (2010).
+readers54 obtain less parafoveal information than unimpaired,                 12. Friston, K. J., Daunizeau, J. & Kiebel, S. J. Reinforcement learning or active
+                                                                                  inference? PLoS ONE 4, e6421 (2009).
+experienced readers.
+                                                                              13. Vossel, S. et al. Spatial attention, precision, and Bayesian inference: a study of
+   Another explanation for the comparative lack of forward infer-                 saccadic response speed. Cereb Cortex. 24, 1436–1450 (2014).
+ences in slow readers could be that they suffer from a visual impair-         14. Bar, M. et al. Top-down facilitation of visual recognition. Proc Natl Acad Sci USA.
+ment or from deficient visual attention. The studies on predictive                103, 449–454 (2006).
+coding in object recognition revealed that the coarse visual informa-         15. Federmeier, K. D. Thinking ahead: The role and roots of prediction in language
+                                                                                  comprehension. Psychophysiology. 44, 491–505 (2007).
+tion (i.e., the LSF) of the perceived object is transmitted rapidly to the    16. DeLong, K. A., Urbach, T. P. & Kutas, M. Probabilistic word pre-activation during
+orbitofrontal cortex by magnocells (M-cells; nerve cells with thickly             language comprehension inferred from electrical brain activity. Nat Neurosci. 8,
+myelinated axons with a high transmission speed). It was hypothe-                 1117–1121 (2005).
+sized that a reading disorder is caused by a specific impairment of this      17. Altmann, G. T. M. & Kamide Y. Incremental interpretation at verbs: Restricting
+                                                                                  the domain of subsequent reference. Cognition. 71, 247–264 (1999).
+cell type which is also crucially involved in visual attention. The
+                                                                              18. Kamide, Y., Altmann, G. T. M. & Haywood, S. L. The time-course of prediction in
+theory is known as the magnocellular theory of dyslexia55. A deficit              incremental sentence processing: Evidence from anticipatory eye movements.
+of the M-cells of the visual system in slow readers may compromise                J Mem Lang. 49, 33–156 (2003).
+the transmission of LSF information to the orbitofrontal cortex.              19. Murray, J. D. & Burke, K. A. Activation and encoding of predictive inferences: The
+Supporting evidence for this notion was provided recently56. The                  role of reading skill. Discourse processes. 35, 81–102 (2003).
+                                                                              20. Long, D. L., Oppy, B. J. & Seely, M. R. Individual differences in the time course of
+study showed that Chinese dyslexic children performed inferior to                 inferential processing. J Exp Psychol Learn Mem Cogn. 20, 1456–1470 (1994).
+normal reading children in a Chinese character recognition task. This         21. Kintsch, W. Comprehension: A paradigm for cognition. (Cambridge, England:
+was especially the case in a condition in which the visual image of the           Cambridge University Press, 1998).
+
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                               7
+                                                                                                                         www.nature.com/scientificreports
+
+22. Dambacher, M., Rolfs, M., Göllner, K., Kliegl, R. & Jacobs, A. M. Event-related        48. Risse, S., Hohenstein, S., Kliegl, R. & Engbert, R. A theoretical analysis of the
+    potentials reveal rapid verification of predicted visual input. PLoS ONE 4, e5047           perceptual span based on SWIFT simulations of the n 1 2 boundary paradigm.
+    (2009).                                                                                     Vis Cogn. 22, 283–308 (2014).
+23. Hofmann, M. J. et al. Occipital and orbitofrontal hemodynamics during naturally         49. McConkie, G. W. & Rayner, K. The span of the effective stimulus during a fixation
+    paced reading: an fNIRS study. Neuroimage 94, 193–202 (2014).                               in reading. Percept Psychophys 17, 578–586 (1975).
+24. Raij, T. et al. Onset timing of cross-sensory activations and multisensory              50. Bar, M. & Aminoff, E. Cortical analysis of visual context. Neuron 38, 347–358
+    interactions in auditory and visual sensory cortices. Eur J Neurosci. 31, 1772–1782         (2003).
+    (2010).                                                                                 51. Häikiö, T., Bertram, R., Hyönä, J. & Niemi, P. Development of the letter identity
+25. Fitzsimmons, G. & Drieghe, D. How fast can predictability influence word                    span in reading: Evidence from the eye movement moving window paradigm.
+    skipping during reading? J Exp Psychol Learn Mem Cogn. 39, 1054–1063 (2013).                J Exp Child Psychol. 102, 167–181 (2009).
+26. Rayner, K. Eye movements and attention in reading, scene perception, and visual         52. Rayner, K. Eye movements and the perceptual span in beginning and skilled
+    search. Q J Exp Psychol (Hove). 62, 1457–1506 (2009).                                       readers. J Exp Child Psychol. 41, 211–236 (1986).
+27. Gordon, P. C., Plummer, P. & Choi, W. See before you jump: Full recognition of          53. Yan, M., Pan, J., Laubrock, J., Kliegl, R. & Shu, H. Parafoveal processing efficiency
+    parafoveal words precedes skips during reading. J Exp Psychol Learn Mem Cogn.
+                                                                                                in rapid automatized naming: A comparison between Chinese normal and
+    39, 633–641 (2013).
+                                                                                                dyslexic children. J Exp Child Psychol. 115, 579–589 (2013).
+28. Kliegl, R., Nuthmann, A. & Engbert, R. Tracking the mind during reading: the
+                                                                                            54. Wang, A., Zhou, W., Shu, H. & Yan, M. Reading proficiency modulates parafoveal
+    influence of past, present, and future words on fixation durations. J Exp Psychol
+                                                                                                processing efficiency: Evidence from reading Chinese as a second language. Acta
+    Gen. 135, 12–35 (2006).
+29. Kliegl, R., Grabner, E., Rolfs, M. & Engbert, R. Length, frequency, and                     Psychol. 152, 29–33 (2014).
+    predictability effects of words on eye movements in reading. Eur J Cogn Psychol.        55. Stein, J. & Walsh, V. To see but not to read; the magnocellular theory of dyslexia.
+    16, 262–284 (2004).                                                                         Trends Neurosci. 20, 147–52 (1997).
+30. Ashby, J., Rayner, K. & Clifton, C. Eye movements of highly skilled and average         56. Zhao, J., Qian, Y., Bi, H.-Y. & Coltheart, M. The visual magnocellular-dorsal
+    readers: Differential effects of frequency and predictability. Q J Exp Psychol A. 58,       dysfunction in Chinese children with developmental dyslexia impedes Chinese
+    1065–1086 (2005).                                                                           character recognition. Sci. Rep. 4, 7068; DOI:10.1038/srep07068 (2014).
+31. Hawelka, S., Gagl, B. & Wimmer, H. A dual-route perspective on eye movements            57. Hutzler, F., Kronbichler, M., Jacobs, A. M. & Wimmer, H. Perhaps correlational
+    of dyslexic readers. Cognition 115, 367–379 (2010).                                         but not causal: no effect of dyslexic readers’ magnocellular system on their eye
+32. Landerl, K. & Wimmer, H. Development of word reading fluency and                            movements during reading. Neuropsychologia 44, 637–648 (2006).
+    orthographic spelling in a consistent orthography: An 8-year follow-up. J Educ          58. Ziegler, J. C., Pech-Georgel, C., Defau, S. & Grainger, J. Rapid processing of letters,
+    Psychol. 100, 150–161 (2008).                                                               digits and symbols: what purely visual-attentional deficit in developmental
+33. Wimmer, H. & Schurz, M. Dyslexia in regular orthographies: manifestation and                dyslexia? Dev Sci. 13, F8–F14 (2010).
+    causation. Dyslexia 16, 283–299 (2010).                                                 59. Hilte, M. & Reitsma, P. Activating the meaning of a word facilitates the integration
+34. American Psychiatric Association. Diagnostic and statistical manual of mental               of orthography: evidence from spelling exercises in beginning spellers. J Res Read.
+    disorders (5th ed.). (Washington, DC: Author, 2013).                                        34, 333–345 (2011).
+35. Baayen, R. H., Piepenbrock, R. & van Rijn, H. The CELEX lexical database
+    [CDROM]. Philadelphia: University of Pennsylvania, Linguistic Data Consortium
+    (1993).
+36. Baayen, R. H., Davidson, D. J. & Bates, D. M. Mixed-effects modeling with crossed       Acknowledgments
+    random effects for subjects and items. J Mem Lang. 59, 390–412 (2008).                  We are grateful to Gemma Fitzsimmons for comments on a previous version of this article.
+37. Inhoff, A. W. Two stages of word processing during eye fixations in the reading of      We thank Franziska A. Fowles for proof-reading. We are grateful to Reinhold Kliegl for
+    prose. J Verbal Learning Verbal Behav. 23, 612–624 (1984).                              providing us the Potsdam sentence corpus and to Jochen Laubrock for his
+38. Reingold, E. M., Reichle, E. D., Glaholt, M. G. & Sheridan, H. Direct lexical control   eyetrackR-package. This research was funded by the Austrian Science Foundation (FWF; P
+    of eye movements in reading: evidence from a survival analysis of fixation              25799).
+    durations. Cogn Psychol. 65, 177–206 (2010).
+39. Staub, A. The effect of lexical predictability on distributions of eye fixation
+    durations. Psychon Bull Rev. 18, 371–376 (2011).                                        Author contributions
+40. Engbert, R., Nuthmann, A., Richter, E. M. & Kliegl, R. SWIFT: a dynamical model         S.H. wrote the manuscript. S.H. and S.S. analyzed the data. S.S. prepared the figures. B.G.
+    of saccade generation during reading. Psychol Rev. 112, 777–813 (2005).                 performed the experiment. F.H. made important theoretical contributions. All authors
+41. Perfetti, C. A., Goldman, S. & Hogaboam, T. Reading skill and the identification of     reviewed the manuscript.
+    words in discourse context. Mem Cognit. 7, 273–282 (1979).
+42. Rayner, K., Foorman, B. R., Perfetti, C. A., Pesetsky, D. & Seidenberg, M. S. How
+    psychological science informs the teaching of reading. Psychol Sci. 2, 31–74            Additional information
+    (2001).                                                                                 Competing financial interests: The authors declare no competing financial interests.
+43. Balota, D. A., Pollatsek, A. & Rayner, K. The interaction of contextual constraints     How to cite this article: Hawelka, S., Schuster, S., Gagl, B. & Hutzler, F. On forward
+    and parafoveal visual information in reading. Cogn Psychol. 17, 364–390 (1985).
+                                                                                            inferences of fast and slow readers. An eye movement study. Sci. Rep. 5, 8432; DOI:10.1038/
+44. Eskenazi, M. A. & Folk, J. R. Skipped words and fixated words are processed
+                                                                                            srep08432 (2015).
+    differently during reading. Psychon Bull Rev. Epub ahead of print (2014).
+45. Sparrow, L. & Miellet, S. Activation of phonological codes during reading:
+    evidence from errors detection and eye movements. Brain Lang. 81, 509–516                             This work is licensed under a Creative Commons Attribution 4.0 International
+    (2002).                                                                                               License. The images or other third party material in this article are included in the
+46. Boets, B. et al. Intact but less accessible phonetic representations in adults with                   article’s Creative Commons license, unless indicated otherwise in the credit line; if
+    dyslexia. Science 342, 1251–1254 (2013).                                                              the material is not included under the Creative Commons license, users will need
+47. Henderson, J. M. & Ferreira, F. Effects of foveal processing difficulty on the                        to obtain permission from the license holder in order to reproduce the material. To
+    perceptual span in reading: Implications for attention and eye movement control.                      view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/
+    J Exp Psychol Learn Mem Cogn. 16, 417–429 (1990).
+
+
+
+
+SCIENTIFIC REPORTS | 5 : 8432 | DOI: 10.1038/srep08432                                                                                                                                      8
+

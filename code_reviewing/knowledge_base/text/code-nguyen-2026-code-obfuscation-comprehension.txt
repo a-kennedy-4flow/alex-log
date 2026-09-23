@@ -1,0 +1,1022 @@
+                                        The Effect of Code Obfuscation on Human Program
+                                        Comprehension
+                                        ANH H. N. NGUYEN∗ and JACK LE∗ , University of Texas at Dallas, USA
+                                        ILSE LAHNSTEIN CORONADO, University of Texas at Dallas, USA
+                                        TIEN N. NGUYEN, University of Texas at Dallas, USA
+                                        We investigate how code obfuscation influences human understanding of programs through an output-
+                                        prediction task. To study this effect, we construct multiple levels of obfuscation, ranging from unobfuscated
+arXiv:2603.07668v1 [cs.SE] 8 Mar 2026
+
+
+
+
+                                        code to transformations involving identifier renaming, adversarially misleading identifiers, control-flow
+                                        modifications, and combinations of these techniques. These transformations are applied to function-level
+                                        programs written in Python and JavaScript. Participants were asked to predict program outputs while we
+                                        recorded correctness, response time, and self-reported programming experience.
+                                           Our results show that obfuscation generally increases the time required to reason about code and tends
+                                        to reduce prediction accuracy. However, the relationship between obfuscation strength and performance is
+                                        not strictly monotonic and varies across programming languages. JavaScript exhibits the expected pattern
+                                        of increasing difficulty with stronger obfuscation, whereas Python displays a more complex trend in which
+                                        certain renaming transformations can perform comparably to, or occasionally better than, the unobfuscated
+                                        baseline. Response-time analyses further suggest that obfuscation shifts participants away from rapid, heuristic
+                                        reasoning toward slower and more deliberate reasoning processes. Performance appears highest within a
+                                        moderate range of response times, indicating that careful deliberation can improve accuracy, while extremely
+                                        long response times often correspond to confusion. Finally, programming experience predicts performance pri-
+                                        marily within a given language, with limited transfer across languages, suggesting that obfuscation challenges
+                                        language-specific familiarity more than general programming ability.
+
+                                        1   Introduction
+                                        Software obfuscation is widely used to protect intellectual property, deter reverse engineering, and
+                                        hide the business logic. In practice, obfuscators routinely transform identifier names and control flow,
+                                        and they often stack multiple transformations to maximize resistance. Yet the effectiveness of these
+                                        techniques is usually evaluated through automated metrics (e.g., code complexity, decompilation
+                                        success, or similarity scores) or against attacker models that implicitly assume how a human
+                                        analyst will struggle. This leaves a basic gap: obfuscation is fundamentally meant to burden human
+                                        comprehension, but we have limited empirical evidence about how specific obfuscation mechanisms
+                                        change people’s ability to understand code.
+                                           A common assumption in software security is that stronger obfuscation monotonically increases
+                                        cognitive difficulty. However, this assumption is not trivially true for humans, as human cognition
+                                        is not simply computational. Identifier renaming might remove semantic “shortcuts,” forcing more
+                                        careful reasoning; adversarial renaming might mislead by injecting plausible-but-wrong semantics;
+                                        and control-flow alteration can disrupt the structural cues that programmers rely on to form a
+                                        mental model. These obfuscations target different aspects of comprehension, and their effects may
+                                        not simply add up when combined. Without controlled human studies, it is unclear whether “more
+                                        obfuscation” always means “harder,” which techniques actually drive the difficulty, and whether
+                                        some transformations inadvertently help by pushing readers away from misleading heuristics.
+                                        ∗ Both authors contributed equally to this research.
+
+
+
+                                        Authors’ Contact Information: Anh H. N. Nguyen, ahn210003@utdallas.edu; Jack Le, jvl210002@utdallas.edu, University of
+                                        Texas at Dallas, Richardson, Texas, USA; Ilse Lahnstein Coronado, University of Texas at Dallas, Richardson, Texas, USA,
+                                        ial200001@utdallas.edu; Tien N. Nguyen, University of Texas at Dallas, Richardson, Texas, USA, Tien.N.Nguyen@utdallas.
+                                        edu.
+                                       Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+   To ground these questions in measurable behavior, we study output prediction–given a function
+and a concrete input, determine the exact output. Output prediction is a classic proxy for program
+comprehension because it requires building a correct mental model of the program’s semantics,
+yet it avoids the ambiguity of open-ended tasks like summarization. It also provides a clean,
+objective signal (correct/incorrect) and supports fine-grained analysis of response time. In cognitive
+terms, this lets us examine when programmers rely on fast, heuristic processing versus when they
+switch to slower, deliberate tracing–an instance of the Dual-System (System 1/System 2) [13] view
+of reasoning. Output prediction was also used in prior studies on code understanding [28, 29].
+   Motivated by these gaps, we conduct a controlled experiment that varies obfuscation along a small,
+representative hierarchy: L0 (original code), L1 (identifier renaming with uninformative names), L1b
+(adversarial renaming with plausible-but-misleading names), L2 (control-flow alteration/flattening),
+and L3 (a realistic combination of renaming and control-flow obfuscation). This design allows
+us to isolate how different transformations affect both accuracy and time-to-completion, and to
+test whether the presumed monotonic relationship between obfuscation strength and human
+difficulty actually holds [26] and whether the Dual-System can serve as the grounded theory for
+such behaviors of humans on obfuscated code. It also enables analysis of how code properties (e.g.,
+cyclomatic complexity, length, identifier length) correlate with performance and cognitive effort,
+and whether these relationships differ across Python and JavaScript.
+   Finally, obfuscation is deployed across ecosystems, but human comprehension is shaped by
+language syntax, idioms, and prior experience. A transformation that is disruptive in one language
+may be less harmful–or harmful in a different way–in another. Similarly, experience may not transfer
+cleanly: being fluent in Python may not make a programmer robust to obfuscated JavaScript, and
+vice versa. Understanding these cross-language and experience effects is essential for interpreting
+obfuscation “strength” in realistic settings and for designing evaluations that reflect how humans
+actually reason about code. Together, these motivations lead directly to our research questions on
+how obfuscation affects output prediction accuracy and time, how complexity relates to accuracy,
+how results differ by language, and how prior experience moderates resilience to obfuscation.
+
+
+2     Background
+2.1    Code Obfuscation
+Prior work organizes obfuscation techniques by transformation properties, most notably layout-
+based and control-flow-based obfuscations [10]. Building on this, we group them in our study into
+ordinal tiers to enable controlled comparisons of human performance under increasing transfor-
+mation complexity. This categorization follows the common separation between layout-based and
+control flow-based obfuscation: Identifier Renaming is layout-based, while control-flow flattening is
+control-flow-based [7]. Specifically, our study utilized the following obfuscations (Fig. 1).
+   L1: Identifier Renaming. Identifier renaming is a layout obfuscation technique that replaces
+existing identifiers (function names, variable names) into incoherent names, when together, is
+disjointed semantically. The disconnect cause a harder time understand the program’s intent from
+just the identifiers. In Fig. 1, for the L1 variant, the variables are replaced with short, almost-
+indistinguishable names, forcing readers to rely on structural reasoning rather than name inference.
+   L1b: Adversarial Renaming. We also used L1b, a variant of L1, to capture a different effect
+of identifier renaming. While L1 reduces readability by renaming identifiers to simplistic, non-
+informative names, L1b replaces identifiers with semantically meaningful names that are misleading
+in the new context. This semantic mismatch can mislead readers into forming an incorrect mental
+model of the code snippet. For example, in Fig. 1, the renamed variable identifier _lastNSecs is
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+
+
+                           Fig. 1. Examples of Obfuscation Levels in Our Study
+
+
+
+
+semantically unrelated to the original identifier n, and the renamed function smoothArea is likewise
+unrelated to the original function name fibfib.
+   L2: Control-Flow Alteration. Control-flow alteration obfuscates a program’s execution order
+by decoupling control logic from its original syntactic structure. It typically splits code into smaller
+blocks and introduces artificial control structures (e.g., dispatchers or indirect jumps) that make
+the original flow difficult to reconstruct [18]. In Fig. 1, the operation (x == y) is lifted and wrapped
+in functions stored in an object, so evaluation requires an indirect call (e.g., VuwWxy[’mZikr’]) rather
+than a direct expression. This indirection obscures how execution proceeds.
+   L3: Combination of L1 and L2. L3 applies both control-flow flattening and variable renaming.
+Combining multiple obfuscation techniques is common in practice, since developers often layer
+transformations to better resist reverse engineering. This combination better approximates real-
+world obfuscated code and allows us to study how the effects of different techniques interact
+when applied together. By integrating two obfuscation methods, L3 serves as an upper bound on
+obfuscation difficulty for evaluating the robustness of human code-comprehension performance.
+
+2.2   Dual System Theory: System 1 and System 2 Thinking
+Cognitive psychology categorizes reasoning into two modes: System 1 (intuitive, fast, heuristic) and
+System 2 (analytic, slow, deliberate) [13]. The Default-Interventionist Model posits that humans
+default to low-effort System 1 processing, engaging System 2 only when the default mode fails
+or conflicts with the task. We hypothesize that obfuscation acts as a barrier to this default mode,
+necessitating a computationally expensive intervention.
+   Expert programmers rely on “beacons,” familiar features, e.g., variable names and standard
+structures, to form high-level semantic hypotheses. This enables top-down processing. The Block
+Model from Schulte [27] formalizes this hierarchy, categorizing program comprehension into four
+levels: (1) Atoms: basic language elements (keywords, variables); (2) Blocks: regions of interest,
+e.g., a loop body; (3) Relations: dependencies between blocks; and (4) Macro Structure: the overall
+algorithm or goal.
+                                        Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+   Obfuscation effectively "flattens"
+this hierarchy. By removing seman-
+tic beacons and altering structure,
+it obscures the cues necessary for
+Block and Macro level processing,
+forcing humans to regress to Atom
+level analysis, a process that is in-
+herently slower and more error-
+prone.
+   Neuroimaging studies validate
+this dual-process view. Siegmund                     Fig. 2. Stroop and Adversarial Renaming
+et al. [28] studied fMRI signals of
+programmers on two tasks: output prediction and syntax error correction.
+   The authors make the distinction between top-down comprehension is an efficient strategy
+where programmers rely on prior experience and familiar cues, known as "beacons," to quickly grasp
+a program’s overall purpose without reading every line. In contrast, bottom-up comprehension
+is a lower, statement-by-statement process used for unfamiliar code, requiring the programmer
+to mentally group individual details into larger "semantic chunks" to build understanding from
+scratch. In a follow up study, they found that for output prediction, snippets with semantic cues
+(top-down) required significantly lower brain activation across all relevant areas compared to
+bottom-up comprehension [29].
+   We frame the transition to System 2 as a form of cognitive interference, analogous to the Stroop
+Interference Effect [31] (see Fig. 2). Just as incongruent text/color stimuli inhibit automatic reading,
+obfuscation creates Semantic Incongruence by removing the primes (variable names) that trigger
+automatic retrieval. The increased response time in our data represents the Inhibition Cost: the
+latency required to suppress intuitive reading and engage deliberate compilation.
+
+3   Research Questions
+RQ1: How does increasing code obfuscation levels (𝐿0–𝐿3) affect humans in output pre-
+diction? Conventional wisdom posits a monotonic relationship between obfuscation levels and
+cognitive difficulty. This RQ seeks to validate the extent to which these assumptions apply to
+humans.
+   We choose output prediction as our task due to its importance as a proxy for program compre-
+hension. Unlike summarization, it has a single correct answer and can thus be objectively measured.
+RQ2: How does increasing code obfuscation levels (𝐿0–𝐿3) affect "time to complete" the
+output prediction tasks by humans?
+   Time-to-completion can be utilized as a proxy for which cognitive mode the user is in: faster
+responses indicate intuitive heuristics, while slower responses indicate step-by-step, compiler-like
+processing. Answering this question allows us to verify whether and when participants switch
+from System 1 to System 2.
+RQ3: How does code complexity correlate with human performance? Performance is assessed
+against objective metrics like cyclomatic complexity and code length. Additionally, we analyze
+variable name length as a specific stressor on human working memory.
+RQ4: How do obfuscation results differ across programming languages (JavaScript vs.
+Python)? We analyze how specific language attributes moderate obfuscation. If results differ
+by programming experience, then obfuscation techniques must be adjusted depending on the
+programming language. This would mean that the efficacy of obfuscation techniques is dependent
+on the syntax and rules of that particular language.
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+RQ5: How does prior programming experience correlate with accuracy in interpreting
+obfuscated code? Obfuscation can serve as a stress test for the transferability of programming
+knowledge. Whether or not knowledge in one language helps in comprehending obfuscated code
+in another language will show the transferability of programming language knowledge in humans.
+
+4     Experimental Setup
+4.1    Data Processing
+4.1.1 Dataset. We utilize the HumanEval-X benchmark [36], focusing on the JavaScript and Python
+subsets due to their prevalence in code obfuscation. HumanEval-X is ideal for output prediction
+studies because its programs are typically short, self-contained, and execution-focused, allowing
+participants to mentally simulate logic within a controlled timeframe. The benchmark’s competitive-
+programming style emphasizes precise data flow and algorithmic reasoning, the core skills output
+prediction intends to measure, while minimizing the need for the domain-specific knowledge found
+in larger projects. From each language subset, we randomly selected 10 snippets subject to two
+constraints: a cyclomatic complexity between 4 and 8, and a line count of fewer than 15. These
+criteria ensure that the base snippets are non-trivial yet concise, which is essential given that
+obfuscation significantly increases code difficulty.
+4.1.2 Code Obfuscation. For obfuscation tiers L1-L3, we generated variants using ObfuXtreme [30]
+for Python and javascript-obfuscator [17] for JavaScript, ensuring all snippets remained functionally
+equivalent through execution testing with identical input arguments. For this study, we configured
+ObfuXtreme so that ControlFlowFlattener and VariableRenamer can be enabled independently,
+and we disabled StringEncryptor. We also shortened renamed identifiers by reducing the SHAKE-
+128 output from 8 to 2 hex characters, yielding names of the form var_xxxx (<=8 characters);
+variables introduced by control-flow flattening were not subject to this limit. For JavaScript, we
+used javascript-obfuscator with only the transformations needed for our tiers: L1, L2, and L3. All
+other options were disabled to avoid unrelated transformations. After obfuscation, we replaced the
+function name with a neutral placeholder (e.g., myFunct) except adversarial renaming.
+   For L1b (adversarial renaming), we harvested identifiers from the test split (to avoid data leakage)
+of CodeSearchNet [16], which is large, available in both languages, and consists of function-
+level code, matching the scope of HumanEval-X. Using tree-sitter, we built four identifier pools:
+JavaScript/Python × function names/variable names. We replaced each function and variable name
+with randomly sampled name from the respective pool. To ensure semantic plausibility in context,
+we classified names into domains and picked all the names for a code snippet in the same domain.
+
+4.2    Human Study Design
+We administered an in-person survey
+via Qualtrics, conducted in a single           Table 1. Self-reported JavaScript and Python experience.
+room under the supervision of three
+                                                  JavaScript       Python Experience          Total
+researchers. All participants began si-
+multaneously and were allotted 75 min-            Experience     None    < 1 year   ≥1 year
+utes to complete 12 questions. We pro-            None             5        10         1       16
+hibited communication, collaboration,             < 1 year         8        7          8       23
+and the use of all external resources,            ≥1 year          1        4          6       11
+including search engines, LLMs, code
+                                                  Total           14        21        15       50
+execution tools, and IDEs. Each partic-
+ipant received blank A4 paper and a
+pencil for scratch work.
+                                         Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+   We recruited 50 undergraduate computer science majors through a course subject pool. We
+recorded each subject’s self-reported Python and JavaScript experience and their per-question
+completion time. Experience was reported in three categories for each language: None, <= 1 year,
+and >1 year (Table 1 shows the distribution across joint-experience groups). Completion time was
+measured in seconds via Qualtrics page-timer “page submit” metrics.
+   The survey consisted of a mixture of the Python or JavaScript questions. A participant answered
+questions randomly drawn from a pool of code snippets. For each snippet, participants saw exactly
+one of five obfuscation tiers (L0, L1, L1b, L2, L3). We balanced the assignment so that questions and
+tiers appeared evenly across participants. No participant saw the same base snippet in multiple
+obfuscation tiers, ensuring that obfuscation effects were isolated and preventing memory effect
+due to repeated exposure. Overall, each participant answered 12 output-prediction questions.
+   Each question followed the format: “Given the following [Python/JavaScript] function and input,
+what is the correct output?” The input was provided as a function call with specified argument(s)
+and was held constant across obfuscation variants of the same base question (Fig. 1). A response
+was marked correct if it matched the output produced by executing the snippet with the given
+function call and arguments; near-matches were additionally adjudicated by human judgment.
+
+5   Impact of obfuscation on output prediction performance (RQ1)
+Fig. 3 shows that the highest accuracy occurs under L0 (40.46%). With unobfuscated code, readers
+can leverage System 1 processing by relying on pattern matching of familiar constructs, loop shapes,
+and data-flow idioms. This intuitive scaffolding minimizes the need for users to “slow down” for full
+semantic parsing. However, while a descriptive name like bubblesort would allow users to bypass
+code reading entirely, all functions in our dataset (except L1b) use the generic identifier myFunct.
+Consequently, even the unobfuscated baseline demands a baseline, of System 2 reasoning.
+   In contrast, Renaming + Control-
+Flow had the lowest accuracy
+                                                                      All Languages
+(31.09%), confirming combined ob-
+fuscations compound difficulty. By
+simultaneously removing semantic         L0                                            40.46% 53/131
+shortcuts (System 1) and forcing         L1                                          38.68% 41/106
+laborious mental simulation with L1b                                                38.02% 46/121
+control-flow transportation (Sys-        L2                                     34.15%   42/123
+tem 2), this combination maximizes       L3                                   31.09%  37/119
+cognitive load, leading to fatigue,            0       10        20       30       40        50      60
+mistakes, and tracing errors.
+   The results indicate that humans                                  Accuracy (%)
+are more resilient to renaming than    Fig. 3. Impacts  of Different Obfuscation Tiers on Output Prediction.
+to control-flow obfuscation, with the  Bar  labels report accuracy  and (Correct / Total Attempts).
+largest accuracy drop (Δ − 3.87%)
+occurring between L1b (Adversarial Renaming) and L2 (Control-Flow). While adversarial renaming
+weakens semantic cues, it preserves the underlying execution structure, allowing readers to re-
+construct meaning through partial heuristics (e.g., “this variable behaves like an accumulator”).
+Control-flow obfuscation eliminates these structural regularities (recognizable branches/loops),
+thereby removing System 1 crutches and forcing a switch to laborious System 2 tracing.
+   Analysis of user responses to the Tribonacci task (Fig. 1) supports this. Calculating myFunct(14)
+requires recursively summing terms to reach 927, a task exceeding working memory. If System 2
+was engaged, answers should be close to 927. However, out of twelve L0 and L1b responses, only
+one was correct. The majority of incorrect responses were heuristic guesses anchored to the input
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+
+
+    Fig. 4. Response Time Across Obfuscation                    Fig. 5. When does Fast-Thinking Start Failing?
+
+
+(12, 15) or small Fibonacci numbers (0, 1, 3, 5), indicating a failure to transition from intuitive System
+1 to analytical System 2. In contrast, when obfuscation alters literals (L2/L3), the errors shift from
+numeric guesses to syntax confusion. Readers struggled with hexadecimal numbers, frequently
+outputting strings like "0x0" or "0x1," or simply stating "I don’t know." Overall, L0 and L1b errors
+are rectifiable by a transition to System 2, whereas L3 errors reflect a collapse in the ability.
+   Finally, the overall performance level (36.5% correct out of 600 total responses) shows that the
+tasks were challenging even without obfuscation (baseline is only 40.46%). Thus, obfuscation is
+reducing accuracy from an already nontrivial comprehension setting, and the decrease to 31.09%
+(L3) represents a meaningful loss in successful understanding at scale. In Dual-System Theory
+terms, that suggests many questions already required meaningful System 2 engagement such as
+careful tracing. Obfuscation then acts like an added “tax” that (1) reduces the availability of System 1
+shortcuts and (2) increases the amount of System 2 work required. The net effect is a noticeable drop
+in correctness–especially when control flow is distorted–because more people rely on System 2.
+
+      RQ1 Takeaway: We observe decreased accuracy across all obfuscation tiers. Variable Renaming
+      and Adversarial Renaming show a smaller decrease in accuracy compared to the baseline of
+      -1.78% and -2.44% respectively. Control Flow and Renaming+Control Flow had much stronger
+      effects on accuracy overall, -6.31% and -9.37% respectively.
+
+6     How does increasing code obfuscation levels (𝐿0–𝐿3) affect "time to complete" the
+      output prediction tasks by humans? (RQ2)
+We map response times to the Dual-Process model: shorter latencies represent System 1 (heuristic/-
+pattern recognition), while longer latencies represent System 2 (deliberate tracing and verification).
+   Time to response distribution. Figures 4 and 5 demonstrate a clear shift in strategy when
+obfuscation is introduced. For original code (𝐿0), participants rely on System 1 fluency, responding
+fastest (avg. 140s) with high accuracy. Once obfuscated (𝐿1–𝐿3), mean response times jump by
+approximately one minute and remain elevated. This indicates that participants must abandon
+rapid pattern recognition for sustained, effortful System 2 tracing. As shown in Fig. 5, the accuracy
+of "fast" responses (blue) declines steadily as obfuscation levels increase, suggesting that System 1
+heuristics no longer match the code’s surface cues. In contrast, the "slow" group (red) maintains
+higher accuracy. 𝐿2 shows the largest accuracy gap (Δ15.1%), indicating it consistently confuses
+System 1 readers but remains tractable for those who invest time in System 2 tracing. The most
+striking case is L1b, where slow responses peak in accuracy, suggesting a “sweet spot” where
+obfuscation is challenging enough to trigger careful attention but still tractable enough that extra
+effort pays off. L1b and L2 are the tasks that most benefit from System 2 thinking. L1b has the highest
+overall accuracy for the red graph, showing that once users activate System 2 thinking, it is most
+                                       Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+comprehensible to users. This squares with the hypothesis that humans are able to understand code
+with adversarial renaming as long as they are not initially deceived by the semantically misleading
+names. L2 shows the largest red-blue accuracy gap (Δ15.1%), indicating it confuses System 1 readers
+but is better understood with more time. For the L2 level, the largest accuracy gap between the
+accuracy of the red and blue graphs (Δ15.1%), indicating that this level confused participants using
+System 1 Thinking but was better understood by participants with longer response times. At L3,
+however, accuracy drops even for the slow group (34.5%, near the baseline 32.4%), suggesting that
+renaming+control-flow obfuscation overwhelms comprehension despite System 2 effort.
+   Stratifying time-to-responses by correct and incorrect answers. Fig. 6 shows right-skewed
+response-time distributions for both correct and incorrect answers, indicating substantial variability
+in how long participants needed to process the code–most responses cluster at shorter times, with
+a long tail of much slower decisions. This pattern aligns with Dual-System theory: shorter latencies
+often reflect System 1 (fast, heuristic) processing, while longer latencies suggest greater System
+2 (slow, deliberate) engagement. The incorrect distribution is more focused in the 0–50s range,
+implying many errors stem from rapid heuristic judgments that break under complex obfuscation.
+   In contrast, correct responses rise sharply around 50s, suggesting a cognitive floor for System 2
+tracing; responses below this threshold are likely too fast to have correctly followed the program.
+Moreover, both distributions have a long tail: some participants spent several minutes (up to 20 of
+75 minutes) on a single response, consistent with System 2 tracing and verification. However, the
+most extreme times occur mostly among incorrect answers, suggesting that beyond a point extra
+time reflects confusion or unproductive search (e.g., repeated re-checking or getting lost in control
+flow), not improved accuracy–System 2 engagement is not automatically beneficial.
+   The incorrect outliers in Fig. 6 are three at-
+tempts (three participants), all on Python ques-
+tions at different tiers (L1, L1b, L3) that include
+identifier renaming; their self-reported Python
+experience is (≥1 year, < 1 year, < 1 year), re-
+spectively, and all are incorrect, suggesting that
+extreme response time may be associated with
+difficulty in moving beyond surface-level cues.
+   Two other observations reinforce this interpre-
+tation. First, the medians (142.7s correct vs. 127s
+incorrect) show that correct answers tend to be
+somewhat slower, consistent with successful per-
+formance requiring System 2 checking–especially
+since most questions are obfuscated and demand
+time to move beyond surface-level cues. Second, Fig. 6. Response time distribution of correct (Green)
+the overlap between histograms suggests no sin- responses and incorrect responses (Red).
+gle “optimal” time; instead, performance follows
+a Goldilocks pattern: very fast responses are more error-prone (System 1), moderate deliberation
+improves accuracy (effective System 2; correct answers cluster around 60–180s for JavaScript and
+100–300s for Python), and extremely long times increasingly reflect breakdowns in comprehension
+(System 2 struggling without converging).
+   Stratification on different obfuscation levels As seen in Fig. 7, across most obfuscation levels,
+correct responses tend to be faster than incorrect ones: the “Correct” group typically has a lower
+median response time (often with a tighter spread), while incorrect answers show wider dispersion
+and longer upper whiskers/outliers. A plausible interpretation is that more fluent programmers
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+can quickly form an accurate mental model and respond confidently, whereas confusion drives
+time upward–participants trace, backtrack, and re-check assumptions but fail to converge.
+   This slow-but-wrong pattern is evi-
+dent in the heavier tails for incorrect
+responses, suggesting extra time of-
+ten reflects difficulty than correct ver-
+ification. The notable exception is
+L1b (Adversarial Renaming), where
+correct responses are consistently
+slower: the “Correct” distributions
+sit above “Incorrect” in both lan-
+guage panels. This suggests adver-
+sarial renaming especially punishes
+fast, heuristic processing–quick re-
+sponders may trust misleading sur-
+face cues (e.g., corrupted variable-
+name semantics) and answer confi- Fig. 7. Response time distributions for correct (green) and incor-
+dently but incorrectly. Those who rect (orange) responses by obfuscation tier.
+slow down instead trace dataflow and
+variable usage rather than names,
+which takes longer but yields more correct answers. A few additional patterns stand out.
+   First, as obfuscation increases (especially toward L2/L3), variance grows and outliers become
+more extreme, suggesting a split between participants who can still cope efficiently and those who
+get stuck. Second, the Python panel shows generally higher response times and wider spreads than
+JavaScript, implying greater difficulty or stronger sensitivity to obfuscation.
+   Response time is context-dependent rather than uniform: in L0 and L1, speed mostly signals
+fluency; under adversarial renaming, slower responses reflect successfully overriding deceptive in-
+tuitions; and in L2/L3, very fast responses are often wrong while the longer times indicate confusion,
+with correct answers clustering in a middle band that reflects deliberate yet efficient reasoning.
+   The Non-Monotonic Relationship of Time and Accuracy. Tiers are classified by their
+dominant cognitive mode: System 1-aligned if the fastest responses are most accurate, or System
+2-dependent if accuracy scales with deliberation time.
+   For System 1-aligned cases (Python L0 & L1, JavaScript L1), the pattern is essentially "you
+know it or you don’t." As seen in both the Heatmap (Fig. 8) and Linegraph (Fig.9), accuracy is
+highest in the fastest bins and drops steadily as responses slow down (e.g., Python L1 drops from
+78% to 30%). This suggests that for unobfuscated or lightly obfuscated code, correct answers stem
+from rapid recognition; prolonged time here is a marker of uncertainty or lack of fluency rather
+than effective reasoning.
+   For System 2-aligned cases (all other obfuscation tiers), the trend flips: fast responses are
+generally poor and accuracy tends to improve with more time, consistent with the need for System
+2–style tracing. In Python L2, accuracy rises from 20% (very fast) and 40% (fast) to a peak at slow
+(64%), then drops in the very slow bin (33%), suggesting unproductive struggle. In JavaScript L3,
+accuracy remains low but still improves from very fast (16%) to medium (25%), before collapsing at
+very slow, again indicating that extreme time often reflects confusion. Moreover, Python appears
+more resilient overall: for instance, Python L0 shows high accuracy even for very fast/fast
+responses (75–78%), while JavaScript L1 is much lower (33% and 19%). L1b also shows a stronger
+“slowing helps” signature in JavaScript than in Python: JavaScript L1b peaks in the slow bin (50%)
+                                         Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+
+
+Fig. 8. Heatmap of Accuracy conditioned on Re-          Fig. 9. comparison of participant accuracy against
+sponse Time and Obfuscation Tier. The visualization     response speed bins for each obfuscation tier. The
+displays mean accuracy rates across five response       data is split between JavaScript (left) and Python
+time bins (Very Fast to Very Slow) and five obfusca-    (right) to highlight language-specific performance
+tion tiers (𝐿0–𝐿3) for JavaScript and Python.           variances across time quartiles.
+
+
+but falls to near zero in the very slow bin, suggesting adversarial semantics triggers deliberate
+checking, while extreme deliberation can still fail if the mental model never stabilizes.
+   From Fig. 9, several tiers show non-monotonic U-shaped or inverted-U patterns rather than
+“slower is better.” For instance, L1 drops sharply from the fastest bin to Q3 and only slightly rebounds
+at the slowest bin, suggesting extra time often reflects getting stuck. L3 improves from fastest
+to Q3 but collapses at the slowest bin, indicating very slow responses can signal confusion even
+when moderate deliberation helps. This plot also clarifies the “Goldilocks zone”: for harder tiers
+in both languages, accuracy often peaks in the middle bins (Q2/Q3), while the slowest bin often
+dips (e.g., JavaScript L3; Python L2), consistent with moderate System 2 engagement helping but
+excessive time reflecting breakdown. Compared to JavaScript, Python curves are generally higher
+and smoother (especially L1/L1b/L3), whereas JavaScript shows sharper collapses (e.g., L1 at Q3, L3
+at slowest), suggesting obfuscation more often derails readers into unproductive traces.
+
+    RQ2 Takeaway: Obfuscation disrupts intuitive guessing (System 1), forcing users to manu-
+    ally verify logic flow (System 2), while rapid thinking succeeds on clean code (𝐿0) since the
+    participants can rely on code heuristics and signposts, this cognitive style leads to errors in
+    obfuscated tiers. Adversarial Renaming shows the highest accuracy under System 2. Time shares
+    a non-linear relationship with accuracy: results are poor at both extremes (hasty errors vs. pro-
+    longed confusion), with peak performance occurring only during moderate intervals of System
+    2 engagement. Fast can work when tasks are easy, moderate slowing helps when tasks are hard,
+    and extremely slow responses often indicate breakdown rather than successful reasoning.
+
+7   Impact of code complexity on performance (RQ3)
+ Identifier Length vs. Accuracy. We found no significant correlation between identifier length and
+performance, challenging the assumption that verbosity implies clarity. Although short variables
+(e.g., x) are often less interpretable than descriptive ones (e.g., calculateTotal), adversarial renaming
+breaks this relationship: misleading identifiers can be long yet still harm comprehension. This
+added noise scatters the results, suggesting identifier veracity matters more than identifier length.
+    Line Count vs. Accuracy. As shown in Fig. 10, accuracy generally declines as line count
+increases. Variability is high for snippets under 10 lines, suggesting item difficulty dominates at
+small sizes (some are obvious, others deceptively tricky). L2 and L3 drop most steeply, indicating
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+
+
+Fig. 11. Accuracy vs. Cyclo. Complexity by Obfus.      Fig. 12. Accuracy vs Cyclo. Complexity by Language
+
+
+control-flow transformations scale cognitive cost with program size: longer code adds more blocks
+and dependencies, forcing sustained System 2 tracing and making structural disruption more
+damaging.
+   L1 is the notable exception: accuracy increases
+with line count. Under identifier renaming, name-
+based System 1 cues are degraded, and very short
+snippets offer too little structure to recover intent,
+pushing readers into System 2 without enough con-
+text. Longer code provides more structural cues (e.g.,
+loop boundaries, nesting), helping readers recon-
+struct meaning despite uninformative names. For
+example, in Python No.101, L0 responses captured
+the string content (“Hi my name is John”) but missed
+formatting it as a list; in L1, renaming variables
+(e.g., letter to var_bc5a) forced users to verify syntax
+rather than assume the output, improving accuracy. Fig. 10. Line Count vs. Accuracy by Obfuscation
+   Accuracy Trajectory by Cyclomatic Complex-
+ity (CC) for Different Obfuscation Levels. Following McCabe, we use Cyclomatic Complexity as
+a proxy [22]. Fig. 11 shows that obfuscation interacts with the baseline complexity (line count and
+code complexity are measured on original code to avoid conflation). For High CC (red), accuracy
+declines monotonically in both languages (L3 < L2 < L1), indicating that when code is already
+complex, obfuscation simply compounds difficulty without beneficial strategy shifts; the drop is
+steeper in Python (especially L2 to L3).
+   In contrast, Low and Medium CCN show non-monotonic “dip-rebound” patterns. Most notably,
+Python Medium CCN improves from L2 to L3 (mid-40% to mid-60%), suggesting that adding
+renaming atop control-flow alteration can sometimes aid comprehension–perhaps by discouraging
+misleading semantic cues and prompting more systematic tracing. Another possibility is that the
+specific subset of medium-CCN items reaching L3 may have more consistent structure or be more
+“traceable” despite obfuscation–either way, L3 is not simply “harder” here. Low CCN shows a similar
+“beneficial difficulty” effect (Python peaks at L1/L1b; JavaScript at L2), but this disappears at High
+CCN, where complexity plus obfuscation overwhelms tracing even with increased System 2 effort.
+    Accuracy by Cyclomatic Complexity. As shown in Fig. 12, JavaScript accuracy decreases
+monotonically with cyclomatic complexity, most sharply in the High CC bin, as more paths and
+decision points increase mental execution burden and errors. Python is non-monotonic: Medium
+complexity appears to provide structural scaffolding (e.g., intermediate variables, staged computa-
+tions) that supports System 2 tracing, unlike Low CC where compact idioms can trigger misleading
+heuristics and High CC which overwhelms working memory. Participants perform better on Python
+                                         Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+than JavaScript at every CC tier, suggesting either the Python items are more traceable in this
+dataset or participants have higher baseline Python fluency.
+
+
+    RQ3 Takeaway: Complexity affects accuracy non-monotonically. Misleading names disrupt
+    comprehension regardless of their length. Control-flow obfuscation becomes increasingly harm-
+    ful as programs get longer, whereas pure renaming can sometimes be offset by longer structure
+    that provides more traceable cues. Cyclomatic complexity is a strong predictor of difficulty in
+    JavaScript, while in Python the relationship is more nuanced, with medium-complexity code
+    sometimes being the most traceable for humans, suggesting that readers sometimes require
+    more logic, not less, to anchor their reasoning when surface cues are removed.
+
+
+8   Impact of programming language on performance (RQ4)
+Experience and Accuracy. Fig. 13 shows the output prediction accuracy for both languages
+for each experience level. For both languages, experience is relatively spread out, so results are
+never driven by a tiny subgroup. For Python, the main gap is between participants with no Python
+experience and those with any experience, consistent with modest familiarity providing System 1
+scaffolding (syntax fluency and construct recognition) and reducing System 2 effort spent decoding
+the language. Interestingly, participants with > 1 year of experience do marginally worse than those
+with <=1 year (38.33% vs. 38.89%). One plausible explanation is a ceiling effect: beyond minimal
+fluency, additional experience yields diminishing returns, and performance becomes constrained by
+other factors (e.g., careful tracing demands, working-memory limits, or trickier semantic reasoning)
+rather than Python-specific knowledge. Another possibility is that more experienced participants
+may rely more heavily on quick pattern-based expectations (System 1 “I’ve seen this before”), which
+can occasionally misfire if the snippets are atypical, whereas less experienced participants may
+slow down and engage System 2 consistently.
+   The data indicates that time in-
+vestment is a more critical factor for                                               JavaScript
+                                                                    Python
+accuracy than prior experience. On
+Python/40 L1b a user despite hav-
+ing over a year of experience an-                                                        35.94% 69/192
+                                               None                                 30.95% 52/168
+swered incorrectly after spending
+                                                                                          36.23% 100/276
+only 60 seconds on a task where the < 1 year                                                 38.89% 98/252
+population average was 160 seconds.                                                         37.88% 50/132
+                                            ≥1 year
+In contrast, participant No.6 demon-                                                        38.33% 69/180
+strated that effort can supersede expe-               0       10        20       30        40         50
+rience; despite having no background
+                                          Fig. 13. Output prediction accuracy by experience and language.
+in JavaScript, they outperformed the
+population average by securing a 33%
+accuracy rate. Their success was directly correlated with time spent, as they failed questions ad-
+dressed in under a minute but succeeded on those where they invested over two minutes. These
+cases suggest that expertise is easily undermined by haste, while focused diligence allows even
+beginners to surpass typical performance benchmarks.
+   JavaScript shows a weaker experience–performance link than Python. Participants with no expe-
+rience (35.94%) performed nearly the same as those with <= 1 year (36.23%) and only slightly below
+those with >1 year (37.88%). This suggests success depends less on language-specific knowledge
+than on transferable code-reading skills: novices can apply general System 1 pattern recognition
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+and System 2 tracing once basic parsing is possible. The small experience gain also hints at a ceiling
+effect, where correctness is driven more by deep reasoning and verification than syntax fluency.
+
+
+  Language Tier # attempts Correct atts Acc.
+  JavaScript L0         67          29 0.433
+  JavaScript L1         47          10 0.213
+  JavaScript L1b        61          16 0.262
+  JavaScript L2         62          16 0.258
+  JavaScript L3         63          10 0.159
+  Python     L0         64          24 0.375
+  Python     L1         59          31 0.525
+  Python     L1b        60          30 0.500
+  Python     L2         61          26 0.426
+  Python     L3         56          27 0.482
+
+Fig. 14. Accuracy by language and obfuscation, with tabular results (left) and accuracy visualization (right)
+
+
+   Accuracy by Language and Obfuscation Tier. As shown in Fig. 14, JavaScript accuracy declines
+with obfuscation intensity, dropping from 0.433 (L0) to 0.159 (L3), consistent with obfuscation
+eroding System 1 cues and forcing more error-prone System 2 tracing. However, participants
+did slightly better on Control Flow (L2, 0.258) than on Variable Renaming (L1, 0.213), suggesting
+identifiers are key anchors for forming a mental model in JavaScript. Interestingly, accuracy was
+higher under Adversarial Renaming (L1b, 0.262) than plain renaming, plausibly because semantically
+incongruent names trigger suspicion and prompt earlier System 2 checking.
+   Python shows a paradox: accuracy is lowest for unobfuscated code (L0, 0.375) and improves under
+renaming, with L1 (0.525) and L1b (0.500) highest. This suggests the original Python identifiers may
+prompt misleading System 1, domain inferences; stripping names forces more structure-based Sys-
+tem 2 tracing. The control-flow results support this: L3 (renaming+control flow, 0.482) outperforms
+L2 (control flow, 0.426), implying renaming can act as a corrective even as complexity increases.
+   Cross-language, identifier semantics seem to play different roles: in JavaScript, renaming hurts
+more than control-flow changes (L1 < L2), indicating heavier reliance on names, whereas in Python
+those cues may be counterproductive and their removal improves accuracy. Attempts per cell are
+broadly comparable (≈ 47–67), though more testing is needed to confirm which gaps are reliable.
+   Stratifying results on Questions and Obfuscation. In Fig. 15, Python yields higher average
+accuracy than JavaScript in every tier except L0. The unweighted averages show a clear gap (Python:
+46.2% vs. JavaScript: 26.5%), mirrored in the weighted totals (46% vs. 27%); visually, Python sits
+above JavaScript across L1–L3, suggesting the easiest obfuscated items are popularly Python.
+   JavaScript declines monotonically with stronger obfuscation. Python is non-monotonic: accuracy
+rises from L0 (37.50%) to L1 (52.54%) and L1b (50.00%), drops at L2 (42.62%), then rebounds at L3
+(48.21%). This suggests renaming can reduce misleading semantic cues and push readers toward
+more deliberate, structure-based reasoning, consistent with a Dual-System account where removing
+“assumption-inducing” names reduces System 1 misfires and encourages System 2 tracing.
+   Overall, Python accuracy tends to increase with obfuscation, while JavaScript accuracy decreases.
+Two Python snippets (No.43, No.74) deviate, but comprehension remains relatively resilient: No.43
+errors stay within the boolean domain (e.g., True/False swaps), and No.74 errors remain close to the
+ground truth [’hl’, ’Hi’] (e.g., [’hi’, ’hl’]), suggesting execution slips rather than major logic gaps.
+In contrast, the JavaScript outlier (No.136) shows higher accuracy under heavier obfuscation but
+deeper confusion: low-obfuscation errors cluster near Null, whereas high-obfuscation errors drift to
+unrelated outputs (e.g., Infinity or empty), indicating weak understanding despite accuracy gain.
+                                             Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+
+Question Lang. Obf. # Attempt Corr. Att. Acc.(%)
+JavaScript          L0            67         29    43.28
+                    L1            47         10    21.28
+                    L1b           61         16    26.23
+                    L2            62         16    25.81
+                    L3            63         10    15.87
+Python              L0            64         24    37.50
+                    L1            59         31    52.54
+                    L1b           60         30    50.00
+                    L2            61         26    42.62
+                    L3            56         27    48.21
+
+                           Fig. 15. Accuracy by question language and obfuscation tier
+
+
+         Table 2. Contrast between In-Language skill acquisition and Cross-Language interference.
+                               In-Language (Accuracy ↑)               Cross-Language (Accuracy ↓)
+         Exp. Level       Py Exp → Py Task   JS Exp → JS Task     Py Exp → JS Task     JS Exp → Py Task
+         None                  0.321               0.250                0.298                0.469
+         ≤ 1 year              0.508               0.268                0.270                0.457
+         > 1 year              0.522               0.303                0.244                0.455
+
+
+
+
+    RQ4 Takeaway: JavaScript follows a standard linear degradation: accuracy drops steadily
+    as obfuscation increases (𝐿0 to 𝐿3), with control-flow distortion (𝐿2) causing more harm than
+    renaming (𝐿1). In contrast, Python exhibits a counter-intuitive "inverse" trajectory. Accuracy
+    increases under Renaming (𝐿1/𝐿1𝑏) compared to Clean Code (𝐿0), and L3 outperforms L2. This
+    suggests that removing Python’s semantic variable names forces users to abandon heuristics
+    for careful logical tracing (System 2), while its strict formatting supports this deeper reading.
+    Conversely, JavaScript’s flexible syntax appears to rely more heavily on variable names for
+    clarity, leading to faster degradation when they are removed.
+
+
+9   Impact of programmer experience on performance (RQ5)
+As seen in Fig. 16, the correlation matrix suggests a clear within-language relationship between
+experience and accuracy, alongside weak or even negative cross-language associations. Fig. 16 and
+Table 2 show that experience predicts performance in Python (in a Pearson statistical significance
+test, 𝑝-value≈0.01), where accuracy jumps from 0.321 (no experience) to 0.508 (< 1 year). Conversely,
+JavaScript gains were not statistically significant (0.250 → 0.303, 𝑝 = 0.76). This suggests Python
+tenure translates directly to task success, whereas JavaScript performance may depend more
+on general skill than language-specific experience. Moreover, while JavaScript experience does
+not predict Python accuracy, high Python experience incurs a steep penalty on JavaScript tasks.
+Furthermore, we see negative cross-language trends (e.g., Python experience → JavaScript accuracy
+dropping from 0.298 to 0.244). Python experts saw a 53.3% relative accuracy decrease compared to
+novices (Bootstrap 95% CI: [−70.6%, −31.6%]). This suggests that language-specific proficiency can
+actively hinder performance in a new syntax, likely due to negative transfer of ingrained idioms
+and misfirings of System 1.
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+
+
+Fig. 16. Experience-Acc. Correlation       Fig. 17. Experience and Accuracy by Obfuscation Levels
+
+
+
+   Interestingly, this interference coexists with a "general aptitude" effect. JavaScript experience is
+unrelated to Python accuracy, and Python experience is slightly negatively related to JavaScript
+accuracy (𝑟 = −0.11). Accuracy in JavaScript and Python correlates positively (𝑟 = 0.44). Although
+Python tasks were statistically easier with 86% higher odds of correctness (𝑂𝑑𝑑𝑠𝑅𝑎𝑡𝑖𝑜 = 2.31), this
+correlation indicates that while years of experience drives interference, general tracing skill remains
+a transferable asset. Participants who perform well in one language generally excel in the other,
+likely due to broader skills such as control-flow tracing and verification that transcend syntax.
+   As shown in Table 3, accuracy peaks in "mixed-
+profile" groups rather than among those most ex-          Table 3. Accuracy by self-reported experience.
+perienced in both languages. The strongest perfor-        JavaScript Exp.       Python Experience
+mance is concentrated among participants with
+moderate JavaScript experience (≤ 1 year) com-                               None < 1 year ≥1 year
+bined with any Python experience (0.417–0.427),           None               36.67     36.67     25.00
+as well as those with high JavaScript experience          < 1 year           25.00     41.67     42.71
+(> 1 year) but no Python experience (0.50), though        ≥1 year            50.00     39.58     34.72
+we interpret this specific cell cautiously due to low
+sample size (𝑛 = 1). This latter case suggests that general programming skill can sometimes offset a
+lack of language tenure. Conversely, the lowest accuracies (0.25) occur when high experience in a
+language meets a total lack of experience in the other. This indicates a "bottleneck" effect, where a
+lack of basic syntax fluency hampers performance regardless of how familiar the other language is.
+   Notably, being "highly experienced in both" languages does not guarantee peak performance
+(0.347). In Dual-System terms, this paradox may reflect a strategy effect: while moderately expe-
+rienced participants are forced to verify code more consistently, highly experienced participants
+may rely too heavily on fast, pattern-based System 1 expectations. Under the obfuscated conditions
+of these tasks, such shortcuts can misfire, leading to errors that a more deliberate System 2 approach
+might avoid. Peak performance thus requires a balance between enough fluency for quick parsing
+and enough "friction" to trigger analytical verification when cues are unreliable.
+   A granular view of these trends in Table 2, shows that in (Py Exp → Py Task), accuracy rises
+sharply from 0.321 (No Exp) to 0.508 (<=1 year) and 0.522 (>1 year). The gain from <=1 year to >1
+year is smaller than the jump from No Exp to <=1 year, implying that once participants have any
+Python experience, they gain a large boost, with only a small additional gain beyond one year.
+    Stratifying of Experience and Accuracy by Obfuscation Levels. As seen in Fig. 17, in
+JavaScript, experience helps mainly with low/no obfuscation, and the advantage shrinks under
+heavier obfuscation. At L0, higher-experience groups are more accurate, but from L1–L3 the lines
+compress and often cross, indicating experience is not a stable predictor. Accuracy is low for all
+                                       Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+groups at L1 and L3, suggesting renaming and the strongest combined obfuscation disrupt compre-
+hension enough that even experienced readers cannot reliably use usual shortcuts. This convergence
+is consistent with obfuscation suppressing the benefits of language fluency by degrading the cues
+experts typically exploit, pushing everyone toward similarly error-prone, effortful reasoning.
+   For Python, experience gener-
+ally helps, but the benefit is tier-
+dependent and not monotonic.
+More-experienced groups usually
+outperform the least-experienced
+group, showing a clearer advan-
+tage than in JavaScript, but the
+gap varies: it is largest around L1b
+(adversarial renaming), where
+misleading names appear to pun-
+ish novices and experience helps
+readers rely on deeper cues (e.g.,
+data flow over identifiers). At
+higher obfuscation (L2/L3), the
+lines converge, suggesting dimin-
+ishing returns once control flow Fig. 18. (Top) Accuracy by Experience, split by Language. (Bottom)
+is altered and everyone is forced Accuracy by Experience, overall.
+into heavy System 2 tracing. A
+useful interpretation is that when the task forces heavy System 2 (at higher obfuscation), the
+advantage of experience can wash out, producing converging lines and even occasional reversals.
+In contrast, JavaScript is more brittle overall, with low accuracy across obfuscated tiers for all
+experience groups, implying obfuscation more effectively neutralizes language-specific expertise.
+   Accuracy by Experience. As seen in Fig. 18, the most experienced participants (> 1year)
+show a distinct performance peak at L1b (adversarial renaming) across both languages. In Dual-
+System terms, this mismatch prompts a shift from fast System 1 heuristics toward earlier System 2
+verification, allowing experts to prioritize deeper cues like data/control dependencies over identifier
+semantics. However, at the heaviest obfuscation (L3), accuracy remains low for all groups, suggesting
+that the complexity of combined obfuscations can overwhelm even deliberate System 2 reasoning.
+   Python is consistently higher than JavaScript at most
+experience levels and tiers. In the top row, Python sits
+above JavaScript for nearly all obfuscation levels in Expe-
+rience 2 and 3, indicating stronger robustness on Python.
+JavaScript is especially sensitive to renaming (L1/L3) for
+less experienced participants. In Experience 1, JavaScript
+drops sharply from L0 to L1 and is low again at L3, con-
+sistent with novices’ name-driven System 1 heuristics
+being disrupted by identifier changes.
+   Experience reduces the ”cost” of obfuscation more for
+Python than for JavaScript. From Experience 1 to 3,
+Python improves and stabilizes across tiers, whereas Fig. 19. Response Time vs. Accuracy for dif-
+JavaScript stays comparatively low and more volatile ferent experience levels and divided by sixty
+                                                               second bins.
+under obfuscation–especially at L3.
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+   Error bars widen under harder tiers and lower experience.
+Uncertainty is larger (for JavaScript in harder tiers), indicating greater between-subject variability
+that shrinks with experience in Python.
+   Accuracy by Response Time for Different Experience Levels. Fig. 19 shows a non-linear
+time-accuracy relationship that varies by experience and language. For Experience 1 and 2 (red/blue),
+accuracy follows an inverted-U: it rises from very fast responses (0-60s) to mid-range bins (roughly
+60-240s, depending on language), then drops at the longest times (240-300s+). This fits a Dual-
+System view: fast answers reflect error-prone System 1 heuristics, mid-range times reflect productive
+System 2 tracing, and very long times increasingly signal confusion.
+   For Experience 3 (green), the pattern differs across both languages. Accuracy peaks early (60-
+120s), dips in the middle bins, then rebounds at the slowest end in Python (a bump at 300+s) and
+also in JavaScript. This suggests long times for experts may reflect via System 2 verification rather
+than being stuck.
+   Across bins, Python accuracy is higher than JavaScript at the same experience level (Experience
+2–3). Bubble sizes shrink at the extremes, so tail patterns are noisier, but moderate time helps less
+experienced subjects most, while experts can turn long deliberation into recovered accuracy.
+
+
+     RQ5 Takeaway: Linear correlation within-language is strong but cross-language correlation is
+     negative. Experience is not purely additive across languages: outcomes depend on the combina-
+     tion of fluency and reasoning strategy, with several “mixed” experience profiles outperforming
+     the “max experience” profile. Experience helps most when the obfuscation attacks misleading
+     surface cues (L1b) and less when obfuscation disrupts program structure (L3).
+
+
+10    Key Findings
+Obfuscation forces a shift from heuristic to deliberate processing. The presence of obfusca-
+tion (L1–L3) triggered an immediate spike in response time and a drop in accuracy, signaling a
+transition from fast System 1 heuristics to effortful System 2 tracing. While deliberation generally
+improved accuracy, very long response times often correlated with incorrectness, indicating a break-
+down of the mental model. This shift is clearest at L1b (adversarial renaming), which functioned
+as a "trap" for System 1; misleading-but-plausible names baited fast, intuitive errors, requiring
+significantly longer deliberation for humans to consciously verify and correct initial interpretations.
+   Obfuscation does not imply a linear drop in accuracy. More obfuscation does not always
+equals lower accuracy. The relation is non-monotonic and language-dependent. JavaScript followed
+the expected linear decline, lowest accuracy with the hardest tier (L3). Python shows paradoxical
+results as renaming (L1) sometimes outperformed the baseline (L0). This suggests that code under-
+standing is driven by interactions between language-specific cues (syntax, idioms) and obfuscation.
+   Experience Transfer. Proficiency helps, but largely within-language. Experience correlates
+with accuracy within the same language but transfers weakly across languages under obfusca-
+tion. At the same time, accuracy across languages correlates positively, hinting at a general code
+comprehension/tracing skill that is distinct from language proficiency.
+   Code Complexity. Code understandability here is driven by factors other than variable name
+length. Control-flow obfuscation becomes increasingly harmful as programs get longer, whereas
+pure renaming can sometimes be mitigated–or even partially offset–by longer, richer structure that
+provides more traceable cues. For each CC level (low, medium, high), the accuracy is non-monotonic
+with respect to the increasing obfuscation levels but rewarded checking and System 2 thinking.
+                                         Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+11   Implications
+Implications for program-comprehension and security researchers.
+   Reconsider the “monotonic difficulty” assumption. The observed non-monotonicity–particu-
+larly the Python renaming gains–suggests obfuscation can sometimes shift strategy rather than
+purely degrade comprehension. Future work should evaluate obfuscation with multiple behavioral
+signals (accuracy, response-time distributions, fast/slow splits), not solely aggregate correctness.
+   Cognitive Complexity != Computational Complexity. Traditional metrics like cyclomatic
+complexity and identifier length failed to predict human effort in our study. Future security eval-
+uations must move beyond static metrics to model ’cognitive load’, specifically measuring the
+disruption of System 1 heuristics versus the taxation of System 2 tracing.
+   Model obfuscation as a two-part cognitive intervention. Results are consistent with a
+Dual-System framing: obfuscation (i) disrupts System-1 shortcuts (fast answers fail) and (ii) taxes
+System-2 tracing (time increases, with eventual confusion at extremes). This perspective supports
+more precise hypotheses about when humans fail (heuristic traps vs. tracing overload) and motivates
+finer-grained designs (e.g., manipulating misleadingness vs. informativeness of names).
+   Treat adversarial identifiers as a first-class experimental factor. L1b’s signature suggests
+“identifier semantics” is not merely noise: misleading names can actively distort mental models. This
+opens a path for systematic measures of semantic obfuscation (e.g., contextual mismatch scores)
+and for benchmarks designed to distinguish “uninformative” from “misleading” obfuscation.
+   Implications for practitioners using obfuscation
+   Control-flow transformations are the most reliably damaging lever, but effectiveness is
+context-dependent. Control-flow alterations tend to produce the largest comprehension costs and
+confusion patterns. However, language- and population-specific effects matter: sometime, renaming
+may not reduce comprehension as much as expected and can even prompt more careful reading.
+   Obfuscation strategy should be language- and threat-model specific. If the adversary is a
+human analyst, the “best” obfuscation may differ between Python and JavaScript, and between
+novices and experts. One should not assume that a obfuscation recipe generalizes across ecosystems.
+   Adversarial renaming may seem like cheap ways to obfuscate code, but their effectiveness is
+language and model specific. In certain cases, renaming may help humans focus.
+   Implications for tool builders
+   Obfuscation and deobfuscation tools should incorporate human-centric metrics. Static
+complexity or functional equivalence is not enough to characterize human difficulty. Tools could
+report expected impacts on (i) heuristic reliability (probability of fast failure) and (ii) tracing burden
+(time increases and confusion risk), enabling more informed choices about transformations.
+   Deobfuscation UX should target the bottleneck introduced by each tier. For control-flow
+obfuscation, restoring structural readability (e.g., simplified dispatch patterns, reconstructed blocks)
+may yield the biggest comprehension gains. For L1b, assistance should emphasize skepticism on
+semantics and provide scaffolds for dataflow verification rather than simply meaningful names.
+   Experience-aware assistance should be language-aware. Since experience transfers imper-
+fectly, assistants should not overgeneralize user proficiency. They should detect conditions where
+System-1 expectations are likely to misfire (e.g., L1b) and nudge users toward targeted System-2.
+
+12   Related Work
+Ceccato et al. [9] measure how obfuscation affects human time and task success. They show that
+simpler techniques (e.g., identifier renaming) can be more effective than more complex ones (e.g.,
+opaque predicates). Their earlier work examined how obfuscation reduces attackers’ efficiency [8].
+From Vitticchie et al. [33], obfuscation has significant effect on time-to-complete and successful
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+attack efficiency. Regano et al. [24] evaluate the effect of layering obfuscation techniques and the
+correlation between objective metrics of the attacked code and the likelihood of a successful attack.
+Wang et al. [34] studied the deployment of obfuscation techniques in mobile software development.
+   Several researchers have studied the impact of naming to code understanding [1–4, 12, 15, 19–21].
+Rajlich and Wilde argue that developers understand code by mapping it to high-level concepts [23].
+Many proposed proxies, cyclomatic complexity, Halstead volume, Cognitive Complexity [6, 14, 22]–
+show weak empirical support: Scalabrino et al. tested 121 metrics and found none strongly correlated
+with perceived or actual understandability [25]. Trockman et al. achieve only modest gains by
+combining metrics with statistical models [32]. Readability models predict surface style judgments,
+but readability reflects clarity more than true comprehension.
+   Eye-tracking studies found novices read code linearly, like texts, while experts use non-linear
+strategies [11]. Zhang et al. [28] merge human and model attention for code summarization. The
+authors later mimick human visual attention to improve code LLMs [35]. Other researchers [5, 28, 29]
+further showed experts exhibit more non-linear gaze patterns than novices’ sequential reading.
+
+13    Threats to Validity
+External Validity. Our student participants may differ in skill from professional reverse engineers.
+Our tasks use short, self-contained HumanEval-X functions, enabling controlled measurement but
+not reflecting large-scale systems. Generalizability is limited by our language choices (Python/JS)
+and by omitting advanced transformations (e.g., opaque predicates, data obfuscation, virtualization).
+   Internal Validity. The 75-minute time limit could shift strategies (e.g., rushing later items).
+Different obfuscation tools for language may add implementation artifacts beyond the intended
+changes. Presenting a question to less experienced subject may introduce learning or fatigue effects.
+   Construct Validity. Time-to-completion is a proxy for cognitive effort: it is confounded by
+reading speed/strategy, and short times may reflect either expertise or guessing. Qualtrics timers
+capture only end-to-end duration (incl. interface overhead) and miss fine-grained behaviors (pauses,
+rereading). To reduce the off-task delays, we had three proctors in the room to remind the stu-
+dents. Self-reported experience is subjective. Our tiers reflect real obfuscation families, but their
+instantiations depend on tool details. L1-L3 should be read as representative rather than canonical.
+
+References
+ [1] Eran Avidan and Dror G. Feitelson. 2017. Effects of Variable Names on Comprehension: An Empirical Study. In 2017
+     IEEE/ACM 25th International Conference on Program Comprehension (ICPC). 55–65. doi:10.1109/ICPC.2017.27
+ [2] Jürgen Börstler and Barbara Paech. 2016. The Role of Method Chains and Comments in Software Readability and
+     Comprehension—An Experiment. IEEE Transactions on Software Engineering 42, 9 (2016), 886–898. doi:10.1109/TSE.
+     2016.2527791
+ [3] Raymond P. L. Buse and Westley Weimer. 2008. A Metric for Software Readability. In Proceedings of the 2008 International
+     Symposium on Software Testing and Analysis (ISSTA ’08). ACM, 121–130. doi:10.1145/1390630.1390647
+ [4] Raymond P. L. Buse and Westley Weimer. 2010. Learning a Metric for Code Readability. IEEE Trans. Software Eng. 36,
+     4 (2010), 546–558. doi:10.1109/TSE.2009.70
+ [5] Teresa Busjahn, Roman Bednarik, Andrew Begel, Martha Crosby, James Paterson, Carsten Schulte, Bonita Sharif, and
+     Sascha Tamm. 2015. Eye Movements in Code Reading: Relaxing the Linear Order. In Proc. 23rd IEEE Int. Conf. Program
+     Comprehension (ICPC). IEEE, 255–265. doi:10.1109/ICPC.2015.36
+ [6] G. Ann Campbell. 2018. Cognitive complexity: an overview and evaluation. In Proceedings of the 2018 International
+     Conference on Technical Debt (Gothenburg, Sweden) (TechDebt ’18). Association for Computing Machinery, New York,
+     NY, USA, 57–58. doi:10.1145/3194164.3194186
+ [7] Mariano Ceccato, Massimiliano Di Penta, Jasvir Nagra, Paolo Falcarin, Filippo Ricca, Marco Torchiano, and Paolo
+     Tonella. 2008. Towards experimental evaluation of code obfuscation techniques. In Proceedings of the 4th ACM
+     Workshop on Quality of Protection (Alexandria, Virginia, USA) (QoP ’08). Association for Computing Machinery, New
+     York, NY, USA, 39–46. doi:10.1145/1456362.1456371
+                                                Anh H. N. Nguyen, Jack Le, Ilse Lahnstein Coronado, and Tien N. Nguyen
+
+
+ [8] Mariano Ceccato, Massimiliano Di Penta, Jasvir Nagra, Paolo Falcarin, Filippo Ricca, Marco Torchiano, and Paolo
+     Tonella. 2009. The effectiveness of source code obfuscation: An experimental assessment. In 2009 IEEE 17th International
+     Conference on Program Comprehension. 178–187. doi:10.1109/ICPC.2009.5090041
+ [9] Mariano Ceccato, Massimiliano Penta, Paolo Falcarin, Filippo Ricca, Marco Torchiano, and Paolo Tonella. 2014. A
+     family of experiments to assess the effectiveness and efficiency of source code obfuscation techniques. Empirical Softw.
+     Engg. 19, 4 (Aug. 2014), 1040–1074. doi:10.1007/s10664-013-9248-x
+[10] Christian Collberg, C. Thomborson, and Douglas Low. 1997. A Taxonomy of Obfuscating Transformations. Technical
+     Report 148. University of Auckland. https://researchspace.auckland.ac.nz/handle/2292/3491
+[11] Martha E. Crosby and Jan Stelovsky. 1990. How do we read algorithms? A case study. IEEE Computer 23, 1 (1990),
+     25–35. doi:10.1109/2.48797
+[12] Haeun Eom, Dohee Kim, Sori Lim, Hyungjoon Koo, and Sungjae Hwang. 2024. R2I: A Relative Readability Metric for
+     Decompiled Code. Proceedings of the ACM on Software Engineering (2024). doi:10.1145/3643744
+[13] Jonathan St. B. T. Evans and Keith E. Stanovich. 2013. Dual-Process Theories of Higher Cognition: Advancing the
+     Debate. Perspectives on Psychological Science 8, 3 (2013), 223–241. doi:10.1177/1745691612460685 PMID: 26172965.
+[14] Maurice H. Halstead. 1977. Elements of Software Science (Operating and Programming Systems Series). Elsevier Science
+     Inc.
+[15] Johannes C. Hofmeister, Janet Siegmund, and Daniel V. Holt. 2019. Shorter identifier names take longer to comprehend.
+     Empirical Software Engineering (2019). doi:10.1007/s10664-018-9621-x
+[16] Hamel Husain, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, and Marc Brockschmidt. 2019. CodeSearchNet
+     challenge: Evaluating the state of semantic code search. arXiv preprint arXiv:1909.09436 (2019). https://arxiv.org/abs/
+     1909.09436
+[17] javascript-obfuscator contributors. 2025. javascript-obfuscator. https://github.com/javascript-obfuscator/javascript-
+     obfuscator JavaScript obfuscation tool, package version 4.1.1, last accessed October 17, 2025.
+[18] Tímea László and Ákos Kiss. 2007. Obfuscating C++ Programs via Control Flow Flattening. Annales Universitatis
+     Scientiarum Budapestinensis de Rolando Eötvös Nominatae. Sectio Computatorica 30.
+[19] Dawn Lawrie, Henry Feild, and David Binkley. 2007. Extracting Meaning from Abbreviated Identifiers. In Seventh
+     IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM 2007). IEEE Computer Society,
+     213–222. doi:10.1109/SCAM.2007.17
+[20] Dawn Lawrie, Christopher Morrell, Henry Feild, and David Binkley. 2006. What’s in a Name? A Study of Identifiers.
+     In 14th IEEE International Conference on Program Comprehension (ICPC 2006). 3–12. doi:10.1109/ICPC.2006.51
+[21] Dawn J. Lawrie, Christopher Morrell, Henry Feild, and David Binkley. 2007. Effective identifier names for comprehen-
+     sion and memory. Innovations in Systems and Software Engineering (2007). doi:10.1007/s11334-007-0031-2
+[22] T.J. McCabe. 1976. A Complexity Measure. IEEE Transactions on Software Engineering SE-2, 4 (1976), 308–320.
+     doi:10.1109/TSE.1976.233837
+[23] Václav Rajlich and Norman Wilde. 2002. The Role of Concepts in Program Comprehension. In Proceedings of the 10th
+     International Workshop on Program Comprehension (IWPC ’02). IEEE Computer Society, USA, 271.
+[24] Leonardo Regano, Daniele Canavese, Cataldo Basile, and Marco Torchiano. 2025. Empirical Assessment of the
+     Code Comprehension Effort Needed to Attack Programs Protected with Obfuscation. arXiv:2511.21301 [cs.CR]
+     https://arxiv.org/abs/2511.21301
+[25] Simone Scalabrino, Gabriele Bavota, Christopher Vendome, Mario Linares-Vásquez, Denys Poshyvanyk, and Rocco
+     Oliveto. 2021. Automatically Assessing Code Understandability. IEEE Transactions on Software Engineering 47, 3 (2021),
+     595–613. doi:10.1109/TSE.2019.2901468
+[26] Sebastian Schrittwieser, Stefan Katzenbeisser, Johannes Kinder, Georg Merzdovnik, and Edgar Weippl. 2016. Protecting
+     Software through Obfuscation: Can It Keep Pace with Progress in Code Analysis? ACM Comput. Surv. 49, 1, Article 4
+     (April 2016), 37 pages. doi:10.1145/2886012
+[27] Carsten Schulte. 2008. Block Model: an educational model of program comprehension as a tool for a scholarly approach
+     to teaching. In Proceedings of the Fourth International Workshop on Computing Education Research (ICER ’08). ACM,
+     149–160. doi:10.1145/1404520.1404535
+[28] Janet Siegmund, Christian Kästner, Sven Apel, Chris Parnin, Anja Bethmann, Thomas Leich, Gunter Saake, and
+     André Brechmann. 2014. Understanding understanding source code with functional magnetic resonance imaging. In
+     Proceedings of the 36th International Conference on Software Engineering (Hyderabad, India) (ICSE 2014). Association
+     for Computing Machinery, New York, NY, USA, 378–389. doi:10.1145/2568225.2568252
+[29] Janet Siegmund, Norman Peitek, Chris Parnin, Sven Apel, Johannes Hofmeister, Christian Kästner, Andrew Begel, Anja
+     Bethmann, and André Brechmann. 2017. Measuring neural efficiency of program comprehension. In Proceedings of the
+     2017 11th Joint Meeting on Foundations of Software Engineering (Paderborn, Germany) (ESEC/FSE 2017). Association for
+     Computing Machinery, New York, NY, USA, 140–150. doi:10.1145/3106237.3106268
+The Effect of Code Obfuscation on Human Program Comprehension
+
+
+[30] spyboy productions. [n. d.]. ObfuXtreme. https://github.com/spyboy-productions/ObfuXtreme GitHub repository,
+     last accessed September 24, 2025.
+[31] J. Ridley Stroop. 1935. Studies of interference in serial verbal reactions. Journal of Experimental Psychology 18, 6 (1935),
+     643–662. doi:10.1037/h0054651
+[32] Asher Trockman, Keenen Cates, Mark Mozina, Tuan Nguyen, Christian Kästner, and Bogdan Vasilescu. 2018. “Auto-
+     matically Assessing Code Understandability” Reanalyzed: Combined Metrics Matter. In Proc. 15th Int. Conf. Mining
+     Software Repositories (MSR). ACM, 46–57. doi:10.1145/3196398.3196441
+[33] Alessio Viticchié, Leonardo Regano, Marco Torchiano, Cataldo Basile, Mariano Ceccato, Paolo Tonella, and Roberto
+     Tiella. 2016. Assessment of Source Code Obfuscation Techniques. In 2016 IEEE 16th International Working Conference
+     on Source Code Analysis and Manipulation (SCAM). 11–20. doi:10.1109/SCAM.2016.17
+[34] Pei Wang, Qinkun Bao, Li Wang, Shuai Wang, Zhaofeng Chen, Tao Wei, and Dinghao Wu. 2018. Software protection
+     on the go: a large-scale empirical study on mobile app obfuscation. In Proceedings of the 40th International Conference
+     on Software Engineering (Gothenburg, Sweden) (ICSE ’18). Association for Computing Machinery, New York, NY, USA,
+     26–36. doi:10.1145/3180155.3180169
+[35] Yifan Zhang, Chen Huang, Yueke Zhang, Jiahao Zhang, Toby Jia-Jun Li, Collin McMillan, Kevin Leach, and Yu Huang.
+     2025. EyeMulator: Improving Code Language Models by Mimicking Human Visual Attention. arXiv:2508.16771 [cs.SE]
+     https://arxiv.org/abs/2508.16771
+[36] Qinkai Zheng, Xiao Xia, Xu Zou, Yuxiao Dong, Shan Wang, Yufei Xue, Zihan Wang, Lei Shen, Andi Wang, Yang Li,
+     Teng Su, Zhilin Yang, and Jie Tang. 2023. CodeGeeX: A Pre-Trained Model for Code Generation with Multilingual
+     Benchmarking on HumanEval-X. In Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and
+     Data Mining. 5673–5684. doi:10.1145/3580305.3599790
+

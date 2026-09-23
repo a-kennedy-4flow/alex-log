@@ -470,11 +470,11 @@ take the shade of the day that week starts on.
 
 # The wash of the weekday
 
-The guided day picker lists working days alone and washes each button by its
-weekday. Monday runs Bright Blue then Vibrant Orange then the sheet then Bold
-Pink then Smart Blue. It is the one screen left that reads the week as five
-days. The month view had the same wash until a day was shaded by what it asks of
-the user instead.
+The guided day picker washes the column of its board by the weekday standing in
+it. Monday runs Bright Blue then Vibrant Orange then the sheet then Bold Pink
+then Smart Blue. It is the one screen left that reads the week as five days. The
+month view had the same wash until a day was shaded by what it asks of the user
+instead.
 
 Wednesday is the sheet itself. Because a) the palette holds four colours that
 survive as a light wash and not five. b) a light Grey wash and a light Warm Grey
@@ -499,11 +499,54 @@ to prompt for. The empty option remains only for a row with no cost centre.
 
 # The quick fill shares
 
-The shares stay split evenly while nobody has typed one. Adding or removing a
-cost centre resplits them so the list is usable straight away. The first typed
-share hands them over and nothing rewrites them after that. The `100 / n` button
-hands them back. An automatic share is shown dashed and italic like a default
-specification.
+A share is dragged rather than typed and the month is always whole. What one row
+takes the others give up in the proportion they already held, so a row at twice
+another stays at twice it.
+
+This is option B of six. Because a) the arithmetic of making four figures reach
+a hundred is the complaint the `100 / n` button was added for. b) B is the only
+one of the five that removes that arithmetic rather than checking it afterwards,
+because the total cannot leave a hundred. c) the shares are a split of one month
+and a control that can express nothing else says so.
+
+It costs predictability. One drag rewrites figures the user did not touch, which
+is the thing people distrust in a control like this. `Hold` is what pays it. A
+held row is held out of the balancing so a share the user has settled is not
+moved by the next drag. A drag with every other row held has one legal value and
+the handle stops dead on it rather than letting the total leave a hundred.
+
+`balanceShares` in core does the division. The floors are dealt first and the
+remainder goes to the rows the division cut hardest, so the total lands on a
+hundred rather than on 99. It is the same largest remainder rule
+`halvesPerAllocation` uses on the days below it.
+
+The shares stay split evenly while nobody has dragged one. Adding or removing a
+cost centre resplits them so the list is usable straight away. The first drag
+hands them over. After that a cost centre leaving gives its share back to the
+rest in proportion rather than dropping the total under a hundred. The `100 / n`
+button hands the shares back to the app and clears every hold with them. An
+automatic share is shown italic like a default specification.
+
+`mustBe100` is kept as the backstop rather than deleted. No drag can raise it and
+a test holds that. A rule nothing can reach is still the thing that catches the
+case nobody thought of.
+
+The share column costs 50px. The specification column gives 40px of that back and
+the table scrolls the rest the way it already did. The cell is two lines, the
+track on the first and the hold and the figure on the second. Because a) measured
+in the running app at a 1440px window the section gives the table 732px and the
+cost centre column takes 321px of it on a long name. b) one line of 230px put the
+figure 43px past the visible edge, so the value being dragged sat in the part of
+the table that scrolls. c) two lines give the track 148px where one line left it
+95px, and one per cent of a 95px track is under a pixel.
+
+At a 1280px window the figure is still past the edge. That is the cost centre
+column rather than this, and the share field was off the visible table there
+before any of this was built.
+
+The six pages this was picked from are in `mockups/`. `shares-index.html` lists
+them and `s2-balance.html` is the one that won. The four that lost are kept
+because a decision is only readable beside what it beat.
 
 # The expected days
 
@@ -689,17 +732,17 @@ through a `data-tour` attribute. An attribute is used rather than a class
 because a class is there to be restyled and a rename would break the tour in
 silence.
 
-    month      11 steps   six tabs, period, target, reference list, checks,
+    month       6 steps   the tabs, period, target, reference list, checks,
                           download
     quick       4 steps   rows, share, even them out, fill
     guided      5 steps   days away, place them, which absence, projects, build
     settings    4 steps   location, entity, business line, contract
     admin       3 steps   drop, preview, replace
 
-The tabs are drawn by the shell so they stand on every page. They are toured
-from the month alone. Because a) a page offers its tour once and unasked. b) the
-same six tabs on every page would be six steps six times. c) the month is the
-page the app opens on.
+The tabs are drawn by the shell so they stand on every page. One step covers
+the whole strip and it is toured from the month alone. Because a) a page offers
+its tour once and unasked. b) a step per tab would be six steps before the page
+itself is reached. c) the month is the page the app opens on.
 
 A step whose element is not on the page is dropped rather than shown pointing at
 nothing. The download panel is absent for a user with no API and the admin page
@@ -1027,6 +1070,17 @@ apart from `Other absence`. b) a month holding both is ordinary rather than the
 exception. c) a single label made the user build the month twice or correct the
 second kind by hand afterwards. A switch above the calendar says which absence
 the next placed day takes. It is drawn only where step one asked for two.
+
+Step two is a calendar board and not a list of days. Because a) a day off is
+remembered as a date on a month and the question is better asked on the shape
+the answer is held in. b) a run of days off reads as a run across a week. c) the
+weekend and the bank holiday the month already lost are on the screen instead of
+being silently left out of a list. Only a working day is a button. A day the
+tracker books nothing on is drawn and holds nothing.
+
+`useCalendarBoard.ts` lays the weeks out and `MonthCalendar.vue` takes them from
+the same place. Two boards that disagreed on where a month starts would be a
+fault nobody thinks to look for.
 
 The counts are capped together at the working days of the month. Two counts that
 could never be placed would otherwise leave the build button disabled with

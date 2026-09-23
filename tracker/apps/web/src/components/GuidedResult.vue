@@ -21,9 +21,6 @@ const { t, n } = useI18n()
     <p v-if="built.shortBy > 0" class="said warn">
       {{ t('guided.shortBy', { days: n(built.shortBy) }) }}
     </p>
-    <p v-if="built.ignored.length" class="said warn">
-      {{ t('guided.ignored', { dates: built.ignored.join(' ') }) }}
-    </p>
     <button type="button" class="btn" @click="built = null">{{ t('guided.dismiss') }}</button>
   </section>
 </template>

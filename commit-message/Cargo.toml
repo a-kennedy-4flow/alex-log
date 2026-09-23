@@ -10,10 +10,13 @@ description = "Prefills a commit message with a summary of what is staged. Runs 
 name = "prepare-commit-msg"
 path = "src/main.rs"
 
-# Deliberately none. A hook runs on every commit so the binary wants to start
-# instantly. Because there are no dependencies a) startup is a single exec b)
-# the tree builds offline years from now and c) nothing here can rot.
+# One local path and nothing from a registry. The estimate model stays beside
+# the research that sets its constants rather than being copied here. Because a)
+# the crate links statically so startup is still a single exec b) the tree still
+# builds offline years from now and c) nothing here can rot the rule that kept
+# this hook free of registry dependencies still holds.
 [dependencies]
+review-time = { path = "../code_reviewing/review-time" }
 
 [profile.release]
 opt-level = 3

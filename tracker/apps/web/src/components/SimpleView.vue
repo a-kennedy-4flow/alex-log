@@ -1,12 +1,22 @@
 <script setup lang="ts">
 // Quick fill. The user gives each cost centre a share of the month and the grid
 // fills from the first day onwards. Non-working days are skipped.
+//
+// A share is dragged rather than typed and the month is always whole. What one
+// row takes the others give up in the proportion they already held. Because
+// a) the arithmetic of making four figures reach a hundred is the complaint the
+// `100 / n` button was added for. b) a total that cannot leave a hundred is the
+// only answer that removes it rather than checking it afterwards. c) the shares
+// are a split of one month and a control that cannot express anything else says
+// so. It costs predictability, because one drag rewrites figures the user did
+// not touch. `Hold` is what pays that: a settled row is held out of the
+// balancing. See `mockups/s2-balance.html` and the five it beat.
 
-import { computed, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type { Allocation } from '@tracker/core'
-import { distribute, halvesPerAllocation, percentTotal } from '@tracker/core'
+import { balanceShares, distribute, halvesPerAllocation, percentTotal } from '@tracker/core'
 import {
   calendar,
   halfDays,
@@ -49,11 +59,20 @@ const rows = ref<Allocation[]>(seed())
 const applied = ref(false)
 
 /**
- * True once the user has typed a share. Until then the shares are kept even so
+ * True once the user has moved a share. Until then the shares are kept even so
  * a cost centre added to the list is usable straight away. After it the shares
- * are theirs and nothing rewrites them.
+ * are theirs and only a drag on one of them moves the rest.
  */
 const sharesAreTheirs = ref(false)
+
+/**
+ * The rows the user has settled. A held row is not touched by the balancing.
+ *
+ * The row itself is held rather than its position, because removing a cost
+ * centre shifts every index below it and the hold would then move to a row
+ * nobody pinned.
+ */
+const held = reactive(new Set<Allocation>())
 
 const ready = computed(() => rows.value.filter((r) => r.workdayId !== ''))
 const total = computed(() => percentTotal(ready.value))
@@ -76,10 +95,49 @@ function add(): void {
 }
 
 function remove(index: number): void {
+  const row = rows.value[index]
+  if (row) held.delete(row)
   rows.value.splice(index, 1)
   if (rows.value.length === 0) rows.value.push(blankRow())
-  respreadUnlessTheirs()
+  rebalance()
   applied.value = false
+}
+
+function toggleHold(row: Allocation): void {
+  if (held.has(row)) held.delete(row)
+  else held.add(row)
+}
+
+/** The held rows by their place in the filled list. What the balancing skips. */
+function holdsBySlot(): Set<number> {
+  const out = new Set<number>()
+  ready.value.forEach((row, at) => {
+    if (held.has(row)) out.add(at)
+  })
+  return out
+}
+
+/** Writes the shares the balancing worked out back onto the rows. */
+function writeBack(shares: number[]): void {
+  ready.value.forEach((row, at) => (row.percent = shares[at] ?? 0))
+}
+
+/**
+ * Sets one share then hands the rest of the hundred to the rows that are
+ * neither held nor the one being dragged.
+ */
+function setShare(row: Allocation, value: number): void {
+  const list = ready.value
+  const at = list.indexOf(row)
+  if (at === -1) return
+  sharesAreTheirs.value = true
+  applied.value = false
+  row.percent = value
+  writeBack(balanceShares(list.map((r) => r.percent), at, holdsBySlot()))
+}
+
+function onShare(row: Allocation, event: Event): void {
+  setShare(row, Number((event.target as HTMLInputElement).value))
 }
 
 /**
@@ -96,20 +154,23 @@ function spreadEvenly(): void {
   applied.value = false
 }
 
-/** Called whenever the set of filled rows changes. */
-function respreadUnlessTheirs(): void {
-  if (sharesAreTheirs.value) return
-  spreadEvenly()
+/**
+ * Called whenever the set of filled rows changes. Nothing was dragged so what
+ * the row that left held goes back to the others in proportion.
+ */
+function rebalance(): void {
+  if (!sharesAreTheirs.value) {
+    spreadEvenly()
+    return
+  }
+  if (ready.value.length === 0) return
+  writeBack(balanceShares(ready.value.map((r) => r.percent), null, holdsBySlot()))
 }
 
-function onPercentInput(): void {
-  sharesAreTheirs.value = true
-  applied.value = false
-}
-
-/** The button hands the shares back to the app. */
+/** The button hands the shares back to the app. Every hold goes with them. */
 function resetShares(): void {
   sharesAreTheirs.value = false
+  held.clear()
   spreadEvenly()
 }
 
@@ -122,7 +183,7 @@ function onWorkdayChange(row: Allocation, value: string | null): void {
   row.workdayId = value ?? ''
   row.specification = null
   // Filling or emptying a row changes how many ways 100 has to split.
-  respreadUnlessTheirs()
+  rebalance()
   applied.value = false
 }
 </script>
@@ -162,15 +223,30 @@ function onWorkdayChange(row: Allocation, value: string | null): void {
             <td>
               <div class="pct" :data-tour="index === 0 ? 'quickShare' : undefined">
                 <input
-                  v-model.number="row.percent"
-                  type="number"
+                  type="range"
                   min="0"
                   max="100"
                   step="1"
-                  :class="{ auto: !sharesAreTheirs && row.workdayId !== '' }"
-                  @input="onPercentInput"
+                  :value="row.percent"
+                  :disabled="row.workdayId === ''"
+                  :aria-label="t('simple.percent')"
+                  @input="onShare(row, $event)"
                 />
-                <span class="muted">%</span>
+                <span class="under">
+                  <button
+                    type="button"
+                    class="hold"
+                    :aria-pressed="held.has(row)"
+                    :disabled="row.workdayId === ''"
+                    :title="t('simple.holdHint')"
+                    @click="toggleHold(row)"
+                  >
+                    {{ t('simple.hold') }}
+                  </button>
+                  <b class="num pc" :class="{ auto: !sharesAreTheirs && row.workdayId !== '' }">
+                    {{ row.percent }} %
+                  </b>
+                </span>
               </div>
             </td>
             <td class="num days">{{ daysOf(row) ?? '' }}</td>
@@ -245,9 +321,20 @@ section {
   overflow-x: auto;
 }
 
+/*
+ * The slider costs the share column 50px. Five columns held 674px and they hold
+ * 684px now, because the specification column gives 40px of the 50 back.
+ *
+ * The figure is what the width is spent on. Measured in the running app at a
+ * 1440px window the section gives the table 732px and the cost centre column
+ * takes 321px of it on a long name. A one line share cell of 230px put the
+ * figure 43px past the edge, so the value the user was dragging sat in the part
+ * of the table that scrolls. `.table-wrap` still scrolls the tasks column and
+ * the remove button the way it did before.
+ */
 table {
   width: 100%;
-  min-width: 674px;
+  min-width: 684px;
   border-collapse: collapse;
 }
 
@@ -276,12 +363,19 @@ tfoot td {
   min-width: 240px;
 }
 
+/* 40px of what the share column took. A specification is a select and it cuts
+   its own label where a picker trigger would push the column wider. */
 .col-spec {
-  min-width: 220px;
+  min-width: 180px;
 }
 
+/*
+ * `min-width` rather than `width`. An auto laid out table treats a width as a
+ * suggestion and squeezes it for whichever column asks for more, which took the
+ * share column to 107px and the track down to 95px with it. A minimum holds.
+ */
 .col-pct {
-  width: 110px;
+  min-width: 160px;
 }
 
 .col-days {
@@ -292,23 +386,73 @@ tfoot td {
   width: 34px;
 }
 
+/*
+ * Two lines rather than one. The track has the first to itself so a per cent is
+ * 1.5px of it rather than 0.8px, and the hold and the figure share the second.
+ * A cell holding all three side by side ran the figure off the visible table.
+ */
 .pct {
+  display: grid;
+  gap: 2px;
+}
+
+.pct input {
+  width: 100%;
+}
+
+.under {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
-/* The field is 100 per cent of a cell it shares with the sign beside it. */
-.pct input {
-  min-width: 0;
+/*
+ * The hold. A settled share is held out of the balancing so the next drag on
+ * another row cannot move it.
+ *
+ * Grey holds 4.61 to 1 on the white sheet. It may not sit on the Warm Grey of a
+ * control, which is why the button is white with an edge rather than filled.
+ */
+.hold {
+  flex: none;
+  border: 1px solid var(--warm-grey);
+  background: var(--white);
+  color: var(--grey);
+  border-radius: var(--radius);
+  padding: 3px 9px;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-/* Split by the app rather than typed. Matches the default specification. */
-.pct input.auto {
-  border-style: dashed;
-  border-color: var(--grey);
-  background: var(--warm-grey);
+.hold:hover:not(:disabled) {
+  border-color: var(--bright-blue);
   color: var(--smart-blue);
+}
+
+.hold[aria-pressed='true'] {
+  background: var(--smart-blue);
+  border-color: var(--smart-blue);
+  color: var(--white);
+}
+
+.hold:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Tabular digits at a fixed width so the row does not shift as the drag moves
+   the figure between one and three characters. */
+.pc {
+  margin-left: auto;
+  min-width: 5ch;
+  text-align: right;
+  font-weight: 700;
+}
+
+/* Split by the app rather than dragged. Matches the default specification. The
+   figure carries it now that the control is a track rather than a box. */
+.pc.auto {
+  font-weight: 400;
   font-style: italic;
 }
 

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — option E — a weight a row</title>
+<link rel="stylesheet" href="f-board.css">
+<link rel="stylesheet" href="shares.css">
+<style>
+th.share{width:130px}
+.wt{display:flex;align-items:center;gap:8px}
+.wt input{width:70px!important}
+.wt b{font-variant-numeric:tabular-nums;font-weight:700;min-width:5ch;text-align:right}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#">Month view</a><a href="#" class="on">Quick fill</a><a href="#">Guided build</a><a href="#">My settings</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Option E. A weight each and the app does the division.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <h2>Quick fill</h2>
+      <p class="lead">Give each cost centre a share of the month. The tracker fills the working days from the first onwards and skips the days it books nothing on.</p>
+
+
+      <table class="fill">
+        <thead>
+          <tr>
+            <th class="cc">Cost centre</th>
+            <th class="spec">Specification</th>
+            <th class="share">Weight</th>
+            <th class="days">Days</th>
+            <th class="tasks">Tasks</th>
+            <th class="act"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <span class="acts">
+                <button type="button" class="btn">Add a cost centre</button>
+                <button type="button" class="btn" id="even">100 / n</button>
+              </span>
+            </td>
+            <td class="fig num" id="total">100 %</td>
+            <td class="fig num" id="booked">14.5</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="warn" id="warn" hidden>The shares must add up to 100 per cent.</p>
+
+      <div class="bottom">
+        <p>Working days: 18 &middot; Target: 14.5 &middot; This replaces everything already booked in May.</p>
+        <button type="button" class="primary">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><b>Option E. A weight a row.</b> Twice as much on one cost centre as on another is a 2 and a 1. The app normalises the weights onto a hundred and the per cent beside the field says what that came to.
+    It is the only one of the five where adding a fifth cost centre needs no other row to be retyped. A weight of 1 is added and the rest fall where they fall.
+    It costs the direct answer. A user who knows the split is 40 and 30 and 20 and 10 has to type 4 and 3 and 2 and 1, and a user who knows it is 37 and 33 and 30 has to type 37 and 33 and 30 anyway.
+    It costs the stored figure. The number typed is never the number saved, and a rounded 33 per cent against a weight of 1 in 3 is a difference the user is not shown the arithmetic for.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="shares.js"></script>
+<script>
+/* The weight each row was given. One is a single portion and two is twice it. */
+const WEIGHTS = [4, 3, 2, 1]
+
+/**
+ * Normalises the weights onto a hundred. The floors are dealt first and what is
+ * left goes to the rows the division cut hardest, so the total is exactly a
+ * hundred whatever the weights are.
+ */
+function normalise() {
+  const sum = WEIGHTS.reduce((a, b) => a + b, 0)
+  if (sum === 0) { MIX.forEach((row) => (row.share = 0)); return }
+  const exact = WEIGHTS.map((w) => (w / sum) * 100)
+  const out = exact.map(Math.floor)
+  let left = 100 - out.reduce((a, b) => a + b, 0)
+  const order = exact.map((value, i) => ({ i, part: value - Math.floor(value) })).sort((a, b) => b.part - a.part)
+  for (const item of order) { if (left <= 0) break; out[item.i] += 1; left -= 1 }
+  MIX.forEach((row, at) => (row.share = out[at]))
+}
+
+function draw() {
+  normalise()
+  renderRows((row, at) => `<span class="wt">
+      <input type="number" min="0" max="99" step="1" value="${WEIGHTS[at]}" data-at="${at}" aria-label="Weight">
+      <b class="num">${row.share} %</b>
+    </span>`)
+  renderTotals()
+  for (const field of document.querySelectorAll('.wt input')) {
+    field.addEventListener('input', () => {
+      WEIGHTS[Number(field.dataset.at)] = Math.max(0, Number(field.value || 0))
+      normalise()
+      redraw()
+    })
+  }
+}
+function redraw() {
+  const days = daysPerRow()
+  document.querySelectorAll('#rows tr').forEach((tr, at) => {
+    tr.querySelector('.wt b').textContent = MIX[at].share + ' %'
+    tr.querySelector('td.fig').textContent = days[at].toFixed(1)
+  })
+  renderTotals()
+}
+document.querySelector('#even').addEventListener('click', () => {
+  WEIGHTS.fill(1)
+  draw()
+})
+draw()
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+[package]
+name = "vid_tools"
+version = "0.1.0"
+edition = "2024"
+description = "Reads the resolution of an mp4 then offers the lower resolutions then downscales the file with ffmpeg."
+
+[[bin]]
+name = "vidscale"
+path = "src/main.rs"
+
+# Deliberately none. Because a) the mp4 header is a short walk over sized boxes
+# b) the encode is ffmpeg either way and c) the tree then builds offline.
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

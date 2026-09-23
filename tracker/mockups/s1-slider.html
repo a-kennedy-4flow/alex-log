@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — option A — a slider a row</title>
+<link rel="stylesheet" href="f-board.css">
+<link rel="stylesheet" href="shares.css">
+<style>
+th.share{width:210px}
+.sl{display:flex;align-items:center;gap:10px}
+.sl input[type=range]{flex:1;min-width:0}
+/* The figure is 4ch of tabular digits so the row does not shift as it changes. */
+.sl b{min-width:5ch;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#">Month view</a><a href="#" class="on">Quick fill</a><a href="#">Guided build</a><a href="#">My settings</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Option A. Each share is dragged on its own track.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <h2>Quick fill</h2>
+      <p class="lead">Give each cost centre a share of the month. The tracker fills the working days from the first onwards and skips the days it books nothing on.</p>
+
+
+      <table class="fill">
+        <thead>
+          <tr>
+            <th class="cc">Cost centre</th>
+            <th class="spec">Specification</th>
+            <th class="share">Share</th>
+            <th class="days">Days</th>
+            <th class="tasks">Tasks</th>
+            <th class="act"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <span class="acts">
+                <button type="button" class="btn">Add a cost centre</button>
+                <button type="button" class="btn" id="even">100 / n</button>
+              </span>
+            </td>
+            <td class="fig num" id="total">100 %</td>
+            <td class="fig num" id="booked">14.5</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="warn" id="warn" hidden>The shares must add up to 100 per cent.</p>
+
+      <div class="bottom">
+        <p>Working days: 18 &middot; Target: 14.5 &middot; This replaces everything already booked in May.</p>
+        <button type="button" class="primary">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><b>Option A. A slider a row.</b> The share is dragged rather than typed and the figure beside it says where the handle landed.
+    A rough split is quick because a rough split is all a drag can express.
+    It costs the total. Four independent sliders do not add up to a hundred and the user chases the last few per cent between them.
+    It costs precision as well. The track here is 150 px so one per cent is 1.5 px and no one lands on 37 by dragging.
+    It costs 90 px of column width, which is width the cost centre and the specification columns give up.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="shares.js"></script>
+<script>
+function draw() {
+  renderRows((row, at) => `<span class="sl"><input type="range" min="0" max="100" step="1" value="${row.share}" data-at="${at}" aria-label="Share of the month"><b class="num">${row.share} %</b></span>`)
+  renderTotals()
+  for (const slider of document.querySelectorAll('.sl input')) {
+    slider.addEventListener('input', () => {
+      const at = Number(slider.dataset.at)
+      MIX[at].share = Number(slider.value)
+      redraw()
+    })
+  }
+}
+function redraw() {
+  const days = daysPerRow()
+  document.querySelectorAll('#rows tr').forEach((tr, at) => {
+    tr.querySelector('.sl b').textContent = MIX[at].share + ' %'
+    tr.querySelector('td.fig').textContent = days[at].toFixed(1)
+  })
+  renderTotals()
+}
+document.querySelector('#even').addEventListener('click', () => { spreadEvenly(); draw() })
+draw()
+</script>
+</body>
+</html>

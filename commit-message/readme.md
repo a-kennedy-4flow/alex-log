@@ -23,6 +23,10 @@ PLRS-1234
 #     test                    105   (+105 / -0)
 #     non-test                118   (+81 / -37)
 #     generated                55   (+55 / -0)
+#   review time            20 min   (10 min to 40 min; 1 sitting)
+#     naming up to 1.60x on 1 file
+#     indentation 2.1x on src/parse.rs
+#     prose 300 words
 #   branch                commit 2 on PLRS-1234-my-feature; vs main +20 / -3
 #
 # Please enter the commit message for your changes. Lines starting
@@ -32,6 +36,26 @@ Three terms are used throughout and mean this. A **bucket** is one of the three
 groups a changed path falls into. A **trunk** is whichever of `main` or `master`
 or `origin/main` or `origin/master` exists first. **Stripped** means git
 discarding comment lines when you save the editor.
+
+## The review time row
+
+The estimate comes from the `review-time` crate under `code_reviewing`. It is
+read at the standard depth of 300 lines per hour. The three notes under it only
+appear when they apply.
+
+It needs the text of the diff and not just the counts. Because a) an opaque
+identifier cost 1.63x on the snippet task b) nested control flow without
+indentation cost 113% more time in the replication trial and c) prose is read at
+a words per minute rate rather than a lines per hour one the same line count can
+mean very different reading. That is one more `git diff --cached` per commit. It
+costs about a tenth of a second on a fifty thousand line stage.
+
+Binary files and lock files and anything under `node_modules` or `dist` or
+`vendor` are left out of the estimate. The line counts above it still include
+them.
+
+The research behind every constant is in `code_reviewing/reading-speed.md` and
+the papers are in `code_reviewing/knowledge_base/`.
 
 ## The rules it holds to
 

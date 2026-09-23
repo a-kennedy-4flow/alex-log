@@ -1,0 +1,141 @@
+ 
+ Errors in Proofreading 
+ Human Error in Proofreading for Spelling Errors 
+ Ray Panko's Human Error Website 
+ Synopsis 
+ Human error has been studied for more than 100 years. In the 1980s, there was a kind of Grand Unification, when human error researchers in different fields realized that their error rates were similar for cognitive tasks of similar complexity. There are now five basic truths that we know about human error. 
+ We are nearly perfect when we work, making errors only about 1% to 5% of the time. 
+ However, when many actions must be done correctly in sequence, this tiny error rate balloons into a high probability of making one or more errors. 
+ We are much worse at detecting errors; we are only 40% to 90% successful at finding an error when we work alone. 
+ Due to the way our cognition works, we make many more errors than we believe we do, we badly overestimate our efficacy in finding errors, and our poor error intuition should cause us to reject prescriptions for reducing errors until they have been empirically determined to be safe and effective. 
+ An obvious error detection activity is proofreading. Proofreading research has traditionally focused on spelling errors rather than on grammar errors, which are more ambiguous. Spelling errors, furthermore, are divided into word and nonword errors. In nonword errors, the spelling error produces a text string that is not a dictionary word. For example, a spelling error might turn there into ther. In a word error, the mistake turns the word into another dictionary word. For example, there might become their . 
+ Detection Rates for Word and Nonword Errors 
+ Table 1 gives basic results from experiments in which subjects attempt to detect word errors, nonword errors, or both. The simple take-away is that participants caught 81% of the nonword errors but only 66% of the word errors. This result may be surprising to most people, who typically believe that proofreaders find nearly all errors. In fact, they do not, even if they are professionals. Note also that while spell-checking programs are nearly perfect at finding nonword errors, they offer almost no help for word errors. They are good what we are good at and terrible at what we are bad at. 
+ Table 1: The Detection Rates for Word versus Nonword Spelling Errors 
+ Source 
+ Word or Nonword Error 
+ Detection Rate 
+ Word 
+ Nonword 
+ Cohen, G. [1980] 
+ Both 
+ 76%-94% 
+ Daneman & Stainton [1993] 
+ Nonword 
+ 89% 
+ 89% 
+ Word 
+ 76% 
+ 76% 
+ Levy, Di Persio, & Hollingshead [1992] 
+ Nonword 
+ 86%-87% 
+ 87% 
+ Word 
+ 69% 
+ 69% 
+ Riefer [1991] 
+ Nonword Simple Material 
+ 84%-86% 
+ 85% 
+ Nonword Difficult Material 
+ 47%-58% 
+ 53% 
+ Word 
+ 42%-62% 
+ 52% 
+ Wallace [1991] 
+ Nonword 
+ 94% 
+ 94% 
+ Weighted Mean 
+ 66% 
+ 81% 
+ Success Factors 
+ Table 2 shows more details from these experiments. Among the results were: 
+ Proofreading Your Own Work. Daneman and Stainton [1993] looked at detection rates when people proofread their own work or the work of someone else 20 minutes afterward and two weeks afterward. It is often said that people should not proofread their own work. For nonword errors, this does not seem to be the case. For word errors, however, it is definitely the case. This disparity is reduced somewhat over time. For spreadsheets, word errors probably correspond to logic errors. 
+ Word Length. Healey [1980] looked at detection rates for nonword errors for words of different lengths. For longer words, detection rates dropped of dramatically. In spreadsheet error detection, detection rates for longer formulas are less than they are for shorter formulas. 
+ Complexity of the Material. Riefer [1991] measured detection rates for nonword errors in simple and more complex material. In simple material, the detection rate was 84% to 86%, which was consistent with earlier studies. For difficult material, the nonword detection rate fell to 47% to 58%. 
+ Table 2: More Detail from Proofreading Studies 
+ Source 
+ Word or Nonword Error 
+ Condition 
+ Detection Rate 
+ Cohen, G. [1980] 
+ Both 
+ 76%-94% 
+ Daneman & Stainton [1993] 
+ Nonword 
+ Own after 20 min 
+ 81% 
+ Other after 20 min 
+ 89% 
+ Own after 2 wks 
+ 88% 
+ Other after 2 wks 
+ 91% 
+ Word 
+ Own after 20 min 
+ 59% 
+ Other after 20 min 
+ 76% 
+ Own after 2 wks 
+ 68% 
+ Other after 2 wks 
+ 83% 
+ Healey [1980] 
+ Nonword 
+ 2 characters 
+ 92% 
+ 3 
+ 99% 
+ 4 
+ 94% 
+ 5 
+ 77% 
+ 6-10 
+ 72% 
+ Levy & Begin [1984] 
+ Nonword 
+ Simple Material 
+ 83% 
+ Difficult Material 
+ 86% 
+ Levy, Di Persio, & Hollingshead [1992] 
+ Nonword 
+ 86%-87% 
+ Word 
+ 69% 
+ Riefer [1991] 
+ Nonword 
+ Simple Material 
+ 84%-86% 
+ Difficult Material 
+ 47%-58% 
+ Word 
+ 42%-62% 
+ Spirrison & Gordy [1993] 
+ Unknown 
+ 76% 
+ Wallace [1991] 
+ Nonword 
+ Vivid Imagers 
+ 93.5% 
+ Poor Images 
+ 91.2% 
+ Professional Proofreaders 
+ Do professional proofreaders do better? The author has collected data from the last three editions of his networking and security textbook. This data includes the number of errors discovered in proofreading and afterward. Here, proofreading involved both spelling and grammatical errors. The percentage of errors discovered in this proofreading has averaged almost exactly 87%. 
+ References 
+ Cohen, G. (1980). Reading and Searching for Spelling Errors. In U. Frith (Ed.), Cognitive Processes in Spelling (pp. 135-155). London: Academic Press. 
+ Daneman, M., & Stainton, M. (1993). The Generation Effect in Reading and Proofreading: Is it Easier or Harder to Detect Errors in One's Own Writing? Reading and Writing: An Interdisciplinary Journal , 5, 297-313. 
+ Healey, A. F. (1980). Proofreading Errors on the Word The: New Evidence on Reading Units. Journal of Experimental Psychology: Human Perception and Performance , 6(1), 45-57. 
+ Levy, B. A. (1983). Proofreading Familiar Text: Constraints on Visual Processing. Memory & Cognition , 11(1), 1-12. 
+ Levy, B. A., & Begin, J. (1984). Proofreading Familiar Text: Allocating Resources to Perceptual and Conceptual Processing. Memory & Cognition , 12(6), 621-632. 
+ Levy, B. A., Di Periso, R., & Hollingshead, A. (1992). Fluent Reading: Repetition, Automaticity, and Discrepancy. Journal of Experimental Psychology: Learning, Memory, and Cognition , 18(5), 957-971. 
+ Riefer, D. M. (1991). Behavior Engineering Proposals: 4. "Is 'Backwards Reading' an Effective Proofreading Strategy?" Perceptual and Motor Skills , 73, 767-777. 
+ Spirrison, C. L., & Gordy, C. C. (1993). The Constructive Thinking Inventory and Detecting Errors in Proofreading. Perceptual and Motor Skills , 76, 631-634. 
+ Wallace, B. (1991). Imaging Ability and Performance in a Proofreading Task. Journal of Mental Imagery , 15(3&4), 177-188. 
+ Human Error Website Home 
+ Spreadsheet Error Website Home 
+ Panko.com Home 
+© 2014 Raymond R. Panko 

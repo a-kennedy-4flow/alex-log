@@ -8,7 +8,7 @@
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { booked, byWeek, pastTarget, target, workingDays } from '@/composables/useTimesheet'
+import { booked, byWeek, target, workingDays } from '@/composables/useTimesheet'
 
 const { t } = useI18n()
 
@@ -98,9 +98,6 @@ const headline = computed(() => {
     </p>
 
     <!-- The legend for the wash the grid and the board both draw. -->
-    <p v-if="pastTarget.size > 0" class="muted footnote spare">
-      {{ t('progress.notRequired') }}
-    </p>
   </section>
 </template>
 

@@ -1,0 +1,706 @@
+                Low Vision
+
+              Standardized Assessment of Reading Performance:
+              The New International Reading Speed Texts IReST
+              Susanne Trauzettel-Klosinski,1 Klaus Dietz,2 and the IReST Study Group
+
+              PURPOSE. There is a need for standardized texts to assess             a prerequisite for multi-language reading studies. Assessment of
+              reading performance, for multiple equivalent texts for repeated       reading performance is important in reading disorders, such as
+              measurements, and for texts equated across languages for              low vision, neurologic reading disorders, and developmental
+              multi-language studies. Paragraphs are preferable to single           dyslexia, but also after multifocal intraocular lens implantation.
+              sentences for accurate speed measurement. We developed                   Well developed texts with single sentences for measuring
+              such texts previously in 6 languages. The aim of our current          reading acuity, reading speed, and critical print size are
+              study was to develop texts in more languages for a wide range         available, such as MN Read or Radner’s charts.1–5 However,
+              of countries and users, and to assess the reading speeds of           for measuring reading speed, a whole paragraph of text is
+              normally-sighted readers.                                             preferable to single sentences, because the percentage error of
+              METHODS. Ten texts were designed for 17 languages each by a           reading time measurements in seconds is smaller for longer
+              linguist who matched content, length, difficulty, and linguistic      texts. Furthermore, reading whole paragraphs is closer to the
+              complexity. The texts then were used to assess reading speeds         demands of everyday reading.
+              of 436 normally-sighted native speakers (age 18–35 years, 25             To our knowledge, no comparable texts currently are
+              per language, 36 in Japanese), presented at a distance of 40 cm       available (except for young children) that have been standard-
+              and size 1 M, that is 10-point Times New Roman font. Reading          ized according to linguistic criteria. We developed such texts
+              time (aloud) was measured by stopwatch.                               previously in 6 different languages,6,7 that is the International
+                                                                                    Reading Speed Texts (IReST), first edition. The IReST are not in
+              RESULTS. For all 17 languages, average mean reading speed was         competition with existing reading tests. Rather, they are a
+              1.42 6 0.13 texts/min (6SD), 184 6 29 words/min, 370 6 80             supplemental tool that closes a gap in reading diagnostics.
+              syllables/min, and 863 6 234 characters/min. For 14 languag-             The purpose of our current study was to develop texts in a
+              es, mean reading time was 68 ms/character (95% confidence
+                                                                                    wide range of additional languages to allow international multi-
+              interval [CI] 65–71 ms). Our analysis focussed on words per
+                                                                                    language studies in the future, and to provide benchmarks for
+              minute. The variability of reading speed within subjects
+                                                                                    reading speeds in normally-sighted readers.
+              accounts only for an average of 11.5%, between subjects for
+              88.5%.
+              CONCLUSIONS. The low within-subject variability shows the             METHODS
+              equivalence of the texts. The IReST (second edition) can now
+              be provided in 17 languages allowing standardized assessment          Development of the Texts: The Linguistic Work
+              of reading speed, as well as comparability of results before and
+                                                                                    Ten paragraphs of German text were designed by a linguist from
+              after interventions, and is a useful tool for multi-language
+                                                                                    material for sixth grade reading (age 10–12 years) with a mean length
+              studies (for further information see www.amd-read.net).
+                                                                                    of 132 words (SD 6 3.2). They were matched for difficulty and
+              (Invest Ophthalmol Vis Sci. 2012;53:5452–5461) DOI:
+                                                                                    linguistic/syntactic complexity according to the theory of Gibson.8,9
+              10.1167/iovs.11-8284
+                                                                                        The paragraphs of texts (in the following named ‘‘texts’’) were
+                                                                                    translated into 16 languages (Arabic, Chinese, English, Finnish, French,
+                 or most people reading is a key function in everyday life.         Hebrew, Italian, Japanese, Dutch, Polish, Portuguese/Brazilian, Swed-
+              F  Standardized assessment of reading performance is neces-
+              sary to perform repeated measurements based on equivalent
+                                                                                    ish, Slovenian, Spanish, Russian, and Turkish), and adapted by linguists,
+                                                                                    all native speakers of the respective language, to be similar in difficulty
+              texts within one language. Furthermore, standardized texts are        and linguistic complexity to the German original. Additionally, the
+                                                                                    original demand was to make them similar in word and character
+                                                                                    counts. The number of words for all 10 Swedish texts (146) and the
+                                                                                    number of characters for all 10 Chinese texts (153) were identical.
+                  From the 1Centre for Ophthalmology and the 2Department of
+                                                                                        The Chinese language is logographic and monosyllabic. A Chinese
+              Medical Biometry, University of Tuebingen, Tuebingen, Germany.
+                  Supported by the European Commission in the AMD Read              character represents a morpheme with one syllable, and a Chinese
+              Project (QLK6-CT-2002-00214, the first study for 4 languages), the    word in our texts consists of 1 to 4 Chinese characters. Unlike
+              German Academic Exchange Office (for Portuguese/Brazilian), and       alphabetic languages, there are no demarcations between Chinese
+              Alcon Laboratories, Inc., Fort Worth, Texas (development and          words, for example a space, and consequently it often is difficult to
+              evaluation of 11 more languages).                                     identify a word. Traditionally, reading speed of Chinese text has been
+                  Submitted for publication July 27, 2011; revised December 13,     measured in number of characters per minute, which we believe is the
+              2011, and March 12, April 4, and April 24, 2012; accepted May 15,     best measure for Chinese speakers. However, for studies comparing
+              2012.
+                                                                                    different languages, measuring reading speed in words per minute is
+                  Disclosure: S. Trauzettel-Klosinski, None; K. Dietz, None
+                  Corresponding author: Susanne Trauzettel-Klosinski, Centre for    desirable. For this purpose, we developed a two-step approach to
+              Ophthalmology, University of Tuebingen, Schleichstrasse 12-16,        identify a Chinese word: In step 1, we identified all the words that were
+              72076, Tuebingen, Germany;                                            found in two major Chinese dictionaries10,11 and meaningful in the
+              susanne.trauzettel-klosinski@uni-tuebingen.de.                        context. In step 2, for those Chinese characters that were not included
+
+                                                                                   Investigative Ophthalmology & Visual Science, August 2012, Vol. 53, No. 9
+              5452                                                                 Copyright 2012 The Association for Research in Vision and Ophthalmology, Inc.
+
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              IOVS, August 2012, Vol. 53, No. 9                                          Standardized Assessment of Reading Performance                    5453
+
+              TABLE 1. Counts per Text                                                       After developing the first version of the texts in each language, the
+                                                                                         linguists conducted a pilot study with five normal subjects. Texts were
+              Language                                                                   presented at a viewing distance of 40 cm and a size of 1 M, or 10-point
+                Code              Words              Syllables           Characters
+                                                                                         Times New Roman font, for the 15 alphabetic languages; 1 M-unit
+                 Ara            119.2 (3.8)         292.7 (6.1)          528.2 (5.9)     subtends 5 minutes of arc at 1 m. It measures 1.454 mm or 1/7 cm or
+                 Chi             95.0 (5.4)         153.0 (0.0)          153.0 (0.0)     almost 1/16 inch.15 These texts were not designed for determining
+                 Dut            141.4 (3.6)         231.3 (7.2)          685.7 (7.9)     reading acuity and, therefore, are provided only in 1 M letter size,
+                 Eng            153.5 (9.1)         210.7 (6.3)          664.5 (9.7)     which corresponds to many newspaper print sizes.16 Texts were
+                 Fin            101.5 (3.8)         268.1 (7.8)          678.1 (3.2)     printed in black on white paper at high contrast (Michelson contrast
+                 Fre            133.5 (6.5)         205.8 (10.1)         681.4 (8.3)     90% or higher). The paragraphs had a maximum line length of 8.5 to
+                 Ger            132.2 (3.2)         226.5 (6.8)          678.5 (5.5)     10.0 cm. The mean number of lines/text was 14.3, for Chinese 8.5.
+                 Heb            121.6 (6.1)         300.2 (13.4)         541.6 (34.7)    Languages read from left to right were left justified and vice versa.
+                 Ita            134.8 (5.0)         291.6 (12.4)         683.3 (5.8)         The texts were read aloud, and if there were parts where the readers
+                 Jap            159.5 (3.2)         369.7 (7.6)          295.5 (8.5)     hesitated or struggled, the texts were modified in the pilot study.
+                 Pol            126.8 (3.9)         270.4 (6.0)          699.5 (4.1)
+                 Por            133.7 (7.1)         277.9 (6.4)          675.0 (12.6)    Procedure for Establishing Normal Reading Speeds
+                 Rus            126.5 (7.7)         301.7 (23.7)         678.4 (48.3)
+                 Slo            137.0 (7.8)         176.1 (4.2)          684.3 (8.1)     In the main study, the newly designed texts then were used to assess
+                 Spa            142.9 (6.6)         343.7 (4.1)          670.0 (7.6)     the reading speeds of 436 normally-sighted subjects who were native
+                 Swe            146.0 (0.0)         240.2 (4.6)          673.2 (1.7)     speakers of the respective languages (25 per language, 36 in Japanese).
+                 Tur            109.3 (1.8)         293.6 (6.1)          696.1 (14.9)    All texts were unknown to the readers. Participants were 18 to 35 years
+                                                                                         of age with normal or corrected-to-normal vision as determined by an
+                   Means (SD) for the 10 texts per language.                             ophthalmologic/optometric examination.
+                                                                                             The texts were printed in the same format as described above for
+              in words identified in step 1, we used those characters to construct       the pilot study and were read aloud at a distance of 40 cm. A stopwatch
+              words based on grammatical rules12,13 and meaning in the context.          was used to measure reading time. Words read incorrectly or omitted
+                  A Chinese reader recognizes a character by its pattern, not by         were counted. However, such error counts were ignored for the
+              counting strokes. Thus, the number or spatial configuration of strokes     following calculations because they were not documented completely
+              does not affect reading speed. Therefore, we do not use the                in all languages and they occurred very rarely.
+                                                                                             Figure 1 shows an example of a text with the basic statistics.
+              information about the number of strokes per character for calculating
+                                                                                             The research adhered to the tenets of the declaration of Helsinki.
+              reading speeds, because these depend more on the frequency of the
+              characters in the texts.
+                  For the Arabic language, it was necessary to find a way of             Statistical Evaluation
+              formulating the texts so that they would match the different Arabic        For calculation of reading speed, in our previous reports we used
+              speaking countries. We tested this in a group, where 25 students from      characters (with spaces and punctuation marks) to measure reading
+              eight different Arabic countries participated. There were no significant   speed because the texts were nearly identical with respect to this
+              differences between their reading speeds.14 For French (France/            variable.6,7 However, considering the different language characteristics
+              Canada) and Portuguese (Portugal/Brazil) we made sure that the texts       of the 17 languages (e.g., in Hebrew and Arabic the vowels are not or
+              also were familiar to speakers of the respective country, mainly by        only partly written, while Chinese and Japanese are nonalphabetic), in
+              careful word selection and pilot testing with subjects who were not        our current study we assessed all reading speeds in four different ways:
+              part of the main study. The Japanese texts were written in standard        texts/min, words/min, syllables/min, and characters (without spaces
+              KanaKanji-Script, including Hiragana, Katakana, and Kanji. Table 1         and punctuation marks)/min. Means and SDs were computed for each
+              shows the number of words, syllables, and characters per text.             language using these four measures of reading speed.
+                  During the analysis it became clear that the most important issue          To test for differences among the 10 texts for each language
+              was the same content in the different languages—as the amount of           separately, we performed a mixed-effects model analysis of variance
+              information that must be processed. Thus, we accepted unavoidable          (ANOVA) of words per minute with the fixed factor ‘‘text’’ (10 levels)
+              differences in text length, especially if alphabetic and nonalphabetic     and the random factor ‘‘subject’’ (25 levels in 16 languages and 36
+              languages are compared.                                                    subjects in Japanese). The parameters were estimated using Restricted
+
+
+
+
+              FIGURE 1. Sample text in English together with the basic statistics.
+
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              5454     Trauzettel-Klosinski and Dietz                                                                      IOVS, August 2012, Vol. 53, No. 9
+
+              TABLE 2. Reading Speeds per Minute Expressed in Four Units for Each of 17 Languages
+
+              Language
+                Code                     N                  Texts/Min                     Words/Min                Syllables/Min                Characters/Min
+
+                 Ara                    250                 1.16 (0.17)                    138 (20)                   339 (48)                      612 (88)
+                 Chi                    250                 1.67 (0.19)                    158 (19)                   255 (29)                      255 (29)
+                 Dut                    249                 1.43 (0.21)                    202 (29)                   330 (49)                      978 (143)
+                 Eng                    249                 1.49 (0.18)                    228 (30)                   313 (38)                      987 (118)
+                 Fin                    250                 1.59 (0.18)                    161 (18)                   426 (49)                     1078 (121)
+                 Fre                    249                 1.46 (0.18)                    195 (26)                   301 (39)                      998 (126)
+                 Ger                    249                 1.36 (0.13)                    179 (17)                   307 (30)                      920 (86)
+                 Heb                    250                 1.54 (0.25)                    187 (29)                   462 (73)                      833 (130)
+                 Ita                    249                 1.39 (0.20)                    188 (28)                   405 (61)                      950 (140)
+                 Jap                    360                 1.21 (0.19)                    193 (30)                   447 (69)                      357 (56)
+                 Pol                    249                 1.31 (0.18)                    166 (23)                   354 (49)                      916 (126)
+                 Por                    250                 1.35 (0.22)                    181 (29)                   376 (60)                      913 (145)
+                 Rus                    250                 1.46 (0.27)                    184 (32)                   439 (78)                      986 (175)
+                 Slo                    250                 1.32 (0.21)                    180 (30)                   232 (38)                      885 (145)
+                 Spa                    250                 1.53 (0.19)                    218 (28)                   526 (64)                     1025 (127)
+                 Swe                    250                 1.36 (0.23)                    199 (34)                   327 (56)                      917 (156)
+                 Tur                    250                 1.51 (0.23)                    166 (25)                   444 (66)                     1054 (156)
+                   Means (6SD), 10 texts per language. The number of observations per language is given in the second column (5 outliers excluded). The total
+              variability is summarized by the SD.
+
+              Maximum Likelihood (REML) with the statistical package JMP 9.01                different languages are characterized differently depending on
+              (SAS, Cary, NC). We tested for normality of the residuals and found,           the unit used. Positive correlations are expected because the
+              after adjustment of the significance level according to Bonferroni-            counts of words, syllables, and characters appear simulta-
+              Holm, only 3 of 17 significant departures from this assumption. A              neously in the abscissa and the ordinate. However, because
+              departure from normality does not invalidate the ANOVA due to the              there are only 10 texts per language these correlations are not
+              large number of observations according to the central limit theorem.           expected to be significant.
+                  Differences between the texts in each language were assessed by                Figures 2a–2f display a linear regression through the origin
+              Tukey’s HSD post hoc test for 765 comparisons (45 pair-wise                    together with the 95% CI of the fit and the 95% confidence
+              comparisons for 17 languages).17 We considered differences of >10              region of the individual values. The slopes for all figures are
+              words/min as clinically relevant and present only these results. Of the        identical, namely 1.415 texts/min (95% CI 1.407–1.422 texts/
+              total 4359 reading time values (10 texts in each language, 25 subjects in      min), which corresponds to the overall average of the third
+              16 languages, and 36 in Japanese, one missing value), five outliers were       column in Table 2. The 90% density ellipses are shown in all six
+              excluded from further calculations by the following criterion—if the           plots for each language. Figures 2a and 2b show that the more
+              absolute value of the residuals exceeded 4 SDs of the residuals, a value       words per text, the higher the number of words per minute
+              was declared an outlier.                                                       because reading speed for all texts is approximately 1.4 texts/
+                  For analysis of reading speeds dependent on the different units, we        min, that is a reading time of 44 seconds/text.
+              apply linear regression through the origin and display the 95%                     Figure 3 displays the reading time in ms per syllable, which
+              confidence limits of the regression lines together with the 95%                is proportional to the number of characters per syllable. The
+              confidence intervals (CIs) for the individual observations. For                slope of this line specifies the mean reading time per character
+              individual reading times we performed an ANOVA to estimate the                 for all 17 languages. For 14 languages this is 68 ms (95% CI 65–
+              variance components between and within subjects.                               71 ms).
+                                                                                                 The relative variability of reading speeds in words per
+                                                                                             minute within and between subjects for each language is
+              RESULTS                                                                        shown in Table 3. The variability is caused mainly by
+              The mean (6SD) number of words, syllables and characters for                   differences between subjects (75%–93%), that is the differenc-
+              the different languages are shown in Table 1 (see above), and                  es between the readers of the 10 texts, whereas the texts
+              the mean reading speeds are shown in Table 2.                                  account only for an average of 11.5% of the variability.
+                 The average mean for all languages is 1.42 6 0.13 texts/min                     Figure 4 represents the raw data for Spanish for each subject
+              (6SD), 184 6 29 words/min, 370 6 80 syllables/min, and 863                     and all texts. As pointed out in Table 3, the variability between
+              6 234 characters/min. Reading speed in texts/min corre-                        subjects is much larger than within each subject (only 11.2% of
+              sponded to a mean reading time of 43.7 6 7.8 sec/text. For the                 the total variability for Spanish).
+              nonalphabetic languages Japanese and Chinese, characters per                       The comparison between the texts in each language
+              minute show speeds that are similar to syllables per minute in                 showed 331 statistically significant differences out of 765
+              the other languages. In Hebrew and Arabic, where vowels are                    differences (45 pairwise comparisons for each of the 17
+              not or only partially written, the reading speed in characters                 languages) after adjustment for multiple testing according to
+              per minute is lower compared to other alphabetic languages.                    Tukey’s HSD test. (Without adjustment the number of
+                 Figure 2 shows the reading speeds in three different units                  significant differences would have been 468.) This large
+              (words/min, syllables/min, char/min), dependent on the                         number is explained by the fact that we performed the
+              number of words, syllables, or characters per text in the 17                   comparisons within one subject, and that the variability within
+              languages. To prevent too many overlaps of data points, the 17                 one subject is much smaller than the variability between
+              languages have been divided into two sets of 8 or 9 languages                  subjects. Only 81 of the 765 comparisons showed a difference
+              for each of the three units of speed. It becomes clear that the                between the criterion ‘‘statistically significant’’ and ‘‘difference
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              IOVS, August 2012, Vol. 53, No. 9                                              Standardized Assessment of Reading Performance                        5455
+
+
+
+
+              FIGURE 2. Detailed overview of the summary data from Tables 1 and 2 showing the individual 170 texts for the three units that express the length
+              of a text: words (a, b), syllables (c, d), and characters (e, f). All six figures (a–f) show a linear regression through the origin together with the 95% CI
+              of the estimated slope (inner dashed curves) and the 95% confidence region of the individual values (outer dashed curves). The slope for all three
+              figures is identical, namely 1.415 texts/min (95% CI 1.407–1.422 texts/min), which corresponds to the overall average for the third column of Table
+              2. Since the reading time and reading speed per text are nearly identical for all 17 languages within the 95% CIs for the individual texts from 1.1 to
+              1.7 texts/min, there is a trivial linear relationship for the units per minute with the number of units per text. The 90% density ellipses in all three
+              plots for each language are constructed such that they contain in the mean 9 of 10 texts. (a–f) The different languages are characterized differently
+              depending on the unit used. Few significant correlations were expected because of only 10 texts per language. (a, b) Reading speed in words per
+              minute dependent on the number of words per text. The more words per text, the higher the number of words per minute because the reading
+              time for all texts is very similar (the number of words for all 10 Swedish texts was the same: 146). (c, d) Reading speed in syllables per minute
+              dependent on the number of syllables per text. Here the Spanish texts are read with the highest number of syllables per minute because Spanish has
+              many short syllables (Fig. 3). The opposite is true for Slovenian. (e, f) Reading speed in characters per minute dependent on the number of
+              characters per text. Even if we include the nonalphabetic languages Chinese and Japanese, we obtain the same regression line through the origin
+              with a slope of 1.4 texts/min. Arabic and Hebrew have the lowest number of characters/text among the alphabetic languages and correspondingly
+              the lowest reading speed expressed in characters per min, because the vowels are not or only partly written. All the other languages are very close
+              together in number of characters per text and characters per minute.
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              5456     Trauzettel-Klosinski and Dietz                                                                        IOVS, August 2012, Vol. 53, No. 9
+
+                                                                                            language are shown for each text. Texts with the same letter do
+                                                                                            not differ by more than 10 words/min.
+                                                                                               In Table 4 we provide the lower normal 2.5% quantiles of
+                                                                                            reading speed (words per minute) taking into account that
+                                                                                            reading speed is influenced by age (here 18–35 years) and
+                                                                                            reading skill.
+
+
+                                                                                            DISCUSSION
+                                                                                            Our study was performed to develop equivalent and standard-
+                                                                                            ized text passages in different languages, and to assess reading
+                                                                                            speeds of normally-sighted young adults during reading
+                                                                                            unknown texts. The IReST differs from prior text charts that
+                                                                                            used single sentences by employing linguistically standardized
+                                                                                            paragraphs. They close a gap in the diagnostics of reading
+              FIGURE 3. Reading time (ms) per syllable dependent on the number of           performance. The paragraphs are designed to resemble
+              characters per syllable. The reading time per syllable is proportional to     everyday life situations of reading continuous text, such as in
+              the number of characters per syllable. The slope of this line                 books or newspapers. The level of difficulty corresponds to
+              corresponds to the mean reading time per character for all 17                 sixth grade reading (10–12 years), which is comprehensible for
+              languages, which turns out to be 68 ms per character (95% CI of the           teenagers and adults. Due to lower variance, measuring reading
+              means 65–71 ms) for 14 languages (except Arabic, Chinese, and
+                                                                                            time of a complete paragraph rather than a single sentence or
+              Japanese). The SD of the residuals is 650 ms/syllable. In Japanese, one
+              character can consist of more than one syllable and in Chinese, one           random words is more reliable. Furthermore, it can provide
+              character corresponds exactly to one syllable. Among the alphabetic           some information about fluency, fatigue, and mistakes.
+              languages, Arabic and Hebrew have the lowest number of characters                 Other reading tests are valuable for other indications: The
+              per syllable because of the missing vowels. For the remaining                 MN Read1–3 and Radner4,5 texts use short and simple (second
+              alphabetic languages, Spanish has the lowest number of characters             and third grade material) single sentences in different print
+              per syllable (1.95) and correspondingly the lowest reading time per           sizes to assess reading acuity, critical print size, and magnifi-
+              syllable (116 ms). In Slovenian we observe the longest reading time per       cation need.18 Radner compared reading speeds of German-
+              syllable (266 ms) together with the highest number of characters per          speaking readers of the single-sentence Radner texts (third
+              syllable (3.8).
+                                                                                            grade sentences)5 to those of paragraphs from the Zuercher
+                                                                                            Reading Test19 (ZRT, standardized for fourth to sixth grade
+                                                                                            children) and found a high correlation between the short
+              >10 words/min.’’ In the following, only the clinically relevant               sentences and the ZRT, but a mean difference of 40 words/
+              differences (>10 words/min) are considered. The correlations                  min—the single sentences being read much faster. This can be
+              of reading time among the 10 texts were high: mean pairwise                   attributed at least partially to the higher linguistic difficulty of
+              ‘‘r’’ ranged from 0.772 in Chinese to 0.934 in Swedish. In Table              the ZRT, and no conclusion can be drawn in regard to the
+              A1 the reading speeds expressed as words per minute for each                  difference between one sentence and paragraph reading.
+
+
+              TABLE 3. Summary Statistics for the Comparison of Texts within a Language with Respect to the Reading Speed in Words per Minute
+
+                                 Percentage of                 Percentage of
+                                Total Variability             Total Variability           SD (Words/Min)            SD (Words/Min)
+                               due to the Subjects          due to the Different            of Variability           of Variability
+              Language         within a Language           Texts within 1 Reader          between Subjects          within a Subject         F Ratio        P Value
+
+                 Chi                   75.5                          24.5                         15.5                      8.8                13.2         <0.0001
+                 Fin                   81.7                          18.3                         16.4                      7.7                 9.5         <0.0001
+                 Heb                   85.3                          14.7                         27.1                     11.2                 3.3          0.0010
+                 Ger                   85.5                          14.5                         15.6                      6.4                11.7         <0.0001
+                 Ita                   86.5                          13.5                         25.5                     10.1                19.6         <0.0001
+                 Ara                   87.6                          12.4                         18.3                      6.9                14.5         <0.0001
+                 Pol                   88.8                          11.2                         21.7                      7.7                10.7         <0.0001
+                 Spa                   88.8                          11.2                         25.5                      9.0                32.7         <0.0001
+                 Eng                   89.2                          10.8                         25.9                      9.0                64.6         <0.0001
+                 Por                   89.8                          10.2                         27.3                      9.2                19.8         <0.0001
+                 Jap                   90.0                          10.0                         28.4                      9.5                21.1         <0.0001
+                 Slo                   91.1                           8.9                         28.2                      8.8                22.6         <0.0001
+                 Dut                   91.9                           8.1                         28.8                      8.5                 6.9         <0.0001
+                 Rus                   92.0                           8.0                         31.1                      9.2                10.4         <0.0001
+                 Tur                   92.3                           7.7                         23.6                      6.8                23.5         <0.0001
+                 Fre                   92.7                           7.3                         23.6                      6.6                49.0         <0.0001
+                 Swe                   92.9                           7.1                         32.9                      9.1                 7.2         <0.0001
+                   Percentage of total variability of reading speeds (words per minute) for each language, which is due to the differences between the readers of
+              the 10 texts (n ¼ 25 for 16 languages, n ¼ 36 for Japanese) and percentage of total variability due to the different texts within one subject. The next
+              two columns provide the SDs in words per minute of the variability between and within the subjects. The last two columns provide the F ratios
+              together with their P values for the hypothesis that all texts are equal. The numerator degrees of freedom is 9 for each language, and the
+              denominator degrees of freedom is the number of observations per language minus the number of subjects for this language minus 9.
+
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              IOVS, August 2012, Vol. 53, No. 9                                          Standardized Assessment of Reading Performance                5457
+
+                                                                                         TABLE 4. Normal Lower Reference Values for Reading Speeds (Words
+                                                                                         per Minute) for 17 Languages
+
+                                                                                                                                          2.5% Quantile of
+                                                                                                                                           Reading Speed
+                                                                                         Language                                           (Words/Min)
+
+                                                                                            Ara                                                  96
+                                                                                            Chi                                                  127
+                                                                                            Dut                                                  149
+                                                                                            Eng                                                  161
+                                                                                            Fin                                                  126
+                                                                                            Fre                                                  154
+                                                                                            Ger                                                  142
+                                                                                            Heb                                                  127
+                                                                                            Ita                                                  144
+                                                                                            Jap                                                  148
+              FIGURE 4. Individual reading times (sec) for the 25 Spanish subjects          Pol                                                  108
+              and the 10 texts. The total variability (SD 6 5.17 sec) mainly is due to      Por                                                  133
+              the variability among the subjects (88.8%). The SD within one subject         Rus                                                  125
+              is only 1.76 seconds.
+                                                                                            Slo                                                  132
+                                                                                            Spa                                                  159
+                                                                                            Swe                                                  146
+                  Random word reading tests can be helpful to find typical                  Tur                                                  115
+              mistakes to get an idea about the location of a scotoma (Nair
+              UK, et al. IOVS 2006:ARVO E-Abstract 3481). The Colenbrander
+              Mixed Contrast Reading Cards20 assess the influence of
+              contrast sensitivity on reading of unrelated simple sentences              speed is based on syllables per minute, because in Slovenian a
+              at fourth grade level. The Pepper Test was reported to be                  syllable has approximately twice the number of characters.
+              useful in designing training programs in different low vision                  The texts account for only 11.5% of the total variability
+              conditions.21,22 Therefore, all these different text charts have           (Table 3), that is they are well designed with a high
+              their specific indication and supplement each other regarding              equivalence between each other in each language. The
+              specific aspects of reading, and cannot be compared directly.              individual reading speed, which depends on reading habits
+                                                                                         and skills, is the main reason for the variability. It also becomes
+                  Another new feature of IReST is the fact that they provide a
+                                                                                         clear that within one individual reader the variability is
+              set of 10 texts in each language for repeated measurements.
+                                                                                         relatively low with a high correlation coefficient when reading
+              Since equivalent sets of 10 texts are available in 17 languages,
+                                                                                         all 10 texts (r ¼ 0.772–0.934).
+              they provide a new tool for international multi-language                       Age also has a role for reading speed. In this study, age 18 to
+              studies. Due to the language characteristics, the counts of                35 years was an inclusion criterion. We showed in a previous
+              words, syllables, and characters differ considerably among the             study using IReST6 (first edition) that older subjects (aged 60–
+              languages (Table 1). The text, as a unit of the same content in            85 years) read more slowly by a factor of approximately 20%
+              all languages, is processed in a quite comparable time between             (English and German readers).
+              the languages. Therefore, in normal subjects, the differences in               Based on the results and considering the different language
+              spatial length of the texts (number of lines) between languages            structures, the following instructions for use are recommend-
+              do not seem to have a major role, because the perceptual                   ed: For use within one language direct comparison is possible
+              span,23 that is the number of letters perceived during one                 for texts without a clinically relevant reading speed difference
+              fixation, is sufficient in normal subjects. This span can be               of 10 words/min (Table A1). Dependent on the question, any
+              expected reasonably to be slightly different between different             unit can be used (see above and Fig. 2). Between languages, in
+              languages due to the varying average word length. Further                  clinical studies normally only the relative difference of reading
+              analysis showed different reading speeds for the different units,          speed is needed, for example before and after interventions.
+              which depends on the language structure (Fig. 2). In our                   Therefore, a direct comparison of absolute reading speeds
+              previous reports, we used characters (with spaces and                      between languages normally is not necessary, but possible
+              punctuation marks) to measure reading speed because the                    using a correction factor.
+              texts were nearly identical with respect to this variable.6,7 For
+              scientific use, especially from a speech articulation point of             Fields of Applications
+              view, syllables per minute can be more conclusive, whereas
+              words per minute are not suitable because of differences in                The IReST charts are suitable for a wide field of applications,
+              word lengths between languages. However, for everyday life,                for assessment of reading speed for:
+              words per minute is more common and more intuitive, and can
+                                                                                               Diagnostics.
+              be considered as a reasonable compromise, if all languages are                
+              considered. All these measures are displayed in the IReST                         Course monitoring.
+                                                                                               Effect documentation after interventions.
+              charts to provide the user with the units needed for a specific                  Low vision patients.
+              question (Fig. 1).                                                               Effect of multifocal intraocular lens implantation.
+                  Mean reading time per character for 14 languages (except                     Neurological reading disorders (e.g., hemianopia, alexia).
+              Arabic, Chinese, Japanese) is 68 ms (95% CI 65–71 ms)                            Developmental dyslexia.
+              determined by the slope of the line in Figure 3. This explains                   Studies with normal subjects.
+              why Spanish is the fastest and Slovenian the slowest among the
+              alphabetic languages (excluding Arabic and Hebrew) if reading                 Two patient groups will be discussed in more detail.
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              5458    Trauzettel-Klosinski and Dietz                                                               IOVS, August 2012, Vol. 53, No. 9
+
+              Low Vision Patients                                                   References
+              The aim of low vision rehabilitation is reading ability of             1. Ahn SJ, Legge GE, Luebker A. Printed cards for measuring low-
+              common print (1 M). Patients with central scotoma regain                  vision reading speed. Vis Res. 1995;35:1939–1944.
+              reading ability by the use of an eccentric retinal locus and           2. Legge GE, Ross JA, Luebker A, LaMay JM. Psychophysics of
+              magnifying visual aids to compensate for the lower resolu-                reading VIII. The Minnesota Low-Vision Reading Test. Optom
+              tion.24–30 Therefore, low vision patients must read the IReST             Vis Sci. 1989;66:843–853.
+              with their magnifying aids—a requirement of everyday reading           3. Mansfield JS, Ahn SJ, Legge GE, Luebker A. A new reading
+              situations. In patients, the mistakes are, of course, much more           acuity chart for normal and low vision. Ophthalmic Vis Opt.
+              frequent than in normal subjects and must be taken into                   1993;3:232–235.
+              account by subtracting the omitted or incorrectly read words           4. Radner W, Willinger U, Obermayer W, Mudrich C, Velikay-Parel
+              from the entire number of words of the text when calculating              M, Eisenwort B. A new reading chart for simultaneous
+              the reading speed (60 3 number of correctly read words/                   determination of reading vision and reading speed. Klin
+              reading time in seconds).                                                 Monatsbl Augenheilkd. 1998;213:174–181.
+                  The reading speeds in English and German native-speaking           5. Radner W, Obermayer W, Richter-Mueksch S, Willinger U,
+              patients with age-related macular degeneration (AMD) were                 Velikay-Parel M, Eisenwort B. The validity and reliability of
+              assessed in two studies using the IReST (first edition), when             short German sentences for measuring reading speed. Graefes
+              patients read the texts with appropriate magnification. A total           Arch Clin Exp Ophthalmol. 2002;240:461–467.
+              of 40 English AMD patients had a mean reading speed of 0.44            6. Hahn G, Penka D, Gehrlich C, et al. New standardised texts for
+              6 0.39 log char/sec, that is 38 words/min, viewed at their                assessing reading performance in four European Languages. Br
+              critical print size.31 In 530 German AMD patients, the mean               J Ophthalmol. 2006;90:480–484.
+              reading speed was 20 6 33 words/min before and 72 6 35                 7. Messias A, Velasco e Cruz A, Schallenmüller S, Trauzettel-
+              words/min after adaptation of optimal magnifying visual                   Klosinski S. New standardized texts in Brazilian Portuguese to
+              aids.32                                                                   assess reading speed—comparison with four European lan-
+                                                                                        guages. Arq Bras Oftalmol. 2008;71:553–558.
+              Developmental Dyslexia                                                 8. Gibson E. Linguistic complexity: locality of syntactic depen-
+                                                                                        dencies. Cognition. 1998;68:1–76.
+              In this diagnosis, not only the speed, but also the kind of errors     9. Gibson E. The dependency locality theory: a distance-based
+              is important. For example, when measuring reading perfor-                 theory of linguistic complexity. In: Miyashita Y, Marantz A,
+              mance in developmental dyslexia, standardized texts previous-             O’Neil W, eds. Image, Language, Brain. Cambridge, MA: MIT
+              ly were available only for young children and not for higher              Press; 2000:95–126.
+              grades or adults. In a recent study in German teenagers (mean         10. Contemporary Chinese Dictionary, 5th ed. Beijing, China:
+              age 18 6 3.3 years) using IReST (first edition), we found a               The Commercial Press; 2005.
+              mean reading speed of 184 words/min,33 which does not differ          11. Wang T, Ruan Z, Chang X, et al. Chinese Idioms Dictionary,
+              from the cohort examined here of German young adults (18–                 1st ed. Shanghai, China: Shanghai Lexicographical Publishing
+              35 years) with 179 words/min, which confirms that reading                 House; 1987.
+              aloud does not increase after the age of 15 to 18 years (due to       12. Li D, Cheng M. A Practical Chinese Grammar for Foreigners,
+              speech rate ceiling).34 Therefore, these texts also close a gap           2nd ed. Beijing, China: Sinolingua; 1988.
+              for testing teenagers and young adults, especially in patients        13. Liu X. New Practical Chinese Reader. Beijing, China: Beijing
+              with developmental dyslexia. In developmental dyslexia                    Language and Culture University Press; 2002.
+              research, it is of special interest to compare reading                14. Shono L. Arabic texts for assessing reading performance.
+              performance in different languages, because reading strategies            Tuebingen, Germany: Aalen University, Dept. for Optometry,
+              depend very much on the orthographic regularity of a                      and University of Tuebingen, Germany. 2008. Master thesis.
+              language.35–37 The texts can open a new opportunity to                15. Sloan LL. New test charts for the measurement of visual acuity
+              perform multi-language studies in the research on develop-                at far and near distances. Am J Ophth. 1959;48:807–813.
+              mental dyslexia.                                                      16. DeMarco LM, Massof RW. Distributions of print sizes in U.S.
+                  To summarize, the IReST provide a reproducible outcome                newspapers. J Vis Impair Blindness. 1997;91:9–15.
+              measure that will facilitate cross-language comparisons, and are      17. Hsu JC. Multiple Comparisons: Theory and Methods, 1st ed.
+              suitable for monitoring the impact of eye disease and success             Boca Raton, FL: Chapman & Hall; 1996.
+              of interventions. The second edition of the IReST charts with
+                                                                                    18. Chung ST, Mansfield JS, Legge GE. Psychophysics of reading.
+              17 languages will be available in 2012. For further information,
+                                                                                        XVIII. The effect of print size on reading speed in normal
+              see www.amd-read.net.                                                     peripheral vision. Vis Res. 1998;38:2949–2962.
+                                                                                    19. Lindner M, Grissemann H. Zuercher Lesetest. Berne, Switzer-
+              Acknowledgments                                                           land: Huber; 1968.
+                                                                                    20. Colenbrander A, Fletcher DC. The mixed contrast reading card,
+              Manfred MacKeben, PhD, The Smith Kettlewell Eye Research
+                                                                                        a new screening test for contrast sensitivity. In: Jones S, Rubin
+              Institute, San Francisco, California, provided valuable comments
+                                                                                        G, Hamlin D, eds. Vision 2005. London, United Kingdom:
+              and discussions. Malin Safioti supplied an earlier version of the
+                                                                                        Elsevier International Congress Series; 2006:492–497.
+              Swedish texts. Sam Featherston performed statistical support in an
+              early stage of the study. Alexander N. Sokolov, PhD, provided data    21. Stelmack J, Stelmack TR, Fraim M, Warrington J. Clinical use of
+              documentation and statistics in earlier stages of the project. Vera       the Pepper Visual Skills for Reading Test in low vision
+              Orth, University Library Tuebingen, contributed first analysis of         rehabilitation. Am J Optom Physiol Opt. 1987;64:829–831.
+              syllables of the Arabic texts, and Ellen Skodlar, Centre for          22. Watson G, Baldasare J, Whittaker S. The validity and clinical
+              Ophthalmology, University of Tuebingen performed secretarial              uses of the Pepper Visual Skills for Reading Test. J Vis Impair
+              work and assistance in coordination. Three anonymous referees             Blindness. 1990;84:119–123.
+              supplied detailed comments that led to many clarifications in the     23. McConkie GW, Rayner K. Asymmetry of the perceptual span in
+              paper.                                                                    reading. Bull Psychonomic Soc. 1976;8:365–368.
+
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              IOVS, August 2012, Vol. 53, No. 9                                       Standardized Assessment of Reading Performance              5459
+
+              24. Bullimore MA, Bailey IL. Reading and eye movements in age-              Finnish: Lea Hyvärinen, University of Helsinki, and Markku
+                  related maculopathy. Optom Vis Sci. 1995;72:125–138.                Leinonen, Department of Ophthalmology, Turku University
+              25. Crossland MD, Culham LE, Rubin GS. Predicting reading               Hospital, Finland.
+                  frequency in patients with macular disease. Optom Vis Sci.              French: François Vital-Durand, SBRI Unit 846 Inserm, Bron,
+                  2005;82:11–17.                                                      UCB-Lyon1, France.
+              26. Falkenberg HK, Rubin GS, Bex PJ. Acuity, crowding, reading              German: Susanne Trauzettel-Klosinski (co-ordinator),1 Klaus
+                  and fixation stability. Vision Res. 2007;47:126–135.                Dietz,2 Raphael Niebler,3 Gesa A. Hahn,1 from the 1Centre for
+              27. Lovie-Kitchin JE, Bowers AR, Woods RL. Oral and silent              Ophthalmology, 2Department of Medical Biometry, and 3De-
+                  reading performance with macular degeneration. Ophthalmic           partment for Psychiatry, University of Tuebingen, Tuebingen,
+                  Physiol Opt. 2000;20:360–370.                                       Germany.
+                                                                                          Hebrew: Anat Kesler and Uri Soiberman, Neuro-Ophthal-
+              28. Timberlake GT, Peli E, Essock EA, Augliere RA. Reading with a
+                  macular scotoma. II. Retinal locus for scanning text. Invest
+                                                                                      mology Unit, Department of Ophthalmology, Tel Aviv Medical
+                  Ophthalmol Vis Sci. 1987;28:1268–1274.                              Center, Israel.
+                                                                                          Italian: Giacomo Stella, Department of Education and
+              29. Trauzettel-Klosinski S, Tornow RP. Fixation behavior and            Human Sciences, University of Modena and Reggio Emilia, Italy.
+                  reading ability in macular scotoma. Neuro-Ophthalmol.
+                                                                                          Japanese: Satoshi Kashii, Faculty of Health and Medical
+                  1996;16:241–253.
+                                                                                      Sciences, Aichi Shukutoku University, Nagakute-City, Japan.
+              30. Trauzettel-Klosinski S. Rehabilitation for visual disorders. J          Polish: Slawomir Teper, Department of Ophthalmology,
+                  Neuro-Ophthalmol. 2010;30:73–84.                                    Okregowy Szpital Kolejowy in Katowice, Poland.
+              31. Rubin GS, Feely M. The role of eye movements during reading             Portuguese/Br: Andre Messias, Department of Ophthalmol-
+                  in patients with age-related macular degeneration (AMD).            ogy, USP, Ribeirão Preto, Brazil.
+                  Neuro-Ophthalmol. 2009;33:120–126.                                      Russian: Natalia Eliseeva, Burdenko Neurosurgery Institute,
+              32. Nguyen NX, Weismann M, Trauzettel-Klosinski S. Improve-             Moscow, Russia.
+                  ment of reading speed after providing of low vision aids in             Slovenian: Marku Hawlina and Polona Jaki Mekjavić,
+                  patients with age-related macular degeneration. Acta Oph-           Department of Ophthalmology, Faculty of Medicine, University
+                  thalmol. 2009;87:849–853.                                           of Ljubljana, Slovenia.
+              33. Hofmann C. Studies on different processing of script and                Swedish: Jorgen Gustafsson, Section of Optometry and
+                  pictograms in dyslexics and normal readers [in German].             Vision Sciences, Linnaeus University, Kalmar, Sweden.
+                  Tuebingen, Germany: Medical Faculty, University of Tuebin-              Spanish: Jorge Arruga, Hospital Universitario de Bellvitge
+                  gen. 2011. Thesis.                                                  (HUB), Barcelona, Spain.
+              34. Tressoldi P, Stella G, Faggella M. The development of reading           Turkish: Doğan Ceyhan, Yüzüncü Yıl University Depart-
+                  speed in Italians with dyslexia: a longitudinal study. J Learn      ment of Ophthalmology, Van, Turkey.
+                  Disabil. 2001;34:414–417.                                               Linguists. Arabic: Haris Mohammad, Al-Azhar University,
+              35. Dürrwächter U, Sokolov AN, Reinhard J, Klosinski G,               German Department, Cairo, Egypt.
+                  Trauzettel-Klosinski S. Word length and word frequency                  Chinese: Jianguo Lu, Department of Psychology, Chengdu
+                  affect eye movements in dyslexic children reading in a              Medical College, Chengdu, China.
+                  regular (German) orthography. Ann Dyslexia. 2010;60:86–                 Dutch: Evy G. Visch-Brink, Department of Neurology,
+                  101.                                                                Erasmus MC, University Medical Center, Rotterdam, The
+              36. Stella G, Savelli E, Scorza MS, Morlini I. La dislessia evolutiva   Netherlands.
+                  lungo l’arco della scolarità obbligatoria. In: Vicari S, Caselli       German: Doris Penka, Ocuserv, Department of Linguistics,
+                  MC, eds. Neuropsicologia Dello Sviluppo. Bologna, Italy: Il         University of Tuebingen, Germany/Department of Linguistics,
+                  Mulino Editore; 2010:161–178.                                       University of Konstanz, Germany.
+              37. Trauzettel-Klosinski S, Koitzsch M, Dürrwächter U, Sokolov            Italian: Gabriele Pallotti, University of Modena and Reggio
+                  AN, Reinhard J, Klosinski G. Eye movements in German-               Emilia, Department of Education, Italy.
+                  speaking children with and without dyslexia when reading                Japanese: Susanne Miyata, Faculty of Health and Medical
+                  aloud. Acta Ophthalmol. 2010;88:681–691.                            Sciences, Aichi Shukutoku University, Nagakute-City, Japan.
+                                                                                          Polish: Ewa Baglajewska-Miglus, Europe University Viadrina,
+                                                                                      Language Centre, Frankfurt (Oder), Germany.
+              APPENDIX                                                                    Portuguese/Br: Sonia Jecov Schallenmüller, Instituto de
+                                                                                      Ensino Brasil-Alemanha, Ribeirão Preto, Brazil.
+                                                                                          Russian: Valeri Belianine, Institute of Psycholinguistic
+              The IReST Study Group                                                   Psychotherapy, Toronto, Canada.
+                                                                                          Slovenian: Uroš Mozetič, University of Ljubljana, Faculty of
+                 Principal Investigators. Arabic: Lama Shono, University              Arts, Department of English, Slovenia.
+              of New South Wales, Australia/Saudi-Arabia.                                 Spanish: Antònia Martı́, CLiC-Centre de Llenguatge i
+                 Chinese: Lin Wang, Research and Outcomes Unit Care                   Computació, University of Barcelona, Spain.
+              Management Administration, Johns Hopkins HealthCare LLC,                    Swedish: Gustaf Öqvist Seimyr, The Bernadotte Laborato-
+              Johns Hopkins Medicine, Baltimore, MD.                                  ries, St. Erik Eye Hospital, Stockholm, Sweden.
+                 Dutch: Ger van Rens, Department of Ophthalmology, VU                     Turkish: Dilek Fidan, Kocaeli University, Faculty of Educa-
+              University Medical Centre Amsterdam, The Netherlands.                   tion, Department of Turkish Language Teaching, Kocaeli,
+                 English: Gary S. Rubin, Department of Visual Neuroscience,           Turkey.
+              UCL Institute of Ophthalmology, London UK.                                  (see Table A1)
+
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              5460    Trauzettel-Klosinski and Dietz                                                         IOVS, August 2012, Vol. 53, No. 9
+
+              TABLE A1. Reading Speeds for Each Text in Each Language, Ranked in     TABLE A1. Continued
+              Order of Decreasing Speed. Texts with the Same Letter in Performance
+              Category A to F Differ not More than 10 Words per Minute                                     Reading
+                                                                                             No. of Rank    Speed
+                                    Reading
+                                                                                     Language Text Order (Words/Min)* Performance Category
+                      No. of Rank    Speed
+              Language Text Order (Words/Min)*          Performance Category         Ger         2     1     188      A
+                                                                                     Ger         4     2     185      A   B
+              Ara          3      1         148        A
+                                                                                     Ger         5     3     181      A   B   C
+              Ara          9      2         143        A    B
+                                                                                     Ger         9     4     180      A   B   C
+              Ara          7      3         142        A    B
+                                                                                     Ger         1     5     180      A   B   C
+              Ara          8      4         139        A    B    C
+                                                                                     Ger         8     6     178          B   C
+              Ara          5      5         139        A    B    C
+                                                                                     Ger         6     7     176          B   C
+              Ara          6      6         137             B    C
+                                                                                     Ger        10     8     176          B   C
+              Ara          4      7         136             B    C
+                                                                                     Ger         3     9     175          B   C
+              Ara          2      8         134             B    C
+                                                                                     Ger         7    10     174              C
+              Ara          1      9         132                  C
+              Ara         10     10         131                  C                   Heb         2     1     195      A
+                                                                                     Heb         4     2     191      A   B
+              Chi           2      1        170        A
+                                                                                     Heb         9     3     190      A   B
+              Chi          8      2         163        A    B                        Heb         6     4     189      A   B
+              Chi          6      3         162        A    B    C                   Heb         8     5     186      A   B
+              Chi         10      4         161        A    B    C                   Heb         5     6     184          B
+              Chi          3      5         159             B    C                   Heb         7     7     184          B
+              Chi          1      6         157             B    C    D              Heb         1     8     184          B
+              Chi          4      7         157             B    C    D              Heb         3     9     184          B
+              Chi          5      8         156             B    C    D              Heb        10    10     183          B
+              Chi          7      9         152                  C    D
+              Chi          9     10         147                       D              Ita         2     1     206      A
+                                                                                     Ita         3     2     194          B
+              Dut          2      1         211        A                             Ita         7     3     193          B
+              Dut          6      2         205        A    B                        Ita         8     4     188          B   C
+              Dut          8      3         204        A    B                        Ita         5     5     188          B   C
+              Dut          9      4         204        A    B                        Ita         9     6     187          B   C
+              Dut          4      5         203        A    B                        Ita         4     7     185          B   C
+              Dut         10      6         201             B                        Ita         1     8     181              C   D
+              Dut          5      7         200             B                        Ita        10     9     179              C   D
+              Dut          7      8         199             B                        Ita         6    10     174                  D
+              Dut          3      9         197             B
+              Dut          1     10         195             B                        Jap        10     1     201      A
+                                                                                     Jap         4     2     200      A
+              Eng          4      1         244        A                             Jap         6     3     199      A   B
+              Eng          2      2         243        A                             Jap         5     4     197      A   B
+              Eng          8      3         237        A    B                        Jap         9     5     196      A   B
+              Eng          1      4         236        A    B                        Jap         8     6     196      A   B
+              Eng          7      5         232             B    C                   Jap         2     7     190          B   C
+              Eng          5      6         229             B    C                   Jap         3     8     185              C
+              Eng          3      7         227             B    C                   Jap         7     9     184              C
+              Eng          9      8         226                  C                   Jap         1    10     181              C
+              Eng         10      9         211                       D
+              Eng          6     10         197                            E         Pol         5     1     172      A
+                                                                                     Pol         8     2     172      A
+              Fin          7      1         167        A                             Pol         4     3     172      A
+              Fin          5      2         165        A                             Pol         7     4     169      A   B
+              Fin          6      3         164        A                             Pol         6     5     168      A   B
+              Fin          1      4         164        A                             Pol        10     6     163      A   B
+              Fin          4      5         163        A                             Pol         9     7     162          B
+              Fin          8      6         161        A                             Pol         3     8     161          B
+              Fin          3      7         161        A                             Pol         2     9     161          B
+              Fin         10      8         159        A    B                        Pol         1    10     161          B
+              Fin          2      9         159        A    B
+              Fin          9     10         150             B                        Por         7     1     192      A
+                                                                                     Por         8     2     192      A
+              Fre          7      1         215        A                             Por         2     3     187      A
+              Fre          1      2         205        A    B                        Por         4     4     186      A
+              Fre          2      3         199             B    C                   Por         9     5     182      A   B
+              Fre          8      4         197             B    C                   Por         3     6     176          B   C
+              Fre          4      5         194                  C                   Por         5     7     175          B   C
+              Fre          5      6         192                  C                   Por         6     8     174          B   C
+              Fre          3      7         190                  C    D              Por         1     9     173          B   C
+              Fre         10      8         190                  C    D              Por        10    10     170              C
+              Fre          9      9         190                  C    D
+              Fre          6     10         182                       D
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+              IOVS, August 2012, Vol. 53, No. 9                                      Standardized Assessment of Reading Performance   5461
+
+
+              TABLE A1. Continued
+
+                                              Reading
+                           No. of   Rank       Speed
+              Language      Text    Order   (Words/Min)*     1   2   3   4   5   6
+
+              Rus             8       1          195        A
+              Rus             4       2          190        A    B
+              Rus             9       3          189        A    B   C
+              Rus             3       4          186        A    B   C
+              Rus             2       5          183             B   C   D
+              Rus             7       6          183             B   C   D
+              Rus             6       7          182             B   C   D
+              Rus             5       8          180                 C   D
+              Rus            10       9          179                 C   D
+              Rus             1      10          175                     D
+              Slo             4       1          197        A
+              Slo             7       2          186             B
+              Slo             2       3          184             B   C
+              Slo             8       4          184             B   C
+              Slo             1       5          182             B   C
+              Slo             6       6          181             B   C
+              Slo             5       7          176                 C   D
+              Slo             9       8          176                 C   D
+              Slo             3       9          170                     D
+              Slo            10      10          168                     D
+              Spa             4       1          239        A
+              Spa             2       2          229        A    B
+              Spa             5       3          225             B   C
+              Spa             1       4          219             B   C   D
+              Spa             3       5          218                 C   D   E
+              Spa             9       6          216                 C   D   E
+              Spa             8       7          216                 C   D   E
+              Spa             7       8          214                     D   E
+              Spa            10       9          208                         E   F
+              Spa             6      10          202                             F
+              Swe             2       1          205        A
+              Swe             5       2          204        A    B
+              Swe             8       3          203        A    B
+              Swe             1       4          201        A    B
+              Swe             9       5          199        A    B
+              Swe             6       6          199        A    B
+              Swe             7       7          199        A    B
+              Swe            10       8          197        A    B   C
+              Swe             4       9          195             B   C
+              Swe             3      10          188                 C
+              Tur             9       1          175        A
+              Tur             3       2          175        A
+              Tur             5       3          169        A    B
+              Tur             6       4          167        A    B   C
+              Tur             2       5          166        A    B   C
+              Tur             4       6          164             B   C
+              Tur             7       7          164             B   C
+              Tur             8       8          163             B   C   D
+              Tur            10       9          158                 C   D
+              Tur             1      10          153                     D
+                    * Reading speed (words/min) is mean reading speed.
+
+
+
+
+Downloaded from iovs.arvojournals.org on 03/26/2023
+

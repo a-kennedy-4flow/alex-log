@@ -1,0 +1,253 @@
+  Can the E-Z Reader Model Predict Eye Movements Over Code?
+     Towards a Model of Eye Movements Over Source Code
+                                   Naser Al Madi                                                                   Cole S. Peterson
+                                Kent State University                                                      University of Nebraska–Lincoln
+                                  Kent, Ohio, USA                                                               Lincoln, Nebraska, USA
+                                  nmadi@kent.edu                                                         cole.scott.peterson@huskers.unl.edu
+
+                                    Bonita Sharif                                                                Jonathan I. Maletic
+                        University of Nebraska–Lincoln                                                            Kent State University
+                           Lincoln, Nebraska, USA                                                                   Kent, Ohio, USA
+                               bsharif@unl.edu                                                                     jmaletic@kent.edu
+ABSTRACT                                                                                      1    INTRODUCTION
+Studies of eye movements during source code reading have sup-                                 The study of eye movements during reading natural text has en-
+ported the idea that reading source code differs fundamentally                                hanced our understanding of the cognitive processes involved in
+from reading natural text. The paper analyzed an existing data                                reading. More significantly, the understanding of reading allows
+set of natural language and source code eye movement data using                               for better educational tools for general and special education that
+the E-Z reader model of eye movement control. The results show                                enhance the efficiency and productivity of reading comprehension.
+that the E-Z reader model can be used with natural text and with                                 The research into the factors and effects that influence eye move-
+source code where it provides good predictions of eye movement                                ments during reading spans over 30 years [Rayner 1998] and led to
+duration. This result is confirmed by comparing model predictions                             the development of computational models of eye movement that
+to eye-movement data from this experiment and calculating the                                 predict when and where the eyes move across a line of text [Eng-
+correlation score for each metric. Finally, it was found that gaze du-                        bert et al. 2005; Reichle et al. 2003]. Such models take in account
+ration is influenced by token frequency in code and in natural text.                          the role of various cognitive systems such as oculomotor control
+The frequency effect is less pronounced on first fixation duration                            (eye-movement), lexical access (word identification), and semantic
+and single fixation duration. An eye movement control model for                               memory to provide an understanding of the interaction between
+source code reading may open the door for tools in education and                              language, eye movement, and cognition [Rayner 1998].
+the industry to enhance program comprehension.                                                   Reading source code shares some aspects with reading natural
+                                                                                              text, yet the cognitive processes involved in reading source code
+CCS CONCEPTS                                                                                  are much less understood and studied. A contributing factor is the
+• Information systems → Language models; • Software and                                       recency of programming languages and the cumulative evidence
+its engineering → Software organization and properties; •                                     that shows that source code differs fundamentally in purpose, syn-
+Applied computing → Education; • Human-centered com-                                          tax, semantics, and viewing strategy from natural text [Busjahn
+puting → Human computer interaction (HCI).                                                    et al. 2015, 2014; Liblit et al. 2006; Schulte et al. 2010].
+                                                                                                 The differences in reading natural text and reading source code
+KEYWORDS                                                                                      are fundamental [Busjahn et al. 2015], prohibiting the automatic
+eye-movement model, eye tracking, source code, natural text, em-                              extension of natural language research findings and models to
+pirical study                                                                                 programming languages. In this paper we aim to investigate if
+                                                                                              a prominent eye movement control model that is designed for
+ACM Reference Format:                                                                         natural English text (E-Z reader) [Reichle et al. 2003] can predict
+Naser Al Madi, Cole S. Peterson, Bonita Sharif, and Jonathan I. Maletic. 2020.
+                                                                                              eye movement on source code. This examination will inform us of
+Can the E-Z Reader Model Predict Eye Movements Over Code? Towards
+                                                                                              the linguistic factors that influence eye movements on source code
+a Model of Eye Movements Over Source Code. In EMIP ’20: The Seventh
+International Workshop on Eye Movements in Programming, June 2, 2020,                         and if these factors are shared between natural text and source code
+Stuttgart, Germany. ACM, New York, NY, USA, 4 pages. https://doi.org/10.                      at the token level. In addition, an eye movement control model for
+1145/1122445.1122456                                                                          source code reading would open the door for tools in both education
+                                                                                              and industry to enhance program comprehension. Not only could
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed         we use this model to analyze and predict source code readability,
+for profit or commercial advantage and that copies bear this notice and the full citation     but it could also be use it as a baseline or as an “ideal reader” against
+on the first page. Copyrights for components of this work owned by others than ACM            which to compare novice or expert readers.
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specific permission and/or a      We address the following research questions in this paper:
+fee. Request permissions from permissions@acm.org.                                                 • RQ1: Can the E-Z reader model of eye movement control on
+EMIP ’20, June 2, 2020, Stuttgart, Germany                                                            natural text predict eye movement over source code?
+© 2020 Association for Computing Machinery.
+ACM ISBN 978-1-4503-9999-9/18/06. . . $15.00                                                       • RQ2: Is there an influence of token frequency on eye move-
+https://doi.org/10.1145/1122445.1122456                                                               ment in source code?
+EMIP ’20, June 2, 2020, Stuttgart, Germany                                         Naser Al Madi, Cole S. Peterson, Bonita Sharif, and Jonathan I. Maletic
+
+
+   The results show that the E-Z reader model can be used with nat-     Table 1: Java repositories and natural text corpus [Project
+ural text and with source code where it provides good predictions       Gutenberg. 2019] used for calculating token/word
+of the eye movement in our experiment. This result is confirmed         frequency-in-a-million.
+by comparing model predictions to eye-movement data from our
+experiment and calculating the r-squared correlation score [Freed-                Repository          Files      Lines            Tokens
+man et al. 2007] for each eye movement metric. Finally, we find                   Ant                 1314       304957           1053481
+that gaze duration is influenced (with moderate to high correlation)              Batik               1651       353516           1185185
+by token frequency in code and in natural text. At the same time,                 Cassandra           2673       586451           2055723
+the frequency effect is less pronounced on first fixation duration                Eclipse             154        25914            77699
+and single fixation duration.                                                     Log4J               309        60078            208578
+   The contributions from this paper are as follows:                              Lucene              8467       1874373          6900196
+     • Demonstrating how a natural text eye movement control                      Maven2              378        60775            206887
+       model is utilized to predict eye movement over source code.                Maven3              834        113384           388503
+     • Providing evidence that source code on the token level is                  Xalan-J             958        348769           1355646
+       influenced by token frequency in a similar manner to natural               Xerces2             833        261312           958345
+       text.                                                                      Total               17571      3979251          14390243
+
+                                                                                  Natural Text                   Sentences        Words
+2    BACKGROUND
+                                                                                  Gutenberg                      98552            2621785
+Computational models of eye movement control provide an ac-
+count for the interaction between eye movement and cognition.
+Such models provide an understanding of how linguistic and mo-          databases for natural text, but no such resources exist for source
+tor factors influence when and where the eyes move. One of the          code. Therefore, we used 10 Java repositories that fulfilled the guides
+most notable cognitive models of eye movement control in reading        of selecting meaningful repositories set by [Munaiah et al. 2017] to
+natural text is the E-Z reader model [Reichle et al. 2003]. The E-Z     determine token frequency in Java.
+reader model has been used successfully in scene comprehension             The repositories represent 10 successful Java projects with ap-
+and other non-reading tasks [Reichle et al. 2012]. In this paper,       proximately 3.9 million lines of code resulting in approximately
+we evaluate the performance of the E-Z reader in predicting eye         14.3 million tokens after removing comments from code. For the
+movements over source code.                                             natural text frequency data we used the Gutenberg corpus [Project
+   The E-Z reader is built on the assumption that linguistic factors,   Gutenberg. 2019] (retrieved through [Loper and Bird 2002]) with
+such as word frequency, predictability, and length, influence eye       approximately 98,000 sentences resulting in approximately 2.6 mil-
+movement duration and location. The period of time eyes stay            lion tokens of natural text. Table 1 shows details of the selected
+stationary on a word/token is called fixation, and visual features      Java repositories and natural text corpus.
+of text are extracted only during fixations [Reichle et al. 2003].         We estimate the frequency of a word/token in print by counting
+The frequency effect refers to the difference in reaction times for     the number of times the word appeared in the corpus/repositories
+high-frequency and low-frequency words in which low-frequency           over the size of the corpus/repositories (normalized by words-in-a-
+words are fixated longer than high-frequency words [Rayner 1998].       million):
+This is measured through counting the number of times a word
+                                                                                                                 count(word)
+appears in books, articles, and various sources. Word frequency for              frequency(word) =
+                                                                                                         count(vocabulary)/1, 000, 000
+natural languages has been organized in lexical databases such as
+the CELEX database [Baayen et al. 1996], and it is measured in words       Vocabulary refers to all the words that appear in the corpus
+per-million. High-frequency words appear thousands of times in          or repositories and this count is divided by one million because
+a million words - an example is the word “the” which appears            frequency is calculated in words-per-million. Token length is calcu-
+approximately 65,000 times-per-million [Baayen et al. 1996]. An         lated as a direct count of the number of characters in a word.
+example of a low-frequency word is the word “kin” which appears
+3 times in a million words [Baayen et al. 1996]. Word length effect     4    EXPERIMENT
+refers to the incremental reading time required as words become         The central question we seek to answer is whether the E-Z reader
+longer in the number of characters [Rayner 1998]. Word length           model of eye movement control over natural text can predict eye
+effect comes from visual acuity as processing more characters that      movements on source code. We calculate token frequency and
+are distributed further from the center of the fixation takes more      length data for source code and natural text, and run it through the
+time than a shorter word [Reichle et al. 2003].                         E-Z reader model to generate eye movement predictions that we
+                                                                        compare with real data [Busjahn et al. 2015] from our experiment
+3    SOURCE CODE FREQUENCY AND LENGTH                                   (natural text and source code). The E-Z reader model generates
+In order to investigate if the E-Z reader model of oculomotor control   three duration metrics that are important to our discussion here
+designed for natural text can predict eye movements on source code,     [Reichle et al. 2003]. The duration metrics we use are:
+we require token frequency, predictability, and token length data           (1) First Fixation Duration (FFD): The duration of the first fixa-
+for source code. This information can be obtained from lexical                  tion on a word/token.
+Can the E-Z Reader Model Predict Eye Movements Over Code? Towards a Model of Eye Movements Over Source Code       EMIP ’20, June 2, 2020, Stuttgart, Germany
+
+
+   (2) Single Fixation Duration (SFD): The duration of the fixation
+       when only one fixation was made on the word/token.
+   (3) Gaze Duration (GD): The sum of all fixations on word/token
+       N before moving to word/token N+1.
+
+4.1     Experimental Data Set
+The data set used in this experiment is from both novice and ex-
+pert programmers collected in 2015 [Busjahn et al. 2015]. Fourteen
+novices, who attended a Java beginner course, were recruited for
+the study. The students’ eye movements were recorded at the end of
+each of the six modules taught, and the stimuli included Java code
+and English natural text. Each module covered different program-
+ming fundamentals and took place over the course of several weeks.
+Six professionals were recruited from several local companies.
+   Each participant used a SMI RED-m remote eye tracker that
+sampled their eye movements at 120 Hz. For each of the novice’s
+sessions, the participants read a set of three programs, two of which
+were English-like pseudocode and one written in Java. For the ex-
+pert’s session, the participants looked at six programs in total. Two
+                                                                                  Figure 1: E-Z reader natural text duration predictions in
+of these programs are the same as the ones viewed by the novices in
+                                                                                  comparison to experiment data. The duration is in millisec-
+the latter weeks of the Java’s beginner course. The other programs
+                                                                                  onds and the 5 frequency classes correspond to 1-9, 10-99,
+are similar in length to the novice’s code samples but are more
+                                                                                  100-999, 1000-9999, and 10000+ in words-per-million.
+complex and included more advanced programming constructs.
+   In order to use the eye tracking data with the E-Z reader model,
+we need to have token level precision on the stimuli. We map each                      • r 2 = 0.59 for Single Fixation Duration (SFD) indicating a
+token of the source code stimuli to an area of interest (AOI). As                        moderate correlation between predicted and observed val-
+our source code stimuli is statically displayed for the participants,                    ues.
+participant’s eye tracking data is easily mapped onto these AOIs                       • r 2 = 0.94 for Gaze Duration (GD) indicating very strong
+and is ready for the E-Z reader model. The first and last word/token                     correlation between predicted and observed values.
+are removed as required by the E-Z reader model, and fixations less
+than 90 ms and greater than 700 ms are also removed [Reichle et al.
+2003].
+
+4.2     Duration Results
+The duration results are based on examining the ability of the E-Z
+reader model in predicting eye-movement metrics for natural text
+and source code. The predictions of the model are based on a simula-
+tion with 1000 statistical subjects to determine how well the model
+can predict observed durations. The 1000 statistical subjects refers
+to the model pretending to be 1000 different people to generate
+results that account for some aspects of individual differences in
+reading.
+   Starting with natural text, the model is expected to produce good
+predictions as E-Z reader is intended for natural languages. Figure
+1 shows model duration predictions in comparison to observations
+from our experiment, with mean fixation durations calculated in
+milliseconds for words in 5 frequency classes. These are the same
+frequency classes used in eye movement control models like E-Z
+                                                                                  Figure 2: E-Z reader source code duration predictions in com-
+reader and SWIFT [Engbert et al. 2005; Reichle et al. 2003]. The fre-
+                                                                                  parison to experiment data. The duration is in milliseconds
+quency classes represent words with frequency: 1-9, 10-99, 100-999,
+                                                                                  and the 5 frequency classes correspond to 1-9, 10-99, 100-999,
+1000-9999, and 10000+. The model appears to resemble observed
+                                                                                  1000-9999, and 10000+ in words-per-million.
+data, to validate this result we calculate Pearson’s correlation coef-
+ficient (r 2 ) between each predicted and observed metric.
+                                                                                     Next, we investigated whether the E-Z reader model is able to
+      • r 2 = 0.57 for First Fixation Duration (FFD) indicating a mod-            predict eye movement over source code. The results are presented in
+        erate correlation between observed and predicted values.                  Figure 2 which shows the performance of E-Z reader in predicting
+EMIP ’20, June 2, 2020, Stuttgart, Germany                                             Naser Al Madi, Cole S. Peterson, Bonita Sharif, and Jonathan I. Maletic
+
+
+eye movement duration with source code. Comparing the predicted           6     CONCLUSIONS AND FUTURE WORK
+line and the observed line for each metric we can say that the model      The paper analyzes an existing data set of natural language and
+captures the observed data. To validate this result, we calculate         source code eye movement data using the E-Z reader model of eye
+Pearson’s correlation coefficient (r 2 ) between each predicted and       movement control. The results show that the E-Z reader model
+observed metric.                                                          can be used with source code where it provides good predictions
+     • r 2 = −0.04 for First Fixation Duration (FFD) indicating no        of eye movements in our experiment. This result is confirmed by
+       correlation between observed and predicted values.                 comparing model predictions to eye movement data from our ex-
+     • r 2 = −0.39 for Single Fixation Duration (SFD) indicating a        periment and calculating the r 2 correlation score for each metric.
+       negative correlation between predicted and observed values.        Finally, we find that gaze duration is influenced by token frequency
+     • r 2 = 0.92 for Gaze Duration (GD) indicating very strong           (with moderate to high correlation) in code and in natural text. The
+       correlation between predicted and observed values.                 frequency effect is less pronounced on first fixation duration and
+   The results for FFD and SFD show no and negative correlation           single fixation duration. Future work consists of an in-depth inves-
+between predictions and the model respectively. This is possibly          tigation of frequency, predictability, and length effects in reading
+due to the predictions in the first frequency class. The observed du-     source code with novice and experienced programmers.
+rations are lower than estimated in the first frequency class for both
+SFD and FFD, nonetheless, GD predictions are highly correlated            REFERENCES
+                                                                          R Harald Baayen, Richard Piepenbrock, and Leon Gulikers. 1996. The CELEX lexical
+with the data of our experiment.                                             database (cd-rom). (1996).
+                                                                          Teresa Busjahn, Roman Bednarik, Andrew Begel, Martha Crosby, James H Paterson,
+5    DISCUSSION                                                              Carsten Schulte, Bonita Sharif, and Sascha Tamm. 2015. Eye movements in code
+                                                                             reading: Relaxing the linear order. In 2015 IEEE 23rd International Conference on
+From the results we observe that gaze duration (GD) is higher than           Program Comprehension. IEEE, 255–265.
+model estimations in every case (for both natural text and source         Teresa Busjahn, Roman Bednarik, and Carsten Schulte. 2014. What influences dwell
+                                                                             time during source code reading?: analysis of element type and frequency as factors.
+code). One possible explanation for this comes from the nature of            In Proceedings of the Symposium on Eye Tracking Research and Applications. ACM,
+reading in experiments, as readers tend to spend more time than              335–338.
+casual reading. Another explanation could be that reading source          Teresa Busjahn, Carsten Schulte, and Andreas Busjahn. 2011. Analysis of code reading
+                                                                             to gain more insight in program comprehension. In Proceedings of the 11th Koli
+code takes more time than natural text as reported in previous               Calling International Conference on Computing Education Research. 1–9.
+studies. [Crosby and Stelovsky 1990] found that subjects needed           Martha E Crosby and Jan Stelovsky. 1990. How do we read algorithms? A case study.
+                                                                             Computer 23, 1 (1990), 25–35.
+a significant number of additional fixations to comprehend algo-          Ralf Engbert, Antje Nuthmann, Eike M Richter, and Reinhold Kliegl. 2005. SWIFT: a
+rithms in comparison to natural text. In addition, [Busjahn et al.           dynamical model of saccade generation during reading. Psychological review 112, 4
+2011] found that source code received higher fixation durations and          (2005), 777.
+                                                                          David Freedman, Robert Pisani, and Roger Purves. 2007. Statistics (international
+more regressions (jumps back) on a significant level statistically.          student edition). Pisani, R. Purves, 4th edn. WW Norton & Company, New York
+   Almost every eye tracking study with source code indicates                (2007).
+that reading code is different from reading natural text. One study       Ben Liblit, Andrew Begel, and Eve Sweetser. 2006. Cognitive Perspectives on the Role
+                                                                             of Naming in Computer Programs.. In PPIG. Citeseer, 11.
+that relates most to our question here investigates token length,         Edward Loper and Steven Bird. 2002. NLTK: the natural language toolkit. arXiv
+frequency, and type in source code found that token frequency is             preprint cs/0205028 (2002).
+                                                                          Nuthan Munaiah, Steven Kroh, Craig Cabrey, and Meiyappan Nagappan. 2017. Curating
+not a relevant factor on first fixation duration [Busjahn et al. 2014].      GitHub for engineered software projects. Empirical Software Engineering 22, 6 (2017),
+(replicated on the line level in [Peterson et al. 2019]). This finding       3219–3253.
+is supported by our study since FFD and SFD with source code              Cole S Peterson, Nahla J Abid, Corey A Bryant, Jonathan I Maletic, and Bonita Sharif.
+                                                                             2019. Factors influencing dwell time during source code reading: a large-scale
+are almost constant over the different frequency classes, but GD             replication experiment. In Proceedings of the 11th ACM Symposium on Eye Tracking
+is clearly (statistically) affected by token frequency in code and           Research & Applications. ACM, 38.
+natural text.                                                             Project Gutenberg. 2019. Retrieved September, 2019. www.gutenberg.org
+                                                                          Keith Rayner. 1998. Eye movements in reading and information processing: 20 years
+   Revisiting our research questions, we found evidence to support           of research. Psychological bulletin 124, 3 (1998), 372.
+the use of the E-Z reader model with source code (RQ1) and we             Erik D Reichle, Alexander Pollatsek, and Keith Rayner. 2012. Using EZ Reader to simu-
+                                                                             late eye movements in nonreading tasks: A unified framework for understanding
+found evidence supporting the presence of the frequency effect on            the eye–mind link. Psychological review 119, 1 (2012), 155.
+gaze duration (GD) in reading source code (RQ2).                          Erik D Reichle, Keith Rayner, and Alexander Pollatsek. 2003. The EZ Reader model of
+                                                                             eye-movement control in reading: Comparisons to other models. Behavioral and
+                                                                             brain sciences 26, 4 (2003), 445–476.
+                                                                          Carsten Schulte, Tony Clear, Ahmad Taherkhani, Teresa Busjahn, and James H Paterson.
+                                                                             2010. An introduction to program comprehension for computer science educators.
+                                                                             In Proceedings of the 2010 ITiCSE working group reports. ACM, 65–86.
+

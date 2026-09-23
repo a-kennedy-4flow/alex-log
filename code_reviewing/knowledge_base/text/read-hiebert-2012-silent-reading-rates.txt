@@ -1,0 +1,1449 @@
+Comprehension-Based Silent
+      Reading Rates:
+   What Do We Know?
+What Do We Need To Know?
+
+             Elfrieda H. Hiebert
+                 TextProject &
+      University of California, Santa Cruz
+               S. Jay Samuels
+           Univeristy of Minnesota
+            Timothy V. Rasinski
+            Kent State University
+
+
+
+
+          TextProject Article Series
+               February 2014
+
+
+            TextProject, Inc.
+            SANTA CRUZ, CALIFORNIA
+                                                    Comprehension-Based Silent Reading Rates 2
+
+
+
+                                             Abstract
+
+This paper uses a review of research to consider a fundamental aspect of reading instruction that
+
+has been marginalized in policies and practices over the last decade: the development of silent
+
+reading habits that involve strong comprehension and optimal reading rates. The review of
+
+research attends to typical development and performances of students at different levels and of
+
+varying proficiencies, the relationship between oral reading and silent reading comprehension,
+
+and typical instruction. Three studies are also summarized that illustrate growing attention to
+
+how comprehension-based silent reading can be supported through instruction. Finally, critical
+
+questions are raised which require research evidence if students are to be brought to the optimal
+
+comprehension-based silent reading rates needed for the digital-global age.
+                                                     Comprehension-Based Silent Reading Rates 3
+
+
+
+                           Comprehension-Based Silent Reading Rates:
+
+                       What Do We Know? What Do We Need To Know?
+
+
+
+       As has been the case with many aspects of reading instruction, an emphasis on oral or
+
+silent reading activities has varied in particular educational eras (Allington, 1984). During the
+
+whole language period of the 1990s, silent reading experiences were emphasized (Hagerty,
+
+1999). Some oral reading occurred during guided reading and for obtaining running records but
+
+occasions for monitored, repeated oral reading were few, even for beginning and struggling
+
+readers. In 2000, when the National Reading Panel (NRP) (NICHD, 2000) concluded that
+
+guided, repeated oral reading but not sustained silent reading (SSR) facilitated fluency,
+
+comprehension, and vocabulary, the pendulum swung to an almost-exclusive emphasis on oral
+
+reading. An emphasis on oral reading went beyond the primary grades since the NRP had
+
+concluded that the fluency of all students through the fourth grade and struggling readers through
+
+high school was enhanced with guided, repeated oral reading. Evidence of the dominant role of
+
+oral reading can be seen in the prominence of the Dynamic Indicators of Basic Essential Literacy
+
+Skills (DIBELS)—a test of oral reading tasks--in the implementation of Reading First (Gamse,
+
+Jacob, Horst, Boulay, & Unlu, 2009).
+
+       Oral reading serves many critical functions, especially during the early stages of reading
+
+development. At the same time, when the diet becomes skewed, as we believe it has, the
+
+prospects of the poor getting poorer are likely. When, as has been the case with DIBELS (Good
+
+& Kaminski, 2002) and similar oral reading assessments that have been prominent in Reading
+
+First implementations, the emphasis is on oral reading speed without attention to comprehension,
+
+beginning and struggling readers may come to perceive reading as nothing more than word
+                                                     Comprehension-Based Silent Reading Rates 4
+
+
+calling (Samuels, 2007). Especially for the students whose reading experiences occur primarily
+
+in school, a diet heavy on oral reading with an emphasis on speed is unlikely to lead to the levels
+
+of meaningful, silent reading that is required for full participation in the workplace and
+
+communities of the digital-global age.
+
+       Proficient silent reading is the means whereby individuals access the ever-increasing
+
+stores of knowledge within texts that are required for the workplace and community. Silent
+
+reading rates and processing is limited by capacities such as eye movements (Samuels, Hiebert,
+
+& Rasinski, 2010) but oral reading rates are even more constrained by the speed of speech
+
+production. Very early in the acquisition of reading proficiency, silent reading rates exceed oral
+
+reading rates. Data on oral and silent reading norms (Hasbrouck & Tindal, 2006; Taylor,
+
+Frankenpohl, & Pettee, 1960) show that silent reading rates exceed oral reading rates by at least
+
+30%, even for students at the 50th percentile in the primary grades. Once speech production
+
+become stable in early adolescence, the amount of words that can be read silently becomes
+
+substantially greater than can be read orally. As the findings of the NRP (2000) indicated,
+
+simply creating silent reading venues will not guarantee that students’ time will be used
+
+productively. However, under the right conditions where students read texts at appropriate
+
+difficulty levels, they process many more words in silent than in oral reading. In this context,
+
+our focus is on a construct that has been described as comprehension-based silent reading rate
+
+(Hiebert, Wilson, & Trainin, 2010). As this term implies, the emphasis on reading silent reading
+rate is always a function of appropriate levels of comprehension. In considering comprehension-
+based silent reading rate, comprehension and rate are inseparable.
+
+       In this paper, we review existing research on silent reading performances of students and
+
+the nature of opportunities to read in classrooms that support meaningful, silent reading. In
+
+addition to a review of descriptive research on levels of and opportunities to read, we highlight
+                                                    Comprehension-Based Silent Reading Rates 5
+
+
+several empirical studies that illustrate a new era of research on meaningful, silent reading where
+
+the effects on comprehension are established. In the final section of the paper, conclusions are
+
+summarized and questions raised that require the attention of researchers if students are to be
+
+provided the experiences that engender the kinds and levels of silent reading proficiencies that
+
+are needed in the 21st century.
+
+                Current Evidence on Comprehension-Based Silent Reading Rates
+
+       In this section, we examine three areas of descriptive research related to comprehension-
+
+based silent reading rate: (a) typical patterns of development and performance, (b) differences
+
+in the processes of silent and oral reading, and (c) attention to comprehension-based silent
+
+reading rates within typical current instructional programs.
+
+Typical patterns of development and performance
+
+       Whereas there are several sets of oral reading norms (e.g., Good & Kaminski, 2002;
+
+Hasbrouck & Tindal, 2006), information on silent reading norms is limited. Carver (1989),
+
+identified only two sets of norms that extended across the school years: those he had developed
+
+(Carver, 1982) and those of Taylor (1965). Carver chose the Taylor data to establish grade-
+
+equivalent norms because they were adequate on the following dimensions: sample size,
+
+sampling technique, range of grades represented, rates estimated in words per minute (wpm), and
+
+reliability. According to Carver’s extrapolations of the Taylor norms, rate in wpm ranges from
+
+0-81 at Grade 1 to 333+ in Grade 18 (graduate-level/proficient adult). There is a gain with each
+
+successive grade in school of about 10 to 20 wpm.
+
+       Even with Carver’s (1989) additions, it should be remembered that the original data for
+
+these norms were gathered in the late 1950s (Taylor et al., 1960). The data that Carver (1983)
+
+gathered approximately 20 years after Taylor (1965) would suggest that reading rates stay fairly
+                                                      Comprehension-Based Silent Reading Rates 6
+
+constant but the technological changes even since Carver gathered his data have been substantial.
+
+Further, the currently available silent reading norms are provided for only the 50th percentile.
+
+How students do at the 10th, 25th, 75th, and 90th percentiles is also important information.
+
+         Despite these limitations, the silent reading norms have a significant component that the
+
+various oral reading norms that have proliferated over the past 20 years do not: the silent reading
+
+norms (Taylor et al., 1960) are based on comprehension. This distinction is an important one.
+
+We do not know how American students’ comprehension-based silent reading rates compare to
+
+those of their counterparts 50 years ago. There is data available, however, that can serve as a
+
+baseline for comparison.
+
+         While there are not data to indicate how current students’ development of
+
+comprehension-based silent reading rates proceeds over time, there are data on how well students
+
+at particular levels perform on silent reading tests. The National Assessment of Educational
+
+Progress (NAEP; National Center for Education Statistics, 2009) shows that approximately 35%
+
+of a fourth-grade cohort fails to attain the basic level, while an additional 32% fails to reach the
+
+proficient level that is the goal for all students. Our analyses of the texts that have been used on
+
+these assessments indicate that they are at approximately a 3.5 grade-level according to
+
+conventional readability formulas. The text on the NAEP, then, is not the complex text that is
+
+emphasized within the Common Core Standards (Common Core State Standards Initiative,
+
+2010).
+
+         When follow-up studies have been conducted on the NAEP where students read aloud
+
+texts that they have read silently, data indicate that it is the speed with which students read, not
+
+their word accuracy that distinguishes students who achieve different standards. While there are
+
+differences in word accuracy across levels, these differences are not statistically significant
+                                                     Comprehension-Based Silent Reading Rates 7
+
+
+(Pinnell, Pikulski, Wixson, Campbell, Gough, & Beatty, 1995). These differences in speed have
+
+been used as added justification for an emphasis on oral reading in instruction and assessment, as
+
+is discussed shortly. However, it appears that many students, even those in the bottom quartile,
+
+can recognize almost 90% of the words in grade-level texts (Jenkins, Fuchs, van den Broek,
+
+Espin, & Deno, 2003; Wise, Ring, & Olson, 1999). This word recognition is slow, however. In
+
+the Jenkins et al. study, fourth graders who had been classified as reading disabled read
+
+approximately 100 fewer words in a one-minute reading of a text than their same-age, skilled-
+
+reading peers.
+
+The relationship between oral and silent reading
+
+       There has been a large literature on the relationship between oral reading performances
+
+(without comprehension and measured as words correct per minute (wcpm)) and performances
+
+on silent reading tests, which have included standardized reading tests and state standards-based
+
+tests (Good, Simmons, & Kame’enui, 2001; McGlinchey & Hixson, 2004; Schatschneider, Buck,
+
+Torgesen, Wagner, Hassler, Hecht, & Powell- Smith, 2004). In Marston’s (1989) review of such
+
+studies, the correlations were between .63 and .90 with the most clustering around .80. In Good
+
+and Jefferson’s (1998) review of the correlations within a single grade (Grade 3), the correlations
+
+ranged from .60 to .80. Wiley and Deno (2005) and Pressley, Hildren, and Shankland (2005)
+
+have reported lower correlations (.40 to .50).
+
+       The finding of a high correlation between wcpm in oral reading and comprehension has
+
+had a strong influence on policy and practice in reading education. Underlying the mandates for
+
+instructional practice, assessment, and curricular materials regarding oral reading, there appears
+
+to be an implicit assumption that practice in oral reading will carry over to proficient silent
+
+reading rates and comprehension. Even with adolescent, struggling readers, the fluency
+                                                     Comprehension-Based Silent Reading Rates 8
+
+
+interventions reviewed by Wexler, Vaughn, Edmonds, and Reutebuch (2008) concentrated on
+
+oral reading. This emphasis, even when it has produced higher reading oral rates (which was not
+
+always the case), has typically not been reflected in improved comprehension on silent reading
+
+tasks.
+
+         Critical questions need to be asked, as Valencia, Smith, Reece, Li, Wixson, and Newman
+
+(2010) point out, about the use of wcpm as the basis for instructional assignments (e.g., who gets
+
+particular tiers of an intervention and who doesn’t) and for instructional practices (i.e., an
+
+emphasis on oral reading activities). As Valencia et al. (2010) have shown, even including a
+
+measure of prosody within a wcpm assessment or varying the length of time produced stronger
+
+predictors of comprehension. The findings of Valencia et al. also point to the need for
+
+considering the changing relationship between wcpm and comprehension with developmental
+
+and proficiency levels. Within their study of second, fourth, and sixth graders, they found that
+
+the correlation between wcpm and comprehension decreased as students’ proficiency increased.
+
+         In addition, the limitations of correlations need to be remembered. A high correlation
+
+does not impute a causal relationship between two variables. Further, when a variable (as is the
+
+case with wcpm) has a deviant range, the magnitude of correlations is affected (Valencia et al.,
+
+2010). In particular, a high correlation does not mean that two processes are identical. While
+
+there are shared processes such as automatic recognition of words, there are significant and not-
+
+so-subtle differences between oral and silent reading processes. The most obvious is the role of
+
+vocalization. Whereas overt vocalization can be an impediment in silent reading, it is the
+
+outcome in oral reading. Every word needs to be read in an oral reading context, whereas
+
+readers can use context to grasp the meaning of words that they cannot pronounce while reading
+
+silently (Nagy, Anderson, & Herman, 1987).
+                                                     Comprehension-Based Silent Reading Rates 9
+
+
+       Another significant difference lies in support for staying with the task. Oral reading
+
+involves external supports such as the teacher or a recording device. These external supports
+
+mean that students’ attention to the text is ensured. They can’t move their eyes away from the
+
+text for several minutes and daydream. They cannot skip over a page or two that looks
+
+disinteresting or too difficult. In silent reading, individuals do not have external supports.
+
+Students need to learn to persevere as well as monitor what they are reading if they are to
+
+comprehend texts that they are reading silently. Monitoring strategies become particularly
+
+critical when background knowledge is limited, a circumstance that is often the case for less
+
+proficient readers (McKeown, Beck, & Blake, 2009).
+
+       As scholars have observed (e.g., Pearson, 2006; Pressley, Hildren, & Shankland, 2005;
+
+Rasinski, 2006; Samuels, 2007), instruction that aims at increasing students’ wcpm without
+
+attention to comprehension has the potential to adversely affect comprehension and knowledge
+
+acquisition. The development of proficient silent reading strategies and habits, including
+
+comprehension-based silent reading rates, likely require unique experiences and instruction. We
+
+move next to studies of the nature of current reading instruction to determine attention given to
+
+comprehension-based silent reading rates.
+
+Attention to comprehension-based silent reading rates within most current instructional
+
+programs
+
+       The presence (or lack thereof) of opportunities to read silently in school predicts reading
+
+achievement (Foorman, Schatschneider, Eakin, Fletcher, Moats, & Francis, 2006; Guthrie,
+
+Schafer, & Huang, 2001; Taylor, Frye, & Maruyama, 1990). Most students, however, do not
+
+spend substantial periods of their school day reading. In the 1980s, Gambrell (1984) reported
+
+that students read approximately 14 minutes daily. A decade later, Foertsch (1992) documented
+                                                   Comprehension-Based Silent Reading Rates 10
+
+similar amounts of reading. A decade after that, a survey by Donahue, Finnegan, Lutkus, Allen,
+
+& Campbell (2001) showed that fourth graders reported, on average, reading 10 or fewer pages
+
+per day in school and for homework which translates into approximately 8 to 12 minutes of daily
+
+reading.
+
+       In a recent analysis of how much time during a 90-minute reading block was spent
+
+reading texts, Brenner, Hiebert, and Tompkins (2009) found that students spent an average of 18
+
+minutes reading text—20% of the reading period. Half of this time was spent reading orally and
+
+half was spent reading silently. The 90-minute reading periods were spent on a variety of
+
+activities such as lessons on elements of texts or words, playing word games, and completing
+
+workbook pages. Students’ time in engaged reading, however, was limited. Even within the
+
+time that students spent reading in a single school day, the time devoted to any one text was
+
+typically short. Students might read a story about a boy writing to his grandmother in Korea in
+
+the large-group, teacher-directed period, an excerpt of text about a basketball player in the small
+
+group directed by their teacher, and a fantasy about woodland creatures during partner reading.
+
+       Since the teachers in the Brenner et al. study (2009) were expected to stay with the
+
+guidance in the teachers’ guides of the core reading programs, Brenner and Hiebert (2010)
+
+examined recommendations for opportunities to read within these guides. The third-grade
+
+editions of six leading core reading programs provided an average of 15 minutes of reading
+
+volume per day, ranging from approximately 10 to 24 minutes. The findings of the observational
+
+study, then, reflected the recommendations in the teachers’ guides.
+
+       When students do have opportunities to read silently, there appears to be little scaffolding
+
+of the task. As the report of the NRP (NICHD, 2000) concluded, opportunities to read that lack
+
+structure and support often fail to produce the hoped-for outcomes. Without appropriate structure
+                                                    Comprehension-Based Silent Reading Rates 11
+
+
+and support, students often engage in what some teachers have called “fake reading” during SSR
+
+(Griffith & Rasinski, 2004). While the structuring of recreational reading is critical to its success,
+
+scaffolding the processes of proficient silent reading would be expected to occur during reading
+
+periods, not recreational reading times.
+
+       In their examination of opportunities to read recommended in these programs, Brenner
+
+and Hiebert (2010) also analyzed teachers’ guides for differences in types or amounts of reading
+
+opportunities for students of different proficiency levels. We might expect that at the third-grade
+
+level—the focus of that analysis-- particular forms of scaffolding might be provided for
+
+struggling readers. For example, students who are not adept at reading on their own might be
+
+assigned accessible texts and monitored more frequently by the teacher. That was not the case in
+
+the core reading programs. Low-performing students were given the same texts for the same
+
+periods of time as their higher-performing peers.
+
+       When differentiations are made within interventions, it appears that practices can
+
+discourage attention to comprehension-based silent reading rate. Rather, an underlying
+
+assumption appears to be that it is decoding skills, especially as represented by phonological
+
+deficits that require attention (see, e.g., Wexler et al., 2008). The assumption that low-
+
+performing students lack decoding abilities leads to mandates such as that of the California State
+
+Board of Education (2006). Curricular materials adopted by that state for interventions aimed at
+
+struggling readers in grades four through eight must provide approximately 9,000 words of
+
+decodable text, including two decodable reading selections for each of the 44 sound-spelling
+
+correspondences. Such texts are typically short and the instructional routines emphasize oral
+
+reading (Wexler et al., 2008). For example, in one of the currently approved programs for
+
+struggling middle-school readers in California, the texts in the comprehension component are
+                                                   Comprehension-Based Silent Reading Rates 12
+
+
+typically 60-80 words long (Engelmann, Osborn, & Hanner, 2002). Participation with such texts
+
+is unlikely to develop the strategies of proficient, independent reading. When reading is tedious,
+
+students are less likely to read outside of school as well (Anderson, Wilson, & Fielding, 1988).
+
+At the same time, their more proficient peers are enriching their knowledge and vocabularies.
+
+As Stanovich (1986) described it, the rich get richer and the poor get poorer.
+
+                           Experimental Evidence on the Instruction of
+
+                           Comprehension-Based Silent Reading Rates
+
+       There are increasing indications of the kinds of scaffolds that can support the
+
+development of effective silent reading habits among readers. This research literature is not
+
+extensive by any means but, over the last several years, a handful of studies have been
+
+conducted. We have chosen three studies—one from each of three developmental levels--
+
+primary, middle and high-school, and young adult/college—to illustrate the emerging evidence
+
+of how silent reading proficiencies can be guided through instruction.
+
+Study with primary-level students
+
+       A study by Reutzel, Fawson, and Smith (2008) indicates that guidance in silent reading in
+
+the primary grades can have efficacious effects on fluency, vocabulary, and comprehension.
+
+Conducted in the wake of the NRP (NICHD, 2000), Reutzel et al. were interested in whether a
+
+well-designed silent reading treatment could produce comparable results to the guided repeated
+
+oral reading (GROR) that the NRP had identified as the gold standard for promoting fluency,
+
+comprehension, and vocabulary. Since the studies within the meta-analysis had primarily used
+
+oral reading measures in establishing effects on students’ rate, comprehension, and vocabulary,
+
+Reutzel et al. used oral reading measures as outcomes. This emphasis on oral reading measures
+
+seems like an appropriate one at this transition point in the primary grades when students move
+                                                   Comprehension-Based Silent Reading Rates 13
+
+
+from predominantly oral reading to silent reading. Further, this study is the only experiment
+
+with a focus on reading modes that has been conducted since the NRP’s report.
+
+       The study involved 4 third-grade teachers and their 72 third-grade students. The schools
+
+had approximately 35-50% African-, Asian-, and Latino-American students and over half of the
+
+students in the schools qualified for free or reduced lunch. Students were randomly assigned to
+
+one of two treatment conditions: Scaffolded Silent Reading (ScSR) with monitoring and wide
+
+reading of different genres at students’ independent reading levels or GROR of grade-level texts
+
+with feedback from teachers and peers.
+
+       The ScSR and GROR treatments were similar in four ways. First, an equivalent amount of
+
+time was spent on core reading instruction and in the experimental conditions. Second, teachers in
+
+all four classrooms used the same instructional materials and procedures. Third, all four classrooms
+
+used a take-home reading library, records for which were reviewed by teachers weekly to ensure that
+
+students were reading 15 minutes daily outside of school. Finally, teachers in both conditions began
+
+daily sessions by modeling fluent reading of a text and discussing with students various
+
+characteristics of fluent reading.
+
+       The two treatments in this study, ScSR and GROR were differentiated on six dimensions:
+
+mode of reading, nature of reading, frequency of feedback/monitoring, social nature, source of texts,
+
+and text difficulty. On these six dimensions, respectively, the characteristics of the ScSR treatment
+
+were silent, wide, weekly, isolated, student-selected, and independent, while those for the GROR
+
+treatment were oral, repeated, daily, collaborative, teacher-assigned, and grade-level.
+
+       Quantitative results indicated no significant differences between these two forms of reading
+
+practice on third grade students’ fluency, accuracy, comprehension, or expression with the exception
+
+of one significant difference favoring ScSR on expression of a single passage. For these primary-
+                                                   Comprehension-Based Silent Reading Rates 14
+
+level students, then, silent reading experiences that had been carefully designed and executed could
+
+produce results as efficacious as the guided, repeated oral reading that the NRP (NICHD, 2000)
+
+recommended as the means for increasing reading proficiency.
+
+       These effects cannot be attributed only to the mode of reading in that five additional
+
+variables distinguished the two interventions. Other variables, such as self-selection/teacher-
+
+assignment of texts, have been shown to be influence students’ interest in reading and their sense
+
+of agency as readers (Guthri, Wigfield, Humenick, Perencevich, Taboada, & Barbosa, 2006) and
+
+wide reading has been shown to be more efficacious than repeated reading (Kuhn, 2005; Kuhn,
+
+Schwanenflugel, Morris, Morrow, Woo, Meisinger et al., 2006). At the same time, the silent
+
+reading condition had components that could be argued to be potential challenges for primary-
+
+level students such as less teacher monitoring and less opportunity for social interaction. Overall,
+
+the components of the silent reading condition describe the typical act of silent reading where
+
+readers choose texts to read that are appropriate for them (including text difficulty), read them a
+
+single time in a solitary fashion and without continual monitoring. In contexts where teachers
+
+worked to ensure that the expectations and conditions were appropriate, primary-level students
+
+were able to benefit from time devoted to typical silent reading venues to the same degree as
+
+students who spent equivalent amounts of time in highly prescribed reading contexts.
+
+Study with middle- and high-school students
+
+       The Reutzel et al. study provides information on the efficacy of silent reading scaffolds
+
+that are provided at an appropriate developmental time. This support can be provided in
+
+classrooms. As the review of the NAEP data indicated, there are many students who have passed
+
+this transition point and have less than efficacious patterns. A search on the internet indicates a
+
+variety of programs in digital contexts that have been offered as providing scaffolding for
+                                                    Comprehension-Based Silent Reading Rates 15
+
+struggling readers. Features of digital contexts such as the ability to instantaneously change the
+
+difficulty of the text in response to comprehension performances allow for precision in
+
+scaffolding that is difficult to achieve in a classroom setting or even a tutoring one. While the
+
+claims of these programs have, by and large, not been validated, studies are beginning to be
+
+conducted, as illustrated by Rasinski, Samuels, Hiebert, Petscher, and Feller (in press). The
+
+Rasinski et al. study indicates that consistent participation in a digital context over a school year
+
+can result in improved performances on high-stakes assessments—both a norm-referenced test
+
+(NRT) and a criterion-referenced test (CRT).
+
+       The study was conducted in a large, urban school system. To deal with the historically
+
+poor performances of students in this district, schools were offered several supplementary
+
+reading programs. The study was conducted in 23 schools with students in grades four through
+
+ten where a web-based reading intervention, Reading Plus (RP) was implemented. In some of
+
+these schools, only the low performing students were assigned to RP. Other schools chose to use
+
+RP with specific sub-populations or grade levels. Students not assigned to RP may have used
+
+Scholastic's Read 180 and/or Renaissance Learning's Accelerated Reader. The study had a
+
+significant portion of African-American (46%) and Latino-American (50%) students. Sub-
+
+populations in the sample included Learning Disabled (LD) (6%) and English Language
+
+Learning (ELL) students (3%).
+
+       Over the six months of the study, students participated in either two 45-minute sessions or
+
+three 30-minute sessions weekly. Since students move through lessons in individual computer
+
+environments, differences in length of the individual sessions do not influence content coverage.
+
+During their first RP session, students complete an assessment that determines their independent
+
+silent reading rates, comprehension, and vocabulary with texts at varying difficulty levels.
+                                                    Comprehension-Based Silent Reading Rates 16
+
+Performances on these assessments form the basis for the instructional paths that students then
+
+follow in the intervention.
+
+       A typical lesson contains two warm-up activities that are intended to build foundational
+
+skills such as attention, left-to-right tracking, perceptual accuracy, and visual memory. The heart
+
+of each lesson is a structured silent reading activity where students read texts at their instructional
+
+reading level from a database of 600 selections ranging from preprimer to adult level texts. Each
+
+reading of a text is followed by comprehension questions (literal understanding, interpretation,
+
+analysis, evaluation and appreciation). The digital environment ensures that adjustments in
+
+instructional experiences are made continually based on student performances. For example, the
+
+lengths of segments within texts are increased or decreased based on a student’s comprehension
+
+and silent reading rate.
+
+       Since the aim is for students to participate in the program for a minimum of 30 hours
+
+(approximately 40 45-minute sessions), students were divided into two groups: those who
+
+received 40 or more lessons over the course of the school year and those who received 39 or
+
+fewer. While there are serious limitations to employing gain scores to test for differences between
+
+groups, Rogosa (1995) has shown that the gain score is as reliable as a covariance-adjusted score,
+
+and is more appropriate to use in quasi-experimental studies than posttest only. For all grades but
+
+Grade 9, the 40+ lesson intervention students had significantly higher performances on the NRT
+
+and for all grades but 4 and 10, significantly higher performances on the CRT. Effect sizes were
+
+established in relation to performances of students within the same schools who did not
+
+participate in this particular intervention. Effect sizes by grade level ranged from .03 to .34 (small
+
+to moderate in magnitude [Cohen, 1988]).
+
+       In relation to the CRT, mean gain scores for students who received 40+ RP lessons were
+                                                     Comprehension-Based Silent Reading Rates 17
+
+
+greater than the statewide and district level gains at each of the seven grade levels. In several
+
+cases, the gains were substantial in their magnitude as was the case in grades 6, 7, and 8 where
+
+mean gains on the CRT were more than double the gains of nonparticipating students. Typically,
+
+low achieving students growth for a years worth of instruction is less than what is expected for
+
+average and high achieving students. Middle- and high-school students who are struggling
+
+readers are often inconsistent in their performances on transfer measures after an intervention
+
+(Torgesen, Myers, Schirm, Stuart, Vartivarian, Mansfield, Stancavage, Durno, Javorsky, & Haan,
+
+2007; Wexler et al., 2008). That was not the case with this intervention where students performed
+
+substantially better on the high-stake tests of their state that were conducted in typical paper-and-
+
+pencil, large-group contexts. The fact that the yearlong gains made by the primarily low-
+
+achieving students in this silent reading intervention were substantially larger than the mean
+
+overall gains at the state and district levels is noteworthy.
+
+Study with college students
+
+       The final study that we present as support for the thesis that comprehension-based silent
+
+reading skills can be supported was conducted with college students. Radach, Vorstius, and
+
+Reilly (2010) initiated this study after identifying a proliferation of speed reading programs
+
+promoted on the internet but finding that the few available studies on these programs typically
+
+had arrived at unfavorable conclusions (e.g., McNamara, 2000). The proliferation of programs,
+
+Radach et al. argued, illustrate a fascination by the general populace with improving their
+
+reading rates. Of claims within 12 programs promoted on the internet, Radach et al. al. identified
+
+two that have some substantiation in research on reading processes and designed an intervention
+
+around these processes: decreasing inter-word regressions and attending to meaning units.
+                                                   Comprehension-Based Silent Reading Rates 18
+
+
+       The experimental group received acoustic feedback following inter-word regressions. To
+
+support attending to meaning units, a word group (typically a phrase) of two to three words was
+
+highlighted by alternating the color of the text on the computer screen. A comparison group was
+
+simply told to increase their reading speed. After a session of establishing baseline
+
+comprehension-based silent reading rates, the two groups participated in four training sessions.
+
+Each session consisted of two cycles of learning and practice. In the learning part of the cycle,
+
+students received feedback (acoustic feedback and phrasing support in the experimental group
+
+and encouragement to slow down or speed up in the comparison group). The feedback was
+
+intended to support a 20% speed increase during each of the four sessions. This feedback was
+
+provided during the learning cycle at the end of each page of text when comprehension questions
+
+were also provided. In the practice phase of a cycle, feedback was not provided.
+
+       The pre- and posttest consisted of eight passages of texts, each about 400 words long
+
+(3200 words in all). All were nonfiction pieces on popular science topics. To assess
+
+comprehension, eight statements per passage (64 in all) were presented for verification of three
+
+levels of text representation: verbatim, paraphrases, and inferences.
+
+       On average, participants had baseline reading rates of approximately 198 words per
+
+minute (wpm) (comparison) and 185 wpm (experimental). In the posttest, wpms were 365
+
+(comparison) and 350 (experimental). The comprehension of the experimental group increased
+
+approximately 3%, while the comprehension of the control group decreased about 6%. In the
+
+specific training group, regressive saccades back to earlier words dropped by 50%, indicating
+
+that this aspect of the training was very effective. However, the specific speed training
+
+techniques produced no advantage over the group with the unspecified fluency training (i.e.,
+
+“read faster”).
+                                                   Comprehension-Based Silent Reading Rates 19
+
+
+       A point to be emphasized is that reading speed of even the fastest reader in the sample
+
+did not exceed 700 words. Approximately one in five of the participants (22%) read at 400 wpm
+
+or higher. But overall, the students read at approximately 350 wpm. Another observation is that
+
+the college students’ baseline rates of approximately 190 wpm was considerably lower than the
+
+average rate reported by Taylor, Frankenpohl, and Pettee (1960) for college students—280 wpm
+
+and considerably below the optimal rate that Taylor et al. claimed could be attained with
+
+training—480 wpm. The training brought the college students in 2010 to the range of college
+
+students before training in 1960.
+
+                           Comprehension-Based Silent Reading Rates:
+
+                          Emerging Answers and Remaining Questions
+
+       Comprehension-based silent reading rates, Radach et al. (2010) argue, represent a nexus
+
+in understanding the roles of and relationships between word recognition and comprehension.
+
+Knowledge about this topic is of more than theoretical interest. This knowledge is also critical in
+
+understanding how students can be brought to the levels that are required for careers and
+
+community participation. The review of research showed that answers are emerging on this
+
+topic. Even so, Information on how comprehension-based silent reading rates develop and also
+
+on the nature of comprehension-based silent reading performances of students of different
+
+proficiency levels is limited. The only consistent form of evidence on the latter comes from the
+
+NAEP. Since that assessment provides only a single text level and does not distinguish across
+
+different kinds of tasks in the report of results, we know what it is that below-basic and basic
+
+students cannot do but we do not know what it is that they can. To create viable instructional
+
+programs that support readers’ silent reading capacities, descriptions of the tasks and texts with
+
+which students are successful also require attention.
+                                                   Comprehension-Based Silent Reading Rates 20
+
+
+       Another consistent finding from the research is a consistently high correlation between
+
+wcpm from oral reading assessments and performances on silent reading tests. This finding has
+
+been the justification for a heavy emphasis on oral reading activities and assessments in
+
+instruction. While oral and silent reading share processes, there are also distinctions in the two
+
+processes. Further, the heavy emphasis on oral reading has not resulted in the needed increases
+
+in comprehension-based silent reading rates.
+
+       Systematic instruction that supports students’ capacities as readers who comprehend texts
+
+at optimal reading rates is not evident in typical classrooms or in the guidance for teachers within
+
+the core reading programs that have been promoted as part of state and federal mandates. A
+
+recent, albeit small, group of studies is beginning to show how such systematic instruction can be
+
+provided. While the evidence is limited in scope and size at this point, these studies indicate that
+
+there are instructional mechanisms that can support students in developing the comprehension-
+
+based silent reading rates needed for the 21st century.
+
+       While the handful of studies that have emerged over the past several years point to
+
+potential solutions, the questions regarding comprehension-based silent reading rates far
+
+outweigh the answers. These questions need to be addressed before widespread changes in
+
+practice can occur. While there is clearly a serious gap in current levels of comprehension-based
+
+silent reading rates relative to the demands of the digital-global age, moving swiftly to
+
+implement solutions such as increased silent reading time or interventions that encourage
+
+students to “read faster” are unlikely to make the changes that are needed. While most students
+
+would likely benefit from higher allocations of time devoted to silent reading during the school
+
+day, silent reading events require careful design. In the Reutzel et al. (2008) study, students were
+
+not simply told to sit at their desks and to read silently for extended periods of time. Their
+                                                    Comprehension-Based Silent Reading Rates 21
+
+
+teachers made numerous shifts in the design of reading events to support students’ silent reading.
+
+Further, Reutzel et al.’s intervention took a very different form than that of Rasinski et al. (2010)
+
+with middle and high-school students. The struggling readers in the Rasinski et al. study
+
+participated in a program with an underlying platform that made it possible to change levels of
+
+text within a single session based on students’ comprehension and reading rate. This pattern is
+
+quite unlike the “one size fits all” perspective that is often promoted by mandates or guidelines,
+
+as was the case with the SSR model of Hunt (1970) where students, regardless of developmental
+
+or proficiency level, were given the same treatment.
+
+       While the research to date is insufficient to provide guidelines for practices, the initial
+
+findings suggest questions on which research programs can be built. We describe the basis and
+
+potential directions for two critical questions: (a) what are optimal comprehension-based silent
+
+reading rates that are fairly consistent across tasks and texts? and (b) when and in what contexts
+
+should comprehension-based silent reading rates be developed?
+
+What are optimal comprehension-based silent reading rates?
+
+       There appears to be a strong tendency among people to want to “break the barrier” in
+
+tasks where speed is involved, as is the case with silent reading. Evidence from well-designed
+
+studies by reputable researchers can help to guard against this tendency in instruction on silent
+
+reading proficiencies. In the digital-global age where the amount of information has increased
+
+incredibly, the ability to sustain comprehension-based silent reading rates over extended text is a
+
+necessity. But the emphasis needs to be on sustaining meaningful comprehension at appropriate
+
+rates across numerous settings, not simply the rate at which students are reading. Carver (1990)
+
+emphasized the need for considering how readers’ adapted processes and rates to different kinds
+                                                    Comprehension-Based Silent Reading Rates 22
+
+
+of texts and in different tasks. However, few definitive descriptions are available, particularly in
+
+the form of norms.
+
+       Levels of comprehension with different texts and tasks also require attention. The level
+
+of acceptable comprehension in the Rasinski et al. (in press) study was 70%. If students fell
+
+below that level, the architecture of the digital platform was such that they were moved to
+
+somewhat easier text or text was presented at a slower speed. In the Radach et al. (2010) study,
+
+the students in the “read faster” group fell below this percentage. Comprehension levels of 70%,
+
+for some tasks, may be insufficient, while for other texts and tasks entirely adequate. The
+
+sacrifices in comprehension as a function of rate is, as Radach et al. have noted, a critical area
+
+that requires further study.
+
+When and in what contexts should comprehension-based silent reading rates be developed?
+
+       In a domain such as playing the piano, which, like reading involves both a cognitive and
+
+physical component, practice and development occurs over an extended period of time and as a
+
+result of substantial experience. Similarly, support for optimal comprehension-based silent
+
+reading rates needs to be viewed as a long-term endeavor with different emphases at different
+
+points. In this section, we speculate about when and where scaffolds might be put in place for
+
+such a long-term endeavor. We use Chall’s (1983) six reading stages, provided in Table 1, as the
+
+basis to distinguish between different phases in reading development.
+
+       During Chall’s stage zero, frequent conversations between adults (e.g., parents,
+
+kindergarten and preschool teachers) and children about reading likely occur, including the
+
+reading of books such as I can read with my eyes shut (Dr. Seuss, 1978). However, systematic
+
+experiences in attending to silent reading strategies and rates would not be expected to be a focus
+
+until children begin formal instruction. As students move into the first of Chall’s stages, short
+                                                     Comprehension-Based Silent Reading Rates 23
+
+
+periods of time would be devoted to reading “just with your eyes.” These periods would be
+
+carefully paced and monitored and would not be expected to stretch for the long periods of time
+
+that advocates of readers’ workshop (Hagerty, 1999) or SSR (Hunt, 1970) recommended. As
+
+students’ reading proficiency increases in stage two, silent reading episodes would be expected
+
+to increase somewhat (although, again, not to the extremes recommended in the readers’
+
+workshop and SSR literature). As Reutzel et al. (2008) demonstrated, there are numerous
+
+elements of these events that require attention, including (but not limited to) the length of time,
+
+teacher monitoring, appropriate texts, and clarity about the anticipated outcomes of the event.
+
+       It is in stages 3 and 4 where the careful orchestration of silent reading events in
+
+classrooms is likely to have the greatest pay-off in terms of supporting optimal reading rates.
+
+Third to fourth grade has been described as the point where silent reading processes have
+
+developed sufficiently to be more efficient than oral reading (Juel & Holmes, 1981). For
+
+students who are vulnerable as readers, earlier in this span of time is likely to support their
+
+development of appropriate comprehension-based silent reading rates rather than later. In
+
+addition to the careful crafting of texts and tasks in classroom settings, the digital contexts that
+
+have added demands on literacy proficiencies may be one of the primary means for supporting
+
+more efficacious silent reading proficiencies. The architecture of digital programs can be
+
+designed so that the length of time, the accessibility of text, and the tasks can be carefully
+
+adjusted to students’ growing capacity as readers.
+
+       While to date, it is frequently the struggling readers who participate in digital contexts,
+
+the effects of such participation for students who are proficient readers require attention,
+
+particularly when silent reading rates are beginning to stabilize. Once individuals reach stages 5
+
+and 6, making changes to baseline comprehension-based silent reading rates is likely challenging
+                                                    Comprehension-Based Silent Reading Rates 24
+
+
+and difficult. Consequently, projects that determine different configurations of experiences in
+
+such contexts, especially at stages 3 and 4, should be a priority in research on reading for
+
+understanding. Such an emphasis is particularly needed during a time when a theme within the
+
+private and public sector is to increase the preparedness of individuals for the marketplace and
+
+communities of the digital-global economy (Common Core Standards Initiative, 2010).
+
+Conclusion
+
+       The need for efficient silent reading habits for success in the digital-global age is
+
+unarguable. There is emerging evidence that these habits can be enhanced through scaffolding,
+
+both on the part of teachers and from digital supports. These supports look quite different than
+
+the SSR that Hunt (1970) advocated. This structuring can begin when students are in the early
+
+stages of reading (Reutzel et al., 2008). Further, it is highly likely that the process is an on-going
+
+endeavor, extending through the elementary grades and into middle and high schools as students
+
+encounter new genres and content. At least for the students who depend on schools to become
+
+literate, good silent reading does not just happen as a result of an emphasis on oral reading
+
+fluency training. For many students, good silent reading habits require that they participate in
+
+structured silent reading experiences that model efficient reading.
+                                                   Comprehension-Based Silent Reading Rates 25
+
+
+                                            References
+
+Allington, R.L. (1984). Content coverage and contextual reading in reading groups. Journal of
+
+       Reading Behavior, 16(2), 85–96.
+
+Anderson, R.C., Wilson, P.T., & Fielding, L.G. (1988). Growth in reading and how children
+
+       spend their time outside of school. Reading Research Quarterly, 23(3), 285–303.
+
+
+Brenner, D., & Hiebert, E.H. (2010). If I follow the teacher's edition, isn't that enough?
+
+       Analyzing reading volume in six core reading programs. Elementary School Journal,
+
+       110(3), 347-363.
+
+Brenner, D., Hiebert, E.H., & Tompkins, R., (2009). How much and what are third graders
+
+       reading? In E.H. Hiebert (Ed.), Reading more, reading better (pp. 118-140). NY:
+
+       Guilford.
+
+California State Board of Education (2006). Reading/Language Arts Framework for California’s
+
+       Public Schools: Kindergarten through Grade Twelve. Sacramento, CA: California
+
+       Department of Education.
+
+Carver, R.P., (1982). Optimal rate of reading prose. Reading Research Quarterly, (18)1, 56-88.
+
+Carver, R.P., (1983). Is reading rate constant or flexible? Reading Research Quarterly, (18)2,
+
+       190-215.
+
+Carver, R.P., (1989). Silent reading rates in grade equivalents. Journal of Reading Behavior,
+
+       (21)2, 155-66.
+
+Carver, R.P. (1990). Reading rate: A review of research and theory. NY: Academic Press.
+
+Chall, J.S. (1983). Stages of reading development. New York: McGraw-Hill Company.
+
+Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). Hillsdale, NJ:
+
+Lawrence Erlbaum Associates.
+                                                  Comprehension-Based Silent Reading Rates 26
+
+
+Common Core State Standards Initiative (2010). Common core state standards for English
+
+       Language Arts & Literacy in History/Social Studies, Science, and Technical Subjects.
+
+       Washington, DC: Council of Chief State School Officers and the National Governors
+
+       Association Center for Best Practices.
+
+Donahue, P., Finnegan, R.J., Lutkus, A.D., Allen, N.L., & Campbell, J.R. (2001). The nation’s
+
+       report card: Fourth-grade reading 2000. Washington, D.C.: U.S. Department of
+
+       Education, Institute of Education Sciences.
+
+Engelmann, S., Osborn, S., & Hanner, S. (2002). Comprehension skills (B1). Columbus, OH:
+
+       McGraw-Hill SRA.
+
+Foertsch, M.A. (1992) Reading in and out of school: Achievement of American students in
+
+       grades, 4, 8, and 12 in 1989-1990. Washington, DC: National Center for Educational
+
+Foorman, B. R., Schatschneider, C., Eakin, M. N., Fletcher, J. M., Moats, L. C., & Francis, D. J.
+
+       (2006). The impact of instructional practices in grades 1 and 2 on reading and spelling
+
+       achievement in high poverty schools. Contemporary Educational Psychology, 31, 1-29.
+
+Gambrell, L. (1984). How much time do children spend reading during teacher-directed reading
+
+       instruction? In J.A. Niles & L.A. Harris (Eds.), Changing perspectives on research in
+
+       reading/language processing and instruction. Third-third yearbook of the National
+
+       Reading Conference (pp. 193-198). Rochester, NY: National Reading Conference.
+
+Gamse, B.C., Jacob, R.T., Horst, M., Boulay, B., and Unlu, F. (2009). Reading first impact study
+
+       final report executive summary (NCEE 2009-4039). Washington, DC: National Center
+
+       for Education Evaluation and Regional Assistance, Institute of Education Sciences, U.S.
+
+       Department of Education.
+
+Good, R.H., Jefferson, G. (1998). Contemporary perspectives on curriculum-based measurement
+                                                  Comprehension-Based Silent Reading Rates 27
+
+
+       validity. In M.R. Shinn (ed.), Advanced applications of curriculum-based measurement
+
+       (pp. 61-88). New York: Guilford.
+
+Good, R.H., III, & Kaminski, R.A. (2002). DIBELS oral reading fluency passages for first
+
+       through third grades (Technical report No. 10). Eugene, OR: University of Oregon.
+
+Good, R.H., III, Simmons, D.C., & Kame’enui, E.J. (2001). The importance and decision-
+
+       making utility of a continuum of fluency-based indicators of foundational reading skills
+
+       for third-grade high-stakes outcomes. Scientific Studies of Reading, 5(3), 257-288.
+
+Griffith, L. W., & Rasinski, T. V. (2004). A focus on fluency: How one teacher incorporated
+
+       fluency with her reading curriculum. The Reading Teacher, 58, 126- 137.
+
+Guthrie, J.T., Wigfield, A., Humenick, N.M., Perencevich, K.C., Taboada, A., & Barbosa, P.
+
+       (2006). Influences of stimulating tasks on reading motivation and comprehension.
+
+       Journal of Educational Research, I99I, 232-245.
+
+Guthrie, J. T., Schafer, W. D., & Huang, C.W. (2001). Benefits of opportunity to read and
+
+       balanced instruction on the NAEP. Journal of Educational Research, 94(3), 145-162.
+
+Hagerty, P.J. (1999). Readers’ workshop: Real reading. New York: Scholastic.
+
+Hasbrouck, J., & Tindal, G.A. (2006). Oral reading fluency norms: A valuable assessment tool
+
+       for reading teachers. The Reading Teacher, 59(7), 636–644. doi:10.1598/RT.59.7.3
+
+Hiebert, E.H., Wilson, K.M., & Trainin, G. (in press). Are students really reading in independent
+
+       reading contexts? An examination of comprehension-based silent reading rate. In E.H.
+
+       Hiebert & D.R. Reutzel (Eds.), Revisiting silent reading: New directions for teachers and
+
+       researchers. Newark, DE: International Reading Association.
+
+Hunt, L. C. (1970). Effects of self-selection, interest and motivation on independent,
+
+       instructional, and frustration levels. The Reading Teacher, 24, 146 – 151.
+                                                 Comprehension-Based Silent Reading Rates 28
+
+
+Jenkins, J.R., Fuchs, L.S., van den Broek, P., Espin, C., & Deno, S.L. (2003). Accuracy and
+
+       fluency in list and context reading of skilled and RD groups: Absolute and relative
+
+       performance levels. Learning Disabilities Research and Practice, 18(4), 237-245.
+
+Juel, C. & Holmes, B. (1981). Oral and silent reading of sentences. Reading Research Quarterly,
+
+       16, 545-568.
+
+Juel, C., & Minden-Cupp, C. (2000). Learning to read words: Linguistic units and instructional
+
+       strategies. Reading Research Quarterly, 35(4), 458-492.
+
+Kuhn, M.R. (2005). A comparative study of small group fluency instruction. Reading
+
+       Psychology, 26, 127-146.
+
+Kuhn, M.R., Schwanenflugel, P.J., Morris, R.D., Morrow, L.M., Woo, D., Meisinger, B., et al.
+
+       (2006). Teaching children to become fluent and automatic readers. Journal of Literacy
+
+       Research, 38, 357-389.
+
+Marston, D.B. (1989). A curriculum-based measurement approach to assessing academic
+
+       performance: What it is and why do it. In M.R. Shinn (Ed.), Curriculum-based
+
+       measurement: Assessing special children (pp. 18–78). New York: Guilford.
+
+McGlinchey, M.T., & Hixson, M.D. (2004). Using curriculum-based measurement to predict
+
+       performance on state assessments in reading. School Psychology Review, 33(2),193–203.
+
+McKeown, M.G., Beck, I.L., & Blake, R.K. (2009, July/August/September). Rethinking Reading
+
+       Comprehension Instruction: A Comparison of Instruction for Strategies and Content
+
+       Approaches. Reading Research Quarterly, 44(3), 218–253
+
+McNamara, D.S. (2000). Preliminary analysis of Photoreading (Final Report). Moffett Field,
+
+       CA: NASA Ames Research Center.
+                                                   Comprehension-Based Silent Reading Rates 29
+
+
+Nagy, W.E.., Anderson, R.C., & Herman, P.A. (1987). Learning word meanings from context
+
+       during normal reading. American Educational Research Journal, 24 (2), 237-270.
+
+National Center for Education Statistics (2009). The nation’s report card: Reading 2009 (NCES
+
+       2010–458). Washington, DC: Institute of Education Sciences, U.S. Department of
+
+       Education.
+
+National Institute of Child Health and Human Development (NICHD). (2000). Report of the
+
+       National Reading Panel. Teaching children to read: An evidence-based assessment of the
+
+       scientific research literature on reading and its implications for reading instruction (NIH
+
+       Publication No. 00-4769). Washington, DC: U.S. Government Printing Office.
+
+Pearson, P.D. (2006). Foreword. In K.S. Goodman (Ed.), The truth about DIBELS: What it is,
+
+       what it does (pp. v–xix). Portsmouth, NH: Heinemann.
+
+Pinnell, G. S., Pikulski, J. J., Wixson, K. K., Campbell, J. R., Gough, P. B., & Beatty, A. S.
+
+       (1995). Listening to children read aloud: Data from NAEP’s integrated reading
+
+       performance record (IRPR) at grade 4. Washington, DC: OERI, U.S. Dept. of Ed.;
+
+       Princeton, NJ: ETS.
+
+Pressley, M., Hildren, K., & Shankland, R. (2005). An evaluation of end-grade-3 Dynamic
+
+       Indicators of Basic Early Literacy Skills (DIBELS): Speed reading without
+
+       comprehension, predicting little. East Lansing, MI: Michigan State University, College of
+
+       Education, Literacy Achievement Research Center.
+
+Radach, R., Vorstius, C., & Reilly, R. (July 10, 2010). The science of speed reading: Exploring
+
+       the impact of speed on visuomotor control and comprehension. Paper presented at the
+
+       annual meeting of the Society for the Scientific Study of Reading, Berlin, Germany.
+                                                    Comprehension-Based Silent Reading Rates 30
+
+
+Rasinski, T.V. (2006). Reading fluency instruction: Moving beyond accuracy, automaticity, and
+
+       prosody. The Reading Teacher, 59(7), 704–706.
+
+Rasinski, T., Samuels, S.J., Hiebert, E., Petscher, Y., & Feller, K. (in press). The relationship
+
+       between a silent reading fluency instructional protocol on students’ reading
+
+       comprehension and achievement in an urban school setting. Reading Psychology.
+
+Reutzel, D.R., Fawson, P.C., & Smith, J.A. (2008). Reconsidering silent sustained reading
+
+       (SSR): An exploratory study of scaffolded silent reading (ScRC). Journal of Educational
+
+       Research, 102(1), 37-50.
+
+Rogosa, D. R. (1995). Myths and methods: Myths about longitudinal research plus
+
+supplemental questions. In J. M. Gottman (Ed.), The analysis of change (pp. 3-
+
+65). Hillsdale, NJ: Lawrence Erlbaum Associates.
+
+Samuels, S.J. (2007). The DIBELS Test: Is speed of barking at print what we mean by reading
+
+       fluency? Reading Research Quarterly, 42(4), 563–566.
+
+Samuels, S.J., Hiebert, E.H., & Rasinski, T.V. (2010). Eye movements make reading possible.
+
+       In E.H. Hiebert & D.R. Reutzel (Eds.), Revisiting silent reading: New directions for
+
+       teachers and researchers (pp. 24-44). Newark, DE: International Reading Association.
+
+Schatschneider, C., Buck, J., Torgesen, J.K., Wagner, R.K., Hassler, L., Hecht, S., & Powell-
+
+       Smith, K. (2004) A multivariate study of factors that contribute to individual differences
+
+       in performance on the Florida Comprehensive Reading Assessment Test (Technical
+
+       Report # 5). Tallahassee, FL: Florida Center for Reading Research.
+
+Seuss, Dr. (1978). I can read with my eyes shut. New York: Random House, Inc.
+
+Stanovich, K.E. (1986). Matthew effects in reading: Some consequences of individual
+
+       differences in the acquisition of literacy. Reading Research Quarterly, 21(4), 360-407.
+                                                  Comprehension-Based Silent Reading Rates 31
+
+
+Taylor, B. M., Frye, B. J., & Maruyama, G. (1990). Time spent reading and reading growth.
+
+       American Educational Research Journal, 27(2), 351-362.
+
+Taylor, S.E., Frankenpohl, Hl., & Pettee, J.L. (1960). Grade level norms for the components of
+
+       the fundamental reading skills. EDL Research and Information Bulletin (#3). NY:
+
+       EDL/McGraw Hill.
+
+Taylor, S.E., (1965). Eye movements in reading: facts and fallacies. American Educational
+
+       Research Journal, 2(4), 187-202.
+
+Torgesen, J.K., Myers, D., Schirm, A., Stuart, E., Vartivarian S., Mansfield, W., Stancavage, F.,
+
+       Durno, D., Javorsky R, & Haan, C. (2007). Closing the achievement gap: Second year
+
+       findings from a randomized trial of four reading interventions for striving readers.
+
+       Washington, D.C. The Corporation for the Advancement of Policy Evaluation.
+
+Valencia, S.W., Smith, A.T., Reece, A.M., Li, M., Wixson, K.K., and Newman, H., (2010). Oral
+
+       reading fluency assessment: Issues of construct, criterion, and consequential validity.
+
+       Reading Research Quarterly, 45(3), 270-291
+
+Wexler, J., Vaughn, S., Edmonds, M., & Reutebuch, C.K. (2008). A synthesis of fluency
+
+       interventions for secondary struggling readers. Reading and Writing, 21, 317-347.
+
+Wiley, H.I., & Deno, S.L. (2005). Oral reading and maze measures as predictors of success for
+
+       English learners on a state standards assessment. Remedial and Special Education, 26(4),
+
+       207–214.
+
+Wise, B.W., Ring, J., & Olson, R.K. (1999). Training phonological awareness with and without
+
+       explicit attention to articulation. Journal of Experimental Child Psychology, 72, 271-304.
+                                            Comprehension-Based Silent Reading Rates 32
+
+
+
+                                      Footnote
+1
+    The authors acknowledge their role as members of an advisory board to the publisher of
+
+the program described in the second study of the empirical section of this review. For
+
+their role on the advisory board, the authors receive an annual, flat honorarium that is not
+
+tied to sales of the product.
+                                                 Comprehension-Based Silent Reading Rates 33
+
+
+
+
+Table 1
+
+Chall’s (1983) Reading Stages
+
+Stage                           Primary Task                   Grade Span
+0                               Prereading                     Through kindergarten
+
+1                               Initial reading or decoding    Grades 1-2
+
+2                               Confirmation, fluency,         Grades 2-3
+
+                                ungluing from print
+
+3                               Reading for learning the new   Grades 4-8
+
+4                               Reading for multiple           High school
+
+                                viewpoints
+
+5                               Construction and               College
+
+                                reconstruction: A world view
+

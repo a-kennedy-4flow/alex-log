@@ -1,0 +1,825 @@
+                       Code Review Quality: How Developers See It
+
+                     Oleksii Kononenko                                             Olga Baysal                      Michael W. Godfrey
+               School of Computer Science                              School of Computer Science               School of Computer Science
+                  University of Waterloo                                   Carleton University                     University of Waterloo
+                 Waterloo, ON, Canada                                     Ottawa, ON, Canada                      Waterloo, ON, Canada
+              okononen@uwaterloo.ca                                   olga.baysal@carleton.ca                     migod@uwaterloo.ca
+
+
+ABSTRACT                                                                                      Due to volume of submitted contributions and the need to
+In a large, long-lived project, an effective code review pro-                                 handle them in a timely manner, many code review pro-
+cess is key to ensuring the long-term quality of the code base.                               cesses have become more lightweight and less formal in na-
+In this work, we study code review practices of a large, open                                 ture [4, 25]. This evolution of review process increases the
+source project, and we investigate how the developers them-                                   risks of letting bugs slip into the version control repository,
+selves perceive code review quality. We present a qualita-                                    as reviewers are unable to detect all of the bugs. In our
+tive study that summarizes the results from a survey of 88                                    recent study [18], we explored the topic of code review qual-
+Mozilla core developers. The results provide developer in-                                    ity by conducting a quantitative investigation of what fac-
+sights into how they define review quality, what factors con-                                 tors may influence the quality of evaluating code contribu-
+tribute to how they evaluate submitted code, and what chal-                                   tions. The study was of quantitative nature as it employed
+lenges they face when performing review tasks. We found                                       data mining and analysis of project’s repositories. While we
+that the review quality is primarily associated with the thor-                                found that both technical and personal attributes are asso-
+oughness of the feedback, the reviewer’s familiarity with the                                 ciated with the review quality, many other factors such as
+code, and the perceived quality of the code itself. Also, we                                  organization, its culture and structure, development cycles,
+found that while different factors are perceived to contribute                                time pressures, etc., can potentially influence how reviewers
+to the review quality, reviewers often find it difficult to keep                              assess code changes. Since these “hidden” factors are diffi-
+their technical skills up-to-date, manage personal priorities,                                cult to take into account in a quantitative analysis because
+and mitigate context switching.                                                               such data is not available, easily accessible, or extractable
+                                                                                              from the available artifacts, we decided to employ qualita-
+CCS Concepts                                                                                  tive research methods to fill the gap in the knowledge we
+•Software and its engineering → Maintaining soft-                                             had about the developer perception and attitude towards
+ware; Collaboration in software development;                                                  the code review quality.
+                                                                                                 Our qualitative study is organized around an exploratory
+Keywords                                                                                      survey that we design based on the state-of-the-art quali-
+Code review, review quality, survey, developer perception                                     tative research [8, 12, 28] and our own observations of the
+                                                                                              Mozilla code review process and interactions with Mozilla
+1.     INTRODUCTION                                                                           developers during our previous research project [5]. We
+   In a large, long-lived project, an effective code review pro-                              conducted an exploratory survey with 88 Mozilla core de-
+cess is key to ensuring the long-term quality of the code base.                               velopers. Our qualitative analysis of the survey data aims
+Code review is considered to be one of the most effective                                     at addressing the following research questions:
+QA practices in software development. While it is relatively                                      • RQ1: How do Mozilla developers conduct code review?
+expensive in terms of time and effort, it delivers benefits                                        Existing literature offers several case studies of how
+of identifying defects in code modifications before they are                                       code review processes are employed by various software
+committed into the project’s code base [9]. Reviewers play                                         development projects and organizations [4,6,11,21,26,
+a vital role in the code review process not only by shaping                                        27].
+and evaluating individual contributions but also by ensuring
+                                                                                                 • RQ2: What factors do developers consider to be influ-
+the high quality of the project’s master code repository.
+                                                                                                   ential to review time and decision?
+   Code review explicitly addresses the quality of contribu-
+tions before they are integrated into project’s code base.                                         Code review is a complex process that involves people,
+                                                                                                   their skills and social dynamics, as well as development
+Permission to make digital or hard copies of all or part of this work for personal or              artifacts and environments; thus, it can be affected
+classroom use is granted without fee provided that copies are not made or distributed              by both technical [15, 21, 25, 27] and non-technical fac-
+for profit or commercial advantage and that copies bear this notice and the full cita-             tors [7, 12, 19, 29].
+tion on the first page. Copyrights for components of this work owned by others than
+ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or re-             • RQ3: What factors do developers use to assess code
+publish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+                                                                                                   review quality?
+ICSE ’16, May 14-22, 2016, Austin, TX, USA                                                         While the quality assessment of code contributions is
+c 2016 ACM. ISBN 978-1-4503-3900-1/16/05. . . $15.00                                               an active research area, the topic of code review qual-
+DOI: http://dx.doi.org/10.1145/2884781.2884840                                                     ity remains largely unexplored. To better understand
+       developer perception and attitudes towards the quality      plored the way stakeholders interact with one another during
+       of the process that evaluates code changes, we further      the code review process. Their findings provided insights to
+       refine this research question into the following subques-   developers about how to effectively manage large quantities
+       tions:                                                      of reviews. Additionally, their investigation reveals that the
+                                                                   identification of defects is not the sole motivation for modern
+         – RQ3.1: How do reviewers assess the quality of a
+                                                                   code review. Resolving non-technical issues, such as scope or
+           patch?
+                                                                   process issues, was among other motivations of code review.
+         – RQ3.2: How do developers define a well-done code
+                                                                      Baysal et al. [7] empirically studied the WebKit project
+           review?
+                                                                   and showed that review positivity, i.e., the proportion of
+         – RQ3.3: What factors are perceived to contribute
+                                                                   accepted patches, is also affected by non-technical factors.
+           to the review quality?
+                                                                   The authors found that factors from both personal and orga-
+     • RQ4: What challenges do developers face when per-           nizational dimensions affect code review response time and
+       forming review tasks?                                       the outcome of a review. Jiang et al. [15] studied, through
+       We believe that it is important to understand what on-      an analysis of the Linux Kernel, the relation between patch
+       going problems developers deal with to provide them         characteristics and the probability of patch acceptance as
+       with better tools to support their daily tasks and ac-      well as the time taken for patches to be integrated into the
+       tivities.                                                   code base. The results of their study indicated that devel-
+                                                                   oper experience and patch maturity impact the patch ac-
+   Our main findings reveal that the review quality is pri-
+                                                                   ceptance, while the number of suggested reviewers, affected
+marily associated with the thoroughness of the feedback, the
+                                                                   subsystems, developer experience, and the time of submis-
+reviewer’s familiarity with the code, and the perceived qual-
+                                                                   sion affect the duration of a review. Bacchelli and Bird [4]
+ity of the code itself. As expected, we found that different
+                                                                   examined the motivations, challenges, and outcomes of tool-
+factors including technical, personal and social signals, are
+                                                                   based code reviews. They found that while the identification
+perceived to contribute to the review quality. Also, we found
+                                                                   of defects is the main purpose of code review, other motiva-
+that reviewers often find it difficult to keep their technical
+                                                                   tions such as team awareness and knowledge sharing exist
+skills up-to-date, manage personal priorities, and mitigate
+                                                                   as well.
+context switching.
+                                                                      Kemerer et al. [16] investigated the effect of review rate
+   The paper makes the following contributions:
+                                                                   (i.e., lines of code reviewed per hour) on the effectiveness of
+    • A qualitative study with the professional OSS devel-         defect removal and the quality of software products. Their
+       opers who participated in our survey on the topic of        study showed that allowing sufficient preparation time for re-
+       code review quality.                                        views and inspections can improve their quality. Hatton [13]
+    • A thorough survey analysis that offers insights into         found that defect detection capabilities differ among code re-
+       the developer perception of the code review quality         viewers — the “worst” reviewer was ten times less effective
+       and factors affecting it, as well as identifies of the      than the best reviewer. Moreover, he found almost 50% im-
+       main challenges developers face when conducting re-         provement in defects detection between settings where the
+       view tasks.                                                 source code is inspected by two developers together (76% of
+    • A publicly available dataset of 88 anonymized survey         faults found) and where the source code is inspected by two
+       responses.                                                  developers separately (53% of faults found).
+   The rest of the paper organized as follows. Section 2 sum-         Pull-based development is a new model for distributed
+marizes prior related work. Section 3 describes our method-        software development; in this model proposed changes sub-
+ology including the survey design, participants, and data          mitted as pull requests. In a quantitative study, Gousios et
+analysis. Section 4 presents the results of the qualitative        al. [11] explored what factors affect the decision to accept a
+study. Section 5 discusses implications of our work and sug-       pull request, as well as the time needed to make such a deci-
+gests possible future research directions. Section 6 addresses     sion. They found that decision is dominated by the number
+limitations of our work. Finally, Section 7 concludes the pa-      of recent changes to the files being modified by the pull re-
+per.                                                               quest, the number of such files, and the size of a project;
+2.    RELATED WORK                                                 while the time is mainly affected by the developer’s track
+                                                                   record and the test coverage of a project. Tsay et al. [29]
+   A large body of work has attempted to assess modern code
+                                                                   analyzed the influence of social and technical factors on ac-
+review as practised in the development of large software sys-
+                                                                   ceptance of pull requests. Their study showed that while
+tems. Mockus et al. [21] were among the pioneer researchers
+                                                                   many different factors affect pull request acceptance, the so-
+who studied open source development. By analyzing the
+                                                                   cial distance and collaborator status are the most influential
+Mozilla and Apache projects, they identified the main char-
+                                                                   ones.
+acteristics of open source communities such as the depen-
+                                                                      Although modern code review has received a significant
+dency on the contributions from outside developers, and de-
+                                                                   attention recently, there is little empirical evidence on what
+velopers being free to choose tasks to work on. Rigby and
+                                                                   factors contribute to code review quality. A recent quali-
+German [26] presented an investigation of code review pro-
+                                                                   tative study by Gousios et al. [12] explored the practices
+cesses as practised within four open source projects: GCC,
+                                                                   of pull-based development model. They conducted a two-
+Linux, Mozilla, and Apache. They identified the existence of
+                                                                   round survey with 21 and 749 GitHub integrators on what
+several review patterns as well as quantitatively studied the
+                                                                   factors they consider in their decision making process to ac-
+execution of the review process inside the Apache project.
+                                                                   cept or reject a pull request. They found that integrators
+Later, Rigby and Storey [27] investigated the mechanisms
+                                                                   are most concerned with quality and prioritization.
+employed by developers of five open source projects to iden-
+tify code changes they are competent to review. They ex-
+  In our recent empirical study [18], we quantitatively in-        ence value as the sum of submitted and reviewed patches.
+vestigated the relationships between the reviewers’ code in-       We set a threshold for the experience value at 15 — mean-
+spections and a set of factors, both personal and social in        ing that anyone with a combined experience of at least 15
+nature, that might affect the review quality. We found that        patches will pass the filter — which reduced the list of po-
+54% of the reviewed changes introduced bugs in the code; we        tential participants to 843 (27%) people. To filter out de-
+also found that personal metrics, such as reviewer workload        velopers who were new to the Mozilla project — regardless
+and experience, and participation metrics, such as the num-        of their experience level — we defined familiarity as having
+ber of involved developers, are associated with the quality of     contributions (submitted and/or reviewed patches) at least
+the code review process. While we identified which of these        6 months prior to the beginning of the studied period. This
+factors are more likely to contribute to the review quality,       filter further reduced the list of experienced developers to
+our approach was mainly quantitative; we were limited by           403 (13%) people.
+the number of metrics whose values we could extract from              Once we selected developers whom we wanted to survey,
+the code review data stored in the issue tracking system. To       we sent out 403 personalized emails. Each email contained
+improve the understanding of how developers perceive the           the number of contributions submitted or reviewed during
+quality of their reviews and the factors they consider to be       the 12 months period and an invitation to participate in
+important in preserving the quality of the code assessment,        the survey. The survey was open for 3 weeks (from May 29
+we extend our previous work here by presenting a qualitative       to June 19, 2015) and received 88 responses (22% response
+study of developer perception and attitudes.                       rate).
+                                                                      The beginning of the survey consisted of background-related
+3.    METHODOLOGY                                                  questions. By analyzing the responses, we found that we had
+  We conducted an exploratory qualitative study that in-           successfully targeted highly experienced developers: about
+volved data collection through a survey with professional          48% of respondents said that they have more than 10 years
+developers. This section describes the survey design, the          of software development experience, while another 26% of
+participants, and the analysis of the responses in detail.         them have between 7 and 10 years of experience. Most of
+                                                                   the respondents have been performing code review for more
+3.1    Survey Design                                               than 3 years (67%).
+   The survey consisted of three main parts: nine questions
+about the developer’s demographic background and work              3.3    Survey Data Analysis
+practices, three Likert-scale questions related to different as-     We applied a grounded theory methodology to analyze
+pects of code review, and seven follow-on open-ended ques-         the survey data; as we had no predefined groups or cate-
+tions to allow developers to elaborate on issues raised by the     gories, we used an open coding approach. As we analyzed
+multiple choice questions. Participants were asked to spend        the quotes, themes and categories emerged and evolved dur-
+5–10 minutes to complete the survey.                               ing the open coding process [20].
+   The main goal of conducting the survey was to solicit de-         Author Kononenko created all of the “cards”, splitting 88
+veloper feedback on the perceived quality of code reviews          survey responses into 938 individual quotes; these generally
+and factors affecting review time, decision, and quality. We       corresponded to individual cohesive statements. In further
+also wished to identify key problem areas within the existing      analysis, authors Kononenko and Baysal acted as coders to
+review process.                                                    group cards into themes, merging themes into categories.
+3.2    Participants                                                For each open-ended question, we proceeded with this anal-
+   We decided to continue our work within the Mozilla project      ysis in three steps:
+developer community for several reasons: much of our pre-          1. The two coders independently performed card sorts on
+vious work has studied this project and we have good in-              the 20% of the cards extracted from the survey responses
+tuition about the system and its development practices, we            to identify initial card groups. The coders then met to
+have made good contacts within the project who are sup-               compare and discuss their identified groups.
+portive of our research goals, and because Mozilla is a well       2. The two coders performed another independent round,
+known, very large, and long-lived open source project.                sorting another 20% of the quotes into the groups that
+   To identify potential participants for our study, we looked        were agreed-upon in the previous step. We then calcu-
+at the 12 month history (from May 10, 2014 to May 10,                 lated and report the coder reliability to ensure the in-
+2015) of all contributions to the Mozilla project as they             tegrity of the card sort. We selected two of the most popu-
+are recorded in Bugzilla issue tracking system. Because of            lar reliability coefficients for nominal data: percent agree-
+the Bugzilla’s limitations on the search results, we directly         ment and Cohen’s Kappa. Coder reliability is a measure
+queried Mozilla’s Elastic Search cluster that contains the up-        of agreement among multiple coders for how they apply
+to-date copy of Bugzilla data [23]. By processing the queried         codes to text data. To calculate agreement, we counted
+data, we extracted 3,142 unique email addresses (Bugzilla             the number of cards for each emerged group for both
+uses an email address as a unique user identifier). After             coders and used ReCal2 [10] for calculations. The coders
+that, we queried the cluster for each email address to get the        achieved a substantial degree of agreement; on average
+information about developer’s activity: number of contribu-           two coders agreed on the coding of the content in 96%
+tions submitted for review and the number of patches that             of the time (the average percent agreement varies across
+were reviewed by the developer during the studied period.             the questions and is within the range of 94.2–97.2%; while
+Finally, we used Bugzilla’s REST API to extract developers’           the average Cohen’s Kappa score is 0.68).
+real names.                                                        3. The rest of the card sort (for each open-ended question)
+   We decided to limit our survey to experienced developers           — 60% of the quotes — was performed by both coders
+who were not new to the project. We computed an experi-               together.
+                                                                                  The following factors influence code review TIME
+
+4.    RESULTS                                                                Patch size (LOC)
+  During the open coding process, 30 main (including “ir-                Reviewer experience
+relevant”) categories emerged. Table 1 presents these cate-           Number of modified files
+gories in detail reporting the number of quotes, the number                      Code chunks
+of respondents, the question numbers, the totals, and the              Patch writer experience
+average percent agreement for each question.                             Number of resubmits
+
+                                                                  The length of the discussion
+
+4.1    RQ1: How do Mozilla developers conduct                                          Module
+
+       code review?                                                             Review queue
+
+                                                                  # of people in the discussion
+   First, we wanted to understand the current practices of
+                                                                             Severity of a bug
+performing code review tasks at Mozilla. We asked devel-
+                                                                              Priority of a bug
+opers several multiple choice questions with an option of
+providing their own detailed response. The first pair of ques-                                                    0                  50                    100
+
+tions focused on the workload that developers face: the av-                                                                Percent
+erage number of patches they write and the average number                                         Strongly Disagree   Disagree   Agree    Strongly Agree
+of reviews they perform each week. While the answers to
+these two questions are skewed towards smaller workloads
+                                                                      Figure 1: Factors influencing code review time.
+(fewer than 5 patches per week submitted or reviewed, 69%
+and 57% respectively), we received many more responses for
+the heavier review workload than for the patch workload.          4.2        RQ2: What factors do developers consider
+About 10% of the respondents reported that they review 11                    to be influential to review time and deci-
+to 20 patches each week, while another 4% said that they                     sion?
+review more than 21 patches each week. The analysis of a
+contingency table for these two variables shows that devel-          We asked developers about the factors that they believe
+opers with high workloads (i.e., over 10 patches/reviews per      are most likely to affect the length of time needed to review a
+week) tend to concentrate their efforts on a single task type,    patch, as well as the decision of the review (i.e., accept or re-
+i.e., either writing patches or reviewing them. The need          ject). For each aspect (review time and decision), we solicit
+for “dedicated” reviewers is pursued to bring their unique        developers’ opinions via a 5-point Likert-scale question and
+knowledge and expertise, e.g., overall architecture or domain     probe more in-depth information via an optional follow-on
+knowledge, to the project to ensure the correctness and fit       open-ended question. The proposed answers to Likert-scale
+of code contributions. This finding mirrors Mozilla’s notion      questions were compiled from the factors that were previ-
+of super reviewers — a small set of developers enlisted by        ously reported in the literature [7, 15, 31] to have an impact
+Mozilla who provide an additional review for certain kinds        on time and outcome. The open-ended questions provided
+of changes [24].                                                  developers an opportunity to specify any other factors not
+   The remaining two questions focused on where develop-          covered by the Likert-scale question.
+ers perform code review (i.e., within what environment) and          1) Time. The analysis of the Likert-scale question (Fig-
+where they discuss patches under review. While all review-        ure 1) shows that size-related factors (patch size, the number
+related information is stored in Bugzilla, there is no require-   of modified files, and the number of code chunks) are the
+ment in the Mozilla’s code review policies on where a review      ones the developers feel are most important (100%, 95%,
+should be performed. Surprisingly, although Mozilla pro-          and 95% of positive responses respectively). This finding
+vides their developers with a code review platform called         is consistent with several previous quantitative studies that
+MozReview [32], only 5% of the respondents said that they         demonstrate the correlation between the size of the code
+are using it. The majority of the respondents (80%) conduct       change and the review time (i.e., smaller patches are more
+their code review tasks inside Bugzilla itself, while another     likely to receive faster responses ) [7,15,31]. The second most
+8% copy a patch locally into their IDE. As for the loca-          positive group is experience — reviewer experience (96%)
+tions of patch discussions, developers were allowed to select     and patch writer experience (91%). Again, this also mirrors
+multiple of the proposed answers and/or their own answer.         previous research that found that the increase in experience
+The two overwhelmingly popular answers were Bugzilla and          leads to faster reviews. While all other proposed factors re-
+IRC channel (99% and 78% respectively), while VoIP, email,        ceived more than 50% of positive responses, the two factors
+and face-to-face discussions received a similar number of re-     with the biggest numbers of negative responses stand out:
+sponses (around 22% each). While this wide adoption of            bug priority and severity received 36% and 30% of negative
+IRC might be influenced by Mozilla itself, it also might be       responses respectively. Such high values speak against the
+explained by the fact that IRC allows them to have real-          very idea of bug triage. It may be because Mozilla develop-
+time, less formal discussions with ability to bring in more       ers use the priority and severity fields inconsistently [14], or
+people into a conversation as needed.                             because these fields are not used as intended (for example,
+                                                                  in our previous study, we found that over 96% of all patches
+                                                                  in WebKit project are assigned the same priority value [7]).
+RQ1: While most of developers write patches as well as               The manual coding analysis of the open-ended question
+review them, a dedicated group of developers is responsi-         revealed several categories that developers believe have an
+ble for reviewing code changes. The majority of reviewers         impact on code review time. The biggest theme identified
+conduct code review in Bugzilla despite having access to a        in the responses is code quality, which includes code quality
+custom built code review tool, and use various communica-         and change complexity categories. As explained by R67,
+tion channels for discussing code modifications.                  “The amount of in-code comments describing what the patch
+                         Table 1: The list of categories that emerged during open coding.
+                                         Q11           Q13         Q14        Q15         Q17                         Q18
+     Category                         #Q     #R    #Q     #R    #Q    #R   #Q    #R   #Q     #R                   #Q     #R
+    Code quality                     49% 57% 24% 30% 31% 65%               9%    22%  8%     15%                   1%     2%
+    Testing                          13% 28%        6%    9%   12% 36%     7%    15%  8%     15%                    –      –
+    Time constraints                  1%      4%     –      –    –      –  8%    20% 14% 19%                      17% 25%
+    Change scope/rationale           11% 22%        9%    12% 26% 58%       –      –  4%     8%                   10% 15%
+    Understanding code change/base     –       –    6%    9%     –      –  21% 30% 20% 31%                        31% 38%
+    Human factors                      –       –     –      –    –      –  17% 28% 14% 23%                        11% 16%
+    Tools                              –       –    4%    5%     –      –   –      –  6%     12%                   9%     9%
+    Communication                      –       –    2%    2%     –      –   –      –  8%     12%                   1%     2%
+    Change complexity                  –       –   18% 23% 10% 31%          –      –  8%     15%                  10% 15%
+    Relationship/trust                5%      9%    3%    5%     –      –   –      –    –      –                    –      –
+    Usefulness                         –       –     –      –   1%     3%  1%     3%    –      –                    –      –
+    Workload                           –       –     –      –    –      –   –      –  4%     8%                    4%     5%
+    Submitter related                 2%      6%    3%    5%     –      –   –      –    –      –                    –      –
+    Architecture/design                –       –     –      –   5%    15%  6%    10%    –      –                    –      –
+    Reviewer related                  9%     13%     –      –    –      –   –      –    –      –                    –      –
+    Discussion                        1%      4%     –      –    –      –   –      –    –      –                    –      –
+    Conformance to project goals      6%      7%     –      –    –      –   –      –    –      –                    –      –
+    Bug type                           –       –    9%    12%    –      –   –      –    –      –                    –      –
+    Selecting correct reviewer         –       –    7%    12%    –      –   –      –    –      –                    –      –
+    Performance                        –       –     –      –   2%     8%   –      –    –      –                    –      –
+    Integration into code base         –       –     –      –   4%    15%   –      –    –      –                    –      –
+    Security                           –       –     –      –   1%     3%   –      –    –      –                    –      –
+    Memory management                  –       –     –      –   1%     2%   –      –    –      –                    –      –
+    Familiarity with the author        –       –     –      –   1%     5%   –      –    –      –                    –      –
+    Thorough feedback                  –       –     –      –    –      –  23% 38%      –      –                    –      –
+    Catching bugs                      –       –     –      –    –      –  4%     8%    –      –                    –      –
+    Organizational factors             –       –     –      –    –      –   –      –  4%     4%                     –      –
+    Documentation                      –       –     –      –    –      –   –      –  2%     4%                     –      –
+    Context switch                     –       –     –      –    –      –   –      –    –      –                   6%    10%
+    Irrelevant                        3%      7%    9%    12%   5%    15%  4%    10%    –      –                    –      –
+    Total:                            141     54    67     43   290    86  219    86   50     26                   81     55
+     Average percent agreement          97.2%         96.6%       95.5%      94.2%       94.2%                       95.0%
+  Notes: #Q: the number of quotes, #R: the number of respondents, Q11: factors affecting decision, Q13: factors affecting time,
+  Q14: patch quality, Q15: characteristics of code review quality, Q17: other factors affecting review quality, Q18: challenges.
+
+
+does. Readability/variable-naming affecting how hard it is          rect reviewer. There are different characteristics that iden-
+to understand any particular hunk of the patch on its own.”         tify the suitability of a reviewer. For R87 it is “the person-
+When reviewing patches, the developers stated that “patches         ality of a reviewer”, while for R52 it is presence of “personal
+dependency” (R39) and “changes to the API surface between           backlog of work, and personal priorities”. Moreover, some-
+modules” (R32) affect the review time.                              times the reviewers themselves question their suitability for
+   Perhaps surprisingly, developers identified that the bug         reviewing a patch: “am I the best person to be reviewing this
+type category also plays a role during the review of a patch        patch?” (R55). Developers also identified the importance of
+and affects its time. According to respondent R76, “When            previous relationship with an author of a patch: “if someone
+the cause of the bug is obscure, it takes time to review”,          has a good track record I won’t think about the code in quite
+while R74 said “nature of the bug — some bugs require time-         as much detail compared to someone with a track record of
+consuming manual testing”.                                          breaking things often” (R13). The other categories in this
+   Another category that emerged from the responses is patch        theme are about submitter type (e.g., newcomer or not) and
+scope and rationale. Here, the scope also includes granu-           the ease of communication between a patch writer and a
+larity: “Whether the patch is broken up into self-contained         reviewer.
+pieces or whether it’s one big patch touching lots of differ-          2) Decision. Contrary to the answers to the Likert-scale
+ent areas — 5 individual patches are much faster to review          question about the review time, we found no agreement be-
+in total than one big merged patch of those pieces” (R19).          tween developers (i.e., strong prevalence of either positive
+Developers believe that the clarity of explanation of what          or negative answers) for the majority of factors in the case
+is being changed and why affects the review time: “clearly          of the review decision (Figure 2). Similarly to the previous
+identified goal for the patch” (R11) and “what is patch trying      question, both patch writer experience and reviewer expe-
+to do, and should we even be doing that?” (R55). Under-             rience are the factors with the most positive answers (86%
+standing the code base category goes along with the scope of        and 84%). At the same time, the size-related factors (patch
+a patch. Several developers stated that amount of knowledge         size, the number of modified files, and the number of code
+that a reviewer has about the code being changed affects the        chunks) no longer have the overwhelming number of pos-
+review time.                                                        itive answers; instead, the respondents are more likely to
+   Several of the emerged categories can be combined into a         disagree with the statement that these factors affect review
+social theme. One of the categories here is selecting the cor-      decisions. Surprisingly, bug severity and priority are now the
+           The following factors influence code review DECISIONS
+
+
+     Patch writer experience
+                                                                                        As R10 explains: “... not all fixes or improvements are a
+       Reviewer experience
+                                                                                        good idea to actually land, even if they’re correct”. Also, re-
+           Severity of a bug
+                                                                                        viewers expect a clear explanation of the reasoning behind
+            Priority of a bug
+                                                                                        the proposed change, how it solves a problem, and why an
+# of people in the discussion
+                                                                                        author chose a particular way of doing it. According to R38,
+           Patch size (LOC)
+                                                                                        including such information “can have a significant impact on
+                     Module
+                                                                                        some reviewers’ confidence to accept the patch”.
+The length of the discussion
+                                                                                           Similarly to the previous question, we have a theme of
+       Number of resubmits
+                                                                                        social categories. The reviews are done by humans, so the
+               Code chunks
+                                                                                        process is likely to be influenced by their personalities. In-
+    Number of modified files
+                                                                                        deed, we identified reviewer related factors. Several develop-
+              Review queue
+                                                                                        ers report that with some reviewers it is more difficult to get
+                                                                                        a patch accepted than with others: “a new reviewer might
+                                          50               0             50             feel inclined to find a fault to prove that they done due duty
+                                                         Percent                        in reviewing the patch” (R38), and “the perfectionist syn-
+                                Strongly Disagree   Disagree   Agree   Strongly Agree   drome (Can you try ... ?)” (R49). In addition to that,
+                                                                                        “individual quirks/preferences of the reviewer” (R20) play a
+Figure 2: Factors influencing code review decision.                                     role as well. Relationship/trust between reviewer and patch
+                                                                                        writer is found to play a critical role in decision making.
+                                                                                        Several respondents stated that interpersonal relationship is
+third and the fourth the most agreed factors. Another in-
+                                                                                        important for the review outcome. As explained by R36:
+teresting finding is related to reviewer workload: about 81%
+                                                                                        “If it’s someone you trust you don’t have to check things as
+of respondents disagree that workload affects the decision
+                                                                                        rigorously”. And finally, contributor type (i.e., whether he
+in any way. This demonstrates that developers think of re-
+                                                                                        is new, mentored, or experienced contributor) can influence
+viewers as highly capable of carefully analyzing every patch
+                                                                                        reviewers’ decisions: “if the patch writer is a new or first-
+regardless of the time pressure they might face. While such
+                                                                                        time contributor, the reviewer may be inclined to encourage
+attitude describes the project’s culture, this result contra-
+                                                                                        them by accepting their patch more readily (after identifying
+dicts our previous finding that suggest that reviewers with
+                                                                                        any obvious problems that need fixing)” (R38).
+shorter review queues are more likely to reject a patch [7].
+   Several categories emerged during the analysis of the open-
+                                                                                          RQ2: Developers believe that factors such as the experi-
+ended question related to review decision. The highest im-
+                                                                                         ence of developers, the choice of a reviewer, size of a patch,
+pact on the review decision is perceived to be code quality
+                                                                                         its quality and rationale affect the time needed for review;
+of a submitted patch. While developers associate different
+                                                                                         while bug severity, code quality and its rationale, presence
+meanings with the term “code quality”; they can be grouped
+                                                                                         and quality of tests, and developer personality impact review
+into several sub-categories. The first one is adherence to the
+                                                                                         decisions.
+code style (R57 – “the quality of the code, and whether it
+adheres to accepted style and practices”), as well as spelling
+(R38 – attention to “details such as spelling, grammar and                              4.3    RQ3: What factors do developers use to
+code formatting”). Other two sub-categories are readability                                    assess code review quality?
+and simplicity of a patch (R34 – “ease of understanding of                                 Quality is one of the key attributes of ensuring high stan-
+code/changes, i.e., simplicity of code”), and presence and                              dards of both code and project development. With this
+quality of design or architectural changes. Finally, devel-                             research question, we explore how developers perceive the
+opers associate the code correctness and its maintainability                            quality of a patch and what characteristics they believe to
+with code quality.                                                                      be essential in contributing to a well-done code review. To
+   The second biggest category identified from the answers                              answer this question, we analyzed two mandatory and one
+is testing. When developers submit a patch they can include                             optional open-ended questions, as well as one multiple-choice
+the results of running existing tests, as well as include the                           question of the survey.
+tests they wrote specifically for that patch. The two sub-                                 1) Perception of a patch quality.
+categories that we identified reflect the option patch writers                             One of the top attributes for developers when evaluating
+have. The first sub-category is focused on the presence of                              patch quality is code quality. Code quality has many inter-
+automated tests in a patch: “... changes that are accom-                                pretations. For some developers it is associated with coding
+panied by tests are much more likely to be accepted” (R20).                             style such as “the names of things need to be descriptive”,
+Moreover, developers identified that the actual completeness                            readability, compactness, maintainability (“lack of redun-
+of tests is also important: “thoroughness of tests included in                          dant or duplicated code”, “strong and unverified coupling”),
+patch” (R37). The other sub-category represents the pres-                               “consistent indentation and style”, and “elegance and lack
+ence of test results for a patch: “including test results as a                          of hacks”. While for others code quality is about the pres-
+message on the bug tracker can either give the reviewer more                            ence of meaningful comments (“comments should tell why
+confidence to accept the patch (if the tests pass) or likewise                          not what”), documentation and “clear and helpful” commit
+lead them to reject the patch (if the tests fail)” (R38).                               messages, “I’m looking for a thoughtful summary that in-
+   Change scope and rationale is believed to be an of influ-                            structs me, reviewer, what is going on and what to expect”
+ential factor for reviewers making their decisions. Reviewers                           (R28). Some developers find that “adherence [of the code] to
+first look for the actual appropriateness of change to be in-                           project module standards” was equally important to ensure
+corporated into the code base: “Does the feature fit in with                            the changes are consistent and conformant to the Mozilla
+the product (for patches submitted out of the blue)” (R29).                             Coding Standards.
+   Change rationale is the second top property that reviewers      can request to perform necessary refactoring if they find that
+look for. Patches are assessed for their correctness, “does [it]   the patch is “contributing to code rot” (R38).
+actually implements what it intends to do?” (R19), associ-            When reviewing patches, developers often examine whether
+ated risk and possible alternative solutions, “are there easier,   software architecture and design meet expectations. For ex-
+less risky ways to achieve the same thing?” (R35), func-           ample, whether a code change “meets other design consider-
+tionality and errors (e.g., “correct handling of exceptional       ations (e.g., PEP8 for Python code) (R67)”. It is expected
+cases” (R33), “are all cases handled?” (R56)). Reviewers           that submitted changes keep the architecture of the code
+examine whether the patch author understands the source            base intact to facilitate code comprehension and mainte-
+of the problem and the problem domain, without “introduc-          nance: “does it continue the architecture of the existing code
+ing any other bugs” (R62) or ambiguity. Reviewers often            or diverge in a way that makes future maintenance difficult?”
+think of their own solution to the fix before reviewing it and     (R81), “I look for architectural impact to see if it is making
+then compare it with the submitted patch. They also try to         the code cleaner or messier” (R87). If the code changes rely
+understand how much time the author spent on the patch             on APIs, reviewers check whether they are used appropri-
+and “how well the solution has been thought through: does          ately: “could the new APIs be misused?” (R65).
+it needlessly reinvent the wheel, does it rewrite everything          Among other characteristics that developers consider when
+from scratch even though a spot fix would have been better,        assessing changes are memory management such as “no leaks,
+... does it use “clever” tricks that others will struggle to un-   no unsafe memory usage” (R4), “no accesses to dead objects”
+derstand” (R64). In a nutshell, a high quality patch “usually      (R9), security such as security related checks and return
+provides a robust solution for the problem” (R42).                 types, performance that relates to “the order of algorithms
+   Change complexity is also perceived as an important prop-       used” (R38), “the right trade-offs between simplicity of code
+erty of the patch quality. Developers often look for simple so-    and performance” (R24), efficiency and speed.
+lutions: “simpler is better” (R20), “simplicity of code makes         Social factors such as familiarity with the author play an
+a big difference. Code that is complicated often is the re-        important role in evaluating patches. Previous relationships
+sult of not being able to distill the problem down to its core.    with the submitters, their experience and reputation within
+Also, reducing the cognitive load required to understand the       the project can determine the fate of their patches: “I set a
+code means it’s easier to maintain, and less likely to have        baseline based on any previous relationship with the submit-
+bugs in it” (R34). If a patch is trying to resolve more than       ter, and the area of code concerned. If I know the submitter
+one issue, it is expected that submitter split it into multiple    I have both some idea of what to check and a better idea if
+patches: “if the patch is addressing 3 or 4 different things       they’ll be around later to fix subsequent issues” (R56), “past
+it is lower quality than 3 or 4 separate patches for the indi-     experience of patch author is a big factor” (R43).
+vidual issues” (R13). Many developers agree that size of the          2) Characteristics of a well-done code review.
+change is correlated to the bug-proneness: “small, focused            This research question investigates developer perception
+changes are easier to assess than large ones. If bug rate is       of the key characteristics contributing to a well-done code
+proportional to lines of code, quality is inversely proportional   review. Through an open-ended question, we asked develop-
+to patch size. So, small patches preferred” (R28).                 ers’ opinion on what a high quality review means to them.
+   Testing is also a key indicator of quality for developers          The majority of the developers (38%) responded that clear
+when they evaluate patches. Reviewers expect code changes          and thorough feedback is the key attribute of a well-done re-
+to come with a corresponding test change. The lack of such         view. Reviewers are expected to provide feedback that 1)
+tests is a good sign that “test coverage is lacking and we’re      is clear to understand; 2) is not only “about code format-
+taking a risk accepting the patch” (R28). The presence of          ting and style” (R6); 3) provides constructive advice, e.g.,
+tests in the patch also boosts developers confidence that the      “points out major correctness issues first, and points our mi-
+patch actually fixes the problem. Many developers run and          nor issues that can be clearly fixed without another round of
+test patches locally, or when testing is not practical, they       review” (R24), “highlighting potential problems ... and how
+perform manual testing as well. As a part of manual testing,       to fix them” (R42), “saying ‘this is the worst code I’ve ever
+developers often perform an operational proof such as code         seen’ is not constructive” (R81); 4) is done by the correct re-
+walks through: “I walk through the changes, executing it           viewer who “has the domain knowledge to properly evaluate
+as I imagine the machine would, with as much variety of            the change” (R55); 5) is delivered via proper communica-
+inputs and states as I can imagine. I look for edge cases.         tion: “good code reviews are dialogues between the reviewer
+I try to consider what is not in the patch (things that are        and patch author” (R50); and 6) provides mentoring and
+being affected by the patch but are not directly changed by        training for patch authors: “providing detailed mentoring to
+the patch)” (R21).                                                 help them improve faster” (R56), “to help the author of the
+   Reviewers pay careful attention on how the patch fits into      patch become a better programmer in the long term” (R35).
+the existing code base. Integration into the code base can be         Developers expect reviewers to have understanding of the
+examined by checking how the patch “melds with the existing        code, in particular to know “the code that’s being changed and
+code or how it replaces the existing code” (R23), “how much        what other pieces of code interact with it and what their as-
+change there is and how far spread the change is” (R12), or        sumptions are (“what else could break?”) ...” (R19), “knowl-
+whether “the patch breaks web compatibility” (R4). Submit-         edge of the code is paramount because otherwise reviews are
+ters are often expected to be able to anticipate the upcoming      superficial” (R30). Submitters want reviewers to know the
+surrounding changes and have an overall understanding of           outcome, the impact and “the side effects of the modified
+the impact of the change on other areas of the code. To sup-       code” (R49), as well as to ensure that the logic of the patch
+port code maintainability, submitters are expected to con-         makes sense. Reviewers are also expected to have an overall
+duct refactoring tasks if they see the need for it. Reviewers      understanding of the project’s code base: “enough domain
+                                                                   knowledge is always the first criteria for a well-done code
+                                                                               The following factors influence code review QUALITY
+
+review” (R61) and “familiarity with utilities in other parts of          Reviewer experience
+the repository that could be re-used” (R38).                                 Patch size (LOC)
+   We found that human factors play a crucial role for de-                       Code chunks
+velopers when receiving feedback. Developers associate good           Number of modified files
+reviews with the reviewers who possess (1) personal attributes         Patch writer experience
+such as being “supportive, yet strict” (R9), “patient and sta-                  Review queue
+
+ble” (R61), “punctual and tactful” (R28), “helpful and en-                             Module
+
+couraging, especially when rejecting a patch” (R55), “express-    # of people in the discussion
+                                                                         Number of resubmits
+ing appreciation for contributions” (R38) especially if contri-
+                                                                        Review response time
+butions come from the newcomers to the OSS community,
+                                                                  The length of the discussion
+and (2) inter-personal qualities such as being able to “es-
+                                                                             Severity of a bug
+tablish clear and open-minded communication” (R73), “trust
+                                                                              Priority of a bug
+the programmer to be competent enough to fix the problems”
+(R64), provide positive and constructive feedback “with the                                       50                   0                      50                    100
+
+comments written in such a way that the patch author does                                                                       Percent
+
+not take them personally” (R9) delivered in a “construc-                                           Strongly Disagree       Disagree   Agree        Strongly Agree
+tive tone that respects/acknowledges the efforts of the patch
+writer” (R21). From the developer perspective, code review         Figure 3: Factors influencing code review quality.
+relies on the participation of everyone on the project, and
+an ideal review process is described as the one that “allows
+                                                                  code chunks, number of modified files) are strong indicators
+the author and the reviewer to work together to produce bet-
+                                                                  of code review quality. Most developers (76-85%) also con-
+ter code than either could on their own, maintain quality
+                                                                  sider that personal factors such as patch writer experience,
+standards, and build familiarity with the code base” (R56).
+                                                                  reviewer workloads, developer participation in the discussion
+   Code quality, once again, is found to be a vital part of
+                                                                  of code changes, module and number of resubmitted patches
+the review process. The review quality is associated with
+                                                                  are more likely to affect the quality of reviews. While devel-
+patch writers taking into consideration coding style and for-
+                                                                  opers have mixed feelings about whether severity and pri-
+matting, preserving code maintainability, embracing “cur-
+                                                                  ority of a bug, review response time, and the length of the
+rent best practice within the project” (R38). While reviewers
+                                                                  discussion have an affect on code review and its quality.
+are responsible for “not allowing messy code in just because
+                                                                     From the open-ended question, we found a number of ad-
+of time” (R23), ensuring “the patch achieves what it was in-
+                                                                  ditional factors that respondents think are influencing the
+tended to achieve” (R31) and “the code adheres to community
+                                                                  review quality (but were not present in our multiple-choice
+standards” (R82).
+                                                                  question). As we have seen from previous findings, develop-
+   Quick turnaround time is also important for the responses
+                                                                  ers consider understanding of the code base as an important
+as they report that both parties, reviewers and submitters,
+                                                                  property that characterizes the review quality: “domain ex-
+are expected be done in a timely manner, “the value of the
+                                                                  pertise of both the author and reviewer” (R35), and “experi-
+review feedback is in the proportion to the cost in terms of
+                                                                  ence of the reviewer and familiarity with the code or domain
+delays and time spend” (R87). However, reviewers are to
+                                                                  are pretty important” (R85).
+avoid shipping their feedback “under stress or when there’s
+                                                                     Human factors such as reviewer mood, personality, ex-
+a deadline” (R7) as this introduces risks of missing prob-
+                                                                  perience, communication skills and style, style of making
+lems. Some developers noted that Mozilla code review suf-
+                                                                  reviews, and productivity (stress level) are seen as ones of
+fers from non-responsive reviewers due to overload or too
+                                                                  the highest determining factors in the quality of the review.
+few reviewers available. As a result, the speed of reviews
+                                                                  Time-related factors such as the time of the day the reviewer
+might overweight the risks: “depending on what module, a
+                                                                  gets to do a review, time pressure and deadlines, release
+faster yet less thorough review is probably going to be OK,
+                                                                  schedules, release management, and priorities of other tasks
+and worth the risk” (R34).
+                                                                  are also among the factors that influence reviewer ability to
+   Testing is seen as a feature that helps to accomplish the
+                                                                  deliver efficient reviews. Code quality and patch complex-
+review process. During the review, developers are expected
+                                                                  ity, presence of tests, tool support, organizational overhead
+to apply the patch locally and test it to make sure it causes
+                                                                  are mentioned as other potential factors affecting the review
+no regression. Thorough and careful testing of the patch
+                                                                  quality.
+ensures “it is doing what is is supposed to and not introducing
+                                                                     Developer perception of the factors affecting code review
+regressions” (R42). Among other factors contributing to a
+                                                                  quality matches the insights we obtained in our qualitative
+well-done review are design and code pattern considerations,
+                                                                  analysis of the data from the project’s repositories [18]. Re-
+providing architectural recommendations (e.g., interaction
+                                                                  viewer experience and their work loads, number of previous
+wit other subsystems, use of correct APIs), and catching
+                                                                  patches, discussion around issues, as well as technical char-
+the bugs left in the patch.
+                                                                  acteristics of a code change such as its size and the number
+   3) Factors affecting code review quality.
+                                                                  of files it spreads across are found to be strong indicators of
+   Through a mandatory multiple choice question and an op-
+                                                                  the code review quality.
+tional open-ended question, we asked participants to express
+their opinion on the factors they find to influence code re-       RQ3: Developer perception of code review quality is shaped
+view quality. The results of the relevant Likert-scale survey      by their experience and defined as a function of clear and
+question are summarized in Figure 3. The vast majority             thorough feedback provided in a timely manner by a peer
+of the developers agrees that factors such as reviewer ex-         with a supreme knowledge of the code base, strong personal
+perience and technical properties of the patch (patch size,        and inter-personal qualities.
+4.4    RQ4: What challenges do developers face                     remotely), engaging and recruiting other members to the
+       when performing review tasks?                               community, or educating and training the new generation of
+                                                                   hackers. Thus, balancing time to perform reviews, as well
+   This research question identifies key challenges developers     as all other daily activities can be a struggle. As R38 says
+face when conducting code review tasks. We identified two          “I try to respond within 24 hours but sometimes a review for
+categories of challenges: technical challenges affect review-      15 patches can just show up out of the blue requiring a full
+ers’ ability to execute effective reviews, while personal chal-    day to review. That throws all other plans out of schedule”.
+lenges relate to their self-management and context switch-            On a personal level, reviewers often feel the pressure of
+ing. We also report the responses to an optional open-ended        keeping up the personal technical skill level: “I need to con-
+question about the desired tool support that could help de-        stantly improve, so I can help others too” (R52). While re-
+velopers with their code review activities.                        viewers understand the importance of providing guidance
+   1) Technical challenges                                         and support to new contributors, they admit that this can
+   The biggest challenge for developers is gaining familiarity     be very time-consuming and carry risks of landing bug-prone
+with the code. Since reviewers are often asked to review           patches to the code repository. As R54 explains: “reviewing
+the code they do not own, understanding the unfamiliar             patches by new contributors where hand-holding is needed...
+code that the patch is modifying can be challenging, “our          it becomes tempting to simply land the patch to end the has-
+module boundaries are broad, so patches often touch areas          sle for both the contributor and the reviewer. This frequently
+that I’m not up-to-date on” (R37). Developers also find that       results in buggy code landing in the tree”.
+decision-making of whether the change is good can be diffi-           Several reviewers find it difficult to work on multiple tasks
+cult, “it’s really important that I understand what the patch      simultaneously. Working on multiple tasks such as perform-
+does” (R62). Related to this, reviewers often have to assess       ing reviews and fixing a bug is common for developers. Con-
+whether they are capable of reviewing a particular patch or        text switching from one problem space to another appears
+whether they should delegate it to a different reviewer, “de-      to be challenging. More importantly, when the patch un-
+ciding whether I am the most appropriate reviewer or if my         dergoes several revisions, reviewers have to keep the context
+knowledge of the area of code is good enough to be an effective    between revisions of the patch to make sure all their concerns
+reviewer” (R57). Reviewers are also expected to fully under-       with the proposed changes are addressed by the submitter.
+stand the problem, which can be a time-consuming process           From the submitter’s point of view, keeping track of the
+in particular if they review code in diverse areas of the code     comments from the reviewer or other peers can be difficult.
+base. Reviewers have to not only understand the change but         This becomes a challenge when a patch writer is working on
+also understand its interactions with the existing code and        a large bug or feature that involves a substantial discussion
+being able to determine what code has to be co-changed, as         on the best way to resolve or implement it.
+well as “spot now-redundant code” (R74).
+   Another category of the technical challenges is related to       RQ4: The key challenges are twofold. Technical challenges
+code complexity. Reviewers are often required to evaluate           are associated with gaining familiarity with the code, coping
+large patches. The size of the patch is correlated with the         with the code complexity, and having suitable tool support.
+quality of the reviews. Large patches are difficult to review       While personal challenges are related to time management,
+because it can be difficult for developers to see the big pic-      technical skills, and context switching.
+ture: “long patches are hard to review - attention wanes,
+quality of the review goes [down]” (R21). R12 mentions                3) Tools
+that “if large patches are broken up it can still be difficult        The majority of respondents perform code review tasks
+to understand the bigger picture”. The complexity of the           inside Bugzilla that provides a very basic and limited set of
+pre-existing code can add up to this problem. Nevertheless,        code review related features — it allows side-by-side viewing
+being able to see the big picture can be troublesome yet very      of the patch and code, as well as adding comments to the
+critical for reviewers.                                            patch diff. The most commonly requested feature is a built-
+   Finally, many reviewers complained about the current tool       in lint-like tool that should provide automatic static anal-
+support available to perform review tasks. Some of them            ysis, automatic format and style checking, and automatic
+mentioned that reviewing in Bugzilla is difficult, while oth-      spell-checking. Moreover, many developers stated that such
+ers refer to Bugzilla as “a pretty good tool” (R62). Since run-    a tool should not only automatically check the code, but
+ning automated tests is a part of the review, developers find      also automatically fix it (where it is possible). Such a fea-
+applying the patch locally and testing it time-consuming.          ture would allow them to focus on a bigger picture rather
+Reviewers mention that existing tools are good at visualiz-        spending time on small problems: “I should be paying more
+ing line-by-line change (“diff” tools) but fall short in provid-   attention to the architecture and the problem solving me-
+ing a summary of what a patch is changing (not on the file         chanics of the patch, rather than whether or not the braces
+level).                                                            are in the right position” (R21).
+   2) Personal challenges                                             Developers also expressed interests in having better devel-
+   Reviewers often find themselves struggling with time man-       opment environment that offers the ability to easily get the
+agement skills such as setting personal priorities and beat-       patch from the issue tracking system into the local editor
+ing procrastination: “convincing yourself that reviews should      for analysis. Another feature is autolanding (i.e., incorpora-
+have higher priority than whatever other work you’re doing”        tion into the code base) of patches once they are reviewed.
+(R19), “how to get reviewing on a first priority and still get-    Finally, the developers expressed a desire for direct access
+ting your own things done” (R40). All reviewers have other         to the indexed source code from inside the issue tracker to
+non-review tasks to conduct such as writing patches, par-          better understand how the code that being changed is used,
+ticipating in discussions, attending meetings (in person or        as well as for the ability to get the change history of that
+                                                                   code.
+  Almost every code review involves “before-after” compari-        ing them to their own working environments. OSS projects
+son of the code. Therefore, it is not surprising that develop-     are constantly reshaping themselves [1], and researchers can
+ers want improved support for diff tools. The most desired         facilitate their growth by helping them address their practi-
+features here are the ability to see the diff “in the context      cal needs and overcome the obstacles they face. Having said
+of the entire file” (R57) and compare the difference between       that, our study adds to the existing body of knowledge on
+the original code and code with multiple consecutive patches       code review.
+applied.
+
+5.   DISCUSSION                                                    6.     THREATS AND LIMITATIONS
+   We now discuss several research directions that have emerged       The first limitation lies in the validity of our findings from
+from this work and can help researchers and practitioners to       the qualitative study. While we carefully designed our sur-
+plan their next research projects.                                 vey questions to ensure their clarity, as with all exploratory
+   Reviewer recommender system. Mozilla developers need            studies, there is a chance we may have introduced the re-
+to control an overwhelming flow of information including bug       searcher bias when applying coding to the open ended ques-
+reports, review requests, updates on their patches, etc. [5].      tions. We tried to minimize this by coding the 20% of the
+One way to help developers manage the increasing flow of           card sorts extracted from each question independently, mea-
+information is to provide them with tools that can assist          suring the coder reliability on the next 20% and reporting
+them with specific tasks. For example, for code review             these values in the paper (see Table 1).
+tasks, a reviewer recommender system could be able to help            As with any survey method, to control for sampling bias
+both reviewers and patch writers determine the right per-          can be challenging. We targeted the core developers of the
+son to review a code change at hand considering reviewer           Mozilla community who actively participate in code review
+code/module expertise, his or her current review loads and         tasks either by evaluating patches of their peer developers or
+availability (schedule). For example, R8 asks for a tool to        submitting their own code changes to reviewers for quality
+be able to “automatically identify potential reviewers based       assessment.
+on similar types of code change (perhaps in other modules)”.          We only survey developers from one large open source
+While there is a large body of research that addresses this        community, yet we targeted Mozilla’s core developers who
+problem of expertise recommendation and offers a variety of        are full-time employees. While our findings might not gen-
+techniques [2, 3, 22, 30], most existing solutions are research    eralize outside of Mozilla, we believe any medium and large
+tools that do not scale well or would otherwise be impracti-       open source project employ similar code review practices.
+cal to deploy within an industrial environment.                    Nevertheless, further research studies are needed to be able
+   Next generation code review tool. Many reviewers ex-            to provide greater insight into code review quality and de-
+pressed concerns with current support for tasks related to         velop an empirical body of knowledge on this topic. To en-
+code review. Code review is an essential part of the develop-      courage replication of our study, we documented our survey
+ment process at Mozilla; yet respondents complained about          questions and card sort results in a technical report that is
+the lack of a good code review tool. We found that develop-        made available online [17]. We also made anonymized survey
+ers expressed interests in having an online code review tool       responses publicly available1 .
+that supports automatic static analysis, automatic format
+and style checker, as well as automatic spell checker. These
+features can help developers with their time-management by
+                                                                   7.     CONCLUSION
+allowing them to focus on the code change and how they fit            Code review is a vital element of any long-lived software
+into the bigger picture rather than paying attention to the        development project. A high-quality execution of this pro-
+formatting and style nits. The next generation review tool         cess is essential to ensuring the ongoing quality of project’s
+should also support code indexing and navigation for review-       code base. This work explores the code review practices of
+ers to be able to better understand code modifications and         a large, open source project and aims to understand the de-
+their interactions with other areas of the code base. An-          velopers’ perception of code review quality. To accomplish
+other desired feature is related to developing better diff         this, we surveyed 88 core contributors to the Mozilla project.
+tools to enable the comparison of different versions of the        The qualitative analysis of the survey responses provides in-
+code or tracking of individual code changes. Reviewers also        sights into the factors that affect the time and decision of
+commented on the importance of having the ability to com-          a review, the perceived review quality, and the challenges
+pare code on “file-by-file” rather then “line-by-line” level and   developers face when conducting code review tasks. Our
+to determine the differences between multiple consecutive          findings suggest that the review quality is mainly associ-
+patches.                                                           ated with the thoroughness of the feedback, the reviewer’s
+   Reshaping OSS. While we only attracted and surveyed             familiarity with the code, and the perceived quality of the
+Mozilla developers, the results of our study can be applied        code itself. We also found that developers often struggle
+to other OSS projects such as Linux, Apache, Red Hat, etc.         with managing their personal priorities, maintaining their
+Most recent studies were either conducted at Microsoft [4]         technical skill set, and mitigating context switching.
+or focused on the pull-based development model [12]. While
+pull-based development (e.g., via GitHub) is gaining popu-
+larity among distributed software development community,           8.     ACKNOWLEDGEMENTS
+the need to continue studying and supporting the evolu-              We thank all Mozilla developers participated in our study
+tion of large long-lived OSS projects remains as important         for their time, participation, and feedback.
+as ever. We noticed that some developers are interested in
+                                                                   1
+borrowing emerging technologies (e.g., GitHub) and bring-              https://cs.uwaterloo.ca/˜okononen/review quality/
+9.   REFERENCES
+                                                                      Code Review Quality. Technical Report CS-2015-14,
+ [1] K. Amant and P. Zemliansky. Internet-based                       University of Waterloo, Waterloo, Canada, August
+     Workplace Communications: Industry & Academic                    2015.
+     Applications. Information Science Pub., 2005.
+                                                                 [18] O. Kononenko, O. Baysal, L. Guerrouj, Y. Cao, and
+ [2] J. Anvik. Automating bug report assignment. In                   M. W. Godfrey. Investigating code review quality: Do
+     Proceedings of the 28th International Conference on              people and participation matter? In Proceedings of the
+     Software Engineering, pages 937–940, 2006.                       International Conference on Software Maintenance
+ [3] J. Anvik, L. Hiew, and G. C. Murphy. Who should fix              and Evolution, pages 111–120, 2015.
+     this bug? In Proc. of the 28th Int. Conference on           [19] J. Marlow, L. Dabbish, and J. Herbsleb. Impression
+     Software Engineering, pages 361–370, 2006.                       formation in online peer production: Activity traces
+ [4] A. Bacchelli and C. Bird. Expectations, outcomes, and            and personal profiles in github. In Proceedings of the
+     challenges of modern code review. In Proceedings of              2013 Conference on Computer Supported Cooperative
+     the International Conference on Software Engineering,            Work, pages 117–128, 2013.
+     pages 712–721, 2013.                                        [20] M. Miles and A. Huberman. Qualitative Data
+ [5] O. Baysal, R. Holmes, and M. W. Godfrey. No issue                Analysis: An Expanded Sourcebook. SAGE
+     left behind: Reducing information overload in issue              Publications, 1994.
+     tracking. In Proceedings of the 22Nd ACM SIGSOFT            [21] A. Mockus, R. T. Fielding, and J. D. Herbsleb. Two
+     International Symposium on Foundations of Software               case studies of open source software development:
+     Engineering, pages 666–677, 2014.                                Apache and mozilla. ACM Transactions on Software
+ [6] O. Baysal, O. Kononenko, R. Holmes, and                          Engineering and Methodology, 11(3):309–346, 2002.
+     M. Godfrey. The secret life of patches: A firefox case      [22] A. Mockus and J. Herbsleb. Expertise browser: a
+     study. In Proc. of the 19th Working Conference on                quantitative approach to identifying expertise. In
+     Reverse Engineering, pages 447–455, 2012.                        Proceedings of the 24rd International Conference on
+ [7] O. Baysal, O. Kononenko, R. Holmes, and M. W.                    Software Engineering, pages 503–512, May 2002.
+     Godfrey. The influence of non-technical factors on          [23] Mozilla. BMO/ElasticSearch.
+     code review. In Proc. of the Working Conference on               https://wiki.mozilla.org/BMO/ElasticSearch.
+     Reverse Engineering, pages 122–131, 2013.
+                                                                 [24] Mozilla. Code-Review Policy.
+ [8] A. Begel and T. Zimmermann. Analyze this! 145                    http://www.mozilla.org/hacking/reviewers.html,
+     questions for data scientists in software engineering. In        August 2015.
+     Proceedings of the 36th International Conference on
+                                                                 [25] P. C. Rigby and C. Bird. Convergent contemporary
+     Software Engineering, pages 12–23, 2014.
+                                                                      software peer review practices. In Proceedings of the
+ [9] M. E. Fagan. Design and code inspections to reduce               9th Joint Meeting on Foundations of Software
+     errors in program development. IBM Syst. J.,                     Engineering, pages 202–212, 2013.
+     15(3):182–211, Sept. 1976.
+                                                                 [26] P. C. Rigby and D. M. German. A preliminary
+[10] D. Freelon. ReCal2: Reliability for 2 coders.                    examination of code review processes in open source
+     http://dfreelon.org/utils/recalfront/recal2/.                    projects. Technical Report DCS-305-IR, University of
+[11] G. Gousios, M. Pinzger, and A. v. Deursen. An                    Victoria, January 2006.
+     exploratory study of the pull-based software                [27] P. C. Rigby and M.-A. Storey. Understanding
+     development model. In Proceedings of the 36th                    broadcast based peer review on open source software
+     International Conference on Software Engineering,                projects. In Proceedings of the 33rd International
+     pages 345–355, 2014.                                             Conference on Software Engineering, pages 541–550,
+[12] G. Gousios, A. Zaidman, M.-A. Storey, and A. van                 2011.
+     Deursen. Work practices and challenges in pull-based        [28] L. Singer, F. F. Filho, and M.-A. Storey. Software
+     development: The integrator’s perspective. In                    engineering at the speed of light: How developers stay
+     Proceedings of the 37th International Conference on              current using twitter. Technical Report DCS-350-IR,
+     Software Engineering, 2015.                                      University of Victoria, Victoria, Canada.
+[13] L. Hatton. Testing the value of checklists in code          [29] J. Tsay, L. Dabbish, and J. Herbsleb. Influence of
+     inspections. IEEE Software, 25(4):82–88, 2008.                   social and technical factors for evaluating contribution
+[14] I. Herraiz, D. M. German, J. M. Gonzalez-Barahona,               in github. In Proceedings of the 36th International
+     and G. Robles. Towards a simplification of the bug               Conference on Software Engineering, pages 356–366,
+     report form in eclipse. In Proc. of the Int. Working             2014.
+     Conf. on Mining Soft. Repos., pages 145–148, 2008.          [30] C. Weiss, R. Premraj, T. Zimmermann, and A. Zeller.
+[15] Y. Jiang, B. Adams, and D. M. German. Will my                    How long will it take to fix this bug? In Proceedings of
+     patch make it? and how fast?: Case study on the linux            the 4th International Workshop on Mining Software
+     kernel. In Proceedings of the 10th Working Conference            Repositories, pages 1–1, May 2007.
+     on Mining Software Repositories, pages 101–110, 2013.       [31] P. Weissgerber, D. Neu, and S. Diehl. Small patches
+[16] C. F. Kemerer and M. C. Paulk. The impact of design              get in! In Proc. of the 2008 Int. Working Conf. on
+     and code reviews on software quality: An empirical               Mining Soft. Repos., pages 67–76, 2008.
+     study based on psp data. IEEE Trans. Softw. Eng.,           [32] M. Wiki. MozReview. https:
+     35(4):534–550, July 2009.                                        //wiki.mozilla.org/Auto-tools/Projects/MozReview,
+[17] O. Kononenko and O. Baysal. A Qualitative                   August 2015.
+     Exploratory Study of How OSS Developers Define
+

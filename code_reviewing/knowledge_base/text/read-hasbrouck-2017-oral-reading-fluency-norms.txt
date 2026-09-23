@@ -1,0 +1,803 @@
+Technical Report # 1702
+
+
+
+
+                       An Update to Compiled
+                           ORF Norms
+
+
+
+
+Jan Hasbrouck
+
+Gerald Tindal
+
+University of Oregon
+Published by
+
+Behavioral Research and Teaching
+University of Oregon • 175 Education
+5262 University of Oregon • Eugene, OR 97403-5262
+Phone: 541-346-3535 • Fax: 541-346-5689
+http://brt.uoregon.edu
+
+
+
+
+Hasbrouck, J. & Tindal, G. (2017). An update to compiled ORF norms (Technical Report No.
+1702). Eugene, OR, Behavioral Research and Teaching, University of Oregon.
+
+
+
+
+Author Note
+
+Jan Hasbrouck is an educational consultant, and holds a Courtesy Senior Research Associate I appointment in the
+Behavior Research and Teaching Program in the College of Education at the University of Oregon.
+
+Gerald Tindal is a Castle-McIntosh-Knight Professor in the College of Education at the University of Oregon and the
+Director of Behavioral Research and Teaching Program.
+
+Acknowledgement
+
+The authors would like to thank the many people who provided valuable feedback on the creation of these new
+compiled ORF norms including Candyce Ihnot, Karen McKenna, and Karen Hunter from Read Naturally, Inc.; Michelle
+Hosp, University of Massachusetts Amherst; Doris Baker and Scott Baker, Southern Methodist University; and Deborah
+Glaser, author and consultant.
+
+
+
+Copyright © 2017. Behavioral Research and Teaching. All rights reserved. This publication, or parts thereof, may
+not be used or reproduced in any manner without written permission.
+
+The University of Oregon is committed to the policy that all persons shall have equal access to its program s,
+facilities, and employment without regard to race, color, creed, religion, national origin, sex, age, marital status,
+disability, public assistance status, veteran status, or sexual orientation. This document is available in alternative
+formats upon request.
+                                            Abstract
+
+This paper describes the origins of the widely used curriculum-based measure of oral reading
+
+fluency (ORF) and how the creation and use of ORF norms has evolved over time. Norms for
+
+ORF can be used to help educators make decisions about which students might need
+
+intervention in reading and to help monitor students’ progress once instruction has begun. ORF
+
+norms were originally developed at the school or district levels using only local data obtained
+
+from specific curriculum materials or assessments. Two previous compilations of norms not
+
+linked to any specific school, district, curriculum, or assessment have been published in the
+
+professional literature. Using data from three widely-used commercially available ORF
+
+assessments (DIBELS, DIBELS Next, and easyCBM), a new set of compiled ORF norms for grade
+
+1-6 are presented here along with an analysis of how they differ from the norms created in
+
+2006.
+Update to Compiled ORF Norms                                                                       1
+
+
+
+
+                               An Update to Compiled ORF Norms
+
+
+        Oral reading fluency (ORF) is one of several curriculum-based measures (CBM) originally
+
+developed in the early 1980s by a team of researchers at the University of Minnesota (Deno,
+
+1982; Tindal, 2013). CBM measures were designed to serve as useful tools for teachers in
+
+special and general education, allowing them to make accurate and timely data-driven
+
+decisions about their students’ progress in functional literacy and numeracy skills. All the CBM
+
+measures were designed to be inexpensive, time efficient, easy to administer, reliable, and able
+
+to be used frequently in multiple forms (Deno, 2003). Most importantly, CBMs were based on
+
+standard, valid assessments that (a) measure something important (b) present tasks of equal
+
+difficulty, (c) are tied to the general curriculum, and (d) show progress over time (Deno &
+
+Mirkin, 1977). Teachers were then trained to use CBMs in deciding whether and when to
+
+modify a student’s instructional program (Deno, 1985) and to evaluate the overall effectiveness
+
+of the instructional program (Tindal, 2017).
+
+
+Oral Reading Fluency (ORF)
+
+
+        Of the various CBM measures available in reading, ORF is likely the most widely used.
+
+ORF involves having students read aloud from an unpracticed passage for one minute. An
+
+examiner notes any errors made (words read or pronounced incorrectly, omitted, read out of
+
+order, or words pronounced for the student by the examiner after a 3-second pause) and then
+
+calculates the total of words read correctly per minute (WCPM). This WCPM score has 30 years
+
+of validation research conducted over three decades, indicating it is a robust indicator of overall
+
+reading development throughout the primary grades (Baker et al., 2008; Fuchs, Fuchs, Hosp, &
+Update to Compiled ORF Norms                                                                      2
+
+
+
+
+Jenkins, 2001; Tindal, 2013; Wayman, Wallace, Wiley, Ticha, & Espin, 2007; Wanzek, Roberts,
+
+Linan-Thompson, Vaughn, Woodruff, & Murray, 2010).
+
+
+Interpreting ORF Scores
+
+
+        ORF is used for two primary purposes: Screening and progress monitoring. When ORF is
+
+used to screen students, the driving questions are, first: “How does this student’s performance
+
+compare to his/her peers?” and then: “Is this student at-risk of reading failure?” To answer
+
+these questions, the decision-makers rely on ORF norms that identify performance benchmarks
+
+at the beginning (fall), middle (winter), and end (spring) of the year. An individual student’s
+
+WCPM score can be compared to these benchmarks and determined to be either significantly
+
+above benchmark, above benchmark, at the expected benchmark, below benchmark, or
+
+significantly below benchmark. Those students below or significantly below benchmark are at
+
+possible risk of reading difficulties. They are good candidates for further diagnostic assessments
+
+to help teachers determine their skill strengths or weaknesses, and plan appropriately targeted
+
+instruction and intervention (Hasbrouck, 2010).
+
+
+        When using ORF for progress monitoring the questions to be answered are: “Is this
+
+student making expected progress?” and “Is the instruction or intervention being provided
+
+improving this student’s skills?”. When ORF assessments are used to answer these questions,
+
+they must be administered frequently (weekly, bimonthly, etc.), the results are placed on a
+
+graph for ease of analysis, and a goal determined. The student’s goal can be based on
+
+established performance benchmarks or information on expected rates of progress. Over a
+
+period of weeks, the student’s graph can show significant or moderate progress, expected
+Update to Compiled ORF Norms                                                                       3
+
+
+
+
+progress, or progress that is below or significantly below expected levels. Based on these
+
+outcomes, teachers can decide whether to (a) make small or major changes to the student’s
+
+instruction, (b) continue with the current instructional plan, or (c) change the student’s goal
+
+(Hosp, Hosp, & Howell, 2007).
+
+
+Creating ORF Norms
+
+
+        Original guidelines for creating ORF norms. In the early years of CBM, the norms and
+
+benchmarks needed to interpret students’ scores were created at the school or district level.
+
+The performance of a significant proportion (or sometimes all) of the students in that school or
+
+district were assessed, and percentile rankings of students’ scores created. The students’ rate
+
+of growth across a school year was determined from these data.
+
+
+        An obvious concern about using this strategy to create norms arises when the academic
+
+skills of the student population in a school or district is lower than what would be considered
+
+average, typical, or optimal. If the performance of low-skilled students is used to establish
+
+benchmarks or determine goals for progress, an anticipated outcome could be that teachers
+
+might not instruct students with sufficient rigor or intensity to improve their skills to a
+
+meaningful level but rather just enough to meet the low benchmark. Students at-risk for
+
+academic failure may be identified as low risk when their performance is compared to norms of
+
+other low performing students.
+
+
+        Creating compiled ORF norms: 1992. As an alternative to locally created norms, Jan
+
+Hasbrouck and Gerald Tindal established a set of ORF norms created by compiling school and
+
+district norms from several different sites (1992). See Table 1.
+Update to Compiled ORF Norms                                                                                      4
+
+
+
+
+Table 1. Compiled ORF Norms 1992*
+
+          Grade Percentile         Fall WCPM        Winter WCPM Spring WCPM
+
+                         75              82                106                 124
+
+
+                         50              53                78                  94
+             2
+
+                         25              23                46                  65
+
+
+                         75             107                123                 142
+
+
+                         50              79                93                  114
+             3
+
+                         25              65                70                  87
+
+
+                         75             125                133                 143
+
+
+                         50              99                112                 118
+             4
+
+                         25              72                89                  92
+
+
+                         75             126                143                 151
+
+
+                         50             105                118                 128
+             5
+
+                         25              77                93                  100
+
+
+*From: Hasbrouck, J. E. & Tindal, G. (Spring, 1992). Curriculum-based oral reading fluency norms for students in grades 2-5.
+    Teaching Exceptional Children, 24(3), 41-44.
+Update to Compiled ORF Norms                                                                   5
+
+
+
+
+In this original study, scores from approximately 45,000 students in grades 2 to 5 were obtained
+
+from schools that collected the ORF data using passages from their current or recent core
+
+reading programs, following standardized CBM procedures (see Hosp, Hosp, Howell, 2007).
+
+
+         Creating compiled ORF norms: 2006. In 2006, Hasbrouck and Tindal again published a
+
+set of compiled ORF norms, this time from a much larger sample of approximately 250,000
+
+students and expanded to include scores from the middle of grade one through the end of
+
+grade eight. See Table 2. By this time, most schools and districts were using commercially
+
+available CBM assessments including DIBELS® and AIMSweb®, rather than materials created by
+
+the districts themselves. The 2006 norms included ORF scores from a variety of sources,
+
+primarily commercially available assessments.
+
+
+Table 2. Compiled ORF Norms 2006
+
+          Grade Percentile      Fall WCPM        Winter WCPM       Spring WCPM
+                   90                NA               81                111
+                   75                NA               47                 82
+                   50                NA               23                 53
+            1
+                   25                NA               12                 28
+                   10                NA                6                 15
+
+                        90          106               125               142
+                        75           79               100               117
+                        50           51                72                89
+             2
+                        25           25                42                61
+                        10           11                18                31
+
+                        90          128               146               162
+                        75           99               120               137
+                        50           71                92               107
+            3
+                        25           44                62               787
+                        10           21                36                48
+Update to Compiled ORF Norms                                                                     6
+
+
+
+
+          Grade Percentile      Fall WCPM        Winter WCPM       Spring WCPM
+                        90         145                166               180
+                        75         119                139               152
+                        50          94                112               123
+            4
+                        25          68                 87                98
+                        10          45                 61                72
+
+                        90         166                182               194
+                        75         139                156               168
+                        50         110                127               139
+            5
+                        25          85                 99               109
+                        10          61                 74                83
+
+                        90         177                195               204
+                        75         153                167               177
+                        50         127                140               150
+            6
+                        25          98                111               122
+                        10          68                 82                93
+
+                        90         180                192               202
+                        75         156                165               177
+                        50         128                136               150
+            7
+                        25         102                109               123
+                        10          79                 88                98
+
+                        90         185                199               199
+                        75         161                173               177
+                        50         133                146               151
+            8
+                        25         106                115               124
+                        10          77                 84                97
+
+
+        Creating compiled ORF norms: 2017. Now, 25 years since the first study was published,
+
+the compiled ORF norms have again been updated. One change that had occurred in this period
+
+was the measures being used by schools to assess their students’ ORF. Several publishers have
+
+created standardized ORF assessments and compiled their own norms to be used with those
+
+commercially available materials. Many, if not most, of the publishers of ORF assessments also
+
+manage the data collected by the schools. So, rather than seeking data from schools or districts
+Update to Compiled ORF Norms                                                                         7
+
+
+
+
+for this update, we instead sought access to published data directly from several vendors of
+
+commercially available ORF measures. In some cases, publishers had direct access to the
+
+students’ scores, while others collaborated with a second-party data support service to access
+
+and analyze the scores.
+
+        We contacted several publishers of ORF assessments so that a broad range of scores
+
+could be included in this updated compilation. However, in contrast to our previous
+
+experiences in the first two studies, access to student data was significantly restricted for this
+
+study. In fact, Pearson, Inc., publisher of the AIMSweb® CBM assessment, refused to provide
+
+access to any of their data “due to the changes in student data privacy laws nationwide” (D.
+
+Baird, personal communication, December 13, 2016). This was despite our having completed
+
+multiple research request and permission forms at the request of the company, and our
+
+assurance to them, supported by the University of Oregon’s Internal Review Board’s approval
+
+of our study, that all data would be handled securely and with anonymity. This refusal of access
+
+was unfortunate but not uncommon. Limited access to student data has become a noteworthy
+
+problem to educational researchers (Sparks, 2017).
+
+
+        On the other hand, we were given access to ORF data from both the CBMreading
+
+(FastBridge Learning, LLC) and Benchmark Assessor Live® (Read Naturally, Inc.) assessments,
+
+but did not include those data in our compiled norms. The ORF scores from CBMreading® were
+
+significantly different from the scores from the other assessments we analyzed, perhaps due to
+
+the way in which their passages were constructed. We didn’t include the Benchmark Assessor
+
+Live® data because those ORF scores are most commonly collected only from students
+Update to Compiled ORF Norms                                                                     8
+
+
+
+
+already identified as at-risk, vulnerable readers, rather than from whole classrooms that include
+
+students from all ability and skill levels.
+
+
+        These new updated ORF norms were ultimately compiled from three assessments:
+
+DIBELS 6th edition© (using data from 2009-2010), and DIBELS Next© (using data from
+
+2010-2011), both published by Dynamic Measurement Group and available from the UO DIBELS
+
+Data System within the University of Oregon Center on Teaching and Learning in the College of
+
+Education. We also included scores from the easyCBM© ORF assessment, published by
+
+Houghton Mifflin Harcourt Riverside, also available from the UO DIBELS Data System and
+
+easyCBM.com. The easyCBM© data were from the 2013-2014 school year.
+
+
+        These new ORF data files were compiled from technical documents establishing a set of
+
+norms specific to each individual assessment. The three sets of assessment-specific norms,
+
+rather than raw scores from those three assessments, were then averaged to compile this new
+
+set of ORF norms. The details of the methodology used to construct the three sets of norms
+
+used in this study were available in separate technical reports: DIBELS® 6th Edition in
+
+Cummings, Otterstedt, Kennedy, Baker, and Kame’enui (2011); DIBELS Next® in Cummings,
+
+Kennedy, Otterstedt, Baker, and Kame’enui (2011); and easyCBM in Saven, Tindal, Irvin, Farley,
+
+and Alonzo (2014). All three reports have been published by the College of Education at the
+
+University of Oregon.
+
+
+        Table 3 displays the number of scores used for each of the three assessments in their
+
+calculation of test-specific norms. Note that the number of scores from both the DIBELS 6th
+
+edition® and DIBELS Next® data represented all the students from whom ORF data were
+Update to Compiled ORF Norms                                                                      9
+
+
+
+
+collected during that testing period. The easyCBM developers used a stratified random
+
+sampling across geographic region, gender, and ethnicity of the students. This sampling plan
+
+resulted in norms that are more accurate than if every score is used (Saven, Tindal, Irvin, Farley,
+
+& Alonzo, 2014). The total number of ORF scores used in this updated study was 6,663,423.
+
+Table 3: Number of scores used for the norms for three assessments
+
+Grade                 Fall                       Winter                       Spring
+            D6             DN   EZ      D6         DN        EZ     D6          DN       EZ
+   1                                  660,404     4,612      500   651,275     4,495     500
+   2      637,017      4,231    500   615,480     4,311      500   608,782     4,176     500
+   3      523,144      3,855    500   502,368     3,889      500   496,638     3,777     500
+   4      346,306      3,772    500   325,664     3,840      500   323,097     3,648     500
+   5      288,493      2,409    500   264,345     2,435      500   264,536     2,393     500
+   6      113,298      1,456    500   100,537     1,485      500   100,430     1,484     500
+TOTAL               1,908,258                   2,389,848                    2,365,317
+
+                      th
+Note: D6 = DIBELS® 6 Edition; DN = DIBELS Next®; EZ = easyCBM®
+
+
+Compiled ORF Norms 2017
+
+
+        Like the two previous sets of norms compiled by Hasbrouck and Tindal (1992, 2006), all
+
+three of the assessments begin with scores from passage reading ORF assessments in the
+
+middle of the grade one year. Unlike the 2006 norms however, these updated norms do not
+
+include scores for grades 7 or 8. Only one of the three assessments included in this compilation,
+
+easyCBM®, has ORF assessments for student in those grades. Therefore, the norms for grades 7
+
+and 8 were not included because they would have only represented scores for students who
+
+had taken the easyCBM® assessment. See Table 4.
+Update to Compiled ORF Norms                                            10
+
+
+
+
+Figure 4. Compiled ORF Norms 2017
+
+                   Grade       %ile     Fall          Winter   Spring
+                                       WCPM*          WCPM*    WCPM*
+                               90                       97      116
+                               75                       59       91
+                      1        50                       29       60
+                               25                       16       34
+                               10                        9       18
+                               90         111          131      148
+                               75          84          109      124
+                      2        50          50           84      100
+                               25          36           59       72
+                               10          23           35       43
+                               90         134          161      166
+                               75         104          137      139
+                      3        50          83           97      112
+                               25          59           79       91
+                               10          40           62       63
+                               90         153          168      184
+                               75         125          143      160
+                      4        50          94          120      133
+                               25          75           95      105
+                               10          60           71       83
+                               90         179          183      195
+                               75         153          160      169
+                      5        50         121          133      146
+                               25          87          109      119
+                               10          64           84      102
+                               90         185          195      204
+                               75         159          166      173
+                      6        50         132          145      146
+                               25         112          116      122
+                               10          89           91       91
+
+                   *WCPM = words correct per minute
+Update to Compiled ORF Norms                                                                     11
+
+
+
+
+Changes in Scores from 2006-2017
+
+
+        Table 5 compares the ORF scores from 2006 to 2017. Changes are reported as
+
+difference in score values from five percentiles ranges (PR) for 90th, 75th, 50th, 25th, 10th and
+
+across the three assessment periods for each grade. In four PR-grade levels, the WCPM score
+
+was the same in 2006 and 2017: the 50th percentile of grade 4 in the Fall (94 WCPM); the 90th
+
+percentiles for Winter (195 WCPM) and Spring (204 WCPM) in grade 6; and the 25th percentile
+
+in the Spring of grade 6 (122 WCPM). In grades 1 to 5, the 2017 scores were all higher than the
+
+2006 scores, except in one PR-grade level: the 50th percentile scores for Fall in grade 2 the score
+
+decreased by one WCPM from 51 in 2006 to 50 in 2017. In these first five grade levels, the
+
+largest increase was 26 WCPM in grade 3 in the winter for the 10th percentile, changing from 36
+
+WCPM in 2006 to 62 WCPM in 2017.
+
+
+        Different patterns of change emerged in the percentile scores reported for grade 6.
+
+Most of the scores reported in grade 6 (8 of 15) increased (from 5 to 21 WCPM), but in four PR-
+
+levels the scores decreased in 2017 by 1 to 4 WCPM and three of the scores remained the
+
+same. Across all three assessment periods the scores for grade 6 increased on average by 4
+
+WCPM which was the smallest of all the grade level gains. On average across all PR levels, grade
+
+one increased by 7 WCPM, grade 2 by 9, grade 3 by 12, grade 4 by 6, and grade 5 by 8. Across
+
+all the six grades, the overall increase in WCPM was 5. In the five PR-levels the scores gained an
+
+average of 4 WCPM in the 90th percentile, 5 WCPM in the 75th and 50th percentiles, 7 WCPM in
+
+the 25th percentile and 9 WCPM in the 25th percentiles scores. These average gains are within
+
+the expected range of performance of 5 WCPM for lower grades and 9 WCPM for upper
+
+elementary grades (Christ & Silberglitt, 2007). Averages are across all PRs. See Table 6.
+Update to Compiled ORF Norms                                                    12
+
+
+
+
+Table 5. Comparison of norms for 2006 and 2017
+
+
+    %iles         Grade 1       F    W       S    Grade 2       F    W      S
+     90             2017             97    116      2017      111   131   148
+     90             2006             81    111      2006      106   125   142
+                 Difference          16      5   Difference     5     6     6
+     75             2017             59     91      2017       84   109   124
+     75             2006             47     82      2006       79   100   117
+                 Difference          12      9   Difference     5     9     7
+     50             2017             29     60      2017       50    84   100
+     50             2006             23     53      2006       51    72    89
+                 Difference           6      7   Difference    -1    12    11
+     25             2017             16     34      2017       36    59    72
+     25             2006             12     28      2006       25    42    61
+                 Difference           4      6   Difference    11    17    11
+     10             2017              9     18      2017       23    35    43
+     10             2006              6     15      2006       11    18    31
+                 Difference           3      3   Difference    12    17    12
+    %iles         Grade 3        F    W      S    Grade 4       F    W      S
+     90             2017       134   161   166      2017      153   168   184
+     90             2006       128   146   162      2006      145   166   180
+                 Difference      6    15     4   Difference     8     2     4
+     75             2017       104   137   139      2017      125   143   160
+     75             2006        99   120   137      2006      119   139   152
+                 Difference      5    17     2                  6     4     8
+     50             2017        83    97   112      2017       94   120   133
+     50             2006        71    92   107      2006       94   112   123
+                 Difference     12     5     5   Difference     0     8    10
+     25             2017        59    79    91      2017       75    95   105
+     25             2006        44    62    78      2006       68    87    98
+                 Difference     15    17    13                  7     8     7
+     10             2017        40    62    63      2017       60    71    83
+     10             2006        21    36    48      2006       45    61    72
+                 Difference     19    26    15   Difference    15    10    11
+Update to Compiled ORF Norms                                                                   13
+
+
+
+
+  %iles         Grade 5            F    W         S      Grade 6        F    W         S
+   90             2017           179   183      195        2017       185   195      204
+   90             2006           166   182      194        2006       177   195      204
+               Difference         13     1        1     Difference      8     0        0
+    75            2017           153   160      169        2017       159   166      173
+    75            2006           139   156      168        2006       153   167      177
+               Difference         14     4        1     Difference      6    -1       -4
+    50            2017           121   133      146        2017       132   145      146
+    50            2006           110   127      139        2006       127   140      150
+               Difference         11     6        7     Difference      5     5       -4
+    25            2017            87   109      119        2017       112   116      122
+    25            2006            85    99      109        2006        98   111      122
+               Difference          2    10       10     Difference     14     5        0
+    10            2017            64    84      102        2017        89    91       91
+    10            2006            61    74       83        2006        68    82       93
+               Difference          3    10       19     Difference     21     9       -2
+
+
+Table 6. Average differences in OPF across PRs for each grade level
+
+                       Difference
+   Grade        Fall   Winter Spring         Ave*
+     1                      41     30           7
+     2            32        61     47           9
+     3            57        80     39          12
+     4            28        30     36           6
+     5            43        31     38           8
+     6            54        18    -10           4
+*Average across all PR values.
+
+
+
+Summary
+
+
+          The curriculum-based measure of oral reading fluency (ORF) has been proven to be a
+
+reliable, useful, and practical measure to help determine which students might need to be
+
+provided with additional assistance to learn to read proficiently. Since the development of CBM
+
+measures in the early 1980s many adaptations and changes have appeared in the way these
+Update to Compiled ORF Norms                                                                    14
+
+
+
+
+various measures have been developed and used. Originally schools were encouraged to
+
+develop their own assessments from the local instructional materials. Norms and performance
+
+benchmarks were also created locally. Now, 35 years later, several commercial publishers have
+
+created CBM assessment materials for schools to purchase and most of those publishers have
+
+created their own norms and benchmarks for use with their specific assessment.
+
+
+        Beginning in 1992 and then again in 2006, Hasbrouck and Tindal collaborated to create a
+
+set of norms compiled from a variety of sources. These compiled norms were published to
+
+prevent a low-performing school or district from setting benchmark goals for their students at a
+
+level that was lower than it should be. Compiled norms also have been used by educators
+
+interested in assessing students’ ORF performance outside of a specific assessment product.
+
+
+        This updated report contains norms compiled from three widely-used and commercially
+
+available ORF assessments, and represents a far larger number of scores than either of the
+
+previous assessments. And while these current scores only provide norms through grade 6, it is
+
+hoped that this set of three studies, conducted over a period of 25 years, can also give
+
+educators a perspective on the stability of ORF scores across materials and grades and nearly
+
+three decades of reading instruction in schools in the United States.
+Update to Compiled ORF Norms                                                                          15
+
+
+
+
+                                              References
+
+Christ, T. J., & Silberglitt, B. (2007). Curriculum-based measurement of oral reading fluency: The
+        standard error of measurement. School Psychology Review, 36, 130–146.
+Cummings, K. D., Kennedy, P. C., Otterstedt, J., Baker, S. K., & Kame’enui, E. J. (2011). DIBELS
+        Data System: 2010-2011 Percentile Ranks for DIBELS Next Benchmark Assessments
+        (Technical Report 1101). Eugene, OR: University of Oregon Center on Teaching and
+        Learning.
+Cummings, K. D., Otterstedt, J., Kennedy, P. C., Baker, S. K., & Kame’enui, E.J. (2011). DIBELS
+        Data System: 2009-2010 Percentile Ranks for DIBELS 6th Edition Benchmark Assessments
+        (Technical Report 1102). Eugene, OR: University of Oregon Center on Teaching and
+        Learning.
+Baker, S. K., Smolkowski, K., Katz, R., Fien, H., Seeley, J. R., Kame’enui, E. J., & Beck, C. T. (2008).
+        Reading fluency as a predictor of reading proficiency in low-performing high poverty
+        schools. School Psychology Review, 37, 18–37.
+Deno, S. L. (1985). Curriculum-based measurement: The emerging alternative. Exceptional
+        Children, 52(3), 219-232.
+Deno, S. L., & Mirkin, P. K. (1977). Data Based Program Modification: A Manual. reston, VA:
+        Council for Exceptional Children.
+Deno, S. L., Mirkin, P. K., & Chiang, B. (1982). Identifying valid measures of reading. Exceptional
+        Children, 49, 36-43.
+Deno, S. (2003). Developments in curriculum-based measurement. The Journal of Special
+        Education, 37, 184-192. doi:10.1177/00224669030370030801
+        http://digitalcommons.unl.edu/buroscurriculum/3.
+Fuchs, L., Fuchs, D., Hosp, M., & Jenkins, J. (2001). Oral reading ﬂuency as an indicator of
+        reading competence: A theoretical, empirical, and historical analysis. Scientiﬁc Studies of
+        Reading, 5(3), 239–256.
+German, G. (2012). Implementing data-based program modification big ideas. In C.A. Epsin, K.
+        L. McMaster, S. Rose, and M. M. Wayman (Eds.), A Measure of Success: The Influence of
+Update to Compiled ORF Norms                                                                     16
+
+
+
+
+        Curriculum-based Measurement on Education (pp. 79-87). Minneapolis: University of
+        Minnesota Press.
+Hasbrouck, J. (2010). Educators as Physicians: Using RTI Data for Effective Decision-Making.
+        Austin, TX: Gibson Hasbrouck & Associates. www.gha-pd.com
+Hasbrouck, J. E. & Tindal, G. (Spring, 1992). Curriculum-based oral reading fluency norms for
+        students in grades 2-5. Teaching Exceptional Children, 24(3), 41-44.
+Hasbrouck, J., & Tindal, G. A. (2006). Oral reading fluency norms: A valuable assessment tool for
+        reading teachers. The Reading Teacher. 59(7),636–644.
+Hosp, M. K., Hosp, J. L., & Howell, K. W. (2007). The ABCs of CBM: A Practical Guide to
+        Curriculum-based Measurement. NY: Guilford Press.
+Saven, J. L., Tindal, G., Irvin, P. S., Farley, D., & Alonzo, J. (2014). easyCBM 2014 Norms.
+        (Technical Report 1409). Eugene, OR: University of Oregon Behavioral Research and
+        Teaching.
+Sparks, S. D. (August 11, 2017). Are student-privacy laws getting in the way of education
+        research? Retrieved from http://www.edweek.org/ew/articles/2017/08/11/are-
+        student-privacy-laws-getting-in-the-way.html?cmp=eml-contshr-shr-desk
+Tindal, G. (2013). Curriculum-based measurement: A brief history of nearly everything from the
+        1970s to the present. ISRN Education, 2013, 1–29. doi:10.1155/2013/958530
+Tindal, G. (2017). Oral Reading Fluency: Outcomes from 30 Years of Research. (Technical Report
+        1701). Eugene, OR: University of Oregon Center Behavioral Research and Teaching.
+Wayman, M. M., Wallace, T., Wiley, H. I., Ticha, R., & Espin, C. A. (2007). Literature synthesis on
+        curriculum-based measurement in reading. The Journal of Special Education, 41, 85–
+        120.
+Wanzek, J., Roberts, G., Linan-Thompson, S., Vaughn, S., Woodruff, A. L., & Murray, C. S. (2010).
+        Differences in the Relationship of Oral Reading Fluency and High-Stakes Measures of
+        Reading Comprehension. Assessment for Effective Intervention: Official Journal of the
+        Council for Educational Diagnostic Services, 35(2), 67–77.
+        http://doi.org/10.1177/1534508409339917
+

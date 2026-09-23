@@ -1,0 +1,13 @@
+Log 71. Bringing the seven other message catalogues in line with the edited English one. One line per command. UTC timestamp then command then result.
+2026-09-22T13:01:13Z ls and git diff --stat of the message catalogues — English lost 56 lines. The other seven lost 13 each from an earlier tour edit.
+2026-09-22T13:01:13Z git diff en.ts — 27 keys reworded, 13 keys deleted. 70 is the highest log so this work takes 71.
+2026-09-22T13:02:20Z python3 key diff of the eight catalogues — the seven carry the same 13 orphan keys and miss none. 32 English values were reworded.
+2026-09-22T13:02:20Z git show HEAD:en.ts then python3 value diff — the nav to tabs step was already carried into all eight by log 26. Two of the new English strings carry typos.
+2026-09-22T13:05:13Z python3 patch of the seven catalogues — 32 values retranslated and 13 orphan keys removed in each. Every key matched.
+2026-09-22T13:07:03Z grep of the source for the 13 deleted keys — seven live call sites survived the English edit. python3 removed each one.
+2026-09-22T13:09:13Z python3 fix of JiraPage.vue — the closed scope lost its intro so the paragraph is now guarded.
+2026-09-22T13:09:13Z pnpm typecheck — clean. The unused pastTarget import in MonthProgress.vue was the one error and it went with the deleted key.
+2026-09-22T13:09:13Z pnpm --filter @tracker/web test — 390 tests passed. The guided tour test now expects the two remaining steps.
+2026-09-22T13:09:13Z pnpm lint — one warning about a blank line left by a removed paragraph. Closed then clean.
+2026-09-22T13:09:13Z python3 audit of tour anchors against steps — no step lacks copy. Five dead data-tour anchors and the unused guidedPlace copy are left for the user to rule on.
+2026-09-22T13:09:13Z Done. Eight catalogues hold the same 353 keys. Nothing is committed. Not asked for.

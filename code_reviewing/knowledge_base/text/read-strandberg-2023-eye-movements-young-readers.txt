@@ -1,0 +1,1053 @@
+                                                                                                                           TYPE Original Research
+                                                                                                                           PUBLISHED 25 July 2023
+                                                                                                                           DOI 10.3389/feduc.2023.1077882
+
+
+
+
+                                                     Eye movements are stable
+OPEN ACCESS                                          predictors of word reading ability
+                                                     in young readers
+EDITED BY
+Olivia López Martínez,
+University of Murcia, Spain
+
+REVIEWED BY
+María García-Serrano,                                Andrea Strandberg 1*, Mattias Nilsson 1, Per Östberg 2 and
+University of Salamanca, Spain                       Gustaf Öqvist Seimyr 1
+Joseph Magliano,
+Georgia State University, United States              1
+                                                      Division of Eye and Vision, Department of Clinical Neuroscience, Karolinska Institutet (KI), Stockholm,
+*CORRESPONDENCE
+                                                     Sweden, 2 Division of Speech and Language Pathology, Department of Clinical Science, Intervention and
+Andrea Strandberg                                    Technology, Karolinska Institutet (KI), Stockholm, Sweden
+  andrea.strandberg@ki.se
+
+RECEIVED 17 November 2022
+                                                     During the first years of formal instruction in reading, there are developmental
+ACCEPTED 28 June 2023
+PUBLISHED 25 July 2023
+                                                     changes to the characteristics of children’s eye movements that correspond to
+                                                     their progress. Generally, these changes are driven by improved text processing
+CITATION
+Strandberg A, Nilsson M, Östberg P and               and a shift from reliance on sub-lexical to lexical processes. Currently, however,
+Seimyr GÖ (2023) Eye movements are stable            little is known about to what extent early eye movements during reading in
+predictors of word reading ability in young
+                                                     ecological contexts account for variations in later word reading ability. In this
+readers.
+Front. Educ. 8:1077882.                              paper we investigate this association in 164 children in first grade and 206
+doi: 10.3389/feduc.2023.1077882                      children in second grade. We recorded their eye movements during normal text
+COPYRIGHT                                            passage reading in an unrestricted eye tracking set-up. We analyzed to what
+© 2023 Strandberg, Nilsson, Östberg and              extent they account for variation in word reading ability 1year post-recording, and
+Seimyr. This is an open-access article
+distributed under the terms of the Creative
+                                                     make comparisons to concurrent predictions. Regression analysis revealed that
+Commons Attribution License (CC BY). The             eye movements accounted for approximately 60% of the variance in concurrent
+use, distribution or reproduction in other           word reading ability and approximately 48% 1year later. Mean fixation duration
+forums is permitted, provided the original
+author(s) and the copyright owner(s) are
+                                                     explained unique variance in reading ability and largely drives the correlation.
+credited and that the original publication in this   Proportion of regressions was not a significant longitudinal predictor among
+journal is cited, in accordance with accepted        the youngest readers. The difference between the concurrent and longitudinal
+academic practice. No use, distribution or
+reproduction is permitted which does not
+                                                     predictions was greatest in the younger children, which was in line with our
+comply with these terms.                             expectation. Findings are discussed in relation to current models of word reading.
+                                                     Our results suggest that eye movements are stable predictors of word reading
+                                                     ability. Ultimately, knowledge of what can be gleaned from early readers’ natural
+                                                     eye movements about later word reading ability could help inform assessments
+                                                     of reading development in the educational setting, where the presence of digital
+                                                     assessment tools is growing.
+
+                                                     KEYWORDS
+
+                                                     eye movements, text reading, eye tracking, reading development, word reading ability
+
+
+
+
+                                                     1. Introduction
+                                                          Eye tracking is used to study a variety of topics within several areas of research, such as
+                                                     medicine, education and psychology (Henderson et al., 2015; Mcdonald et al., 2015; Ekstrand
+                                                     et al., 2021). Its’ temporal and spatial sensitivity makes it particularly suitable for investigations
+                                                     into the reading process (Carter and Luke, 2020). Indeed, eye movement research has taught us
+                                                     a great deal about the psychological, neurological and linguistic aspects of adult reading (Rayner
+                                                     and McConkie, 1976; Gidlöf et al., 2013; König, 2016; Zhang et al., 2021) while children’s reading
+                                                     development long was sparsely studied. As there are differences to the mechanics of text
+                                                     processing depending on proficiency, the findings from adult studies are not always applicable
+
+
+Frontiers in Education                                                       01                                                               frontiersin.org
+Strandberg et al.                                                                                                            10.3389/feduc.2023.1077882
+
+
+
+
+to young readers (Rayner, 1998; Reichle et al., 2013). However, reading           phonological cues, parafoveally to the right of the fixation. These
+is widely considered an indispensable skill and one of the most                   estimations of the upcoming print help guide the eyes where to go
+cognitively demanding tasks that we engage in on a daily basis. The               next (Reichle et al., 1998; Rayner et al., 2004; Pollatsek et al., 2006).
+first school years are critical to its’ acquirement, which makes                  Saccades are affected by the processing difficulty experienced by the
+children’s reading development an area of continued interest.                     reader and struggling readers tend to make shorter saccades
+                                                                                  (Liversedge and Findlay, 2000; Hindmarsh et al., 2021). In English
+                                                                                  adults reading English text, a progressive saccade is approximately 7–9
+1.1. Adults’ eye movements during reading                                         letter spaces or 3–4 degrees in amplitude (Rayner, 1998; Liversedge
+                                                                                  and Findlay, 2000; Seassau and Bucci, 2013). Approximately 15–20%
+     A great deal of eye movement research has contributed to our                 of all saccades are regressive, or regressions, which are associated to
+understanding of the reading process in skilled, mostly adult, readers            several functions. Regressions move the eye opposite of the reading
+(Rayner, 1975, 1998; Rayner and McConkie, 1976; Inhoff, 1990).                    direction, i.e., from right to left in alphabetic orthographies. They may
+Development of innovative experimental techniques has allowed                     resolve oculomotor targeting errors or let the reader review and
+researchers to investigate word processing and moment-to-moment                   reprocess a word with the purpose of validating or updating the
+allocation of attention while the individual reads a text (McConkie               reader’s comprehension of the text (Inhoff et al., 2019). Adult studies
+and Rayner, 1975; Rayner, 1975; Clifton et al., 2016). Throughout all             have compellingly shown how cognitive processing is reflected in eye
+orthographies studied to this date, adult’s eye movements consistently            movements during reading. Research focusing on young individuals
+follow a fixation-saccade pattern during reading. This means that                 faces challenges relating to ethics, technology and the complex
+when we read, our eyes make a series of stops and between those                   interplay of cognitive and visual processes during reading
+stops, horizontal movements from left to right across the text (in                development. These factors have contributed to a gap in knowledge
+alphabetic writing systems). Those stops and fast gaze movements are              on how text processing and processing difficulties are represented in
+what are referred to as fixations and saccades. During a fixation, the            children’s eye movements during reading. Nevertheless, progress has
+reader holds their gaze still over a word before moving, i.e., making a           been made in the last decades, which we will turn to next.
+saccade, onto the next. A number of different variables, all tied to
+these aspects of online text processing, are analyzed within this field.
+These are either of spatial (e.g., the distance the eyes move during a            1.2. Children’s eye movements during
+saccade), numerical (e.g., the number or proportion of regressions) or            reading
+temporal nature (e.g., the duration of a fixation; Rayner, 1998). They
+may also move the gaze backwards, which is called a regressive                         In the wake of important technical advancements, recent years
+saccade or regression. Variations in eye movement characteristics                 have seen a growing body of eye tracking research on reading
+reflect the relative ease with which the reader progresses through the            development (Sovik et al., 2000; Blythe et al., 2006, 2011, 2015; Häikiö
+text (Rayner, 1977; Yang, 2012). In general, fluctuations in those                et al., 2009; Joseph et al., 2013; Reichle et al., 2013; Blythe, 2014;
+variables are interpreted as indications of text processing difficulty            Vorstius et al., 2014; Spichtig et al., 2016; Kornev et al., 2019) which
+rather than the cause thereof (Rayner, 1977; Just and Carpenter, 1980).           have examined how progress is reflected in young readers’ eye
+     In adult readers, a fixation typically lasts between 60 and 500 ms           movements (Blythe, 2014). Young readers have a higher number of
+(milliseconds) with an average of 250 ms (Rayner, 1998). Fixations are            fixations and longer fixation durations than older, proficient readers.
+directly affected by the length and the frequency of the fixated, word            They make a higher number of short forward saccades and make
+as well as by lexical predictability. The longer the word, the higher is          regressive saccades more often than adults (Rayner, 1986; Inhoff et al.,
+the probability that the reader refixates it and low-frequency words are          2019). In general, regressions decrease in frequency as the child’s
+fixated for a longer time than high-frequency words (Rayner and                   reading improves and the occurrence of errors relating to both
+McConkie, 1976; Rayner and Duffy, 1986; Liversedge and Findlay,                   decoding and comprehension become rarer. Children’s eye movements
+2000; Joseph et al., 2013). Word frequency effects are really the effects         during reading largely resemble those of adults around 10–12 years of
+of lexical processing, a necessary operation to access the word’s                 age (Rayner and Duffy, 1986; Blythe et al., 2009; Reichle et al., 2013;
+meaning (Reichle et al., 2013). Repeated exposure to print strengthens            Blythe, 2014; Strandberg et al., 2022). Commonly, studies across age
+the links between form and meaning in memory. Over time, word                     groups have informed researchers about this development (Blythe
+recognition requires shorter and fewer fixations. This process is widely          et al., 2009, 2011; Häikiö et al., 2009). Like adults’, children’s gaze
+considered an important driving force of eye movements during                     durations are significantly longer for low than high-frequency words
+reading (Rayner and McConkie, 1976; Just and Carpenter 1980;                      (Joseph et al., 2013). Word recognition processes involve a cognitive
+Inhoff, 1984; Rayner, 1986; Rayner and Duffy, 1986; Clifton et al.,               load which presumably is higher in beginning than skilled readers.
+2007; Reichle et al., 2009; Rau et al., 2014; Blythe et al., 2015; Tiffin-        This affects the preprocessing of upcoming letters and any other
+Richards and Schroeder, 2015).                                                    retrievable information from their perceptual span, which is smaller
+     Rayner et al. (Reichle et al., 2009) describes an initial stage of           than that of adults (Rayner, 1986; Kim et al., 2019). Indeed, the gaze
+processing taking place during fixations, where our decoding system               behavior of adult, struggling readers share several characteristics with
+quickly determines whether the word is likely to be identified. When              that of very young readers (Prado et al., 2007; Barnes and Kim, 2016).
+a certain threshold is reached, a saccade to the next word is                     Struggling readers tend to have longer fixations, a higher number of
+programmed. Following that, the second stage entails lexical access to            fixations and saccades, and make shorter forward saccades which is
+the word. In parallel, the reader extracts relatively low-level visual and        indicative of longer processing times (McConkie and Rayner, 1975;
+linguistic information, such as letter shape, word length and                     Rayner, 1998; Al Dahhan et al., 2014).
+
+
+Frontiers in Education                                                       02                                                             frontiersin.org
+Strandberg et al.                                                                                                            10.3389/feduc.2023.1077882
+
+
+
+
+     Hence, the number and duration of fixations decrease, refixations           allows rapid word identification and retrieval of word meanings
+decrease, the number of saccades decreases while forward saccade                 (Perfetti, 2010). We assume that it to some extent reflects abilities that
+amplitude increases, and the proportion of regressive saccades                   assist text comprehension as well.
+decrease over time despite increased text difficulty (Blythe, 2014;                   Assessments of reading ability within the educational setting are
+Strandberg et al., 2022). This account of young readers’ eye movements           largely dependent on offline measures (Kim et al., 2019). It often
+is consistent with current developmental models of word reading                  demands some response on the student’s behalf, be it verbal or written.
+(Blythe et al., 2011; Reichle et al., 2013; Blythe, 2014). Above, lexical        Additionally, assessments are essentially always multipart. While they
+processing is mentioned as a crucial route during reading. However,              may give the instructor an idea of the students’ reading ability, they
+very young children largely depend on sub-lexical processes to decode            are time consuming. According to Swedish Agency for Health
+text. Children initially learn how to read small units of print, while           Technology Assessment and Assessment of Social Services (SBU),
+simultaneously trying to make the connections between orthography                more than 50 different tests are used to diagnose reading difficulties
+to phonology and semantics (Rau et al., 2014, 2015b). Over time,                 and none of them have been scientifically evaluated. On an
+when the necessary links have been established, the quite demanding              international level, the report found scientific basis for very few
+letter-by-letter processing that initiates reading acquisition gradually         assessments (Statens beredning för medicinsk utvärdering (SBU),
+develops to automatized orthographic reading (LaBerge and Jay                    2014). Furthermore, nearly all screening protocols available require
+Samuels, 1974; Ehri, 2005, 2014).                                                manual scoring and subjective assessment of the performance, which
+     The research that we have described here has developed our                  entails a risk of interrater variation. Finally, records show that the
+understanding of children’s text processing and the knowledge that               average age of diagnosis of reading difficulties in Sweden is 13 years,
+can be gained from their eye movements during reading. Some areas                while early detection for reading difficulties is significant in terms of
+are still poorly understood, including what, if any, conclusions that can        success of treatment (Denton et al., 2006; Zijlstra et al., 2021).
+be drawn about future word reading ability based on early eye                    Investigations of behavioral measures in this context have yielded
+movements. We know that current reading skill is reflected in gaze               some promising results. Eye movement patterns have been used to
+patterns. However, it is unclear with what certainty we can estimate             identify students with reading difficulties with high accuracy in a few
+children’s reading ability at a later point based on early reading               studies (Rello and Ballesteros 2015; Ygge et al., 2016). The current
+eye movements.                                                                   study attempts to extend findings from this area to a diverse sample
+                                                                                 and a natural reading situation in a longitudinal design. Eye movement
+                                                                                 analysis could be used in the educational setting in the future, given a
+1.3. Underpinnings of the present study                                          continued development of eye tracking technology toward accessibility
+                                                                                 and more manageable administration. It could potentially offer a fast
+     While the branch of reading research that focuses on text                   analysis and an objective perspective in reading assessments in the
+comprehension often deals with higher-level processes, the Lexical               academic or clinical setting. While most available offline tests of
+Quality Hypothesis developed by Perfetti and Hart (2001) emphasizes              reading provide information about current reading ability, longitudinal
+a lexical basis of comprehension. In this view, understanding of word            coherence of the outcomes or predictive validity of the test materials
+meanings is central to global text comprehension. Perfetti (2010)                is most often not evaluated. An ultimate goal for gaze behavior
+describes a two-fold mechanism of progress; understanding a text lets            analysis could be to work as a complementary tool that provides quick
+children add specific semantic word knowledge to their vocabularies,             and highly accurate predictions of word reading ability in young
+while it also allows application of that new knowledge when reading              children (Rello and Ballesteros 2015; Ygge et al., 2016).
+other texts that contain those words. Several accounts of inter-reader                There is considerable variation to the methodological aspects of
+differences focus on cognitive differences, which do not fully explain           previous eye movement research on children’s reading. Oftentimes,
+differences in knowledge of word meanings that remain throughout                 data is collected under controlled experimental conditions, most often
+literacy development (Perfetti, 2010). Evidence that vocabulary                  in a research lab. Elements that minimize the influence of movements
+training has effects on global comprehension (Beck et al., 1982)                 are common, such as head-tracking devices and chin- or head-rests.
+suggests that word knowledge should be taken into account when                   Other constraints concern how the stimuli are modeled and presented.
+considering individual differences in reading. In this paper, we analyze         Researchers can use gaze contingent techniques (such as the
+a composition of tests that reflect fluency, accuracy and speed.                 disappearing text or moving window paradigm; McConkie and
+Altogether, it is representative of abilities that support word level            Rayner, 1975, 1976) and present the participant with letters, words or
+processes (Kamhi and Catts 2005). We assume word level processing                sentences; one-by-one or sequentially. Restrained set-ups are
+to be a significant marker of reading ability and important for the              associated to precise results and have contributed significant insight
+continued reading development. While the assessment carried out                  into the reading process. However, as is frequently the case where a
+highlights decoding and processing of words, rather than knowledge               phenomenon that naturally occurs in uncontrolled environments is
+of words, there is arguably tight interplay between the skills during            studied in a controlled setting, the inherent characteristics of highly
+reading. We have chosen this stance based on a paradigm where word               controlled set-ups may decrease the generalizability of findings. Their
+reading and comprehension are considered dissociated abilities,                  relevance for the educational setting, for example, where natural
+insofar that they are supported by partly different sets of underlying           reading of print or on screens is practiced is theoretically somewhat
+component skills. However, there is also an overlap between word                 limited. Unrestrained set-ups are associated with larger margins of
+level operations and text comprehension in developing readers (Hosp              error and more variability and are less common in this field of
+et al., 2019). In this study, we analyze word reading ability because            research. Hence, there is less knowledge about children’s eye
+smooth decoding is a crucial component of the reading process. It                movements during reading in authentic contexts. Therefore, the
+
+
+Frontiers in Education                                                      03                                                              frontiersin.org
+Strandberg et al.                                                                                                                       10.3389/feduc.2023.1077882
+
+
+
+
+participants of the current study read normal text passages at the                  However, previous results from this field lead us to anticipate a
+location of their school to resemble a normal reading situation and to         bigger difference in explained variance between the concurrent and
+represent the probabilistic, uncertain nature of the                           longitudinal model in the group of youngest participants (i.e., those
+everyday environment.                                                          who were in first grade at the time of eye movement recording;
+     Reading ability is crucial throughout life, while its foundation          referred to as sample A and B in the analysis and onward, for the sake
+is established during early childhood. Despite progress during                 of clarity). That means, we expect the variance in word reading ability
+recent years, investigations into children’s reading continue to be of         that can be ascribed to the eye movement model to decrease more
+importance. So far, little research investigates children’s eye                longitudinally among the younger readers. Primarily, because
+movements and reading ability over time (Spichtig et al., 2016; Kim            we anticipate the eye movement behavior of this group to be influenced
+et al., 2019) within the same subjects. We know that gaze behavior             by a transition from sub-lexical to lexical processing, which is known
+during reading is a good real-time measure of the relative ease with           to affect the eye movement characteristics during reading (Reichle
+which the reader processes the text. If early eye movements can                et al., 2013b). Also, we expect higher variability among the eye
+account for variation in later word reading skill in this setting, that        movement measures in first grade students and because the youngest
+insight could have theoretical and practical implications. First, it           students may be more susceptible to other factors that influence the
+is a contribution to our understanding of eye movements of                     reliability of the eye movement recording and/or word reading
+developing readers, which is still limited. The gap in the literature          assessment. Finally, the duration of their access to sufficient
+concerns developing readers in any context, and data from                      instruction is more uncertain (whereas the second grade students have
+naturalistic settings is scarce. Few, if any, studies have investigated        had at least one year of formal instruction, which we deem enough to
+to what extent early eye movements during reading predict later                establish the basic concepts of word reading, at least). We address the
+word reading ability in children in this context. Ultimately, eye              following three key questions:
+movement analysis could inform the identification of children                       (1) To what extent do eye movements recorded in first and second
+needing extra support in early reading development. Encumbered                 grade predict word reading ability at the time of recording and 1 year
+word level processes can have implications for reading                         later? (2), Does the amount of explained variance in word reading
+comprehension and the importance of early identification of                    ability decrease in the longitudinal model compared to predictions
+children with poor word reading and poor predicted development                 made the same year and if so, by how much? (3) Is the decrease larger
+cannot be overstated (Rayner et al., 2009; Perfetti, 2010). Further,           in either sample?
+the benefits of predicting word reading ability extend to a wider
+perspective, as improved assessment could assist specialized
+support also for proficient readers.                                           2. Methods
+     This study springs from a research project developing an
+eye-tracking and AI-based screening method for reading difficulties            2.1. Participants
+(RD) described by Ygge et al. (2016), intended for use in the school
+environment. All participants were recorded in their schools. Eye                  The participants were elementary school students in Järfälla
+movement analysis was based on normal text reading and a word                  municipality in Stockholm, Sweden (see Table 1 for detailed
+reading assessment was carried out to establish their reading                  information). They all went to public schools (all municipally
+proficiency. Thus, the present analysis examines data collected during         governed elementary schools were enrolled in the study). The yearly
+this large-scale, data driven research project (n = 2,687) which               income of Järfälla’s population was slightly higher than the Swedish
+provides the methodological context of this paper (Strandberg                  median. The unemployment rate was lower than the Swedish median
+et al., 2022).                                                                 percentage (SCB, 2023). The participants were singled out from the
+     In this study, we analyze to what extent children’s eye                   larger sample and included in the present analysis on the basis of
+movements during reading predict word reading ability tested the               having completed all tasks of the word reading assessment and having
+same year and compare the results to predictions of word reading               participated twice with a one-year-interval, either in first and second
+skill one year later. To our best knowledge, it has not been done              grade or second and third grade (2015 and 2016).
+before with this approach and in this setting. It seems plausible                  No children with intellectual disability (IQ < 70) or general
+that eye movements will explain some of the variance in word                   learning disabilities were part of the sample, as they attend classes with
+reading ability measured at the same occasion. It is more
+uncertain, however, whether it is possible to make long-term                   TABLE 1 Participant information.
+predictions about word reading ability, such as one year later.
+Presumably, the amount of variance explained by the eye                                                               Sample A                        Sample B
+movement measures decreases the longer the time that has passed                 Girls (n=)                                   84                             97
+between the time of recording and the estimation of word reading                Boys (n=)                                    79                             107
+ability, although we currently do not know by how much.
+                                                                                N/A                                          1                               1
+Therefore, it is of interest to compare the variance explained the
+                                                                                Total (N=)                                  164                             205
+first year to the second occasion one year later, in order to get a
+quantitative estimation of the predictive validity of eye                       Age M1 m (sd)                               7.9                             8.8
+movements. Due to a lack of studies of immediate relevance, it is               Age M2 m (sd)                               8.8                             9.8
+unfeasible to build supported hypotheses based on findings                     M1 refers to the first cycle of data collection (spring semester of 2015) and M2 to the second
+directly linked to our questions.                                              cycle of data collection (spring semester of 2016).
+
+
+
+
+Frontiers in Education                                                    04                                                                               frontiersin.org
+Strandberg et al.                                                                                                                                 10.3389/feduc.2023.1077882
+
+
+
+
+TABLE 2 Details about language, background and Caregivers’
+educational level among elementary school students in Järfälla.
+                                                                                                        2.3. Apparatus and procedure
+                                                % of all students                                           In order to maintain authentic conditions for data collection,
+                                 Swedish L2                      FB                   HE                the testing and recording were carried out in the child’s every-day
+                                                                                                        environment. The participants’ eye movements were recorded
+  Trosa                                4.7                       12                    51
+                                                                                                        during normal text passage reading in an unrestrained, binocular
+  Järfälla                            11.2                       34                    61               eye tracking set-up. Thus, no devices that limit head movements
+  Sweden                              10.6                       24                    57               were used.
+Swedish L2, Swedish as a second language; FB, Foreign background (the participant was                       The participants completed five different tasks: Word Chains,
+born abroad or was born in Sweden to caregivers born abroad); HE, higher education among                Rapid Automatized naming (RAN), word reading, pseudo word
+caregivers (completed third cycle education or higher).
+                                                                                                        reading, and text reading (the two text passages constituting the
+TABLE 3 Results on the National Tests (reading subtests only) in Swedish                                text reading assignment are considered as part of one and the
+among third graders 2016.
+                                                                                                        same task). Eye movements were not recorded during the first
+                      Fiction                Fact            Oral            Discourse                  assignment (Word Chains), which was conducted in the
+                                                                                                        classroom in accordance with the instruction handbook. The
+  Trosa                   91.9               93.3             93.2                  96.2
+                                                                                                        remainder of the assignments (RAN, word reading, pseudo word
+  Järfälla                94.9               94.9             96.6                  97.3
+                                                                                                        reading and text reading) was completed individually, together
+  Sweden                  92.5               93.8             96.1                  97.2                with an experiment leader in a separate room. The participants
+Percentage of participants whose test results corresponded to curriculum learning goals.                were called out one by one from their classroom activity. In the
+Fiction, Silent reading of fiction; Fact, Silent reading of fact based text; Oral, Oral reading;        adjacent room where the recording took place, they were seated
+Discourse, Verbal text discourse.
+                                                                                                        at approximately 70 centimeters from the monitor. Before the
+                                                                                                        start of the experiment, a five-point calibration procedure was
+adjusted curriculum and syllabus. Readers with Swedish as first and                                     performed on the monitor of a Tobii T120 eye tracker (120 Hz;
+second language cannot be differentiated in the current study. Public                                   Tobii Technology AB, Danderyd, Sweden) with a 1280*1024
+records indicate that the proportion of students with Swedish as a                                      screen resolution. The children were given step-by-step
+second language was marginally larger in Järfälla public elementary                                     information in the beginning assignment and throughout the
+schools than the Swedish average (SCB, 2023; see Table 2 for                                            assignment at relevant times. The personal consent of each
+more information).                                                                                      participating child was obtained. The tasks were presented
+     The national tests are compulsory exams which Swedish children                                     sequentially and run with the software Optoscope (version
+take in third, sixth and ninth grade of elementary and middle school,                                   3.0.0.19). Participants could terminate their participation at any
+and again in high school. The purpose of the tests is to support teachers’                              time. Where applicable, data recorded before this point was saved
+assessments of students in certain subjects in accordance to goals stated                               for analysis. Note that while eye movements were recorded
+in the national curricula. Information gleaned from the test results is                                 during each task (except Word Chains) only eye movements
+also used for comparison of the relative attainment of students in                                      during text reading are analyzed in the present paper. Sound was
+different schools and areas. Downloadable information in English                                        recorded with an external USB microphone (Samsung GoMic).
+about the national test is available on the Swedish National Agency of                                  All tests (RAN, word reading, pseudo word reading, text reading)
+Education’s website (Skolverket, 2023). Indicative of the general reading                               were scored and analyzed as described below and constituted
+performance among the third grade students in this study, Table 3                                       parts of the word reading assessment.
+shows the third grade students’ 2016 results on the reading subtests of
+the national tests in Järfälla, as well as the national average.
+                                                                                                        2.4. Stimulus material
+
+2.2. Ethical considerations                                                                                 The word reading assessment in its entirety is found in
+                                                                                                        Supplementary Figures S1–S10. Below, the word reading assessment
+     The research protocol of the current study is approved by the                                      is described in chronological order (e.g., the first task was Word
+Central Ethical Review Board (Ö 13/2015). Prior to data collection,                                     Chains and so forth).
+the supervising researchers (Mattias Nilsson and Gustaf Öqvist
+Seimyr) met with the principals, teachers and caregivers involved at                                    2.4.1. Word chains
+parent-teacher meetings and informed them about the study. Further                                          Word Chains is a standardized test used to assess children’s visual
+information and forms for written consent were sent to the residence                                    word recognition. It requires the participant to separate words from
+of all caregivers. All children enrolled in first, second and third grade                               each other when presented in series of strings (i.e., written
+were offered to participate, provided that parental consent was                                         consecutively, without blank spaces). The test involves 80 three-word-
+acquired. Moreover, their personal consent was obtained at the time                                     strings. The word strings consist of nouns, adjectives and verbs
+of testing, and they were informed they may terminate their                                             intermingled and the task is to mark the boundaries between words
+participation at any moment. No formal exclusion criteria were                                          with a pencil. The participants were instructed to work through as
+applied, but all participants were enrolled in schools with standard                                    many strings as possible within the time limit of 2 min. This
+curriculum and syllabus, i.e., no students in special educations                                        assignment was carried out in the class room setting and is a part of a
+programs participated in the study.                                                                     special edition of Läskedjor-2 (Jacobson 2015).
+
+
+Frontiers in Education                                                                             05                                                            frontiersin.org
+Strandberg et al.                                                                                                                                          10.3389/feduc.2023.1077882
+
+
+
+
+TABLE 4 Text passage metrics.
+
+ Grade                  W (n)         WL (m)           LW (n)           S (n)          SL (m)          % long words                LIX          TTR %             OVIX            OVR %
+ 1st
+
+ Text A                    20             3.6              0               5               4                    0                    4              80              41.7             92.55
+
+ Text B                    20             3.6              0               5               4                    0                    4              80              41.7             92.55
+
+ 2nd
+
+ Text A                    42             3.8              1               7               6                  2.38                   8            76.19            53.22             92.72
+
+ Text B                    42             3.8              1               7               6                  2.38                   8            76.19            53.22             92.72
+
+ 3rd
+
+ Text A                    60             3.85             6              11             5.45                  10                   15            68.33            46.04             90.7
+
+ Text B                    60             3.85             6              11             5.45                  10                   15            68.33            46.04             90.7
+W, words; WL, word length, (n) letters/(n) words; LW, long words > 6 letters; S, sentences; SL, sentence length (n) words/(n) sentences; % of long words, long words/words*100; LIX,
+SL + percent long words; TTR, type/token ratio; OVIX, log (tokens)/log [2-log (types)/log (tokens)]; OVR, log (types)/log (tokens).
+LIX is an abbreviation of läsbarhetsindex in Swedish, which translates to readability index in English. Type/token ratio is a measure of lexical density. OVIX is an abbreviation of
+ordvariationsindex in Swedish which takes consideration of total text length and translates to word variation index in English. OVR is an abbreviation of ordvariationsratio in Swedish, which
+translates to word variation ratio.
+
+
+
+2.4.2. Rapid automatized naming                                                                      associated with a natural reading situation. Therefore we considered it
+     This and the subsequent tasks (described below) were presented                                  suitable to adapt the level of difficulty to what the participants normally
+on the Tobii T120 screen. The alphabetical, serial format rapid naming                               would read. This has implications for group comparisons. However, by
+task was based on the Comprehensive Test of Phonological Processing                                  varying the stimuli we avoid unbalanced results which using identical
+(CTOPP-II; Wagner et al., 2013) which taps into the reader’s                                         text passages for all students would lead to (disproportionate processing
+processing speed and fluency. It consists of 4 rows of 9 letters each, in                            difficulties for participants in first grade or ceiling effects among
+black on white background. Participants were to name the presented                                   participants in third grade). In collaboration with a special educations
+letters consecutively as fast as possible. Due to time limitations, only                             teacher, the authors developed three sets of texts adapted to grade and
+a letter naming task was included in the present study. The responses                                presumed approximate reading ability, guided by the amount of reading
+were recorded with an external USB-microphone (Samson, Go Mic).                                      instruction received. Children start receiving formal training in basic
+The total naming time was recorded and reanalyzed in terms of named                                  skills necessary for reading in the last year of preschool (at approximately
+letters per minute.                                                                                  6 years of age). Despite this, there is great variation in reading and
+                                                                                                     writing competence among children who start first grade. In Strandberg
+2.4.3. Word and pseudo word reading                                                                  et al., 2022 this text reading task (as well as the remainder of the word
+     The tests were not part of any standardized test protocol, but were                             reading assignment) was used in a sample of 2,876 children and
+developed in accordance with the principles of Test of Word Reading                                  descriptive data, correlation coefficients and linear mixed models are
+Efficiency (TOWRE; Torgesen et al., 2012) which is a word reading test                               reported. The text passages are described in further detail in Table 4. The
+in English. The outcomes were intended to reflect word recognition                                   texts all dealt with everyday topics. The participants were informed on
+accuracy and phonological decoding. 64 words were presented in rows                                  beforehand that one question about the content would follow upon
+of 8 × 8 in black on white background. They were ordered by increasing                               them finishing each text. The questions were of simple yes- or no
+length and decreasing frequency, starting with some of the most                                      character and the answer was evident in the texts (no inferences were
+common two-letter words and ending with nine-letter words. The                                       required on the student’s behalf). The purpose of the questions was to
+pseudo words were presented in the same manner, ordered by increasing                                encourage attentive reading. The participants’ answers did not provide
+length. The pseudo words were constructed based on the real words                                    information pertinent to assess reading comprehension. Thus, their
+according to a system developed by Gustaf Öqvist Seimyr. The objective                               answers are not analyzed further in the present study. The participants
+was to create pseudo words that were similar to real words in terms of                               were encouraged to read silently if possible, but reading aloud was
+phonetic complexity. The consonants n, l and m were replaced by l, m                                 allowed when requested by the child. Reading speed was measured by
+and n, respectively. Vowels were replaced in according to place of                                   the number of read words per minute and the result of both texts was
+articulation: (a- > o, o- > å, å- > u, u- > a), and (e- > i, i- > y, y- > ö, ö - > ä,                averaged. The eye movement measures in this study are based on
+ä- > e). This procedure was repeated if a word was still semantically                                this tasks.
+coherent after the first transposition. The participants were instructed
+to read as many words/pseudo words out loud as possible. Their
+responses were recorded and the number of accurate items within the                                  2.5. Analysis
+time limit of 30 s per test was noted.
+                                                                                                         Eye movements were recorded and analyzed binocularly. The eye
+2.4.4. Text reading                                                                                  movement data was analyzed in Optosphere (Version 2.1) (Nilsson
+    The participants were asked to read two short fictional texts in                                 Benfatto et al., 2016). The software classifies the eye movements as
+Swedish. The texts consisted of one-passage paragraphs presented in                                  events, depending on their properties. A fixation was defined as the
+black text on white background. We wanted to incite the gaze behavior                                event of the eye remaining within an area corresponding to the fovea
+
+
+Frontiers in Education                                                                          06                                                                            frontiersin.org
+Strandberg et al.                                                                                                                                         10.3389/feduc.2023.1077882
+
+
+
+
+TABLE 5 Descriptive statistics of eye movement variables.
+
+                                                                                  Sample A, m (sd)                                               Sample B, m (sd)
+                                                                                              1                                                               2
+ Mean fixation duration (milliseconds)                                                    519 (185)                                                       349 (102)
+
+ Forward saccade amplitude (degrees)                                                     0.74 (0.19)                                                     0.95 (0.26)
+
+ Proportion of regressions (ratio)                                                       0.33 (0.05)                                                     0.21 (0.06)
+The variables are based on eye movement recordings made in first grade in Sample A and second grade in group Sample B (e.g., recorded during first cycle of data collection).
+Correlations between eye movement variables in each sample.
+
+
+
+
+    FIGURE 1                                                                                           FIGURE 2
+    Mean fixation duration during text reading. Data from the first cycle                              Mean forward saccade amplitude during text reading. Data from the
+    is visualized in the left box and data from second cycle in the right                              first cycle is visualized in the left box and data from second cycle in
+    box.                                                                                               the right box.
+
+
+
+
+for at least 50 ms. Saccades were classified according to whether they
+occur within or outside the perceptual span and are identified as
+progressive (45–224 degrees) or regressive (224–45 degrees)
+depending on their directional angle. Fixations were analyzed in terms
+of mean fixation duration. Saccades were analyzed according to
+directional angle, amplitude and proportion of regressive saccades
+(Ygge et al., 2016). See Table 5 and Figures 1–3 for the descriptive
+statistics and distribution of eye movement data and Table 6 for the
+descriptive statistics of the word reading assessment.
+     The sample was separated in two groups based on which
+grade the participant attended. Throughout the remainder of this
+paper, we refer to the group of children who participated in first
+and again in second grade as sample A, while the group of
+children who participated in second and third grade is referred
+to as sample B. At the outset of data analysis, the entire sample
+                                                                                                       FIGURE 3
+consisted of 561 participants. The data was filtered according to                                      Mean proportion of regressions during text reading. Data from the
+a three-step procedure. Eye movement recordings were removed                                           first cycle is visualized in the left box and data from second cycle in
+if the amount of noise exceeded 25% (n = 178). Next, subjects                                          the right box.
+
+were excluded based on whether the difference in reading speed
+(WPM) between the two text conditions exceeded the outlier
+threshold values (n = 8). Outlier values in the eye movement data                                 composite variable. We standardized the results through
+were then identified with Tukey’s interquartile range with the                                    z-transformation and combined them using simple averaging. The
+scale factor set to 3.0. Following the complete filtering procedure,                              tests are described under Materials, above.
+164 participants remained in sample A and 206 participants                                             We carried out this analysis based on the assumption that the
+remained in sample B.                                                                             tests (1) assess important constructs of reading ability, (2) to
+                                                                                                  some extent are conceptually linked and (3) provide a global
+2.5.1. Outcome variable                                                                           representation of reading ability. Moreover, they are relevant
+   To generate a representative measurement of reading ability,                                   constituents of reading assessments. Our intention was to
+we combined the outcomes of the reading assessment in one,                                        facilitate interpretation of results pertaining to multiple variables
+
+Frontiers in Education                                                                       07                                                                                 frontiersin.org
+Strandberg et al.                                                                                                                                         10.3389/feduc.2023.1077882
+
+
+
+
+TABLE 6 Descriptive statistics of word reading assessment.
+
+                                                               Sample A, m (sd)                                                            Sample B, m (sd)
+  Grade
+                                                        1                                     2                                     2                                     3
+  Rapid naming                                       79 (18)                              100 (20)                               97 (19)                               112 (20)
+
+  Word chains                                         10 (6)                                18 (7)                                17 (6)                                24 (7)
+
+  Pseudo word reading                                 16 (7)                                23 (6)                                22 (6)                                26 (6)
+
+  Word reading                                       28 (11)                               39 (10)                               39 (10)                                46 (9)
+
+  Reading speed                                      56 (29)                              104 (39)                              103 (40)                               139 (40)
+Rapid naming is estimated in letters per second and reading speed is estimated in words per minute (during text reading) while the remaining tests are evaluated in number of correct
+responses.
+
+
+
+TABLE 7 Intercorrelations word reading assessment in first grade (sample A).
+
+                                              1                               2                               3                              4                                5
+  1. Rapid naming                                                          0.37***                        0.43***                          0.52***                        0.51***
+
+  2. Word chains                                                                                          0.58***                          0.65***                        0.72***
+
+  3. Pseudo word reading                                                                                                                   0.86***                        0.75***
+
+  4. Word reading                                                                                                                                                         0.88***
+
+  5. Reading speed
+*p < 0.05, **p < 0.01, ***p < 0.001.
+
+
+
+
+TABLE 8 Intercorrelations word reading assessment in second grade (sample A).
+
+                                              1                               2                               3                              4                                5
+  1. Rapid naming                                                          0.22**                         0.45***                          0.55***                        0.43***
+
+  2. Word chains                                                                                          0.49***                          0.60***                        0.58***
+
+  3. Pseudo word reading                                                                                                                   0.77***                        0.55***
+
+  4. Word reading                                                                                                                                                         0.77***
+
+  5. Reading speed
+*p < 0.05, **p < 0.01, ***p < 0.001.
+
+
+
+and to generate a robust, conceptually valid measure. The                                              A multiple linear regression was calculated to predict and account
+interaction of eye movement variables and each of the reading                                     for the variance in the composite word reading ability score (OV)
+tests was analyzed (see Supplementary Table S1). The main                                         based on eye movement measures (PV). Eye movements recorded in
+finding of this prelusive, exploratory analysis is that the predictor                             first grade were used as predictive variables for word reading ability
+variables account for less variance in three of the outcome                                       assessed the same year (i.e., assessed at the same occasion as eye
+variables (RAN, word chains, and pseudo word reading) when                                        movement recording took place) and 1 year post-recording (i.e., when
+those tests are handled separately. The predictor variables                                       the students were in second grade). The same analysis was carried out
+account for slightly less of the variance in word reading accuracy                                in sample B - eye movements recorded in second grade were used as
+and approximately the same amount of variance in reading speed                                    predictive variables for word reading ability assessed the same year
+as in the composite measure. Largely, these findings support the                                  and 1 year post-recording.
+integrity of the composite measure. They indicate that combining
+these outcome variables does not compromise nor exaggerate the
+predictive validity of the model. There are no notable differences                                3. Results
+between the individual tests and the composite measure in terms
+of longitudinal differences.                                                                          Inter−/correlations of the word reading assessment (including the
+     The variance inflation factor (VIF) was calculated in order to                               composite measure) are described in Tables 7–12.
+investigate the influence of multicollinearity among the predictor                                    Below, we introduce the models of eye movement variables
+variables. The variance inflation factor was <2.5 for all predictors in both                      predicting word reading ability recorded at the same occasion. Second,
+samples and multicollinearity should therefore only affect the variance                           we address predictions of word reading ability 1 year post eye
+of the regression coefficients to a limited extent (Thompson et al., 2017).                       movement recordings.
+
+
+
+
+Frontiers in Education                                                                       08                                                                               frontiersin.org
+Strandberg et al.                                                                                                             10.3389/feduc.2023.1077882
+
+
+
+
+TABLE 9 Intercorrelations word reading assessment in second grade (sample B).
+
+                                             1                2                           3                         4                         5
+ 1. Rapid naming                                           0.37***                     0.51***                   0.59***                    0.49***
+ 2. Word chains                                                                        0.58***                   0.66***                    0.68***
+ 3. Pseudo word reading                                                                                          0.82***                    0.7***
+ 4. Word reading                                                                                                                            0.81***
+ 5. Reading speed
+*p < 0.05, **p < 0.01, ***p < 0.001.
+
+
+TABLE 10 Intercorrelations word reading assessment in third grade (sample B).
+
+                                             1                2                           3                         4                         5
+ 1. Rapid naming                                           0.31***                     0.42***                   0.54***                    0.35***
+ 2. Word chains                                                                        0.48***                   0.54***                    0.59***
+ 3. Pseudo word reading                                                                                          0.76***                    0.60***
+ 4. Word reading                                                                                                                            0.68***
+ 5. Reading speed
+*p < 0.05, **p < 0.01, ***p < 0.001.
+
+
+
+TABLE 11 Correlations word reading assessment in first x second grade (sample A).
+
+                                         1             2                     3                       4                     5                      6
+ 1. Rapid naming                       0.58***      0.38***                0.31***                0.43***               0.39***                   –
+ 2. Word chains                                     0.74***                0.38***                0.51***               0.56***                   –
+ 3. Pseudo word reading                                                    0.72***                0.73***               0.61***                   –
+ 4. Word reading                                                                                  0.8***                0.74***                   –
+ 5. Reading speed                                                                                                       0.79***                   –
+ 6. Composite variable                                                                                                                        0.85***
+*p < 0.05, **p < 0.01, ***p < 0.001.
+
+
+
+
+TABLE 12 Correlations word reading assessment in second x third grade (sample B).
+
+                                         1             2                     3                       4                     5                      6
+ 1. Rapid naming                       0.61***      0.42***                0.45***                0.57***               0.43***
+ 2. Word chains                                     0.79***                0.47***                0.51***               0.61***
+ 3. Pseudo word reading                                                    0.82***                0.73***               0.59***
+ 4. Word reading                                                                                  0.82***               0.75***
+ 5. Reading speed                                                                                                       0.79***
+ 6. Composite variable                                                                                                                        0.88***
+*p < 0.05, **p < 0.01, ***p < 0.001.
+
+
+
+
+3.1. Concurrent analysis: predictions of                                        increase of saccade amplitude is linked to a higher word reading
+word reading ability based on eye                                               ability score (see Table 13).
+movements recorded the same year
+                                                                                3.1.2. Sample B
+3.1.1. Sample A                                                                      A significant regression equation was found [F (3, 202) = 107,
+     A significant regression equation was found [F (3,160) = 80.64,            p < 0.001]. Eye movements recorded in second grade accounted for 61%
+p < 0.001]. Eye movements recorded in first grade accounted for 59%             of the variance in word reading ability score in second grade (R2 = 0.61,
+of the variance in word reading ability score in first grade (R2 = 0.6,         R2Adjusted = 0.61). Each variable in the model was a significant predictor of
+R2Adjusted = 0.59). Mean fixation duration and forward saccade amplitude        word reading ability score. The model shows that an increase of mean
+were significant predictors of word reading ability score. The model            fixation duration and proportion of regression is associated to a decrease
+shows that an increase of mean fixation duration and proportion of              in outcome variable, while an increase of saccade amplitude is linked to
+regression is associated to a decrease in outcome variable, while an            a higher word reading ability score (see Table 14).
+
+
+
+
+Frontiers in Education                                                     09                                                                 frontiersin.org
+Strandberg et al.                                                                                                                                          10.3389/feduc.2023.1077882
+
+
+
+
+TABLE 13 Summary of multiple regression analysis: reading ability in first grade predicted by eye movements variables in first grade.
+
+                                                  Estimate                              Std. error                              t-value                                P (>|t|)
+ (Intercept)                                          115.01                                 13.02                                  8.83                             1.74e-15 ***
+
+ Mean fixation duration                               −0.10                                  0.01                                 −10.72                              < 2e-16 ***
+
+ Forward saccade amplitude                            29.13                                  9.45                                   3.08                              0.00242 **
+
+ Proportion of regressions                           −82.33                                  29.63                                 −2.78                              0.00612 **
+Outcome variable: Composite measure of reading assessment outcomes in first grade. Multiple R-squared: 0.69. Adjusted R-squared: 0.59. p < 0.001. Significance codes: *p < 0.05, **p < 0.01,
+***p < 0.001.
+
+
+
+TABLE 14 Summary of multiple regression analysis: reading ability in second grade predicted by eye movement variables in second grade.
+
+                                                  Estimate                              Std. error                              t-value                                P (>|t|)
+ (Intercept)                                          148.82                                 14.14                                 10.52                              < 2e-16***
+
+ Mean fixation duration                                −0.2                                  0.02                                  −9.73                              < 2e-16***
+
+ Forward saccade amplitude                            57.36                                  8.49                                   6.76                              1.47e-10***
+
+ Proportion of regressions                           −150.11                                 29.13                                 −5.15                              6.09e-07***
+Note. Outcome variable: composite measure of reading assessment outcomes in second grade. Multiple R-squared: 0.61. Adjusted R-squared: 0.61. p < 0.001. Significance codes: *p < 0.05,
+**p < 0.01, ***p < 0.001.
+
+
+
+TABLE 15 Summary of multiple regression analysis: reading ability in second grade predicted by eye movement variables in first grade.
+
+                                                  Estimate                              Std. Error                              t-value                                P (>|t|)
+ (Intercept)                                          161.93                                 20.56                                  7.88                              4.86e-13***
+
+ Mean fixation duration                               −0.11                                  0.01                                  −7.64                              1.84e-12***
+
+ Forward saccade amplitude                            38.47                                  14.92                                  2.6                                 0.0108*
+
+ Proportion of regressions                           −82.61                                  46.78                                 −1.76                                 0.0793
+
+Outcome variable: composite measure of reading assessment outcomes in second grade. Predictor variables are based on recordings from first grade. Multiple R-squared: 0.45. Adjusted
+R-squared: 0.44. p < 0.001. Significance codes: p < 0.1, *p < 0.05, **p < 0.01, ***p < 0.00.
+
+
+
+
+TABLE 16 Summary of multiple regression analysis: word reading ability in third grade predicted by eye movement variables in second grade.
+
+                                                  Estimate                              Std. Error                              t-value                                P (>|t|)
+ (Intercept)                                          175.24                                 16.38                                  10.7                              < 2e-16***
+
+ Mean fixation duration                               −0.19                                  0.02                                  −7.86                             2.28e-13 ***
+
+ Forward saccade amplitude                             43.9                                  9.83                                   4.5                              1.33e-05 ***
+
+ Proportion of regressions                           −100.76                                 33.75                                 −2.96                              0.00318 **
+Outcome variable: composite measure of reading assessment outcomes in third grade. Predictor variables are based on recordings from second grade. Multiple R-squared: 0.48. Adjusted
+R-squared: 0.48. p < 0.01. Significance codes: *p < 0.05, **p < 0.01, ***p < 0.00.
+
+
+
+3.2. Longitudinal analysis: predictions of                                                          saccade amplitude is linked to a higher word reading ability score
+word reading ability based on eye                                                                   (see Table 15).
+movements recorded one year earlier
+                                                                                                    3.2.2. Sample B
+3.2.1. Sample A                                                                                          A significant regression equation was found [F (3, 202) = 63.23,
+    A significant regression equation was found [F (3, 160) = 43.41,                                p < 0.001]. Eye movements recorded in second grade accounted for
+p < 0.001]. Eye movements recorded in first grade accounted for                                     48% of the variance in word reading ability score in third grade
+44% of the variance in word reading ability score among second                                      (R2 = 0.49, R2Adjusted = 0.48). All eye movement measures in the model
+grade students (R2 = 0.45, R2Adjusted = 0.44). Mean fixation duration                               were significant predictors of word reading ability. The model shows
+and forward saccade amplitude were individually significant                                         that an increase of mean fixation duration and proportion of
+predictors of word reading ability score. The model shows that an                                   regression is associated to a decrease in outcome variable, while an
+increase of mean fixation duration and proportion of regression is                                  increase of saccade amplitude is linked to a higher word reading
+associated to a decrease in outcome variable, while an increase of                                  ability score (see Table 16).
+
+
+
+
+Frontiers in Education                                                                        10                                                                              frontiersin.org
+Strandberg et al.                                                                                                             10.3389/feduc.2023.1077882
+
+
+
+
+     Eye movements recorded in first grade predicted 59% of the                      4.1. General discussion of descriptive eye
+variance in the children’s word reading ability the same year, while                 movement findings
+it accounted for 44% of the variance one year later. In sample B,
+eye movements recorded in second grade explained 61% of the                              A pattern of quite robust associations between the composite
+variance in word reading ability measured the same year, and 48%                     variable and the eye movement variables emerge in our data. In
+one year later. Thus, the explained variance decreases with 15                       summary, an increase of the composite variable was associated to
+percentage points between first and second grade, and with 13                        shorter fixations, longer forward saccades, and fewer regressions
+percentage points between second and third grade. Further                            during reading. This means that a higher result on the variable
+analysis showed that r2 is substantially dependent on mean                           intended to reflect word reading ability was linked to changes in eye
+fixation duration in each instance while forward saccade                             movements that are consistent with improved text processing
+amplitude and proportion of regressions contribute to the models                     (Blythe, 2014).
+to a lesser extent. As a unique predictor, mean fixation duration                        Turning to the relationship between the eye movement
+accounts for on average 53% of the variance in concurrent word                       variables in this study and those reported in earlier work,
+reading ability and 42% on year post-recording. Thus, the                            we found some variation that appears to highlight the difference
+exclusion of the forward saccade amplitude and proportion of                         of approach between our study and the lion’s share of past
+regression two did influence r2 negatively, albeit to a small extent.                research. Compared to several prior studies (Rayner, 1986; Blythe
+The initial model including all three variables was deemed to best                   et al., 2006, 2009; Reichle et al., 2013; Rau et al., 2015b) mean
+predict word reading ability score.                                                  fixation duration was higher in both sample A and sample
+     The texts which constituted the text reading task were adapted to an            B. Increased variation among variables can be a product of a
+approximated level of reading proficiency associated with each grade                 naturalistic set-up and diverse sample of participants. In this
+(e.g., participant age). Consequently, the participants read different texts         case, children with Swedish as a second language and children
+in the first vs. second cycle of data collection. In terms of the present            with rudimentary reading skill were included. Additionally,
+investigation, the eye movement variables and reading speed (WPM,                    we collected the data at the location of the schools, to fulfill the
+which was entered in the composite variable) are based on the same text              intention to record the students as they normally would read.
+in the analysis of concurrent word reading ability. Exclusion of reading             Finally, tasks with unlimited time and text-level stimuli, by their
+speed from the composite measure would eliminate the risk of                         nature, involve more freedom in when and how to move the eyes
+interdependence between those variables. Theoretically, however, it                  than time-limited reading of, for example, single sentences or
+would make for a less sound representation of natural reading. It would              words. Typically, forward saccade length increases with age and
+narrow the scope of the composite variable to a representation mainly                reading development (Rayner, 1986; Blythe, 2014). In this case,
+of lexical level word reading (of word lists), which is unintuitive from a           forward saccade length was 0.74 degrees in first grade and 0.95
+logical and conceptual standpoint. The objective of this paper is to                 degrees in second grade (i.e., in sample A and B, respectively).
+investigate to what extent eye movements account for variation in word               This leads us to believe that our text passages were appropriately
+reading ability, and reading speed is typically indicative of proficiency            adapted to the participants’ age and presumptive reading
+(Sovik et al., 2000). We ran an additional analysis to determine the                 proficiency. The first grade students read texts containing line-
+effects of exclusion of reading speed from the composite variable. The               breaks at the end of each sentence, whereas sentences appeared
+exclusion of reading speed affected r2 in such a way that eye movements              consecutively in the texts for second grade students. Words and
+were on average 9 percentage points less predictive of word reading                  sentences were longer and semantically more advanced for the
+ability (R2Adjusted = 0.53 in sample A and 0.49 in sample B). As participants        children in second grade. We were careful so as not to exaggerate
+had graduated and enrolled in the subsequent grade by the time of the                these factors, as we wanted the children to be able to process the
+second cycle of data collection, the overlap does not exist in the                   texts, given that their reading ability was age adequate. Proportion
+longitudinal models. Thus, based on an unrelated text, eye movements                 of regression decreased, as expected according to the literature,
+accounted for on average 48% of the variation in word reading ability                although the prevalence and role of regressions vary depending
+measured 1 year later. Based on conceptual assumptions and the fact                  on the context. Characteristics of the supposed incongruence that
+that there only was a nine percentage point difference related to the                the reader experiences as well as the orthographic transparency
+inclusion or exclusion of reading speed in the concurrent model,                     influence if and how they reread a part of the text (Rau et al.,
+we opted to incorporate it as a measure in the composite variable of                 2015a; Inhoff et al., 2019). The significance of regressive saccades
+word reading ability.                                                                in this analysis is further discussed on page 17. Structured control
+                                                                                     conditions could reveal more about the influence of these and
+                                                                                     similar stimuli characteristics in future work.
+4. Discussion
+     The objective of this study was to investigate to what extent eye               4.2. Concurrent predictions of word
+movements during reading predict later word reading ability in young                 reading ability
+readers. We were interested in examining this relationship in a large
+and naturally diverse sample under as ecological circumstances as                        Eye movements accounted for more or less the same amount
+possible. With this in mind, we analyzed the extent to which three                   of variance in concurrent word reading ability in sample A and
+basic eye movement measures predicted the variance in word reading                   sample B (i.e., in first compared to second grade; the difference
+ability, both concurrently and longitudinally.                                       was 1 percentage point). Overall, average fixation duration was
+
+
+Frontiers in Education                                                          11                                                          frontiersin.org
+Strandberg et al.                                                                                                     10.3389/feduc.2023.1077882
+
+
+
+
+the most important predictor of later and concurrent word                     a year has passed between predictions. We consider this finding
+reading ability. Saccade amplitude and proportion of regressions              as further indication (see page 15) that the predictions were not
+contributed to the models but to a lesser extent. The average                 unduly biased by the fact that reading speed and eye movement
+proportion of regressions generally was within the expected                   measures were recorded from the same text stimuli in concurrent
+range, but was not a significant predictor of longitudinal word               analysis. The fact that the decrease in explained variance is small
+reading ability in the youngest readers. This suggests that early             when the predictor variables are based on an unrelated text
+on, when children often read out each word slowly in turn, the                speaks to their validity as reflections of global reading ability
+number of regressive saccades is not informative, or at least not             rather than to text-specific characteristics.
+significantly so, in terms of word reading ability. Further, it is                Considering the relation between the samples of participants,
+important to consider the qualities of the variable. In this                  we found that the difference between the concurrent and
+analysis, proportion of regressions was based on the recording as             longitudinal models are greatest in sample A (that is, in the group
+a whole and does not take details of the context in which they                of students whose eye movements were recorded in first grade).
+occur into account. The proportion of regressive saccades reveals             Similarly, there is a somewhat greater difference in word reading
+nothing of the length of the regression or if they occur within or            assessment outcomes between first and second grade, in relation
+across several words. The properties of the word that the reader              to second and third grade. Assuming that there is a tight
+rereads are important to the interpretation of why the reader                 interaction between word reading and lexical processing, this
+moves the gaze backwards (Inhoff et al., 2019). Word-based eye                pattern can be mapped onto a shift of decoding strategy, and its’
+movement measures could enable a deeper look at that issue in a               interplay with sub-lexical and lexical processes. As the young
+future analysis. Speculatively, the fact that the first grade students        readers begin to integrate lexically based processes in their
+(m age = 7.85) are in an early stage of reading acquisition plays a           reading, eye movements in first grade may be reflective of a
+role. Their eye movement patterns (short forward saccades)                    decoding strategy which is less used by second grade.
+suggest that they to some extent rely on small-unit decoding,                     In future work it would be interesting to consider the
+which may lessen the need to reread text. Previous studies found              influence of reading proficiency on predictions of word reading
+that children reading in an orthographically opaque language                  ability based on eye movements. In this area, interesting work has
+(English) have higher rereading times than children reading in a              been carried out by Vorstius et al. (2014) who found that the
+transparent language (Rau et al., 2015b). Young readers of                    relationship between eye movement variables and reading ability
+transparent orthographies tend to depend on sub-lexical                       was weaker among poor readers, especially those with results
+processes for word recognition which may limit the need and                   below the 0.3 quantile. The predictability of word reading ability
+prevalence of regressions. Regressions may therefore be of limited            may decrease at different rates across individuals, why it would
+value to the assessment of word reading ability in very young                 be valuable to compare the predicted values to the actual
+readers, as small-unit decoding is usually reliable in a somewhat             outcomes in children and analyze possible interactions with
+transparent language such as Swedish. Our results show that                   reading proficiency.
+while the participants in first grade did make regressions to an                  There are some implications worth noting with regards to the
+expected extent, they did not account for variance in word                    present study. Pursuant to our objectives, we analyzed data
+reading ability to any significant degree. As small unit decoding             recorded in an authentic environment where simplicity and
+is reliable, processing difficulties associated to RD might                   ecological validity was prioritized. This was part of an explorative
+be reflected in variations in other variables in the youngest                 approach which allowed a high number of students to participate.
+readers. Future work could further investigate what eye                       Further, we chose an inclusive approach regarding the sample
+movement characteristics that differentiate students with RD                  because we wanted collect data from a typical group of elementary
+from students who are slow to acquire the first steps of reading              school students, aware that it has implications for the outcomes
+but over time progress to the level of readers with typical                   and conclusions in this study. Indeed, the results reflect variation
+reading development.                                                          among the variables that is consistent with limited experimental
+                                                                              control and the findings should be considered with this in mind.
+                                                                              There are several interesting variables that could be taken into
+4.3. Longitudinal predictions of word                                         account regarding the participants for a fine-grained analysis of
+reading ability                                                               the relationships reported here, such as mother tongue and
+                                                                              presence of specific learning difficulties (such as RD). Further,
+     We expected the eye movement variables to predict variance               both the model and materials for assessments should
+in word reading ability score to a lesser extent 1 year post-                 be developed for more precise predictions. In future work,
+recording, compared to the models of eye movements and                        additional data points would enable valid growth modeling. It
+concurrent word reading ability. In line with that assumption,                would be interesting to include word-based eye movements,
+R2Adjusted was lower in the longitudinal predictions in both samples          which we think could improve the models while also inform
+of students. While the model predicts roughly 60% of the variance             assessments about variations in underlying processes during
+in concurrent word reading ability, the explained variance is on              reading. For educational purposes, both basic and word-based
+average 14 percentage points lower 1 year later. This means that              eye movements could be used to infer precise information about
+eye movements accounted for less of the variation in word                     strengths and weaknesses in a child’s reading. As an example,
+reading ability 1 year after the recording, however, we consider              information about word recognition efficacy can be inferred from
+the decrease small seeing as it is based on an unrelated text and             the relationship between fixation durations and word frequency.
+
+
+Frontiers in Education                                                   12                                                         frontiersin.org
+Strandberg et al.                                                                                                                                          10.3389/feduc.2023.1077882
+
+
+
+
+Small unit decoding, which can encumber fluent reading, could                                    Funding
+be revealed through analysis of the saccade pattern and also at
+what level of complexity that the reader resorts to this strategy.                                   This work was supported by the Sweden’s innovation agency,
+    Nevertheless, the data in the present paper can reproduce                                    VINNOVA, under Grant 2014–03459; the Sigvard and Marianne
+previously well-known findings and relationships between eye                                     Bernadotte Research Foundation for Children’s Eye Care and Ulla and
+movements, word reading ability and age differences. Here, we have                               Ingemar Dahlberg’s Foundation.
+shown that eye movements collected in a natural school setting with
+limited experimental control can account for a large portion of
+variance in word reading ability, not only concurrently, but also 1 year
+after the recordings were made. This suggests that eye tracking could                            Acknowledgments
+be a potentially useful and efficient complementary technique for
+monitoring and predicting children’s word reading development                                        The authors express their gratitude to the Sigvard and Marianne
+during the early school years. Children with a predicted poor                                    Bernadotte Research Foundation for Children’s Eye Care, Ulla and
+developmental reading trajectory might then be given professional                                Ingemar Dahlberg’s Foundation, VINNOVA – Sweden’s Innovation
+support early on and minimize the effect on school performance,                                  Agency and Trosa and Järfälla schools and municipalities for their
+motivation, and self-esteem.                                                                     support and contribution to this project.
+
+
+
+                                                                                                 Conflict of interest
+Data availability statement
+                                                                                                     MN and GÖ own equity in Optolexia, a company whose aim is to
+    The raw data supporting the conclusions of this article will                                 offer new technologies for the assessment of reading deficits in
+be made available by the authors, without undue reservation.                                     school-age children.
+                                                                                                     The remaining authors declare that the research was conducted in
+                                                                                                 the absence of any commercial or financial relationships that could
+                                                                                                 be construed as a potential conflict of interest.
+Ethics statement
+    The studies involving human participants were reviewed and                                   Publisher’s note
+approved by the Central Ethical Review Board (Ö 13/2015). Written
+informed consent to participate in this study was provided by the                                    All claims expressed in this article are solely those of the authors
+participants’ legal guardian/next of kin.                                                        and do not necessarily represent those of their affiliated organizations,
+                                                                                                 or those of the publisher, the editors and the reviewers. Any product
+                                                                                                 that may be evaluated in this article, or claim that may be made by its
+                                                                                                 manufacturer, is not guaranteed or endorsed by the publisher.
+Author contributions
+    AS, MN, and GÖ contributed to the conception and design of the
+study, and performed the word reading assessment and eye tracking                                Supplementary material
+recordings. MN and GÖ processed the eye movement data. AS and
+MN performed the statistical analysis and wrote the draft of the                                      The Supplementary material for this article can be found online
+manuscript. All authors contributed to manuscript revision, read, and                            at: https://www.frontiersin.org/articles/10.3389/feduc.2023.1077882/
+approved the submitted version.                                                                  full#supplementary-material
+
+
+
+References
+  Al Dahhan, N., Georgiou, G. K., and Hung, R. (2014). Eye movements of university                 Blythe, H. I., Liversedge, S. P., Joseph, H. S. S. L., White, S. J., Findlay, J. M.,
+students with and without reading difficulties during naming speed tasks. Ann. Dyslexia.         and Rayner, K. (2006). The binocular coordination of eye movements during
+64:137–150. doi: 10.1007/s11881-013-0090-z                                                       reading in children and adults. Vis. Res. 46, 3898–3908. doi: 10.1016/j.
+                                                                                                 visres.2006.06.006
+  Barnes, A. E., and Kim, Y. S. (2016). Low-skilled adult readers look like typically
+developing child readers: a comparison of reading skills and eye movement behavior.                Blythe, H. I., Liversedge, S. P., Joseph, H. S. S. L., White, S. J., and Rayner, K. (2009).
+Read. Writ. 29, 1889–1914. doi: 10.1007/s11145-016-9657-5                                        Visual information capture during fixations in reading for children and adults. Vis. Res.
+                                                                                                 49, 1583–1591. doi: 10.1016/j.visres.2009.03.015
+  Beck, I., Perfetti, C., and Mckeown, M. G. (1982). Effects of long-term vocabulary
+instruction on lexical access and reading comprehension. J. Educ. Phsycol 74:506. doi:             Blythe, H. I., Pagán, A., and Dodd, M. (2015). Beyond decoding: phonological
+10.1037/0022-0663.74.4.506                                                                       processing during silent reading in beginning readers. J. Exp. Psychol. Learn. Mem. Cogn.
+                                                                                                 41, 1244–1252. doi: 10.1037/xlm0000080
+  Blythe, H. I. (2014). Developmental changes in eye movements and visual information
+encoding associated with learning to read. Curr. Dir. Psychol. Sci. 23, 201–207. doi:              Carter, B. T., and Luke, S. G. (2020). Best practices in eye tracking research. Int. J.
+10.1177/0963721414530145                                                                         Psychophysiol. 155, 49–62. doi: 10.1016/j.ijpsycho.2020.05.010
+  Blythe, H. I., Häikiö, T., Bertam, R., Liversedge, S. P., and Hyönä, J. (2011). Reading           Clifton, C., Ferreira, F., Henderson, J. M., Inhoff, A. W., Liversedge, S. P., Reichle, E. D.,
+disappearing text: why do children refixate words? Vis. Res. 51, 84–92. doi: 10.1016/j.          et al. (2016). Eye movements in reading and information processing: Keith Rayner’s 40
+visres.2010.10.003                                                                               year legacy. J. Mem. Lang. 86, 1–19. doi: 10.1016/j.jml.2015.07.004
+
+
+
+Frontiers in Education                                                                      13                                                                                 frontiersin.org
+Strandberg et al.                                                                                                                                           10.3389/feduc.2023.1077882
+
+
+
+
+  Clifton, C., Staub, A., and Rayner, K. (2007). “Eye movements in reading words and                   Pollatsek, A., Reichle, E. D., and Rayner, K. (2006). Tests of the E-Z reader model:
+sentences,” in Eye Movements: A window on mind and brain. eds. R. P. G. Van                          exploring the interface between cognition and eye-movement control. Cogn. Psychol. 52,
+Gompel, M. H. Fischer, W. S. Murray and R. L. Hill (Oxford: Elsevier), 341–371.                      1–56. doi: 10.1016/j.cogpsych.2005.06.001
+  Denton, C. A., Fletcher, J. M., Anthony, J. L., and Francis, D. J. (2006). An evaluation             Prado, C., Dubois, M., and Valdois, S. (2007). The eye movements of dyslexic children
+of intensive persistent reading difficulties. J. Learn. Disabil. 39, 447–466. doi:                   during Reading and visual search: impact of the visual attention span. Vis. Res. 47,
+10.1177/00222194060390050601                                                                         2521–2530. doi: 10.1016/j.visres.2007.06.001
+  Ehri, L. C. (2005). Scientific studies of reading learning to read words: theory, findings,          Rau, A. K., Moeller, K., and Landerl, K. (2014). The transition from sublexical to
+and issues learning to read words: theory, findings, and issues. Sci. Stud. Read. 9,                 lexical processing in a consistent orthography: an eye-tracking study. Sci. Stud. Read. 18,
+167–188. doi: 10.1207/s1532799xssr0902                                                               224–233. doi: 10.1080/10888438.2013.857673
+  Ehri, L. C. (2014). Orthographic mapping in the acquisition of sight word reading,                   Rau, A. K., Moll, K., Snowling, M. J., and Landerl, K. (2015a). Effects of orthographic
+spelling memory, and vocabulary learning. Sci. Stud. Read. 18, 5–21. doi:                            consistency on eye movement behavior: German and English children and adults
+10.1080/10888438.2013.819356                                                                         process the same words differently. J. Exp. Child Psychol. 130, 92–105. doi: 10.1016/j.
+                                                                                                     jecp.2014.09.012
+  Ekstrand, G., Carin, A., Benfatto, M. N., and Seimyr, G. Ö. (2021). Screening for
+Reading difficulties: comparing eye tracking outcomes to neuropsychological                            Rau, A. K., Moll, K., Snowling, M. J., and Landerl, K. (2015b). Journal of experimental
+assessments. Front. Educ. 6, 1–13. doi: 10.3389/feduc.2021.643232                                    child effects of orthographic consistency on eye movement behavior: German and
+                                                                                                     English children and adults process the same words differently. J. Exp. Child Psychol. 130,
+  Gidlöf, K., Wallin, A., Dewhurst, R., and Holmqvist, K. (2013). Using eye tracking to              92–105. doi: 10.1016/j.jecp.2014.09.012
+trace a cognitive process: gaze behaviour during decision making in a natural
+environment. J. Eye Mov. Res. 6, 1–14. doi: 10.16910/jemr.6.1.3                                         Rayner, K. (1975). The perceptual peripheral span and cues in reading. Cogn. Psychol.
+                                                                                                     7, 65–81. doi: 10.1016/0010-0285(75)90005-5
+   Häikiö, T., Bertram, R., Hyönä, J., and Niemi, P. (2009). Development of the letter
+identity span in reading: evidence from the eye movement moving window paradigm.                       Rayner, K. (1977). Visual attention in reading: eye movements reflect cognitive
+J. Exp. Child Psychol. 102, 167–181. doi: 10.1016/j.jecp.2008.04.002                                 processes. Mem. Cogn. 5, 443–448. doi: 10.3758/BF03197383
+   Henderson, J. M., Choi, W., Luke, S. G., and Desai, R. H. (2015). Neural correlates of              Rayner, K. (1986). Eye movements and the perceptual span in beginning and skilled
+fixation duration in natural reading: evidence from fixation-related FMRI. Neuroimage                readers. J. Exp. Child Psychol. 41, 211–236. doi: 10.1016/0022-0965(86)90037-8
+119, 390–397. doi: 10.1016/J.NEUROIMAGE.2015.06.072                                                    Rayner, K. (1998). Eye movements in reading and information processing: 20 years of
+  Hindmarsh, G. P., Black, A. A., White, S. L. J., Hopkins, S., and Wood, J. M. (2021).              research. Psychol. Bull. 124, 372–422. doi: 10.1037/0033-2909.124.3.372
+Eye movement patterns and reading ability in children. Ophthalmic Physiol. Opt. 41,                    Rayner, K., Ashby, J., Pollatsek, A., and Reichte, E. D. (2004). The effects of
+1134–1143. doi: 10.1111/opo.12854                                                                    frequency and predictability on eye fixations in reading: implications for the E-Z
+  Hosp, M. K., Fuchs, L. S., Hosp, M. K., and Fuchs, L. S. (2019). Using CBM as an                   reader model. J. Exp. Psychol. Hum. Percept. Perform. 30, 720–732. doi:
+indicator of decoding, word Reading, and comprehension: do the relations change with                 10.1037/0096-1523.30.4.720
+grade? School Psychology Review 34, 9–26. doi: 10.1080/02796015.2005.12086272                          Rayner, K., Jane, A., Chace, K. H., and Slattery, T. J. (2009). “Eye Movements as
+  Inhoff, A. W. (1984). Two stages of word processing during eye fixations in the reading of         Reflections of Comprehension Processes in Reading.” Scientific Studies of Reading
+prose. J. Verbal Learn. Verbal Behav. 23, 612–624. doi: 10.1016/S0022-5371(84)90382-7                10:241–255. doi: 10.1207/s1532799xssr1003
+  Inhoff, A. W. (1990). Integrating information across eye fixations in reading: the role              Rayner, K., and Duffy, S. A. (1986). Lexical complexity and fixation times in reading:
+of letter and word units. Acta Psychol. 73, 281–297. doi: 10.1016/0001-6918(90)90027-D               effects of word frequency, verb complexity, and lexical ambiguity. Mem. Cogn. 14,
+                                                                                                     191–201. doi: 10.3758/BF03197692
+  Inhoff, A. W., Kim, A., and Radach, R. (2019). “Regressions during Reading.” Vision
+3:35. doi: 10.3390/vision3030035                                                                       Rayner, K., and McConkie, G. W. (1976). What guides a reader’s eye movements? Vis.
+                                                                                                     Res. 16, 829–837. doi: 10.1016/0042-6989(76)90143-7
+  Jacobson, C. (2015). Läskedjor-2. Hogrefe Psykologiförlaget AB.
+                                                                                                       Reichle, E. D., Liversedge, S. P., Drieghe, D., Blythe, H. I., Joseph, H. S. S. L.,
+  Joseph, H. S. S. L., Nation, K., and Liversedge, S. P. (2013). Using eye movements to              White, S. J., et al. (2013). Using E-Z reader to examine the concurrent development of
+investigate word frequency effects in children’s sentence reading. Sch. Psychol. Rev. 42,            eye-movement control and reading skill. Dev. Rev. 33, 110–149. doi: 10.1016/J.
+207–222. doi: 10.1080/02796015.2013.12087485                                                         DR.2013.03.001
+  Just, M. A., and Patricia, A. C. (1980). “A theory of reading: From eye fixations to                 Reichle, E. D., Pollatsek, A., Fisher, D. L., and Rayner, K. (1998). Toward a model of
+comprehension,” Psychological Review 87:329–354. doi: 10.1037/0033-295x.87.4.329                     eye movement control in reading. Psychol. Rev. 105, 125–157. doi: 10.1037/0033-295X.
+  Kamhi, A., and Catts, H. (2005). Language and Reading Disabilities. Boston: Pearson.               105.1.125
+
+  Kim, Y. S., Grace, Y. P., and Vorstius, C. (2019). Unpacking eye movements during oral                Reichle, E. D., Warren, T., and McConnell, K. (2009). Using E-Z reader to model the
+and silent reading and their relations to reading proficiency in beginning readers.                  effects of higher level language processing on eye movements during reading. Psychon.
+Contemp. Educ. Psychol. 58, 102–120. doi: 10.1016/j.cedpsych.2019.03.002                             Bull. Rev. 16, 1–21. doi: 10.3758/PBR.16.1.1
+
+  König, P. (2016). Eye movements as a window to cognitive processes. J. Eye Mov. Res.                 SCB. (2023). “Kommuner i siffror.” Available at: https://kommunsiffror.scb.
+1–16. doi: 10.16910/jemr.9.5.3                                                                       se/?id1=0123&id2=null
+
+  Kornev, A. N., Oganov, S. R., and Galperina, E. I. (2019). Development of the                        Seassau, M., and Bucci, M.-P. (2013). Reading and visual search: a developmental
+psychophysiological mechanisms in the comprehension of printed texts: eye tracking                   study in normal children. PLoS One 8:e70261. doi: 10.1371/journal.pone.0070261
+during text reading in healthy and dyslexic children aged 9–11. Hum. Physiol. 45,                      Skolverket (2023). “Statistik.” Available at: https://www.skolverket.se/skolutveckling/
+249–255. doi: 10.1134/S0362119719030083                                                              statistik
+  LaBerge, D., and Jay Samuels, S. (1974). Toward a theory of automatic information                    Sovik, N., Arntzen, O., and Samuelstuen, M. (2000). Eye-movement parameters and
+processing in reading. Cogn. Psychol. 6, 293–323. doi: 10.1016/0010-0285(74)90015-2                  reading speed – a study of Oral and silent reading performances of twelve-year-old
+  Liversedge, S. P., and Findlay, J. M. (2000). Saccadic eye movements and cognition.                children. Read. Writ. 13, 237–255. doi: 10.1023/A:1026495716953
+Trends Cogn. Sci. 4, 6–14. doi: 10.1016/S1364-6613(99)01418-7                                          Spichtig, A. N., Hiebert, E. H., Vorstius, C., Pascoe, J. P., David Pearson, P., and
+   McConkie, G. W., and Rayner, K. (1975). The span of the effective stimulus during a               Radach, R. (2016). The decline of comprehension-based silent reading efficiency in the
+fixation in Reading. Percept. Psychophys. 17, 578–586. doi: 10.3758/BF03203972                       United States: a comparison of current data with performance in 1960. Read. Res. Q. 51,
+                                                                                                     239–259. doi: 10.1002/rrq.137
+  McConkie, G. W., and Rayner, K. (1976). Asymmetry of the perceptual span in
+reading. Bull. Psychon. Soc. 8, 365–368. doi: 10.3758/BF03335168                                       Statens beredning för medicinsk utvärdering (SBU). (2014). Dyslexi hos barn och
+                                                                                                     ungdomar: tester och insatser; en systematisk litteraturöversikt. Stockholm: Statens
+  Mcdonald, M. A., Holdsworth, S. J., and Danesh-meyer, H. V. (2015). Eye movements                  beredning för medicinsk och social utvärdering.
+in mild traumatic brain injury: clinical challenges. J. Eye Mov. Res. 15, 1–15. doi:
+                                                                                                       Strandberg, A., Nilsson, M., Östberg, P., and Seimyr, G. Ö. (2022). Eye
+10.16910/jemr.15.2.3
+                                                                                                     movements during reading and their relationship to reading assessment outcomes in
+  Nilsson Benfatto, M., Seimyr, G. Ö., Ygge, J., Pansell, T., Rydberg, A., and Jacobsson, C.         Swedish elementary school children. J. Eye Mov. Res. 15. doi: 10.16910/JEMR.15.4.3
+(2016). Screening for dyslexia using eye tracking during reading. PLoSONE 11. doi:
+                                                                                                       Thompson, C. G., Kim, R. S., Aloe, A. M., and Becker, B. J. (2017). Extracting the
+10.1371/journal.pone.0165508
+                                                                                                     variance in flation factor and other multicollinearity diagnostics from typical
+  Perfetti, C. A. (2010). “Decoding, vocabulary, and comprehension” in Bringing reading              regression results. Basic Appl. Soc. Psychol. 39, 81–90. doi: 10.1080/01973533.
+research to life. eds. M. G. Mckeown and L. Kucan (New York: Guilford), 291–302.                     2016.1277529
+  Perfetti, C. A., and Hart, L. (2001). The lexical basis of comprehension skill. in On the            Tiffin-Richards, S. P., and Schroeder, S. (2015). Word length and frequency effects on
+consequences of meaning selection: Perspectives on resolving lexical ambiguity. ed. D. S.            children’s eye movements during silent reading. Vis. Res. 113, 33–43. doi: 10.1016/j.
+Gorfein (American Psychological Association), 67–86.                                                 visres.2015.05.008
+
+
+
+
+Frontiers in Education                                                                          14                                                                            frontiersin.org
+Strandberg et al.                                                                                                                                     10.3389/feduc.2023.1077882
+
+
+
+
+   Torgesen, J. K., Wagner, R. K., and Rashotte, C. A. (2012). Test of word reading              Ygge, J., Seimyr, G. Ö., Benfatto, M. N., Pansell, T., Jacobson, C., and Rydberg, A.
+efficiency. 2nd Edn Pro-Ed.                                                                    (2016). Screening for dyslexia using eye tracking during reading. PLoS One 11:e0165508.
+                                                                                               doi: 10.1371/journal.pone.0165508
+  Vorstius, C., Radach, R., and Lonigan, C. J. (2014). Eye movements in developing
+readers: a comparison of silent and ORAL sentence reading. Vis. Cogn. 22, 458–485. doi:          Zhang, G., Yuan, B., Hua, H., Lou, Y., Lin, N., and Li, X. (2021). Individual differences
+10.1080/13506285.2014.881445                                                                   in first-pass fixation duration in reading are related to resting-state functional
+ Wagner, R. K., Torgesen, J. K., Rashotte, C. A., and Pearson, N. A. (2013).                   connectivity. Brain Lang. 213:104893. doi: 10.1016/J.BANDL.2020.104893
+Comprehensive Test of Phonological Processing (CTOPP-II). 2nd Edn. Pro-Ed.                       Zijlstra, H., Van Bergen, E., Amsterdam, V. U., Regtvoort, A., and Van Der Leij, A.
+  Yang, S. N. (2012). Effects of processing difficulty on eye movements in Reading: a          (2021). Prevention of reading difficulties in children with and without familial risk:
+review of behavioral and neural observations. J. Eye Mov. Res. 5:1. doi: 10.16910/             short-and long-term effects of an early intervention. Journal of Educational Psychology
+jemr.5.4.1                                                                                     113:248–267. doi: 10.1037/edu0000489
+
+
+
+
+Frontiers in Education                                                                    15                                                                            frontiersin.org
+

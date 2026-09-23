@@ -1,0 +1,335 @@
+UC Irvine
+Western Journal of Emergency Medicine: Integrating Emergency
+Care with Population Health
+
+Title
+Does the Podcast Video Playback Speed Affect Comprehension for Novel Curriculum
+Delivery? A Randomized Trial
+
+Permalink
+https://escholarship.org/uc/item/6d07b0k4
+
+Journal
+Western Journal of Emergency Medicine: Integrating Emergency Care with Population
+Health, 19(1)
+
+ISSN
+1936-900X
+
+Authors
+Song, Kristine
+Chakraborty, Amit
+Dawson, Matthew
+et al.
+
+Publication Date
+2018
+
+DOI
+10.5811/westjem.2017.10.36027
+
+Copyright Information
+Copyright 2018 by the author(s).This work is made available under the terms of a Creative
+Commons Attribution License, available at https://creativecommons.org/licenses/by/4.0/
+
+Peer reviewed
+
+
+
+
+ eScholarship.org                                 Powered by the California Digital Library
+                                                                  University of California
+                                               Original Research
+
+   Does the Podcast Video Playback Speed Affect Comprehension
+       for Novel Curriculum Delivery? A Randomized Trial
+Kristine Song, MD*                   *University of Kentucky, Department of Emergency Medicine, Lexington, Kentucky
+Amit Chakraborty, MD†                †
+                                       Stanford University, Department of Radiology, Palo Alto, California
+Matthew Dawson, MD*
+Adam Dugan, MS*
+Brian Adkins, MD*
+Christopher Doty, MD*
+
+Section Editor: Andrew W. Phillips, MD		
+Submission history: Submitted August 20, 2017; Revision received October 20, 2017; Accepted October 11, 2017
+Electronically published December 5, 2017								
+Full text available through open access at http://escholarship.org/uc/uciem_westjem 		
+DOI: 10.5811/westjem.2017.10.36027
+
+
+
+
+        Introduction: Medical education is a rapidly evolving field that has been using new technology
+        to improve how medical students learn. One of the recent implementations in medical education
+        is the recording of lectures for the purpose of playback at various speeds. Though previous
+        studies done via surveys have shown a subjective increase in the rate of knowledge acquisition
+        when learning from sped-up lectures, no quantitative studies have measured information
+        retention. The purpose of this study was to compare mean test scores on written assessments
+        to objectively determine if watching a video of a recorded lecture at 1.5x speed was significantly
+        different than 1.0x speed for the immediate retention of novel material.
+
+        Methods: Fifty-four University of Kentucky medical students volunteered to participate in
+        this study. The subjects were divided into two separate groups: Group A and Group B. Each
+        group watched two separate videos, the first at 1.5x speed and the second at 1.0x speed, then
+        completed assessments following each. The topics of the two videos were ultrasonography
+        artifacts and transducers. Group A watched the artifacts video first at 1.5x speed followed by
+        the transducers video at 1.0x speed. Group B watched the transducers video first at 1.5x speed
+        followed by the artifacts video at 1.0x speed. The percentage correct on the written assessment
+        were calculated for each subject at each video speed. The mean and standard deviation were
+        also calculated using a t-test to determine if there was a significant difference in assessment
+        scores between 1.5x and 1.0x speeds.
+
+        Results: There was a significant (p=0.0188) detriment in performance on the artifacts quiz at
+        1.5x speed (mean 61.4; 95% confidence interval [CI]-53.9, 68.9) compared to the control group
+        at normal speed (mean 72.7; 95% CI- 66.8, 78.6). On the transducers assessment, there was
+        not a significant (p=0.1365) difference in performance in the 1.5x speed group (mean 66.9; CI-
+        59.8, 74.0) compared to the control group (mean 73.8; CI- 67.7, 79.8).
+
+        Conclusion: These findings suggest that, unlike previously published studies that showed
+        subjective improvement in performance with sped-up video-recorded lectures compared to
+        normal speed, objective performance may be worse. [West J Emerg Med. 2018;19(1)101–105.]
+
+
+
+
+Volume 19, no. 1: January 2018                                101                         Western Journal of Emergency Medicine
+Does the Podcast Video Playback Speed Affect Comprehension for Novel Curriculum Delivery?                                        Song et al.
+
+INTRODUCTION
+     Medical education is a rapidly evolving field that has                         Population Health Research Capsule
+been using new forms of media and technology to enhance the
+learning of medical students across the U.S. One of the more                    What do we already know about this issue?
+prevalent and extensively used advancements is the use of                       Previous survey studies have shown a
+video recording systems. In previous studies, medical students                  subjective increase in the rate of knowledge
+have reported greater subjective benefit from video-recorded                    acquisition from sped-up lectures. However,
+lectures than from live lectures.1,2,3 Some of the subjective                   no quantitative studies have measured
+benefits that students reported included faster knowledge                       objective retention.
+acquisition, better retention of material, more focus, and easier
+access to additional information.1                                              What was the research question?
+     The advantages to using video-recorded lectures include                    Would students’ mean test scores differ
+the ability to rewind, pause and return to finish a lecture                     significantly after watching video lectures at
+later, and watch lectures at faster speeds. In a medical school                 1.5x speed compared to 1.0x speed?
+setting where knowledge of minutiae and comprehension of
+concepts is paramount to success, the added flexibility that                    What was the major finding of the study?
+video-recorded lectures provide could be extremely important.                   We found that watching a lecture at a
+As medical education demands countless hours of studying,                       faster speed may have a detrimental or no
+the biggest advantage may be the ability to watch lectures at                   significant effect on learning novel material.
+faster speeds. As an example, for every hour of material in the
+traditional classroom setting played at 1.5x speed, a student                   How does this improve population health?
+could save 20 minutes. Therefore, in a typical four-hour                        This data is important to modern learners
+morning lecture scenario, a student could save 80 minutes by                    as it challenges the assumption that faster
+watching the video at 1.5x speed.                                               podcast speeds lead to potential time savings
+     Though the benefits may seem numerous and prior survey                     for learners.
+studies have shown subjective benefits with lectures played at
+faster speeds, no quantitative studies to date have measured
+information retention. The objective of this pilot study was to
+determine if watching video-recorded lectures at faster speeds
+compared to the original recording had any effect on the
+immediate retention of novel learning material.                             We created a 23-question multiple-choice assessment
+                                                                       for the transducers video, and a 20-question assessment for
+METHODS                                                                the artifacts video. Given the pilot nature of the study, the
+    This was a prospective, single-center, randomized                  assessments were tested by the two medical students involved
+controlled trial, pilot study that presented a novel curriculum        in the study as well as by the video creator and content
+to medical students and tested information retention with a            experts to ensure that the two tests were of comparable
+short examination. Material presentation and assessments               difficulty levels. To avoid different interpretations of a correct
+were all done in a single day. The study was approved by the           answer, the tests asked about definable facts explicitly stated
+university institutional review board (IRB), as well as by the         in the video. The investigators created an answer key for
+administration of the medical school involved.                         both assessments, which were subsequently reviewed and
+                                                                       proofread before submission to the IRB.
+Video selection and assessment creation
+     The two new educational subjects chosen were transducers          Subject recruitment and privacy
+and artifacts. The presented videos were recorded by a                      We conducted the experiment in August, at the beginning
+nationally recognized emergency ultrasound educator. These             of the school year, when first-year (M1), second-year (M2)
+two specific videos were chosen because these topics are not           and third-year (M3) medical students had limited exposures
+covered in the medical school curriculum and, therefore, we            to emergency medicine (EM). Subject recruitment was
+believed that the material presented was novel. Subjects were          conducted by first sending an email to all four medical school
+also asked if they had exposure to the material; if they had, they     classes. This was then followed by live announcements
+were excluded from the study. Additionally, these videos were          to each class. All students were told that results on the
+similar in length (transducers, 12 minutes; artifacts, 15 minutes)     assessments would have no effect on medical school
+and “factoid heavy,” or in other words, had a wealth of material       evaluations or grades and that participation was voluntary.
+that could be used to assess student learning.                         Students who participated were given a $5 Starbucks gift card
+
+
+
+Western Journal of Emergency Medicine                                102                                 Volume 19, no. 1: January 2018
+Song et al.                          Does the Podcast Video Playback Speed Affect Comprehension for Novel Curriculum Delivery?
+
+as a token of appreciation.                                         Artifacts at 1.5x speed was compared to Group B Artifacts at
+     Inclusion criteria for subjects included being a medical       normal speed using a t-test. Similarly, Group B Transducers at
+student and being over the age of 18. The primary exclusion         1.5x speed was compared to Group A Transducers at normal
+criterion was having been exposed to the presented material         speed using a t-test. To compare the demographic information,
+before, since prior knowledge of the subjects could skew the        such as year in medical school, gender, and ethnicity, the
+results. Additionally, medical students with prior ultrasound       Fisher’s exact test was used. The p-values were used to
+experience and students rotating in EM were excluded from           determine if there was a significant difference in performance
+the study.                                                          for both videos. Statistical significance was set at p < 0.05. All
+     To enforce the exclusion criteria, each participant was        analyses were completed in R version 3.4.1 (R Core Team;
+asked to enroll via Google Docs and sign an informed consent        Vienna, Austria).
+prior to the study. Each student was asked to answer “yes” or
+“no” to having previously seen either the transducers video or      RESULTS
+the artifacts video. Those who answered “yes” received the $5       Subject data
+Starbucks gift card and the opportunity to sit in on the study,          A total of 54 students participated in the study. Of these,
+but they were excluded from examination and data analysis.          21 were M1s, 27 were M2s, two were M3s, and four were
+To protect the privacy of student performance, each student         M4s. Thirty participants were female and 24 were male.
+was identified by his/her student ID number. Demographic            Finally, seven participants self-identified as Asian American,
+data including ethnicity, gender, and year in medical school        one as African American, 45 as Caucasian, and one participant
+were also collected. Assessment performance was not shared          chose not to provide ethnicity (Table 1).
+with the medical school.                                                 There was a similar distribution of M1, M2, M3, and M4
+                                                                    in each group. Among the 21 M1s, 11 were in Group A and 10
+Presentation and assessment                                         in Group B. Among the 27 M2s, 14 were in Group B and 13 in
+     Of the 81 students who signed up for the study, 63 showed      Group B. Each Group A and B had three M3 and M4 participants.
+up on the day of the experiment. Two were excluded from the
+examination for having prior knowledge of the material, and         Assessment results
+seven were excluded from assessment for arriving late. As                The average performance of Group A on the assessment
+a result, 54 medical students were included in the final data       for Artifacts at 1.5x speed ± SD was 61.4 ± 19.3% (95% CI
+analysis. Participants were randomized into group A or B by         [-53.9, 68.9]). On the Transducers assessment at normal speed,
+converting the Google docs sign-up document to a Microsoft          Group A’s mean performance was 73.8 ± 15.6% (95% CI
+Excel spreadsheet, and then using the “randomize” function to       [-67.7, 79.8]) (Table 2).
+assign participants into either group A or B. On the date of the         The average performance of Group B on the assessment
+experiment, participants could see their group assignment at        for transducers at 1.5x speed was 66.9 ± 17.6% (95% CI
+the check-in desk.                                                  [-59.8, 74.0]). For artifacts at normal speed, Group B averaged
+     Group A watched the artifacts video at 1.5x speed first        72.7 ± 14.6% (95% CI [-66.8, 78.6]).
+and then took the artifacts assessment immediately after                 For both videos, the performance of the control and
+the video. Following this, Group A watched the transducers          experimental groups were compared using the t-test,
+video at normal speed and immediately took the transducers          and estimated the effect sizes using Cohen’s d. For the
+assessment. Group A served as the experimental group for the        artifacts video, there was a significant difference between
+artifacts video and the control group for the transducers video.    the performance at 1.5x speed compared to 1.0x speed
+Group B watched the transducers video at 1.5x speed first and       (p= 0.0188), along with a moderate effect size (Cohen’s
+took the corresponding assessment immediately following             d = 0.654). For the transducers video, a statistically
+the video. Group B then watched the artifacts video at              non-significant (p= 0.1365) difference was found in the
+normal speed and took the assessment. Group B served as the         performance between the two groups along with a small effect
+experimental group for the transducers video and the control        size (Cohen’s d = 0.414).
+group for the artifacts video.                                           We compared the performance of the control groups of
+                                                                    artifacts and transducers videos using the t-test and found no
+Scoring and statistical analysis                                    significant difference (p= 0.7965), suggesting that the tests did
+    Since the two assessments had an unequal number of              not differ in difficulty.
+questions, the scores were converted into a percent correct
+score. Then the means and standard deviations (SD) of the           DISCUSSION
+variable of interest and percentage score were calculated for           We chose to conduct a quantitative analysis of students’
+each assessments (Group A Artifacts, Group A Transducers,           information retention after viewing a sped-up video
+Group B Transducers, and Group B Artifacts). Group A                compared to retention at normal speed because there was
+
+
+Volume 19, no. 1: January 2018                                    103                        Western Journal of Emergency Medicine
+Does the Podcast Video Playback Speed Affect Comprehension for Novel Curriculum Delivery?                                     Song et al.
+
+Table 1. Demographic information of study subjects (we used Fisher’s exact test to compare the demographic information).
+                                          Overall                   Group A                    Group B                P-value
+        No. of participants                   54                          28                         26                      N/A
+ Year of medical school, n (%)
+      1st                                 21 (38.9)                   11 (39.3)                  10 (38.5)
+      2nd                                 27 (50.0)                   14 (50.0)                  13 (50.0)
+      3rd                                    2 (3.7)                      2 (7.1)                   0 (0.0)
+      4th                                    4 (7.4)                      1 (3.6)                  3 (11.5)
+                                                                                                                            0.5224
+ Gender, n (%)
+      Female                              30 (55.6)                   18 (64.3)                  12 (46.2)
+      Male                                24 (44.4)                   10 (35.7)                  14 (53.8)
+                                                                                                                            0.5224
+ Race, n (%)
+      African American                       1 (1.9)                      0 (0.0)                   1 (3.8)
+      Asian                                 7 (13.0)                     4 (14.3)                  3 (11.5)
+      Caucasian                           45 (83.2)                   23 (82.1)                  22 (84.6)
+      No Response                            1 (1.9)                      1 (3.6)                   0 (0.0)
+                                                                                                                             1.000
+
+
+
+
+Table 2. Quiz results: we used a t-test to compare the mean of 1.5x vs. 1.0x speed. For the artifacts video, the difference in average
+performance after 1.5x speed compared to 1.0x speed was significant. For transducers, the difference in average performance after
+1.5x speed compared to 1.0x speed was not significant.
+                                            Overall                  1.0x Speed                  1.5x Speed                P-value
+ Artifacts                                                            (Group B)                   (Group A)
+     No. of Participants                               54                           26                        28               N/A
+             Mean                                     66.9                      72.7                       61.4             0.0188
+             Standard Deviation                       18.0                      14.6                       19.3
+             95% CI                                                       66.8, 78.6                53.9, 68.9
+             Median (Quartiles)        65.0 (56.3, 80.0)          75.0 (65.0, 80.0)           60.0 (50.0, 75.0)
+             Transducers
+                                                                      (Group A)                   (Group B)                P-value
+     No. of Participants                               54                           28                        26               N/A
+             Mean                                     70.5                      73.8                       66.9             0.1365
+             Standard Deviation                       16.8                      15.6                       17.6
+             95% CI                                                       67.7, 79.8                59.8, 74.0
+          Median (Quartiles)           69.6 (56.5, 87.0)          73.9 (64.1, 88.0)           69.6 (52.2, 81.5)
+CI, confidence interval.
+
+
+
+
+a lack of literature regarding the topic. To assess retention,        speed compared to 1.0x speed. For the artifacts video, the
+novel education material was presented to the test subjects           average test score was 72.7 at 1.0x speed compared to
+one at normal speed and another at 1.5x speed and assessed            61.4 at 1.5x speed. For the transducers video, the average
+comprehension after each video. Participants overall                  test score was 73.8 at 1.0x speed compared to 66.9 at 1.5x
+performed worse on assessments after learning from 1.5x               speed. Our findings were contrary to previous studies that
+
+
+
+Western Journal of Emergency Medicine                              104                                    Volume 19, no. 1: January 2018
+Song et al.                         Does the Podcast Video Playback Speed Affect Comprehension for Novel Curriculum Delivery?
+
+reported subjective, accelerated learning when learning from       Future studies
+videos at faster speeds.                                               This study was designed to examine the immediate recall
+     The difference in performance on the artifacts quiz at       of information after watching a video at 1.5x speed vs. at
+1.5x speed compared to the control group was significant.         normal speed. However, to emulate the full utility of video-
+Although the difference in performance of the 1.5x group          recorded lectures, students must be given the ability to rewind
+compared to the control group was not significant for the         parts of the lecture they did not understand or re-watch a
+transducers video, the difference was equivalent to a letter-     lecture a second time. A potential study design to examine this
+grade difference.                                                 could involve giving both the experimental and control groups
+     The discrepancy in relative performance between control      the same allotted time to learn a lecture while using 1.0x
+and experimental groups for each of the videos may be             speed or 1.5x speed and comparing their performance. Long-
+explained by confounding factors. The main confounding            term information retention is another variable that should be
+error that may have led to the difference in results was that     assessed. This study only tested immediate recall.
+the artifacts video and assessment may have been more
+inherently complex in nature compared to the transducers          CONCLUSION
+video and assessment. Although the video selection was                 Our study suggests that watching a video lecture at a
+done deliberately to ensure videos were similar in length and     faster speed may have detrimental or no significant effect on
+in the amount of fact content covered, retrospectively we         learning novel material. Contrary to previous studies showing
+realized that for a novice learner, a few of the questions on     subjective improvement in performance with sped-up, video-
+the artifacts video may have been more conceptual compared        recorded lectures compared to normal speed, our data showed
+to the transducers questions.                                     that immediate retention of novel material at 1.5x speed was
+     For example, many students answered correctly to the         worse compared to normal speed.
+question asking about the A line on the artifacts video, much
+in the same way they answered correctly about the linear
+transducer having a higher frequency. However, with no
+prior knowledge of how ultrasound works, many students
+answered incorrectly on posterior acoustic shadowing              Address for Correspondence: Christopher Doty, MD, University
+vs. enhancement. As one participant later remarked, as a          of Kentucky, Department of Emergency Medicine, M53 Wm
+                                                                  R Willard Medical Education, Lexington, KY 40536. Email:
+new learner she focused all her cognitive energy learning         christopher.doty@uky.edu.
+to associate that stones cause sound waves to reflect
+back, which made her associate stones with the word               Conflicts of Interest: By the WestJEM article submission
+“enhancement.” However, someone with a basic concept              agreement, all authors are required to disclose all affiliations,
+of ultrasound would have easily picked up that because of         funding sources and financial or management relationships that
+this reflection of sound waves off the stone, there would be      could be perceived as potential sources of bias. No author has
+shadowing of the structures lying posterior to it. We theorize    professional or financial relationships with any companies that are
+                                                                  relevant to this study. There are no conflicts of interest or sources
+that when learning multiple-step processes such as these,         of funding to declare.
+playback speed plays a more significant role than when
+learning a rote memorization fact.                                Copyright: © 2018 Song et al. This is an open access article
+     This data is important to modern learners as it challenges   distributed in accordance with the terms of the Creative Commons
+the assumption that faster podcast speeds lead to potential       Attribution (CC BY 4.0) License. See: http://creativecommons.org/
+time savings for learners. This time savings is only realized     licenses/by/4.0/
+if the retention of the material is comparable.
+
+LIMITATIONS
+     Among this study’s limitations was the small sample size
+                                                                  REFERENCES
+of 54 students that limited the power of this study. Also, even
+                                                                  1.   Cardall S, Krupat E, Ulrich M. Live lecture versus video-
+though students with prior exposure to subject material were
+excluded from the study, it was impossible to ensure that the          recorded lecture: are students voting with their feet? Acad Med.
+
+entire study population was naïve to the material. Another             2008;83(12);1174-8.
+limitation was the inability to establish that the two novel      2.   Lovell K, Plantegenest G. Student utilization of digital versions of
+subject matters presented were equivalent in complexity, as            classroom lectures. JIAMSE. 2009;19(1):20-5.
+discussed above. Final noteworthy point was our decision to       3.   Bacro TR, Gebregziabher M, Fitzharris TP. Evaluation of a
+play the 1.5x speed video before the 1.0x speed. This may              lecture recording system in a medical curriculum. Anat Sci Educ.
+have affected performance and impacted the study results.              2010;3(6):300-8.
+
+
+
+
+Volume 19, no. 1: January 2018                                105                              Western Journal of Emergency Medicine
+

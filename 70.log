@@ -1,0 +1,50 @@
+Log 70. vid_tools. A Rust command line tool that reads the resolution of an mp4 then offers the lower resolutions then downscales the file. One line per command. UTC timestamp then command then result.
+2026-09-22T10:02:00Z ls -la .; ls -la vid_tools; ls *.log — vid_tools is empty. 69 is the highest log so this work takes 70.
+2026-09-22T10:02:30Z rustc --version; cargo --version; ffmpeg -version; ffprobe -version; find -name Cargo.toml — rust 1.96.0 and ffmpeg 6.1.1 are on this machine. commit-message and spacemongor are the two existing crates.
+2026-09-22T10:03:10Z head of 67.log and 64.log; cat commit-message/Cargo.toml spacemongor/Cargo.toml — took the house style. Edition 2024 and a release profile block and no dependency unless one is unavoidable.
+2026-09-22T10:12:40Z wrote vid_tools/Cargo.toml and src/mp4.rs and src/scale.rs and src/main.rs; cargo build — clean on the first build. The crate has no dependency. The binary is named vidscale.
+2026-09-22T10:20:30Z cargo test — 20 pass after deriving Debug on mp4::Error. The unit tests build an mp4 header in memory and write it to a temp file.
+2026-09-22T10:22:10Z ffmpeg testsrc2 into big.mp4 1920x1080 and turned.mp4 rotated and wide.mp4 anamorphic 720x576 at 16:9 and tiny.mp4 320x240 — four real files in the scratchpad to read.
+2026-09-22T10:23:40Z vidscale --list on all four; vidscale on a missing file and on 2kB of urandom — the sizes agree with ffprobe. tiny.mp4 reports nothing to do. A missing file and a file with no moov both exit 1 with one line.
+2026-09-22T10:25:00Z python3 dump of the tkhd matrix of turned.mp4 — ffmpeg writes b=-1 c=1 for the quarter turn that ffprobe calls 90. The arctangent needed negating to print the same number as ffprobe. Fixed and a 270 case added. 21 pass.
+2026-09-22T10:31:00Z vidscale --height on big.mp4 and turned.mp4 and wide.mp4 then ffprobe on each output — 1280x720 with the aac stream copied. The rotated source came out 406x720 coded with the display aspect 9:16 and no rotation left to apply. The anamorphic source came out 600x480 coded at 16:9 so the 854x480 on the menu is what a player shows.
+2026-09-22T10:33:00Z vidscale with a repeated output and with --height 1080 and 721 and with -o pointed at the source and with stdin closed — each one exits 1 with a single line. Rust masks SIGPIPE so piping --list into head panicked. The default handler is restored in main now.
+2026-09-22T10:35:20Z printf into script -qec for a pty — the menu takes an index and c for another height and q to quit and it repeats on a bad answer.
+2026-09-22T10:38:00Z wrote vid_tools/readme.md; cargo fmt --check in commit-message and spacemongor — spacemongor is rustfmt clean and commit-message is not so the default style is taken here.
+2026-09-22T10:39:10Z cargo fmt; cargo clippy --all-targets — no warning.
+2026-09-22T10:40:30Z printf /target > .gitignore; cargo test; cargo build --release; release binary on wide.mp4 at 360 — 21 pass. 420kB binary. The 640x360 on the menu comes out as a 450x360 frame at 16:9 which is the same picture.
+FINAL STATE
+  vid_tools/Cargo.toml   no dependency. edition 2024. the binary is vidscale.
+  vid_tools/src/mp4.rs   the box walk. coded frame from stsd. drawn size and rotation from tkhd. 6 tests.
+  vid_tools/src/scale.rs the ladder from 2160 down to 240 and the ffmpeg call. 7 tests.
+  vid_tools/src/main.rs  arguments and the menu and the guards. 8 tests.
+  vid_tools/readme.md    build and options and the two awkward cases.
+  Nothing is committed. Not asked for.
+2026-09-22T11:02:00Z second request. A frame rate menu with a minimum of 10 that says which rate is the better pick. Plan is mdhd for the timescale and stts for the sample count then a rate list built from the exact divisors of the source.
+2026-09-22T11:14:00Z wrote the frame rate into src/mp4.rs and rewrote src/scale.rs and src/main.rs; cargo test — 35 pass. The rate is the stts sample count over the time those samples span in mdhd units.
+2026-09-22T11:22:00Z ffmpeg made sixty.mp4 at 60 and ntsc.mp4 at 30000/1001 and vfr.mp4 with uneven gaps; vidscale --list on all seven files — every rate matches ffprobe including the 29.97 and the 24 mean of the variable rate file.
+2026-09-22T11:26:00Z printf into script -qec for both menus — k keeps a ladder and the rate menu marks 30 and 20 and 15 and 12 and 10 as exact divisors of 60. On the 29.97 source only 14.985 is exact and 15 is not. The note moved below the list so it sits next to the prompt.
+2026-09-22T11:30:00Z vidscale --fps 30 on sixty.mp4 and --height 720 --fps 15 on big.mp4 and --fps 14.985 on ntsc.mp4 then ffprobe on each — 240 frames became 120 and 180 became 90 at 1280x720 and 120 became 60 at 2997/200. The aac track and the container both still run 6.000s so the copy stayed in sync.
+2026-09-22T11:32:30Z vidscale --fps 9 and 60 and 30 and half on a 30 fps source; a 320x240 at 10 file with stdin closed; c then 18 and c then 5 through the menu — each guard answers in one line. The file already at the minimum of both ladders says there is nothing to offer.
+2026-09-22T11:36:00Z cargo fmt; cargo clippy --all-targets; cargo test; cargo build --release; release binary at --height 480 --fps 20 — no warning and 35 pass. 240 frames at 1280x720 became 80 at 854x480.
+FINAL STATE OF THE SECOND CHANGE
+  src/mp4.rs    frame_rate reads mdhd for the unit of time and stts for the samples. Video carries fps as an Option.
+  src/scale.rs  rate_options builds the divisors of the source then fills with the named rates. MIN_RATE is 10. The fps filter runs before scale.
+  src/main.rs   a second menu with a note saying an exact divisor is the one to take. --fps takes a rate on its own or with --height.
+  readme.md     which frame rate to take and which of the two to cut first.
+  Nothing is committed. Not asked for.
+2026-09-22T11:44:00Z third request. The rate menu is to offer 30 and 24 and 15 and 10 only. The divisors of the source no longer build rows. A 25 fps source then has no exact row so the note has to name the half when nothing on offer divides.
+2026-09-22T11:50:00Z cut RATES to 30 and 24 and 15 and 10 in src/scale.rs; added exact_half; added the hint to src/main.rs; cargo test — 36 pass. A 60 fps source now shows four rows and a 30 fps source shows three.
+2026-09-22T11:53:00Z printf into script -qec on sixty and big and wide and ntsc — the 25 and 29.97 sources have no exact row so the menu names 12.5 and 14.985 for the c prompt.
+2026-09-22T11:55:30Z cargo fmt; cargo clippy --all-targets; cargo test; release binary at --fps 12.5 on wide.mp4 — no warning and 36 pass. 75 frames became 38 at 25/2.
+2026-09-22T12:04:00Z fourth request. A Windows build of vidscale. Checking for an installed target and a linker first.
+2026-09-22T12:08:00Z rustup target list --installed; which x86_64-w64-mingw32-gcc lld clang wine; zig version — both windows targets are already installed as std libraries. There is no mingw linker and no wine. zig 0.16.0 and cargo-zigbuild are on this machine.
+2026-09-22T12:10:00Z cargo zigbuild --release --target x86_64-pc-windows-gnu — built in 11s. target/x86_64-pc-windows-gnu/release/vidscale.exe is 499712 bytes.
+2026-09-22T12:11:00Z file and objdump -p on the exe — PE32+ console x86-64. The imports are kernel32 and ntdll and the api-ms-win-crt set so no mingw dll has to travel with it.
+2026-09-22T12:12:30Z cargo build --release --target x86_64-pc-windows-gnu without zig — fails with linker x86_64-w64-mingw32-gcc not found which is why zigbuild is the documented route.
+2026-09-22T12:13:40Z cargo zigbuild --release --target x86_64-pc-windows-gnu --tests — the test binary links too. It cannot be run here because there is no wine.
+2026-09-22T12:15:00Z cargo clippy --target x86_64-pc-windows-gnu --all-targets; cargo test — no warning for the windows target and the 36 linux tests still pass.
+FINAL STATE OF THE WINDOWS BUILD
+  target/x86_64-pc-windows-gnu/release/vidscale.exe  499712 bytes. PE32+ console. kernel32 and ntdll and the ucrt only.
+  readme.md holds the zigbuild line. The msvc target is not built because the Microsoft libraries are not on this machine.
+  The exe is not run here. There is no wine so only the linux binary has been exercised.

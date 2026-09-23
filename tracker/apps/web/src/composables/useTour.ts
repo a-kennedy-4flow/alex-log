@@ -24,18 +24,13 @@ export interface TourStep {
 
 const STEPS: Record<TourPage, TourStep[]> = {
   /*
-   * The tabs are drawn by the shell so they stand on every page. They are
-   * toured from the month alone. Because a) a page offers its tour once and
-   * unasked. b) the same six tabs on every page would be six steps six times.
-   * c) the month is the page the app opens on.
+   * The tabs are drawn by the shell so they stand on every page. One step
+   * covers the whole strip from the month alone. Because a) a page offers its
+   * tour once and unasked. b) a step per tab would be six steps before the
+   * page itself is reached. c) the month is the page the app opens on.
    */
   month: [
-    { anchor: 'navMonth', key: 'navMonth' },
-    { anchor: 'navQuick', key: 'navQuick' },
-    { anchor: 'navGuided', key: 'navGuided' },
-    { anchor: 'navJira', key: 'navJira' },
-    { anchor: 'navCostCentres', key: 'navCostCentres' },
-    { anchor: 'navSetup', key: 'navSetup' },
+    { anchor: 'tabs', key: 'tabs' },
     { anchor: 'period', key: 'period' },
     { anchor: 'target', key: 'target' },
     { anchor: 'recent', key: 'recent' },
@@ -44,9 +39,7 @@ const STEPS: Record<TourPage, TourStep[]> = {
   ],
   quick: [
     { anchor: 'quickRows', key: 'quickRows' },
-    { anchor: 'quickShare', key: 'quickShare' },
     { anchor: 'quickSpread', key: 'quickSpread' },
-    { anchor: 'quickApply', key: 'quickApply' },
   ],
   /*
    * The guided build is the one page whose order is the instruction so its
@@ -56,11 +49,7 @@ const STEPS: Record<TourPage, TourStep[]> = {
    * who needs them explained.
    */
   guided: [
-    { anchor: 'guidedDays', key: 'guidedDays' },
-    { anchor: 'guidedPlace', key: 'guidedPlace' },
     { anchor: 'guidedKind', key: 'guidedKind' },
-    { anchor: 'guidedProjects', key: 'guidedProjects' },
-    { anchor: 'guidedBuild', key: 'guidedBuild' },
   ],
   settings: [
     { anchor: 'location', key: 'location' },

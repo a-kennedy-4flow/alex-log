@@ -1,0 +1,451 @@
+                                                                                                                                         ORIGINAL RESEARCH
+                                                                                                                                     published: 21 February 2017
+                                                                                                                                  doi: 10.3389/fpsyg.2017.00257
+
+
+
+
+                                            Reading Rate and Comprehension
+                                            for Text Presented on Tablet and
+                                            Paper: Evidence from Arabic
+                                            Ehab W. Hermena *, Mercedes Sheen, Maryam AlJassmi, Khulood AlFalasi,
+                                            Maha AlMatroushi and Timothy R. Jordan
+                                            Cognition and Neuroscience Research Laboratory, Department of Psychology, Zayed University, Dubai, UAE
+
+
+                                            The effectiveness of tablet computers to supplement or replace paper-based text in
+                                            everyday life has yet to be fully revealed. Previous investigations comparing reading
+                                            performance using tablets and paper have, however, reported inconsistent results.
+                                            Furthermore, the interpretability of some previous findings is limited by lack of
+                                            experimental control over variables like text display conditions. In the current study, we
+                                            investigated reading performance for text presented on tablet and paper. Crucially, the
+                                            levels of luminance and contrast were matched precisely across tablet and paper. The
+                                            study used Arabic text which differs substantially from the languages used previously
+                                            to investigate effects of tablet and paper on reading, thus offering a distinctive test of
+                            Edited by:      the influence of these two media on reading performance. The results suggest that
+                          Falk Huettig,
+                                            when text display conditions are well-matched, there is no reliable difference in reading
+                  Max Planck Institute
+    for Psycholinguistics, Netherlands      performance between the two media. Also, neither the order of medium (reading from
+                       Reviewed by:         tablet or paper first), nor familiarity with using a tablet significantly influence reading
+                          Rob Davies,       performance. These results call into question previous suggestions that reading from
+             Lancaster University, UK
+                        Zohar Eviatar,      tablets is linked to poorer reading performance, and demonstrate the benefits of
+             University of Haifa, Israel    controlling text display conditions. These findings are of interest to reading scientists
+                 *Correspondence:           and educators.
+                   Ehab W. Hermena
+             Ehab.Hermena@zu.ac.ae          Keywords: reading Arabic, reading from tablets, luminance levels in reading, reading media, reading technology,
+                                            reading comprehension
+                   Specialty section:
+         This article was submitted to
+                             Cognition,     INTRODUCTION
+               a section of the journal
+               Frontiers in Psychology      Reading from tablets and tablet-like devices (e.g., iPad, Galaxy, Kindle, for which we shall use
+      Received: 28 September 2016           the generic term tablets), whether for personal enjoyment, conducting business, or educational
+       Accepted: 09 February 2017           purposes, is becoming progressively more common, especially given the availability and increased
+       Published: 21 February 2017          functionality of these devices (e.g., Connell et al., 2012). Using such non-paper based media
+                           Citation:        for reading has particularly attracted the attention of educators, given that such non-traditional
+Hermena EW, Sheen M, AlJassmi M,            methods have been suggested to increase students’ motivation to read and engage with the texts
+     AlFalasi K, AlMatroushi M and          being read (Horney and Anderson-Inman, 1999; Korat and Shamir, 2007). Research activity into
+    Jordan TR (2017) Reading Rate
+                                            the efficacy of using tablets, relative to traditional paper books, has thus far shed some light on
+        and Comprehension for Text
+     Presented on Tablet and Paper:
+                                            the similarities and differences between the two modes of reading (e.g., Grimshaw et al., 2007).
+               Evidence from Arabic.        However, as we shall discuss further, the results from previous investigations can be described
+              Front. Psychol. 8:257.        as mixed, and the generalizability of the results remains questionable due to lack of control over
+    doi: 10.3389/fpsyg.2017.00257           crucial experimental variables. In the current investigation, we aim to address these shortcomings
+
+
+Frontiers in Psychology | www.frontiersin.org                                    1                                          February 2017 | Volume 8 | Article 257
+Hermena et al.                                                                                                  Reading Arabic from Tablet and Paper
+
+
+
+by providing clear answers to specific questions regarding                  or interpreting reading rate and comprehension results. For
+reading from tablets compared to paper, and by controlling the              instance, Schugar et al. (2011, p. 183) reported that: “Additionally
+conditions under which reading from both media was conducted.               as the study progressed, it was not always obvious who was reading
+Additionally, the current investigation is, to our knowledge, the           what on what, and while those students who used the device did
+first to compare these reading media for reading Arabic text. Our           some of their reading on the device, some students owned both
+findings will thus expand on existing findings in this area where,          digital and print based versions of the text.” (Emphasis added).
+with few exceptions, the focus of research remains on English and               The increased reading times from tablets compared to paper
+other European languages.                                                   has also been linked to readers’ lack of familiarity with how
+    Using electronic media was found to improve reading                     to operate the tablet, or with how to access its features (e.g.,
+comprehension (assessed by multiple choice questions), relative             Wright et al., 2013). Chen et al. (2014) investigated if familiarity
+to paper-based reading (de Jong and Bus, 2002; Grimshaw et al.,             with tablet operation influenced reading performance when
+2007; Korat, 2009). Such findings were further seen as evidence             comparing reading in Chinese from paper, computer screen,
+that tablets improve readers’ motivation and engagement (e.g.,              and tablets. They used a questionnaire to evaluate readers’
+Grimshaw et al., 2007), particularly in children who have                   familiarity with tablets (Tablet Familiarity Questionnaire, TFQ:
+struggled to (or experienced failure in) learning to read (de Jong          Zheng et al., 2015) which explores areas such as overall perceived
+and Bus, 2004; Gleason, 2005; Korat, 2009; Shamir, 2009; Black,             ease or difficulty of tablet use, ease of performing tasks such as
+2010). Furthermore, and in addition to clearly displaying text,             editing text, reading, browsing the web, troubleshooting (fixing
+tablets typically include other learning resources such as the              problems), watching or listening to media, contacting friends
+ability to access dictionary and thesaurus, being equipped with             using the tablet, installing or removing applications, etc. Chen
+features such as reading words or text out loud, and the ability            et al. (2014) found that participants’ level of familiarity with
+to annotate text and highlight it. As a result, the adoption of             tablet operation influenced their deep comprehension (ability to
+these technologies was further seen by researchers and teachers             summarize text after reading) such that participants who were
+as a means to improve the pedagogical input of teachers in class,           more familiar with the tablet operation were significantly more
+making it more efficient and tailored to suit the learners’ need            successful in reading comprehension. The majority of reported
+for support, as well as independence (e.g., Kinzer, 2003; Prensky,          investigations in this area have failed to take into account user
+2006; Bennett et al., 2008; Larson, 2008, 2009).                            tablet familiarity when presenting and interpreting their results.
+    However, the potential benefits of tablets for reading have                 As mentioned above, the evidence available thus far is mixed
+come under doubt from studies that suggest that reading time is             with regards to the influence of the reading medium, tablet
+longer when reading from tablets compared to when reading the               or paper, on reading performance. Some investigations (e.g.,
+same text from paper (e.g., Grimshaw et al., 2007; Nielsen, 2010;           those reported above) found that reading from tablets is slower
+Schugar et al., 2011; Connell et al., 2012). For instance, Nielsen          than reading from paper. By contrast, other studies reported
+(2010) reported that readers were on average about 6 to 11%                 that there were no significant differences between measures
+slower when reading from tablets compared to when they read                 of reading speed and text comprehension when participants
+the same text from paper (for similar results, see Mayes et al.,            were required to read the same text from paper or from a
+2001; Wästlund et al., 2005; Ackerman and Goldsmith, 2011;                  tablet in English (e.g., Noyes and Garland, 2003, 2008). In
+Kim and Kim, 2013; Mangen et al., 2013; Mangen and Kuiken,                  Italian, a study by Zambarbieri and Carniglia (2012) found that
+2014). Other investigations of reading in English reported no               there was no difference between eye movement behaviors (e.g.,
+differences between the reading media, tablet or paper, in reading          fixation duration, and the amount of forward and backward
+comprehension, but replicated the finding that reading from                 eye movements, or saccades, in the text) while reading from a
+tablet is significantly slower than reading from paper (Connell             tablet or paper (although fixation durations were longer when
+et al., 2012). Some researchers have also suggested that reading            participants read from the fourth medium investigated, namely
+from electronic displays may be slower because these displays are           a computer screen). Dundar and Akcayir (2012) reported similar
+brighter (of higher luminance) than paper, and that this increased          results in reading Turkish text from tablet and paper, with no
+brightness results in greater eye fatigue (e.g., Blanco and Leirøs,         significant differences in reading rate or comprehension between
+2000; see also Dundar and Akcayir, 2012). Indeed, other evidence            the two media. Unfortunately, without exerting proper control
+suggests that, when processing visual stimuli, luminance levels             over the parameters of the displays used for each medium, it is
+influence reaction times and the allocation of spatial attention            impossible to determine whether text is or is not read equally
+(e.g., Johannes et al., 1995; Kammer et al., 1999). It is also likely       efficiently on tablets and paper.
+that the difference in reading time between tablet and paper                    The current investigation addressed some major shortcomings
+in some studies was due to insufficient control of fundamental              in previous studies of reading from tablet and paper. To begin
+variables, whereby font sizes and types, number of pages of text,           with, we adopted a methodical approach in matching the visual
+and even the amount of text per page differed between the two               properties of the text presentation by matching the luminance
+reading media (see e.g., Mangen and Kuiken, 2014). Another                  and contrast levels of tablet and paper displays. This allowed us
+point of concern regarding previous investigations relates to the           to avoid the potentially confounding influence of varying these
+use of self-report by participants concerning how much reading              crucial components of each display. Additionally, we investigated
+they did on tablet and paper, and researchers actually losing track         whether the order of medium (reading first from a tablet vs.
+of the amounts of reading done using these media when reporting             from paper) had any influence on readers’ performance. It is
+
+
+Frontiers in Psychology | www.frontiersin.org                           2                                       February 2017 | Volume 8 | Article 257
+Hermena et al.                                                                                                 Reading Arabic from Tablet and Paper
+
+
+
+plausible that readers who begin their reading session by reading          had normal or corrected-to-normal vision as determined by the
+from a tablet are more motivated or engaged in the task given              Snellen eye chart.
+the novelty of the tablet medium (e.g., Grimshaw et al., 2007),
+relative to those who begin the reading session from paper. If
+                                                                           Stimuli
+this were the case, we may be able to observe differences in
+                                                                           The reading materials were two Arabic passages, each containing
+reading performance between participants who begin reading
+                                                                           604 words, selected from the novel Masafat by Atallah (2009).
+with tablet and then switch to paper and the group that read
+                                                                           These passages were edited and adjusted to be easier for reading
+from both media in the opposite order. Furthermore, we also
+                                                                           comprehension. An additional practice passage from the same
+systematically investigated the participants’ level of familiarity
+                                                                           book (200 words) was shown before the experimental passages.
+with tablets, given the documented influence of this variable on
+                                                                           All passages were presented in 11-point Helvetica font, with a
+reading performance.
+                                                                           line spacing of 1.2 pt. After reading each passage, six multiple
+   Finally, we studied reading Arabic in both these media
+                                                                           choice questions were presented orally to the participants. The
+given that it has thus far not been investigated. Arabic has the
+                                                                           questions referred to different aspects and details of the preceding
+second-most used alphabet in human societies, after the Latinate
+                                                                           text and were designed to ensure that participants read and
+alphabet. But, unlike languages using the Latinate alphabet,
+                                                                           comprehended each presented text. All texts and questions were
+Arabic is formed in cursive script in which clear spaces often do
+                                                                           presented to all participants in Modern Standard Arabic, which
+not exist between letters in words, even when formally printed,
+                                                                           is spoken, understood, and read fluently by all the participants,
+and this may present problems for word recognition (see Jordan
+                                                                           being native Arabic readers. All presented texts contained no
+et al., 2010; Paterson et al., 2015). Indeed, the physical shapes of
+                                                                           vowelized (diacritized) words.
+Arabic letters also vary considerably depending on their position
+                                                                               A TFQ (Zheng et al., 2015) was presented to participants in
+in words, and these variations increase the total number of forms
+                                                                           order to gauge their levels of familiarity and confidence using a
+of Arabic letters to over 100. Thus, Arabic differs substantially
+                                                                           tablet. The questionnaire contained 30 items and the participants
+from the languages that have been used previously to study
+                                                                           responded to each item by indicating on a scale from 1 to 5 how
+the effects of reading text from tablet and paper and so offers
+                                                                           they rate their knowledge and ability to use a tablet. A response
+a distinctive test of the relative influence of these two media
+                                                                           of 5 indicated high a level of tablet familiarity in some questions,
+on reading. Increasingly, using modern technological tools such
+                                                                           whereas in other questions a response of 5 indicated a low
+as tablets is becoming common in the Arabic classroom (e.g.,
+                                                                           level of tablet familiarity. As explained above, the questionnaire
+Al Bataineh and Anderson, 2015; Alresheed et al., 2015), and
+                                                                           explored areas such as overall perceived ease of tablet use, and
+the current investigation should be regarded as a step toward
+                                                                           ease with which tasks such as editing text, reading, browsing the
+building an evidence base for the current practices and possible
+                                                                           web, troubleshooting, watching or listening to media, etc., are
+necessary revisions of such practices.
+                                                                           performed.
+   Thus, to summarize, we addressed the following questions:
+(a) Is reading from tablet slower than reading from paper,
+even if the visual properties of the display in both conditions            Apparatus and Text Display Conditions
+are matched? (b) Does the order of presenting the reading                  Viewing the text was binocular. Testing took place in a well-lit
+materials on each medium (tablet first or paper first) influence           room (natural and electric light, but no direct sunlight) and light
+reading performance? (c) To what extent does users’ familiarity            conditions were stable for all participants and all testing sessions.
+with the tablet predict, or modulate, their reading rate and                   For the tablet condition, each passage was presented on an
+comprehension? (d) And finally, given the absence of evidence              Apple iPad 3 (9.50 × 7.31 inch). For the paper condition, each
+about reading Arabic text from tablet or paper, our investigation          passage was presented on a sheet of paper of the same size as
+would reveal, for the first time, if reading Arabic text differs in        the iPad display. In both display media, the text was presented
+terms of rate and comprehension because of the reading medium.             in black on a white background, and a complete passage of text
+As discussed above, findings from previous investigations are              filled an area approximately 11.4◦ (horizontal) × 15.6◦ (vertical).
+mixed, possibly due to lacking the adequate controls (e.g., on             The paper margins matched the iPad frame size (1.4 inch).
+text display luminance), and possibly due to failing to take into              The text luminance on paper was measured in the location
+account (in statistical models) the influence of relevant factors          where testing was conducted. A Velleman DVM1300 Digital
+such as participant differences in the level of familiarity with           Light Meter was used to measure the luminance. The automatic
+tablets. We predict that the findings from this investigation will         luminance-setting feature on the iPad was turned off and the
+be equally informative to reading scientists and educators.                luminance of the iPad display was matched to that of the paper
+                                                                           using the same instrument. This matching process was conducted
+                                                                           before testing. For both the iPad and the paper, text luminance
+MATERIALS AND METHODS                                                      was 1.0 cd/m2 and background luminance was 18.5 cd/m2 . These
+                                                                           values gave a Michelson contrast ratio of 0.90 which is well-suited
+Participants                                                               to reading.
+Twenty-four undergraduate students from Zayed University                       All passages were viewed from a distance of 33 cm and a
+contributed to the experiment. Participants were aged between              chinrest was used to ensure a constant viewing distance. The iPad
+18 and 31 and were all native Arabic speakers. All participants            and the paper were each mounted in turn on a table-top stand and
+
+
+Frontiers in Psychology | www.frontiersin.org                          3                                       February 2017 | Volume 8 | Article 257
+Hermena et al.                                                                                                       Reading Arabic from Tablet and Paper
+
+
+
+were angled identically toward each participant for comfortable           of tablets. Participants and passages were included in the models
+reading.                                                                  as random variables.
+                                                                             We always began our analyses with full models (e.g., Barr et al.,
+Design                                                                    2013) that included the main variables and their interactions, as
+Reading medium was a within participant independent variable              well as maximal random variables structure (the intercepts of the
+with two levels: iPad and paper. The order in which the reading           random variables as well as their slopes varying as a function
+passages were presented (passage A and passage B), as well as             of the three-way interaction between the fixed variables). These
+the reading medium (iPad or paper) from which the readers                 models were systematically trimmed when failure to converge
+read the first passage, were counterbalanced. Accordingly, half           occurred, first by removing correlations between random effects,
+the participants started with passage A (half with iPad first and         and, if necessary, also by removing their interactions. All findings
+half with paper first) and half started with passage B (half with         reported here are from successfully converging models1 . For each
+iPad first and half with paper first). Passage reading speed (in          contrast we report beta values (b), standard error (SE), and t
+seconds), and reading comprehension performance were the                  statistics for reading times and comprehension. We obtained
+dependent variables. Another predictive variable that we also             almost identical results when reading times were log transformed
+include in our statistical models is readers’ tablet familiarity          and when they were not, and so we report the analyses
+score, based on their reposes in the TFQ (Zheng et al., 2015).            conducted on the untransformed data to preserve transparency
+As outlined above, readers’ familiarity with tablets may influence        of interpretation. Prior to running the models, we used the
+their reading performance, and we wanted to quantify this effect          contr.sdif function in the MASS package (Venables and Ripley,
+by including it as a continuous variable in our models.                   2002) to pre-specify the contrasts between the levels of the fixed
+                                                                          factors (iPad vs. paper, and order of medium).
+
+Procedure                                                                 Reading Time
+This research was approved by the Research Ethics Committee               On average, reading times for tablet and paper were 255.2 and
+at Zayed University. At the beginning of each testing session,            262.5 s, respectively (see Table 1). The 7.3 s difference between
+participants were informed that they would be required to read            the two media represented less than a 3% difference and was not
+passages of text and that their reading speed and comprehension           statistically significant (b = −90.7, SE = 67.2, t = −1.4). The
+would be measured. Reading time was measured from when the                order of medium (iPad vs. paper) also had no significant influence
+text was revealed and stopped when the participants indicated             on reading speed (t < 1, also see Table 1). Reading time was
+that they had reached the end of each passage by tapping the table.       furthermore minimally influenced by tablet familiarity (b = −2.8,
+Each participant began by reading the practice passage, and the           SE = 1.8, t = −1.6). There were no significant interactions
+two experimental passages were then presented, one on the iPad            between any of the variables (reading medium, order of medium,
+and one on the paper. After reading each passage, participants            and tablet familiarity), all ts < 1.5.
+were asked six passage-related comprehension questions by the                Following the method outlined by Dienes (2014), we
+experimenter, to which they provided simple verbal responses.             calculated the Bayesian Factor to further ascertain that the
+Finally, participants completed the TFQ. Each experimental                obtained null result is not due to factors such as lack of
+session lasted about 20 min.                                              statistical power. Accordingly, the reading time measure was
+                                                                          collapsed across presentation order to arrive at the difference in
+                                                                          average reading time between the paper and tablet conditions.
+RESULTS                                                                   An estimate of prior difference in reading time between tablet
+                                                                          and paper was calculated from previous similar investigations
+We used the lme4 package (version 1.1-12, Bates et al., 2011)             (namely, Grimshaw et al., 2007 and Connell et al., 2012). The
+within the R environment for statistical computing (R Core                Bayesian Factor obtained was 0.19, indicating that accepting the
+Team, 2013) to run linear mixed models (LMMs). We report                  null hypothesis is justified, and that the data set did not lack
+t statistics for the LMMs where effects approximately twice as            power or sensitivity.
+large as their standard error (i.e., t ≥ 1.96) are interpreted as
+significant. For each of the dependent variables (reading time and        Reading Comprehension
+comprehension score), the first fixed variable of all models were         All participants had a comprehension score of greater than
+the reading medium (iPad vs. paper). We also included order               80%. Reading comprehension performance was identical for both
+of medium (iPad vs. paper) as another fixed variable to learn             reading from iPad and from paper (t < 1, also see Table 2).
+whether presenting readers with text on tablet first influences           There were no significant effects of order of medium (b = 26.1,
+reading performance, as explained above. The final fixed variable         SE = 21.6, t = 1.2), or for tablet familiarity (b = 0.1, SE = 0.1,
+in all models was the participants’ score on the TFQ. Including
+this continuous variable in the models allowed us to quantify its         1
+                                                                            The converging model for reading time was:
+influence on readers’ performance. On average, participants had           lmer(read_time ∼ condition ∗ order ∗ tablet_familiarity + (0 + tablet_familiarity
+                                                                          | participants) + (1 + order ∗ condition | items), data = datafile)
+a tablet familiarity score of 85 out of possible full score of 150
+                                                                            For the measure of reading comprehension, the converging model was:
+(SD = 10, range = 70–104, with the majority of scores ≥80). This          lmer(comprehension ∼ condition ∗ order ∗ tablet_familiarity + (0 + tablet_
+indicated that participants were fairly familiar with the operation       familiarity | participants) + (1 + condition | items), data = datafile)
+
+
+
+Frontiers in Psychology | www.frontiersin.org                         4                                              February 2017 | Volume 8 | Article 257
+Hermena et al.                                                                                                            Reading Arabic from Tablet and Paper
+
+
+
+TABLE 1 | Descriptive statistics for passage reading time (s).                          The results obtained in the present study suggest that when
+                                                                                    visual presentation conditions are controlled, reading from
+                                Reading medium order
+                                                                                    tablets is no slower than reading from paper. This is in contrast
+                            Paper first         Tablet first       Overall          to previous findings where increased reading times from tablets
+Reading medium              Mean (SD)           Mean (SD)        Mean (SD)          were reported, and where text display luminance and contrast
+                                                                                    was not matched between the two reading media (e.g., Grimshaw
+Paper                      257.8 (112.6)        252.6 (50.6)     255.2 (85.4)
+                                                                                    et al., 2007; Nielsen, 2010; Schugar et al., 2011; Connell et al.,
+Tablet                     264.8 (104.1)        260.3 (49.2)     262.5 (79.6)
+                                                                                    2012). As explained above, eye fatigue from reading brighter
+                                                                                    tablet displays (relative to paper) cannot be ruled out as a reason
+TABLE 2 | Descriptive statistics for passage comprehension scores
+                                                                                    for slower reading from tablets (see e.g., Mangen et al., 2013, who
+(percentage).
+                                                                                    reported that readers of Norwegian reported more fatigue when
+                                Reading medium order                                reading from electronic displays). Contrastingly, in the current
+                                                                                    investigation, it is highly unlikely that readers experienced more
+                            Paper first         Tablet first       Overall          eye fatigue due to higher levels of luminance when reading from
+Reading medium              Mean (SD)           Mean (SD)        Mean (SD)          tablets compared to paper, given the matched luminance levels
+Paper                        95.8 (7.7)          97.2 (6.6)       96.5 (7.1)        that were used (see e.g., Blanco and Leirøs, 2000; also Dundar and
+Tablet                       97.2 (6.6)          95.8 (7.7)       96.5 (7.1)        Akcayir, 2012). Additionally, the fact that we found no evidence
+                                                                                    that reading from tablets is linked to slower reading or worse
+                                                                                    reading comprehension calls into question previous suggestions
+t = 1.1) on reading comprehension. Finally, there were no                           that reading from tablets increases reader distractibility and
+significant interactions between any of the variables (reading                      reduces focus (e.g., Wright et al., 2013, p. 368).
+medium, order of medium, and tablet familiarity), all ts < 1.2.                         The second issue we addressed was whether the order of
+   The same procedure for calculating the Bayes Factor outlined                     reading medium had any influence on reading performance. The
+above was followed for the reading comprehension measure. The                       present findings show that reading from tablet first did not result
+estimate of prior difference in reading comprehension between                       in noticeable differences in reading performance compared to
+tablet and paper was calculated from Chen et al. (2014) given the                   reading from paper first. Consequently, if increased levels of
+similarity of reading comprehension task and participant age to                     overall engagement or motivation are produced when reading
+the current investigation. The Bayesian Factor obtain was 0.17,                     from tablets (e.g., Grimshaw et al., 2007), they do not appear to
+indicating that accepting the null hypothesis is justified, and that                transfer to reading from paper, even in the same reading session.
+the data set did not lack power or sensitivity.                                         We also investigated whether the extent to which readers’
+                                                                                    familiarity with tablet operation influences their reading
+                                                                                    performance from the tablet. It will be recalled that Chen
+DISCUSSION                                                                          et al. (2014) reported that readers of Chinese who were more
+                                                                                    familiar with tablet operation were more likely to have better text
+The purpose of this experiment was to investigate differences in                    comprehension (see also Zheng et al., 2015). Our results showed
+reading performance (rate and comprehension) as a function of                       no support for this suggestion, or for the notion that level of
+presenting text on a tablet (an iPad) or on paper. The first issue we               familiarity with tablet operation influences reading times. It may
+addressed related to whether text reading performance differed if                   be, therefore, that tablet familiarity affects tasks involving more
+visual display conditions were matched between the two media.                       tablet interaction (e.g., accessing study aids such as dictionaries,
+Previous investigations reported mixed results regarding the                        thesauruses, etc.) than normal textual reading and so tablet
+influence of reading medium on reading performance, with some                       familiarity did not influence reading performance.
+investigations reporting slower reading from tablets while others                       Finally, we used Arabic because it offers a distinctive test of the
+reported no difference between paper and tablet. When exerting                      relative influence of tablet and paper on reading that has so far not
+proper control over the display conditions for each medium, our                     been investigated. As discussed above, Arabic letter formation,
+results showed that there was a negligible and non-significant                      and the way this differs contingent on where in the word a
+difference between reading times for tablet and paper, and no                       letter falls, gives Arabic unique visual characteristics which may
+difference at all in comprehension performance between the two                      make visual word recognition more challenging (see e.g., Jordan
+reading media. These results are the first to be reported in Arabic,                et al., 2010; Paterson et al., 2015). The findings suggest that
+and are broadly in line with previous findings that also reported                   although Arabic text is distinctive visually from the languages
+no difference between tablet and paper reading performance (e.g.,                   previously investigated (e.g., English, Norwegian, Turkish, and
+Noyes and Garland, 2003, 2008; Connell et al., 2012 when reading                    Chinese), when variables such as display luminance and contrast
+English; Dundar and Akcayir, 2012 when reading Turkish;                             are controlled, processing the complexities inherent in Arabic
+Zambarbieri and Carniglia, 2012 when reading Italian). However,                     does not interact with the medium on which the text is presented.
+it is apparent that none of these previous investigations matched                       The findings we present here provide strong evidence that
+display conditions explicitly when comparing reading across                         reading from tablets does not result in increased reading time
+media, and so the current findings overcome these important                         or poorer reading comprehension, as has been suggested by
+limitations.                                                                        previous studies. Instead, our results underscore the view that
+
+
+Frontiers in Psychology | www.frontiersin.org                                   5                                        February 2017 | Volume 8 | Article 257
+Hermena et al.                                                                                                                               Reading Arabic from Tablet and Paper
+
+
+
+control over the visual properties of the display should enable                               all subjects. All subjects gave written informed consent in
+parents, class teachers, and teaching assistants to ensure enjoyable                          accordance with the Declaration of Helsinki. The protocol was
+reading sessions that are no more difficult than reading from                                 approved by the Zayed University Research Ethics Committee.
+books and ordinary print.
+
+                                                                                              AUTHOR CONTRIBUTIONS
+ETHICS STATEMENT
+                                                                                              MAJ, KAF, and MAM collected data and prepared preliminary
+This study was carried out in accordance with the                                             analysis. EH prepared the submitted analyses and the first draft of
+recommendations of Zayed University Research Ethics                                           the manuscript. EH, TJ, and MS prepared the submitted version
+Committee Guidelines with written informed consent from                                       of the manuscript.
+
+
+REFERENCES                                                                                    Jordan, T. R., Paterson, K. B., and Almabruk, A. A. A. (2010). Revealing the
+                                                                                                 superior perceptibility of words in Arabic. Perception 39, 426–428. doi: 10.1068/
+Ackerman, R., and Goldsmith, M. (2011). Metacognitive regulation of text                         p6637
+    learning: on screen versus on paper. J. Exp. Psychol. Appl. 17, 18–32. doi:               Kammer, T., Lehr, L., and Kirschfeld, K. (1999). Cortical visual processing is
+    10.1037/a0022086                                                                             temporally dispersed by luminance in human subjects. Neurosci. Lett. 263,
+Al Bataineh, M., and Anderson, S. (2015). Jordanian social studies teachers’                     133–136. doi: 10.1016/S0304-3940(99)00137-8
+    perceptions of competency needed for implementing technology in the                       Kim, H., and Kim, J. (2013). Reading from an LCD monitor versus paper: teenagers’
+    classroom. Contemp. Educ. Technol. 6, 38–61.                                                 reading performance. Int. J. Res. Stud. Educ. Technol. 2, 1–10. doi: 10.5861/ijrset.
+Alresheed, S., Leask, M., and Raiker, A. (2015). Integrating computer-assisted                   2012.170
+    language learning in Saudi schools: a change model. Turk. Online J. Educ.                 Kinzer, C. K. (2003). The Importance of Recognizing the Expanding Boundaries
+    Technol. 14, 69–77.                                                                          of Literacy. Reading Online, 6. Available at: http://www.readingonline.org/
+Atallah, S. (2009). Masafat. Riyadh: Obeidkan.                                                   electronic/elec_index.asp?HREF=/electronic/kinzer/
+Barr, D. J., Levy, R., Scheepers, C., and Tily, H. J. (2013). Random effects structure        Korat, O. (2009). Reading electronic books as a support for vocabulary, story
+    for confirmatory hypothesis testing: keep it maximal. J. Mem. Lang. 68,                      comprehension and word reading in kindergarten and first grade. Comput.
+    255–278. doi: 10.1016/j.jml.2012.11.001                                                      Educ. 55, 24–31. doi: 10.1016/j.compedu.2009.11.014
+Bates, D., Maechler, M., and Bolker, B. (2011). Lme4: Linear Mixed-Effects Models             Korat, O., and Shamir, A. (2007). Electronic books versus adult readers: effects on
+    Using S4 Classes. R Package Version 0.999375-42 [Computer Software]. Available               children’s emergent literacy as a function of social class. J. Comput. Assist. Learn.
+    at: http://CRAN.R-project.org/package=lme4                                                   23, 248–259. doi: 10.1111/j.1365-2729.2006.00213.x
+Bennett, S., Maton, K., and Kervin, L. (2008). The ‘digital natives’ debate: a critical       Larson, L. (2008). Electronic reading workshop: beyond books with new literacies
+    review of the evidence. Br. J. Educ. Technol. 39, 775–786. doi: 10.1111/j.1467-              and instructional technologies. J. Adolesc. Adult Lit. 52, 121–132. doi: 10.1598/
+    8535.2007.0079.x                                                                             JAAL.52.2.3
+Black, P. (2010). E-books must be accessible, and that means audio. Chron. High.              Larson, L. (2009). e-Reading and e-Responding: new tools for the next generation
+    Educ. 56:A31.                                                                                of readers. J. Adolesc. Adult Lit. 53, 255–258. doi: 10.1598/JAAL.53.3.7
+Blanco, M. J., and Leirøs, L. I. (2000). Temporal variation in the luminance level of         Mangen, A., and Kuiken, D. (2014). Lost in an iPad: narrative engagement on paper
+    stimuli displayed on a cathode-ray tube monitor: effects on performance on a                 and tablet. Sci. Study Lit. 4, 150–177. doi: 10.1075/ssol.4.2.02man
+    visual vigilance task. Ergonomics 43, 239–251. doi: 10.1080/001401300184585               Mangen, A., Walgermo, B., and Brønnick, K. (2013). Reading linear texts on paper
+Chen, G., Cheng, W., Chang, T., Zheng, X., and Huang, R. (2014). A comparison                    versus computer screen: effects on reading comprehension. Int. J. Educ. Res. 58,
+    of reading comprehension across paper, computer screens, and tablets: does                   61–68. doi: 10.1016/j.ijer.2012.12.002
+    tablet familiarity matter? J. Comput. Educ. 1, 213–225. doi: 10.1007/s40692-014-          Mayes, D. K., Sims, V. K., and Koonce, J. M. (2001). Comprehension and workload
+    0012-z                                                                                       differences for VDT and paper-based reading. Int. J. Ind. Ergon. 28, 367–378.
+Connell, C., Bayliss, L., and Farmer, W. (2012). Effects of eBook readers and tablet             doi: 10.1016/S0169-8141(01)00043-9
+    computers on reading comprehension. Int. J. Instr. Media 39, 131–140.                     Nielsen, J. (2010). iPad and Kindle Reading Speeds. Available at: http://www.useit.
+de Jong, M. T., and Bus, A. G. (2002). Quality of book-reading matters for emergent              com/alertbox/ipad-kindle-reading.html
+    readers: an experiment with the same book in a regular or electronic format.              Noyes, J. M., and Garland, K. J. (2003). VDT versus paper-based text: reply to
+    J. Educ. Psychol. 94, 145–155. doi: 10.1037//0022-0663.94.1.145                              Mayes, Sims and Koonce. Int. J. Ind. Ergon. 31, 411–423. doi: 10.1016/S0169-
+de Jong, M. T., and Bus, A. G. (2004). The efficacy of electronic books in                       8141(03)00027-1
+    fostering kindergarten children’s emergent story understanding. Read. Res. Q.             Noyes, J. M., and Garland, K. J. (2008). Computer- vs. paper-based tasks: are they
+    39, 378–393. doi: 10.1598/RRQ.39.4.2                                                         equivalent? Ergonomics 51, 1352–1375. doi: 10.1080/00140130802170387
+Dienes, Z. (2014). Using Bayes to get the most out of non-significant results. Front.         Paterson, K. B., Almabruk, A. A. A., McGowan, V. A., White, S. J., and Jordan,
+    Psychol. 5:781. doi: 10.3389/fpsyg.2014.00781                                                T. R. (2015). Effects of word length on eye movement control: the evidence from
+Dundar, H., and Akcayir, M. (2012). Tablet vs. paper: the effect on learners’ reading            Arabic. Psychon. Bull. Rev. 22, 1443–1450. doi: 10.3758/s13423-015-0809-4
+    performance. Int. Electron. J. Elem. Educ. 4, 441–450.                                    Prensky, M. (2006). Listen to the natives. Educ. Leadersh. 63, 8–13.
+Gleason, J. B. (2005). The Development of Language, 6th Edn. Boston, MA: Pearson              R Core Team (2013). A Language and Environment for Statistical Computing.
+    Education.                                                                                   Vienna: R Foundation for Statistical Computing.
+Grimshaw, S., Dungworth, N., McKnight, C., and Morris, A. (2007). Electronic                  Schugar, J. T., Schugar, H., and Penny, C. (2011). A nook or a book: comparing
+    books: children’s reading and comprehension. Br. J. Educ. Technol. 38, 583–599.              college students’ reading comprehension level, critical reading, and study skills.
+    doi: 10.1111/j.1467-8535.2006.00640.x                                                        Int. J. Technol. Teach. Learn. 7, 174–192.
+Horney, M., and Anderson-Inman, I. (1999). Supported text in electronic reading               Shamir, A. (2009). Processes and outcomes of joint activity with e-books for
+    environments. Read. Writ. Q. 15, 127–168. doi: 10.1080/105735699278242                       promoting kindergarteners’ emergent literacy. Educ. Media Int. 46, 81–96. doi:
+Johannes, S., Münte, T. F., Heinze, H. J., and Mangun, G. R. (1995). Luminance and               10.1080/09523980902781295
+    spatial attention effects on early visual processing. Cogn. Brain Res. 2, 189–205.        Venables, W. N., and Ripley, B. D. (2002). Modern Applied Statistics with S, 4th
+    doi: 10.1016/0926-6410(95)90008-X                                                            Edn. New York, NY: Springer.
+
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                             6                                                  February 2017 | Volume 8 | Article 257
+Hermena et al.                                                                                                                   Reading Arabic from Tablet and Paper
+
+
+
+Wästlund, E., Reinikka, H., Norlander, T., and Archer, T. (2005). Effects of            and S. C. Kong (Heidelberg: Springer), 69–76. doi: 10.1007/978-3-662-4418
+  VDT and paper presentation on consumption and production of information:              8-6_9
+  psychological and physiological factors. Comput. Hum. Behav. 21, 377–394.
+  doi: 10.1016/j.chb.2004.02.007                                                     Conflict of Interest Statement: The authors declare that the research was
+Wright, S., Fugett, A., and Caputa, F. (2013). Using E-readers and                   conducted in the absence of any commercial or financial relationships that could
+  internet resources to support comprehension. Educ. Technol. Soc. 16,               be construed as a potential conflict of interest.
+  367–379.
+Zambarbieri, D., and Carniglia, E. (2012). Eye movement analysis                     Copyright © 2017 Hermena, Sheen, AlJassmi, AlFalasi, AlMatroushi and Jordan.
+  of reading from computer displays, eReaders and printed books.                     This is an open-access article distributed under the terms of the Creative Commons
+  Ophthalmic Physiol. Opt. 32, 390–396. doi: 10.1111/j.1475-1313.2012.               Attribution License (CC BY). The use, distribution or reproduction in other forums
+  00930.x                                                                            is permitted, provided the original author(s) or licensor are credited and that the
+Zheng, X., Cheng, W., Xu, B., Chen, G., and Huang, R. (2015). “An initial            original publication in this journal is cited, in accordance with accepted academic
+  development and validation of tablet computer familiarity questionnaire,” in       practice. No use, distribution or reproduction is permitted which does not comply
+  Emerging Issues in Smart Learning, eds G. Chen, V. Kumar, Kinshuk, R. Huang,       with these terms.
+
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                    7                                               February 2017 | Volume 8 | Article 257
+

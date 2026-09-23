@@ -60,6 +60,7 @@ pub fn build() -> Option<String> {
     let mut rows = vec!["Commit stats:".to_string(), files_row(&base)];
     rows.extend(line_rows(&base));
     rows.extend(char_rows(&base));
+    rows.extend(review_rows(&base));
     rows.extend(branch_row());
 
     Some(rows.iter().map(|row| comment(row)).collect::<Vec<_>>().join("\n"))
@@ -288,6 +289,95 @@ fn numstat_sum(extra: &[&str]) -> Option<Pair> {
     Some(pair)
 }
 
+/// How long the change will take to review. The model and the papers behind its
+/// constants live in the review-time crate under `code_reviewing`.
+///
+/// The estimate needs the text of the diff rather than the counts because
+/// naming and indentation and comments all change what a line costs to read.
+fn review_rows(base: &str) -> Vec<String> {
+    let Some(text) = git::raw(&["diff", "--cached", base]) else {
+        return Vec::new();
+    };
+    let files = review_time::diff::parse(&text);
+    if files.is_empty() {
+        return Vec::new();
+    }
+    let estimate = review_time::model::estimate(&files, review_time::model::Depth::Standard);
+    if estimate.reviewed_files == 0 {
+        return Vec::new();
+    }
+    review_block(&estimate)
+}
+
+/// Split from the gathering so the shape can be tested without a repo.
+fn review_block(estimate: &review_time::model::Estimate) -> Vec<String> {
+    let sittings = match estimate.sittings {
+        1 => "1 sitting".to_string(),
+        many => format!("{many} sittings"),
+    };
+    let detail = format!(
+        "{} to {}; {}",
+        duration(estimate.low_minutes),
+        duration(estimate.high_minutes),
+        sittings
+    );
+    let mut rows = vec![format!(
+        "  {:<22}{:>7}   ({})",
+        "review time",
+        duration(estimate.minutes),
+        detail
+    )];
+
+    let named: Vec<&review_time::model::FileEstimate> =
+        estimate.files.iter().filter(|file| file.naming_multiplier > 1.05).collect();
+    if let Some(worst) = named.iter().map(|file| file.naming_multiplier).fold(None, keep_larger) {
+        rows.push(note(&format!("naming up to {worst:.2}x on {}", plural(named.len(), "file"))));
+    }
+
+    let unindented: Vec<&str> =
+        estimate.files.iter().filter(|file| file.indent_multiplier > 1.0).map(|file| file.path.as_str()).collect();
+    if let Some(first) = unindented.first() {
+        let rest = match unindented.len() {
+            1 => String::new(),
+            many => format!(" and {} more", many - 1),
+        };
+        rows.push(note(&format!("indentation 2.1x on {first}{rest}")));
+    }
+
+    if estimate.prose_words > 0.0 {
+        rows.push(note(&format!("prose {:.0} words", estimate.prose_words)));
+    }
+    rows
+}
+
+fn keep_larger(best: Option<f64>, next: f64) -> Option<f64> {
+    match best {
+        Some(current) if current >= next => Some(current),
+        _ => Some(next),
+    }
+}
+
+fn plural(count: usize, noun: &str) -> String {
+    match count {
+        1 => format!("1 {noun}"),
+        many => format!("{many} {noun}s"),
+    }
+}
+
+fn note(text: &str) -> String {
+    format!("    {text}")
+}
+
+/// Minutes in the shortest form that stays readable in a narrow column.
+fn duration(minutes: f64) -> String {
+    let whole = minutes.round().max(1.0) as u64;
+    if whole < 60 {
+        format!("{whole} min")
+    } else {
+        format!("{} h {:02}", whole / 60, whole % 60)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -299,6 +389,33 @@ mod tests {
         assert_eq!(hunk_span("@@ -0,0 +1,5 @@"), 5);
         // Trailing function context is ignored.
         assert_eq!(hunk_span("@@ -10,3 +10,3 @@ fn main() {"), 6);
+    }
+
+    #[test]
+    fn durations_stay_narrow() {
+        assert_eq!(duration(0.4), "1 min");
+        assert_eq!(duration(39.2), "39 min");
+        assert_eq!(duration(77.0), "1 h 17");
+        assert_eq!(duration(544.0), "9 h 04");
+    }
+
+    #[test]
+    fn the_review_row_carries_the_range_and_the_sittings() {
+        let text = "diff --git a/src/a.rs b/src/a.rs\n+++ b/src/a.rs\n@@ -0,0 +1,3 @@\n+    let customer_total = order_value();\n+    let q = w + e;\n+    let shipping = rate_for(customer_total);\n";
+        let files = review_time::diff::parse(text);
+        let estimate = review_time::model::estimate(&files, review_time::model::Depth::Standard);
+        let rows = review_block(&estimate);
+        assert!(rows[0].starts_with("  review time"));
+        assert!(rows[0].contains("sitting"));
+        assert!(rows.iter().any(|row| row.contains("naming up to")));
+    }
+
+    #[test]
+    fn a_clean_diff_gets_no_notes() {
+        let text = "diff --git a/src/a.rs b/src/a.rs\n+++ b/src/a.rs\n@@ -0,0 +1,2 @@\n+    let customer_total = order_value();\n+    let shipping_cost = rate_for(customer_total);\n";
+        let files = review_time::diff::parse(text);
+        let estimate = review_time::model::estimate(&files, review_time::model::Depth::Standard);
+        assert_eq!(review_block(&estimate).len(), 1);
     }
 
     #[test]

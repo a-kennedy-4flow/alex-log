@@ -1,0 +1,66 @@
+/*
+ * The quick fill sheet. Shared by every share entry option.
+ *
+ * Because a) a decision is only readable when one thing differs. b) five
+ * hand-copied shells drift within a day. c) the share column is the only thing
+ * under test so everything around it is written once here.
+ *
+ * `f-board.css` carries the header and the title and the sheet. This file is
+ * the quick fill table alone.
+ *
+ * Every ratio quoted here was computed with `contrast.py` and is written in the
+ * rule that uses it.
+ */
+
+.lead{margin:0 0 18px;color:var(--grey);max-width:74ch}
+
+table.fill{width:100%;border-collapse:collapse}
+table.fill th{
+  text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--grey);padding:4px 6px;border-bottom:1px solid var(--warm-grey);
+}
+table.fill td{padding:7px 6px;border-bottom:1px solid var(--warm-grey);vertical-align:middle}
+table.fill tfoot td{border-bottom:0;padding-top:12px}
+
+th.cc{min-width:250px}
+th.spec{min-width:150px}
+th.share{width:120px}
+th.days{width:74px}
+th.act{width:34px}
+
+.cc b{font-weight:700;font-variant-numeric:tabular-nums}
+.cc span{display:block;color:var(--grey);font-size:12px}
+
+/* Every control on the sheet is Warm Grey with no edge at rest. */
+.fill select,.fill input[type=text],.fill input[type=number]{
+  width:100%;background:var(--warm-grey);border:1px solid transparent;border-radius:var(--r);
+  padding:7px 10px;color:inherit;
+}
+.fill input[type=number]{text-align:right;appearance:textfield}
+.fill input[type=number]::-webkit-inner-spin-button{appearance:none;margin:0}
+
+.num{font-variant-numeric:tabular-nums}
+.fig{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+/* The total is wrong. Vibrant Orange fills and never carries small text so the
+   figure stays Smart Blue and the ground is the tint of an open cell. */
+.fig.off{background:#FFF6F2;box-shadow:inset 0 0 0 1px var(--orange);border-radius:var(--r)}
+
+.drop{border:0;background:none;color:var(--grey);border-radius:var(--r);padding:4px 7px;font-size:16px;cursor:pointer}
+.drop:hover{background:var(--warm-grey);color:var(--smart-blue)}
+
+.acts{display:flex;gap:8px}
+.btn{border:1px solid var(--warm-grey);background:var(--white);color:var(--smart-blue);border-radius:var(--r);padding:8px 15px;cursor:pointer}
+.btn:hover{border-color:var(--bright-blue)}
+
+.bottom{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--warm-grey)}
+/* Grey falls to 3.74 on Warm Grey and holds 4.61 on white. The sheet is white. */
+.bottom p{margin:0;color:var(--grey);font-size:13px}
+.bottom .primary{margin-left:auto}
+
+.warn{margin:12px 0 0;color:var(--smart-blue);background:#FFF6F2;border-radius:var(--r);padding:7px 11px;font-size:13px}
+
+/* The range control. `accent-color` paints the fill and the thumb rather than
+   six vendor pseudo elements. Smart Blue holds 12.69 on the Warm Grey track. */
+input[type=range]{width:100%;accent-color:var(--smart-blue);height:26px;margin:0;cursor:pointer}
+
+.note{color:var(--grey);font-size:12px;margin:10px 0 0}

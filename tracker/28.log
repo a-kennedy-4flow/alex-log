@@ -1,0 +1,13 @@
+Log 28. Arrows inside the guided counters and five ways to enter a share on quick fill.
+2026-09-22T14:15:18Z cat of SimpleView.vue and SettingNumber.vue — read the share field of quick fill and the unit inside a box.
+2026-09-22T14:15:18Z sed of tokens.css — the browser spinner is taken off every number field because it sat on the value and Chrome drew it on hover alone.
+2026-09-22T14:15:39Z wrote NumberStepper.vue — a number field with an up arrow and a down arrow inside its right edge at 24px each.
+2026-09-22T14:18:44Z edited GuidedPage.vue and eight catalogues and two test files — the step one counts are NumberStepper and increase and decrease are named in every language.
+2026-09-22T14:18:44Z pnpm test then pnpm lint — 383 pass and lint is clean. The seven i18n failures are still the guidedBuild step missing from en.ts.
+2026-09-22T14:26:07Z wrote shares.css and shares.js and build-shares.py — six quick fill pages and an index built from one shell and one dataset.
+2026-09-22T14:26:07Z contrast.py over twelve pairs — the four bar fills carry their label and three of them do not separate from each other.
+2026-09-22T14:26:07Z parsed every page and checked every link and ran the renderer over six splits — the days add up to the target in all six.
+2026-09-22T14:26:29Z screenshotted all seven pages headless and looked at them — option D repeated the Days column header and the bar dividers were white on the pale fills. Both fixed and rebuilt.
+2026-09-22T14:28:03Z edited index.html — the six share pages are a section of the mockup hub with live previews and the two new files are in the list.
+2026-09-22T14:28:03Z re-parsed every page and re-checked the hub links — 28 links and none dead.
+2026-09-22T14:28:03Z screenshotted the hub and looked at the new section — six previews render and the Files list is right.

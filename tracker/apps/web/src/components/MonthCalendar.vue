@@ -11,9 +11,9 @@
 import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { CalendarDay, HalfDay } from '@tracker/core'
+import type { HalfDay } from '@tracker/core'
 import { catalogue, dayOptionsFor, isAbsence, rowToDay } from '@tracker/core'
-import { weekdayName } from '@/i18n'
+import { useCalendarBoard } from '@/composables/useCalendarBoard'
 import { calendar, issues, pastTarget, rowsByDate } from '@/composables/useTimesheet'
 import { lineClass } from '@/composables/useMonthLines'
 import {
@@ -34,33 +34,10 @@ import {
 import CostCentrePicker from './CostCentrePicker.vue'
 import SpecPicker from './SpecPicker.vue'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
-/** Monday first. Any Monday will do because only the name is wanted. */
-const WEEK_START = '2024-01-01'
-
-const weekdays = computed(() =>
-  Array.from({ length: 7 }, (_, i) => {
-    const date = new Date(`${WEEK_START}T00:00:00Z`)
-    date.setUTCDate(date.getUTCDate() + i)
-    return weekdayName(locale.value, date.toISOString().slice(0, 10))
-  }),
-)
-
-/**
- * The board laid out week by week. Day one lands in its own weekday column so
- * the month leads with blank cells. The tail is padded for the same reason.
- */
-const weeks = computed<(CalendarDay | null)[][]>(() => {
-  const first = calendar.value[0]
-  if (!first) return []
-  const lead: null[] = Array.from({ length: first.weekday - 1 }, () => null)
-  const flat: (CalendarDay | null)[] = [...lead, ...calendar.value]
-  while (flat.length % 7 !== 0) flat.push(null)
-  const rows: (CalendarDay | null)[][] = []
-  for (let i = 0; i < flat.length; i += 7) rows.push(flat.slice(i, i + 7))
-  return rows
-})
+// The guided build draws the same seven columns so the layout is shared.
+const { weekdays, weeks, longDate } = useCalendarBoard()
 
 /* ---------- chips ---------- */
 
@@ -194,14 +171,6 @@ function halfLabel(entry: HalfDay): string {
   return entry.half === 0 ? t('board.upperHalf') : t('board.lowerHalf')
 }
 
-function longDate(date: string): string {
-  return new Intl.DateTimeFormat(locale.value, {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    timeZone: 'UTC',
-  }).format(new Date(`${date}T00:00:00Z`))
-}
 </script>
 
 <template>

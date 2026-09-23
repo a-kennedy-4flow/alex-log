@@ -1,0 +1,718 @@
+                                                                                                                                          ORIGINAL RESEARCH
+                                                                                                                                   published: 28 September 2021
+                                                                                                                                doi: 10.3389/fcomm.2021.743113
+
+
+
+
+                                          Reading Development, Word Length
+                                          and Frequency Effects:
+                                          An Eye-Tracking Study with Slow
+                                          and Fast Readers
+                                          Sabrina Gerth * and Julia Festman
+                                          Department of Research and Development in Teacher Education, University College of Teacher Education Tyrol, Innsbruck,
+                                          Austria
+
+
+                                          Research on reading development attempts to explain differences in the reading patterns
+                                          of adults and children. Previous studies, which typically analyzed word length and
+                                          frequency effects in developing readers, often focused on dyslexic or dysﬂuent
+                                          readers. Similar to previous studies, we investigated the effects of word length and
+                          Edited by:
+                   Sascha Schroeder,      word frequency on the eye movements of children and added several novel aspects:
+    University of Göttingen, Germany      We tested 66 typically developing German-speaking children. Children’s oral reading
+                        Reviewed by:      ﬂuency was used as measure of reading ability. Only fast readers (n  34, mean age 10.9 ±
+                        Ascen Pagan,
+               Northumbria University,
+                                          0.9 years) and slow readers (n  32, 11.2 ± 0.9 years) participated in an eye-tracking
+                     United Kingdom       experiment and silently read an age-appropriate original narrative text from a children’s
+                Simon Tifﬁn-Richards,
+                                          book. The analysis of silent reading of the entire text conﬁrmed the earlier group
+        Julius Maximilian University of
+                  Würzburg, Germany       classiﬁcation. To analyze word length and frequency, we selected 40 nouns as target
+                                          words in the text. We found signiﬁcant effects of word length and word frequency for all
+                 *Correspondence:
+                       Sabrina Gerth      children in the expected direction. For fast readers, we detected signiﬁcant interactions of
+          sabrina.gerth@ph-tirol.ac.at    word length and frequency in ﬁrst ﬁxation duration, gaze duration, and total reading time.
+                                          These revealed a frequency effect for long, but not short words. This suggests lexical
+                   Specialty section:
+        This article was submitted to     whole-word processing with a fast activation of the word’s lexical entry for shorter words
+                  Language Sciences,      and an application of the nonlexical route of the dual route cascaded model (DRC) with a
+              a section of the journal
+                                          slower lexical access to whole word forms for long words. Slow readers demonstrated a
+         Frontiers in Communication
+                                          strong sensitivity to word length, indicating a slower or delayed lexical access to
+            Received: 17 July 2021
+     Accepted: 13 September 2021          orthographic word forms. Additionally, they exhibited weaker word frequency effects.
+     Published: 28 September 2021         These ﬁndings suggest a developmental view of reading in typically developing children in
+                           Citation:      accordance with the DRC, with nonlexical serial decoding as the seemingly prominent
+Gerth S and Festman J (2021) Reading
+     Development, Word Length and         reading strategy of slow readers and lexical whole-word recognition as the prominent
+ Frequency Effects: An Eye-Tracking       reading strategy of fast readers.
+  Study with Slow and Fast Readers.
+          Front. Commun. 6:743113.        Keywords: reading, children, eye-tracking, word length effect, word frequency effect, German, dual route cascaded
+   doi: 10.3389/fcomm.2021.743113         model
+
+
+
+
+Frontiers in Communication | www.frontiersin.org                                1                                     September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                              Slow and Fast Readers
+
+
+
+
+INTRODUCTION                                                                  experimenter (no time limit). To assess their word decoding
+                                                                              skills, the younger children were asked to read aloud several
+According to inﬂuential models of reading development (e.g.,                  words from a word card as accurately and rapidly as possible
+Frith, 1985), children’s initial reading acquisition in school begins         (time limit of 1 min per card). The stimulus words were
+with decoding. They need to learn the alphabetic code (individual             frequently used Dutch words. To assess the older children’s
+letters) and grapheme-phoneme correspondences (the sound that                 (grade 3–6) lexicon size (written vocabulary skills), a multiple-
+belongs to each grapheme) to apply them during reading                        choice item test was administered. Children read a sentence with
+(Grainger and Ziegler, 2011). More recently, approaches to                    an underlined target word and then were asked to select the
+reading acquisition have focused on the recognition of                        response with the same meaning from four alternatives. One
+syllables or morphemes rather than letters before beginning                   distractor resembled the target word phonologically, another
+readers can transition to whole-word processing (Hasenäcker                   came from the same semantic domain, and the third was
+and Schroeder, 2017). Through reading practice, beginners                     previously presented as an oral option during pilot-testing of
+become familiar with orthographic units (such as words) and                   the task. The older children’s reading comprehension was tested
+link the orthographic structure onto meaning (Shaywitz and                    with a series of ﬁve texts and multiple-choice questions following
+Shaywitz, 2005). Only at an advanced level are readers able to                the reading. These items addressed explicit and implicit meaning
+decode and comprehend the reading material ﬂuently and                        relationships between sentences in each of the texts.
+effortlessly (e.g., words, sentences, and text).                                 The authors found signiﬁcant developmental progress in
+    One model that is commonly used to explain reading                        children’s lexicon size, word decoding, and reading
+processes is the dual-route cascaded model (DRC) of visual                    comprehension skills from ﬁrst to sixth grade (Verhoeven
+word recognition and reading aloud (cf. e.g., Hawelka et al.,                 et al., 2011). They also found a strong association between the
+2010); it is a computational realization of the dual-route theory of          younger and older children’s performance on the vocabulary
+reading (Coltheart et al., 2001). The model postulates two parallel,          tests, even though the two tests assessed basic oral vocabulary and
+competitive routes for word recognition. At visual presentation of            the more advanced written vocabulary knowledge. Interestingly,
+a word (i.e., a string of letters or graphemes), the model identiﬁes          the lexicon size’s development of beginning readers (grades 1 and
+the entire word by sight via the faster lexical route and activates its       2) predicted their subsequent reading comprehension. The higher
+representation in the orthographic input lexicon. A successful                their correctly identiﬁed number of lexical items in the receptive
+match leads to an activation of the word’s semantic and                       vocabulary test, the more successful their word identiﬁcation and
+phonological representation to read the word silently or aloud.               comprehension during reading. This means that the larger the
+The activation of a word in the orthographic lexicon is inﬂuenced             lexicon size, the better the reading skills, since words can be
+by its frequency of occurrence: High frequency words need less                identiﬁed, recognized, and mapped more easily onto existing
+activation and they are recognized faster than low frequency                  representations in the orthographic lexicon. Apparently, readers
+words (Inhoff and Rayner, 1986; Coltheart et al., 2001).                      with typically developing reading skills beneﬁt from the lexical
+Therefore, the lexical route is sensitive to word frequency                   route more often and identify words by sight as a whole once their
+effects (Yap et al., 2012). The representation of unfamiliar                  orthographic lexicon has been substantially built up.
+words and nonwords is processed through the model’s slower                       Contrary to typically developing readers, children with
+nonlexical route. These words are not yet fully represented in a              reading difﬁculties or developmental dyslexia have problems
+reader’s orthographic input lexicon. Thus, only the grapheme-                 with accurate and ﬂuent processing of larger orthographic
+phoneme correspondences can be used for decoding. This route is               units such as words. Therefore, they continue to rely on the
+sensitive to word length effects, but not word frequency, because             word’s phonological representation with slower or delayed lexical
+of its serial grapheme-phoneme decoding (Yap et al., 2012).                   access (Spinelli et al., 2005; Ziegler and Goswami, 2005; Hawelka
+    Developing readers differ from advanced readers in the                    et al., 2010). This has been demonstrated in a phonological and
+number of words that are represented in their orthographic                    orthographic lexical decision task in German with young adults,
+lexicon (Coltheart, 2006). At the beginning stages of reading,                ages 15–18 (Bergmann and Wimmer, 2008). In the phonological
+the novice readers decode words via the nonlexical route using                lexical decision task, a dyslexic group and a control group were
+grapheme-phoneme-correspondences. Through regular reading                     presented with words (e.g., Taxi), pseudohomophones (e.g.,
+practice, they can quantitatively expand their orthographic                   Taksi) that contain a different grapheme realization for the
+lexicon and process words via the lexical route (Coltheart, 2006).            same phoneme, and nonwords (e.g., Tazi). In the phonological
+    There is empirical evidence for a direct link between lexicon             lexical decision task, the participants were asked to decide
+size and reading skills taken from studies with children. A                   whether the word was pronounced like a real word. In the
+longitudinal study with Dutch children in grades 1–6 found                    orthographic lexical decision task, they saw the same words or
+that the children’s lexicon size directly relates to their word               pseudohomophones and were asked to decide whether the word
+decoding skills during reading (Verhoeven et al., 2011). In                   was spelled correctly. This second task probed the participants’
+each grade, the authors tested the children’s lexicon size and                orthographic knowledge on the same items; note that nonwords
+word decoding or reading comprehension. Lexicon size of the                   were judged only in the phonological lexical decision task. The
+younger children (grades 1 and 2) was measured with a receptive               dyslexic group exhibited slower and fewer correct responses
+vocabulary test during which children saw four pictures and were              compared to the control group for words and
+asked to choose the picture that was uttered aloud by the                     pseudohomophones in both tasks. Further, the dyslexic group
+
+
+Frontiers in Communication | www.frontiersin.org                          2                                September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                           Slow and Fast Readers
+
+
+
+exhibited an increase in error rates and latency from phonological         model seem to indicate that the differences between children’s
+to orthographic decisions, whereas the control group exhibited a           and adult’s eye movements could be explained by the proﬁciency
+decrease of error rates and no difference in latency from                  of lexical processing and orthographic knowledge (Reichle et al.,
+phonological to orthographic decisions. Another interesting                2013; Mancheva et al., 2015).
+ﬁnding was the distinction between orthographically known                      Eye-tracking studies with adults have revealed a direct
+and unknown words. Both groups exhibited faster                            inﬂuence of two linguistic properties, word length and
+phonological decisions for orthographically known words than               frequency, on their eye movements during reading (Rayner,
+for orthographically unknown words and pseudohomophones.                   1998, Rayner, 2009). Generally, compared to short words, long
+The authors interpret this ﬁnding as a reliance on the lexical route       words are ﬁxated longer and more often (Hyönä and Olson, 1995;
+for orthographically known words in both groups, but the                   Just and Carpenter, 1980; Kliegl et al., 2004). High frequency
+dyslexic group indicated a speed impairment, which was                     words are read faster and take less time to process than low
+reﬂected in slower latencies compared to the control group.                frequency words (Hyönä and Olson, 1995; Kliegl et al., 2004).
+The authors also revealed that the slower phonological                     Word frequency and word length are highly correlated such that
+decisions for pseudohomophones and nonwords of the                         short words are often highly frequent. But even when word
+dyslexic group compared to the controls could reﬂect a speed               frequency remains constant, there is still a word length effect
+impairment of the dyslexic group on the nonlexical route                   such that long words are ﬁxated for a longer time (Liversedge
+(Bergmann and Wimmer, 2008). Therefore, developing readers                 et al., 2004).
+with difﬁculties or developmental dyslexia need additional and                 Eye-tracking studies with children also have explored these
+speciﬁc reading practice to improve their decoding skills toward           word property effects—word length and frequency—during oral
+fast whole-word recognition via the lexical route and to build a           reading (Hyönä and Olson, 1995; Huestegge et al., 2009; Rau
+substantial orthographic lexicon to increase reading ﬂuency                et al., 2014; Rau et al., 2015) and silent reading (Tifﬁn-Richards
+(Kuhn and Stahl, 2003).                                                    and Schroeder, 2015). Children exhibit even stronger word length
+     To directly investigate the movements of the eye during               and frequency effects on eye movement measures than adults
+reading, researchers use eye-tracking. This method can                     (Blythe and Joseph, 2011; Tifﬁn-Richards and Schroeder, 2015).
+especially be employed to shed light on reading processes                  A few eye-tracking studies with children have included both
+during silent reading. The different stages of reading                     factors—word length and frequency—in their experimental
+development are reﬂected in characteristic eye movement                    designs for English (Hyönä and Olson, 1995; Rau et al., 2015),
+patterns. Children ﬁxate longer on words and have a higher                 Italian (De Luca et al., 1999), and German (Huestegge et al., 2009;
+tendency to ﬁxate on a word more often. They regress more often            Rau et al., 2014; Rau et al., 2015; Tifﬁn-Richards and Schroeder,
+to previously read words and reﬁxate on words more frequently,             2015).
+probably due to the less targeted ﬁxation on a word that increases             We now review the eye-tracking studies with children that
+the likelihood of a second ﬁxation on the same word. If the eyes           investigated word length and frequency effects during reading in
+land on a word in a position where it cannot be identiﬁed, then a          English and German. Hyönä and Olson (1995) found robust
+reﬁxation on the same word becomes more likely (McConkie                   word length and frequency effects for dyslexic children
+et al., 1991). Children also skip fewer words during reading than          (12–17 years old) and a control group (9–12 years old) in
+skilled readers (e.g., adults). This might indicate that the skipped       English oral reading. Gaze durations were longer for long
+word has already been identiﬁed on a prior ﬁxation or without a            words compared to short words, but this effect stemmed
+direct ﬁxation (McConkie et al., 1991). Adults exhibit more                primarily from a greater number of ﬁxations on longer words.
+developed reading patterns with shorter and more targeted                  Low frequency words were ﬁxated longer than high frequency
+ﬁxations on a word and fewer regressions to previously read                words in ﬁrst ﬁxation and gaze duration. Further, the interaction
+material (McConkie et al., 1991; Rayner, 1998).                            of word length and frequency was signiﬁcant, with a larger word
+     The E-Z reader model is a computational model of eye                  length effect for low frequency than high frequency words (in ﬁrst
+movement control, which simulates speciﬁc aspects of reading               ﬁxation and gaze duration). Rau et al. (2015) found word length
+ability (e.g., orthographic knowledge, phonological processing,            effects for two groups of English- and German-speaking children
+and sentence comprehension). The E-Z reader model simulates                (9–10 years) in gaze duration and word frequency effects in ﬁrst
+eye-tracking data from adults and children with varying reading            ﬁxation and gaze duration. Similar to Hyönä and Olson (1995)
+levels (Reichle et al., 2013). To disentangle possible inﬂuences of        for English children, they report a stronger word length effect for
+linguistic properties on reading behavior, certain parameters of           low frequency compared to high frequency words for the group of
+the model can be varied to directly simulate the eye movement              German children in ﬁrst ﬁxation and gaze duration.
+patterns. Originally, the model’s parameters were established to               In another study, Rau et al. (2014) investigated gaze duration
+ﬁt the eye movement patterns of skilled adult readers. These               of German-speaking second-graders (7; 10 years), third-graders
+parameters were then systematically changed to simulate the eye            (8; 8 years), fourth-graders (10; 2 years), and young adults (24;
+movements of children during reading (Mancheva et al., 2015).              6 years) for high frequency words, low frequency words, and
+The respective parameter that required adjustment was the rate of          nonwords of differing length that were embedded in sentences.
+lexical processing. Mancheva et al. suggest “that skilled reading          The authors also found word length effects that were modulated
+[. . .] may reﬂect better orthographic knowledge” (Mancheva                by frequency, but only for skilled readers (third- and fourth-
+et al., 2015, p. 672). These simulations with the E-Z reader               graders and adults). Second-graders exhibited an equal word
+
+
+Frontiers in Communication | www.frontiersin.org                       3                                September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                           Slow and Fast Readers
+
+
+
+length effect for low frequency words, high frequency words, and          held in working memory and is used to comprehend the words.
+nonwords. Short high frequency words were read faster than                Importantly, Laubrock and Kliegl (2015) found similar word
+short low frequency words and short nonwords, suggesting that             length and frequency effects in both reading modalities (oral and
+the former were read by direct lexical access and the latter by           silent). These ﬁndings are important because silent reading is
+serial decoding. In more experienced readers (third- and fourth-          easier for children since they do not need to pronounce the words
+graders and adults) the word length effect increased with                 correctly and ﬂuently while still processing and comprehending
+decreasing word frequency. Third-graders exhibited a                      them. If silent and oral reading yield similar results, then the more
+continuous reduction in length effects from nonwords to low               natural and easier reading modality can be used for eye-tracking
+frequency words through high frequency words. Fourth-graders              experiments.
+demonstrated a similar pattern to adults: signiﬁcant but less
+marked word length effects for high and low frequency words               Aims of the Present Study
+and strong length effects for nonwords. The authors interpret this        Often, studies on children’s reading behavior compared their eye
+ﬁnding as the transition from serial nonlexical reading with              movements to adults or skilled readers. We extended this research
+slower lexical processing (second graders) to direct lexical              and compared eye movements of two groups of children from the
+access of the whole word (third-graders and older). Similarly,            same age group, namely, slow- and fast-reading children
+in a longitudinal study with second- and fourth-graders in                categorized according to their oral reading speed. It is still
+German, Huestegge et al. (2009) found a decreasing word                   unknown whether or how these groups differ in their reading
+length and frequency effect in gaze duration and total reading            patterns, since only very few eye-tracking studies have focused on
+time from second grade (8 years) to fourth grade (10 years).              beginning and slightly more advanced readers (i.e., children with
+However, there was no interaction of word length and                      5 to 6 years of reading experience) processing connected texts.
+frequency in any of the eye movement measures or groups.                  Due to the lack of research in this speciﬁc area of interest, we
+    To our knowledge, there is only one eye-tracking study on             aimed to investigate the reading behavior of German-speaking
+silent reading with German-speaking children, conducted by                children including several novel aspects. We used text passages
+Tifﬁn-Richards and Schroeder (2015). They measured the eye                taken from real books and collected our data during silent reading
+movements of 75 children (second grade) and an adult control              in their school environment. These novel aspects were chosen to
+group during silent reading. The authors found a signiﬁcant word          increase the ecological validity of our data. For that purpose, we
+length effect in gaze duration and total reading time and an              used two connected texts from a published children’s book as
+inversed effect for word length in ﬁrst ﬁxation duration such that        reading material. This approach is different from the use of single
+children ﬁxated longer on short words than on long words.                 words or sentence frames with embedded target words that were
+However, this could be explained by a higher number of short              often artiﬁcially constructed as material in other experimental
+ﬁxations on long words instead of one single long ﬁxation.                studies on reading (e.g., Tifﬁn-Richards and Schroeder, 2015; but
+Regarding word frequency, the children exhibited signiﬁcant               see limitations in section Discussion). We opted for this material
+effects in ﬁrst ﬁxation duration, gaze duration, and total                to investigate the natural reading behavior of embedded target
+reading time in the expected direction. The interaction of                words of our participants in age-appropriate literature.
+word length and frequency yielded signiﬁcant effects in gaze              Furthermore, we used a mobile eye-tracking device to be able
+duration and total reading time, with a word length effect that was       to collect the data in a familiar environment rather than in a
+modulated by frequency: The children’s eye movements revealed             laboratory.
+a greater word length effect for low frequency than high                     Based on the ﬁndings reported in Verhoeven et al. (2011)
+frequency words in gaze duration and total reading time                   considering the relatedness of lexicon size and decoding skills in
+(similar to Hyönä and Olson, 1995; Rau et al., 2014; Rau                  young readers, we assume that, compared to slow readers, fast
+et al., 2015).                                                            readers have a larger orthographic lexicon and that they can
+    Most of these previously mentioned studies used an oral               recognize whole words faster. We predicted that fast and slow
+reading paradigm rather than silent reading. Are reading                  readers would differ in speed of word recognition during silent
+patterns comparable in both reading modes? To answer this                 reading of connected text, conﬁrming the group classiﬁcation
+question, we can draw on results from only two eye-tracking               based on their speed when reading aloud. Therefore, we expected
+studies with adults. Inhoff et al. (2011) compared the two                fast readers to exhibit overall faster word processing on all eye-
+modalities and demonstrated that skilled readers exhibited                tracking measures, for example, shorter ﬁrst ﬁxation durations,
+similar reading patterns during silent and oral reading. In oral          shorter gaze durations, and a shorter total reading time than slow
+reading, adults keep their eyes relatively close to the articulated       readers.
+word with only one or two words as an eye-voice distance.                    Further, we were particularly interested in the effects of word
+Additionally, Laubrock and Kliegl (2015) report that eye                  length and frequency in the children’s eye movements. We
+movements are qualitatively similar during silent and oral                predicted that all children would exhibit word length and
+reading. In oral reading, average ﬁxations were about 50 ms               frequency effects similar to previous ﬁndings in gaze duration
+longer than in silent reading, and saccade lengths were                   and total reading time. Additionally, we had group-speciﬁc
+shorter, with fewer regressions due to articulation (Laubrock             predictions based on the competitive DRC model. We
+and Kliegl, 2015). They explain this small lag of the eyes                assumed that lexical processing of slow readers might still rely
+behind the voice with the phonological information that is still          mainly on the default route of nonlexical decoding. Processes
+
+
+Frontiers in Communication | www.frontiersin.org                      4                                 September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                            Slow and Fast Readers
+
+
+
+based on serial grapheme-phoneme correspondence processes                 graders, the text comprised 212 words and had a LIX of 32. For
+are slower, and, consequently, serial decoding processes should be        sixth-graders, the text contained 224 words with a LIX of 34.
+more strongly inﬂuenced by word length than by frequency.                 Therefore, the texts were comparable in readability and
+Therefore, we expected a stronger word length effect for slow             complexity. Each child was tested individually in a quiet room
+readers than for fast readers. Contrarily, for fast readers, we           in their school. At ﬁrst, the participants read the text silently, then
+assumed that processing would not mainly be executed via the              they read the text aloud, and the oral reading was recorded with a
+nonlexical route. Here, both routes are, indeed, competitive, and         dictating machine. Afterward, we calculated words per minute
+the faster lexical route should be used more frequently for               (wpm) that were read correctly. All children read, on average,
+processing in this group. Lexical processing involving fast               111.4 words per minute (SD  30.9). We divided the groups into
+recognition of whole words in fast readers should, therefore,             three subgroups according to their reading speed (slow readers
+be inﬂuenced by lexical characteristics of words such as                  < 100 wpm, average readers between 100 and 125 wpm, and fast
+frequency. Hence, fast readers should exhibit a word length               readers > 125 wpm).
+effect that might be modulated by word frequency, and this
+interaction effect of word length and frequency should be                 Eye-Tracking Experiment
+stronger for fast readers than for slow readers. In particular,           In the eye-tracking study, we recorded the data only for slow and
+the word length effect should be stronger for low frequency words         fast readers. We did not collect eye-tracking data for the average
+compared to high frequency words for fast readers reﬂected by             readers, because we wanted to have a precise distinction in oral
+their more adult-like reading behaviour.                                  reading ﬂuency between the two groups (i.e., fast and slow
+    This way, we might detect a developmental distinction                 readers) at both ends of the reading ﬂuency continuum to
+between fast lexical and slow nonlexical processing in the                determine whether there was a differentiation in reading
+group’s eye movement patterns, indicating that each                       development in this age group. There was no signiﬁcant
+group—although having the same age—is likely on a different               inﬂuence of age or grade on the oral reading speed.
+stage of reading development (following assumptions of the DRC               Consequently, we recorded eye movement data of 66 children
+model). More speciﬁcally, in the fast-reader group, both routes           in total; 32 were slow readers (10 females, mean age of 11.2 ±
+are in competition and are already used ﬂexibly, depending on the         0.9 years) and 34 were fast readers (25 females, mean age of
+reading material; processing in the other, slower group is still          10.9 ± 0.9 years). The average oral reading speed of the slow
+more or less limited to the slow route of nonlexical serial               readers was 81.7 wpm (SD  12.9) and of the fast readers
+decoding.                                                                 139.7 wpm (SD  9.7). An unpaired t-test yielded a signiﬁcant
+                                                                          difference in oral reading speed between the two groups (t (57.5) 
+                                                                          −20.6, p < 0.001).
+MATERIALS AND METHODS
+                                                                          Stimulus Texts
+Participants                                                              In the eye-tracking experiment, we used two passages from the
+We tested 74 children in ﬁfth grade (27 females, mean age of              book “Charlie Bone and the Time Twister” (2003) by Jenny
+10.6 ± 0.6 years) and 27 children in sixth grade (12 females, mean        Nimmo. The text passages are age-appropriate and suspenseful
+age of 11.8 ± 0.8 years). The children were attending six different       but not scary. None of the children had read the texts before
+primary schools in Brandenburg, Germany.                                  participating in the study. To select two comparable narrative
+   This study had been approved by the ethics committee of the            texts, we pre-analyzed the passages. The ﬁrst passage included 89
+University of Potsdam and was performed in accordance with the            sentences (M  13.09 words per sentence); 1,152 words (M 
+ethical standards laid down in the 1964 Declaration of Helsinki.          10.67 per line); and a LIX of 38. The second passage contained 87
+All children participated voluntarily after their parents provided        sentences (M  12.44 words); 1,080 words (M  10.50 per line);
+written and informed consent. The parents received 10€                    and a LIX of 39. Both LIX values indicate low difﬁculty. The word
+compensation for their children’s participation. All                      frequency counts are based on the German childLex corpus
+participants were German speakers and had normal or                       (Schroeder et al., 2015) that contains annotated children books
+corrected-to-normal vision.                                               directly mirroring the participants’ literature input. The two texts
+                                                                          did not differ in average word length according to a Welch two-
+                                                                          sample t-test (text 1: M  5.17, SD  2.6, range 2–17 words; text 2:
+Participant Grouping for Preselection                                     M  5.20, SD  2.70, range 2–18 words; t (2212.8)  −0.29, p 
+Based on Oral Reading Fluency                                             0.77) or word frequency of case-insensitive log10 type per million
+A commonly used method to assess oral reading ﬂuency are                  token (text 1: M  3.47, SD  1.41; text 2: M  3.45, SD  1.47;
+running records (Fawson et al., 2006). We chose two child-                t (2206.8)  0.30, p  0.77).
+friendly texts; their difﬁculty was determined by the LIX
+(Lesbarkeitsindex, an index of readability) as a readability              Word Targets
+measure that was originally developed by Björnsson in 1968                Similar to previous studies (Kliegl et al., 1983; Hyönä and Olson,
+and adapted for German by Bamberger and Vanecek (1984).                   1995; Tifﬁn-Richards and Schroeder, 2015), we selected 40
+The LIX is calculated based on the percentage of long words               capitalized nouns post-hoc as target words for the word length
+(more than six letters) and the average sentence length. For ﬁfth-        and frequency analyses. None of these target words were
+
+
+Frontiers in Communication | www.frontiersin.org                      5                                  September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                                     Slow and Fast Readers
+
+
+
+positioned at the beginning or end of a sentence to avoid                    TABLE 1 | Mean ﬁrst ﬁxation duration, gaze duration and total reading time (in
+                                                                             milliseconds) on all words in the texts for slow and fast readers (standard
+sentence-initiating and wrap-up effects (Tifﬁn-Richards and
+                                                                             deviations in parentheses).
+Schroeder, 2018). We chose short (three to ﬁve letters), long
+(8–11 letters), high frequency (>2.5 log10 type frequency), and              Measure                             Slow readers                  Fast readers
+low frequency (<0.8 log10 type frequency) words. Ten of these
+                                                                             First ﬁxation duration                268 (123)                     230 (101)
+were long (M  9.82, SD  1.08 letters) and highly frequent (M              Gaze duration                         325 (161)                     266 (133)
+2.76, SD  0.35); ten were long (M  10.00, SD  0.74 letters) and           Total reading time                    421 (203)                     335 (183)
+of low frequency (M  0.10, SD  0.33); ten words were short
+(M  4.04, SD  0.81 letters) and highly frequent (M  3.62, SD 
+0.23), and ten were short (M  4.61, SD  0.50 letters) and of low
+frequency (M  0.70, SD  0.84). For each of the four categories,            all ﬁxations in an AOI until the eye leaves it in any direction, in
+we selected ﬁve words from one of the two texts (40 words from               other words, dwell time) and total reading time (the sum of all
+each text). The parameters for word length and frequency were                ﬁxations in the AOI) (Rayner, 1998). First ﬁxations have been
+not correlated (r  0.0521, p  0.6457).                                     demonstrated to reﬂect the initial (lexical) processing of a
+                                                                             word, whereas gaze duration and total reading time can mirror
+Procedure                                                                    postlexical word processing (Just et al., 1982). We excluded all
+To record eye movements during reading, we used a remote eye-                ﬁxations on the black dot in the lower-right corner used to
+tracking device (SMI RED 250) with a sampling rate of 250 Hz.                proceed to the next screen (9.1% of the data). Additionally, we
+The mobile tracking device was attached to a 22-inch monitor                 deleted data with residuals three standard deviations above the
+with a screen resolution of 1920 × 1080 pixels. The participants             participants’ mean for each of the three eye movement
+sat comfortably at a viewing distance of 58 cm in front of the               measures (Baayen and Milin, 2010). Both procedures
+monitor. No head support or chin rest was used. The text was                 eliminated in total 12.3% of all data points.
+presented in Courier New (font size 36) in a black font against a                We used linear-mixed models (lme) to analyze the eye
+light-gray background using the iViewRED software (Version                   movement data in the R environment version 3.6.0 (R Core
+4.2.1). The text passages were presented on 10 sequential screens.           Team, 2020) with the lme4 package version 1.1.21 (Bates et al.,
+Each screen contained a maximum of 12 double-spaced lines of                 2015). We treated participants and AOIs as crossed random
+text with a maximum of 15 words and 87 characters per line.                  effects, and all ﬁxation measures were log-transformed. The
+There were no hyphenated words at line breaks, and we arranged               factor group (slow or fast reader) was included as a between-
+the sentences on the screen such that their endings coincided with           subjects ﬁxed effect, with word length and frequency as within-
+line breaks. Each presentation screen was preceded by a ﬁxation              subjects ﬁxed effects. Word length and frequency were included
+cross in the top left-hand corner that triggered the text                    as continuous and centered values. The ﬁxation measures were
+presentation automatically after 10 s of cumulative ﬁxations.                back-transformed from their logarithmic model estimates and are
+   Participants were tested individually in a quiet room at their            reported in milliseconds. We report regression coefﬁcients
+school. At the beginning of the experimental session, participants           relative to the intercept (b), standard errors (SE), and t-values
+were orally instructed by the experimenter to read silently for              for the lme analyses. Only t-values larger than |2.0| are considered
+comprehension at a natural pace. Participants were randomly                  to be signiﬁcant at a p < 0.05 level. Additionally, we report F-tests
+assigned to one of the two text passages. At the beginning of the            and p-values in a results table for ANOVA analyses of the lme-
+experimental session, the eye-tracker was calibrated by using nine           models.
+ﬁxation points on the entire screen. The calibration was repeated
+until an accuracy of at least 0.5° was achieved. The eye-tracker was
+recalibrated after each break and when x- or y-axis drifts                   RESULTS
+appeared. Each screen contained a black dot in the lower right
+corner. We told the participants that, by looking at this dot, they          Question-Response Accuracy
+could “turn the page.” We had programmed a trigger area around               The question-response accuracy scores that we obtained from the
+the dot that initiated the presentation of the next screen after 30 s.       comprehension questions after the text was read were generally
+After the participants ﬁnished reading the entire text, we asked             high for all children. The overall mean scores for fast readers were
+them to respond to six comprehension questions on paper. The                 very high (91%), while slow readers reached an accuracy level of
+entire experimental session lasted approximately 40 min.                     79%. The difference in accuracy between fast and slow readers
+                                                                             was signiﬁcant (t  −3.22, p  0.001).
+Data Analysis
+We imported the eye movement data into BeGaze v3.7.40                        Eye Movement Measures for the Entire Text
+(SMI) and deﬁned areas of interest (AOIs). Reading and                       We ﬁrst conducted analyses on all words in the text to generally
+tracking was binocular, but we used only the right eye for                   compare the performance of fast and slow readers during silent
+data analysis. Each AOI contains one word (including any                     reading. Table 1 displays the eye movement measures for both
+following punctuation). As eye movement measures, we                         groups on all words in the text.
+analyzed ﬁrst ﬁxation duration (the duration of the very                        For the entire text, we found, as expected, signiﬁcant
+ﬁrst ﬁxation in an AOI, if any), gaze duration (the sum of                   differences in (silent) reading speed for fast and slow readers
+
+
+Frontiers in Communication | www.frontiersin.org                         6                                      September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                                                 Slow and Fast Readers
+
+
+
+TABLE 2 | Mean ﬁxation measures (in milliseconds) on the target words for word          all eye-tracking measures conﬁrms the grouping based on (oral)
+frequency and length in both groups (standard deviations in parentheses).
+                                                                                        reading speed in the pre-test.
+Measure                         High frequency               Low frequency
+                              Short          Long          Short          Long          Target Measures
+                                                                                        In the following sections, we present the effects of word length,
+Fast readers                                                                            frequency, and their interaction for fast and slow readers for the
+  First ﬁxation duration     208 (85)       202 (88)      224 (99)      247 (113)
+                                                                                        selected target words. The dependent eye movement measures on
+  Gaze duration              216 (90)      264 (157)     245 (112)      434 (224)
+  Total reading time        250 (123)      379 (176)     314 (172)      565 (205)       the 40 target words are summarized in Table 2 and are indicated in
+Slow readers                                                                            Figure 1 for each group. Table 3 contains the F-tests and p-values
+  First ﬁxation duration    248 (110)      249 (119)     262 (129)       230 (99)       for all main effects and interactions. Again, we found a signiﬁcantly
+  Gaze duration             265 (124)      389 (204)     299 (152)      509 (241)       faster reading speed for fast compared to slow readers in all eye
+  Total reading time        322 (167)      541 (186)     427 (218)      687 (188)
+                                                                                        movement measures on the target words: Fast readers exhibited
+                                                                                        shorter ﬁrst ﬁxation durations (b  −0.133, SE  0.029, t  −4.516),
+                                                                                        gaze durations (b  −0.198, SE  0.031, t  −6.286), and total
+in all eye movement measures: Fast readers exhibited shorter ﬁrst                       reading times (b  −0.299, SE  0.036, t  −8.431) than slow readers.
+ﬁxation durations (b  −0.149, SE  0.026, t  −5.670), gaze
+durations (b  −0.223, SE  0.027, t  −8.338), and total reading                       Word Length Effects
+times (b  −0.303, SE  0.034, t  −8.814) compared to                                  In ﬁrst ﬁxation duration, we found no signiﬁcant word length
+slow readers. This overall faster word processing indicated by                          effects for any of the groups. In gaze duration, we revealed a
+
+
+
+
+  FIGURE 1 | Mean ﬁrst ﬁxation duration (top), gaze duration (middle) and total reading time (bottom) (in ms) for short and long words of high and low frequency.
+  Groups are represented as follows: fast readers in blue on the left, slow readers in grey on the right.
+
+
+
+
+Frontiers in Communication | www.frontiersin.org                                    7                                       September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                                                  Slow and Fast Readers
+
+
+
+TABLE 3 | F-tests and p-values for the main effects and interactions of word length, frequency and group in three eye movement measures (numbers marked in bold indicate
+signiﬁcant effects).
+
+Effect                                               First ﬁxation                                  Gaze duration                                 Total reading time
+                                               F                       p                       F                      p                       F                        p
+
+Length                                        0.05                    0.823                  4.25                    0.039                 34.60                  <0.001
+Frequency                                     0.63                    0.426                  1.88                    0.170                 22.68                  <0.001
+Group                                        32.67                   <0.001                 42.69                   <0.001                 75.54                  <0.001
+Length × frequency                            0.31                    0.577                  5.58                    0.017                  4.89                  0.027
+Length × group                                3.16                    0.076                  5.82                    0.016                  9.36                  0.002
+Frequency × group                             1.03                    0.311                  0.46                    0.497                  0.52                  0.469
+Length × frequency × group                    7.05                    0.008                  1.54                    0.215                  8.26                  0.004
+
+
+
+
+signiﬁcant main effect for word length (b  0.087, SE  0.042, t                       p  0.541, 16 ms). In total reading time, we found signiﬁcant main
+2.062), with long words being read 118 ms longer than short                             effects for length (b  0.099, SE  0.029, t  3.411, p  0.002) and
+words. In total reading time, we also observed a main effect for                        frequency (b  −0.089, SE  0.023, t  −3.864, p < 0.001) and a
+word length (b  0.149, SE  0.025, t  5.882), with long words                         signiﬁcant interaction of word length and frequency (b  −0.068,
+being read 172 ms longer than short words. Further, we found a                          SE  0.019, t  −3.761, p < 0.001). The interaction revealed a
+signiﬁcant interaction of word length and group for gaze duration                       greater word length effect for low frequency (b  0.280, SE 
+(b  −0.076, SE  0.032, t  −2.412). Fast readers read long words                      0.037, t  7.534, p < 0.001, 251 ms) in comparison to high
+112 ms longer than short words. Slow readers read long words                            frequency words (b  0.167, SE  0.022, t  7.452, p < 0.001,
+137 ms longer than short words and exhibited a stronger word                            129 ms).
+length effect in gaze duration. We also found a signiﬁcant                                  For slow readers, we found less prominent effects. There were
+interaction of word length and group for total reading time                             no signiﬁcant interactions of length and frequency, but some
+(b  −0.099, SE  0.032, t  −3.059). Fast readers read long                            main effects for length or frequency. In ﬁrst ﬁxation duration, we
+words 166 ms longer than short words, whereas slow readers read                         found no signiﬁcant effects. In total reading time, we found
+long words 200 ms longer than short words and again exhibited a                         signiﬁcant main effects for word length (b  0.120, SE  0.029,
+stronger word length effect in total reading time. To summarize,                        t  6.838, p < 0.001, 200 ms) and frequency (b  −0.114, SE 
+all children revealed the expected word length effect in gaze                           0.022, t  −5.182, p < 0.001, 70 ms). Again, we found no
+duration and total reading time. Additionally, the reading                              interaction of length and frequency, but separate analyses
+behavior of the groups differed in gaze duration and total                              revealed, that the word length effect was greater for low
+reading time, with slow readers exhibiting a stronger word                              frequency words (b  0.230, SE  0.040, t  5.691, p < 0.001,
+length effect compared to fast readers.                                                 260 ms) than for high frequency words (b  0.234, SE  0.019, t 
+                                                                                        12.271, p < 0.001, 219 ms).
+Word Frequency Effects
+In ﬁrst ﬁxation duration and gaze duration, we found no word
+frequency effect, but in total reading time, we observed a main                         DISCUSSION
+effect for word frequency (b  −0.101, SE  0.021, t  −4.762).
+Low frequency words were read 62 ms longer than high frequency                          In this eye-tracking study, we compared eye movements of
+words. In summary, we found a reliable word frequency effect                            normally developing fast- and slow-reading children in
+only in one eye movement measure, in total reading time, and no                         German with ﬁve to six years of reading experience, using a
+difference in reading behavior between the two groups.                                  silent reading task of connected text taken from a published
+                                                                                        children’s book and age-appropriate word frequency counts for
+Word Length by Frequency Effects                                                        children. We found that slow readers spend signiﬁcantly more
+In this study, we were mainly interested in the strength of the                         time on the processing of each word during reading. This has
+interaction of the word length and frequency effect in fast- and                        been demonstrated in the analyses of eye movement measures for
+slow-reading children. We found signiﬁcant three-way                                    the entire text (see Table 1) and for target words (see Table 3).
+interactions of length, frequency, and group for ﬁrst ﬁxation                           More speciﬁcally, we investigated the effects of word length and
+duration (b  −0.050, SE  0.019, t  −2.655) and total reading                         frequency and found signiﬁcant effects for fast as well as for slow
+time (b  −0.061, SE  0.021, t  −2.874). We present the results                       readers. In the separate group analyses, we found a signiﬁcant
+for these two eye-tracking measures separately for the groups,                          interaction of word length and frequency in ﬁrst ﬁxation duration
+ﬁrst for fast and then for slow readers.                                                and total reading time only for the fast readers. For slow readers,
+   In ﬁrst ﬁxation duration for fast readers, we found a signiﬁcant                     we did not ﬁnd any signiﬁcant interactions of word length and
+interaction of word length and frequency (b  −0.034, SE  0.017,                       frequency. We ﬁrst discuss the results for word length, then word
+t  −2.002). We observed a signiﬁcant word frequency effect for                         frequency and, afterward, the interaction of both factors.
+long words (b  −0.104, SE  0.038, t  −2.773, p  0.013, 45 m)                            Regarding word length, our results indicate a consistent effect
+but no effect for short words (b  −0.012, SE  0.019, t  −0.626,                      for fast- and slow-reading children in gaze duration and total
+
+
+Frontiers in Communication | www.frontiersin.org                                    8                                        September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                             Slow and Fast Readers
+
+
+
+reading time. Both groups read long words longer than short               consequently, ﬁxated on these words for a longer time.
+words. The groups did differ signiﬁcantly for word length in gaze         However, long, low frequency words were too long to be
+duration and total reading time (signiﬁcant interaction of word           processed at ﬁrst sight by slow readers, and they needed more
+length and group, see Table 3): Slow readers exhibited a stronger         reﬁxations to complete lexical processing; or these words were
+word length effect than fast readers and were apparently more             initially processed only superﬁcially and were revisited later for
+inﬂuenced by word length. This suggests that, for slow readers,           deeper processing. The fast readers in our study revealed quite
+processing relies more on the nonlexical route than for fast              adult-like reading behavior already in ﬁrst ﬁxation duration with
+readers, and slow readers’ identiﬁcation of graphemes,                    a word length effect for low frequency words, with results similar
+syllables, and words might be less efﬁcient. It is likely that            to the adults in Tifﬁn-Richards and Schroeder (2015).
+slow readers need more time to assemble decoded graphemes                     We interpret these results with reference to the DRC (Coltheart
+and syllables of long words into one word and that processes of           et al., 2001). A low frequency word is encountered less often than a
+lexical access and meaning representation are delayed when                high frequency word. This means that either 1) the word is not yet
+compared to the processing speed of fast readers.                         represented in the reader’s orthographic lexicon, since it has never
+    Concerning word frequency, we found a main effect in total            been encountered before, or 2) its activation level is very low due to
+reading time (see Table 3): Low frequency words received longer           the infrequent occurrence. If, during reading, a word cannot
+ﬁxation durations than high frequency words in both groups. The           immediately be processed via the fast lexical route and matched
+children revealed this effect only in the late measure of total           onto a mental representation in the orthographic lexicon, word
+reading times and not in any of the earlier eye movement                  processing is slowed down. In particular, the processing of low
+measures (ﬁrst ﬁxation duration or gaze duration). The word               frequency words is more likely to fail via a direct lexical matching,
+frequency effect did not differ between the groups. It appears that       especially for young readers who presumably have a smaller
+word frequency alone cannot explain the different reading                 vocabulary size than advanced readers and lack the representation
+patterns of the participants in this study.                               of low frequency words. Processing time increases with word length
+    The word length factor also interacted with word frequency in         via the nonlexical route, because more graphemes need to be
+the results. Long and low frequency words were processed the              translated into their corresponding phonological representation. If,
+longest by all children. Similar to previous ﬁndings in eye-              at this stage, no semantic match can be found to ﬁt the phonological
+tracking with children, we replicated a greater word length               representation, then, as in the choice of 1) above, no entry has been
+effect for low frequency words compared to high frequency                 stored and thus no meaning can be directly retrieved. If, however,
+words (Hyönä and Olson, 1995; Tifﬁn-Richards and                          based on the phonological representation, lexical access to the word
+Schroeder, 2015). Hyönä and Olson (1995) found this greater               form can be realized, this process takes longer, as described in the
+word length effect in the early eye movement measures of ﬁrst             choice of 2) above, because the activation level of this meaning
+ﬁxation and gaze duration. However, their participants were               representation ﬁrst needs to be raised. Additionally, in languages
+English-speaking children who read texts aloud while their                such as German, long, low frequency words may actually be words
+eyes were being tracked. In this study, we used silent reading            that are formed according to the morphological principle of
+of connected texts, so the different reading modality could               composition. This means that, for example, two nouns are “glued”
+inﬂuence the timing of the effect here. Tifﬁn-Richards and                together to form one new, longer, and less frequent word (e.g., Musik
+Schroeder (2015), who used silent reading of German text,                 + Genie  Musikgenie, engl. music genius; Mauer + Kronen 
+found effects quite similar to the ones revealed in our study.            Mauerkronen; engl. coping). When reading, it is likely that the
+Their child participants exhibited longer ﬁrst ﬁxation durations          two nouns must be recognized individually and their separate
+on short, low frequency words and shorter ﬁrst ﬁxation durations          meanings must be assembled to represent the full meaning of the
+on long, low frequency words, which are similar to the slow               long word. These two processes presumably take up more processing
+readers in our study. The adult group in their study exhibited the        time than the lexical access to a single word. Six out of the 10 long, low
+opposite pattern, with the word frequency effect for low                  frequency words were formed by composition, while two of the 10
+frequency words in ﬁrst ﬁxation duration, being similar to the            long but frequent words in our study were based on a different
+fast readers in our study. The signiﬁcant three-way interaction for       morphological principle: derivation. To identify a derived word
+ﬁrst ﬁxation duration in our study seems to be driven by this             during reading, the main carrier of the word’s meaning must be
+difference in ﬁxation durations for low frequency words: Slow             isolated and recognized while the afﬁx represents the grammatical
+readers ﬁxated longer on short than long low frequency words,             meaning of the word (e.g., Dunkelheit  dunkel + -heit, engl.
+while fast readers exhibited the opposite pattern, with longer            darkness; Sicherheit  sicher + -heit, engl. safety). Other examples
+ﬁxations on long compared to short low frequency words (see               for long but frequent words (eight out of 10) were e.g., Großmutter
+Figure 1). All children exhibited similar ﬁxation durations for           (engl. grandmother), Schatten (engl. shadow), Geschwister (engl.
+high frequency words. Tifﬁn-Richards and Schroeder (2015)                 siblings) and Menschen (engl. humans). We suggest that effects of
+suggest that the children’s ﬁxation pattern is due to the higher          word length in reading, therefore, can be interpreted either as a
+proportion of multiple ﬁxations by children compared to adults.           reliance on the slower nonlexical route necessary due to a small
+In other words, children often ﬁxate on words more than once. A           lexicon size and/or difﬁculties in word segmentation, prolonged
+possible explanation could be a slower lexical access of the slow         processes of lexical access, and additional assembly of meaning.
+readers for low frequency words. They attempted to read the                   Interestingly, in gaze duration and total reading time, fast readers
+short, low frequency words via direct lexical access and,                 exhibited a greater word length effect for low frequency words than
+
+
+Frontiers in Communication | www.frontiersin.org                      9                                   September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                                Slow and Fast Readers
+
+
+
+slow readers did. This might be explained as follows: Fast readers             frequency counts. We speciﬁcally selected this corpus of German
+were able to rely on the lexical route to process the high frequency           children’s books because of spurious results when using word
+words via direct lexical access (i.e., ﬁrst ﬁxation duration), but they        frequency counts from adult corpora in eye-tracking studies
+could not rely on the lexical route for low frequency word (similar to         with children (Joseph and Liversedge, 2013). Our results reveal
+ﬁndings with dyslexic readers by Hawelka et al., 2010). In contrast,           interactions of word length and frequency in ﬁfth- and sixth-
+slow readers revealed a speed-impaired efﬁciency in reliance on the            graders that are similar to those in the study by Tifﬁn-Richards and
+lexical route for all target words in our study, irrespective of word          Schroeder (2015), who tested second-graders. However, Rau et al.,
+frequency. This suggests a difference in efﬁciency of the lexical route        2014 do not report any interactions in second-graders in an eye-
+for reading from initial reading processes onward. While fast readers          tracking study. A possible reason for not ﬁnding an interaction in
+demonstrated a better efﬁciency of available routes and seem to                beginning readers could be that they based their frequency counts
+process words more likely via direct lexical access to speed up their          on an adult corpus rather than on a children’s corpus. The
+reading ﬂuency, slow readers seem to be speed-impaired in their                discrepancy of results in eye-tracking studies highlights the
+efﬁciency of the lexical route, similar to dyslexic readers (Hawelka           importance of appropriate reading materials in eye-tracking
+et al., 2010). Furthermore, slow readers seem to have had less time for        experiments with children based on suitable frequency counts.
+processing and remembering the content of the text, which was                  Apparently, the word frequency count has a strong impact on
+visible in the signiﬁcant difference of question-word-accuracy                 beginning readers’ eye movement measures and, consequently, on
+between groups.                                                                the empirical results. Therefore, the word frequency count, should
+    Due to our choice of method and participants, we                           be based on the reading material that children actually encounter.
+encountered some challenges that are relevant to future                            Previous eye-tracking research focused mostly on comparing the
+research. First, we recorded our data with an eye-tracking                     eye movements of children to skilled adults and interpreted the
+resolution of only 250 Hz, while the usual choice in reading                   disparities as stemming from reading development. Studies with
+studies would be 1,000 Hz. We decided to use this particular                   child participants have often assessed dyslexic children and age-
+mobile eye-tracker because we did not want to use a chin rest or               matched control groups to study reading behavior. However, these
+head support with our young participants, like some of the cited               ﬁndings are based on oral reading and not on silent reading, and
+studies in this paper did (Rau et al., 2014; Rau et al., 2015; Tifﬁn-          probably mirror speech production difﬁculties in children. We need
+Richards and Schroeder, 2015). Consequently, the child                         more eye-tracking studies that compare different reading modalities
+participants could sit relatively still in a chair in a quite                  in children to disentangle mixed ﬁndings. Future research needs to
+natural situation (their school environment) in front of a                     explore the impact of word length and frequency effects in
+computer monitor. We acknowledge that this tracking                            beginning and slightly more advanced readers. This should be
+situation came at the cost of a lower tracking resolution.                     done in relationship to their reading skill, lexicon size,
+Second, we decided a priori not to track the average readers,                  morphological processing skills, and longitudinal developmental
+since our interest was mainly in shedding light on the reading                 differences. Such studies would allow researchers to gain further
+patterns of two “extreme” reading ﬂuency groups. Thus, we                      insights into reading development and the timing of early visual and
+tracked only slow and fast readers based on oral reading ﬂuency                phonological perception processes, lexical access of word forms and
+in the pre-test. As a reviewer pointed out, we could have                      their meanings, and intertwined morphological processes.
+collected the data of the average readers and analyzed the
+reading ﬂuency as a continuous value without dividing the
+groups for comparison. This would have increased the                           DATA AVAILABILITY STATEMENT
+generalizability of our results. We think that this is
+absolutely a valid point, and we will strongly consider this in                The datasets presented in this article are not readily available
+our future research. A third limitation concerns the post-hoc                  because the raw data are property of the University of Potsdam.
+selection of our target words. We chose to present the target                  Requests to access the datasets should be directed to
+words in continuous natural texts taken from a published                       sabrina.gerth@ph-tirol.ac.at.
+children’s book instead of by constructing sentence frames
+for each of the words. The sentence frames would have
+provided a more controlled setting without the opportunity                     ETHICS STATEMENT
+for confounding variables, for example, related to complex
+morphology. However, we chose this reading material to                         The studies involving human participants were reviewed and
+assess the natural reading of children and were still able to                  approved by Ethics committee of the University of Potsdam.
+ﬁnd substantial word length and frequency effects in their eye                 Written informed consent to participate in this study was
+movements. Children could have encountered these texts in                      provided by the participants’ legal guardian/next of kin.
+everyday life. We rather wanted to assess the patterns of
+linguistic word properties, such as word length and
+frequency of our target words, in an unbiased reading setting                  AUTHOR CONTRIBUTIONS
+rather than in an experimental laboratory situation.
+    In contrast to earlier eye-tracking studies with children (except          Author contributions are as follows: substantial contributions to
+Tifﬁn-Richards and Schroeder, 2015), we used age-appropriate                   the conception and design of the project (SG, JF); data acquisition
+
+
+Frontiers in Communication | www.frontiersin.org                          10                                 September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                                                             Slow and Fast Readers
+
+
+
+and analysis (SG), interpretation of data (SG, JF), drafting of the                           ACKNOWLEDGMENTS
+manuscript (SG) and revision of the manuscript (SG, JF).
+                                                                                              We thank the children who participated in our study. Further, we
+                                                                                              are grateful to Sabine Röttig for providing the data of the oral
+FUNDING                                                                                       reading task and helping with participant recruitment of the eye-
+                                                                                              tracking study. We also thank our technical assistant Sebastian
+This research was supported by Land Brandenburg, the                                          Kuhn for help with the collection and pre-processing of the eye-
+University of Potsdam, Germany and Land Tirol.                                                tracking data.
+
+
+                                                                                              Just, M. A., Carpenter, P. A., and Woolley, J. D. (1982). Paradigms and Processes in
+REFERENCES                                                                                       reading Comprehension. J. Exp. Psychol. Gen. 111 (2), 228–238. doi:10.1037/
+                                                                                                 0096-3445.111.2.228
+Bamberger, R., and Vanecek, E. (1984). Lesen, verstehen, lernen, schreiben: die               Kliegl, R., Grabner, E., Rolfs, M., and Engbert, R. (2004). Length, Frequency, and
+    Schwierigkeitsstufen von Texten in deutscher Sprache. Wien: Jugend und Volk.                 Predictability Effects of Words on Eye Movements in reading. Eur. J. Cogn.
+Bates, D., Mächler, M., Bolker, B., and Walker, S. (2015). Fitting Linear Mixed-                 Psychol. 16 (1–2), 262–284. doi:10.1080/09541440340000213
+    Effects Models Usinglme4. J. Stat. Soft. 67 (1), 1–48. doi:10.18637/jss.v067.i01          Kliegl, R., Olson, R. K., and Davidson, B. J. (1983). “On Problems of
+Bergmann, J., and Wimmer, H. (2008). A Dual-Route Perspective on Poor reading                    Unconfounding Perceptual and Language Processes,” in Eye Movements in
+    in a Regular Orthography: Evidence from Phonological and Orthographic                        reading: Perceptual and Language Processes. Editor K. Rayner (New York:
+    Lexical Decisions. Cogn. Neuropsychol. 25 (5), 653–676. doi:10.1080/                         Academic Press), 333–343. doi:10.1016/b978-0-12-583680-7.50024-2
+    02643290802221404                                                                         Kuhn, M. R., and Stahl, S. A. (2003). Fluency: A Review of Developmental and
+Blythe, H. I., and Joseph, H. S. S. L. (2011). “Children’s Eye Movements during                  Remedial Practices. J. Educ. Psychol. 95, 3–21. doi:10.1037/0022-0663.95.1.3
+    reading,” in Oxford Handbook on Eye Movements (Oxford: Oxford University                  Laubrock, J., and Kliegl, R. (2015). The Eye-Voice Span during reading Aloud.
+    Press), 643–662. doi:10.1093/oxfordhb/9780199539789.013.0036                                 Front. Psychol. 6 (1432), 1432. doi:10.3389/fpsyg.2015.01432
+Coltheart, M. (2006). Dual Route and Connectionist Models of reading: an                      Liversedge, S. P., Rayner, K., White, S. J., Vergilino-Perez, D., Findlay, J. M., and
+    Overview. Lond. Rev. Educ. 4 (1), 5–17. doi:10.1080/13603110600574322                        Kentridge, R. W. (2004). Eye Movements when reading Disappearing Text: Is
+Coltheart, M., Rastle, K., Perry, C., Langdon, R., and Ziegler, J. (2001). DRC: A Dual           There a gap Effect in reading?. Vis. Res. 44 (10), 1013–1024. doi:10.1016/
+    Route Cascaded Model of Visual Word Recognition and Reading Aloud.                           j.visres.2003.12.002
+    Psychol. Rev. 108 (1), 204–256. doi:10.1037/0033-295x.108.1.204                           Mancheva, L., Reichle, E. D., Lemaire, B., Valdois, S., Ecalle, J., and Guérin-Dugué,
+De Luca, M., Di Pace, E., Judica, A., Spinelli, D., and Zoccolotti, P. (1999). Eye               A. (2015). An Analysis of reading Skill Development Using E-Z Reader. J. Cogn.
+    Movement Patterns in Linguistic and Non-linguistic Tasks in Developmental                    Psychol. 27 (5), 657–676. doi:10.1080/20445911.2015.1024255
+    Surface Dyslexia. Neuropsychologia 37 (12), 1407–1420. doi:10.1016/S0028-                 McConkie, G. W., Zola, D., Grimes, J., Kerr, P. W., Bryant, N. R., and Wolff, P. M.
+    3932(99)00038-X                                                                              (1991). “Children’s Eye Movements during reading,” in Vision and Visual
+Fawson, P. C., Ludlow, B. C., Reutzel, D. R., Sudweeks, R., and Smith, J. A. (2006).             Dyslexia. Editor J. F. Stein (Boston: CRC Press), 251–262.
+    Examining the Reliability of Running Records: Attaining Generalizable Results.            R Core Team (2020). R Development Core Team. R: A Language and Environment
+    J. Educ. Res. 100 (2), 113–126. doi:10.3200/JOER.100.2.113-126                               for Statistical Computing. R Foundation for Statistical Computing. Available at:
+Frith, U. (1985). Beneath the Surface of Surface Dyslexia. Surface dyslexia:                     http://www.r-project.org (Accessed March 31, 2021).
+    Neuropsychological and Cognitive Studies of Phonological Reading, 301–330.                Rau, A. K., Moeller, K., and Landerl, K. (2014). The Transition from Sublexical
+Grainger, J., and Ziegler, J. C. (2011). A Dual-Route Approach to Orthographic                   to Lexical Processing in a Consistent Orthography: An Eye-Tracking
+    Processing. Front. Psychol. 2, 1–13. doi:10.3389/fpsyg.2011.00054                            Study. Scientiﬁc Stud. Reading 18 (3), 224–233. doi:10.1080/
+Harald Baayen, R., and Milin, P. (2010). Analyzing Reaction Times. Int. J. Psychol.              10888438.2013.857673
+    Res. 3 (2), 12–28. doi:10.21500/20112084.807                                              Rau, A. K., Moll, K., Snowling, M. J., and Landerl, K. (2015). Effects of
+Hasenäcker, J., and Schroeder, S. (2017). Syllables and Morphemes in German                      Orthographic Consistency on Eye Movement Behavior: German and English
+    reading Development: Evidence from Second Graders, Fourth Graders, and                       Children and Adults Process the Same Words Differently. J. Exp. Child Psychol.
+    Adults. Appl. Psycholinguist. 38 (3), 733–753. doi:10.1017/S0142716416000412                 130, 92–105. doi:10.1016/j.jecp.2014.09.012
+Hawelka, S., Gagl, B., and Wimmer, H. (2010). A Dual-Route Perspective on Eye                 Rayner, K. (1998). Eye Movements in reading and Information Processing:
+    Movements of Dyslexic Readers. Cognition 115 (3), 367–379. doi:10.1016/                      20 Years of Research. Psychol. Bull. 124 (3), 372–422. doi:10.1037/0033-
+    j.cognition.2009.11.004.A                                                                    2909.124.3.372
+Huestegge, L., Radach, R., Corbic, D., and Huestegge, S. M. (2009). Oculomotor                Rayner, K. (2009). The 35th Sir Frederick Bartlett Lecture: Eye Movements and
+    and Linguistic Determinants of reading Development: A Longitudinal Study.                    Attention in reading, Scene Perception, and Visual Search. Q. J. Exp. Psychol. 62
+    Vis. Res. 49, 2948–2959. doi:10.1016/j.visres.2009.09.012                                    (Issue 8), 1457–1506. doi:10.1080/17470210902816461
+Hyönä, J., and Olson, R. K. (1995). Eye Fixation Patterns Among Dyslexic and                  Reichle, E. D., Liversedge, S. P., Drieghe, D., Blythe, H. I., Joseph, H. S. S. L., White,
+    normal Readers: Effects of Word Length and Word Frequency. J. Exp. Psychol.                  S. J., et al. (2013). Using E-Z Reader to Examine the Concurrent Development of
+    Learn. Mem. Cogn. 21 (6), 1430–1440. doi:10.1037/0278-7393.21.6.1430                         Eye-Movement Control and reading Skill. Develop. Rev. 33 (2), 110–149.
+Inhoff, A. W., and Rayner, K. (1986). Parafoveal Word Processing during Eye                      doi:10.1016/j.dr.2013.03.001
+    Fixations in reading: Effects of Word Frequency. Percept. Psychophys. 40 (6),             Schroeder, S., Würzner, K.-M., Heister, J., Geyken, A., and Kliegl, R. (2015).
+    431–439. doi:10.3758/BF03208203                                                              childLex-Eine lexikalische Datenbank zur Schriftsprache für Kinder im
+Inhoff, A. W., Solomon, M., Radach, R., and Seymour, B. A. (2011). Temporal                      Deutschen. Psychologische Rundschau 66 (3), 155–165. doi:10.1026/0033-
+    Dynamics of the Eye-Voice Span and Eye Movement Control during Oral                          3042/a000275
+    reading. J. Cogn. Psychol. 23 (5), 543–558. doi:10.1080/20445911.2011.546782              Shaywitz, S. E., and Shaywitz, B. A. (2005). Dyslexia (Speciﬁc reading
+Joseph, H. S. S. L., and Liversedge, S. P. (2013). Children’s and Adults’ On-Line                Disability). Biol. Psychiatry 57 (11), 1301–1309. doi:10.1016/
+    Processing of Syntactically Ambiguous Sentences during Reading. PLoS ONE 8                   j.biopsych.2005.01.043
+    (1), e54141. doi:10.1371/journal.pone.0054141                                             Spinelli, D., De Luca, M., Di Filippo, G., Mancini, M., Martelli, M., and Zoccolotti,
+Just, M. A., and Carpenter, P. A. (1980). A Theory of Reading: From Eye Fixations                P. (2005). Length Effect in Word Naming in Reading: Role of Reading
+    to Comprehension. Psychol. Rev. 87 (4), 329–354. doi:10.1037/0033-                           Experience and Reading Deﬁcit in Italian Readers. Develop. Neuropsychol.
+    295x.87.4.329                                                                                27 (2), 217–235. doi:10.1207/s15326942dn2702_2
+
+
+
+
+Frontiers in Communication | www.frontiersin.org                                         11                                           September 2021 | Volume 6 | Article 743113
+Gerth and Festman                                                                                                                                             Slow and Fast Readers
+
+
+
+Tifﬁn-Richards, S. P., and Schroeder, S. (2018). The Development of Wrap-                        Conﬂict of Interest: The authors declare that the research was conducted in the
+   Up Processes in Text reading: A Study of Children’s Eye Movements.                            absence of any commercial or ﬁnancial relationships that could be construed as a
+   J. Exp. Psychol. Learn. Mem. Cogn. 44 (7), 1051–1063. doi:10.1037/                            potential conﬂict of interest.
+   xlm0000506
+Tifﬁn-Richards, S. P., and Schroeder, S. (2015). Word Length and Frequency                       Publisher’s Note: All claims expressed in this article are solely those of the authors
+   Effects on Children’s Eye Movements during Silent reading. Vis. Res. 113 (PA),                and do not necessarily represent those of their afﬁliated organizations, or those of
+   33–43. doi:10.1016/j.visres.2015.05.008                                                       the publisher, the editors and the reviewers. Any product that may be evaluated in
+Verhoeven, L., van Leeuwe, J., and Vermeer, A. (2011). Vocabulary Growth and                     this article, or claim that may be made by its manufacturer, is not guaranteed or
+   reading Development across the Elementary School Years. Scientiﬁc Stud.                       endorsed by the publisher.
+   Reading 15 (1), 8–25. doi:10.1080/10888438.2011.536125
+Yap, M. J., Balota, D. A., Sibley, D. E., and Ratcliff, R. (2012). Individual Differences        Copyright © 2021 Gerth and Festman. This is an open-access article distributed
+   in Visual Word Recognition: Insights from the English Lexicon Project. J. Exp.                under the terms of the Creative Commons Attribution License (CC BY). The use,
+   Psychol. Hum. Percept. Perform. 38 (1), 53–79. doi:10.1037/a0024177                           distribution or reproduction in other forums is permitted, provided the original
+Ziegler, J. C., and Goswami, U. (2005). Reading Acquisition, Developmental                       author(s) and the copyright owner(s) are credited and that the original publication
+   Dyslexia, and Skilled Reading across Languages: A Psycholinguistic Grain                      in this journal is cited, in accordance with accepted academic practice. No use,
+   Size Theory. Psychol. Bull. 131 (1), 3–29. doi:10.1037/0033-2909.131.1.3                      distribution or reproduction is permitted which does not comply with these terms.
+
+
+
+
+Frontiers in Communication | www.frontiersin.org                                            12                                         September 2021 | Volume 6 | Article 743113
+

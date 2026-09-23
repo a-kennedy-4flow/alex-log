@@ -1,0 +1,947 @@
+Convergent Contemporary Software Peer Review Practices
+
+                                       Peter C. Rigby                                                                    Christian Bird
+                                  Concordia University                                                                 Microsoft Research
+                                  Montreal, QC, Canada                                                                 Redmond, WA, USA
+                           peter.rigby@concordia.ca                                                                 cbird@microsoft.com
+
+
+
+
+ABSTRACT                                                                                                1.   INTRODUCTION
+                                                                                                           Software peer review, in which an independent evaluator
+Software peer review is practiced on a diverse set of soft-
+                                                                                                        examines software artifacts for problems, has been an engi-
+ware projects that have drastically different settings, cultures,
+                                                                                                        neering best practice for over 35 years [9, 10]. While effective
+incentive systems, and time pressures. In an effort to char-
+                                                                                                        in identifying defects, the rigidity of traditional formal re-
+acterize and understand these differences we examine two
+                                                                                                        view practices has been shown to limit adoption and review
+Google-led projects, Android and Chromium OS, three Mi-
+                                                                                                        efficiency [12, 29]. In contrast, contemporary or modern
+crosoft projects, Bing, Office, and MS SQL, and projects
+                                                                                                        peer review encompasses a series of less rigid practices [6,
+internal to AMD. We contrast our findings with data taken
+                                                                                                        22]. These lightweight practices allow peer review to be
+from traditional software inspection conducted on a Lucent
+                                                                                                        adapted to fit the needs of the development team. For exam-
+project and from open source software peer review on six
+                                                                                                        ple, peer review is widely practiced on open source software
+projects, including Apache, Linux, and KDE. Our measures
+                                                                                                        (OSS) projects. Rigby et al. [23] described a minimalist OSS
+of interest include the review interval, the number of develop-
+                                                                                                        process that efficiently fit the development team. However,
+ers involved in review, and proxy measures for the number of
+                                                                                                        there was a lack of traceability and tools to support review
+defects found during review. We find that despite differences
+                                                                                                        that made it difficult to externally monitor the progress and
+among projects, many of the characteristics of the review pro-
+                                                                                                        quality of an OSS system. Despite a large body of research
+cess have independently converged to similar values which we
+                                                                                                        on peer review in the software engineering literature, little
+think indicate general principles of code review practice. We
+                                                                                                        work focuses on contemporary peer review in software firms.
+also introduce a measure of the degree to which knowledge
+                                                                                                        There are practitioner reports, but these are experiential
+is shared during review. This is an aspect of review practice
+                                                                                                        [20] or biased by a commercial interest in the review tool
+that has traditionally only had experiential support. Our
+                                                                                                        being examined [6]. To date, practitioners have driven the
+knowledge sharing measure shows that conducting peer re-
+                                                                                                        development of contemporary peer review and the tools that
+view increases the number of distinct files a developer knows
+                                                                                                        support it [26, 6]. The proliferation of reviewing tools (e.g.,
+about by 66% to 150% depending on the project. This paper
+                                                                                                        CodeCollaborator, ReviewBoard, Gerrit, Crucible) and the
+is one of the first studies of contemporary review in software
+                                                                                                        growing number of companies using lightweight review in-
+firms and the most diverse study of peer review to date.
+                                                                                                        dicates success in terms of adoption (e.g., Google, Cisco,
+                                                                                                        Microsoft), but there is no systematic examination of the
+Categories and Subject Descriptors
+                                                                                                        efficacy of contemporary peer review in software firms.
+D.2.8 [Software Engineering]: [Metrics]; K.6.3 [Software                                                   We posit that contemporary peer review (review practiced
+Management]: [Software development; Software process]                                                   today by many commercial and OSS projects) evolved from
+                                                                                                        the more traditional practice of formal inspections of a decade
+General Terms                                                                                           or more ago. In this paper, we present an exploration of
+Management, Measurement                                                                                 aspects of contemporary peer review in software projects
+                                                                                                        that span varying domains, organizations, and development
+Keywords                                                                                                processes in an attempt to aggregate and synthesize more
+                                                                                                        general results. Our primary conjecture is that if the peer
+Peer code review, Empirical Software Engineering, Inspection,
+                                                                                                        review practices and characteristics in multiple disparate
+Software firms, Open source software
+                                                                                                        projects (See Table 2) have become similar as they have
+                                                                                                        naturally or organically evolved, then such characteristics
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed                   may be indicative of convergent practices that represent
+for profit or commercial advantage and that copies bear this notice and the full citation
+Permission to make digital or hard copies of all or part of this work for                               generally successful and efficient methods of review. As such,
+on the first page. Copyrights for components of this work owned by others than ACM
+personal
+must        or classroom
+      be honored.            usewith
+                   Abstracting    is granted
+                                      credit is without
+                                                 permitted.fee
+                                                            To provided      that copies
+                                                                copy otherwise,           are
+                                                                                  or republish,         these can be prescriptive to other projects choosing to add
+notpost
+to   made    or distributed
+        on servers            for profit
+                    or to redistribute    or commercial
+                                       to lists,              advantage
+                                                 requires prior             and that and/or
+                                                                 specific permission   copiesa          peer review to their development process.
+fee.
+bearRequest    permissions
+      this notice  and thefromfullPermissions@acm.org.
+                                   citation on the first page. To copy otherwise, to                       Our overarching research question is how do the parame-
+Copyright
+republish,istoheld byon
+                 post  theservers
+                           author/owner(s).    Publication
+                                    or to redistribute   torights
+                                                             lists, licensed
+                                                                     requirestoprior
+                                                                                ACM.specific
+permission and/or  a fee.18–26, 2013, Saint Petersburg, Russia                                          ters of peer review differ in multiple disparate projects? We
+ESEC/FSE’13,    August
+ESEC/FSE
+ACM         ’13, August 18 – 26, 2013, Saint Petersburg, Russia
+       978-1-4503-2237-9/13/08                                                                          operationalize this question for each parameter of review:
+Copyright 2013 ACM 978-1-4503-2237-9/13/08 ...$15.00.
+http://dx.doi.org/10.1145/2491411.2491444
+
+
+
+                                                                                                  202
+                                                                        2.1    Software Inspection
+Table 1: Project data sets: The time period we ex-
+amined in years and the number of reviews                                  Software inspections are the most formal type of review.
+     Project          Period   Years Reviews                            They are conducted after a software artifact meets predefined
+     Lucent         1994–1995   1.5      88                             exit criteria (e.g., a particular requirement is implemented).
+     Apache         1996–2005   9.8    5.9K                             The process, originally defined by Fagan [9], involves some
+     Subversion     2003–2008   5.6    4.9K                             variation of the following steps: planning, overview, prepa-
+     Linux          2005–2008   3.5     28K                             ration, inspection, reworking, and follow-up. In the first
+     FreeBSD        1995–2006  12.0     47K                             three steps, the author creates an inspection package (i.e.,
+     KDE            2002–2008   5.6    23K                              determines what is to be inspected), roles are assigned (e.g.,
+     Gnome          2002–2007   5.8     8K                              moderator), meetings are scheduled, and the inspectors ex-
+                                                                        amine the inspection package. The inspection is conducted,
+     AMD            2008–2011   3.2      7K
+                                                                        and defects are recorded but not fixed. In the final steps,
+     MS Bing        2010–2013   3.7    102K
+                                                                        the author fixes the defects and the mediator ensures that
+     MS Sql Server  2011–2013   2.8     80K
+                                                                        the fixes are appropriate. Although there are many varia-
+     MS Office 2013 2011–2013   2.7    96K
+                                                                        tions on formal inspections, “their similarities outweigh their
+     Android        2008–2013   4.0     16K
+                                                                        differences” [31].
+     Chrome OS      2011–2013 2.1K     39K
+                                                                           Comparison data: We use data that Porter et al. collected
+                                                                        in inspection experiments at Lucent [19] to compare our
+                                                                        findings for contemporary review with traditional software
+     1. What peer review process (e.g., Fagan inspection vs             inspection. Their study was conducted in a semi-controlled
+        Commit-then-review) does the project use?                       industrial setting. Each condition in their study was de-
+                                                                        signed to emulate a particular variation in inspection process.
+     2. How long do reviews take and how often are reviews              However, they found that variation in inspection processes
+        performed?                                                      accounted for very little variation in the number of defects
+                                                                        found during review. People and product measures, such as
+     3. What is the size of artifact under review?
+                                                                        the expertise of the review, accounted for much more of the
+     4. How many people are involved in review?                         variance.
+
+     5. How effective is review in terms of problems discussed?         2.2    Open Source Software Peer Review
+     6. Does review spread knowledge about the system across               Peer review is a natural way for OSS developers, who
+        the development team?                                           rarely meet in person, to ensure that the community agrees
+                                                                        on what constitutes a good code contribution. Most large,
+   With the exception of the last question, these parameters            successful OSS projects see peer review as one of their most
+of review have been studied in many experiments over the                important quality assurance practices [23, 18, 1]. On OSS
+last 35 years [9, 19, 24]. Our contribution is to compare a             projects, a review begins with a developer creating a patch.
+large diverse set of projects on these parameters.                      A patch is a development artifact, usually code, that the
+   This paper is organized as follows. In Section 2, we provide         developer feels will add value to the project. Although the
+a brief overview of the software peer review literature and             level of formality of the review processes varies among OSS
+describe the review practices of the projects we study in               projects, the general steps are consistent across most projects:
+this paper. In Section 3, we describe the data that we mine             1) the author submits a contribution by emailing it to the
+and our multiple case study methodology. In Section 4,                  developer mailing list or posting to the bug or review tracking
+we present our case study findings and describe convergent              system, 2) one or more people review the contribution, 3) it is
+and divergent practices. In Section 5, we provide a first               modified until it reaches the standards of the community, and
+measurement of the impact of peer review on knowledge                   4) it is committed to the code base. Many contributions are
+sharing in a development team. While we discuss threats to              ignored or rejected and never make it into the code base [3].
+validity throughout the paper, we provide a fuller discussion           This style of review is called review-then-commit (RTC). In
+of them in Section 6. In Section 7, we conclude the paper.              contrast to RTC, some projects allow trusted developers to
+                                                                        commit contributions (i.e. add their contributions to the
+2.     BACKGROUND AND PROJECT INFOR-                                    shared code repository) before they are reviewed. The main
+       MATION                                                           or core developers for the project are then expected to review
+                                                                        all commits. This style of review is called commit-then-
+   In this section we introduce three types of peer review:             review (CTR). All projects use RTC, but some also use CTR
+traditional inspection, OSS email-based peer review, and                depending on the status of the committer and the nature of
+lightweight tool supported review. We also describe the                 the patch [23].
+projects and data we have for each review type. The novel                  Comparison data: We have data from six large, successful
+data in this paper comes from Advanced Micro Devices                    OSS projects (which we will refer to as the “OSS projects” in
+(AMD), Microsoft, and Google-led projects. Table 2 is in-               this paper1 ): the Apache httpd server, the Subversion version
+tended to show the time periods and size of data set we have            control system, the Linux operating system, the FreeBSD
+for each project, and is not intended for comparisons among
+projects. In the remainder of this paper, we normalize and              1
+                                                                          Although Chrome and Android have open source licenses,
+convert the raw data to perform meaningful comparisons.                 they are led by Google.
+
+
+
+                                                                  203
+operating system, KDE desktop environment, and Gnome                     Engineers [11]. Gerrit centralizes git acting as a barrier
+desktop environment. The results from these projects have                between a developer’s private repository and the shared
+been published by Rigby et al. [24, 25] and are used here                centralized repository. Developers make local changes in
+only for comparison purposes.                                            their private git repositories and then submit these changes
+                                                                         for review. Reviewers make comments via the Gerrit web
+2.3    Peer Review at Microsoft                                          interface. For a change to be merged into the centralized
+   Microsoft has slowly been evolving its code review process.           source tree, it must be approved and verified by another
+While code review has been an integral practice at Microsoft             developer. The review process has the following stages:
+for many years, the method used has shifted from sending
+patches and discussion them on large email lists to using                     1. ”Verified” - Before a review beings, someone must verify
+centralized tools.                                                               that the change merges with the current master branch
+   A few years ago, Microsoft developed an internal tool,                        and does not break the build. In many cases, this step
+CodeFlow, to aid in the review process. In many projects                         is done automatically.
+(including the Microsoft projects that we examined for this
+study), code review is primarily accomplished via CodeFlow                    2. ”Approved” - While anyone can comment on the change,
+and occurs once a developer has completed a change, but                          someone with appropriate privileges and expertise must
+prior to checkin into the version control system. A developer                    approve the change.
+will create a review by indicating which changed files should
+                                                                              3. ”Submitted/Merged” - Once the change has been ap-
+be included, providing a description of the change (similar to
+                                                                                 proved it is merged into Google’s master branch so
+a commit message), and specifying who should be included
+                                                                                 that other developers can get the latest version of the
+in the review. Those included receive email notifications
+                                                                                 system.
+and then open the review tool which displays the changes to
+the files and allows the reviewers to annotate the changes                 New Data: In this paper, we present results from two
+with their own comments and questions. The author can                    Google-led, OSS projects that use the Gerrit peer review tool:
+respond to the comments within the review and can also                   Android and Chromium OS. Android is an operating system
+submit a new set of changes that addresses issues that the               developed for mobile and tablet devices. It is Open Source
+reviewers have brought up. Once a reviewer is satisfied with             Software and was initiated by a group of companies known
+the changes, he can “sign off” on the review in CodeFlow.                as Open Handset Alliance, which is led by Google.2 Google
+While many teams have policies regarding code review sign                Chromium OS, referred to as Chrome, is an operating system
+off, there is no explicit connection between the review system           which runs only web apps and revolves around the Chromium
+and version control that disables checkin until a review has             web browser.3 We present details of data gathering for these
+been signed off. Teams’ review policy may vary in many                   projects in subsection 3.1.
+ways. For example, some require just one reviewer to sign
+off while others require more; some specify who should sign              2.5      AMD and CodeCollaborator
+off for changes in different components and some leave it up
+                                                                            Ratcliffe [20] presented a practitioners report on the adop-
+to the developer; etc. For more details, we refer the reader
+                                                                         tion of a CodeCollaborator based peer review practice on an
+to an earlier empirical study [2] in which we investigated
+                                                                         internal AMD project, which served as the model for other
+the purposes for code review (e.g., finding defects, sharing
+                                                                         projects at AMD. The practice used at AMD involves the
+knowledge) along with the actual outcomes (e.g., creating
+                                                                         following steps: 1) the author uploads the software artifacts
+awareness and gaining code understanding) at Microsoft.
+                                                                         for review in the web interface, 2) reviewers are assigned to
+   New Data: In this paper, we present the results of analyz-
+                                                                         the review, 3) a review discussion occurs and problems are
+ing review data drawn from three large projects at Microsoft
+                                                                         fixed, 4) once a review is approved it is committed. The
+that use CodeFlow as the primary mechanism for code review
+                                                                         CodeCollaborator tool allows for assignment of rules and the
+and that differ in their domain and development methodol-
+                                                                         specification and enforcement of business rules (e.g., a review
+ogy – Bing, Microsoft Office 2013, and Microsoft SQL Server.
+                                                                         must be approved by 2 reviewers before it can be committed).
+Bing is an Internet search engine; it is continuously being
+                                                                         While asynchronous discussion can occur, a chat interface
+developed and deployed and undergoes constant development.
+                                                                         can also be used. Cohen, the founder of the company that
+Office is a suite of business applications that ships as a boxed
+                                                                         sells CodeCollaborator, performed a detailed evaluation of
+product and follows a more traditional process with phases
+                                                                         the tool at Cisco [6].
+for planning, implementation, stabilization, and shipping.
+                                                                            New data: Ratcliffe’s practitioners report was mainly qual-
+SQL Server is a database management and business intelli-
+                                                                         itative. In this work, we present the quantitative results from
+gence application that follows a development cycle similar
+                                                                         the use of CodeCollaborator at AMD. The AMD data set
+to Office. We present details of data gathering for these
+                                                                         is limited, so we indicate below when we are unable present
+projects in subsection 3.1.
+                                                                         results for AMD.
+2.4    Google-based Gerrit Peer Review                                   2.6      Contemporary Peer Review Process
+  When the Android project was released as OSS, the Google
+                                                                           Comparing the above review processes, we find that con-
+Engineers working on Android wanted to continue using the
+                                                                         temporary peer review is characterized by being lightweight
+internal Mondrian code review tool used at Google [28].
+                                                                         2
+Gerrit is an OSS, git specific implementation of the code                    http://source.android.com/
+                                                                         3
+review practices used internally at Google, created by Google                http://www.chromium.org/chromium-os
+
+
+
+                                                                   204
+and occurring before the code is added to a version control             3.1    Data Extraction
+repository that many developers depend upon (e.g., the mas-                The data extraction for the following projects is described
+ter branch). This process contrasts sharply with traditional            in other work: Lucent [19], OSS projects [23], and AMD [20].
+software inspection where large completed artifacts are re-             The former two data sets are used for comparison purposes,
+viewed in co-located meeting with rigidly defined goals and             while the AMD data had not been quantitatively reported in
+participant roles. Contemporary OSS review is lightweight               previous work. In previous work, we described the extraction
+and fits the development team, but when it is conducted                 process and resulting data for Google Chrome and Android;
+on a mailing list it is difficult to track. Some OSS projects           the data is also available for other researchers [17]. This
+and all the software firms we examine use a review tool,                work did not involve analysis of the data. In the remainder
+which makes the process traceable thought the collection                of this section, we discuss what constitutes a review for each
+of review metrics. Contemporary reviews are typically con-              project and briefly describe how we extracted peer review
+ducted asynchronously and measures of review are recorded               data.
+automatically.                                                             Microsoft: The Microsoft data for this study was collected
+                                                                        from the CodeFlow tool. This tool stores all data regarding
+  Convergent Practice 1: Contemporary peer review fol-                  code reviews in a central location. We built a service to mine
+  lows a lightweight, flexible process                                  the information from this location and keep a database up
+                                                                        to date for tools to leverage and for empirical analysis. For
+                                                                        each review, we record information including who created the
+  In general, contemporary review involves the following                review, what files were modified, how many sets of changes
+steps.                                                                  were submitted, the comments that reviewers added, and
+                                                                        who signed off.
+     1. The author creates a change and submits it for review.             One difficulty with this data is knowing when a review
+                                                                        is complete. There are a number of states that a review
+     2. Developers discuss the change and suggest fixes. The            can be in, one of which is “Closed”. However, to be in the
+        change can be re-submitted multiple times to deal with          “Closed” state, someone must explicitly set the review to that
+        the suggested changes.                                          state. We observed that in practice, a developer may check
+                                                                        in his changes once reviewers had signed off without first
+     3. One or more reviewers approve the change and it is              changing the review to “Closed”. In other cases, there was
+        added to the “main” version control repository. The             evidence that a member of a project closed reviews as a form
+        change may also be rejected.                                    of maintenance (one person closed thousands of reviews in a
+                                                                        matter of minutes). To deal with this, we use the heuristic
+                                                                        that a review is considered completed at the time of the last
+3.     METHODOLOGY AND DATA                                             activity by a participant in the review (i.e. the date of the
+   We use Yin’s multiple cases study methodology [32]. Case             last comment or the last sign off, whichever is later). For
+study findings ‘generalize’ or are transferable through analyt-         all the cases studies in this work, reviews with no comments
+ical generalizations. Unlike statistical generalization, which          or sign offs were excluded from the data set as no review
+derives samples from and generalizes to a defined popula-               discussion occurs.
+tion, analytic generalization requires researchers to develop              Google Chrome and Android: We consider reviews in the
+a theory or framework of findings related to a particular               merged and abandoned states, open reviews are not consid-
+phenomenon. We use theoretical sampling to select a di-                 ered in this work. Reviews must also have one comment from
+verse set of cases and then contrast our findings developing            a human reviewer who is not the author (Verifications by
+a framework that describes the convergent and divergent                 bots are removed). To collect peer review data from these
+practices of contemporary peer review.                                  projects, we reverse engineered the Gerrit JSON API and
+   We began by collecting data on Microsoft review practices            queried the Gerrit servers for data regarding each review for
+and were surprised to see convergences with the practices ob-           both projects, gathering information such as the author’s
+served by Rigby on OSS projects [23]. These practices tended            and reviewers’ activity, files changed, comments made, and
+to coincide with those seen at AMD [20] and Cisco [6]. We               dates of submission and completion. We stored this informa-
+collected data on the Google-led OSS projects, Chromium OS              tion on peer reviews in a database for further analysis. The
+and Android, to understand the practices of hybrid projects.            extracted data and details of our technique are available to
+We also have data on the traditional inspection practices at            other researchers [17].
+Lucent [19] that we use for comparison purposes.                           AMD: We attained a summary of the data dump from the
+   We quantify how lightweight, tool-supported review is                CodeCollaborator tool [20]. Unfortunately, this data set does
+conducted. Since each case study has different data points              not have all the parameters of review we wish to measure,
+and measures, a further contribution of this work is the                such as the number of comments per review. In this data
+conversion of raw and summary data from past and current                set, we only include review discussions that have at least one
+cases to report comparable measures. We contribute a unified            reviewer.
+set of findings across a large, diverse sample of projects.                Lucent: Siy attended inspection meetings and collected
+   In this section, we give an overview of the data we have for         self-report data from reviewers on a compiler project at
+each project. In each subsequent section, we discuss in detail          Lucent [19]. The roles and number of participants were
+the pertinent data and measures. We also discuss limitations
+in our data and construct validity issues.
+
+
+
+                                                                  205
+specified in advance. Since this is comparison data, we
+discuss differences, but do not present this data in figures.
+   OSS project: Rigby et al.’s work considered six OSS project,
+Apache, Subversion, Linux, FreeBSD, KDE, and Gnome [24,
+
+
+
+
+                                                                                                   365
+25, 23]. The review data was extracted from developer mail-
+ing lists. For a review to be considered valid it had to contain
+the following: 1) a change or ‘diff’ and 2) one or more emails
+
+
+
+
+                                                                                                   30
+from reviewers (i.e. not the author of the change). Both
+
+
+
+
+                                                                                                   7
+accepted and rejected changes that were reviewed are in the
+
+
+
+
+                                                                         interval in days (log)
+
+                                                                                                   1
+data set. Like the Lucent data, we do not report this data
+
+
+
+
+                                                                                                   .25
+in our figures.
+
+
+
+
+                                                                                                   1 hr
+   Plotting the Data: We use two types of plots: beanplots
+and boxplots. Beanplots show the distribution density for
+multiple samples along the y-axis (rather than more com-
+
+
+
+
+                                                                                                   1 min
+monly along the x-axis) to enable easy visual comparison
+and in this work contain a horizontal line that represents
+the median [13]. Beanplots are best for a large range of
+non-normal data as they show the entire distribution (they
+essentially show the full distribution drawn vertically, and
+show whether there are peaks and valleys in a distribution)                                                Android   Chrome   AMD      Bing   Office   SQL
+while boxplots are better for smaller ranges. When we have
+                                                                                                                                Projects
+count data that is highly concentrated, we use a boxplot.
+For all the boxplots in this work, the bottom and top of
+the box represent the first and third quartiles, respectively.
+Each whisker extends 1.5 times the interquartile range. The              Figure 1: First Response on left (we do not have
+median is represented by the bold line inside the box. Since             first response data for AMD) and Full interval on
+our data are not normally distributed, regardless of the style           right
+of plot, we report and discuss median values.
+
+
+4.    MULTIPLE CASE STUDY FINDINGS
+   In this section, we present our convergent and divergent                                       Convergent Practice 2: Reviews happen early (before a
+findings in the context of iterative development, reviewers                                       change is committed), quickly, and frequently
+selection practices, review discussions and defects, and knowl-
+edge sharing through review. For each finding, we place it in
+the context of the Software Engineering literature on peer                  AMD, Microsoft, and the Google-led projects exemplify
+review, summarize it in a “Convergent Practice” box, and                 the convergent practice of frequent reviews, Figure 2, that
+then discuss the evidence that we have for each practice.                happen quickly, Figure 1. The reviews are always done
+                                                                         early (i.e. before the code is checked into the version control
+4.1    Iterative Development                                             system).
+                                                                            AMD: AMD has short review intervals, with the median
+  The concept of iterative development is not new and can
+                                                                         review taking 17.5 hours. The number of reviews per month
+be traced back to the many successful projects in the early
+                                                                         is also high and increases from a few reviews per month when
+days of software development [14]. However, progressive
+                                                                         the tool and practice was introduced, to over 500 reviews
+generations of software developers have worked in shorter
+                                                                         per month.
+and shorter intervals. For example, “continuous builds” [8]
+                                                                            Microsoft: Bing, SQL, and Office also show short intervals
+and “release early, release often” [21]. Peer review is no
+                                                                         for reviews with median completion times of 14.7, 19.8, and
+exception.
+                                                                         18.9 hours respectively. In terms of reviews per month, all
+  An original goal of software inspection was to find software
+                                                                         three projects are very active, but show different trends.
+defects by exposing artifacts to criticism early in the develop-
+                                                                         SQL has a median of 3739 reviews per month and is fairly
+ment cycle. For example, Fagan inspection introduced early
+                                                                         consistent month to month. In contrast, Bing has a median
+and regular checkpoints (e.g., after finishing a major compo-
+                                                                         of 2290, but has shown a steady increase over time since its
+nent) that would find defects before the software’s release.
+                                                                         initial adoption of CodeFlow. Office has the highest median
+However, the time from when the review started to when the
+                                                                         at 4384, and it follows a typical release cycle with an initial
+discussion ended (i.e. the review interval) was on the order of
+                                                                         ramp up of reviews and a fall-off near release.
+weeks [9]. In 1998, Porter [19] reported inspection intervals
+                                                                            Google Chrome and Android: The median frequency is
+at Lucent to have a median of 10 days. OSS projects like
+                                                                         1576 and 310 for Chrome and Android, respectively. The
+Apache and Linux have review intervals on the order of a
+                                                                         median completion time is 15.7 and 20.8 hours, for Chrome
+few hours to a day [23].
+                                                                         and Android, respectively.
+                                                                            Project Comparisons: The review interval, which is on
+                                                                         the order of hours and with a median around a day, shows
+
+
+
+                                                                   206
+                                                                                                                  Reviews per Month
+                                                                                                     Bing
+                                                                                                     Office
+                           10000
+
+
+
+
+                                                                                           Reviews
+                           1000
+Reviews per month (log)
+
+                           100
+                           10
+
+
+
+
+                                                                                                                        Month
+
+
+
+
+                                                                                           Figure 3: Number of reviews per month in Bing and
+                           1
+
+
+
+
+                                                                                           Office. We were requested to keep raw numbers and
+                                                                                           dates confidential, but this plot shows the trends in
+                                   Android   Chrome   AMD      Bing   Office   SQL         code review as a tool is adopted (Bing) and over the
+                                                        Projects                           course of a release cycle (Office).
+
+
+
+                           Figure 2: The number of reviews per month
+                                                                                              From Figure 4, both Android and AMD have a median
+                                                                                           change size of 44 lines. This median change size is larger than
+                                                                                           Apache, 25 lines, and Linux, 32 lines, but much smaller than
+remarkable consistency across all projects. Figure 1 also                                  Lucent where the number of non-comment lines changed is
+shows the amount of time it takes for the first response to                                263 lines. Bing, Office, SQL, and Chrome have larger median
+a review. We can see for all projects that most reviews are                                changes than the other projects examined, but are still much
+picked up with an few hours, indicating that reviewers are                                 smaller than Lucent. For example, Chrome’s median change
+regularly watching and performing review.                                                  is 78 lines and includes 5 files. However, for Chrome, only
+   The number of reviews per month, or the review frequency,                               23% of changes are the same size or larger than a median
+is very high in comparison to traditional inspection practices,                            Lucent change. Furthermore, the distribution of changes
+but tends to vary with the stage, development style, and                                   on Google-led and the other OSS project are left skewed
+size of the project (a divergent finding). In Figure 2, we can                             indicating that the majority of changes are small. While the
+see three distinct types of projects: adoption (e.g., Bing),                               distribution for the commercial firms is also left skewed, it is
+cyclic (e.g., Office), and stable (e.g., Chrome). The long tails                           almost log normal.
+in each beanplot show that adoption took place, and with
+AMD and Bing the amount of review is still increasing with                                 4.2       Selecting Reviewers
+each month. This trend can be seen in Figure 3, which plots
+Bing data as a timeseries. In contrast to this monotonic                                     Traditionally, developers are assigned to review an artifact.
+trend, cyclic projects, like Android, FreeBSD, Office show an                              On OSS projects, developers select the changes that they are
+irregular cone shape, with gradual fluctuations in the amount                              interested in reviewing and no reviews are assigned. Many
+of development and review (See Office in Figure 2). Finally,                               review tools allow for assignment as well as self-selection
+Chrome and SQL show a relatively stable number of reviews.                                 incorporating a positive mix of both techniques [26, 11, 6].
+Linux and KDE exhibit similar trends.                                                      The self-selection used in review tools is accomplished by
+                                                                                           adding a group (e.g., a mailing list) to the reviewer list, then
+                                                                                           individuals from this group can find the review [20, 2]. In
+                          Convergent Practice 3: Change sizes are small                    this section, we discuss the optimal number of reviewers as
+                                                                                           well as different reviewer selection techniques.
+   Having a short interval cannot be achieved without changes                                The optimal number of inspectors involved in a meeting
+to other aspects of software development. By creating smaller                              has long been contentious (e.g., [5, 30]). Reviews are ex-
+changes, developers can work in shorter intervals. For exam-                               pensive because they require reviewers to read, understand,
+ple, Mockus et al. noted that Apache and Mozilla had much                                  and critique an artifact. Any reduction in the number of
+smaller change sizes than the industrial projects they used                                reviewers that does not lead to a reduction in the number
+for comparison, but did not understand why [15, 22]. On                                    of defects found will result in cost savings. Buck [5] found
+the OSS projects studied by Rigby et al., the median change                                no difference in the number of defects found by teams of
+on OSS projects varies from 11 to 32 lines changed. They                                   three, four, and five individuals. Bisant and Lyle [4] proposed
+argued that the small change on OSS projects facilitates                                   two person inspection teams that eliminated the moderator.
+frequent review of small independent changes.                                              In examining the sources of variation in inspections, Porter
+
+
+
+                                                                                     207
+                       10000
+
+
+
+
+                                                                                                                    50
+                                                                                                                    20
+                       1000
+
+
+
+
+                                                                                       Reviewers per review (log)
+Lines changed (log)
+
+
+
+
+                                                                                                                    10
+                       150
+                       45
+
+
+
+
+                                                                                                                    5
+                       15
+                       5
+
+
+
+
+                                                                                                                    2
+                                                                                                                    1
+                               Android   Chrome   AMD      Bing   Office   SQL                                             Android   Chrome   AMD      Bing   Office   SQL
+
+                                                    Projects                                                                                    Projects
+
+
+
+
+Figure 4: Churn: Lines added and removed. Note:                                        Figure 5: Two reviewers involved in review in the
+we do not show proportion of changes over 10 000                                       median case
+lines.
+
+et al. [19] found that two reviewers discovered as many de-                            quantitatively, reviews that had many more reviewers than
+fects as four reviewers. The consensus seems to be that two                            the median and found that the author or the reviewers will
+inspectors find an optimal number of defects [27]. In OSS                              invite additional developers after a round of reviewing has
+review, the median number of reviewers is two; however,                                taken place. This can be the result of a developer realizing
+since the patch and review discussions are broadcast to a                              that someone else is better fit to examine the change or
+large group of stakeholders, there is the potential to involve                         concluding that the change carries a high risk and should be
+a large number of interested reviewers if necessary [25].                              reviewed by “more eyes”. The general practice appears to
+                                                                                       involve inviting three to four reviewers and then letting the
+                      Convergent Practice 4: Two reviewers find an optimal             review take its course which may lead to involving additional
+                      number of defects                                                participants.
+
+   At AMD the median number of reviews is 2. While review-                             4.3                               Defects vs Discussion
+ers are typically invited, Ratcliffe describes how CodeCollab-                            The rigid time constraints of synchronous review meet-
+orator allows invites to be broadcast to a group of develop-                           ings forced traditional inspections to focus exclusively on
+ers [20]. He further describes how CodeCollaborator suggests                           finding defects, discussions of other topics, such as solutions
+potential reviewers based on who has worked on the file in                             to the defect, were strictly forbidden [9]. Inspection used
+the recent past.                                                                       explicit roles, such as reader and secretary, to ensure that
+   For Google Chrome and Android, there is a median of                                 defects were accurately recorded and that developers were
+two reviewers, see Figure 5. Gerrit allows developers to                               not distracted from findings defects [9]. At Lucent there is a
+subscribe to notifications when a review includes changes to                           median of 3 true defects found per review [19]. An additional
+a particular part of the system [28]. Reviewers can also be                            4 defects per review were found to be false positives. Inspec-
+invited when the author includes their email address in the                            tions also found a large number of soft maintenance issues,
+review submission sent to Gerrit.                                                      median 13 per review, which included coding conventions,
+   At Microsoft the median number of reviewers invited to                              and the addition of comments. This type of soft maintenance
+each review in Bing, Office, and SQL respectively are 3, 3,                            code improvements was also observed at Microsoft and in
+and 4. As Figure 5 shows, the median number of people that                             OSS review [2, 25]. In contrast to software inspection, asyn-
+actually take part in a review (other than the author) is 2.                           chronous reviews have less rigid time constraints allowing
+Interestingly, we found that there was only a minimal increase                         for detailed discussions of software artifacts. For example,
+in the number of comments about the change when more                                   on OSS projects, the discovery of the defect is not the focal
+reviewers were active and there was no increase in the number                          point. Instead developers discuss potential defects and so-
+of change sets submitted (i.e., the same number of “rounds                             lutions to these defects. These team discussions mean that
+of reviewing”). We also investigated, both qualitatively and                           the author is no longer isolated from his or her peers when
+
+
+
+                                                                                 208
+                                                                                                                                           50
+                             1000
+
+
+
+
+                                                                                                Number of resubmissions per review (log)
+
+                                                                                                                                           20
+Comments per review (log)
+
+                             150
+
+
+
+
+                                                                                                                                           10
+                             45
+
+
+
+
+                                                                                                                                           5
+                             15
+
+
+
+
+                                                                                                                                           2
+                             5
+                             2
+                             1
+
+
+
+
+                                                                                                                                           1
+                                     Android   Chrome     Bing     Office    SQL                                                                Android   Chrome    Bing      Office   SQL
+
+                                                                                                                                                                   Projects
+
+
+
+
+                               Figure 6: Number of comments per review                                                                     Figure 7: Number of submissions per review
+
+
+
+fixing the defects found during review [25]. In this section,                                   the comment “Are you sure you don’t need to check against
+we also provide proxy measures for the number of defects                                        NULL here?” be a defect?). In addition, recording the defects
+found and show that they are comparable to those found                                          found during review would not aid in the aforementioned goal.
+during inspection.                                                                              CodeFlow does provide the ability for an author to mark
+                                                                                                any thread of conversation with a status of “open”, “ignored”,
+                                                                                                “resolved”, or “closed” enabling participants to track the
+                            Convergent Practice 5: Review has changed from a
+                                                                                                various discussions within the changes. For our purposes, the
+                            defect finding activity to a group problem solving activity
+                                                                                                closest artifact to a defect is a thread of discussion that has
+                                                                                                been marked as resolved, as a problem found within the code
+   Examining contemporary practices in software firms, we                                       would need to be resolved by the author prior to checkin.
+find convergence with OSS: defects are not explicitly recorded.                                 The caveat is that a reviewer might make comments or ask
+AMD uses CodeCollaborator, which has a field to record the                                      questions that lead to discussion and are eventually marked
+number of defects found; however, 87% of reviews have no                                        as resolved, but that don’t represent a defect found or result
+recorded defects, and only 7% have two or more defects found.                                   in any code being changed.
+Measures of review activity indicate a median of two partic-                                       On the Google Chrome and Android projects, the Gerrit
+ipants per review and qualitative analysis by Ratcliffe [20]                                    review tool does not provide any field to explicitly record
+found that discussions did occur but focused on fixing defects                                  the number of defects found. However, as we discussed in
+instead of recording the existence of a defect. The disconnect                                  section 2, reviews pass through three stages: verified to
+between explicitly recorded defects and activity on a review                                    not break the build, reviewed, and merged. The goal of
+indicates that reviewers are examining the system, but that                                     these stages is not to simply identify defects, but to remove
+developers are not recording the number of defects found.                                       any defects before merging the code into a central, shared
+   Microsoft’s CodeFlow review tool provides further evidence                                   repository. As we can see from Figure 6, there is a median
+– it does not provide a way for developers to record the                                        of 4 and 3 comments per review for Chrome and Android
+defects found during review. This design decision results                                       respectively – discussion occurs on these projects at similar
+from the way that code review is practiced at Microsoft.                                        levels to other OSS projects. On the Industrial side, the
+When an author submits a change for review, the author                                          medians are the same, with 4, 3, and 3 comments for Bing,
+and other reviewers have a joint goal of helping the code                                       Office, and SQL respectively.
+reach a satisfactory level before it is checked in. We have
+observed that reviewers will comment on style, adherence                                        “You can’t control what you can’t measure” [7]
+to conventions, documentation, defects, missed corner cases,                                    The contemporary software projects we studied do not record
+and will also ask questions about the changes [2] in an effort                                  the number of defects found during review, in part because it
+to help the author make the code acceptable. It is unclear                                      distracts developers from their primary task of immediately
+which of these represent defects and which do not (e.g. would                                   fixing the defects found in review. However, without this
+
+
+
+                                                                                          209
+Table 2: Descriptive statistics for the number of                       5.   SHARING KNOWLEDGE THROUGH
+comments, threads of discussion and threads marked
+as resolved in Bing, Office, and SQL.                                        REVIEW
+ Project               Comments Threads Resolved                           The number of defects found during review is known to be
+          1st Quartile      2         1       0                         a limited measure of review effectiveness because it ignores
+ Bing     Median            4         2       0                         many of the other benefits of review, such as the sharing of
+          3rd Quartile      9         6       1                         knowledge among developers [12]. Some of the benefits of
+          1st Quartile      2         1       0                         spreading knowledge across the development team include
+ Office   Median            3         2       0                         having co-developers who can do each other’s work if a
+          3rd Quartile      8         5       1                         developer leaves a project and involving new developers in
+          1st Quartile      2         1       0                         reviews to familiarize them with a project’s codebase. While
+ SQL      Median            3         3       0                         qualitative evidence from practitioners indicates that review
+          3rd Quartile      8         7       2                         does indeed spread knowledge across the development team [2,
+                                                                        20], we are unaware of any empirical studies that measure
+                                                                        this phenomenon.
+                                                                           To provide a preliminary measurement of the knowledge
+measure can software projects improve their process and                 spreading effect of peer review, we extend the expertise
+product in the longterm? Are there alternative measures of              measure developed by Mockus and Herbsleb [16]. They mea-
+review effectiveness?                                                   sured the number of files a developer has modified (submitted
+   We suggest three alternative measures that when taken                changes to). We also measure the number of files a developer
+together provide an approximation of review effectiveness.              has reviewed and the total number of files he knows about
+First, the number of comments during review is an upper                 (submitted ∪ reviewed). Figure 8 show that the number of
+bound on the number of defects found per review (See Fig-               files a developer has modified (on the left) compared to the
+ure 6). The underlying assumption is that each comment                  total number of files he or she knows about (on the right).4
+represents a distinct defect. This assumption is often in-              For example, in the median case, a Google Chrome developer
+valid as many comments will be related to the discussion of             submits changes to 24 distinct files, reviews 38 distinct files,
+a single defect. In our manual analyses, we found that it               and knows about a total of 43 distinct files. Without review,
+was extremely rare for a comment to include more than one               in the median case, a Chrome developer would know about
+substantive defect; however, trivial formatting issues were             19 fewer files, a decrease of 44%. Similarly, in the median
+often reported in a single comment. Second, a better esti-              case for Bing, Office, and SQL, review increases the number
+mate is the number of comment threads (See Table 2). The                of files a developer knows about by 100, 122, and 150%,
+assumption is that each thread contains a single defect, how-           respectively.
+ever, sometimes a comment thread will contain discussions                  Both Google Chrome and Android appear to have a larger
+of multiple related defects, other times it will contain false          number of developers who have submitted to and reviewed
+positives, such as developer questions that do not uncover              few files. OSS project are known to have, what one inter-
+a defect. Third, a lower bound on the number of defects                 viewee called “drive-by” developers, who submit a single
+found in a review is the number of artifact resubmissions               change [25] (e.g., a bug fix that effects the developer). Fig-
+(See Figure 7). For non-trivial defects, a revised artifact may         ure 8 shows that this effect is especially pronounced on
+be submitted for re-review. However, a revision will cover              the Android project where 54% of developers have modified
+all the fixed defects identified during a review session. Since         fewer than five files. The increase in the number of files seen
+CodeFlow is the only tool that tracks threads of conversation,          through review is also lower for Android, a 66% increase in
+we report the summary statistics of the number of comments,             the median case. If we exclude developers who have modified
+threads, and threads marked as resolved in Table 2.                     five or fewer files, we see the median number of files modified
+   Theses measures provide non-intrusive techniques (i.e. the           jumps from 6 to 16 and the total number of files goes from
+data is implicitly recorded during the primary activity of              10 to 25.
+discussing the software) to approximate review effectiveness.              Our measure of knowledge sharing though peer review
+We do not want to make strong claims about review effec-                has shown a substantial increase in the number of files a
+tiveness because these measures are proxies of the number               developer knows about exclusively by conducting reviews.
+of defects found and artifact sizes tend to be smaller than             This measure deserves future study. Enhancements to the
+in traditional inspection. However, we feel that the level of           measure could also be used to gauge the diversity of the
+discussion during review and patch resubmissions suggests               knowledge of developers assigned to a review. If a review
+that contemporary review does find defects at a comparable              has developers from diverse parts of the system reviewing
+level to traditional inspection. These measures and review              the code and discussing it, it is less likely that there will be
+practices on contemporary projects raise a larger philosophi-           downstream integration problems.
+cal question that deserves future work: is it more important
+to have a discussion about the system or to find and report
+defects?
+
+                                                                        4
+                                                                          We conservatively exclude submissions and reviews that
+                                                                        contain more than 10 files.
+
+
+
+                                                                  210
+                                                                              7.     CONCLUSION
+                   10000                                                         The variations in traditional, formal software inspections
+                                                                              were found to have little impact on its effectiveness as a
+                                                                              peer review process, with product and process factors being
+                                                                              better predictors of the number of defects found in review [19,
+                                                                              27]. Furthermore, as Wiegers points in his practical guide to
+                   1000
+
+
+
+
+                                                                              peer review, the “ similarities [in formal inspection process]
+                                                                              outweigh their differences” [31].
+                                                                                 Contemporary peer review represents a lightweight, “stripped-
+Files Seen (log)
+
+                   150
+
+
+
+
+                                                                              down” version of software inspection that removes the rigidity
+                                                                              of the formal inspection processes, while leaving the effective
+                                                                              defect finding technique of having an expert peer examine
+                   45
+
+
+
+
+                                                                              software artifacts before they are added to the shared version
+                   15
+
+
+
+
+                                                                              control repository.
+                                                                                 Contemporary peer review has evolved from the needs of
+                   5
+
+
+
+
+                                                                              practitioners and these practitioners have driven the devel-
+                                                                              opment of review tools [6]. The large body of literature on
+                                                                              software inspection has largely ignored these contemporary
+                                                                              practices. In this paper, we have presented findings on the
+                           Android   Chrome    Bing      Office   SQL
+                                                                              peer review practices used on three projects representative of
+                                              Projects                        development at Microsoft, AMD projects, and two Google-
+                                                                              led OSS projects. We have compared parameters of review,
+                                                                              such as review interval and the number of comments in re-
+                                                                              view discussions, of these six projects with the data from
+Figure 8: On left, the number of files submitted for
+                                                                              Rigby’s study of six OSS projects [23]. We also use data
+review, On right, the total number of files either
+                                                                              from inspection at Lucent as a contrast. We found that
+submitted for review or reviewed
+                                                                              while there were some minor divergences in contemporary
+                                                                              practice “their similarities outweighed their differences,” i.e.
+                                                                              the findings converged.
+6.                     THREATS TO VALIDITY                                       The convergent contemporary peer review practices can
+   We studied a large, diverse sample of projects; however,                   can be described as the following.
+each project has different tools, processes, incentives, etc,
+so the data we collected is not as controlled and free from                        1. Contemporary review is performed regularly and quickly
+confounds as it would be in an experimental setting. We have                          just before the code is committed instead of when a
+attempted to clean and report the data using similar measures                         larger work product is complete as in inspection.
+and methods and have discussed limitations throughout the                          2. Contemporary review usually involves two reviewers.
+paper.                                                                                However, the number of reviewers is not fixed and
+   When a finding was unusual we would read the associated                            can vary to accommodate other factors, such as the
+anomalous reviews and discuss them with developers. For                               complexity of a change.
+example, we have removed reviews that received no activity
+from the Microsoft data sets (reviews that had no comments,                        3. Contemporary reviewers prefers discussion and fixing
+no sign offs, and only one submitted changeset). Upon                                 code over reporting defects.
+initially finding these in our data set, we inquired of the
+                                                                                   4. Tool supported review provides the benefits of trace-
+developers who created the reviews. They indicated that
+                                                                                      ability, when compared to email based review, and
+sometimes reviews are more for awareness (e.g., alerting
+                                                                                      can record implicit measures, when compared to tradi-
+a manager to a feature being implemented or showing a
+                                                                                      tional inspection. The rise in adoption of review tools
+tester code that they should write a test for) than actually
+                                                                                      provides an indicator of success.
+reviewing the changes and that the complete lack of activity
+represents reviews that are used for awareness purposes only.                    A final contribution of this paper was a novel measure of
+It is possible that a portion of these reviews were actually                  the degree to which reviews spreads knowledge across the
+intended as actual code reviews rather than for awareness                     development team. This measure provides a quantification of
+and simply received no attention from the invited reviewers.                  knowledge spread that has previously only had experiential
+This type of review has also been removed from the Google-                    support. We find that review increases the number of distinct
+led projects and from the OSS projects studied by Rigby                       files a developer knows about by 66% to 150% depending
+et al. [24] and used for comparison purposes in this paper.                   on the project. We feel that future work is necessary to
+In some cases, we re-ran measures on Rigby’s raw data sets.                   determine whether lightweight measures, such as the diversity
+The AMD and Lucent data sets presented further difficulties                   and amount of discussion during review, can be used as new
+because we have summary instead of raw data. We have                          release quality measures. Instead of counting the number
+converted the raw data to make it comparable with the other                   of defects found in a module, a manager might ask, “have
+data we collected; however, we are often missing the required                 developers with sufficiently diverse backgrounds discussed
+data.                                                                         this new section of code enough for it to be released?”
+
+
+
+                                                                        211
+                                                                           of the 10th Working Conference on Mining Software
+8.   REFERENCES                                                            Repositories, MSR ’13, pages 45–48, Piscataway, NJ,
+ [1] J. Asundi and R. Jayant. Patch review processes in                    USA, 2013. IEEE Press.
+     open source software development communities: A                  [18] M. Nurolahzade, S. M. Nasehi, S. H. Khandkar, and
+     comparative case study. In HICSS: Proceedings of the                  S. Rawal. The role of patch review in software
+     40th Annual Hawaii International Conference on                        evolution: an analysis of the mozilla firefox. In
+     System Sciences, page 10, 2007.                                       International Workshop on Principles of Software
+ [2] A. Bacchelli and C. Bird. Expectations, outcomes, and                 Evolution, pages 9–18, 2009.
+     challenges of modern code review. In Proceedings of the          [19] A. Porter, H. Siy, A. Mockus, and L. Votta.
+     International Conference on Software Engineering.                     Understanding the sources of variation in software
+     IEEE, 2013.                                                           inspections. ACM Transactions Software Engineering
+ [3] C. Bird, A. Gourley, and P. Devanbu. Detecting patch                  Methodology, 7(1):41–79, 1998.
+     submission and acceptance in oss projects. In MSR:               [20] J. Ratcliffe. Moving software quality upstream: The
+     Proceedings of the Fourth International Workshop on                   positive impact of lightweight peer code review. In
+     Mining Software Repositories, page 4. IEEE Computer                   Pacific NW Software Quality Conference, 2009.
+     Society, 2007.                                                   [21] E. S. Raymond. The Cathedral and the Bazaar.
+ [4] D. Bisant and J. Lyle. A two-person inspection method                 O’Reilly and Associates, 1999.
+     to improve programming productivity. IEEE                        [22] P. Rigby, B. Cleary, F. Painchaud, M. Storey, and
+     Transactions on Software Engineering,                                 D. German. Contemporary peer review in action:
+     15(10):1294–1304, 1989.                                               Lessons from open source development. Software,
+ [5] F. Buck. Indicators of quality inspections. IBM Syst.                 IEEE, 29(6):56 –61, nov.-dec. 2012.
+     Commun. Division, Tech. Rep. TR, 21, 1981.                       [23] P. C. Rigby. Understanding Open Source Software Peer
+ [6] J. Cohen. Best Kept Secrets of Peer Code Review.                      Review: Review Processes, Parameters and Statistical
+     Smart Bear Inc., 2006.                                                Models, and Underlying Behaviours and Mechanisms.
+ [7] T. DeMarco. Contolling Software Projects:                             http://hdl.handle.net/1828/3258 University of
+     Management, Measurement, and Estimation. Prentice                     Victoria, Canada, Dissertation, 2011.
+     Hall, 1986.                                                      [24] P. C. Rigby, D. M. German, and M.-A. Storey. Open
+ [8] P. M. Duvall, S. Matyas, and A. Glover. Continuous                    source software peer review practices: A case study of
+     integration: improving software quality and reducing                  the apache server. In ICSE: Proceedings of the 30th
+     risk. Addison-Wesley Professional, 2007.                              international conference on Software Engineering,
+ [9] M. Fagan. Design and Code Inspections to Reduce                       pages 541–550, 2008.
+     Errors in Program Development. IBM Systems Journal,              [25] P. C. Rigby and M.-A. Storey. Understanding
+     15(3):182–211, 1976.                                                  broadcast based peer review on open source software
+[10] M. Fagan. A history of software inspections. Software                 projects. In Proceeding of the 33rd international
+     pioneers: contributions to software engineering,                      conference on Software engineering, ICSE ’11, pages
+     Springer-Verlag, Inc., pages 562–573, 2002.                           541–550, New York, NY, USA, 2011. ACM.
+[11] Gerrit. Web based code review and project                        [26] G. V. Rossum. An open source app: Rietveld code
+     management for git based projects.                                    review tool. https://developers.google.com/
+     http://code.google.com/p/gerrit/.                                     appengine/articles/rietveld.
+[12] P. M. Johnson. Reengineering inspection. ACM                     [27] C. Sauer, D. R. Jeffery, L. Land, and P. Yetton. The
+     Communications, 41(2):49–52, 1998.                                    Effectiveness of Software Development Technical
+[13] P. Kampstra. Beanplot: A boxplot alternative for                      Reviews: A Behaviorally Motivated Program of
+     visual comparison of distributions. Journal of                        Research. IEEE Transactions Software Engineering,
+     Statistical Software, Code Snippets 1, 28:1–9, 2008.                  26(1):1–14, 2000.
+[14] C. Larman and V. Basili. Iterative and incremental               [28] R. Schwartz. Interview with Shawn Pearce, Google
+     developments: a brief history. Computer, 36(6):47 – 56,               Engineer, on FLOSS Weekly.
+     June 2003.                                                            http://www.youtube.com/watch?v=C3MvAQMhC_M.
+[15] A. Mockus, R. T. Fielding, and J. Herbsleb. Two case             [29] L. G. Votta. Does every inspection need a meeting?
+     studies of open source software development: Apache                   SIGSOFT Softw. Eng. Notes, 18(5):107–114, 1993.
+     and Mozilla. ACM Transactions on Software                        [30] E. Weller. Lessons from three years of inspection data.
+     Engineering and Methodology, 11(3):1–38, 2002.                        IEEE Software, 10(5):38–45, 1993.
+[16] A. Mockus and J. D. Herbsleb. Expertise browser: a               [31] K. E. Wiegers. Peer Reviews in Software: A Practical
+     quantitative approach to identifying expertise. In ICSE:              Guide. Addison-Wesley Information Technology Series.
+     Proceedings of the 24th International Conference on                   Addison-Wesley, 2001.
+     Software Engineering, pages 503–512. ACM Press, 2002.            [32] R. K. Yin. Case Study Research: Design and Methods,
+[17] M. Mukadam, C. Bird, and P. C. Rigby. Gerrit                          volume 5 of Applied Social Research Methods Series.
+     software code review data from android. In Proceedings                Sage Publications Inc., 3 edition, 2003.
+
+
+
+
+                                                                212
+

@@ -1,0 +1,681 @@
+               Expectations, Outcomes, and Challenges
+                      of Modern Code Review
+                            Alberto Bacchelli                                     Christian Bird
+                    REVEAL @ Faculty of Informatics                            Microsoft Research
+                    University of Lugano, Switzerland                      Redmond, Washington, USA
+                        alberto.bacchelli@usi.ch                              cbird@microsoft.com
+
+
+   Abstract—Code review is a common software engineering           Researchers can focus their attention on the challenges faced
+practice employed both in open source and industrial contexts.     by practitioners to make code review more effective.
+Review today is less formal and more “lightweight” than the
+                                                                      We present an in-depth study of practices in teams that use
+code inspections performed and studied in the 70s and 80s. We
+empirically explore the motivations, challenges, and outcomes of   modern code review, revealing what practitioners think, do,
+tool-based code reviews. We observed, interviewed, and surveyed    and achieve when it comes to modern code review.
+developers and managers and manually classified hundreds of           Since Microsoft is made up of many different teams working
+review comments across diverse teams at Microsoft. Our study       on very diverse products, it gives the opportunity to study
+reveals that while finding defects remains the main motivation for
+review, reviews are less about defects than expected and instead   teams performing code review in situ and understand their
+provide additional benefits such as knowledge transfer, increased  expectations, the benefits they derive from code review, the
+team awareness, and creation of alternative solutions to problems. needs they have, and the problems they face.
+Moreover, we find that code and change understanding is the key       We set up our study as an exploratory investigation. We
+aspect of code reviewing and that developers employ a wide range
+                                                                   started without a priori hypotheses regarding how and why
+of mechanisms to meet their understanding needs, most of which
+are not met by current tools. We provide recommendations for       code review should be performed, with the aim of discovering
+practitioners and researchers.                                     what developers and managers expect from code review, how
+                                                                   reviews are conducted in practice, and what the actual outcomes
+                       I. I NTRODUCTION                            and challenges are. To that end, we (1) observed 17 industrial
+    Peer code review, a manual inspection of source code by developers performing code review with various degrees of
+developers other than the author, is recognized as a valuable experience and seniority across 16 separate product teams with
+tool for reducing software defects and improving the quality distinct reviewing cultures and policies; (2) interviewed these
+of software projects [2], [1]. In 1976, Fagan formalized a developers using a semi-structured interviews; (3) manually
+highly structured process for code reviewing [13], based on inspected and classified the content of 570 comments in
+line-by-line group reviews, done in extended meetings—code discussions contained within code reviews; and (4) surveyed
+inspections. Over the years, researchers provided evidence on 165 managers and 873 programmers.
+code inspection’s benefits, especially in terms of defect finding,    Our results show that, although the top motivation driving
+but the cumbersome, time-consuming, and synchronous nature code reviews is finding defects, the practice and the actual
+of this approach hinders its universal adoption in practice [32]. outcomes are less about finding errors than expected: Defect
+    Nowadays many organizations are adopting more lightweight related comments comprise a small proportion and mainly
+code review practices to limit the inefficiencies of inspections. cover small logical low-level issues. On the other hand, code
+In particular, there is a clear trend toward the usage of tools review additionally provides a wide spectrum of benefits to
+developed to support code review [28]. In the context of software teams, such as knowledge transfer, team awareness,
+this paper, we define Modern Code Review, as review that and improved solutions to problems. Moreover, we found that
+is (1) informal (in contrast to Fagan-style), (2) tool-based, and context and change understanding is the key of any review.
+that (3) occurs regularly in practice nowadays, for example According to the outcomes they want to achieve, developers
+at companies such as Microsoft, Google [19], Facebook [36], employ many mechanisms to fulfill their understanding needs,
+and in other organizations and open source software (OSS) most of which are not currently met by any code review tool.
+projects [40].                                                        This paper makes the following contributions:
+    This trend raises questions, such as: What are the expecta-
+                                                                      • Characterizing the motivations of developers and managers
+tions for code review nowadays? What are the actual outcomes
+of code review? What challenges do people face in code review?           for code review and compare with actual outcomes.
+                                                                      • Relating the outcomes to understanding needs and discuss
+    Answers to these questions can provide insight for both prac-
+titioners and researchers. Developers and other software project         how developers achieve such needs.
+stakeholders can use empirical evidence about expectations and        Based on our findings, we provide recommendations for
+outcomes to make informed decisions about when to use code practitioners and implications for researchers as well as outline
+review and how it should fit into their development process. future avenues for research.
+                     II. R ELATED W ORK                              A. Research Questions
+                                                                        Our investigation of code review revolves around the
+   Previous studies have examined the practices of code inspec-
+                                                                     following research questions (iteratively refined during our
+tion and code review. Stein et al. conducted a study focusing
+                                                                     initial in-field observations and interviews):
+specifically on distributed, asynchronous code inspections [33].
+The study included evaluation of a tool that allowed for               1) What are the motivations and expectations for modern
+identification and sharing of code faults or defects. Participants         code review? Do they change from managers to developers
+at separated locations can then discuss faults via the tool.               and testers?
+Laitenburger conducted a survey of code inspection methods,            2) What are the actual outcomes of modern code review?
+and presented a taxonomy of code inspection techniques [22].               Do they match the expectations?
+Johnson conducted an investigation into code review practices          3) What are the main challenges experienced when perform-
+in OSS development and their effect on choices made by                     ing modern code reviews relative to the expectations and
+software project managers [18].                                            outcomes?
+   Porter et al. [26] reported on a review of studies on code        B. Research Setting
+inspection in 1995 that examined the effects of factors such            Our study took place with professional developers, testers,
+as team size, type of review, and number of sessions on code         and managers. Microsoft develops software in diverse domains,
+inspections. They also assessed costs and benefits across a          from high end server enterprise data management solutions such
+number of studies. These studies differ from ours in that they       as SQL Server to mobile phone applications and smart phone
+were not tool-based and were the majority involved planned           apps to search engines. Each team has its own development
+meetings to discuss the code.                                        culture and code review policies. Over the past two years,
+   However, prior research also sheds light on why review today      a common tool for code review at Microsoft has achieved
+is more often tool-based, informal, and often asynchronous.          wide-spread adoption. As it represents a common and growing
+The current state of code review might be due to the time            solution for code review (over 40,000 developers used it so
+required for more formal inspections. Votta found that 20%           far), we focused on developers using this tool for code review—
+of the interval in a “traditional inspection” is wasted due to       CodeFlow.
+scheduling [38]. The ICICLE tool [11], or “Intelligent Code             CodeFlow is a collaborative code review tool that allows
+Inspection in a C Language Environment,” was developed after         users to directly annotate source code in its viewer and interact
+researchers at Bellcore observed how much time and work was          with review participants in a live chat model. The functionality
+expended before and during formal code inspections. Many             of CodeFlow is similar to other review tools such Google’s
+of todayı́s review tools are based on ideas that originated in       Mondrian [19], Facebook’s Phabricator [36] or open-source
+ICICLE. Other similar tools have been developed in an effort         Gerrit [40]. Developers who want their code to be reviewed
+to reduce time for inspection and allow asynchronous work on         create a package with the changed (new, deleted, and modified)
+reviews. Examples include CAIS [25] and Scrutiny [15].               files, select the reviewers, write a message to describe the
+   More recently, Rigby has done extensive work examining            code review, and submit everything to the CodeFlow service.
+code review practices in OSS development [29], [30], [28]. For       CodeFlow then notifies the reviewers about the incoming task
+example in a study of practices in the Apache project [29],          via email.
+they data-mined the email archives and found that reviews               Once reviewers open a CodeFlow review, they interact with
+were typically small and frequent, and that the contributions to     it through a single desktop window (Figure 1). On the top left
+a review were often brief and independent from one another.          (1), they see the list of files changed in the current submission,
+   Sutherland and Venolia conducted a study at Microsoft re-         plus a ‘description.txt’ file, which contains a textual explanation
+garding using code review data for later information needs [34].     of the change, written by the author. On bottom left, CodeFlow
+They hypothesized that the knowledge exchanged during code           shows the list of reviewers and their status (2). We see that
+reviews could be of great value to engineers later trying to         Christian is the review author and Alberto, Tom, and Nachi
+understand or modify the discussed code. They found that “the        are the reviewers. Alberto has reviewed and is waiting for the
+meat of the code review dialog, no matter what medium, is the        author to act, as the clock icon suggests, while Nachi already
+articulation of design rationale” and, thus, “code reviews are       signed off on the changes. CodeFlow’s main view (3) shows
+an enticing opportunity for capturing design rationale.”             the diff-highlighted content of the file currently under review.
+   When studying developer work habits, Latoza et al. found          Both the reviewers and the author can highlight portions of
+that many problems encountered by developers were related to         the code and add comments inline (4). These comments can
+understanding the rationale behind code changes and gathering        start threads of discussion and are the interaction points for
+knowledge from other members of their team [23].                     the people involved in the review. Each user viewing the same
+                                                                     review in CodeFlow sees events as they happen. Thus, if an
+                     III. M ETHODOLOGY                               author and reviewer are working on the review at the same
+                                                                     time, the communication is synchronous and comment threads
+   In this section we define the research questions, describe        act similar to instant messaging. The comments are persisted
+the research settings, and outline our research method.              so that if they work at different times, the communication
+                                                                               developers who use CodeFlow, each taking 40-60 minutes.
+                                                                                  We contacted 100 randomly selected candidates who signed-
+                                                                               off between 50 and 250 code reviews since the CodeFlow
+                           3
+                                                                               release and sampled across different product teams to address
+                                                                               our research questions from a multi-point perspective. We wrote
+                                                                               developers who used CodeFlow in the past and asked them to
+           1
+                                                                               contact us, giving us 30 minute notice when they received their
+                                                                               next review task so that we could observe. The respondents
+                                                                               that we interviewed comprised five developers, four senior
+                                                       4
+                                                                               developers, six testers, one senior tester, and one software
+                                                                               architect. Their time in the company ranged from 18 months
+                  2                                                            to almost 10 years, with a median of five years.
+                                                                5                 Each meeting was comprised of two parts: In the first part, we
+                                                                               observed them performing the code review that they had been
+                                                                               assigned. To minimize invasiveness and the Hawthorne effect,
+                                                                               we used only one observer, and to encourage the participant to
+Fig. 1. CodeFlow, the main code review tool used by developers at Microsoft.   narrate their work, we asked the participants to consider him as
+                                                                               a newcomer to the team. In this way, most developers thought
+                                                                               aloud without need of prompting. With consent, we recorded
+becomes asynchronous. The bottom right pane (5) shows the                      the audio, assuring the participants of anonymity. Since we,
+summary of all the comments in the review.                                     as observers, have backgrounds in software development and
+   CodeFlow records all the information on code reviews on a                   practices at Microsoft, we could understand most of the work
+central server. This provides an additional data source that we                and where and how information was obtained without inquiry.
+used to analyze real code review comments without incurring                       The second part of the meeting was a semi-structured
+the Hawthorne effect [3].                                                      interview [35]. This form of interviews makes use of an
+                                                                               interview guide that contains general groupings of topics and
+C. Research Method                                                             questions rather than a pre-determined exact set and order of
+   Our research method followed a mixed qualitative and                        questions. They are often used in an exploratory context to
+quantitative approach [12] (depicted in Figure 2), which collects              “find out what is happening [and] to seek new insights” [39].
+data from different sources for triangulation: (1) analysis of                 The guideline was iteratively refined after each interview, in
+previous study, (2) observations and interviews with developers,               particular when developers started providing answers very
+(3) card sort on interview data, (4) card sort on code review                  similar to the earlier ones, thus reaching a saturation effect.
+comments, (5) the creation of an affinity diagram, and (6)                        After the first 5-6 meetings, the observations reached a
+survey to managers and programmers.                                            saturation point [16]: They were providing insights very similar
+   1. Analysis of previous study: Our research started with                    to the earlier ones. For this, we adjusted the meetings to have
+the analysis of a study commissioned by Microsoft, between                     shorter observations, which we used as a starting point for our
+April and May 2012 carried out by an external vendor. The                      meetings and as a hook to talk about topics in our guideline.
+study investigated how different product teams were using                         The audio of each interview was then transcribed and broken
+CodeFlow. It consisted of structured interviews (lasting 30-50                 up into smaller coherent units for subsequent analysis.
+minutes) to 23 people with different roles.                                       3. Card sort (meetings): To group codes that emerged from
+   Most of the interview questions revolved around topics                      interviews and observations into categories, we conducted a
+that were very specific to usage of the tool, and were only                    card sort. Card sorting is a sorting technique that is widely
+tangentially related to this work. We found one relevant as a                  used in information architecture to create mental models and
+starting point for our study: “What do you hope to accomplish                  derive taxonomies from input data [7]. In our case it helped to
+when you submit a code review?” We analyzed the transcript                     organize the codes into hierarchies to deduce a higher level of
+of this answer, for each interview, through the process of                     abstraction and identify common themes. A card sort involves
+coding [9] (also used in grounded theory [4]): breaking up the                 three phases: In the (1) preparation phase, participants of
+answers into smaller coherent units (sentences or paragraphs)                  the card sort are selected and the cards are created; in the
+and adding codes to them. We organized codes into concepts,                    (2) execution phase, cards are sorted into meaningful groups
+which in turn were grouped into more abstract categories.                      with a descriptive title; and in the (3) analysis phase, abstract
+   From this analysis, four motivations emerged for code review:               hierarchies are formed to deduce general categories.
+finding defects, maintaining team awareness, improving code                       We applied an open card sort: There were no predefined
+quality, and assessing the high-level design. We used them to                  groups. Instead, the groups emerged and evolved during the
+draw an initial guideline for our interviews.                                  sorting process. In contrast, a closed card sort has predefined
+   2. Observations and interviews with developers: Subse-                      groups and is typically applied when themes are known in
+quently, we conducted a series of one-to-one meetings with                     advance, which was not the case for our study.
+                                                                                               3                                       Commit
+                                                                                                                                        Commit
+                                                                                                                                       Comme
+                                                                                                                                       Comme
+                                             2                        Commit
+                                                                       Review
+                                                                       Commit
+                                                                                                                                         nts
+                                                                                                                                          nts
+                                                                        Interview
+                                                                     Comments
+                                                                      Comment
+                                                                      Comments
+                                 Interview
+                                 Guideline
+                                                                       Transcript
+                                                                                                                          5        Managers' Survey
+                                                                                         Card Sorting on                           165 Respondents
+                                             Observations &                             1,047 Logical Units
+                                               Interviews
+                                             17 Participants                                                                                     6
+                         Commit
+                          Commit                                                               4
+                          Transcripts
+                        Comments
+                         Comments                                                                                                      Commit
+                                                                                                                                        Commit
+                                                                                                              Affinity Diagram         Comme
+                                                                                                                                       Comme
+                      Previous Study              Code                Commit
+                                                                       Review                                                            nts
+                                                                                                                                          nts
+                                                 Reviews               Commit
+                                                                        Review
+                                                                     Comments
+                                                                      Comment
+                                                                      Comments
+                                                                        Thread
+                             1                   CodeFlow                                                                         Programmers' Survey
+                                                  Service                                 Card Sorting on                           873 Respondents
+                                                                                       570 Review Comments
+                                                                     Data Collection                              Data Analysis              Validation
+
+
+
+                                                           Fig. 2.    The mixed approach research method applied.
+
+   The first author of this paper created all of the cards, from                             were anonymous to increase response rates [37].
+the 1,047 coherent units in the interviews (an example card                                     We sent the first survey to a cross section of managers.
+is shown in a technical report [6]). Throughout our further                                  We considered managers for which at least half of their team
+analysis other researchers (the second author and external                                   performed code reviews regularly (on average, one per week or
+people) were involved in developing categories and assigning                                 more) and sampled along two dimensions. The first dimension
+cards to categories, so as to strengthen the validity of the                                 was whether or not the manager had participated in a code
+result. The first author played a special role of ensuring that                              review himself since the beginning of the year and the second
+the context of each question was appropriately considered in                                 dimension was whether the manager managed a single team
+the categorization, and creating the initial categories. To ensure                           or multiple teams (a manager of managers). Thus, we had
+the integrity of our categories, the cards were sorted by the first                          one sample of first level managers who participated in review,
+author several times to identify initial themes. To reduce bias                              another sample of second level managers who participated in
+from the first author sorting the cards to form initial themes, all                          reviews, etc. The first survey was a short survey comprising 6
+researchers reviewed and agreed on the final set of categories.                              questions (all optional), which we sent to 600 managers that
+   4. Card sort (code review comments): The same method                                      had at least 10 direct or indirect reporting developers who used
+was applied to group code review comments into categories:                                   CodeFlow. The central focus was the open question asking to
+We randomly sampled 200 threads with at least two comments                                   enumerate the main motivations for doing code reviews in their
+(e.g., Point 4 of Figure 2), from the entire dataset of CodeFlow                             team. We received 165 answers (28% response rate), which
+reviews, which embeds data from dozens of independent                                        we analyzed before devising the second survey.
+software products at Microsoft. We printed one card for each                                    The second survey comprised 18 questions, mostly closed
+comment (along with the entire discussion thread to give the                                 with multiple choice answers, and was sent to 2,000 randomly
+context), totaling 570 cards, and conducted a card sort, as                                  chosen developers who signed off on average at least one code
+performed for the interviews, to identify common themes.                                     review per week since the beginning of the year. We used the
+                                                                                             time frame of January to June of 2012 to minimize the amount
+   5. Affinity Diagram: We used an affinity diagram to
+                                                                                             of organizational churn during the time period and identify
+organize the categories that emerged from the card sort. This
+                                                                                             employees’ activity in their current role and team. We received
+tool allows large numbers of ideas to be sorted into groups for
+                                                                                             873 answers (44% response rate). Both response rates were
+review and analysis [31]. We used it to generate an overview of
+                                                                                             high, as other online surveys in software engineering have
+the topics that emerged from the card sort, in order to connect
+                                                                                             reported response rates ranging from 14% to 20% [27].
+the related concepts and derive the main themes. For generating
+the affinity diagram, we followed the five canonical steps: we                                      IV. W HY D O P ROGRAMMERS D O C ODE R EVIEWS ?
+(1) recorded the categories on post-it-notes, (2) spread them                                    Our first research question seeks to understand what mo-
+onto a wall, (3) sorted the categories based on discussions,                                  tivations and expectations drive code reviews, and whether
+until all are sorted and all participants agreed, (4) named each                              managers and developers share the same opinions.
+group, and (5) captured and discussed the themes.                                                Based on the responses that we coded from observations of
+   6. Surveys: The final step of our study was aimed at                                       developers performing code review as well as interviews, there
+validating the concepts that emerged from the previous phases.                                are various motivations for code review. Overall, the interviews
+Towards this goal, we created two surveys to reach a significant                              revealed that finding defects, even though prominent, is just one
+number of participants and to challenge our conclusions (the                                  of the many motivations driving developers to perform code
+full surveys are available as a technical report [6]). For the                                reviews. Especially when reinforced by a strong team culture
+design of the surveys, we followed Kitchenham and Pfleeger’s                                  around reviews, developers see code reviews as an activity
+guidelines for personal opinion surveys [20]. Both surveys                                    that has multiple beneficial influences not only on the code,
+                                                                                             Ranked Motivations From Developers
+but also for the team and the entire development process. In                                            Top         Second       Third
+this vein, one senior developer’s comment summarized many
+of the responses: “[code review] also has several beneficial                    Finding defects
+
+influences: (1) makes people less protective about their code,             Code  Improvement
+                                                                          Alternative Solutions
+(2) gives another person insight into the code, so there is
+                                                                           Knowledge Transfer
+(3) better sharing of information across the team, (4) helps
+                                                                              Team Awareness
+support coding conventions on the team, and [...] (5) helps
+                                                                       Improving Dev Process
+improving the overall process and quality of code. ”
+                                                                        Share Code Ownership
+   Through the card sort on both meetings and code review
+                                                                            Avoid Build Breaks
+comments, we found several references to motivations for code
+                                                                               Track Rationale
+review and identified six main topics. To complete this list,
+                                                                            Team Assessment
+in the survey for managers, we included an open question on
+why they perform code reviews in their team. We analyzed                                           0            200         400        600
+                                                                                                                      Responses
+the responses to create a comprehensive list of high-level
+motivations. We included this list in the developers’ survey and                     Fig. 3. Developers’ motivations for code review.
+asked them to rank the top three main reasons that described
+why they do code reviews.                                            “discipline of explaining your code to your peers [that] drives
+   In the rest of this section, we discuss the motivations that a higher standard of coding. I think the process is even more
+emerged as the most prominent. We order them according to important than the result.”
+the importance they were given by the 873 developers and                Most interviewed programmers mentioned that at least one
+testers who responded to the final survey.                           of the reviewers involved in each code review takes care
+                                                                     of checking whether the code follows the team conventions,
+A. Finding Defects                                                   for example in terms of code formatting and in terms of
+   One interviewed senior tester explains that he performs code function and variable naming. Some programmers use a “code
+reviews because they “are a great source of bugs;” he goes improvement” check as a first step when doing code review:
+even further stating: “sometimes code reviews are a cheaper “the first basic pass on the code is to check whether it is
+form of bug finding than testing.” Moreover, the tool seems not standard across the team.”
+to have an impact on this main motivation: “using CodeFlow              The interviews also gave us a glimpse of the connection
+or using any other tool makes a little difference to us; it’s        between      the quality of code reviews and code improvement
+more about being able to identify flaws in the logic.”               comments.        Such comments seem easier to write and sometimes
+   Almost all the managers included finding defects as one of        interviewees       mentioned them as the way reviewers use to avoid
+the reasons for doing code reviews; for 44% of the managers, it      spending      time    to conduct good code reviews. An observation
+is the top reason. Managers considered defects to be both low        by  a senior     developer,     in the company for more than nine years,
+level issues (e.g., “correct logic is in place”) and high level      summarizes        the   opinions     we received from many interviewees:
+concerns (e.g., “catch errors in design”). Concerning surveyed       “I’ve  seen    quite    a few   code   reviews where someone commented
+developers/testers, finding defects is the first motivation for code on  formatting       while    missing     the fact that there were security
+review for 383 of the programmers (44%), second motivation           issues   or   data    model     issues.”
+for 204 (23%), and third for 96 (11%).
+   This is in-line with the reason why code inspections were C. Alternative Solutions
+devised in the first place: reducing software defects [2].              Alternative solutions regard changes and comments on
+   Nevertheless, even though finding defects emerged from            improving       the submitted code by adopting an idea that leads to
+our data as a strong motivation (the first for almost half of        a  better  implementation.          This is one of the few motivations in
+the programmers and managers), interviews and survey results         which    developers       and   managers     do not agree. While 147 (17%)
+indicate that this only tells part of the story of why practitioners developers       put   this  as   the  first motivation, 202 (23%) as the
+do code reviews and the outcomes they expect.                        second,     and    152     (17%)     as  the third, only 4 (2%) managers
+                                                                     even mentioned it (e.g., “Generate better ideas, alternative
+B. Code Improvement                                                  approaches” and “Collective wisdom: Someone else on the
+   Code improvements are comments or changes about code project may have a better idea to solve a problem”). The
+in terms of readability, commenting, consistency, dead code outcome of the interviews was similar to the position of
+removal, etc., but do not involve correctness or defects.            managers: Interviewees vaguely mentioned this motivation,
+   Programmers ranked code improvement as an important and mostly in terms of generic “better ways to do things.”
+motivation for code review, close to finding defects: This is the
+primary motivation for 337 (39%) programmers, the second D. Knowledge Transfer
+for 208 (24%), and the third for 135 (15%). Managers reported           All the interviewees but one motivated their code reviews
+code improvement as their primary motivation in 51 (31%) also from a learning—or knowledge transfer—perspective. With
+cases. One manager wrote how code review in her view is a the words of a senior developer: “one of the things that should
+be happening with code reviews over time is a distribution         about the new feature and he was now aware of the possibility
+of knowledge. If you do a code review and did not learn            to use it in his own code. 75 (9%) developers considered team
+anything about the area and you still do not know anything         awareness their first motivation for code review, 108 (12%)
+about the area, then that was not as good code review as           their second, and 149 (17%) their third.
+it could have been.” Although we did not include questions            Although team awareness and transparency emerged from
+related to knowledge transfer in our interview guideline, this     our data as clearly promoted by the code review process,
+topic kept emerging spontaneously from each meeting, thus          academic research seems to have given little attention to it.
+underscoring its value for practitioners.
+   Sometimes programmers told us that they follow code             F. Share Code Ownership
+reviews explicitly for learning purposes. For example, a tester
+                                                                      The concept of shared code ownership is closely related
+explained: “[I read code reviews because] from a code review
+                                                                   to team awareness and transparency, but it has a stronger
+you can learn about the different parts you have to touch to
+                                                                   connotation toward active collaboration and overlapping coding
+implement a certain feature.”
+                                                                   activities. Programmers and managers believe that code review
+   According to interviewees, code review is a learning oppor-
+                                                                   is not only an occasion to notify other team members about
+tunity for both the author of the change and the reviewers:
+                                                                   incoming changes, but also a means to have more than one
+There is a bidirectional knowledge transfer about APIs usage,
+                                                                   knowledgeable person about specific parts of the codebase.
+system design, best practices, team conventions, “additional
+                                                                   A manager put the following as her second motivation for
+code tricks,” etc. Moreover code reviews are recognized for
+                                                                   code review: “Broaden knowledge & understanding of how
+educating new developers about code writing.
+                                                                   specific features/areas are designed and implemented (e.g.,
+   Managers included knowledge transfer as one of the reasons
+                                                                   grooming “backup developers” for areas where knowledge is
+for code review, although never as the top motivation. They
+                                                                   too concentrated on one or two expert developers).”
+mostly wrote about code review as an education means by
+                                                                      Moreover, both developers and managers have the opinion
+mentioning among the motivations: “developer education,”
+                                                                   that practicing code review also improves the personal per-
+“education for junior developers who are learning the codebase,”
+                                                                   ception of team members about shared code ownership. On
+and “learning tool to teach more junior team members.”
+                                                                   this note, a senior developer, with more than 30 years in the
+   Programmers answering the survey declared knowledge
+                                                                   software industry, explained: “In the past people did not use to
+transfer to be their first motivation for code review in 73 (8%)
+                                                                   do code reviews and were very reluctant to put themselves in
+cases, their second in 119 (14%), and their third in 141 (16%).
+                                                                   positions where they were having other people critiquing their
+E. Team Awareness and Transparency                                 code. The fact that code reviews are considered as a normal
+                                                                   thing helps immensely with making people less protective about
+   During one of our observations, one developer was preparing
+                                                                   their code.” Similarly a manager wrote us explaining that she
+a code review submission as an author: He wanted other
+                                                                   deems code reviews important because they “Dilute any “rigid
+developers to “double check” his changes before committing
+                                                                   sense of ownership” that might develop over chunks of code.”
+them to the repository. After preparing the code, he specified
+                                                                      In the programmers’ survey, 51 (6%) respondents marked
+the developers he wanted to review his code; he required
+                                                                   share code ownership as their first motivation, 100 (11%) as
+not only two specific people, but he also put a generic email
+                                                                   their second, and 91 (10%) as their third.
+distribution group as an “optional” reviewer. When we inquired
+about this choice, he explained us: “I am adding [this alias],
+                                                                  G. Summary
+so that everybody [in the team] is notified about the change I
+want to do before I check it in.” In the subsequent interviews,     In this section, we analyzed the motivations that developers
+this concept of using an email list as optional reviewer, or and managers have for doing code review. We abstracted them
+including specific optional reviewers exclusively for awareness into a list, which we finally included in the programmers’
+emerged again frequently, e.g., “Code reviews are good FYIs survey. Figure 3 reports the answers given to this question:
+[for your information].”                                          The black bar is the number of developers that put that row
+   Managers often mentioned the concept of team awareness as their top motivation, the gray bar is the number that put it
+as a motivation for code review, frequently justifying it with as the second motivation, etc. We have ordered the factors by
+the notion of “transparency:” Not only must the team be kept giving 3 points for a first motivation response, 2 points for a
+aware of the directions taken by the code, but also nobody second motivation, etc. and then sorting by the sum.
+should be allowed to “secretly” make changes that might break       We discussed the five most prominent motivations, which
+the code or alter functionalities.                                show that finding defects is the top motivation, although
+   The 873 programmers answering the survey ranked team participants believe that code review brings other benefits.
+awareness and transparency very close to knowledge transfer. The first two motivations were already popular in research
+In fact, the two concepts appeared logically related also in the and their effectiveness have been evaluated in the context of
+interviews; for example one tester, while reviewing some code code inspections; on the contrary, the other motivations are still
+said: “oh, this guy just implemented this feature, and now let me unexplored, especially those regarding more social benefits on
+back and use it somewhere else.” Showing that he both learned the team, such as shared code ownership.
+                      Comments in each Category
+                                                                      require less need fixing of “real” defects than of small
+     Code Improvement
+                                                                      code improvements, or that programmers could consider code
+                                                                      improvements as actual defects. However, by triangulating these
+          Understanding
+                                                                      numbers with the interview discussions, the survey answers,
+  Social Communication
+                                                                      and the other categories of comments, another reason seems
+                 Defects                                              to justify this situation. First, we start by noting that most
+         External Impact                                              of the comments on defects regard uncomplicated logical
+                 Testing                                              errors, e.g., corner cases, common configuration values, or
+            Review Tool
+                                                                      operator precedence. Then, from interview data, we see that:
+                                                                      (1) most interviewees explained how, with tool-based code
+    Knowledge Transfer
+                                                                      reviews, most of the found defects regard “logic issues–where
+                    Misc
+                                                                      the author might not have considered a particular or corner
+                         0%           10%              20%        30% case”; (2) some interviewees complained that the quality of
+                                     Percentage of Comments
+                                                                      code reviews is low, because reviewers only look for easy errors:
+            Fig. 4. Proportion of comments by card sort category.     “[Some    reviewers] focus on formatting mistakes because they
+                                                                      are easy [...], but it doesn’t really help. [...] In some ways it’s
+   Although motivations are well defined, we still have to verify kind of embarrassing if someone asks you to do a code review
+whether they actually translate into real outcomes of a modern and all you can find are formatting mistakes when there are
+code review process.                                                  real mistakes to be found”; and (3) other interviewees admitted
+                                                                      that if the code is not among their codebase, they look at
+               V. T HE O UTCOMES OF C ODE R EVIEWS
+                                                                      “obvious bugs (such as, exception handling).” Finally, managers
+A. Motivations vs. Outcomes                                           mentioned “catching early obvious bugs” or “finding obvious
+   Our second research question seeks to understand what inefficiencies or errors” as reasons for doing code review.
+the actual outcomes of code reviews are, and whether they These points illustrate that the reason for the gap between the
+match the motivations and expectations outlined in the previous number of comments on code improvements and on defects is
+section. To that end, we conducted indirect field research [24] not to be found in problems in the sample or in classification
+by analyzing the content of 200 threads (corresponding to misconceptions, but it is rather just additional corroborating
+570 comments) recorded by CodeFlow. Figure 4 shows the evidence that the outcome of code review does not match the
+categories of comments found through the card sort.                   main expectation of both programmers and managers—finding
+   Code Improvements: The most frequent category, with defects. Review comments about defects are few, comprising
+165 (29%) comments, is code improvements. In detail, among one-eighth of the total in our sample, and mostly address
+code improvements comments we find 58 on using better code “micro” level and superficial concerns; while programmers and
+practices, 55 on removing not necessary or unused code, and managers would expect more insightful remarks on conceptual
+52 on improving code readability.                                     and design level issues. Why does this happen? The high
+   Defect Finding: Although defect finding is the top mo- frequency of understanding comments hints at the answer to
+tivation and expected outcome of code review for many our question, addressed in the next section.
+practitioners, the category defect is the only the fourth most
+frequent, out of nine items, with 78 (14%) comments. Among               VI. W HAT A RE T HE C HALLENGES OF C ODE R EVIEW ?
+defect comments, 65 are on logical issues (e.g., a wrong                 Our third research question seeks to understand the main
+expression in an if clause), 6 on high-level issues, 5 on security, challenges faced by reviewers when performing modern code
+and 3 on wrong exception handling.                                    reviews, also with respect to the expected outcomes. We also
+   Knowledge Transfer: Concerning the other expected out- seek to uncover the reasons behind the mismatch between
+comes of code reviews, we did not expect to find evidence expectations and actual outcomes on finding defects in reviews.
+about them, because of their more “social”–thus harder to
+quantify—nature. Nevertheless, we found some (12) comments A. Code Review is Understanding
+specifically about knowledge transfer, where the reviewers               Even though we did not ask any specific question concerning
+were directing the code change author to external resources           understanding,   the theme emerged clearly from our interviews.
+(e.g., internal documentation or websites) for learning how to        Many   interviewees  eventually acknowledged that understanding
+tackle some issues. This provides additional evidence on the          is their main  challenge when doing code reviews. For example,
+importance of this aspect of reviews.                                 a  senior  developer  autonomously    explained to us: “the most
+                                                                      difficult thing when doing a code review is understanding the
+B. Finding Defects: When Expectations Do Not Meet Reality reason of the change;” a tester, in the same vein: “the biggest
+   Why do we see this significant gap in frequency between information need in code review: what instigated the change;”
+code improvements and defects comments? Possible reasons and another senior developer: “in a successful code review
+may be that our sample of 570 comments is too small to submission the author is sure that his peers understand and
+represent the population, that the submitted changes might approve the change.” Although the textual description should
+                     Level of Understanding Needed
+                   None          Low          High      Complete             the accompanying textual description, while others went directly
+                                                                             to a specific changed file. In the first group, the time required
+          Finding Defects                                                    for putting the first review comments and understanding the
+     Alternative Solutions                                                   change rationale was noticeably longer, and some of the
+  Share Code Ownership
+                                                                             comments were asking to clarify the reasons for a change. To
+      Knowledge Transfer
+                                                                             better comprehend this situation, we included in our interview
+       Team Assessment
+                                                                             guideline a question about how the interviewees start code
+      Code Improvement
+                                                                             reviews. Participants explained that when they own or are very
+    Improve Dev Process
+                                                                             familiar with the files being changed, they have a better context
+         Team Awareness
+                                                                             and it is easier for them to understand the change submitted:
+          Track Rationale
+                                                                             “when doing code review I start with things I am familiar with,
+       Avoid Build Breaks
+                                                                             so it is easier to see what is going on.” When they are file
+                            500                0              500            owners, they often do not need to read the description, but
+                                            Responses
+                                                                             they “go directly to the files they own.” On the contrary, when
+Fig. 5. Developers’ responses in surveys of the amount of code understanding they do not own files, or have to review new files, they need
+for code review outcomes.                                                    more information and try to get it from the description, which
+help reviewers understanding, some developers do not find is deemed good when it states “what was changed and why.”
+it useful: “people can say they are doing one thing, while                      To better understand this aspect we included two questions in
+they are doing many more of them,” or “the description is                    the  programmers’ survey to know (1) whether it takes longer to
+not enough;” in general, developers seem to confirm that “not                review   files they are not familiar with, and why; and (2) whether
+knowing files (or [dealing with] new ones) is a major reason                 reviewers    familiar with the changed files give different feedback,
+for not understanding a change.”                                             and   how.
+   From interviews, no other code review challenge emerged                      Most of the respondents (798, i.e., 91%) answered positively
+as clearly as understanding the submitted change. Even though                to the first question, motivating it with the fact that it takes time
+scheduling and time issues also appeared challenging, we                     to familiarize with the code and “learn enough about the files
+could always trace them back to the first challenge through                  being   modified to understand their purpose, invariants, APIs,
+the words of a tester: “understanding the code takes most of                 etc.,”  because   “big-picture impact analysis requires contextual
+the reviewing time.” On the same note, in the code review                    understanding.     When reviewing a small, unfamiliar change, it is
+comments we analyzed, the second most frequent category                      often  necessary   to read through much more code than that being
+concerns understanding. This category includes clarification                 reviewed.”    The  comment of a developer anticipates the answer
+questions and doubts raised by the reviewers who want to                     to  the  second   question:   “It takes a lot longer to understand
+grasp the rationale of the changes done on the code, and the                 unknown      code,  but even   then understanding isn’t very deep.
+corresponding clarification answers. This is also in line with the With code I am familiar with I have more to say. I know what
+evidence delivered by Sutherland & Venolia on the relevance to say faster. What I have to say is deeper. And I can be more
+of rationale articulation in reviews [34].                                   insistent on it.” In fact, the answer to the second question is
+   Do understanding needs change with the expected outcome positive in 716 (82%) cases. The main difference with file owner
+of code review? We included a question in the programmers’ comments is that they are substantially deeper, more detailed
+survey to know how much understanding they needed to achieve and insightful. A respondent explained: “Comments reflect
+each of the motivations listed in Figure 3. The outcome of their deeper understanding – more likely to find subtle defects,
+the question is summarized in Figure 5. The respondents feedback is more conceptual (better ideas, approaches) instead
+could answer with a four values Likert’s scale, by selecting of superficial (naming, mechanical style, etc.)” another tried to
+the understanding of the change they felt was required to boldly summarize the concept: “Difference between algorithmic
+achieve the specific outcome. The most difficult task from analysis and comments on coding style. The difference is big.”
+the understanding perspective is finding defects, immediately In fact, when the context is clear and understanding is very
+followed by alternative solutions. Both clearly stand out from high, as in the case when the reviewer is the owner of changed
+the other items. The gap in understanding needs between files, code review authors receive comments that explore
+finding defects and code improvement seems to corroborate “deeper details,” are “more directed” and “more actionable
+our hypothesis that the difference in the number of comments and pertinent,” and find “more subtle issues.”
+about these two items in review comments is mostly due to
+                                                                             C. Dealing with Understanding Needs
+understanding issues. Thus, if managers and developers want
+code review to match their need for finding defects, context                    From the interviews, we found that, in the current situation,
+and change understanding must be improved.                                   reviewers     try different paths to understand the context and
+                                                                             the changes: They read the change description, try to run the
+B. Code Review is Understanding                                              changed code, send emails for understanding high level details
+   By observing developers performing code reviews, we about the review, and often (from 20% to 40% of the times)
+noticed that some started code reviews by thoroughly reading even go to talk in person to have a “higher communication
+bandwidth” for asking clarifications to the author. All code           Program Comprehension in Practice: We identified con-
+review tools that we see in practice today deliver only basic       text and change understanding as challenges that developers
+support for the understanding needs of reviewers – providing        face when reviewing, with a direct relationship to the quality
+features such as diffing capabilities, inline commenting, or        of review comments. Interestingly, modern IDEs ship with
+syntax highlighting, which are limited when dealing with            many tools to aid context and understanding, and there is an
+complex code understanding.                                         entire conference (ICPC) devoted to code comprehension, yet
+                                                                    all current code review tools we know of show a highlighted
+       VII. R ECOMMENDATIONS AND I MPLICATIONS                      diff of the changed files to a reviewer with no additional tool
+A. Recommendations for Practitioners                                support. The most common motivation that we have seen for
+                                                                    code comprehension research is a developer that is working on
+   Although our work was revolving around a specific code           new code, but we argue that reviewers reviewing code they have
+review context (i.e., code reviews with CodeFlow at Microsoft),     not seen before may be more common than a developer working
+we derive useful recommendations to developers, which can           on new code. This is a ripe opportunity for code understanding
+be generalized to other contexts:                                   researchers to have impact on real world scenarios.
+   Quality Assurance: There is a mismatch between the                  Socio-technical Effects: Awareness and learning were cited
+expectations and the actual outcomes of code reviews. From          as motivations for code review, but these outcomes are difficult
+our study, review does not result in identifying defects as often   to observe from traces in reviews. We did not investigate these
+as project members would like and even more rarely detects          further, but studies can be designed and carried out to determine
+deep, subtle, or “macro” level issues. Relying on code review       if and how awareness and learning increase as a result of being
+in this way for quality assurance may be fraught.                   involved in code review.
+   Understanding: When reviewers have a priori knowledge
+of the context and the code, they complete reviews more quickly                          VIII. L IMITATIONS
+and provide more valuable feedback to the author. Teams should      As a qualitative study, gauging the validity of our findings
+aim to increase the breadth of understanding of developers (if   is a difficult undertaking [17]. While we have endeavored to
+the author of a change is the only expert, she has no potential  uncover and report the expectations, outcomes, and challenges
+reviewers) and change authors should include code owners and     of code review, limitations may exist. We describe them with
+others with understanding as much as possible when using         the steps that we took to increase confidence and validity.
+review to identify defects. Developers indicated that when the      To achieve a comprehensive view of code review, we
+author provided context and direction to them in a review, they  triangulated by collecting and comparing results from multiple
+could respond better and faster.                                 sources. For example, we found strong agreement among
+   Beyond Defects: Modern code reviews provide benefits          the results of expectations collected from interviews, surveys
+beyond finding defects. Code review can be used to improve       of manager, and surveys of developers. By starting with
+code style, find alternative solutions, increase learning, share exploratory interviews of a smaller set of subjects (17) followed
+code ownership, etc. This should guide code review policies.     by open coding to extract themes, we identified core questions
+   Communication: Despite the growth of tools for supporting     that we addressed to a larger audience via survey.
+code reviews, developers still have need of richer commu-           One potential criticism is that empirical research within one
+nication than comments annotating the changed code when          company or one project provides little value for the academic
+reviewing. Teams should provide mechanisms for in-person or,     community, and does not contribute to scientific development.
+at least, synchronous communication.                             Historical evidence shows otherwise. Flyvbjerg provides several
+                                                                 examples of individual cases that contributed to discovery
+B. Implications for Researchers                                  in physics, economics, and social science [14]. Beveridge
+   Our work uncovered aspects of code review—beyond our observed for social sciences: “More discoveries have arisen
+research questions—that deserve further study:                   from intense observation than from statistics applied to large
+   Automate Code Review Tasks: We observed that many groups” (as quoted in Kuper and Kuper [21], page 95). This
+code review comments were related to code improvement should not be interpreted as a criticism of research that focuses
+concerns and low-level “micro” defects. Identifying both of on large samples. For the development of an empirical body of
+these are problems that research has begun to solve. Tools knowledge as championed by Basili [8], both types of research
+for enforcing team code conventions, checking for typos, and are essential. To understand code review across many contexts,
+identifying dead code already exist. Even more advanced tasks we observed, interviewed, surveyed, and examined code reviews
+such as checking boundary conditions or catching common from developers across a diverse group of software teams that
+mistakes have been shown to work in practice on real code. For work with codebases in various domains, of varying sizes, and
+example Google experimented with adding FindBugs to their with varying processes.
+review process, though little is reported about the results [5].    Concerning the representativeness of our results in other
+Automating these tasks frees reviewers to look for deeper, more contexts, other companies and OSS use tools similar to
+subtle defects. Code review is fertile ground to have an impact CodeFlow [40], [36], [19]. However, team dynamics may
+with code analysis tools.                                        differ. The need for code understanding may already be met
+in contexts where projects are smaller or there is shared                        [11] L. Brothers, V. Sembugamoorthy, and M. Muller. Icicle: groupware
+code ownership and a broad system understanding across the                            for code inspection. In Proceedings of the 1990 ACM conference on
+                                                                                      Computer-supported cooperative work, pages 169–181. ACM, 1990.
+team. We found that higher levels of understanding lead to                       [12] J. Creswell. Research design: Qualitative, quantitative, and mixed
+more informative comments, which identify defects or aid the                          methods approaches. Sage Publications, 3rd edition, 2009.
+author in other ways so review in these contexts may uncover                     [13] M. Fagan. Design and code inspections to reduce errors in program
+                                                                                      development. IBM Systems Journal, 15(3):182–211, 1976.
+more defects. In OSS contexts, project-specific expertise often                  [14] B. Flyvbjerg. Five misunderstandings about case-study research.
+must be demonstrated prior to being accepted as a “core                               Qualitative inquiry, 12(2):219–245, 2006.
+committer” [10], so learning may not be as important or                          [15] J. Gintell, J. Arnold, M. Houde, J. Kruszelnicki, R. McKenney, and
+                                                                                      G. Memmi. Scrutiny: A collaborative inspection and review system.
+frequent an outcome for review.                                                       Software EngineeringóESEC’93, pages 344–360, 1993.
+   In this work, we have used discussions within CodeFlow to                     [16] B. Glaser. Doing Grounded Theory: Issues and Discussions. Sociology
+identify and quantify outcomes of code review. However, some                          Press, 1998.
+                                                                                 [17] N. Golafshani. Understanding reliability and validity in qualitative
+motivations that managers and developers described are not                            research. The qualitative report, 8(4):597–607, 2003.
+easily observable because they leave little trace. For example,                  [18] J. Johnson. Collaboration, peer review and open source software.
+determining how often code review improves team awareness                             Information Economics and Policy, 18(4):477–497, 2006.
+                                                                                 [19] N. Kennedy. How google does web-based code reviews with mondrian.
+or transfers knowledge is difficult to assess from the discussions                    http://www.test.org/doe/, Dec. 2006.
+in reviews. For these outcomes, we have responses indicating                     [20] B. Kitchenham and S. Pfleeger. Personal opinion surveys. Guide to
+that they occur, but not “hard evidence.”                                             Advanced Empirical Software Engineering, pages 63–92, 2008.
+                                                                                 [21] A. Kuper. The social science encyclopedia. Routledge, 1995.
+   Based on review comments, survey responses, and interviews,                   [22] O. Laitenberger. A survey of software inspection technologies. Handbook
+we know that in-person discussions occurred frequently. While                         on Software Engineering and Knowledge Engineering, 2:517–555, 2002.
+we cannot compare frequency of these events to other outcomes                    [23] T. LaToza, G. Venolia, and R. DeLine. Maintaining mental models: a
+                                                                                      study of developer work habits. In Proceedings of the 28th international
+as we can with events recorded in CodeFlow, we know that                              conference on Software engineering, pages 492–501. ACM, 2006.
+they most often occurred to address understanding needs.                         [24] T. Lethbridge, S. Sim, and J. Singer. Studying software engineers: Data
+                                                                                      collection techniques for software field studies. Empirical Software
+                                                                                      Engineering, 10(3):311–341, 2005.
+                          IX. C ONCLUSION                                        [25] V. Mashayekhi, C. Feulner, and J. Riedl. Cais: collaborative asynchronous
+                                                                                      inspection of software. In ACM SIGSOFT Software Engineering Notes,
+   We investigated modern, tool-based code review, uncovering                         volume 19, pages 21–34. ACM, 1994.
+both a wide range of motivations for review and that the                         [26] A. Porter, H. Siy, and L. Votta. A review of software inspections.
+outcomes do not always match those motivations. We identified                         Advances in Computers, 42:39–76, 1996.
+                                                                                 [27] T. Punter, M. Ciolkowski, B. Freimut, and I. John. Conducting on-
+understanding as a key component and provided recommen-                               line surveys in software engineering. In International Symposium on
+dations to both practitioners and researchers. It is our hope                         Empirical Software Engineering. IEEE, 2003.
+that the insights we have discovered lead to more effective                      [28] P. Rigby, B. Cleary, F. Painchaud, M. Storey, and D. German. Open
+                                                                                      source peer review–lessons and recommendations for closed source. IEEE
+review in practice and improved tools, based on research, to                          Software, 2012.
+aid developers perform code reviews.                                             [29] P. Rigby, D. German, and M. Storey. Open source software peer review
+                                                                                      practices: a case study of the apache server. In Proceedings of the 30th
+                              R EFERENCES                                             international conference on Software engineering. ACM, 2008.
+                                                                                 [30] P. C. Rigby and M.-A. Storey. Understanding broadcast based peer
+ [1] A. Ackerman, L. Buchwald, and F. Lewski. Software inspections: An                review on open source software projects. In Proceedings of ICSE 2011
+     effective verification process. Software, IEEE, 6(3):31–36, 1989.                (33rd International Conference on Software Engineering), pages 541–550.
+ [2] A. Ackerman, P. Fowler, and R. Ebenau. Software inspections and                  ACM, 2011.
+     the industrial production of software. In Proc. of a symposium on           [31] J. E. Shade and S. J. Janis. Improving Performance Through Statistical
+     Software validation: inspection-testing-verification-alternatives, pages         Thinking. Mcgraw-Hill, 2000.
+     13–40. Elsevier North-Holland, Inc., 1984.                                  [32] F. Shull and C. Seaman. Inspecting the history of inspections: An example
+ [3] J. Adair. The hawthorne effect: A reconsideration of the methodological          of evidence-based technology diffusion. Software, IEEE, 25(1):88–90,
+     artifact. Journal of applied psychology, 69(2):334, 1984.                        2008.
+ [4] S. Adolph, W. Hall, and P. Kruchten. Using grounded theory to study the     [33] M. Stein, J. Riedl, S. J. Harner, and V. Mashayekhi. A case study of
+     experience of software development. Empirical Software Engineering,              distributed, asynchronous software inspection. In Proceedings of the
+     16(4):487–513, 2011.                                                             international conference on Software engineering. ACM, 1997.
+ [5] N. Ayewah, W. Pugh, J. Morgenthaler, J. Penix, and Y. Zhou. Using           [34] A. Sutherland and G. Venolia. Can peer code reviews be exploited
+     findbugs on production software. In Companion to the 22nd ACM                    for later information needs? In International Conference on Software
+     SIGPLAN conference on Object-oriented programming systems and                    Engineering, New Ideas and Emerging Results Track, 2009.
+     applications companion, pages 805–806. ACM, 2007.                           [35] B. Taylor and T. Lindlof. Qualitative communication research methods.
+ [6] A. Bacchelli and C. Bird.                   Appendix to expectations,            Sage Publications, Incorporated, 2010.
+     outcomes,       and      challenges    of     modern     code     review.   [36] A. Tsotsis. Meet phabricator, the witty code review tool built inside
+     http://research.microsoft.com/apps/pubs/?id=171426,        Aug.     2012.        facebook. http://techcrunch.com/2011/08/07/oh-what-noble-scribe-hath-
+     Microsoft Research, Technical Report MSR-TR-2012-83 2012.                        penned-these-words/, Aug. 2006.
+ [7] I. Barker. What is information architecture? http://www.steptwo.com.au/,    [37] P. Tyagi. The effects of appeals, anonymity, and feedback on mail survey
+     May 2005.                                                                        response patterns from salespeople. Journal of the Academy of Marketing
+ [8] V. Basili, F. Shull, and F. Lanubile. Building knowledge through families        Science, 17(3):235–241, 1989.
+     of experiments. IEEE Trans. on Software Eng., 25(4):456–473, 1999.          [38] L. Votta Jr. Does every inspection need a meeting? ACM SIGSOFT
+ [9] B. Berg and H. Lune. Qualitative research methods for the social                 Software Engineering Notes, 18(5):107–114, 1993.
+     sciences. Pearson Boston, 2004.                                             [39] R. Weiss. Learning from strangers: The art and method of qualitative
+[10] C. Bird, A. Gourley, P. Devanbu, A. Swaminathan, and G. Hsu. Open                interview studies. Simon and Schuster, 1995.
+     borders? immigration in open source projects. In The Fourth International   [40] Wikipedia. Gerrit (software). http://en.wikipedia.org/wiki/Gerrit (software),
+     Workshop on Mining Software Repositories, 2007.                                  June 2012.
+

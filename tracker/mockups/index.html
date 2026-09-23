@@ -497,6 +497,103 @@ footer{background:var(--smart-blue);color:#B7C6D0;padding:34px 0;font-size:14px;
 </section>
 
 <section>
+  <h2>Entering a share on quick fill</h2>
+  <p class="lede">Five ways to give a cost centre its share of the month and the box the page has today to measure them against. Option B won and is built. Because a) the arithmetic of making four figures reach a hundred is the complaint the <code>100 / n</code> button was added for. b) B is the only one of the five that removes that arithmetic rather than checking it afterwards, because the total cannot leave a hundred. c) the shares are a split of one month and a control that can express nothing else says so. It costs predictability, and Hold is what pays it. Every page reads the same four cost centres and sits in the same sheet so the share column is the only thing that differs. The four fills option C needs were computed with <code>contrast.py</code> and are written on that page. The four that lost are kept because a decision is only readable beside what it beat.</p>
+  <div class="cards">
+
+    <div class="card">
+      <div class="shot"><iframe src="s0-box.html" title="The box the page has today preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>The box the page has today</h3>
+        <p class="kind">Quick fill share · the control</p>
+        <p>A number a row and a total under the column.</p>
+        <ul>
+          <li>Already built so it costs nothing to keep</li>
+          <li>Four rows is four figures the user adds up</li>
+          <li>The page only checks after the last one is typed</li>
+        </ul>
+        <a class="open" href="s0-box.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="s1-slider.html" title="A slider a row preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>A slider a row</h3>
+        <p class="kind">Quick fill share · option A</p>
+        <p>Each share is dragged on a track of its own.</p>
+        <ul>
+          <li>A rough split is one drag</li>
+          <li>Four sliders do not add up to a hundred</li>
+          <li>One per cent is 1.5 px on a 150 px track</li>
+        </ul>
+        <a class="open" href="s1-slider.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card won">
+      <div class="shot"><iframe src="s2-balance.html" title="Sliders that hold the hundred preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>Sliders that hold the hundred</h3>
+        <p class="kind">Quick fill share · option B · built</p>
+        <p>What one row takes the others give up.</p>
+        <ul>
+          <li>The total is a hundred at every moment</li>
+          <li>A drag rewrites three figures nobody touched</li>
+          <li>Hold pins a settled row out of the balancing</li>
+        </ul>
+        <a class="open" href="s2-balance.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="s3-bar.html" title="One bar with dividers preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>One bar with dividers</h3>
+        <p class="kind">Quick fill share · option C</p>
+        <p>The month is one bar and the dividers are dragged.</p>
+        <ul>
+          <li>A hundred by construction so no arithmetic is possible</li>
+          <li>Only four fills in the theme carry a label</li>
+          <li>A share under 8 per cent is a segment nobody can name</li>
+        </ul>
+        <a class="open" href="s3-bar.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="s4-days.html" title="Days rather than per cent preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>Days rather than per cent</h3>
+        <p class="kind">Quick fill share · option D</p>
+        <p>The user books days and the share is derived.</p>
+        <ul>
+          <li>Asks for the figure the user actually holds</li>
+          <li>The arrows step half a day and nothing smaller</li>
+          <li>Costs the round trip through an integer per cent</li>
+        </ul>
+        <a class="open" href="s4-days.html">Open it</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shot"><iframe src="s5-weights.html" title="A weight a row preview" loading="lazy" scrolling="no"></iframe></div>
+      <div class="body">
+        <h3>A weight a row</h3>
+        <p class="kind">Quick fill share · option E</p>
+        <p>A 2 and a 1 is twice as much on the first.</p>
+        <ul>
+          <li>A fifth cost centre retypes no other row</li>
+          <li>The number typed is never the number stored</li>
+          <li>A user who knows the per cent types it anyway</li>
+        </ul>
+        <a class="open" href="s5-weights.html">Open it</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
   <h2>Files</h2>
   <ul class="rules">
     <li><code>data.js</code> — the shared May 2026 dataset and the grid renderer.</li>
@@ -508,6 +605,8 @@ footer{background:var(--smart-blue);color:#B7C6D0;padding:34px 0;font-size:14px;
     <li><code>h-jira.css</code> — the Jira screen styles. Shared by the three layouts.</li>
     <li><code>h1-stacked.html</code> and <code>h2-rail.html</code> and <code>h3-steps.html</code> — three layouts of that screen.</li>
     <li><code>build-jira.py</code> — emits those three. Every figure on them is computed by the rounding rule rather than typed.</li>
+    <li><code>shares.css</code> and <code>shares.js</code> — the quick fill sheet and the mix it is split between. Shared by the six share pages.</li>
+    <li><code>build-shares.py</code> — emits <code>s0-box.html</code> through <code>s5-weights.html</code> and <code>shares-index.html</code> from one shell.</li>
     <li><code>teardown.sh</code> — removes the whole folder so the next experiment starts clean.</li>
     <li><code>../powerpoint-design-guidelines.html</code> — the rules these were built against.</li>
   </ul>

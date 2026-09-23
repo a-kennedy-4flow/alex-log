@@ -1,0 +1,786 @@
+Eye movements in code reading: relaxing the linear order
+Busjahn, Teresa; Bednarik, Roman; Begel, Andrew; Crosby, Martha; Paterson, James;
+Schulte, Carsten; Sharif, Bonita; Tamm, Sascha
+Published in:
+2015 IEEE 23rd International Conference on Program Comprehension
+
+
+DOI:
+10.1109/ICPC.2015.36
+
+
+Publication date:
+2015
+
+
+Document Version
+Author accepted manuscript
+
+
+Link to publication in ResearchOnline
+
+
+
+Citation for published version (Harvard):
+Busjahn, T, Bednarik, R, Begel, A, Crosby, M, Paterson, J, Schulte, C, Sharif, B & Tamm, S 2015, Eye
+movements in code reading: relaxing the linear order. in 2015 IEEE 23rd International Conference on Program
+Comprehension. IEEE, pp. 255-265, 23rd International Conference on Program Comprehension, Florence, Italy,
+18/05/15. https://doi.org/10.1109/ICPC.2015.36
+
+
+
+
+General rights
+Copyright and moral rights for the publications made accessible in the public portal are retained by the authors and/or other copyright owners
+and it is a condition of accessing publications that users recognise and abide by the legal requirements associated with these rights.
+
+
+
+
+Take down policy
+If you believe that this document breaches copyright please view our takedown policy at https://edshare.gcu.ac.uk/id/eprint/5179 for details
+of how to contact us.
+
+
+
+
+Download date: 23. Sep. 2026
+     Eye Movements in Code Reading: Relaxing the
+                    Linear Order
+               Teresa Busjahn                                Roman Bednarik                                Andrew Begel
+        Institute of Computer Science                     School of Computing                     Microsoft Research, WA, USA
+      Freie Universität Berlin, Germany          University of Eastern Finland, Finland        Email: andrew.begel@microsoft.com
+       Email: busjahn@inf.fu-berlin.de                Email: roman.bednarik@uef.fi
+
+              Martha Crosby                                                                  James H. Paterson
+   Information & Computer Sciences                                      Dept. of Computer, Communications & Interactive Systems
+University of Hawai‘i at Mānoa, HI, USA                                           Glasgow Caledonian University, UK
+       Email: crosby@hawaii.edu                                                     Email: james.paterson@gcu.ac.uk
+
+          Carsten Schulte                                  Bonita Sharif                                Sascha Tamm
+  Institute of Computer Science             Computer Science & Information Systems            Center for Applied Neuroscience
+Freie Universität Berlin, Germany           Youngstown State University, OH, USA             Freie Universität Berlin, Germany
+Email: carsten.schulte@fu-berlin.de                 Email: bsharif@ysu.edu                     Email: tamm@zedat.fu-berlin.de
+
+
+
+
+   Abstract—Code reading is an important skill in programming.         (SC). However, programs differ from natural language texts
+Inspired by the linearity that people exhibit while natural lan-       (NT) in two important ways. First, programs are lexically and
+guage text reading, we designed local and global gaze-based mea-       syntactically different from natural language texts. Lexically,
+sures to characterize linearity (left-to-right and top-to-bottom) in
+reading source code. Unlike natural language text, source code is      they are composed from a limited vocabulary, with some words
+executable and requires a specific reading approach. To validate       used as programming language keywords, and others used
+these measures, we compared the eye movements of novice and            more freely as identifiers to name program constructs like
+expert programmers who were asked to read and comprehend               variables and methods. Programmers must consciously choose
+short snippets of natural language text and Java programs.             meaningful names in order to communicate to others what the
+   Our results show that novices read source code less linearly
+than natural language text. Moreover, experts read code less           program does and how it works [17]. Syntactically, programs
+linearly than novices. These findings indicate that there are          are laid out and organized differently than natural language
+specific differences between reading natural language and source       texts. They feature greater use of formally defined structures
+code, and suggest that non-linear reading skills increase with         and multiple forms of indented layout (both horizontal and
+expertise. We discuss the implications for practitioners and           vertical).
+educators.
+                                                                          The second difference is semantic. According to the Kintsch
+                        I. INTRODUCTION                                text comprehension model [15], natural language text is
+   For over five thousand years, human history has been written        typically understood in two concurrent phases: text (how
+down in a variety of forms which represent our cognitively rich        it is written down) and domain (what it means). Source
+natural spoken languages. Even when manifested in written              code comprehension however needs a third dimension of
+form, the lexical, syntactic, semantic, and cultural complexities      comprehension: execution [22]. Thus, in order to understand
+inherent in spoken communication make reading and writing              a program’s goals, programmers must not only master the
+difficult skills to learn and master.                                  ability to read its words and structures, but must also be
+   For over fifty years, computer programs have been written           able to trace source code execution to discover its operational
+in a variety of source code languages. While having no                 semantics [23]. Sorva [28] posits that expert programmers
+commonly spoken form, the design of source code languages              rarely make an explicit distinction between text structure and
+is inspired by natural languages, each with its own formal             text execution because they feel it is obvious. This might not
+style. Though computer programs are primarily thought of as            be so obvious for novices.
+being executed by a computer, their source code form must                 For the past two years, we have organized workshops
+be understandable in order to be read and written by humans.           focusing on the interpretation of eye tracking data for pro-
+To become an expert computer programmer, one must master               gram comprehension [6]. We and others have come to the
+source code reading and writing skills.                                realization that due to the similarities between source code and
+   Fortunately, programmers can leverage their mastery of              natural language, many of the same processes must underlie
+natural language literacy to learn to read and write source code       source code reading [25]. In this paper, we illustrate how we
+have adapted eye movement-based metrics used originally to                                      II. BACKGROUND
+characterize natural language reading to describe how novice
+and expert programmers read source code. Specifically, we                    We present a brief description of eye tracking research
+expanded on the concept of linearity in reading, and developed            necessary to understand the measures presented later and
+and tested several linearity metrics.                                     discuss eye tracking studies on reading natural language text
+                                                                          and program comprehension with a focus on the latter.
+   Linearity represents how closely readers follow a text’s
+natural reading order — the top-to-bottom, left-to-right path                Many previous eye tracking studies conducted on natural
+in which words are written in Latin script languages like                 text reading provide abundant insights into the visual attention
+English.1 Proficient natural language readers are known to                behavior. During reading, the eye stays upon one location for a
+maintain comprehension even though they skip words as they                few hundred milliseconds and then moves to the next location.
+read and reread words less frequently than novice readers                 This relatively steady state between eye movements is called a
+(i.e., children learning to read) [20]. Based on the observation          fixation. The amount of time spent in the location is the fixation
+that novice programmers seem to read source code “just as                 duration. The movements that re-position the eyes’ focus over
+one might read a story in a natural language, starting at the             the text are saccades. Processing of visual information occurs
+beginning and reading through to the end” [26], we introduce              only during fixations. Backward movements in the text are
+the term story reading for this reading behavior.                         called regressions; about 10 to 15% of fixations are regressive.
+                                                                          Good readers are characterized by few regressions and short
+   The research questions we address in this paper are
+                                                                          fixations. Difficult texts usually induce longer fixations, short
+  • RQ1: Do the linear trends observed in natural language                saccades and frequent regressions. Fixation duration has been
+    reading hold for novices reading source code?                         shown to be positively correlated with cognitive effort. See
+  • RQ2: With respect to reading linearity, how do novices                Rayner et al. [19] for a detailed description on eye movements
+    reading source code differ from experts?                              in reading.
+   Here, we operationalize linearity using two sets of metrics               In the programming domain, however, there have been only
+based on gaze. The set of local metrics include the fraction of           a few notable works to report on the nuances of gaze in code
+gaze locations that move with or against story reading order              reading. One of the pioneering studies of the role of gaze
+(measured in elements and lines). Our set of global metrics               in programming [9] suggests that viewing strategies when
+is based on fixation sequences and quantifies how closely a               reading short, but complex algorithms differ from those of
+participant follows a particular reading pattern. These metrics           natural language. Crosby et al. [8] also found that novices do
+assess the participants’ degrees of alignment to two reading              not use beacons as discussed by Brooks [3], whereas experts
+orders: story reading and execution order.                                focus mainly on them. Uwano et al. [30] identify a pattern
+                                                                          called Scan during which programmers read the entire code
+   We evaluate these metrics in a study that had novice and
+                                                                          snippet to get an idea of what the program does. They state
+professional programmers perform computer-based compre-
+                                                                          that 70% of lines in source code were seen in the first 30%
+hension tasks on short English texts and also on programs
+                                                                          of time spent. A replication of this experiment confirmed the
+written in Java and pseudocode, while being monitored with
+                                                                          finding [24].
+an eye tracking device.
+                                                                             Both Fan [10] and Busjahn et al. [5] conducted eye tracking
+   Our results show that novice participants read code less
+                                                                          studies on short source code programs. Fan showed that code
+linearly than they read English text. 80% of the the novices’
+                                                                          scanning patterns of programmers are related to the way the
+eye movements were linear when reading natural language text
+                                                                          programs were commented i.e., programmers could chunk
+and 70% when reading source code. For experts on the other
+                                                                          larger code blocks if comments were present. However, the
+hand, we found only 60% linear eye movements on source
+                                                                          presence of comments did not improve the identification of
+code. The experts’ reading patterns can be characterized by a
+                                                                          beacons. Busjahn et al. noted a few basic differences between
+greater number of eye gaze movements that skip intermediate
+                                                                          reading source code and natural language text, e.g. increased
+words and lines.
+                                                                          fixation durations and regression rates for code.
+The contributions of this paper include:                                     Hansen et al. [12] investigated factors that impact code
+  1) Operationalization of linearity metrics for reading source           comprehension. They studied 10 Python programs with subtle
+     code                                                                 differences between them with the task of predicting the
+  2) Validation of these metrics for natural language reading             output. They conducted a standard questionnaire-based online
+     and source code                                                      version and an eye tracking version of the study. Results
+  3) Characterization of differences in reading behaviors be-             from the questionnaire-based study indicate that even subtle
+     tween novice and expert programmers                                  notation changes can have a large effect on the performance
+  4) Automatic detection of story and execution order source              of programmers. The results of the eye tracking part of their
+     code reading patterns                                                study are pending.
+                                                                             Turner et al. [29] used an eye tracker to compare short
+   1 While many natural languages follow other word orders, programming   C++ and Python programs in a between-subjects study. The
+languages almost always follow the Latin script reading direction.        38 students were asked to find a logical error in the programs.
+Students spent significantly different amounts of time look-       public class Vehicle{
+ing at the lines with bugs than the other code lines when           String producer, type;
+                                                                    int topSpeed, currentSpeed;
+comparing their behaviors between programming languages.            public Vehicle(String p, String t, int tp){
+Novices had higher fixation rates on buggy lines in Python,           this.producer = p;
+whereas non-novices had higher fixation rates on buggy lines          this.type = t;
+                                                                      this.topSpeed = tp;
+in C++. The authors call for more studies to determine other          this.currentSpeed = 0;
+differences between languages.                                      }
+   Bednarik et al. [2] found that repetitive gaze patterns were     public int accelerate(int kmh){
+                                                                      if ((this.currentSpeed + kmh) > this.topSpeed){
+associated with less expertise when students were debug-                 this.currentSpeed = this.topSpeed;
+ging Java programs using a program visualization system.              } else {
+Rodeghero et al. [21] found that 10 developers looked more              this.currentSpeed = this.currentSpeed + kmh;
+                                                                      }
+at a method’s signature than its body when they were asked              return this.currentSpeed;
+to summarize Java methods while being recorded by an eye            }
+tracker. Fritz et al. [11] conducted a study with 15 developers     public static void main (String args[ ]){
+                                                                      Vehicle v = new Vehicle("Audi","A6",200);
+and used signals from eye tracking, electroencephalogram              v.accelerate(10);
+(EEG), and electrodermal activity (EDA) sensors to predict          }
+if developers found a task to be difficult. The task was to read   }
+short C# programs and answer multiple choice questions about          LISTING 1. Sample program presented to both novices and experts
+what the program did. Their results show that eye tracking
+measures such as fixations, saccades, and pupil size were
+important to predict task difficulty.                              computer science). We provided a participation statement if
+   Siegmund et al. [25] conducted a study with 17 program-         requested (no grade was given). During the weekly Java class
+mers inside an fMRI scanner. The programmers were asked to         they individually worked through an online course,2 while
+comprehend short source code snippets. They find a distinct        there was a tutor present to provide assistance. Students were
+pattern active in five brain regions, all necessary for program    allowed and encouraged to seek help from their classmates.
+comprehension and that language processing is an essential
+                                                                      The course consisted of six modules, each spanning several
+part of program comprehension.
+                                                                   weeks. These modules covered objects, classes, fundamental
+   In our most recent work [6], we provide an introduction on      data types, decisions, and loops. The students’ eye movements
+how to use eye tracking to study programmer behavior while         were recorded after they finished each module. Several partici-
+reading code. A tiered coding scheme was developed to further      pants dropped the course eventually, leading to a sparse dataset
+understand existing program comprehension strategies [1],          in later modules.
+[3], [16], [27]. Both objective and subjective behaviors were
+                                                                      We also recruited a group of six professional software
+coded. The scheme includes codes based on the location of
+                                                                   engineers who worked at different software companies in
+a single fixation as well as codes characterizing sequences of
+                                                                   Berlin. The participants were promised that all data and anal-
+multiple fixations, called patterns. For example, some patterns
+                                                                   yses about their participation would be anonymized and kept
+introduced were Linear Scan (where gaze moves linearly
+                                                                   confidential from their employers. No one was remunerated
+through parts of the code) and Jump Control (where gazes
+                                                                   for participating.
+follows code execution order).
+                                                                      All study participants filled out a demographic questionnaire
+   None of the studies mentioned discuss the concept of
+                                                                   about their age, gender, proficiency with English, and their
+linearity and whether or not the linearity effect in reading
+                                                                   programming skills and experience. The novices, who were
+natural languages transfers to reading of source code. We
+                                                                   between 19 and 33 years old, included 7 females. The experts
+believe this is an important step taken for further research
+                                                                   were between 26 and 49 years old and only included one
+using eye tracking in program comprehension.
+                                                                   female. While everyone had at least medium English profi-
+                         III. S TUDY                               ciency, German was their primary language (except one novice
+                                                                   who spoke French). The novices self-reported having little
+  In this section, we describe our study: participants, tasks,
+                                                                   to no prior programming experience, experts’ programming
+experimental procedures, measures, and threats to validity.
+                                                                   experience ranged from 5 to 28 years and all were proficient in
+A. Participants                                                    several programming languages including Java. At the time of
+   Our study looked at the similarities and differences in two     the recording, all were employed as professional programmers.
+populations: novice and expert programmers.
+   We conducted a longitudinal study with 14 novices, who          B. Experimental Procedure and Materials
+attended a Java beginner’s course at Freie Universität Berlin.       The expert participants were studied individually at their
+Participants were primarily recruited via flyers posted on         offices or in another location of their choice. The novice
+the university’s bulletin boards. With the exception of two
+participants, all the others were university students (none in       2 http://www.udacity.com/course/cs046
+participants were recorded after finishing each of the six          fixation’s duration (in milliseconds). The gaze coordinates are
+modules directly in the classroom.                                  then mapped to line and word positions in the texts read by
+   Each participant was set up with an SMI RED-m remote             each participant using a tool called EyeCode.4
+eye tracker set to sample at 120 Hz. All of the eye tracking           Participants do not always fixate on words on the screen;
+data was recorded by the open-source tool Ogama (OpenGaze-          sometimes they look at empty space nearby. We were able
+AndMouseAnalyzer).3 Once a participant ran the eye tracker’s        to map 90.51% of the natural language fixations to a line of
+calibration routine, he or she was ready to begin. Before the       text. For the source code trials, we could map 82.88% of the
+first recording on SC, novices were asked to read three English     novices’ fixations and 72.72% of the experts’ fixations to lines
+language passages of four to five lines. Each participant was       in source code.
+given the texts in a randomly selected order. After finishing          The first five of our measures are computed from the fixated
+the text in each trial, they had to answer a comprehension          line and word positions. They represent the fraction of gaze
+question.                                                           records (per trial) where the participant moved their eyes with
+   Each module’s recording session consisted of asking the          or against the linear reading order.
+novice participants to read a set of three programs ranging            The next measure, Saccade Length, is the average distance
+from a few lines to an entire screen full of text. Two of           between the participant’s two consecutive fixations in each
+these programs were in English pseudocode, the others were          trial. It is commonly found in prior eye tracking studies that
+complete Java classes. When required, the source code also          experts are more likely to make longer saccades than novices.
+included specific inputs to determine an execution order.              Element Coverage measures the percentage of words (i.e.,
+   Experts looked at six programs in total, two of which were       source code elements) in the text that the participant looked at.
+the same ones that novices saw in the latter weeks of the           Experts are known to be better able to focus on fewer, more
+study. An example of one of these programs can be seen in           relevant, words in the source code than novices can.
+Listing 1. The remaining programs were comparable in length            The last two measures indicate to what extent the partici-
+to the novices’ stimulus material, however, they were more          pants’ gaze followed the models Story Order and Execution
+complex and included concepts the beginner’s course did not         Order. Story Order represents reading the program line by
+cover, in order to prompt experts to actually use their advanced    line, from top to bottom, the way natural-language text is
+programming skills.                                                 generally read. Execution Order stands for reading the lines
+   Immediately after reading each program, the participants         according to control flow. In order to compare how well the
+were asked one of three possible questions: (1) write a             participants’ actual gaze path matches these models, we em-
+summary of the code, (2) write the value of a variable after        ploy an optimal string matching algorithm called Needleman-
+program execution, or (3) answer a multiple-choice question         Wunsch (N-W), which has been applied to sequences of eye
+about the algorithmic idea. The order of programs and tasks         movements before by Cristino et al. [7]. This string algorithm
+given to the participant were both shuffled for each trial to       computes a global similarity score, where a high score implies
+avoid any bias caused by coupling a certain program to a            that the two sequences are close to each other. For instance,
+specific question.                                                  a person’s score of 10 asserts a higher accordance with the
+   In total, we recorded 17 trials of novices reading natural       order of lines specified by the model than a score of 1.
+language texts, and 101 trials of novices reading source               The N-W algorithm is often applied to compute the simi-
+code. 35 of these 101 source code trials occurred just after        larity of DNA and protein sequences, where both sequences
+participants finished their first module. The remaining 66 trials   possibly contain mutations. However, in our settings only
+were conducted as the novices finished their next five modules.     one sequence can have mutations, namely the gaze, while
+   Some experts did not finish reading the Java programs            the model presents the prototype. Subsequently, the goal is
+during their recording session. In total, we were able to record    to determine how far the gaze is from the respective model.
+21 trials. When answering RQ2, we compare these 21 trials           Mutations in the model are less acceptable than mutations in
+against the 101 novice trials.                                      the gaze, so we need to keep the model in one piece as much as
+                                                                    we can. Thus, we penalize a gap in the model more than a gap
+C. Measures                                                         in the gaze sequence. Gaps will be preferentially inserted into
+   There are two independent variables in our experiment:           the gaze sequence rather than the model. To operationalize
+whether the participant is from the novice or expert pro-           this, we designed the following scoring scheme: +3 for a
+grammer sample population and whether they read a natural           match, -3 for a mismatch, -1 for a gap in the participant’s
+language text or source code.                                       gaze, and -2 for a gap in the model.
+   We developed nine dependent measures (see Table I) and              The approach to compare the gaze to the exact model is
+used them to analyze data records from an eye tracking              however slightly naı̈ve, since texts are usually read more than
+device. These consist of a time-ordered sequence of gaze            once. Thus, we adapted the alignment measure to identify
+fixations, each containing a gaze location (combining both          where the participant reread the text in order to find the
+eyes to produce a single (X, Y) screen coordinate) and the          optimal alignment between model and gaze. We realize this
+  3 http://www.ogama.net                                              4 https://github.com/synesthesiam/eyecode
+                                                                    TABLE I
+  G AZE - BASED MEASURES . I N EACH TRIAL , F IS THE SET OF ALL RECORDED FIXATIONS . Fi ( WHERE i = {1, . . . , n}) IS THE FIXATION RECORDED AT
+TIME INDEX i. L(Fi ) IS THE LINE NUMBER OF THE FIXATION AT INDEX i. I N EACH TRIAL , W IS THE SET OF WORD INDICES IN THE TEXT. W (Fi ) IS THE
+                                                   WORD NUMBER OF THE FIXATION AT INDEX i.
+
+
+                  Measure                               Definition                                                  Computation
+
+                                    % of forward saccades that either stay on the same
+            Vertical Next Text                                                             % of all Fi , where L(Fi ) − L(Fi+1 ) = {0, −1}
+                                    line or move one line down.
+
+                                    % of forward saccades that either stay on the same
+            Vertical Later Text                                                            % of all Fi , where L(Fi ) ≤ L(Fi+1 )
+                                    line or move down any number of lines.
+
+            Horizontal Later Text   % of forward saccades within a line.                   % of all Fi , where L(Fi ) = L(Fi+1 ) ∧ W (Fi ) ≤ W (Fi+1 )
+   local
+
+
+
+
+            Regression Rate         % of backward saccades of any length.                  % of all Fi , where W (Fi ) > W (Fi+1 )
+
+            Line Regression Rate    % of backward saccades within a line.                  % of all Fi , where L(Fi ) = L(Fi+1 ) ∧ W (Fi ) > W (Fi+1 )
+                                                                                            Pn−1
+                                    Average Euclidean distance between every succes-           i=1
+                                                                                                     Distance(Fi , Fi+1 )
+            Saccade Length
+                                    sive pair of fixations.                                            |F | − 1
+
+                                                                                                         | Unique(W (Fi ))|
+            Element Coverage        Fraction of words the participant looked at.           % of W for
+                                                                                                                |W |
+                                    N-W alignment score of fixation order with linear
+            Story Order                                                                    Alignment(L(F ), Story-Order-Pattern)
+                                    text reading order.
+   global
+
+
+
+
+                                    N-W alignment score of fixation order with the
+            Execution Order                                                                Alignment(L(F ), Execution-Order-Pattern)
+                                    program’s control flow order.
+
+
+
+by repeating the model and aligning this extended model                                                 1         n = 3
+sequence to the gaze. This dynamic approach finds the optimal                                           2         while (n > 1):
+number of repeats by iteratively appending a copy of the model                                          3           print n
+and computing the similarity score until the lengths of the                                             4           n = n - 1
+gaze and model sequences correspond with one another. In
+                                                                                   LISTING 2. Code with Story Order: Line 1, 2, 3, 4 and Execution Order:
+the end, the algorithm returns the alignment with the highest                      Line 1, 2, 3, 4, 2, 3, 4, 2
+score together with the number of model repetitions used to
+achieve it. Each model instance in this final sequence denotes
+one pass through the text.
+   Table II illustrates the procedure for Story Order (Line 1,                     D. Threats to Validity
+2, 3, 4) and Execution Order (Line 1, 2, 3, 4, 2, 3, 4, 2) with                       As mentioned before, some novice participants dropped out
+the sample code in Listing 2 and a participant’s actual gaze                       of the course and did not finish all of the trials. This does
+sequence (Line 1, 2, 3, 1, 2, 3, 2, 3, 2, 1, 2, 1, 3, 4, 3, 2).                    not affect RQ1 (comparing novices reading natural language
+Repeated fixations within the same line have been removed.                         vs. source code in module 1), as we are only interested in the
+   When testing how close the participant’s gaze is to Story                       early novice.
+Order (i.e. Line 1, 2, 3, 4), we get a naı̈ve score of only -12. We                   When considering RQ2, we pool together novice trials
+can improve the alignment if we also assess how many times                         across several modules, so some trials represent novices with
+the participant read through the program. If the participant                       up to 10 hours more coding experience than others. We
+read the text 4 times, then we would get a dynamic score of                        highlight this explicitly, however we always compare novices
+24. Looking at Execution Order, the naı̈ve score is 2, while the                   only to the pool of expert programmers who have orders
+dynamic score is 24. The participant followed the control flow                     of magnitude greater and more frequent coding experiences.
+twice. Looking at the exact models, this participant read the                      While the pooled data does not allow for fine-grained analyses
+program more according to control flow than line-wise from                         of the novices’ progress, it covers a broad range of novice
+top to bottom. When comparing the gaze to multiple instances                       behavior. According to a multinational study [18], student
+of the model, both models achieve the same score, however                          programmers show difficulty comprehending small programs
+with 4 repetitions for the shorter Story model and only 2 for                      like those we use even after a whole year of CS study.
+Execution. Since the sequences are of comparable length now,
+                                                                                      In order to reduce bias by the stimulus programs, both sets
+there are less gaps reducing the score.
+                                                                                   of stimulus programs were designed to cover a range of con-
+                                                                                   cepts and varied in facets like identifier naming conventions.
+                                                                 TABLE II
+                           S AMPLE ALIGNMENTS FOR L ISTING 2 ( EVERY SECOND MODEL REPETITION IS HIGHLIGHTED ).
+
+                                 Approach                          Alignment                             Score   Repetitions
+
+                                             model : − − − − − − − − − 1 2 − 3 4 − −
+                                 Naı̈ve                                | |   | |                          -12        1
+                                             gaze : 1 2 3 1 2 3 2 3 2 1 2 1 3 4 3 2
+             Story Order
+
+                                             model : 1 2 3 4 1 2 3 4 1 2 3 4 1 2 − 3 4 − −
+                                 Dynamic             | | |   | | |     | |   | |   | |                    24         4
+                                             gaze : 1 2 3 − 1 2 3 − − 2 3 2 1 2 1 3 4 3 2
+                                             model : − − − 1 − − 2 3 − 4 2 − 3 4 − 2
+                                 Naı̈ve                    |     | |     |   | |   |                       2         1
+                                             gaze : 1 2 3 1 2 3 2 3 2 1 2 1 3 4 3 2
+             Execution Order
+
+                                              model : 1 2 3 4 2 3 − 4 2 1 2 − 3 4 2 3 4 2
+                                 Dynamic              | | |   | |     | | |   | |   |   |                 24         2
+                                              gaze : 1 2 3 1 2 3 2 3 2 1 2 1 3 4 − 3 − 2
+
+
+
+    When mapping the gaze coordinates and the on-screen texts,        to reading natural language. We should therefore see that the
+we found that despite calibrating the eye tracker to each             linearity measures are similar in the two conditions.
+participant prior to every task, the recorded gaze location              Considering that the participants were non-native English
+often appeared too low or too high. In much rarer cases, it           speakers, the regression rate of 15.62% for NT is well in
+was also shifted to the left or right. This kind of error can         accordance with the 10 to 15% reported for English text [19].
+happen when the participant moves his or her head too far                Notice in Figure 1 that the measures Vertical Next Text,
+relative to the screen. We needed to correct these errors, but        Vertical Later Text, and Horizontal Later Text are higher for
+were wary of introducing additional bias. The authors worked          natural language text than for source code, since they indicate
+together in pairs to collaboratively produce a corrected version      linearity. Regression Rate and Line Regression Rate, on the
+for every trial. When there were disagreements, they rechecked        other hand describe non-linear reading. Consequently they
+the scanpaths and arrived at a consensus to determine the final       show a lower rate.
+corrected offset.                                                        The novices followed the linear Story Order on natural
+    The first five measures can be computed directly from the         language texts with approximately 80% of their eye move-
+screen coordinates, without requiring any corrections to the          ments (computed as the non-regressive portion of saccades),
+correspondence map. To further increase validity, we also             and Module 1 source code still with 75%.
+filtered out fixations which were clearly outside the bounding           Due to the sparseness of the data set, tests for normality
+box of the text (over 100 pixels outside) as unmapped. We             are not appropriate, hence we employed the non-parametric
+compared our measures computed on this uncorrected data to            Wilcoxon Signed Rank test for matched samples. We found
+the same measures computed on the corrected data and found            that for the first four measures shown in Figure 1, Vertical
+that 98–100% of the measures were in agreement.                       Next Text, Vertical Later Text, Horizontal Later Text, and
+    In our study, we operationalize reading linearity with seven      Regression Rate the differences are statistically significant (see
+fixation-based measures and two global measures. The linear-          Table III). Only Line Regression Rate was comparable for the
+ity of natural language reading can be measured using just            two types of text. The test statistic W provides the sum of the
+the regression rate [13]. However, this single measure misses         positive ranks. The values of 21 and 0 respectively indicate that
+relevant aspects of source code reading. For example, source          the direction of the differences was persistent for all pairs.
+code texts contain shorter horizontal passages than typical
+natural language texts, sometimes having just one source code                                    TABLE III
+element on a line. Our mix of horizontal and vertical measures        W ILCOXON S IGNED R ANK TEST FOR NATURAL L ANGUAGE VS . S OURCE
+                                                                                             C ODE (M ODULE 1)
+provides a more detailed description of the reading patterns.
+                                                                             Vertical Next Text:   W (6) = 21,Z = 2.20,        p = 0.03∗
+                           IV. R ESULTS                                     Vertical Later Text:   W (6) = 21,Z = 2.20,        p = 0.03∗
+A. Novices: Natural Language versus Source Code                           Horizontal Later Text:   W (6) = 21,Z = 2.20,        p = 0.03∗
+                                                                               Regression Rate:    W (6) = 0, Z = −2.20,       p = 0.03∗
+  We first report on the linearity measures for novices reading           Line Regression Rate:    W (6) = 13,Z = 0.52,        p = 0.69
+natural language text and source code at the beginning of their
+Java course (Module 1). We expected that since novices lack              Furthermore, we compared the average Saccade Length
+any specialized reading strategies for source code, they would        for natural language and the Java source code in Module 1.
+make use of their usual linear reading approach that they apply       Novices have a significantly higher average saccade length
+ % of eye movements
+
+
+
+
+                                                                                              % of eye movements
+
+
+
+
+                                                                                                                                                                                        % of eye movements
+                 100                                                                                          100                                                                                       100
+
+                      75                                                                                           75                                                                                        75
+
+                      50                                                                                           50                                                                                        50
+
+                      25                                                                                           25                                                                                        25
+
+                       0                                                                                            0                                                                                        0
+                                    NT                                 Module 1                                                    NT                             Module 1                                                  NT                Module 1
+
+
+                                (a) Vertical Next Text                                                                        (b) Vertical Later Text                                                                    (c) Horizontal Later Text
+                                             % of eye movements
+
+
+
+
+                                                                                                                                        % of eye movements
+                                                             100                                                                                        100                                                       Participant
+                                                                                                                                                                                                                   N1
+                                                                                                                                                                                                                   N2
+                                                                  75                                                                                         75                                                    N3
+                                                                                                                                                                                                                   N4
+                                                                                                                                                                                                                   N5
+                                                                                                                                                                                                                   N6
+                                                                  50                                                                                         50                                                    N7
+                                                                                                                                                                                                                   N8
+                                                                                                                                                                                                                   N9
+                                                                  25                                                                                         25                                                    N10
+                                                                                                                                                                                                                   N11
+                                                                                                                                                                                                                   N12
+                                                                                                                                                                                                                   N13
+                                                                  0                                                                                          0                                                     N14
+                                                                             NT                                    Module 1                                          NT          Module 1
+
+
+                                                                             (d) Regression Rate                                                                     (e) Line Regression Rate
+
+                                                                                                            Fig. 1. Linearity measures for novices.
+
+
+
+(2.28◦ of visual angle (98.13 pixels)) when reading natural                                                                             approach to reading code. The results indicate that both the
+language text than when reading source code (Module 1)                                                                                  natural language text and source code were read multiple
+(1.68◦ of visual angle (71.44 pixels)): W (6) = 21, Z =                                                                                 times, but participants read the natural language text 6.35 times
+2.20, p = 0.03∗ .                                                                                                                       vs. 3.89 times for source code. The greater the number of
+   When comparing Element Coverage, novices looked at an                                                                                repeated read-through, the higher the N-W alignment score
+average of 83.46% of the words in the natural language texts,                                                                           will be.
+but only at 60.38% of the source code elements (i.e. keywords                                                                              RQ1 asked if the story reading approach holds true for
+and identifiers) in the Java code for Module 1. The difference                                                                          novices reading source code (Module 1). The N-W score,
+is statistically significant: W (6) = 21, Z = 2.20, p = 0.03∗ .                                                                         reflecting the general reading approach aligned to the linear
+                                                                                                                                        Story Order, and Line Regression Rate are comparable for
+                                             TABLE IV                                                                                   natural language and source code (Module 1). However, we
+                       N-W R ESULTS C OMPARING THE S TORY O RDER FOR NATURAL                                                            find significant differences for the local measures Vertical Next
+                          L ANGUAGE T EXTS AND S OURCE C ODE (M ODULE 1).                                                               Text, Vertical Later Text, Horizontal Later Text, Regression
+                                                                                                                                        Rate, Saccade Length, and Element Coverage.
+                                                                                   Natural                         Source Code
+                                                                                  Language                          (Module 1)          B. Novices vs. Experts
+                                         Naı̈ve N-W Score                            -29.82                               -24.11           In this section, we report on the linearity measures that
+                      Story Order        Dynamic N-W Score                            25.88                                23.71        compare experts reading source code to novices (at any stage
+                                         Repetitions                                   6.35                                 3.89        in the Java course) reading source code. We combined all of
+                                                                                                                                        the novices’ trials from every module in the class, and not
+   Finally, we tested the alignment of reading natural language                                                                         just module 1 as we did for RQ1. We expect that since the
+and source code (Module 1) to Story Order (see Table IV).                                                                               novices rely on their natural language text reading behaviors
+We present two N-W global alignment scores. The first                                                                                   when reading source code, there will be significant differences
+(naı̈ve) compares the participant’s line order with the story                                                                           between them and the experts. We note that the novices and ex-
+order sequence. The second (dynamic) allows the story order                                                                             perts read different programs (for the most part; two programs
+sequence to repeat a number of times. The participant’s line                                                                            were read by both sets of participants). Since the novices were
+order was compared with the story order sequences repeated                                                                              enrolled in the Java class, their programs were tailored to be
+an increasing number of times until it maximized the N-                                                                                 accessible to their (considerably lower) experience level. In
+W score for the participant’s fixations in that trial. This                                                                             this section, we report statistics that compare the novices to
+accounts for the fact that the text is read several times. Note                                                                         the experts reading their respective programs.
+that the scores for natural language and the source code                                                                                   In Figure 2, we show the results of our first five measures
+in Module 1 are very similar to one another. There is no                                                                                comparing the pool of novices to the pool of experts (Figure 2).
+statistically significant difference between natural language                                                                           The measures for linearity Vertical Next Text, Vertical Later
+and the source code in Module 1, not for the (naı̈ve) score                                                                             Text, and Horizontal Later Text are higher for novices than
+(W (6) = 9.5, Z = −2.20, p = 0.91), nor the dynamic                                                                                     for experts. The same holds true when computing the non-
+score (W (6) = 12, Z = 0.31, p = 0.84). This supports                                                                                   regressive portion of the saccades, 70% linear eye movements
+our expectation that novices start out with a primarily linear                                                                          for novices and 60% for experts. Since normality cannot
+                            100
+
+                                                                                                                                         Novice
+                                                                                                                                         Expert
+             % of eye movements
+                                  75             ***                   **
+
+
+
+
+                                  50                                                         ***                  ***
+
+
+
+
+                                  25
+
+
+
+                                   0
+                                          Vertical Next Text   Vertical Later Text   Horizontal Later Text   Regression Rate   Line Regression Rate
+
+
+                                  Fig. 2. Comparison of linearity measures for novices and experts reveals more linear behavior in the eye movements.
+
+
+
+be assumed and we have two different samples, we tested                                                                    TABLE VI
+these differences with the non-parametric Mann-Whitney test.                                       N-W R ESULTS C OMPARING N OVICES AND E XPERTS IN S TORY AND
+                                                                                                                       E XECUTION O RDER .
+We found that the differences are statistically significant for
+all measures except Line Regression Rate (see Table V),                                                                                       Novices      Experts
+indicating that experts have a less linear reading behavior for
+code than the novices.                                                                                                  Naı̈ve N-W Score          -73.47   -161.52
+                                                                                                    Story Order         Dynamic N-W Score         -12.82   -113.62
+   Next, we calculated the average Saccade Length for all                                                               Repetitions                 5.36      3.95
+modules and source codes. Novices’ saccades had an average                                                              Naı̈ve N-W Score          -77.27    -89.81
+length of 1.86◦ of visual angle (80.26 pixels), while experts’                                      Execution Order     Dynamic N-W Score           8.68    -46.50
+saccade covered 3.12◦ of visual angle (133.90 pixels). A                                                                Repetitions                 6.69      2.56
+Mann-Whitney test indicates that average novices’ saccades
+were significantly shorter than experts’: U = 105, p <
+0.001∗∗∗ . This result matches our expectations that experts are                                 The low, negative Story Order global alignment scores for
+able to make larger jumps during reading to focus on important                                experts indicates that Story Order is not a good model for
+source code elements.                                                                         their reading behavior. Instead, notice that the Execution Order
+   With regard to Element Coverage, we found that novices                                     scores are higher, indicating a better fit with an order matching
+directly looked at 52.42% of the source code elements, while                                  the control flow of the program.
+experts looked at just 41.27% of the elements. Again, the                                        Also, one can see that the number of repetitions of both the
+difference is significant, U = 84, p < 0.01∗∗ . This result                                   text and execution order line number sequences is much lower
+implies that experts are better able to focus on the relevant                                 for experts than for novices. This indicates that the experts
+source code elements than novices, and is in line with previous                               were more efficient in their reading of the source code than
+studies on expertise.                                                                         novices, agreeing with the Element Coverage finding above.
+   Finally, we compared the alignment of the novices’ and ex-                                    Somewhat counter-intuitively, experts have lower similarity
+pert reading order. The results are shown in Table VI. One can                                scores for Execution Order than novices. This is due to the
+see that novices read source code much more linearly (i.e., in                                linear nature of the programs that the novices read. Conditions
+Story Order) than the experts did because the novices’ higher                                 and loops were only introduced in later modules, therefore
+scores indicate better alignment with the Story Order model.                                  the execution orders of the programs were mainly linear.
+This difference is significant both for naı̈ve and dynamic                                    Comparing Story and Execution order with N-W illustrates
+scores: U = 82, p < .001∗∗∗ and U = 84, p < .0001∗∗∗ ,                                        this effect, with an average similarity score of −1 for novice
+respectively.                                                                                 programs and −71 for expert programs. Novices tend to read
+                                                                                              linearly and the execution order of their programs is rather
+                                                                                              linear, hence they get higher similarity scores for execution
+                            TABLE V                                                           order than experts.
+        M ANN -W HITNEY R ESULTS FOR N OVICES VS . E XPERTS
+                                                                                                 RQ2 asks how experts differ from novices in linear reading.
+            Vertical Next Text:                     U = 81,    p < 0.001∗∗∗                   For the measures representing the fraction of eye movements
+           Vertical Later Text:                     U = 76,    p < 0.01∗∗
+         Horizontal Later Text:                     U = 84,    p < 0.001∗∗∗                   where the participant moved their eyes with or against the lin-
+              Regression Rate:                      U = 0,     p < 0.001∗∗∗                   ear reading order, we find that except for the Line Regression
+         Line Regression Rate:                      U = 41,    p = 0.97                       Rate, experts exhibit significantly different reading behaviors
+than novices. The same applies to Element Coverage, Saccade             We find evidence that experts have more advanced skills in
+Length and the global alignment of the reading pattern to the        adapting their natural language reading strategies for computer
+linear Story Order. This result matches our expectations that        programs. We find that they take advantage of non-linear
+the experts were better at reading code than the novices, but        reading orders and specific code reading strategies (e.g. code
+the additional details illustrated by the linearity measures we      tracing). We feel that this insight could lead to improved
+introduced in this study clarify much more precisely how these       models of program comprehension. In addition, tools that
+differences were composed.                                           incorporate the measures we have introduced in this paper
+                                                                     could provide the means to automatically recognize developer
+                        V. D ISCUSSION                               reading patterns and use these to infer comprehension strate-
+   Programs are a particularly difficult form of text that           gies. Such tools could be deployed as diagnostic aids built into
+requires problem solving skills. Often the viewing of algo-          the programming environment to detect patterns which may
+rithms appears closer to reading mathematical formulas or            indicate understanding, confusion or frustration. We envisage
+interpreting graphs than to reading a “story” form of text.          that subtle recommendation cues can be integrated into the
+Unlike natural language text, algorithms contain a wealth of         modern IDEs to guide the attention of programmers and rec-
+information condensed within non-redundant text.                     ommend certain actions without being excessively prescriptive
+   The difficulty of reading natural language text depends on        or critical.
+the participant and the context. In many eye tracking studies,          Code reading is obviously related to the styles used in code
+the majority of significant effects are often the result of          writing, both of which are dependent of the design of the
+participant variability. Studies from many domains such as           programming language and libraries used by developers. Our
+reading and problem-solving, have shown that eye movements           algorithms and models could be used as diagnostics to evaluate
+of experts differ from those of novices. For example, Kennedy        the effect of coding standards and practices on the readability
+and Murray [14] gave evidence that poor readers and good             and understandability of source code [4].
+readers show different reading strategies for varying difficul-
+                                                                     B. Implications of findings for educators
+ties of text and that fixation time was longer for difficult text.
+   The research questions we addressed in this paper were               Code reading skills are important for programmers and
+                                                                     contribute to their ability to solve problems. Thus, the de-
+   • RQ1: Do the linear trends observed in natural language
+                                                                     velopment of expert reading behavior should be an important
+      reading hold for novices reading source code?
+                                                                     goal of computer science curricula.
+   • RQ2: With respect to reading linearity, how do novices
+                                                                        Learning to program is challenging, causing many students
+      reading source code differ from experts?
+                                                                     to experience difficulty carrying out basic programming tasks
+   Our results show that novice participants follow the linear       even at the end of a first programming course. Lister et al.
+Story Order on natural language texts with approximately 80%         [18] suggest that this is often a consequence not of poor
+of their eye movements and on source code with 70%. While            problem-solving skills, as is commonly thought, but of a
+there are differences between reading natural language and           lack of knowledge and skills relating more to reading code
+source code, there is still a fairly strong linear character to      than writing it. These elements are precursors to problem-
+novice source code reading. The non-linear portion might be          solving. However there is little explicit focus on reading
+caused by novices moving their gaze around in search for             skills in programming textbooks and academic and industrial
+comprehension cues in the unfamiliar type of text. Expert            courses. Our findings show a differences in reading strategies
+programmers showed 60% linear eye movements, they adapt              between novices and expert programmers that could help guide
+their natural language reading strategies when reading source        curriculum design and teaching practice to explicitly support
+code. We believe that experts are applying their knowledge of        the development of reading expertise.
+program execution to aid in comprehension.                              Unlike natural language text, programs have a duality
+   The Execution Order model better explains the experts’            consisting of the code and the dynamics of what happens
+reading approach than Story Order does. This suggests that           when the code runs. Expert programmers rarely make this
+experts tend to trace at least parts of the code. For novices on     duality explicit because it is obvious to them, but it is not
+the other hand, none of the two models is predominant.               necessarily obvious to the novice [28]. Linear reading suggests
+                                                                     the application of a mental model that does not include the
+                      VI. I MPLICATIONS
+                                                                     dynamic side of this duality. Teachers and novice program-
+    The results presented here have implications both for prac-      ming environments should therefore make explicit the ways in
+titioners and for programming educators.                             which machine behavior differs from human thought, and that
+                                                                     program code is designed primarily to affect machine behavior.
+A. Implications of findings for practitioners                        An early focus on program dynamics will support development
+   The significance of this research for industry lies in the        of a valid mental model of what happens during program
+findings on the code reading behavior of the experts and in          execution, or of the notional machine, an idealized abstraction
+the development of measures which may provide the basis of           that serves the purpose of understanding this. Teachers should
+diagnostic tools to improve the daily practices of programmers.      be prepared to make use of metaphors and visualizations that
+transfer program dynamics from the abstract to the concrete,                              VII. C ONCLUSIONS
+and to use tools and development environments that provide              Our results affect future research on the use of eye tracking
+program visualizations. Code reading and tracing skills should       to understand how source code reading occurs in various
+be explicitly taught and practiced in addition to code writing.      theoretical, behavioral, and practical ways. In applying a
+   Eye tracking integrated into an IDEs or visualization tools       range of measures to eye tracking data for novice and expert
+can provide feedback to the student or the teacher. For              programmers reading both natural language text and source
+instance, informing that the initial Scan of the program was         code, our study has been able to determine the degree of
+not sufficient or that someone solving a bug finding task is         linearity in both groups’ reading strategies. We devised two
+concentrating on a code entirely unrelated to the bug, would         distinct types of measures. Our local measures are based on
+be types of interventions that may promote early expert-like         the relationship between pairs of consecutive fixations. Our
+behaviors.                                                           global measures are based on matching sequences of line
+   Code reading is, of course, not exactly the same as code          fixations to model sequences based on idealized story and
+tracing. While it can be useful in program comprehension to          execution reading orders. Taken together, our measures give a
+emulate the execution of code, humans can, once expertise            more comprehensive picture of linearity within programmers’
+has been gained, apply a range of strategies for assimilating        reading strategies.
+programs. In an object-oriented program, for example, we can
+                                                                                              R EFERENCES
+understand some things about the purpose of a class quite
+quickly by looking at the overall structure before tracing in         [1]   V. R. Basili and H. D. Mills, “Understanding and doc-
+detail what happens as particular methods execute. In contrast,             umenting programs,” IEEE Transactions on Software
+the computer can only find the entry point for execution and                Engineering, vol. 18, pp. 270–283, 1982.
+proceed from there to execute code in class constructors and          [2]   R. Bednarik, “Expertise-dependent visual attention
+methods as they are called. Experts are able to recognize                   strategies develop over time during debugging with
+beacons that are typical indicators of the programs function-               multiple code representations,” International Journal of
+ality [8], and patterns in code that typify, for example, the               Human-Computer Studies, vol. 70, no. 2, pp. 143–155,
+implementation of specific algorithms or class relationships.               Feb. 2012.
+We usually do not teach comprehension of algorithms in                [3]   R. Brooks, “Towards a theory of the comprehension
+the same way we teach reading comprehension, but such an                    of computer programs,” International Journal of Man-
+approach should be built into CS curricula. Teachers should                 Machine Studies, vol. 18, pp. 543–554, 1983.
+make the importance of beacons and patterns explicit at               [4]   R. P. L. Buse and W. R. Weimer, “Learning a metric
+appropriate points in the development of program knowledge                  for code readability,” IEEE Transactions on Software
+and give practice in identifying examples. Further study of the             Engineering, vol. 36, no. 4, pp. 546–558, Jul. 2010.
+way in which experts make use of these may provide guidance           [5]   T. Busjahn, C. Schulte, and A. Busjahn, “Analysis of
+in this.                                                                    code reading to gain more insight in program com-
+                                                                            prehension,” Koli, Finland: ACM, 2011, pp. 1–9. DOI:
+   At the same time we need to be realistic about what degree
+                                                                            10.1145/2094131.2094133. [Online]. Available: http:
+of expertise can be developed within a first programming
+                                                                            //doi.acm.org/10.1145/2094131.2094133.
+course. The reading behavior of our novices even at the
+                                                                      [6]   T. Busjahn, C. Schulte, B. Sharif, Simon, A. Begel,
+end of the course is not “expert” in nature. Expertise in
+                                                                            M. Hansen, R. Bednarik, P. Orlov, P. Ihantola, G.
+programming will only develop over an extended period of
+                                                                            Shchekotova, and M. Antropova, “Eye tracking in com-
+study and sustained practice. However, our findings suggest
+                                                                            puting education,” in Proceedings of the Tenth Annual
+that embedding strategies for code reading in the curriculum
+                                                                            Conference on International Computing Education Re-
+could provide a strong foundation for the development of
+                                                                            search, Glasgow, Scotland, United Kingdom: ACM,
+expertise.
+                                                                            2014, pp. 3–10.
+   It has recently been shown that one of the effective ways to       [7]   F. Cristino, S. Mathôt, J. Theeuwes, and I. D. Gilchrist,
+improve skill acquisition is to cue visual attention of novices to          “ScanMatch: a novel method for comparing fixation
+the locations that experts attend while performing a task [31].             sequences,” Behavior Research Methods, vol. 42, no.
+If such intervention should be adopted in teaching program                  3, pp. 692–700, 2010.
+comprehension skills, knowledge about the expert behavior             [8]   M. E. Crosby, J. Scholtz, and S. Wiedenbeck, “The roles
+and significant differences between expert and novice pro-                  beacons play in comprehension for novice and expert
+grammers is very helpful, so that interventions can concentrate             programmers,” in 14th Workshop of the Psychology of
+on these differences.                                                       Programming Interest Group, 2002, pp. 58–73.
+   Instructors could use tools like these to investigate the          [9]   M. E. Crosby and J. Stelovsky, “How do we read
+effectiveness of new pedagogies. Novice programmers could                   algorithms? a case study,” Computer, vol. 23, no. 1,
+monitor their own progress and judge whether they have                      pp. 25–35, 1990.
+achieved personalized learning goals. Additional applications
+are discussed in more detail in our prior work [6].
+[10]   Q. Fan, “The effects of beacons, comments, and tasks          [22]   C. Schulte, “Block model: an educational model of pro-
+       on program comprehension process in software mainte-                 gram comprehension as a tool for a scholarly approach
+       nance,” PhD thesis, University of Maryland at Baltimore              to teaching,” in Proceedings of the Fourth International
+       County, Catonsville, MD, USA, 2010.                                  Workshop on Computing Education Research, ser. ICER
+[11]   T. Fritz, A. Begel, S. C. Müller, S. Yigit-Elliott, and M.          ’08, Sydney, Australia: ACM, 2008, pp. 149–160.
+       Züger, “Using psycho-physiological measures to assess        [23]   C. Schulte, T. Clear, A. Taherkhani, T. Busjahn, and
+       task difficulty in software development,” in Proceedings             J. H. Paterson, “An introduction to program comprehen-
+       of the 36th International Conference on Software Engi-               sion for computer science educators,” in Proceedings of
+       neering, ser. ICSE 2014, Hyderabad, India: ACM, 2014,                the 2010 ITiCSE Working Group Reports, ser. ITiCSE-
+       pp. 402–413.                                                         WGR ’10, Ankara, Turkey: ACM, 2010, pp. 65–86.
+[12]   M. E. Hansen, R. L. Goldstone, and A. Lumsdaine,              [24]   B. Sharif, M. Falcone, and J. Maletic, “An eye-tracking
+       “What makes code hard to understand?” CoRR, vol.                     study on the role of scan time in finding source code
+       abs/1304.5257, 2013.                                                 defects,” in Proc. of the Symposium on Eye Tracking
+[13]   J. Z. Jacobson and P. Dodwell, “Saccadic eye move-                   Research & Applications, Santa Barbara, CA: ACM,
+       ments during reading,” Brain and Language, vol. 8, no.               2012, pp. 381–384.
+       3, pp. 303–314, 1979.                                         [25]   J. Siegmund, C. Kästner, S. Apel, C. Parnin, A. Beth-
+[14]   A. Kennedy and W. Murray, “The components of read-                   mann, T. Leich, G. Saake, and A. Brechmann, “Un-
+       ing time: eye movement patterns of good and poor read-               derstanding understanding source code with functional
+       ers,” in Eye Movements: From Physiology to Cognition,                magnetic resonance imaging,” in Proceedings of the
+       New York, NY, USA: ACM, 1987, pp. 509–529.                           36th International Conference on Software Engineer-
+[15]   W. Kintsch, Comprehension: A Paradigm for Cognition.                 ing, ser. ICSE 2014, Hyderabad, India: ACM, 2014,
+       Cambridge University Press, 1998.                                    pp. 378–389.
+[16]   S. Letovsky and E. Soloway, “Delocalized plans and            [26]   Simon, “Eye movements in programming education 2:
+       program comprehension,” IEEE Software, pp. 41–49,                    analysing the novice’s gaze,” in Eye Movements in Pro-
+       1986.                                                                gramming Education II: Analyzing the Novice’s Gaze,
+[17]   B. Liblit, A. Begel, and E. Sweetser, “Cognitive per-                T. Busjahn, C. Schulte, S. Tamm, and R. Bednarik, Eds.,
+       spectives on the role of naming in computer pro-                     Berlin, Germany, 2015, pp. 31–33.
+       grams,” in Proceedings of the 18th Annual Psychology          [27]   E. Soloway, J. Pinto, S. Letovsky, D. Littman, and R.
+       of Programming Workshop, Brighton, England, United                   Lampert, “Designing documentation to compensate for
+       Kingdom, Sep. 2006.                                                  delocalized plans,” Communications of the ACM, vol.
+[18]   R. Lister, E. S. Adams, S. Fitzgerald, W. Fone, J.                   31, pp. 1259–1267, 11 1988.
+       Hamer, M. Lindholm, R. McCartney, J. E. Moström,             [28]   J. Sorva, “Notional machines and introductory pro-
+       K. Sanders, O. Seppälä, B. Simon, and L. Thomas,                   gramming education,” ACM Transactions on Computing
+       “A multi-national study of reading and tracing skills in             Education (TOCE), vol. 13, no. 2, p. 8, 2013.
+       novice programmers,” in Working Group Reports from            [29]   R. Turner, M. Falcone, B. Sharif, and A. Lazar, “An
+       ITiCSE on Innovation and Technology in Computer Sci-                 eye-tracking study assessing the comprehension of C++
+       ence Education, ser. ITiCSE-WGR ’04, Leeds, United                   and Python source code,” in Proc. of the Symposium on
+       Kingdom: ACM, 2004, pp. 119–150.                                     Eye Tracking Research & Applications, Safety Harbor,
+[19]   K. Rayner, “Eye movements in reading and informa-                    Florida: ACM, 2014, pp. 231–234.
+       tion processing: 20 years of research.,” Psychological        [30]   H. Uwano, M. Nakamura, A. Monden, and K.-i. Mat-
+       bulletin, vol. 124, no. 3, p. 372, 1998.                             sumoto, “Analyzing individual performance of source
+[20]   K. Rayner, S. P. Ardoin, and K. S. Binder, “Children’s               code review using reviewers’ eye movement,” in Proc.
+       eye movements in reading: a commentary.,” School                     of the Symposium on Eye Tracking Research & Applica-
+       Psychology Review, vol. 42, no. 2, pp. 223–233, 2013.                tions, San Diego, California: ACM, 2006, pp. 133–140.
+[21]   P. Rodeghero, C. McMillan, P. W. McBurney, N. Bosch,          [31]   M. R. Wilson, S. J. Vine, E. Bright, R. S. Mas-
+       and S. D’Mello, “Improving automated source code                     ters, D. Defriend, and J. S. McGrath, “Gaze training
+       summarization via an eye-tracking study of program-                  enhances laparoscopic technical skill acquisition and
+       mers,” in Proceedings of the 36th International Confer-              multi-tasking performance: a randomized, controlled
+       ence on Software Engineering, ser. ICSE 2014, Hyder-                 study,” Surgical Endoscopy, vol. 25, no. 12, pp. 3731–
+       abad, India: ACM, 2014, pp. 390–401.                                 3739, 2011.
+

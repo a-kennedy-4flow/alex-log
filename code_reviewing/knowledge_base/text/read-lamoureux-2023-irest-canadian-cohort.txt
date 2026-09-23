@@ -1,0 +1,334 @@
+                               Open Access Original
+                               Article                                                DOI: 10.7759/cureus.38196
+
+
+
+                                              Reading Speed Using the International Reading
+                                              Speed Texts in a Normal Canadian Cohort
+Review began 04/16/2023
+                                              Daniel Lamoureux 1 , Sarah Yeo 2 , Vishaal Bhambhwani 3, 4
+Review ended 04/23/2023
+Published 04/27/2023                          1. Ophthalmology, Northern Ontario School of Medicine, Thunder Bay, CAN 2. Ophthalmology, University of Ottawa,
+© Copyright 2023                              Ottawa, CAN 3. Surgery, Thunder Bay Regional Health Sciences Centre, Thunder Bay, CAN 4. Surgery, Northern
+Lamoureux et al. This is an open access       Ontario School of Medicine, Thunder Bay, CAN
+article distributed under the terms of the
+Creative Commons Attribution License CC-
+                                              Corresponding author: Vishaal Bhambhwani, vishaalb@ymail.com
+BY 4.0., which permits unrestricted use,
+distribution, and reproduction in any
+medium, provided the original author and
+source are credited.
+                                              Abstract
+                                              Background
+                                              The International Reading Speed Texts (IReST) are commonly used to measure reading speed, which may be
+                                              affected in many eye conditions. They were originally tested in a younger British population. Our study
+                                              evaluates IReST in a normal Canadian population.
+
+
+                                              Methodology
+                                              A normal Canadian cohort in Ontario was prospectively recruited with age >14 years, education >9 years,
+                                              English as the primary language, and best-corrected visual acuity >20/25 distance and >N8 near in each eye.
+                                              Participants with eye conditions and neurological/cognitive problems were excluded. Each participant
+                                              consecutively read two IReST passages (passages 1 and 8). Reading speed in words per minute (WPM) was
+                                              calculated. One-sample t-test was used to compare our cohort to published IReST standards.
+
+
+                                              Results
+                                              A total of 112 participants were included (35 male, 77 female). The mean age was 40 ± 17 years (14-18 years:
+                                              12; 18-35 years: 34; 35-60 years: 53; 60-75 years: 13). The mean reading speed for passage 1 was 211 ± 33
+                                              WPM compared to the published IReST standard of 236 ± 29 WPM (p < 0.0001). The mean reading speed for
+                                              passage 8 was 218 ± 34 WPM compared to the IReST standard of 237 ± 24 WPM (p < 0.0001). Thus, our
+                                              cohort read slower for both passages compared to IReST standards. The mean reading speed for passages 1
+                                              and 8 was the highest for the 14-18-year (231 and 239, respectively) and the lowest for the 60-75-year group
+                                              (195 and 192, respectively).
+
+
+                                              Conclusions
+                                              Normal older populations have slower reading compared to younger populations. The slower reading in our
+                                              cohort may also be because the passages were in British rather than in Canadian English. It is important that
+                                              the IReST is evaluated in different populations to ensure reliable comparison standards for future research.
+
+
+
+                                              Categories: Ophthalmology
+                                              Keywords: amblyopia, paragraph reading, international reading speed texts, reading speed, reading
+
+
+                                              Introduction
+                                              Reading is an important visual task and affects numerous aspects of daily functioning, including activities
+                                              related to education, work, household maintenance, and leisure; thus, reading impairments may have
+                                              negative impacts on an individual’s quality of life [1].
+
+
+                                              Reading ability varies based on age, education level, and intellectual capacity [2,3] and may also be adversely
+                                              affected by cognitive and learning disorders such as dyslexia [4]. For eye/visual system pathologies,
+                                              considerable recent research has focussed on reduced reading speed in individuals with amblyopia and
+                                              strabismus, macular degeneration, corneal disorders, and glaucoma [1,5-11].
+
+
+                                              Standardized texts are required to obtain reliable measurements of reading speed in clinical and research
+                                              settings. Initially, single-sentence reading tests such as the Minnesota Reading Test (MNREAD) [12] and the
+                                              Radner test [13] were developed for this purpose. However, for measuring reading speed, a whole paragraph
+                                              of text is preferable to single sentences because reading speed measurements show less variance with longer
+                                              texts [14]. Furthermore, reading whole paragraphs is closer to the demands of everyday reading. Thus, more
+                                              recently, the International Reading Speed Texts (IReST) have been developed for longer paragraph reading
+                                              as a tool for reading, rehabilitation, and low vision research [15-17]. These texts were initially developed in
+                                              four languages [15] and later expanded to include a wide range of additional languages to allow international
+                                              multi-language studies, as well as to provide benchmarks for reading speeds in normally sighted readers who
+
+
+
+                                How to cite this article
+                                Lamoureux D, Yeo S, Bhambhwani V (April 27, 2023) Reading Speed Using the International Reading Speed Texts in a Normal Canadian Cohort.
+                                Cureus 15(4): e38196. DOI 10.7759/cureus.38196
+                                                 read different languages.
+
+
+                                                 It is important that the IReST texts are tested in different populations to ensure that they provide reliable
+                                                 and repeatable measures of reading speed across demographic profiles and can be used for clinical and
+                                                 research-related decision-making. This has been attempted in some populations [18-20]; however, there is a
+                                                 paucity of literature on this subject. This study aims to evaluate reading speed using the English-language
+                                                 IReST charts (developed for British English) in a normal Canadian population and compare results with the
+                                                 published IReST standards.
+
+
+                                                 Materials And Methods
+                                                 A prospective study was conducted to evaluate reading speed using IReST charts for a normal Canadian
+                                                 cohort in Ontario, Canada. Inclusion criteria for the study were age >14 years, education >9 years, English as
+                                                 the primary language, and best-corrected visual acuity >20/25 in each eye for distance and >N8 for near.
+                                                 Exclusion criteria were the presence of eye conditions (other than a refractive error) or
+                                                 neurological/cognitive conditions including learning disabilities which may impact reading speed.
+
+
+                                                 Demographic data collected included participant sex, age, ethnicity, and level of education. The IReST
+                                                 charts in British English were used for reading speed assessment. Each participant sequentially read two
+                                                 passages (passages 1 and 8) of the IReST charts with a break of two minutes between the two passages.
+                                                 These two passages were chosen as they belong to the same IReST performance category, meaning that their
+                                                 mean reading speeds do not differ by more than 10 words per minute (WPM) according to initial studies by
+                                                 the IReST group [17]. Before the start of the reading test, participants were asked to cover the reading
+                                                 passage with their hand, and once instructed to start, to remove their hand and read the paragraph aloud as
+                                                 quickly as possible, as described in the IReST instructions. The reading time was measured using a
+                                                 stopwatch. If a word was skipped, or if an incorrect word was read, this was noted and factored into
+                                                 calculating their reading speed in WPM. Reading speed (WPM) was calculated using the following
+                                                 formula: Reading speed (WPM) = (60/participant time in seconds) × (number of correctly read words in the
+                                                 passage).
+
+
+                                                 The one-sample t-test was used to compare the reading speeds of our cohort to published IReST values. The
+                                                 paired t-test was used to compare the reading speeds of our cohort for passage 1 versus passage 8.
+
+
+                                                 The study was approved by the institutional ethics review board (Thunder Bay Regional Health Sciences
+                                                 Centre Research Ethics Board; approval number: TBRHSC #2020515).
+
+
+                                                 Results
+                                                 A total of 112 participants were included (35 males, 77 females). The mean age (±SD) of the cohort was 40 ±
+                                                 17 years (range = 14-75 years; 14-18 years: 12, 18-35 years: 34, 35-60 years: 53, 60-75 years: 13). The mean
+                                                 years of education (±SD) of the cohort was 15 ± 3 (range = 9-20 years). The ethnicity of the cohort included
+                                                 Caucasian (78, 70%), Indigenous (6, 5%), others (11, 10%), and undisclosed (17, 15%).
+
+
+                                                 The distribution of reading speed in the different age groups of the cohort is detailed in Table 1. As seen in
+                                                 the table, the mean reading speed (±SD) of the cohort for passage 1 was 211 ± 33, and for passage 8 was 218 ±
+                                                 34. The one-sample t-test was statistically significant for both passage 1 (p < 0.0001) and passage 8 (p <
+                                                 0.0001), with our cohort reading slower compared to the published IReST values.
+
+
+
+
+2023 Lamoureux et al. Cureus 15(4): e38196. DOI 10.7759/cureus.38196                                                                                              2 of 5
+                                                         Mean reading     P-value for one-sample t-test      Mean reading    P-value for one-sample t-test
+               Serial                   Number of
+                         Age (years)                     speed (±SD)      (compared to IReST standard        speed (±SD)     (compared to IReST standard
+               number                   participants
+                                                         passage 1        236 ± 29)                          passage 8       237 ± 24)
+
+               1         14–18          12               231 ± 26         0.4830                             239 ± 31        0.7917
+
+               2         18–35          34               214 ± 30         0.0002                             226 ± 32        0.0657
+
+               3         35–60          53               209 ± 36         <0.0001                            213 ± 34        <0.0001
+
+                         18–60 (total
+               4                        87               211 ± 34         <0.0001                            218 ± 34        <0.0001
+                         of 2+3)
+
+               5         60–75          13               195 ± 27         0.0001                             192 ± 27        <0.0001
+
+                         14–75 (total
+               6         of 1, 2, 3,    112              211 ± 33         <0.0001                            218 ± 34        <0.0001
+                         and 5)
+
+
+
+
+              TABLE 1: Reading speed data.
+              Reading speeds in different age groups of the study cohort compared to published IReST standards.
+
+
+              IReST: International Reading Speed Texts
+
+
+
+
+                                                  With respect to reading speeds in different age groups, the differences in reading speed between our cohort
+                                                  and published IReST values were statistically significant (one-sample t-test) for both passages 1 and 8 for
+                                                  the 35-60 (p < 0.0001 and p < 0.0001, respectively), 60-75 (p = 0.0001 and p < 0.0001, respectively), and 18-
+                                                  60 age groups (p < 0.0001 and p < 0.0001, respectively), and for passage 1 only for the 18-35 age group (p =
+                                                  0.0002), with our cohort reading slower compared to published IReST values. The reading speeds were not
+                                                  statistically different between our cohort and published IReST values for the 14-18-year age group.
+
+
+                                                  The mean reading speeds for passages 1 and 8 were the highest for the 14-18-year age group (231 and 239,
+                                                  respectively) and the lowest for the 60-75-year age group (195 and 192, respectively).
+
+
+                                                  The difference in reading speed for our cohort between passage 1 and passage 8 (paired t-test) was also
+                                                  statistically significant (p < 0.0001).
+
+
+                                                  Discussion
+                                                  Our study results present reading speeds using the IReST charts in British English in a normal Canadian
+                                                  cohort (in different age groups) compared to published IReST standards. It is important that normal reading
+                                                  speeds are evaluated in different populations across demographic profiles to aid future clinical and research-
+                                                  related decision-making. Our study represents a step in this direction and can be potentially used as a
+                                                  database of normal reading speeds with the IReST charts, which are the most commonly used texts for
+                                                  reading speed assessment in clinical practice and research. This is especially important when interpreting
+                                                  reading speeds in individuals with amblyopia and strabismus, macular degeneration, glaucoma, and corneal
+                                                  disorders which are areas of active research interest [5-11].
+
+
+                                                  Our study shows that for our cohort as a whole (aged 14-75 years), reading speeds for both passage 1 and
+                                                  passage 8 were slower compared to published IReST standards. We believe that there are two primary
+                                                  reasons for this difference. First, the original studies by the IReST group were done for subjects aged 18-35
+                                                  years [15-17]. The published IReST standards reflect normal reading speeds in this age group. Slower reading
+                                                  speeds in older individuals in our cohort were partially responsible for reducing the overall mean reading
+                                                  speed of the cohort. Second, the IReST charts are in the British English language. Canadian (and American)
+                                                  English has significant differences compared to British English with respect to vocabulary, phonology,
+                                                  syntax, and semantics [20,21] which may have caused our study participants to read slower compared to
+                                                  published standards. An example of this is the word “greengrocer” in the IReST passage 1, which is not
+                                                  commonly used in Canada. The results of our cohort are a bit different from the study by Morris et al. [20],
+                                                  which showed reading speeds to be comparable to published IReST standards in a Canadian cohort from
+                                                  Quebec. However, this study only recruited university students between 19 and 41 years of age and may have
+                                                  not accounted for differences in reading speed due to the differing age and education levels across a
+                                                  population, as discussed below.
+
+
+                                                  In our study, the only age group which had comparable reading speeds to published IReST standards for both
+                                                  passage 1 and passage 8 was the 14-18-year group. This may be because individuals in this age group
+
+
+
+2023 Lamoureux et al. Cureus 15(4): e38196. DOI 10.7759/cureus.38196                                                                                               3 of 5
+                                                 routinely do a lot of reading in daily life on account of education and/or work-related activities. In the 18-
+                                                 35-year group, which may still be engaged in reading in routine daily life on account of education/work,
+                                                 slower reading speeds were seen for passage 1 but comparable speeds were seen for passage 8, probably
+                                                 demonstrating a learning effect. This learning effect was also apparent in our study cohort as a whole (aged
+                                                 14-75 years), with speeds for passage 8 being faster than for passage 1.
+
+
+                                                 In all other age groups besides the 14-35-year subgroups, reading speed for both passages was slower than
+                                                 published standards, with the 60-75-year age group being the slowest. These results are similar to those
+                                                 reported by Morris et al. [22] who found that reading speeds may be slower in older individuals (>60 years),
+                                                 and researchers or clinicians who wish to assess older adults’ reading speed using the IReST charts ought to
+                                                 take this discrepancy into account. Similar results have been seen for the MNREAD charts before [23]. The
+                                                 IReST charts were created using material used for sixth-grade reading for ages 10-12 years and over.
+                                                 Therefore, our study did not include younger participants (children) [15-17].
+
+
+                                                 Conclusions
+                                                 It is important that the IReST is evaluated in different populations to ensure reliable comparison standards
+                                                 for future research. Our study demonstrates that populations may differ with respect to normal reading
+                                                 speed standards and our results may serve as a database of normal reading speeds in Canadian
+                                                 populations. Age, education levels, and test types may be important factors to consider when interpreting
+                                                 reading speeds. Our study shows that age has a profound influence on reading speed with significantly
+                                                 slower reading speeds in older populations. This effect of age must be taken into account by researchers
+                                                 studying older as well as younger populations. The IReST charts represent a very useful endeavor to
+                                                 standardize reading speed assessments. In our opinion, a fruitful next step could be the development of
+                                                 these charts in Canadian and American English to standardize reading speed tests in North American
+                                                 populations.
+
+
+                                                 Additional Information
+                                                 Disclosures
+                                                 Human subjects: Consent was obtained or waived by all participants in this study. Thunder Bay Regional
+                                                 Health Sciences Centre REB issued approval 2020515. Animal subjects: All authors have confirmed that this
+                                                 study did not involve animal subjects or tissue. Conflicts of interest: In compliance with the ICMJE uniform
+                                                 disclosure form, all authors declare the following: Payment/services info: All authors have declared that no
+                                                 financial support was received from any organization for the submitted work. Financial relationships:
+                                                 Vishaal Bhambhwani declare(s) a grant from Northern Ontario Academic Medicine Association (NOAMA).
+                                                 VB receives research grants from NOAMA. No grants were received for this study/manuscript. Other
+                                                 relationships: All authors have declared that there are no other relationships or activities that could appear
+                                                 to have influenced the submitted work.
+
+
+                                                 Acknowledgements
+                                                 We would like to thank Yrena Malo and Nancy Oracz for their help with data collection.
+
+
+                                                 References
+                                                     1.   Stifter E, Burggasser G, Hirmann E, Thaler A, Radner W: Monocular and binocular reading performance in
+                                                          children with microstrabismic amblyopia. Br J Ophthalmol. 2005, 89:1324-9. 10.1136/bjo.2005.066688
+                                                     2.   Brussee T, van Nispen RM, van Rens GH: Visual and personal characteristics are associated with reading
+                                                          performance in normally sighted adults. Clin Exp Optom. 2017, 100:270-7. 10.1111/cxo.12482
+                                                     3.   Simos PG, Sideridis GD, Kasselimis D, Mouzaki A: Reading fluency estimates of current intellectual
+                                                          function: demographic factors and effects of type of stimuli. J Int Neuropsychol Soc. 2013, 19:355-61.
+                                                          10.1017/S1355617712001518
+                                                     4.   De Luca M, Marinelli CV, Spinelli D, Zoccolotti P: Slowing in reading and picture naming: the effects of
+                                                          aging and developmental dyslexia. Exp Brain Res. 2017, 235:3093-109. 10.1007/s00221-017-5041-1
+                                                     5.   Stifter E, Burggasser G, Hirmann E, Thaler A, Radner W: Evaluating reading acuity and speed in children
+                                                          with microstrabismic amblyopia using a standardized reading chart system. Graefes Arch Clin Exp
+                                                          Ophthalmol. 2005, 243:1228-35. 10.1007/s00417-005-1187-9
+                                                     6.   Kanonidou E, Proudlock FA, Gottlob I: Reading strategies in mild to moderate strabismic amblyopia: an eye
+                                                          movement investigation. Invest Ophthalmol Vis Sci. 2010, 51:3502-8. 10.1167/iovs.09-4236
+                                                     7.   Kelly KR, Jost RM, De La Cruz A, Birch EE: Amblyopic children read more slowly than controls under natural,
+                                                          binocular reading conditions. J AAPOS. 2015, 19:515-20. 10.1016/j.jaapos.2015.09.002
+                                                     8.   Fernandes AG, Ferraz NN: The effects of amblyopia on children's reading performance after patching
+                                                          treatment. Eur J Ophthalmol. 2022, 32:575-9. 10.1177/1120672121998248
+                                                     9.   Kortuem C, Marx T, Altpeter EK, Trauzettel-Klosinski S, Kuester-Gruber S: Comparing reading speeds for
+                                                          reading standardized single sentences and paragraphs in patients with maculopathy. Ophthalmic Res. 2021,
+                                                          64:512-22. 10.1159/000509687
+                                                    10.   Ousler GW 3rd, Rodriguez JD, Smith LM, Lane KJ, Heckley C, Angjeli E, Abelson MB: Optimizing reading
+                                                          tests for dry eye disease. Cornea. 2015, 34:917-21. 10.1097/ICO.0000000000000490
+                                                    11.   Ramulu PY, West SK, Munoz B, Jampel HD, Friedman DS: Glaucoma and reading speed: the Salisbury Eye
+                                                          Evaluation project. Arch Ophthalmol. 2009, 127:82-7. 10.1001/archophthalmol.2008.523
+
+
+
+2023 Lamoureux et al. Cureus 15(4): e38196. DOI 10.7759/cureus.38196                                                                                                    4 of 5
+                                                    12.   Legge GE, Ross JA, Luebker A, LaMay JM: Psychophysics of reading. VIII. The Minnesota Low-Vision
+                                                          Reading Test. Optom Vis Sci. 1989, 66:843-53. 10.1097/00006324-198912000-00008
+                                                    13.   Radner W, Willinger U, Obermayer W, Mudrich C, Velikay-Parel M, Eisenwort B: [A new reading chart for
+                                                          simultaneous determination of reading vision and reading speed]. Klin Monbl Augenheilkd. 1998, 213:174-
+                                                          81. 10.1055/s-2008-1034969
+                                                    14.   Altpeter EK, Marx T, Nguyen NX, Naumann A, Trauzettel-Klosinski S: Measurement of reading speed with
+                                                          standardized texts: a comparison of single sentences and paragraphs. Graefes Arch Clin Exp Ophthalmol.
+                                                          2015, 253:1369-75. 10.1007/s00417-015-3065-4
+                                                    15.   Hahn GA, Penka D, Gehrlich C, et al.: New standardised texts for assessing reading performance in four
+                                                          European languages. Br J Ophthalmol. 2006, 90:480-4. 10.1136/bjo.2005.087379
+                                                    16.   Messias A, Velasco e Cruz AA, Schallenmüller SJ, Trauzettel-Klosinski S: [New standardized texts in
+                                                          Brazilian Portuguese to assess reading speed--comparison with four European languages]. Arq Bras
+                                                          Oftalmol. 2008, 71:553-8. 10.1590/s0004-27492008000400016
+                                                    17.   Trauzettel-Klosinski S, Dietz K: Standardized assessment of reading performance: the New International
+                                                          Reading Speed Texts IReST. Invest Ophthalmol Vis Sci. 2012, 53:5452-61. 10.1167/iovs.11-8284
+                                                    18.   Wang QH, Ren XT, Hu J, Li Q, Cui SS, Zou YY: [Preliminary study on reading speed test with IReST for
+                                                          normally-sighted young Chinese readers]. Zhonghua Yan Ke Za Zhi. 2018, 54:120-4.
+                                                          10.3760/cma.j.issn.0412-4081.2018.02.010
+                                                    19.   Gleni A, Ktistakis E, Tsilimbaris MK, Simos P, Trauzettel-Klosinski S, Plainis S: Assessing variability in
+                                                          reading performance with the New Greek Standardized Reading Speed Texts (IReST). Optom Vis Sci. 2019,
+                                                          96:761-7. 10.1097/OPX.0000000000001434
+                                                    20.   Morrice E, Hughes J, Stark Z, Wittich W, Johnson A: Validation of the International Reading Speed Texts in
+                                                          a Canadian Sample. Optom Vis Sci. 2020, 97:509-17. 10.1097/OPX.0000000000001538
+                                                    21.   Gold E, McAlpine J: Canadian English: A Linguistic Reader . Queen's University, Kingston, Ontario; 2010.
+                                                    22.   Morrice E, Soldano V, Addona C, Murphy CE, Johnson AP: Validation of the International Reading Speed
+                                                          Texts in a sample of older (60+) Canadian adults. Optom Vis Sci. 2021, 98:971-5.
+                                                          10.1097/OPX.0000000000001746
+                                                    23.   Calabrèse A, Cheong AM, Cheung SH, et al.: Baseline MNREAD measures for normally sighted subjects from
+                                                          childhood to old age. Invest Ophthalmol Vis Sci. 2016, 57:3836-43. 10.1167/iovs.16-19580
+
+
+
+
+2023 Lamoureux et al. Cureus 15(4): e38196. DOI 10.7759/cureus.38196                                                                                                   5 of 5
+

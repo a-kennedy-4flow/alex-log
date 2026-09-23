@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — option B — sliders that hold the hundred</title>
+<link rel="stylesheet" href="f-board.css">
+<link rel="stylesheet" href="shares.css">
+<style>
+th.share{width:250px}
+.sl{display:flex;align-items:center;gap:8px}
+.sl input[type=range]{flex:1;min-width:0}
+.sl b{min-width:5ch;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+/* The pin. A pinned row is held out of the balancing. */
+.pin{border:1px solid var(--warm-grey);background:var(--white);color:var(--grey);border-radius:var(--r);padding:3px 8px;cursor:pointer;font-size:12px;line-height:1.5}
+.pin[aria-pressed=true]{background:var(--smart-blue);border-color:var(--smart-blue);color:var(--white)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#">Month view</a><a href="#" class="on">Quick fill</a><a href="#">Guided build</a><a href="#">My settings</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Option B. Dragging one share takes it from the others.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <h2>Quick fill</h2>
+      <p class="lead">Give each cost centre a share of the month. The tracker fills the working days from the first onwards and skips the days it books nothing on.</p>
+
+
+      <table class="fill">
+        <thead>
+          <tr>
+            <th class="cc">Cost centre</th>
+            <th class="spec">Specification</th>
+            <th class="share">Share</th>
+            <th class="days">Days</th>
+            <th class="tasks">Tasks</th>
+            <th class="act"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <span class="acts">
+                <button type="button" class="btn">Add a cost centre</button>
+                <button type="button" class="btn" id="even">100 / n</button>
+              </span>
+            </td>
+            <td class="fig num" id="total">100 %</td>
+            <td class="fig num" id="booked">14.5</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="warn" id="warn" hidden>The shares must add up to 100 per cent.</p>
+
+      <div class="bottom">
+        <p>Working days: 18 &middot; Target: 14.5 &middot; This replaces everything already booked in May.</p>
+        <button type="button" class="primary">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><b class="won">Chosen 2026-09-22.</b> <b>Option B. Sliders that hold the hundred.</b> What one row takes the others give up in the proportion they already held. The total is a hundred at every moment so the error message never appears and <code>100 / n</code> is only a starting point.
+    Hold pins a row so a share the user has settled is not moved by the next drag.
+    It costs predictability. A drag on one row rewrites three figures the user did not touch, and that is the thing people distrust in a control like this. Hold is the answer to it and it is one more thing to learn.
+    It costs column width. It also costs the last row: with three rows pinned a drag has nowhere to put the remainder and the handle stops dead.
+    Built in <code>SimpleView.vue</code> with the balancing in <code>balanceShares</code> in core. The share cell went to two lines there rather than the one this page uses, because the running app gives the table 732 px and the cost centre column takes 321 px of it, which put the figure off the visible table. Two lines also give the track 148 px where one line left it 95 px.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="shares.js"></script>
+<script>
+const pinned = new Set()
+
+/**
+ * Hands the rest of the hundred to the rows that are neither pinned nor the one
+ * being dragged. It is shared out in the proportion those rows already hold so
+ * a row at twice another stays at twice it. The remainder lands on the largest
+ * so the total is exactly a hundred rather than 99.
+ */
+function balance(moved) {
+  const free = MIX.map((row, at) => at).filter((at) => at !== moved && !pinned.has(at))
+  if (free.length === 0) return
+  const held = MIX.reduce((sum, row, at) => sum + (at === moved || pinned.has(at) ? row.share : 0), 0)
+  const left = Math.max(0, 100 - held)
+  const was = free.reduce((sum, at) => sum + MIX[at].share, 0)
+  const exact = free.map((at) => (was === 0 ? left / free.length : (MIX[at].share / was) * left))
+  const out = exact.map(Math.floor)
+  let over = left - out.reduce((a, b) => a + b, 0)
+  const order = exact.map((value, i) => ({ i, part: value - Math.floor(value) })).sort((a, b) => b.part - a.part)
+  for (const item of order) { if (over <= 0) break; out[item.i] += 1; over -= 1 }
+  free.forEach((at, i) => (MIX[at].share = out[i]))
+}
+
+function draw() {
+  renderRows((row, at) => `<span class="sl">
+      <button type="button" class="pin" aria-pressed="${pinned.has(at)}" data-at="${at}" title="Hold this share">Hold</button>
+      <input type="range" min="0" max="100" step="1" value="${row.share}" data-at="${at}" aria-label="Share of the month">
+      <b class="num">${row.share} %</b>
+    </span>`)
+  renderTotals()
+  for (const slider of document.querySelectorAll('.sl input')) {
+    slider.addEventListener('input', () => {
+      const at = Number(slider.dataset.at)
+      MIX[at].share = Number(slider.value)
+      balance(at)
+      redraw()
+    })
+  }
+  for (const pin of document.querySelectorAll('.pin')) {
+    pin.addEventListener('click', () => {
+      const at = Number(pin.dataset.at)
+      if (pinned.has(at)) pinned.delete(at); else pinned.add(at)
+      pin.setAttribute('aria-pressed', String(pinned.has(at)))
+    })
+  }
+}
+function redraw() {
+  const days = daysPerRow()
+  document.querySelectorAll('#rows tr').forEach((tr, at) => {
+    tr.querySelector('.sl b').textContent = MIX[at].share + ' %'
+    tr.querySelector('.sl input').value = MIX[at].share
+    tr.querySelector('td.fig').textContent = days[at].toFixed(1)
+  })
+  renderTotals()
+}
+document.querySelector('#even').addEventListener('click', () => { pinned.clear(); spreadEvenly(); draw() })
+draw()
+</script>
+</body>
+</html>

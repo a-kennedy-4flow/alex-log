@@ -1,0 +1,1220 @@
+                                                                                                                 TYPE Original Research
+                                                                                                                 PUBLISHED 20 April 2026
+                                                                                                                 DOI 10.3389/fped.2026.1737520
+
+
+
+
+                                             Differential profiles of
+                                             reading development in
+EDITED BY
+Aparecido José Couto Soares,
+                                             neurodevelopmental disorders
+Federal University of São Paulo, Brazil
+
+REVIEWED BY
+                                             under an adapted tier 2 response
+Luciana Mendonça Alves,
+Centro Universitário Metodista Izabela
+Hendrix (Izabela Hendrix University),
+                                             to Intervention protocol
+Brazil
+Adriana Marques de Oliveira,
+Federal University of Santa Maria, Brazil    Renata Mousinho1*, Fernanda Mesquita1*, Lia Pinheiro1*,
+*CORRESPONDENCE                              Cristina Leitão1*, Rosinda Martins Oliveira2*, Felipe Pegado3* and
+Renata Mousinho                              Erika Carvalho Rodrigues4*
+   renatamousinho.ufrj@gmail.com
+Fernanda Mesquita                            1
+                                              Speech Therapy Department, School of Medicine, Federal University of Rio de Janeiro, Rio de Janeiro,
+   fernanda.mesquita76@gmail.com             Brazil, 2Psychology Institute, Federal University of Rio de Janeiro, Rio de Janeiro, Brazil, 3Laboratory for
+Lia Pinheiro                                 the Psychology of Child Development and Education (LaPsyDÉ), Université Paris Cité, Paris, France,
+   liapma@gmail.com                          4
+                                              D’Or Institute for Research and Education, IDOR, Rio de Janeiro, Brazil
+Cristina Leitão
+   crisleitao18@gmail.com
+Rosinda Martins Oliveira
+                                             Introduction: Reading proficiency is a foundational skill. Failure to achieve
+   rosindamoli@gmail.com
+Felipe Pegado                                reading competence constitutes a global educational and public health
+   felipe.pegado@u-paris.fr                  challenge. This burden is especially high among children with
+Erika Carvalho Rodrigues
+                                             neurodevelopmental conditions. Despite the availability of evidence-based
+   erikacrodrigues@gmail.com
+RECEIVED 01 November 2025
+                                             frameworks, such as Response to Intervention (RTI), a lack of scalable,
+REVISED 08 February 2026                     context-sensitive models remains for supporting struggling readers in low-
+ACCEPTED 23 February 2026
+PUBLISHED 20 April 2026
+                                             resource environments. Building on this context, this study describes the Less
+                                             Intensive Response to Intervention Tier 2 (LIRTI2). We hypothesize that the
+CITATION
+Mousinho R, Mesquita F, Pinheiro L,          LIRTI2 will improve reading speed and comprehension in children with
+Leitão C, Oliveira RM, Pegado F and          Attention-Deficit/Hyperactivity Disorder (ADHD), Borderline Intellectual
+Rodrigues EC (2026) Differential profiles    Functioning (BIF), and those at risk for Dyslexia (arDYS). We also predict
+of reading development in
+neurodevelopmental disorders under an        differential effectiveness of the intervention across neurodevelopmental profiles.
+adapted tier 2 response to Intervention      Methods: This retrospective, service-based study included 90 children (median
+protocol.                                    age = 9 years, 3rd grade). Participants (ADHD = 37, BIF = 14, and arDYS = 39)
+Front. Pediatr. 14:1737520.
+doi: 10.3389/fped.2026.1737520               completed 18 weekly, two-hour sessions per week that combined explicit
+                                             phonological awareness and fluency-focused instruction with playful, low-
+COPYRIGHT
+© 2026 Mousinho, Mesquita, Pinheiro,         cost materials. For the intervention, students were divided into small groups
+Leitão, Oliveira, Pegado and Rodrigues.      based on reading proficiency. Reading speed (words per minute) and reading
+This is an open-access article distributed   comprehension (literal questions) were assessed before and after the
+under the terms of the Creative
+Commons Attribution License (CC BY).         intervention. The groups were similar in age, school grade, and sex distribution.
+The use, distribution or reproduction in     Results: A significant diagnostic effect was found on post-intervention reading
+other forums is permitted, provided the      speed, after adjusting for baseline reading speed and schooling [ANCOVA F
+original author(s) and the copyright
+owner(s) are credited and that the           (2,85) = 4.345, p > 0.01]. The ADHD group demonstrated significantly higher
+original publication in this journal is      reading speed than BIF ( p = 0.034) and arDYS ( p = 0.047), whereas the BIF–
+cited, in accordance with accepted           arDYS comparison was not significant. While clinical group was not associated
+academic practice. No use, distribution
+or reproduction is permitted which does      with reading comprehension level (low, medium, high) before LIRTI2, this
+not comply with these terms.                 association became significant after the intervention [χ 2(4, N = 90) = 14.75,
+                                             p = 0.005]. Adjusted standardized residuals indicated that more children with
+                                             ADHD achieved “high” comprehension levels.
+
+
+
+
+Frontiers in Pediatrics                                              01                                                                  frontiersin.org
+Mousinho et al.                                                                                                      10.3389/fped.2026.1737520
+
+
+
+
+                                              Discussion: LIRTI2 is an out-of-school, small-group intervention with potential
+                                              scalability in low-resource settings where access to services is limited. Reading
+                                              fluency and comprehension improved following the intervention, with larger
+                                              gains in children with ADHD than in those with BIF or arDYS. Future studies
+                                              with follow-up are needed to confirm which learner profiles benefit most and
+                                              to determine the intervention’s broader academic impact.
+
+                                              KEYWORDS
+
+                                              attention-deficit/hyperactivity disorder, borderline intellectual functioning, dyslexia,
+                                              reading comprehension, reading speed, response to intervention
+
+
+
+
+1 Introduction                                                              in reading fluency and orthographic processing that are
+                                                                            disproportionate to the individual’s development in other
+    Reading is a critical prerequisite for full participation in            cognitive or academic domains (16, 17). In contrast, ADHD is
+democratic societies and the exercise of citizenship (1).                   characterized by persistent patterns of inattention, hyperactivity,
+Functional reading goes beyond basic decoding, encompassing                 and impulsivity that cause significant functional impairments
+the capacity to understand, interpret, and apply written                    (18), which can hinder the development of reading fluency (19,
+information in diverse settings, including societal and                     20). Meanwhile, children with BIF are characterized by
+institutional domains (2). Despite global advances, over 770                intellectual abilities that are below average but not low enough
+million adults remain illiterate (1), and many others lack                  to meet the criteria for Intellectual Disability (21). Those
+functional reading, even in high-income countries, due to                   children tend to show global developmental delays, including
+educational inequities (3). In Brazil, only 12% of adults                   difficulties in reading acquisition, consistent with broader
+demonstrate full functional reading (4), and students score                 impairments across cognitive and adaptive domains (22).
+significantly below the OECD (Organisation for Economic Co-                      Over the past decades, numerous intervention programs have
+operation and Development) Programme for International                      been developed and tested to support at-risk readers, with a
+Student Assessment (PISA) reading average (5).                              growing body of evidence highlighting the effectiveness of
+    Reading fluency can be defined as the ability to accurately             explicit instruction in foundational reading skills. These
+recognize and decode words, read at an appropriate pace (reading            foundational skills typically include systematic teaching of
+speed), and employ natural phrasing, intonation, and rhythm                 phonemic awareness, phonic coding, and spelling, as well as the
+(expressivity) to effectively convey meaning and support reading            development of reading fluency (23, 24). However, successful
+comprehension (6). Reading acquisition is shaped by a dynamic               remediation often requires a comprehensive approach that
+interplay of neurobiological and environmental factors (7).                 integrates vocabulary enhancement, reading comprehension
+    It is important to note that an increase in reading speed               strategies, and motivational support to address the multifaceted
+throughout formal schooling is well documented internationally.             nature of reading difficulties (25, 26). One framework that
+As children gain continued exposure to written language                     encompasses these essential elements within a data-driven,
+alongside systematic instruction and practice, their reading                multi-tiered system is Response to Intervention (RTI). The
+becomes progressively more fluent and automatic (8, 9). Studies
+                                                                            layered RTI model (27) consists of additive instructional
+conducted across diverse linguistic and educational contexts
+                                                                            components across three tiers: all students receive instruction in
+consistently demonstrate that reading speed develops
+                                                                            Tier 1, which includes universal screening conducted in the
+progressively from the early primary years through later
+                                                                            classroom; students demonstrating difficulties in Tier 1
+schooling—a trajectory shaped by cognitive maturation,
+                                                                            participate in small-group interventions in Tier 2; and finally,
+instructional quality, and increasing familiarity with written
+                                                                            students with persistent difficulties after Tiers 1 and 2 receive
+language (10, 11). In Brazil, similar findings have been reported,
+                                                                            individualized intensive interventions in Tier 3, indicating the
+highlighting the progressive development of reading fluency
+                                                                            presence of a learning disorder.
+across grade levels. The literature emphasizes the critical role of
+                                                                                 In numerous countries, particularly within the United
+schooling in fostering gradual improvements in reading speed,
+                                                                            States (28), the Response to Intervention model has been
+regardless of socioeconomic and instructional variability (12–14).
+    Difficulties in the reading acquisition process, irrespective of        implemented as a proactive approach to address
+their origin, are frequently associated with significant                    developmental challenges in educational settings. This
+consequences. Among children with neurodevelopmental                        structured,      multi-tiered     framework     facilitates  early
+disorders, as classified in the Diagnostic and Statistical Manual           identification and support for children requiring additional
+of Mental Disorders, Fifth Edition, Text Revision (DSM-5-TR),               assistance (29, 30). Recent international studies also highlight
+including Dyslexia, Attention-Deficit/Hyperactivity Disorder                the effectiveness of programs for reading interventions
+(ADHD), and borderline intellectual functioning (BIF), reading              implemented outside formal school environments, particularly
+impairments may lead to persistent academic and socio-                      within community-based or extracurricular settings. These
+emotional consequences (15).                                                interventions are typically designed for students identified as
+    Dyslexia is classified as a Specific Learning Disorder with             being at risk for reading difficulties—those who do not make
+impairment in reading (DSM-5-TR), characterized by difficulties             adequate progress following high-quality core instruction (like
+
+
+Frontiers in Pediatrics                                                02                                                         frontiersin.org
+Mousinho et al.                                                                                                     10.3389/fped.2026.1737520
+
+
+
+
+Tier 1), yet do not require the more intensive, individualized,                 By analyzing routinely collected service data, we address a
+specialized support characteristic of Tier 3 interventions (31,            critical evidence gap on Tier 2 supports for at-risk readers in
+32). Evidence from initiatives in countries such as Ghana,                 Brazil.
+Ethiopia, South Africa, the United Kingdom, and Australia                       Based on previous evidence, we hypothesize that the LIRTI2
+indicates that structured reading clubs, and targeted, skill-              will be effective in improving reading skills in children with
+specific instructional models can lead to measurable                       neurodevelopmental disorders, including ADHD, BIF and
+improvements in key foundational reading skills, including                 arDYS. Specifically:
+decoding, fluency, and comprehension (33–36).
+     Despite its international adoption, the implementation of two-           1. Children receiving the LIRTI2 intervention will show
+tier RTI practices related to reading development in Brazil remains              improvements in reading speed.
+very limited. Existing efforts remain scarce and are generally                2. The intervention will lead to measurable gains in
+restricted to isolated initiatives with small sample sizes,                      reading comprehension.
+primarily aimed at exploratory investigation (37–45). Although                3. The effectiveness of the intervention will differ across
+Brazilian education policy has expanded legal guarantees for                     neurodevelopmental profiles.
+children with disabilities, conditions such as Dyslexia and
+Attention Deficit Hyperactivity Disorder (ADHD) are not yet
+fully included within the scope of inclusive education. However,           2 Methods
+a law seeks to provide comprehensive support for students with
+Dyslexia, ADHD, and other learning disorders, with particular              2.1 General ELO program description
+emphasis on identification, without offering alternatives to
+address learning difficulties prior to referral for formal                     ELO is a program that aims to support children and families
+diagnosis (46–48).                                                         experiencing reading difficulties at the time at the Deolindo
+     The Writing, Reading, and Orality program (ELO, from the              Couto Institute of Neurology (CEP/INDC), approval number
+Portuguese Escrita, Leitura e Oralidade) is a project                      09/2010), Federal University of Rio de Janeiro, Brazil. Referrals
+implemented by the Federal University of Rio de Janeiro that               for the program originated from school teachers who identified
+specializes in supporting children with reading disorders. It              students with learning challenges, medical professionals, or self-
+integrates interdisciplinary diagnostic assessments and                    referrals from families prompted by information disseminated
+implements adapted Tier 2 and Tier 3 interventions within the              through multiple sources, including community organizations
+RTI (Response to Intervention) framework. The adapted Tier 2,              and media.
+here referred to as LIRTI2 (Less Intensive Response to                         Within the ELO initiative, the intake visit involved two
+Intervention—Tier 2) is specifically designed for implementation           simultaneous components: a structured caregiver interview to
+beyond the school environment, as demonstrated in other                    obtain medical, developmental, and educational history, and a
+studies (49). The LIRTI2 is delivered over 18 weeks, in weekly             brief developmental screening with the child. If this evaluation
+2 h sessions, to small groups (3–5 students). Students are                 indicated that the case was indicate for the program, the child
+grouped based on reading proficiency for optimizing                        would advance to a comprehensive interdisciplinary assessment.
+instructional effectiveness and addressing individual learning                 Interdisciplinary assessment sessions conducted by
+needs (50). Furthermore, arranging by reading level fosters a              professionals in neurology, neuropsychology, speech therapy,
+positive learning environment where students are more likely to            audiology, and psychopedagogy were typically carried out over
+engage collaboratively and feel motivated, thereby reducing                two days. Each assessment lasted approximately one hour, with
+frustration among struggling learners and boredom among more               scheduled breaks between sessions to avoid fatigue. To prevent
+advanced peers (51).                                                       overloading the child, no more than three assessments were
+     Recently, researchers (52) found that students who                    conducted per day. Following completion of the evaluations, all
+demonstrate stronger reading fluency during the first two years            results were reviewed in an interprofessional case conference
+of formal education tend to achieve greater gains in reading               attended by the involved professionals, where a preliminary
+performance throughout the remainder of primary school. These              diagnosis and recommendations were established.
+findings reinforce the critical value of early and targeted
+interventions, such as those provided through Tier 2 of the
+Response to Intervention (RTI) model.                                      2.2 Participants: from project ELO to LIRTI2
+     Building on this context, this study describes LIRTI2’s
+simplified structure and delivery in under-resourced, school-                  ELO Participants with reading difficulties and aged between 6
+adjacent settings and estimate treatment response in reading               and 14 years old were invited to LIRTI2 small group reading
+speed and reading comprehension, examining whether outcomes                intervention. Exclusion criteria to the LIRTI2 included the
+differ across diagnostic subgroups (ADHD, BIF and at risk for              presence of severe oral language disorders. The ELO Project is a
+Dyslexia—arDYS). Reading speed was selected as the primary                 reference center for Specific Learning Disorders. Accordingly,
+outcome, measured in words per minute in oral text, because it             children with severe oral language disorders (being non-verbal,
+integrates decoding and fluency, serving as a proxy for reading            presence of intellectual disability, presence of agrammatism,
+competence and a sensitive marker of reading disorders (53).               unintelligible speech, significant impairment in comprehension),
+Reading comprehension was assessed with literal questions on               after the initial evaluation process carried out by the
+grade-appropriate narrative texts (52).                                    multidisciplinary team (speech-language pathology, psychology,
+
+
+Frontiers in Pediatrics                                               03                                                        frontiersin.org
+Mousinho et al.                                                                                                     10.3389/fped.2026.1737520
+
+
+
+
+neurology, pedagogy), were referred to another health service that         intervention aimed at children at risk, characterized by moderate
+could provide appropriate care for this type of demand. In this            intensity, partial individualization, and systematic progress
+study, individuals with comorbid neurodevelopmental disorders              monitoring, but not by fully individualized, diagnosis-driven
+were also excluded from this analytic cohort.                              treatment. The primary goals at this tier are to provide structured
+    In the 6 years period analyzed in the present study (2010 to           support, observe the child’s response to intervention, and refine
+2016), 524 children were enrolled in the ELO program. Of these,            clinical hypotheses. Fidelity and monitoring were ensured
+155 were referred to the LIRTI2 small-group intervention and               through standardized procedures and regular team supervision.
+agreed to attend the weekly sessions; all met the predefined               Only after the implementation of Tier 2 intervention and the
+adherence threshold (≥90% of scheduled sessions).                          analysis of the children’s response patterns was it possible to
+    Among them, 90 were classified according to DSM-IV or                  confirm the diagnosis and, when indicated, transition to Tier 3,
+DSM-5 criteria as having Attention-Deficit/Hyperactivity                   which corresponds to highly individualized, intensive
+Disorder (ADHD); Borderline Intellectual Functioning (BIF) or              interventions explicitly guided by an established diagnosis.
+at risk for Dyslexia (arDYS), as described below. Figure 1 shows
+the flow diagram of the study.
+                                                                           2.3 LIRTI2 proposal
+    • Attention-Deficit/Hyperactivity       Disorder      (ADHD):
+      Characterized by persistent symptoms of inattention,                     The Less Intensive Response to Intervention Tier 2 program is a
+      hyperactivity, and impulsivity, significantly interfering            small-group, out-of-school intervention targeting fluency, and
+      with academic performance.                                           comprehension (Table 1). LIRTI2 one 2-hour session per week
+    • Borderline Intellectual Functioning (BIF): Classified under          over 18 weeks (36 h across one academic semester) in groups of
+      “Other Conditions That May Be a Focus of Clinical                    3–5 students. Pre- and post-testing comprised oral reading speed
+      Attention” in the DSM-5. These individuals presented IQ              (words per minute, WPM) and literal-level comprehension. This
+      (Intelligence Quotient) scores one to two standard                   approach was not as intensive as those described in the
+      deviations below the mean, often accompanied by deficits             aforementioned studies, primarily due to financial, transportation,
+      in academic achievement and cognitive functioning.                   and work-related constraints faced by participating families, as
+    • At risk for Dyslexia (arDYS): Composed of children showing           well as a shortage of specialized personnel.
+      a Dyslexia-consistent profile with Specific Learning Disorder            Throughout the entire intervention process low-cost materials
+      with impairment in reading, particularly affecting accuracy          were used (e.g., manipulatives, image supports, word banks,
+      and fluency. This label is applied descriptively and does            books, classroom-style boards, and pencils) and a play-based
+      not indicate confirmed clinical diagnoses at the time, but           approach was prioritized. This approach not only supported
+      rather reflects a risk profile aligned with current                  attention and enjoyment, but also contributed to the
+      educational and developmental screening practices, as                consolidation of learning, by reducing cognitive overload and
+      outlined in the DSM-5.                                               promoting a positive emotional climate. Additionally, parents
+                                                                           and caregivers were actively encouraged to reinforce activities at
+                                                                           home, fostering continuity and supporting skill generalization
+    Although the children were already followed by the service and         beyond the weekly LIRTI2 small group sessions.
+presented a preliminary clinical profile, the intervention was
+intentionally framed as Tier 2 rather than Tier 3. At the time of          2.3.1 Evaluations
+entry into the program, a formal diagnosis had not yet been
+established according to DSM-5 criteria, and the initial                       Oral text reading speed and comprehension were evaluated,
+assessment alone was not sufficient to confirm the diagnosis.              both pre- and post- LIRT2 intervention. Assessments were
+Within this model, Tier 2 is defined as a targeted, time-limited           conducted using narrative texts appropriate for the children’s
+                                                                           grade level (12). Reading speed was measured in words per
+                                                                           minute (WPM). Oral reading comprehension was assessed by
+                                                                           asking four (4° and 7° grades) to five (2°, 3° 5° and 6° grades)
+                                                                           questions about literal information from the text. The materials
+                                                                           are not derived from a nationally validated instrument; rather,
+                                                                           they consist of grade-appropriate texts that were previously used
+                                                                           in a longitudinal study conducted in Rio de Janeiro, the same
+                                                                           context in which the present study was developed, given the
+                                                                           limited availability of validated instruments for these specific
+                                                                           purposes at the time. The variation in the number of questions
+                                                                           across texts reflects the attempt to ensure full coverage of each
+                                                                           narrative through literal comprehension questions, resulting in
+                                                                           four questions for some texts and five for others. This approach
+                                                                           supports the comparability between the two conditions. To
+                                                                           address this issue, reading comprehension performance was
+   FIGURE 1
+   Flow diagram.
+                                                                           distributed based on the percentage of correct responses.
+                                                                           Comprehension outcomes were classified as low (0%–25%
+
+
+Frontiers in Pediatrics                                               04                                                         frontiersin.org
+Mousinho et al.                                                                                                                    10.3389/fped.2026.1737520
+
+
+
+
+TABLE 1 LIRTI2 general proposal.
+                                                                                         FIB = 7; arDYS = 14) and 64 low-fluency readers (ADHD = 34,
+                                                    2                                    FIB = 34; arDYS = 23).
+ General Framework of the LIRTi Intervention
+                                                                                             Participants were classified as emergent readers when their
+ Domain                                         Description                              reading speed was below 30 words correctly per minute
+                                                                                         (WCPM). This threshold was selected based on established
+ Primary Objective        Improvement of reading speed
+                                                                                         international benchmarks of oral reading fluency. Specifically,
+ Secondary                Enhancement of reading comprehension
+                                                                                         normative and longitudinal studies indicate that reading speed
+ Objective                                                                               at this level corresponds to the extreme lower end of the
+ Pre-intervention         Measurement of oral reading speed and comprehension            performance distribution, even in the early years of
+ Assessment                                                                              elementary school, and are associated with persistent deficits
+ Intervention             One session per week                                           in decoding and reduced automaticity (54, 55). To date, no
+ Intensity                                                                               quantitative benchmarks for reading speed have been
+                                                                                         established by the Brazilian Ministry of Education, whose
+ Session Duration         2 h per session
+                                                                                         policy documents address reading fluency only at a qualitative
+ Total Duration           18 sessions (36 h total) over one academic semester
+                                                                                         level. However, minimum cut-off values for reading speed and
+ Group Size               3–5 students                                                   accuracy required to support text comprehension in the
+ Instructional            Play-based instructional strategies                            second grade have been empirically estimated at 47 WCPM in
+ Approach                                                                                Brazilian samples (56), and studies published in speech-
+                                                                                         language pathology and education journals have reported
+ Home Component           Parental/caregiver involvement to support reading
+                                                                                         fluency levels of similar magnitude among children with
+                          strategies
+                                                                                         reading difficulties in the early school years (57). Accordingly,
+ Post-intervention        Measurement of oral reading speed and comprehension
+                                                                                         a cutoff of 30 WCPM represents a conservative criterion,
+ Assessment                                                                              consistent with an early developmental stage characterized by
+ Specific Characteristics by Reader Profile                                              limited automaticity in word recognition and insufficient
+                                                                                         fluency to support efficient text comprehension (58). In
+ Component                Emergent Readers                      Low-Fluency              clinical and educational contexts, performance at this level is
+                                                                  Readers                typically    interpreted     as    indicative    of    significant
+ Instructional Focus      Syllabic awareness;             Fluency training;              reading difficulty.
+                          phonemic awareness;             phonological awareness;            Low-fluency readers, on the other hand, have begun the
+                          letter-sound                    vocabulary expansion;
+                                                                                         formal reading process, reading more than 30 WPM, but
+                          correspondence; alphabetic      narrative skills
+                                                                                         continue to experience difficulties with reading fluency.
+                                                                                         Independent of the group, LIRTI2 encompassed foundational
+                          principle                       (comprehension and
+                                                                                         reading predictors (phonological awareness, alphabet knowledge,
+                                                          production)
+                                                                                         oral language) identified by the National Early Reading Panel
+ Materials                Play bricks; modeling clay;     Estrelinha Collection;
+                                                                                         (24), and evidence-based strategies from Brazilian studies (37,
+                          object images; mirrors;         poster boards; markers;
+                                                                                         59, 60). The intervention sought to improve reading speed as a
+                          mouth-shape cards;              word cards; collective         pathway to comprehension, since faster reading can enhance
+                          vocabulary words banks;         games; RAN boards              understanding by reducing the cognitive load involved in
+                          Image supports for story                                       decoding (61, 62).
+                          context
+
+LIRTI2, Less Intensive Response to Intervention Tier 2.                                  2.3.2.1 LIRTI2 for emergent readers
+                                                                                             For the emergent readers group, the intervention followed a
+                                                                                         progressive, explicit sequence of metaphonological instruction
+                                                                                         moving from syllable-level awareness toward letter–sound
+                                                                                         integration. Early sessions introduced syllabic segmentation and
+                                                                                         blending with concrete supports and picture cues; instruction
+correct), medium (26%–74% correct), or high (75%–100% correct).                          then addressed initial-syllable identification and alliteration,
+The number of participants within each diagnostic group (ADHD,                           rhyme detection, and broadened focus to medial and
+BIF, and arDYS) was then categorized according to these                                  final syllables, integrating storytelling. Sentence repetition,
+comprehension levels.                                                                    comprehension questions, and retellings were practiced to
+                                                                                         booster phonological working memory.
+2.3.2 Interventions                                                                          Subsequent sessions prioritized syllable manipulation and
+                                                                                         generalization. Pattern-based reading at the syllable level and the
+    LIRTI2 was collaboratively designed by professionals in                              development of a personal syllabary was stimulated. Alphabet
+speech-language pathology and pedagogy, focusing on                                      knowledge was reinforced via letter–sound mapping and
+enhancing reading skills. Children with profiles of ADHD, BIF,                           articulatory explanations. The sequence was concluded with
+and arDYS were assigned to one of two different types of                                 transitioned pattern-based reading at the phoneme level,
+intervention levels (emergent readers or low-fluency readers).                           promoting recognition and recombination of sound–letter
+The intervention included 26 beginner readers (ADHD = 5,                                 correspondences,         and       transfer       of        familiar
+
+
+Frontiers in Pediatrics                                                             05                                                         frontiersin.org
+Mousinho et al.                                                                                                                                    10.3389/fped.2026.1737520
+
+
+
+
+phonological/orthographic patterns to improve decoding, as                                   the specific book being worked on. Thus, the activities in the
+summarized in Table 2.                                                                       first session of one book were mirrored in the first session of
+                                                                                             subsequent books, with only vocabulary changes. The same was
+2.3.2.2 LIRTI2 for low-fluency readers                                                       applied to the second and third sessions. As previously noted,
+    All sessions for this group were based on the Estrelinha                                 the use of playful and engaging activities was a consistent
+Collection, Level 1 (63–66), which consists of six volumes, used                             feature of the intervention. Poster boards and markers were
+as instructional materials to develop automatic and meaningful                               used to create a large-format adapted board game designed for
+reading (i.e., reading fluency with comprehension). Intended for                             group play, incorporating key vocabulary and tasks targeting.
+children at the early stages of reading development, the                                     Table 3 summaries LIRTI2 for low-fluency readers group.
+Estrelinha Collection features mostly regular words, short texts,
+and a direct, repetitive language style, supported by simple and
+colorful illustrations. The first books introduce regular words                              2.4 Statistical analysis
+with simple syllables to support early reading development. The
+final books gradually introduce more basic positional rules and                                  Age, years of schooling, and IQ were compared across the
+more complex syllabic structures, such as three-element syllables.                           three diagnostic groups (ADHD, BIF and arDYS) enrolled in
+    Each book was explored over three consecutive sessions,                                  LIRTI2 using Kruskal–Wallis tests, given departures from
+aiming to provide a stable input, through repetition, and                                    normality on Shapiro–Wilk checks. When the omnibus test was
+gradually increase cognitive demands to promote mastery of the                               significant, Dunn’s pairwise tests with Holm correction were
+orthographic system. Each set of three sessions followed a                                   applied. To increase robustness to non-normality and unequal
+consistent structure, with only the target vocabulary adapted to                             group sizes and to provide interval estimates, bias-corrected and
+
+TABLE 2 LIRTI2 for emergent readers.
+
+
+ Structure of the Intervention per Session
+
+ Days       Main Skill                    Specific Objectives                                                  Strategies
+ 1–2         Syllabic Segmentation        Metaphonology                                                        Use of concrete supports (Lego, modeling clay), object images to
+             and Synthesis                Introduction of the concept of segmenting and blending               associate sound with visual representation
+                                          syllables
+
+ 3–4         Initial Syllable             Metaphonology                                                        Use of mirrors, mouth shape cards, articulatory explanations.
+             Identification &             Discrimination of similar and different initial syllables in words
+             Alliteration
+
+ 5           Consolidation of             Reinforcement and integration of content from sessions 2 to 5        Cumulative tasks with playful engagement
+             Previous Skills
+
+ 6–7         Rhyme Identification         Metaphonology                                                        Explicit instruction on stressed vowel, games with/without
+                                          Recognition of similarities in final sound segments of words         written cues, songs and short texts with rhymes
+
+ 8–9         Medial and Final             Metaphonology                                                        Storytelling, sentence repetition, comprehension questions,
+             Syllable Identification      Expansion of phonological attention to different syllabic            retelling to strengthen phonological working memory
+                                          positions
+
+ 10          Cumulative Review            Consolidation of all previously acquired skills                      Integrated tasks with playful and motivational elements
+
+ 11          Syllable Manipulation        Metaphonology                                                        Visual cues, use of blocks (highlighted syllables), step-by-step
+                                          Development of syllabic awareness: structure and manipulation        addition/ subtraction (final, initial, medial positions)
+
+ 12–13       Syllable Transposition       Metaphonology                                                        Story introduction, mouth shape cards, image support, word
+                                          Understanding how changing syllable order alters word                bank with all target words accessible
+                                          meaning
+
+ 14          Pattern-based reading at     Development awareness of the generative function of syllable         Promotion of a personal syllabary, developed from the
+             the syllable Level           recombination.                                                       segmentation of words of the logographic lexicon and the
+                                          Generalizing syllabic patterns to encode novel words                 recombination of syllables to create new words.
+
+ 15–16       Alphabet knowledge           Recognize and name letters of the alphabet and associate with        Introduction to the alphabet through letter–sound mapping,
+                                          their corresponding sounds.                                          mouth shape cards, and articulatory explanations.
+                                          Understand the role of letters in word formation.
+
+ 17/18       Pattern-based reading at     Recognition of recurring sound-letter correspondences                Recognition and recombining sound–letter correspondences.
+             the phoneme Level            Generalizing syllabic patterns to encode novel words                 Guided generalization of familiar phonological and orthographic
+                                          Enhancement of decoding skills                                       patterns.
+       2
+LIRTI , Less Intensive Response to Intervention Tier 2.
+
+
+
+
+Frontiers in Pediatrics                                                                 06                                                                         frontiersin.org
+Mousinho et al.                                                                                                                                          10.3389/fped.2026.1737520
+
+
+
+
+accelerated 95% confidence intervals (BCa 95% CIs) via bootstrap                                     To evaluate post-intervention differences in reading speed,
+resampling (1,000 samples) for pairwise differences were obtained.                               an analysis of covariance (ANCOVA) was employed with
+Sex distribution across groups was tested with chi-square tests                                  post-intervention reading speed as the dependent variable,
+of independence.                                                                                 diagnosis (three levels; ADHD, BIF and arDYS) as the fixed
+
+
+
+
+TABLE 3 LIRTI2 for Low-fluency readers.
+
+
+ Structure of the Intervention Sessions
+
+ Main Skill                                     Specific Objectives                                                                   Strategies
+ *High-frequency words from each book were previously selected as the basis for the following activities
+
+ Motivation strategies          Task engagement                                                    Based on the cover and adult prompts, nomination of illustrated elements and
+                                Generating hypotheses about the text                               formulation of hypotheses about the story’s content.
+                                Vocabulary development
+                                Reading Comprehension
+
+ Identification of              Visual input                                                       Shared reading: a collaborative reading practice in which the adult, pointing the
+ Grapheme/Phoneme               Reading accuracy                                                   correspondent letter, and children, read a text together. It is important to note
+ relationship                   Reading expressivity                                               that, even while maintaining a slower reading pace, extended pauses were avoided
+                                                                                                   in order to promote a more fluid reading.
+
+ Narrative skills               Improvement of Oral Narrative Comprehension                        Recounting the story, preserving its sequence and key elements, supported by
+                                Improvement of Oral Narrative Production                           verbal mediation and visual aids like pictures and miniature objects, tools that
+                                Reading Comprehension                                              enhanced recall and helped organize coherent narratives.
+
+ Phonological Awareness         Enhancement of metaphonology of the following levels:              Large-format board games were adapted to include phonological awareness tasks,
+                                rhyme, syllable, phoneme                                           such as the identification of word count in spoken sentences, word and syllable
+                                Reading accuracy                                                   segmentation, rhyming, syllable and phoneme identification (in various
+                                                                                                   positions), and advanced phonemic operations like blending, manipulation, and
+                                                                                                   transposition.
+
+ Rapid naming                   Support of visual word recognition. Visual Input                   Large-format RAN boards were gradually introduced, progressing from
+                                Formation of mental representation. Expansion of the               illustrated to written words and pseudowords. Activities involved choral and
+                                orthographic lexicon                                               individual naming, with varied prompting strategies to sustain engagement.
+
+ Phonological Working           Promotion of auditory memory.                                      Listening to sequences of words and repeating them in both original and reverse
+ Memory                         Strengthening of the ability to follow multi-step                  order, including sequences of syllables from target words. Additionally, a group
+                                information. Reading comprehension                                 memory game involved children sequentially recalling and adding words from
+                                                                                                   the book.
+
+  Visual input                  Strengthening of metaphonology                                     Reading of Isolated Words: each child received a word card to read, followed by
+                                Improvement of visual lexicon. Promotion of automatic              phonological awareness tasks (e.g., syllabic and phonemic segmentation,
+                                recognition of high-frequency words to reduce working              alliteration, and rhyme recognition). Children were then instructed to locate the
+                                memory load.                                                       word (e.g., pato) within the story text and highlight it. They also searched for
+                                                                                                   other words with similar syllabic structures.
+
+ Orthographic awareness         Memory consolidation and sight word recognition,                   Writing of Isolated Words: spelling key words on individual flashcards during
+                                particularly via handwriting                                       dictation activities. Then a crossword puzzle using the target vocabulary was
+                                Metalinguistic skills                                              completed, and a table was filled out to document features of each target word
+                                Reflection and self-monitoring                                     (identification of the number of syllables, letters, and phonemes).
+                                *From the third book onwards
+
+ Grammar and syntactic          Comprehension, by supporting idea organization and                 Sentence completion using visual prompts and color-coded structures to
+ awareness                      meaning construction. Reading fluency, as a result of              distinguish subjects and predicates. Later, individual words were placed on
+                                strengthened lexical retrieval and automaticity                    colored cards to represent grammatical classes (red for nouns, green for verbs,
+                                *From the third book onwards                                       blue for adjectives). Colors were eventually also used to indicate sentence position
+                                                                                                   —beginning, middle, and end—to support organization and comprehension.
+
+*At-home Component: All activities were introduced during the session to guide home-based practice throughout the week. Each child received a worksheet featuring ten target words from
+the book. With family support, they were instructed to (1) copy each word, (2) segment it into syllables, (3) generate a new word beginning with the same syllable, (4) find a rhyming word,
+and (5) count the number of letters and phonemes. These activities were designed to reinforce metaphonological skills on days without intervention. Families were advised to complete the
+activities using two words per day, ensuring consistent and distributed reflection on language units—rhyme, syllables, and phonemes—across multiple complexity levels. A table recording the
+number of syllables, letters, and phonemes for each target word was also to be completed.
+
+
+
+
+Frontiers in Pediatrics                                                                     07                                                                            frontiersin.org
+Mousinho et al.                                                                                                                                           10.3389/fped.2026.1737520
+
+
+
+
+factor, and baseline reading speed, and school year, as covariates.                               lower IQ (mean = 83.71, SD = 7.74) than those with ADHD
+Assumptions were checked as follows: homogeneity of variances,                                    (mean = 102.72, SD = 10.70; Dunn–Holm z = 4.692, p < .001,
+with Levene’s test, and normality of residuals, with Shapiro–Wilk                                 rrb = 0.905) and arDYS (mean = 105.76, SD = 12.47; z = 5.386,
+and Q–Q plot visual analysis. When the diagnosis effect was                                       p < .001, rrb = 0.921); ADHD vs. arDYS did not differ
+significant, we compared estimated marginal means (EMMs)                                          (z = −0.994, p = .320, rrb = 0.154). Furthermore, there were no
+across groups using Tukey-adjusted pairwise contrasts; BCa 95%                                    group differences in age [Kruskal–Wallis H(2) = 0.350, p = .84;
+CIs based on 1,000 bootstrap samples were reported alongside                                      h2 = 0.000]; school year [H(2) = 1.476, p = .48; h2 = 0.000]; or
+adjusted (p) values.                                                                              association between diagnosis group and sex [c2(2) = 0.189,
+    Reading comprehension (ordinal: Low, Medium, High) was                                        p = 0.91].
+examined using 3 × 3 chi-square tests of independence at pre-
+test and post-test. Cramér’s (V) was reported as effect size
+and adjusted standardized residuals were inspected to                                             3.2 Reading speed across groups
+identify cells driving the significant association.
+                                                                                                       Reading speed, measured in words per minute from orally
+                                                                                                  read texts according to the students’ grade level, is presented in
+3 Results                                                                                         Table 5, which shows reading speed across groups pre- and
+                                                                                                  post-intervention.
+3.1 Group comparisons                                                                                  An analysis of covariance (ANCOVA) was conducted to test
+                                                                                                  whether post-intervention reading speed differed among the
+      Table 4 presents the characteristics of the sample (sex, age,                               three diagnostic groups (ADHD, BIF, arDYS). Model
+grade level, and IQ) stratified by diagnostic group: Attention-                                   diagnostics supported ANCOVA assumptions (residual
+Deficit/Hyperactivity Disorder (ADHD), Borderline Intellectual                                    normality: Shapiro–Wilk (W = 0.974, p = .070); homogeneity of
+Functioning (BIF) and at risk for Dyslexia (arDYS). The                                           variances: Levene’s [F(2,87) = 1.74], ( p = .181)). The diagnosis
+assessment of intellectual functioning was conducted using the                                    effect was significant after adjusting for baseline reading speed
+Wechsler Intelligence Scale for Children, Third and Fourth                                        and school year [F(2,85) = 4.345, p = 0.016; partial ω 2 = 0.069].
+Editions (WISC-III and WISC-IV (62, 63), with the Full Scale                                      Baseline reading speed showed a large effect [F
+Intelligence Quotient (FSIQ) derived from the ten core subtests                                   (1,85) = 105.075, p < 0.001; partial ω 2 = 0.536], whereas school
+serving as the composite score. Even when derived from                                            year did not [F(1,85) = 0.009, p = 0.924; partial ω 2 = 0.000].
+different versions of the Wechsler Intelligence Scale for Children                                Bootstrapped post-hoc comparisons for Diagnosis (Tukey-
+(WISC-III or WISC-IV), IQ values remain valid and reliable                                        adjusted p-values; BCa 95% CIs, 1,000 bootstraps) indicated
+indicators of general intellectual functioning. Therefore, IQ                                     that ADHD had higher adjusted post-intervention reading
+scores were considered an appropriate criterion for participant                                   speed than BIF ( p = 0.034) and arDYS ( p = 0.047). The
+inclusion in the present study. It is important to clarify that                                   comparison between BIF and arDYS was not significant
+both the WISC-III and WISC-IV provide valid and reliable                                          ( p = 0.742) (Table 6).
+measures of full-scale IQ. The core construct of general
+intellectual ability assessed by these instruments remains
+consistent across versions. Therefore, the IQ values obtained                                     3.3 Reading comprehension categories
+from either edition are considered a valid and useful measure                                     distribution across groups
+for applying the study’s inclusion criteria, ensuring the
+consistency of our participant group in terms of cognitive ability.                                  At pre-test, there was no association between diagnosis
+    As expected, groups differed only in IQ [Kruskal–Wallis H                                     (ADHD, BIF and arDYS) and comprehension level [low,
+(2) = 30.23, p < .001; η2_rank = 0.325]. Participants with BIF had                                medium and high; 3 × 3; N = 90; c2(4) = 3.112, p = 0.539]; The
+
+
+TABLE 4 Sample demographic characteristics by diagnostic group.
+
+
+ Descriptive characteristics                               Diagnosis                               N                           Mean                    Standard Deviation
+  School Year                                              ADHD                          39: 16 girls; 23 boys                   3.49                               1.41
+
+                                                           BIF                           14: 6 girls; 8 boys                     2.93                               1.07
+
+                                                           arDYS                         37: 17 girls; 20 boys                   3.24                               1.50
+
+  Age                                                      ADHD                          39: 16 girls; 23 boys                   9.05                               1.61
+
+                                                           BIF                           14: 6 girls; 8 boys                     8.64                               1.28
+
+                                                           arDYS                         37: 17 girls; 20 boys                   8.81                               1.61
+
+  IQ                                                       ADHD                          39: 16 girls; 23 boys                  102.72                             10.70
+
+                                                           BIF                           14: 6 girls; 8 boys                    83.71                               7.74
+
+                                                           arDYS                         37: 17 girls; 20 boys                  105.76                             12.47
+
+N, number of participants; ADHD, attention-deficit/hyperactivity disorder; BIF, borderline intellectual functioning; arDYS, at risk for dyslexia; IQ, intelligence quotient.
+
+
+
+Frontiers in Pediatrics                                                                      08                                                                            frontiersin.org
+Mousinho et al.                                                                                                                                        10.3389/fped.2026.1737520
+
+
+
+
+distribution of comprehension profiles was similar across                                        year. A higher post-LIRTI2 reading speed was observed in the
+groups (e.g., “High”: ADHD 28.2%, BIF 28.6%, arDYS 27.0%;                                        ADHD children compared to both the BIF and arDYS groups.
+Figure 2/Pre).                                                                                   Regarding reading comprehension, before the LIRTI2, profiles
+     After LIRTI2, nevertheless, the association was significant                                 were similar across groups. Following the intervention,
+[3 × 3; N = 90; c2(4) = 14.75, p = 0.005] (Cramer’s V = 0.29/                                    nevertheless, the diagnostic group was significantly associated
+Figure 2/Post). Adjusted standardized residuals showed that in                                   with reading comprehension level.
+ADHD, “High” comprehension was higher than expected [32/
+39 = 82.1%; (r = +3.56)], “Medium” lower than expected [5/
+39 = 12.8%; (r = −3.44)], and “Low” was rare [2/39 = 5.1%;
+(r = −0.51)]. In contrast in BIF, “High” was lower than expected
+                                                                                                 4.1 Reading speed by diagnostic profile
+[5/14 = 35.7%; (r = −2.12)] and “Medium” tended to be higher
+                                                                                                      Students with ADHD showed greater reading speed compared
+[7/14 = 50.0%; (r = +1.55)]; and “Low” remained infrequent [2/
+                                                                                                 to those with BIF or arDYS after LIRTI2. However, no meaningful
+14 = 14.3%; (r = +1.24)]. Finally, for the arDYS group, “High”
+                                                                                                 difference was found between the BIF and arDYS groups. Other
+was again lower than expected [18/37 = 48.6%; (r = −2.03)] and
+                                                                                                 studies implementing Tier 2 of the RTI model, typically
+“Medium” higher [17/37 = 45.9%; (r = +2.33)], while “Low”
+                                                                                                 conducted more frequently and within school settings, have
+lasted uncommon [2/37 = 5.4%; (r = −0.40)]. Taken together,
+                                                                                                 reported similar results. Children with ADHD benefited the
+these results indicate that, post-LIRTI2, more ADHD
+                                                                                                 most from the structured intervention, supporting prior findings
+participants reached “High” comprehension, whereas the BIF
+                                                                                                 that, despite challenges related to attention regulation, executive
+and arDYS groups showed shifted distributions toward
+                                                                                                 functioning (19, 20), processing speed, and working memory
+“Medium”,        explaining     the     significant   diagnosis–
+                                                                                                 (67, 68), this population can respond effectively to targeted,
+comprehension association.
+                                                                                                 skill-specific reading instruction. The interactive and scaffolded
+                                                                                                 nature of the LIRTI2 model may have further enhanced
+                                                                                                 engagement and information retention. Reading interventions,
+4 Discussion                                                                                     whether delivered alone or in conjunction with ADHD
+                                                                                                 treatment, yield superior outcomes compared to ADHD
+     By analyzing routinely collected service data, we address a                                 treatment alone, reinforcing the benefits of reading-specific
+critical evidence gap on Tier 2, community-based supports for                                    support (66).
+at-risk readers, viable in Brazil and other contexts that limit RTI                                   One recent study also found that at least 30 h of phonological
+execution at the School, and patient and familiar availability to                                awareness instruction constitutes an evidence-based intervention
+attend to frequent intervention sessions.                                                        for the improvement of reading for this group (69). The present
+     Diagnosis was found to significantly influence post-                                        findings are clinically relevant given evidence that individuals
+intervention reading fluency, after controlling for reading                                      diagnosed ADHD in childhood continue to show deficits in
+velocity before the beginning of the intervention, and school                                    reading speed and comprehension into adulthood (70). Notably,
+
+
+TABLE 5 Reading speed across groups pre and post intervention.
+
+
+ Diagnosis                        N                                  Pre-intervention                                                          Post-intervention
+
+                                                        Mean                   Standard Deviation                              Mean                    Standard Deviation
+  ADHD                            39                     56.9                               29.7                                 79.8                            27.8
+
+  BIF                             14                     35.5                               23.6                                 50.2                            25.4
+
+  arDYS                           37                     37.0                               24.9                                 55.1                            24.3
+
+N, number of participants; ADHD, attention-deficit/hyperactivity disorder; BIF, borderline intellectual functioning; arDYS, at risk for dyslexia.
+
+
+
+
+TABLE 6 Pairwise comparisons of adjusted post-intervention Reading speed (EMM contrasts) across diagnostic groups.
+
+
+ Groups                                       Mean Difference (wpm)                                         95% bca CI                              SE               pTukey
+
+                                                                                                   Lower                    Upper
+  ADHD                  BIF                    12.936*                                             4.953                      23.562                4.697                 .034
+
+                        arDYS                  9.449*                                              1.813                      18.212                4.189                 .047
+
+  BIF                   arDYS                  −3.652                                              −12.463                    3.832                 3.985                 .742
+
+Values are mean differences (in words per minute), with bias-corrected and accelerated 95% confidence intervals (BCa 95% CI) based on 1,000 bootstrap resamples, standard errors, and
+Tukey-adjusted p-values.
+ADHD, attention-deficit/hyperactivity disorder; BIF, borderline intellectual functioning; arDYS, at risk for dyslexia; EMM, estimated marginal mean; SE, standard error; wpm, words per
+minute; pTukey, Tukey-adjusted p-value.
+*p < 0.05.
+
+
+
+Frontiers in Pediatrics                                                                     09                                                                          frontiersin.org
+Mousinho et al.                                                                                                                     10.3389/fped.2026.1737520
+
+
+
+
+   FIGURE 2
+   Distribution of reading comprehension categories by diagnostic group (pre- and post-intervention). Panels display the percentage of participants
+   within each diagnostic group (ADHD, BIF, arDYS) classified as High, Medium, or Low comprehension (within-group percentages sum to 100%).
+   Pre-intervention. Post-intervention. ADHD, attention-deficit/hyperactivity disorder; BIF, borderline intellectual functioning; arDYS, at risk for dyslexia.
+
+
+
+
+fluency difficulties were observed even among participants with                     longitudinal and case study data (75). This suggests that their
+otherwise adequate basic reading skills, as word recognition. In                    difficulties with fluency are not solely rooted in reading-specific
+this context, the proposed LIRTI2 may play an important role                        deficits, but are exacerbated by global cognitive limitations, such
+by systematically targeting fluency while supporting                                as inefficient information processing and limited executive
+comprehension, offering a viable and scalable option for                            functioning (73).
+learners who do not require Tier 3 services yet fail to progress                         Children arDYS also demonstrated modest rates in reading
+with core classroom instruction.                                                    speed, which aligns with a well-established body of literature
+     In contrast, students with BIF and arDYS showed more                           identifying fluency as a core, persistent deficit in this population
+constrained reading velocity after LIRTI2 although for differing                    (76). Dyslexia has been increasingly framed as a disorder
+reasons (71). Similar results were found in research in RTI 2                       marked by durable challenges in automatic word recognition
+tier, which indicate that tier 3 interventions within the RTI                       and phonological processing, regardless of the language’s
+framework are typically necessary for students with more                            orthography system (16). Even when systematic phonics-based
+persistent and severe learning difficulties, such as those                          instruction is provided, as in the Brazilian RTI study (45),
+associated with Dyslexia and BIF. These students often require                      fluency deficits often remain.
+individualized, intensive instruction that goes beyond the                               This phenomenon is linked to multiple neurocognitive factors
+support provided in Tier 2 (72).                                                    that hinder the development of automatic reading, thereby
+     The BIF group’s limited velocity is consistent with previous                   impairing fluency (77, 78). One of the primary contributors to
+findings that attribute intervention resistance to broad cognitive                  this persistent slowness is the phonological deficit, which may
+inefficiencies, including reduced working memory, processing                        impair the ability to manipulate the sounds of language and
+speed, and learning consolidation (71, 73).                                         results in inefficient decoding (76). Consequently, dyslexic
+     Although some children with BIF may achieve decoding                           readers often rely heavily on laborious, conscious decoding
+accuracy when given sufficient time, their slowness in reading                      strategies, which significantly slow down their reading speed (78).
+imposes a heavy cognitive load, particularly on phonological                             Additionally, poor integration between phonological and
+working memory, limiting their ability to process and integrate                     visual processing systems may contribute to the delayed
+textual information efficiently (74). They often remain                             automatization of grapheme–phoneme correspondences (79).
+significantly below normative expectations, as evidenced in                         Moreover, individuals with Dyslexia typically struggle to form
+
+
+Frontiers in Pediatrics                                                        10                                                                 frontiersin.org
+Mousinho et al.                                                                                                       10.3389/fped.2026.1737520
+
+
+
+
+stable and detailed orthographic representations, which are                components, including vocabulary knowledge, syntactic
+essential for the automatic recognition of words (80). This                processing, background knowledge, and executive functioning
+difficulty interferes with the transition from phonological                (88–90). Therefore, interventions must extend beyond reading
+decoding to fluent word recognition, a critical step in becoming           speed to target these foundational elements by adopting a
+a proficient reader.                                                       comprehensive approach that incorporates higher-order skills
+                                                                           such as vocabulary development, explicit instruction in
+                                                                           comprehension strategies, and motivational support to address
+4.2 Reading comprehension across                                           the multifaceted nature of reading difficulties (25, 26).
+diagnostic profiles
+    The three clinical groups presented relatively similar baseline        4.3 Adapting tier 2 interventions to
+levels of comprehension on the LIRTI2 prior to the intervention,           structural realities
+generally ranging from low to medium scores. After
+intervention, an statistical significant association was found                  Interventions grounded in multi-tiered systems of support for
+between diagnosis groups and comprehension levels. More                    children with reading difficulties have shown consistently positive
+children with ADHD achieved the “High” comprehension                       results. Particularly, Tier 2 of the Response to Intervention (RTI)
+category then expected. This can be explained by the nature of             framework is characterized by small-group, focused instruction
+ADHD-related difficulties, which often involve attentional                 delivered intensively (three to five times per week) has proven
+regulation rather than core linguistic impairments. Once                   to significant improvements in reading fluency and academic
+decoding becomes automatic, children with ADHD can better                  outcomes for students with reading difficulties. Research has
+allocate their limited attentional resources to comprehend (81).           demonstrated significant gains in reading fluency as a result of
+These findings reinforce that structured reading intervention              such interventions (41, 91, 92). However, implementing
+provides significant benefits for this group.                              supplemental reading programs for struggling readers remains
+    Children with Borderline Intellectual Functioning (BIF)                particularly challenging in low-resource contexts, where barriers
+showed more modest comprehension levels, which can be at                   often limit access and continuity (93).
+least partly accounted by broader cognitive challenges in this                  Embedding Tier 2 interventions within school settings, as
+population—namely deficits in working memory, processing                   originally conceptualized, may improve accessibility for
+speed, and executive function (78, 79).                                    vulnerable student populations. However, in Brazil, structural
+    Furthermore, these students typically present with additional          challenges, such as part-time school schedules, overcrowded
+language-related challenges, including restricted vocabulary,              classrooms, and lack of specialized teachers, significantly hinder
+reduced morphosyntactic awareness, and narrative difficulties,             participation in supplementary educational programs (94).
+that further constrain their ability to compensate for slow                     There are other factors such as vulnerability, and lack of access
+reading speed (82). As such, their fluency difficulties contribute         to transportation or parental availability that often prevent
+to weaker comprehension outcomes, as they struggle to                      children from participating. These challenges are especially
+maintain coherence across sentences and retain information                 pronounced in densely populated urban areas like Rio de
+over longer passages. For these students, nevertheless, fluency-           Janeiro, were inequities in support limit access for at-risk
+focused interventions may be insufficient on their own,                    learners. The present study’s age profile (mean 9 years old)
+highlighting the need for more comprehensive approaches that               aligns with prior reports of systematic delays in diagnostic
+integrate explicit language instruction, vocabulary development,           assessment and initiation of appropriate intervention, suggesting
+and comprehension strategies (82, 83).                                     that many children access services later than clinically advisable
+    After LIRTI2, children arDYS achieved “Medium”                         (95). These contextual barriers, spanning both educational
+comprehension more often than expected. This underscores                   provision and the healthcare system, likely exacerbate reading
+their potential to mitigate some of the challenges posed by the            difficulties and impede early identification and intervention (96).
+deficit (83). Even though dyslexic children read at a slower pace,              There is little doubt that children would benefit more, or
+a modest increase in reading speed may yield meaningful                    benefit more quickly, from intensive intervention programs;
+benefits for their comprehension, as it can reduce the cognitive           however, the challenges of implementing such practices are
+load on phonological working memory (79). This, in turn,                   considerable. These considerations underscore the importance of
+enhances their ability to retain and integrate information across          aligning intervention models with the structural and contextual
+the text, especially as they develop compensatory strategies to            realities in which they are applied. RTI Tier 2 interventions for
+support comprehension (84). While dyslexic readers often                   children with reading difficulties can be adapted to account for
+struggle to transition from phonological decoding to automatic             structural inequalities, ensuring not only high instructional
+word recognition due to underdeveloped orthographic                        quality and fidelity but also logistical viability within under-
+representation (73), strategies such as repeated reading, assisted         resourced scenarios (97, 98).
+reading, and prosody training can enhance fluency and free up                   To address these issues, an adaptation approach, LIRTI2 (Less
+cognitive resources for comprehension (85).                                Intensive Response to Intervention—Tier 2) was structured. One
+    Collectively, these findings highlight the essential role of           of its key adaptations is that it is delivered outside the
+reading speed in supporting reading comprehension (86, 87),                traditional school setting. Another important distinction is its
+although speed alone is not sufficient. Effective comprehension            lower weekly frequency: sessions were held only once per week,
+depends on the integration of multiple cognitive and linguistic            but over a longer duration than typical programs—a total of 18
+
+
+Frontiers in Pediatrics                                               11                                                           frontiersin.org
+Mousinho et al.                                                                                                        10.3389/fped.2026.1737520
+
+
+
+
+weeks, with each session lasting two hours. Despite these                   fluency gains (104). This does not preclude adding or
+adaptations, the program maintains core elements of Tier 2 RTI              adapting interventions in other domains or at a later stage,
+approaches. It provides supplemental small-group instruction                if required.
+(27, 99), and its instructional methodology is grounded in                       Another concern relates to the structure of the RTI model itself,
+systematic and explicit teaching practices (50, 100), focusing on           where students are often required to “fail” Tier 2 supports before
+the development of phonological decoding, word recognition,                 access to more intensive Tier 3 interventions. The concern is that
+and oral reading fluency (24).                                              this reactive progression may delay timely identification of
+     The delivery of Tier 2 interventions in specialized clinical           students with significant learning needs, potentially hindering
+contexts constitutes a principled adaptation of the Response to             early and effective support (103, 105). However, in the Brazilian
+Intervention (RTI) framework. We argue that fidelity to the core            context, this particular criticism of RTI does not appear to be
+logic of Tier 2 is maintained through: (1) providing standardized,          supported by empirical evidence since one notable characteristic
+evidence-based intervention to a targeted group; (2) using                  of the Brazilian context is the late diagnosis of learning
+frequent progress monitoring to inform instructional adaptation;            difficulties, as previously discussed (95). As the intervention is
+and (3) establishing clear decision rules for judging non-response.         often not embedded in the school setting, families typically access
+By shifting the setting from school to clinic, this model offers a          specialized services only at later stages.
+structured, diagnostic intervention trial characterized by                       Therefore, adaptations of the RTI (Response to
+controlled conditions and expert implementation for students                Intervention) model, like LIRTI2 that are viable in different
+demonstrating insufficient response to initial school-based                 contexts can help children with persistent reading difficulties
+support. This clinical-tier approach is theoretically grounded in           to be referred to healthcare services much earlier. This
+integrated service models, such as the Interconnected Systems               premise aligns with a Delphi study (17), which emphasizes the
+Framework (ISF), which formally embeds specialists within multi-            urgent need for early support for all children showing
+tiered support systems to address complex student needs (101).              difficulties at the onset of reading, and underscores that
+Empirically, it aligns with evidence demonstrating that                     effective intervention must be rooted in the principle of
+standardized, small-group interventions, when delivered with high           equitable access to instruction.
+fidelity, can effectively remediate skill deficits for a substantial             Research consistently shows that individuals struggling
+proportion of at-risk learners (99, 102). Consequently, the clinical        with reading, regardless of socioeconomic background or
+setting functions not as a separate, alternative system, but as a           diagnostic risk, require timely, targeted support, including
+specialized extension of the school’s (Multi-Tiered System of               continuous progress monitoring and access to instructional
+Supports (MTSS) continuum, providing an intermediate level of               resources. Delaying assistance can impede learning and
+support prior to consideration for maximally individualized                 aggravate existing achievement gaps (95, 106). Early
+(Tier 3) services. Thus, while the context and dosage schedule              intervention should be based on observable performance
+differ from traditional school-based Tier 2, the model maintains            indicators, with more comprehensive assessments introduced
+comparability in its functional components and decision-making              as needed (16).
+logic, allowing for possible comparison.                                         Furthermore, the healthcare system can also potentially benefit
+     Accordingly, LIRTI2 operationalizes a Tier 2, equity-oriented          from the dissemination of initiatives like LIRTI2, that can help to
+adaptation: it reconfigures dose and setting to fit the structural          ensure that only those truly in need of specialized medical
+realities that constrain access, without abandoning core RTI                evaluation are referred to health professionals. This targeted
+principles like explicit, skills-based instruction and supplemental         approach not only may optimize the use of limited resources
+small-group work. Policy-wise, aligning RTI-inspired supports with          but also eases pressure on already overstretched services.
+Brazil’s framework could enhance early identification and timely            Providing timely, tailored educational support to children at risk
+Tier 2 access. It is important to emphasize that this does not              for neurodevelopmental disorders, but who do not require
+replace the need for the first tier of RTI, that is, the universal          clinical intervention, may reduce unnecessary referrals and could
+implementation of evidence-based literacy development. On the               allow specialized care to be focused on those with more
+contrary, implementing Tier 2 of RTI makes much more sense—                 complex needs (107).
+and would likely involve fewer children—if Tier 1 were fully                     Furthermore, scaling initiatives such as LIRTI2 may
+ensured in regular classroom instruction.                                   optimize healthcare resource use by restricting referrals for
+                                                                            specialized assessment to cases with clear clinical indication.
+                                                                                 The integration of LIRTI2 approaches in after-school or
+4.4 Bridging educational interventions and                                  community settings has the potential to foster early literacy by
+health                                                                      broadening access to reading support beyond traditional
+                                                                            classrooms (108), offering a low-cost scalable complement to
+    Despite the adoption of RTI frameworks, tier 2 interventions            core instruction for underserved populations.
+have been the subject of critical debate. One common critique
+concerns the use of a single, uniform intervention model to
+address a wide range of reading difficulties (103). Nonetheless,            4.5 Conclusion, limitation and future
+given that the foundational components of reading, as                       directions
+phonemic awareness, decoding, fluency, and comprehension,
+are well-established predictors of reading success, providing                   This retrospective, service-based study describes LIRTI2, a Tier
+targeted support in these domains is warranted to optimize                  2 intervention within the RTI framework, and reports a diagnostic
+
+
+Frontiers in Pediatrics                                                12                                                           frontiersin.org
+Mousinho et al.                                                                                                         10.3389/fped.2026.1737520
+
+
+
+
+effect on post-intervention reading speed, and comprehension,               Writing – original draft, Writing – review & editing. RO: Data
+with     Attention-Deficit/Hyperactivity   Disorder    (ADHD)               curation, Formal analysis, Writing – original draft, Writing –
+outperforming and Borderline Intellectual Functioning (BIF)                 review & editing. FP: Formal analysis, Methodology, Writing –
+and at risk for Dyslexia (arDYS) children. Several limitations              original draft, Writing – review & editing. ER: Formal analysis,
+warrant caution. First, the observational design without a                  Funding acquisition, Investigation, Methodology, Resources,
+concurrent control group precludes causal inference and leaves              Writing – original draft, Writing – review & editing.
+open the possibility of unmeasured confounding, and selection
+bias. Second, the BIF subgroup was relatively small, limiting
+precision and generalizability; findings should be replicated in            Funding
+larger, more diverse samples and, where feasible, in multisite
+implementations. Third, reading comprehension was measured                      The author(s) declared that financial support was received for
+with a small number of literal items per passage and                        this work and/or its publication. The ELO project was sponsored
+summarized in broad percentage bands (low/medium/high),                     by the ABCD Institute throughout the period covered in this
+likely reducing metric sensitivity, and masking finer gains in              article. This research was supported by intramural grants from
+inferential or integrative comprehension. Finally, longitudinal             IDOR and Rede D’Or São Luiz Hospital Network, and external
+studies with follow up are needed to assess the sustainability of           grants from CNPq (Conselho Nacional de Desenvolvimento
+gains and their broader academic impact.                                    Científico e Tecnológico), CAPES (Coordenação de
+     Notwithstanding these limitations, LIRTI2-like Tier 2                  Aperfeiçoamento de Pessoal de Ensino Superior), FAPERJ
+adaptations can expand access to fluency-focused, explicit                  (Fundação de Amparo à Pesquisa do Rio de janeiro).
+instruction in under-resourced settings. By triaging non-
+responders to more specialized care, these programs may
+streamline the healthcare system–level referral pathway.                    Acknowledgments
+Prospective evaluations should confirm which learner profiles
+benefit most to guide targeted scale-up.                                        We are deeply grateful to all the children and their guardians
+                                                                            for their participation in this study. A heartfelt thank you to all the
+                                                                            professionals who participated in the ELO project at any point.
+Data availability statement
+    The datasets presented in this article are not readily available        Conflict of interest
+because all data were handled in accordance with ethical
+guidelines and are protected to ensure participant                              The author(s) declared that this work was conducted in the
+confidentiality. Requests to access the datasets should be                  absence of any commercial or financial relationships that could
+directed to the corresponding authors.                                      be construed as a potential conflict of interest.
+
+
+
+Ethics statement                                                            Generative AI statement
+    The studies involving human participants were reviewed and                   The author(s) declared that generative AI was not used in the
+approved by the Ethics Review Committee of the Federal                      creation of this manuscript.
+Neurology Institute Deolindo Couto/Rio de Janeiro Federal                        Any alternative text (alt text) provided alongside figures in this
+University (CEP/INDC - approval number: 09/2010). All                       article has been generated by Frontiers with the support of
+procedures were conducted in accordance with local legislation              artificial intelligence and reasonable efforts have been made to
+and institutional requirements. Written informed consent for                ensure accuracy, including review by the authors wherever
+participation was obtained from the participants’ legal guardians.          possible. If you identify any issues, please contact us.
+
+
+
+Author contributions                                                        Publisher’s note
+    RM: Conceptualization, Data curation, Formal analysis,                      All claims expressed in this article are solely those of the
+Funding acquisition, Investigation, Methodology, Project                    authors and do not necessarily represent those of their affiliated
+administration, Resources, Writing – review & editing. FM: Data             organizations, or those of the publisher, the editors and the
+curation, Investigation, Writing – original draft, Writing –                reviewers. Any product that may be evaluated in this article, or
+review & editing. LP: Data curation, Investigation, Writing –               claim that may be made by its manufacturer, is not guaranteed
+original draft, Writing – review & editing. CL: Investigation,              or endorsed by the publisher.
+
+
+
+
+Frontiers in Pediatrics                                                13                                                            frontiersin.org
+Mousinho et al.                                                                                                                                      10.3389/fped.2026.1737520
+
+
+
+
+References
+1. UNESCO Digital Library. Diretrizes políticas para o desenvolvimento e a                     25. Beck IL, Mckeown MG, Kucan L. Bringing Words to Life: Robust Vocabulary
+promoção da informação governamental do domínio público. Available online at:                  Instruction. 2nd ed. New York, NY: Guilford Press (2013).
+https://unesdoc.unesco.org/ark:/48223/pf0000137363_por (Accessed October 21,
+                                                                                               26. Guthrie JT, Wigfield A. Engagement and motivation in reading. In: Kamil ML,
+2025).
+                                                                                               Mosenthal PB, Pearson PD, Barr R, editors. Handbook of Reading Research. 3rd ed.
+2. EDU | OECD. Available online at: https://www.oecd.org/en/about/directorates/                New York, NY: Longman (2000). 403–22. ISBN: 978-0805823400.
+directorate-for-education-and-skills.html (Accessed October 7, 2025).
+                                                                                               27. Fletcher JM, Vaughn S. Response to intervention: preventing and remediating
+3. OECD. PIAAC. Available online at: https://www.oecd.org/en/about/programmes/                 academic difficulties. Child Dev Perspect. (2009) 3(1):30–7. doi: 10.1111/j.1750-
+piaac.html (Accessed October 7, 2025).                                                         8606.2008.00072.x
+4. Inaf. Indicador de Alfabetismo Funcional. Available online at: https://                     28. Bilgi AD, Dayı E, Toraman Ç. Response to intervention: a bibliometric mapping.
+alfabetismofuncional.org.br/ (Accessed October 21, 2025).                                      Int J Contemp Educ Res. (2025) 12(2):187–204. doi: 10.52380/ijcer.2025.12.2.760
+5. OECD. (2023). Full Report: PISA 2022 Results (Volume I). Available online at:               29. Fuchs D, Fuchs LS. Peer-assisted learning strategies: promoting word recognition,
+https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en/full-              fluency, and reading comprehension in young children. J Spec Educ. (2005)
+report.html (Accessed October 7, 2025).                                                        39(1):34–44. doi: 10.1177/00224669050390010401
+6. Paige DD, Young C, Rasinski TV, Rupley WH, Nichols WD, Valerio M. Teaching                  30. Fuchs LS, Fuchs D, Prentice K, Burch M, Hamlett CL, Owen R, et al. Enhancing
+reading is more than a science: it’s also an art. Read Res Q. (2021) 56(S1):S339–50.           third-grade student’ mathematical problem solving with self-regulated learning
+doi: 10.1002/rrq.388                                                                           strategies. J Educ Psychol. (2003) 95(2):306–15. doi: 10.1037/0022-0663.95.2.306
+7. Peterson RL, Pennington BF. Developmental dyslexia. Lancet Lond Engl. (2012)                31. Vaughn S, Cirino PT, Wanzek J, Wexler J, Fletcher JM, Denton CD, et al.
+379(9830):1997–2007. doi: 10.1016/S0140-6736(12)60198-6                                        Response to intervention for middle school students with reading difficulties:
+                                                                                               effects of a primary and secondary intervention. Sch Psychol Rev. (2010)
+8. LaBerge D, Samuels SJ. Toward a theory of automatic information processing
+                                                                                               39(1):3–21. doi: 10.1080/02796015.2010.12087786
+in reading. Cognit Psychol. (1974) 6(2):293–323. doi: 10.1016/0010-0285(74)
+90015-2                                                                                        32. Gersten R, Haymond K, Newman-Gonchar R, Dimino J, Jayanthi M. Meta-
+                                                                                               analysis of the impact of reading interventions for students in the primary grades.
+9. Kuhn MR, Schwanenflugel PJ, Meisinger EB. Aligning theory and assessment of
+                                                                                               J Res Educ Eff. (2020) 13(2):401–27. doi: 10.1080/19345747.2019.1689591
+reading fluency: automaticity, prosody, and definitions of fluency. In: Levy BA,
+Rasinski TV, editors. Read Res Q. (2010) 45(2):230–51.                                         33. Catch Up. Available online at: https://www.catchup.org/ (Accessed October 21,
+                                                                                               2025).
+10. Rasinski TV. Why reading fluency should be hot! Read Teach. (2012)
+65(8):516–22. doi: 10.1002/TRTR.01077                                                          34. help2read. help2read. Available online at: https://help2read.org/home (Accessed
+                                                                                               October 21, 2025).
+11. Kim YSG, Wagner RK. Text (oral) reading fluency as a construct in reading
+development: an investigation of its mediating role for children from grades 1 to 4.           35. About World Vision | HomePage | World Vision International. Available online
+Sci Stud Read Off J Soc Sci Study Read. (2015) 19(3):224–42. doi: 10.1080/                     at: https://www.wvi.org/ (Accessed October 21, 2025).
+10888438.2015.1007375
+                                                                                               36. Goldfeld S, Beatson R, Watts A, Snow P, Gold L, Le HN, et al. Tier 2 oral language
+12. Mousinho R. Velocidade e compreensão de leitura textual oral e silenciosa ao               and early reading interventions for preschool to grade 2 children: a restricted
+longo do ensino fundamental. In: Mousinho R, Alves LM, Capellini S, editors.                   systematic review. Aust J Learn Difficulties. (2022) 27(1):65–113. doi: 10.1080/
+Dislexia: Novos Temas, Novas Perspectivas. Rio de Janeiro: WAK Editora (2015).                 19404158.2021.2011754
+1st ed. p. 165–79.
+                                                                                               37. Silva da C, Capellini SA. Eficácia do programa de remediação fonológica e leitura
+13. Mousinho R, Alves LM, Navas AL, Salgado-Azoni CA, Celeste LC, Capellini SA,                no distúrbio de aprendizagem. Pró-Fono Rev Atualização Científica. (2010) 22:131–8.
+et al. Leitura, escrita e matemática: do desenvolvimento aos transtornos específicos do        doi: 10.1590/S0104-56872010000200011
+desenvolvimento. (2020). Available online at: https://institutoabcd.org.br/ebook-
+                                                                                               38. Silva B, Luz T, Mousinho R. A eficácia das oficinas de estimulação em um modelo
+leitura-matematica/ (Accessed October 23, 2025).
+                                                                                               de resposta à intervenção. Rev Psicopedag. (2012) 29(88):15–24. http://pepsic.bvsalud.
+14. Pereira ES, Alves LM, Martins-Reis VO, Celeste LC. Coeficiente de progressão da            org/scielo.php?script=sci_arttext&pid=S0103-84862012000100004
+fluência de leitura no acompanhamento de escolares do ensino fundamental I. Rev
+                                                                                               39. Machado AC, Almeida MA. Desempenho em tarefas de leitura por meio do modelo
+Bras Educ Espec. (2021) 27:e0093. doi: 10.1590/1980-54702021v27e0093
+                                                                                               rti: resposta à intervenção em escolares do ensino público. Rev Psicopedag. (2012)
+15. American Psychiatric Publishing. Diagnostic and Statistical Manual of Mental               29(89):208–14.       http://pepsic.bvsalud.org/scielo.php?script=sci_arttext&pid=S0103-
+Disorders: DSM-5-TR. Porto Alegre: ArtMed (2023). 5th ed.                                      84862012000200004
+16. Carroll JM, Holden C, Kirby P, Thompson PA, Snowling MJ, the Dyslexia Delphi               40. Machado AC, Almeida MA. O modelo RTI—resposta à intervenção como proposta
+Panel. Toward a consensus on dyslexia: findings from a Delphi study. J Child Psychol           inclusiva para escolares com dificuldades em leitura e escrita. Rev Psicopedag. (2014)
+Psychiatry. (2025) 66(7):1065–76. doi: 10.1111/jcpp.14123                                      31(95):130–43.      http://pepsic.bvsalud.org/scielo.php?script=sci_arttext&pid=S0103-
+                                                                                               84862014000200006
+17. Holden C, Kirby P, Snowling MJ, Thompson PA, Carroll JM. Towards a
+consensus for dyslexia practice: findings of a Delphi study on assessment and                  41. Almeida RPD, Piza CJMDT, Cardoso TDSG, Miranda MC. Prevenção e
+identification. Dyslexia Chichester Engl. (2025) 31(1):e1800. doi: 10.1002/dys.1800            remediação das dificuldades de aprendizagem: adaptação do modelo de resposta à
+                                                                                               intervenção em uma amostra brasileira. Rev Bras Educ. (2016) 21:611–30. doi: 10.
+18. Rajaprakash M, Leppert ML. Attention-deficit/hyperactivity disorder. Pediatr Rev.
+                                                                                               1590/S1413-24782016216632
+(2022) 43(3):135–47. doi: 10.1542/pir.2020-000612
+                                                                                               42. Machado AC, Capellini SA. Tutoria em leitura e escrita baseado no modelo de
+19. Dvorsky M, Tamm L, Denton CA, Epstein JN, Schatschneider C. Trajectories of
+                                                                                               RTI—resposta à intervenção em crianças com dislexia do desenvolvimento. Rev
+response to treatments in children with ADHD and word reading difficulties. Res
+                                                                                               CEFAC. (2014) 16:1161–7. doi: 10.1590/1982-0216201415412
+Child Adolesc Psychopathol. (2021) 49(8):1015–30. doi: 10.1007/s10802-021-
+00815-y                                                                                        43. Freire T, Marotti BD, da Costa ARA, Crenitte PAP. Response to intervention: a
+                                                                                               phonological awareness program. Ann Pediatr Child Health. (2020) 8(9):1207.
+20. Willcutt EG. The etiology of ADHD in adolescents: behavioral and molecular
+                                                                                               doi: 10.47739/2373-9312/1207
+genetic approaches. In: ADHD in Adolescents: Development, Assessment, and
+Treatment. New York, NY: The Guilford Press (2020). p. 36–55.                                  44. Kerges-Alcantara G, Capellini SA. Response to intervention (RTI) tier 2 executive
+                                                                                               functions program for 1st grade level Brazilian schoolchildren: pilot study. Adv Appl
+21. Greenspan S. Borderline intellectual functioning: an update. Curr Opin Psychiatry.
+                                                                                               Sociol. (2022) 12(10):644–56. doi: 10.4236/aasoci.2022.1210045
+(2017) 30(2):113–22. doi: 10.1097/YCO.0000000000000317
+                                                                                               45. Medda MG, Barbosa T, Rocco IS, de Mello CB. Response to intervention as an
+22. Sermier Dessemontet R, de Chambrier AF, Martinet C, Meuli N, Linder AL.
+                                                                                               identification strategy of the risk for dyslexia. CoDAS. (2024) 36(4):e20230031.
+Effects of a phonics-based intervention on the reading skills of students with
+                                                                                               doi: 10.1590/2317-1782/20242023031en
+intellectual disability. Res Dev Disabil. (2021) 111:103883. doi: 10.1016/j.ridd.2021.
+103883                                                                                         46. BRASIL. Lei nº 13.146, de 6 de julho de 2015. Institui a Lei Brasileira de Inclusão
+                                                                                               da Pessoa com Deficiência (Estatuto da Pessoa com Deficiência). Brasília, DF:
+23. Miles P, Lauterbach K, Murano MD, Dembek DM, A G. Reading rescue: a follow-
+                                                                                               Presidência da República (2015). https://www.planalto.gov.br/ccivil_03/_ato2015-
+up on effectiveness of an intervention for struggling readers. J Educ Res. (2019)
+                                                                                               2018/2015/lei/l13146.htm
+112(2):255–69. doi: 10.1080/00220671.2018.1514358
+                                                                                               47. BRASIL. Decreto nº 12.686, de 2025. Regulamenta o atendimento educacional
+24. US Department of Health and Human Services. National Reading Panel Teaching
+                                                                                               especializado e a inclusão escolar de estudantes com transtornos de aprendizagem e
+Children to Read: An Evidence-based Assessment of the Scientific Research Literature
+                                                                                               deficiências. Brasília, DF: Presidência da República (2025). https://www.planalto.
+on Reading and its Implications for Reading Instruction: Reports of the Subgroups.
+                                                                                               gov.br/ccivil_03/_ato2023-2026/2025/decreto/D12686.htm
+Bethesda, MD: National Institute of Child Health and Human Development,
+National Institutes of Health (2000). https://www.nichd.nih.gov/publications/                  48. BRASIL. Lei nº 14.254, de 30 de novembro de 2021. Dispõe sobre o
+product/247                                                                                    acompanhamento integral para educandos com dislexia ou Transtorno do Deficit de
+
+
+
+Frontiers in Pediatrics                                                                   14                                                                         frontiersin.org
+Mousinho et al.                                                                                                                                        10.3389/fped.2026.1737520
+
+
+
+
+Atenção com Hiperatividade (TDAH) ou outro transtorno de aprendizagem. Brasília,                 second to eighth graders. J Intellect Disabil Res JIDR. (2019) 63(8):1023–40.
+DF: Presidência da República (2021). https://www.planalto.gov.br/ccivil_03/                      doi: 10.1111/jir.12620
+_ato2019-2022/2021/lei/L14254.htm
+                                                                                                 74. Alloway TP, Alloway RG. Investigating the predictive roles of working memory
+49. Weaver W, Brenda M. RTI: Assessments & Remediation for K-2. New York, NY:                    and IQ in academic attainment. J Exp Child Psychol. (2010) 106(1):20–9. doi: 10.
+Scholastic Inc (2009).                                                                           1016/j.jecp.2009.11.003
+50. Fuchs D, Fuchs LS. Introduction to response to intervention: what, why, and how              75. Blasi FDD, Savelli E, Zingale M, Buono S, Nuovo SFD. Effects of treatment of
+valid is it? Read Res Q. (2006) 41(1):93–9. doi: 10.1598/RRQ.41.1.4                              reading skills in a child with borderline intellectual functioning. Int J Disabil Hum
+                                                                                                 Dev. (2014) 13(1):25–32. doi: 10.1515/ijdhd-2013-0012
+51. Vaughn S, Fletcher JM. Response to intervention with secondary school students
+with reading difficulties. J Learn Disabil. (2012) 45(3):244–56. doi: 10.1177/                   76. Snowling MJ, Hulme C. Annual research review: reading disorders revisited—the
+0022219412442157                                                                                 critical importance of oral language. J Child Psychol Psychiatry. (2021) 62(5):635–53.
+                                                                                                 doi: 10.1111/jcpp.13324
+52. Mascheretti S, Luoni C, Franceschini S, Capelli E, Farinotti L, Borgatti R, et al.
+Development and predictors of reading skills in a 5-year Italian longitudinal study.             77. Rasinski T, Rupley W, Paige D, Young C. Reading Fluency. Basel, Suíça: MDPI
+Wiley. doi: 10.1002/icd.2542 (Accessed October 8, 2025).                                         (2021).
+53. Arnesen T, Elstad E, Christophersen KA. Comparing Instructional Factors                      78. Stanovich KE. Explaining the differences between the dyslexic and the garden-
+Related to Students’ Academic Self-Discipline in Norway and Finland. 18−35                       variety poor reader: the phonological-core variable-difference model. J Learn
+(2017). Available online at: https://hvlopen.brage.unit.no/hvlopen-xmlui/handle/                 Disabil. (1988) 21(10):590–604. doi: 10.1177/002221948802101003
+11250/2621999 (Accessed October 22, 2025).
+                                                                                                 79. Shaywitz SE, Shaywitz BA. Paying attention to reading: the neurobiology of
+54. Hasbrouck J, Tindal G. An Update to Compiled ORF Norms. Technical Report                     reading and dyslexia. Dev Psychopathol. (2008) 20(4):1329–49. doi: 10.1017/
+No. 1702. Online Submission. Oregon: University of Oregon (2017). Available                      S0954579408000631
+online at: https://eric.ed.gov/?id=ED594994 (Accessed February 6, 2026).
+                                                                                                 80. Share DL. Phonological recoding and self-teaching: sine qua non of reading
+55. Rasinski TV. Assessing Reading Fluency. Honolulu, HI: Pacific Resources for                  acquisition. Cognition. (1995) 55(2):151–218. discussion 219-226. doi: 10.1016/
+Education and Learning (2004). https://files.eric.ed.gov/fulltext/ED483166.pdf                   0010-0277(94)00645-2
+56. Cogo-Moreira H, Molinari GL, de Carvalho CAF, de Kida ASB, Lúcio PS, de                      81. Seabra AG, Brito GR, Carreiro LRR. Reading assessment in ADHD and dyslexia
+Avila CRB. Cut-off point, sensitivity and specificity for screening the reading                  in Brazilian teenagers. Eur Psychiatry. (2023) 66(Suppl 1):S714–5. doi: 10.1192/j.
+fluency in children. CoDAS. (2023) 35(3):e20210263. doi: 10.1590/2317-1782/                      eurpsy.2023.1496
+20232021263en
+                                                                                                 82. Água Dias AB, Albuquerque CP, Simões MR. Memory and linguistic/executive
+57. Kawano CE, de Kida ASB, Carvalho CAF, de Ávila CRB. Parâmetros de fluência e                 functions of children with borderline intellectual functioning. Appl Neuropsychol
+tipos de erros na leitura de escolares com indicação de dificuldades para ler e escrever.        Child. (2019) 8(1):76–87. doi: 10.1080/21622965.2017.1384924
+Rev Soc Bras Fonoaudiol. (2011) 16:9–18. doi: 10.1590/S1516-80342011000100004
+                                                                                                 83. Alvarán L, Sánchez D, Restrepo-Ochoa DA. Neuropsicología de la inteligencia
+58. Connor O ER. Reading fluency and students with reading disabilities: how fast is             limítrofe. Cuad Neuropsicol Panam J Neuropsychol. (2016) 10(2):129–41. doi: 10.
+fast enough to promote reading comprehension? J Learn Disabil. (2018)                            7714/CNPS/10.2.207
+51(2):124–36. doi: 10.1177/0022219417691835
+                                                                                                 84. Lyon GR, Shaywitz SE, Shaywitz BA. A definition of dyslexia. Ann Dyslexia.
+59. Capovilla AGS, Capovilla FC. Efeitos do treino de consciência fonológica em                  (2003) 53 (1):1–14. doi: 10.1007/s11881-003-0001-9
+crianças com baixo nível sócio-econômico. Psicol Reflex E Crítica. (2000)
+                                                                                                 85. Ho JC, Reed DK, McBride C. The effects of orthography, phonology, semantics,
+13(1):7–24. doi: 10.1590/S0102-79722000000100003
+                                                                                                 and working memory on the reading comprehension of children with and without
+60. da Silva C. UNESP. Eficácia de um Programa de remediação fonológica e leitura                reading dyslexia. Ann Dyslexia. (2025) 75(2):225–40. doi: 10.1007/s11881-025-
+em escolares com distúrbio de aprendizagem (2009). Available online at: http://hdl.              00322-5
+handle.net/11449/91215 (Accessed October 7, 2025).
+                                                                                                 86. Stevens EA, Vaughn S, House L, Stillman-Spisak S. The effects of a paraphrasing
+61. Morris BM, Lonigan CJ. What components of working memory are associated                      and text structure intervention on the main idea generation and reading
+with children’s reading skills? Learn Individ Differ. (2022) 95:102114. doi: 10.1016/            comprehension of students with reading disabilities in grades 4 and 5. Sci Stud
+j.lindif.2022.102114                                                                             Read Off J Soc Sci Study Read. (2020) 24(5):365–79. doi: 10.1080/10888438.2019.
+                                                                                                 1684925
+62. Oliveira ES, Guaresi R. Consciência fonológica e desempenho em leitura e escrita
+em crianças com indicação de atraso escolar. Rev Eletrônica Inst Humanidades.                    87. Martins-Reis VO, Pedroso DAA, de Almeida LM, Pereira ES, Alves LM, Celeste
+(2018) 7(25):117–34.                                                                             LC. Fluency and reading comprehension as a performance indicator in the 3rd year of
+                                                                                                 elementary school. CoDAS. (2023) 35(6):e20210251. doi: 10.1590/2317-1782/
+63. Junqueira S. A Foca Famosa. São Paulo: Ática (2007). 15th ed. 24 p. (Coleção
+                                                                                                 20232021251en
+Estrelinha).
+                                                                                                 88. Perfetti C. Reading ability: lexical quality to comprehension. Sci Stud Read. (2007)
+64. Junqueira S. O Macaco e a Mola. São Paulo: Ática (2007). 14th ed. 24 p. (Coleção
+                                                                                                 11(4):357–83. doi: 10.1080/10888430701530730
+Estrelinha).
+                                                                                                 89. Nation K, Norbury CF. Why reading comprehension fails: insights from
+65. Junqueira S. O Peru de Peruca. São Paulo: Ática (2007). 9th ed. 24 p. (Coleção
+                                                                                                 developmental disorders. Top Lang Disord. (2005) 1:25. doi: 10.1097/00011363-
+Estrelinha).
+                                                                                                 200501000-00004
+66. Junqueira S. Regina e o Mágico. São Paulo: Ática (2008). 3rd ed. 24 p. (Coleção
+                                                                                                 90. Cain K, Oakhill J. Reading comprehension and vocabulary: is vocabulary more
+Estrelinha).
+                                                                                                 important for some aspects of comprehension? Année Psychol. (2014)
+67. Ehm JH, Kerner auch Koerner J, Gawrilow C, Hasselhorn M, Schmiedek F. The                    114(4):647–62. doi: 10.4074/S0003503314004035
+association of ADHD symptoms and reading acquisition during elementary school
+                                                                                                 91. Stecker PM, Fuchs LS, Fuchs D. Using curriculum-based measurement to
+years. Dev Psychol. (2016) 52(9):1445–56. doi: 10.1037/dev0000186
+                                                                                                 improve student achievement. Psychol Sch. (2005) 42(8):795–819. doi: 10.1002/pits.
+68. Jacobson LA, Ryan M, Martin RB, Ewen J, Mostofsky SH, Denckla MB, et al.                     20113
+Working memory influences processing speed and reading fluency in ADHD.
+                                                                                                 92. Tomo CD, Sitoe AA. Adaptação do modelo resposta-à-intervenção para
+Child Neuropsychol J Norm Abnorm Dev Child Adolesc. (2011) 17(3):209–24.
+                                                                                                 identificação de alunos com necessidades educativas especiais em escolas regulares.
+doi: 10.1080/09297049.2010.532204
+                                                                                                 Rev Psicol Divers E Saúde. (2020) 9(3):280–94. doi: 10.17267/2317-3394rpds.v9i3.3045
+69. Chan ESM, Shero JA, Hand ED, Cole AM, Gaye F, Spiegel JA, et al. Are reading
+                                                                                                 93. Kim YSG, Lee H, Zuilkowski SS. Impact of literacy interventions on reading skills
+interventions effective for at-risk readers with ADHD? A meta-analysis. J Atten
+                                                                                                 in low- and middle-income countries: a meta-analysis. Child Dev. (2020)
+Disord. (2023) 27(2):182–200. doi: 10.1177/10870547221130111
+                                                                                                 91(2):638–60. doi: 10.1111/cdev.13204
+70. Woolger C. Wechsler intelligence scale for children-third edition (wisc-iii). In:
+                                                                                                 94. Anjos HPD, Andrade EPD, Pereira MR. A inclusão escolar do ponto de vista dos
+Dorfman WI, Hersen M, editors. Understanding Psychological Assessment. Boston,
+                                                                                                 professores: o processo de constituição de um discurso. Rev Bras Educ. (2009)
+MA: Springer US (2001). p. 219–33. Available online at: http://link.springer.com/
+                                                                                                 14(40):116–29. doi: 10.1590/S1413-24782009000100010
+10.1007/978-1-4615-1185-4_11 (Accessed October 7, 2025).
+                                                                                                 95. Carceres PCP, Covre P. Impacto do diagnóstico precoce e tardio da dislexia—
+71. Bonifacci P, Snowling MJ. Speed of processing and reading disability: a cross-
+                                                                                                 compreendendo esse transtorno. Rev Psicopedag. (2018) 35(108):296–305. https://
+linguistic investigation of dyslexia and borderline intellectual functioning.
+                                                                                                 revistapsicopedagogia.com.br/article/view/306
+Cognition. (2008) 107(3):999–1017. doi: 10.1016/j.cognition.2007.12.006
+                                                                                                 96. Connor CM, Alberto PA, Compton DL, O’Connor RE. Improving Reading
+72. Denton CA, Fletcher JM, Anthony JL, Francis DJ. An evaluation of intensive
+                                                                                                 Outcomes for Students with or at Risk for Reading Disabilities: A Synthesis of the
+intervention for students with persistent reading difficulties. J Learn Disabil. (2006)
+                                                                                                 Contributions from The Institute of Education Sciences Research Centers. Report
+39(5):447–66. doi: 10.1177/00222194060390050601
+                                                                                                 No.: NCSER 2014-3000. Washington, DC: National Center for Special Education
+73. Di Blasi FD, Buono S, Cantagallo C, Di Filippo G, Zoccolotti P. Reading skills in            Research, Institute of Education Sciences (2014). https://ies.ed.gov/ncser/pubs/
+children with mild to borderline intellectual disability: a cross-sectional study on             20143000/pdf/20143000.pdf
+
+
+
+
+Frontiers in Pediatrics                                                                     15                                                                          frontiersin.org
+Mousinho et al.                                                                                                                                   10.3389/fped.2026.1737520
+
+
+
+
+97. Greenwood CR, Bradfield T, Kaminski R, Linas M, Carta JJ, Nylander D. The              103. Reynolds CR, Shaywitz SE. Response to intervention: ready or not? Or, from
+response to intervention (RTI) approach in early childhood. Focus Except Child.            wait-to-fail to watch-them-fail. Sch Psychol Q. (2009) 24(2):130. doi: 10.1037/
+(2011) 43(9):1–24. doi: 10.17161/foec.v43i9.6912                                           a0016158
+98. Catts HW, Compton D, Tomblin JB, Bridges MS. Prevalence and nature of late-            104. Ehri LC, Nunes SR, Stahl SA, Willows DM. Systematic
+emerging poor readers. J Educ Psychol. (2012) 104(1):166–81. doi: 10.1037/a0025323         phonics instruction helps students learn to read: evidence from the national
+                                                                                           reading panel’s meta-analysis. Rev Educ Res. (2001) 71(3):393–447. doi: 10.3102/
+99. Vaughn S, Linan-Thompson S, Hickman P. Response to instruction as a means of
+                                                                                           00346543071003393
+identifying students with reading/learning disabilities. Except Child. (2003)
+69(4):391–409. doi: 10.1177/001440290306900401                                             105. Fuchs D, Deshler DD. What we need to know about responsiveness to
+                                                                                           intervention (and shouldn’t be afraid to ask). Learn Disabil Res Pract. (2007)
+100. Vaughn S, Wanzek J. Intensive interventions in reading for students with
+                                                                                           22(2):129–36. doi: 10.1111/j.1540-5826.2007.00237.x
+reading disabilities: meaningful impacts. Learn Disabil Res Pract. (2014)
+29(2):46–53. doi: 10.1111/ldrp.12031                                                       106. Nabil NZINM, Matore MEM, Zainal MS. Understanding early and late
+                                                                                           identification of dyslexia: a narrative review of diagnostic timing, systemic barriers,
+101. Barrett S, Eber L, Weist M. Advancing Education Effectiveness: Interconnecting
+                                                                                           and educational equity. E-Bangi J Soc Sci Humanit. (2025) 22(3):515–35. doi: 10.
+School Mental Health and School-wide Positive Behavior Support. USA: Office of
+                                                                                           17576/ebangi.2025.2203.36
+Special Education Programs, Department of Education; Maternal and Child Health
+Bureau, Health Resources and Services Administration (2013). Available online at:          107. Burns MK, Appleton JJ, Stehouwer JD. Meta-analytic review of responsiveness-
+https://ospi.k12.wa.us/sites/default/files/2023-08/isfmonograph.pdf (Accessed March        to-intervention research: examining field-based and research-implemented models.
+09, 2026).                                                                                 J Psychoeduc Assess. (2005) 23(4):381–94. doi: 10.1177/073428290502300406
+102. Denton CA, Fletcher JM, Taylor WP, Barth AE, Vaughn S. An experimental                108. Bayless SD, Jenson JM, Richmond MK, Pampel FC, Cook M, Calhoun M. Effects
+evaluation of guided reading and explicit interventions for primary-grade students         of an afterschool early literacy intervention on the reading skills of children in public
+at-risk for reading difficulties. J Res Educ Eff. (2014) 7(3):268–93. doi: 10.1080/        housing communities. Child Youth Care Forum. (2018) 47(4):537–61. doi: 10.1007/
+19345747.2014.906010                                                                       s10566-018-9442-5
+
+
+
+
+Frontiers in Pediatrics                                                               16                                                                          frontiersin.org
+

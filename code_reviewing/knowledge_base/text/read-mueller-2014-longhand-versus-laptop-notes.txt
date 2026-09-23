@@ -1,0 +1,611 @@
+524581
+research-article2014
+                       PSSXXX10.1177/0956797614524581Mueller, OppenheimerLonghand and Laptop Note Taking
+
+
+
+
+                               Research Article
+
+                                                                                                                                               Psychological Science
+
+                               The Pen Is Mightier Than the Keyboard:                                                                          2014, Vol. 25(6) 1159­–1168
+                                                                                                                                               © The Author(s) 2014
+                                                                                                                                               Reprints and permissions:
+                               Advantages of Longhand Over Laptop                                                                              sagepub.com/journalsPermissions.nav
+                                                                                                                                               DOI: 10.1177/0956797614524581
+
+                               Note Taking                                                                                                     pss.sagepub.com
+
+
+
+
+                               Pam A. Mueller1 and Daniel M. Oppenheimer2
+                               1
+                                    Princeton University and 2University of California, Los Angeles
+
+
+
+
+                               Abstract
+                               Taking notes on laptops rather than in longhand is increasingly common. Many researchers have suggested that laptop
+                               note taking is less effective than longhand note taking for learning. Prior studies have primarily focused on students’
+                               capacity for multitasking and distraction when using laptops. The present research suggests that even when laptops
+                               are used solely to take notes, they may still be impairing learning because their use results in shallower processing.
+                               In three studies, we found that students who took notes on laptops performed worse on conceptual questions than
+                               students who took notes longhand. We show that whereas taking more notes can be beneficial, laptop note takers’
+                               tendency to transcribe lectures verbatim rather than processing information and reframing it in their own words is
+                               detrimental to learning.
+
+                               Keywords
+                               academic achievement, cognitive processes, memory, educational psychology, open data, open materials
+
+                               Received 5/11/13; Revision accepted 1/16/14
+
+
+
+                               The use of laptops in classrooms is controversial. Many                     important but relatively unsurprising, given the literature
+                               professors believe that computers (and the Internet)                        on decrements in performance when multitasking or task
+                               serve as distractions, detracting from class discussion and                 switching (e.g., Iqbal & Horvitz, 2007; Rubinstein, Meyer,
+                               student learning (e.g., Yamamoto, 2007). Conversely, stu-                   & Evans, 2001).
+                               dents often self-report a belief that laptops in class are                     However, even when distractions are controlled for,
+                               beneficial (e.g., Barak, Lipson, & Lerman, 2006; Mitra &                    laptop use might impair performance by affecting the
+                               Steffensmeier, 2000; Skolnick & Puzo, 2008). Even when                      manner and quality of in-class note taking. There is a
+                               students admit that laptops are a distraction, they believe                 substantial literature on the general effectiveness of note
+                               the benefits outweigh the costs (Kay & Lauricella, 2011).                   taking in educational settings, but it mostly predates lap-
+                               Empirical research tends to support the professors’ view,                   top use in classrooms. Prior research has focused on two
+                               finding that students using laptops are not on task during                  ways in which note taking can affect learning: encoding
+                               lectures (Kay & Lauricella, 2011; Kraushaar & Novak,                        and external storage (see DiVesta & Gray, 1972; Kiewra,
+                               2010; Skolnick & Puzo, 2008; Sovern, 2013), show                            1989). The encoding hypothesis suggests that the pro-
+                               decreased academic performance (Fried, 2008; Grace-                         cessing that occurs during the act of note taking improves
+                               Martin & Gay, 2001; Kraushaar & Novak, 2010), and are                       learning and retention. The external-storage hypothesis
+                               actually less satisfied with their education than their peers               touts the benefits of the ability to review material (even
+                               who do not use laptops in class (Wurst, Smarkola, &                         from notes taken by someone else). These two theories
+                               Gaffney, 2008).                                                             are not incompatible; students who both take and review
+                                  These correlational studies have focused on the capac-
+                               ity of laptops to distract and to invite multitasking.
+                                                                                                           Corresponding Author:
+                               Experimental tests of immediate retention of class mate-                    Pam A. Mueller, Princeton University, Psychology Department,
+                               rial have also found that Internet browsing impairs per-                    Princeton, NJ 08544
+                               formance (Hembrooke & Gay, 2003). These findings are                        E-mail: pamuelle@princeton.edu
+1160                                                                                                  Mueller, Oppenheimer
+
+their notes (as most do) likely profit from both approaches     conceptual than for factual items (e.g., Bretzing &
+(Kiewra, 1985).                                                 Kulhavy, 1979).
+    The beneficial external-storage effect of notes is robust     Thus, we conducted three experiments to investigate
+and uncontroversial (Kiewra, 1989). The encoding                whether taking notes on a laptop versus writing long-
+hypothesis has been supported by studies finding posi-          hand affects academic performance, and to explore the
+tive effects of note taking in the absence of review (e.g.,     potential mechanism of verbatim overlap as a proxy for
+Aiken, Thomas, & Shennum, 1975; Bretzing & Kulhavy,             depth of processing.
+1981; Einstein, Morris, & Smith, 1985); however, other
+results have been more mixed (see Kiewra, 1985;
+Kobayashi, 2005, for reviews). This inconsistency may be        Study 1
+a result of moderating factors (Kobayashi, 2005), poten-
+tially including one’s note-taking strategy.
+                                                                Participants
+    Note taking can be generative (e.g., summarizing,           Participants were 67 students (33 male, 33 female, 1
+paraphrasing, concept mapping) or nongenerative (i.e.,          unknown) from the Princeton University subject pool.
+verbatim copying). Verbatim note taking has generally           Two participants were excluded, 1 because he had seen
+been seen to indicate relatively shallow cognitive pro-         the lecture serving as the stimulus prior to participation,
+cessing (Craik & Lockhart, 1972; Kiewra, 1985; Van              and 1 because of a data-recording error.
+Meter, Yokoi, & Pressley, 1994). The more deeply infor-
+mation is processed during note taking, the greater the
+encoding benefits (DiVesta & Gray, 1973; Kiewra, 1985).
+                                                                Materials
+Studies have shown both correlationally (Aiken et al.,          We selected five TED Talks (https://www.ted.com/talks)
+1975; Slotte & Lonka, 1999) and experimentally (Bretzing        for length (slightly over 15 min) and to cover topics that
+& Kulhavy, 1979; Igo, Bruning, & McCrudden, 2005) that          would be interesting but not common knowledge.2
+verbatim note taking predicts poorer performance than           Laptops had full-size (11-in. × 4-in.) keyboards and were
+nonverbatim note taking, especially on integrative and          disconnected from the Internet.
+conceptual items.
+    Laptop use facilitates verbatim transcription of lecture
+content because most students can type significantly
+                                                                Procedure
+faster than they can write (Brown, 1988). Thus, typing          Students generally participated 2 at a time, though some
+may impair the encoding benefits seen in past note-tak-         completed the study alone. The room was preset with
+ing studies. However, the ability to transcribe might           either laptops or notebooks, according to condition.
+improve external-storage benefits.                              Lectures were projected onto a screen at the front of the
+    There has been little research directly addressing          room. Participants were instructed to use their normal
+potential differences in laptop versus longhand note tak-       classroom note-taking strategy, because experimenters
+ing, and the existing studies do not allow for natural          were interested in how information was actually recorded
+variation in the amount of verbatim overlap (i.e., the          in class lectures. The experimenter left the room while
+amount of text in common between a lecture and stu-             the lecture played.
+dents’ notes on that lecture). For example, Bui, Myerson,          Next, participants were taken to a lab; they completed
+and Hale (2013) found an advantage for laptop over              two 5-min distractor tasks and engaged in a taxing work-
+longhand note taking. However, their results were driven        ing memory task (viz., a reading span task; Unsworth,
+by a condition in which they explicitly instructed partici-     Heitz, Schrock, & Engle, 2005). At this point, approxi-
+pants to transcribe content, rather than allowing them to       mately 30 min had elapsed since the end of the lecture.
+take notes as they would in class. Lin and Bigenho (2011)       Finally, participants responded to both factual-recall ques-
+used word lists as stimuli, which also ensured that all         tions (e.g., “Approximately how many years ago did the
+note taking would be verbatim. Therefore, these studies         Indus civilization exist?”) and conceptual-application
+do not speak to real-world settings, where laptop and           questions (e.g., “How do Japan and Sweden differ in their
+longhand note taking might naturally elicit different           approaches to equality within their societies?”) about the
+strategies regarding the extent of verbatim transcription.1     lecture and completed demographic measures.3
+Moreover, these studies only tested immediate recall,              The first author scored all responses blind to condi-
+and exclusively measured factual (rather than concep-           tion. An independent rater, blind to the purpose of the
+tual) knowledge, which limits generalizability (see also        study and condition, also scored all open-ended ques-
+Bohay, Blakely, Tamplin, & Radvansky, 2011; Quade,              tions. Initial interrater reliability was good (α = .89); score
+1996). Previous studies have shown that detriments              disputes between raters were resolved by discussion.
+due to verbatim note taking are more prominent for              Longhand notes were transcribed into text files.
+Longhand and Laptop Note Taking                                                                                                      1161
+
+Results and discussion                                                                         Laptop
+                                                                                               Longhand
+Laptop versus longhand performance. Mixed fixed-                                         0.4                               *
+and random-effects analyses of variance were used to
+                                                                                         0.3
+test differences, with note-taking medium (laptop vs.
+longhand) as a fixed effect and lecture (which talk was                                  0.2
+
+
+
+
+                                                                Performance (z score)
+viewed) as a random effect. We converted the raw data
+                                                                                         0.1
+to z scores because the lecture assessments varied in dif-
+ficulty and number of points available; however, results                                 0.0
+did not differ when raw scores were analyzed.4 On fac-
+tual-recall questions, participants performed equally well                              –0.1
+across conditions (laptop: M = 0.021, SD = 1.31; long-                                  –0.2
+hand: M = 0.009, SD = 1.02), F(1, 55) = 0.014, p = .91.
+However, on conceptual-application questions, laptop                                    –0.3
+participants performed significantly worse (M = −0.156,                                 –0.4
+SD = 0.915) than longhand participants (M = 0.154, SD =                                            Factual             Conceptual
+1.08), F(1, 55) = 9.99, p = .03, ηp2 = .13 (see Fig. 1).5        Fig. 1. Mean z-scored performance on factual-recall and conceptual-
+Which lecture participants saw also affected performance         application questions as a function of note-taking condition (Study 1).
+on conceptual-application questions, F(4, 55) = 12.52,           The asterisk indicates a significant difference between conditions (p <
+p = .02, ηp2 = .16; however, there was no significant            .05). Error bars indicate standard errors of the mean.
+interaction between lecture and note-taking medium,
+F(4, 55) = 0.164, p = .96.                                       model, the direct effect of note-taking medium remained
+                                                                 a marginally significant predictor, b = 0.54 (β = 0.27),
+Content analysis. There were several qualitative dif-            p = .07, partial R2 = .05; both indirect effects were signifi-
+ferences between laptop and longhand notes.6 Partici-            cant. Longhand note taking negatively predicted word
+pants who took longhand notes wrote significantly                count, and word count positively predicted performance,
+fewer words (M = 173.4, SD = 70.7) than those who                indirect effect = −0.57, 95% confidence interval (CI) =
+typed (M = 309.6, SD = 116.5), t(48.58) = −5.63, p < .001,       [−1.03, −0.20]. Longhand note taking also negatively pre-
+d = 1.4, corrected for unequal variances (see Fig. 2). A         dicted verbatim overlap, and verbatim overlap negatively
+simple n-gram program measured the extent of textual             predicted performance, indirect effect = 0.34, 95% CI =
+overlap between student notes and lecture transcripts. It        [0.14, 0.71]. Normal theory tests provided identical
+compared each one-, two-, and three-word chunk of text           conclusions.7
+in the notes taken with each one-, two-, and three-word
+chunk of text in the lecture transcript, and reported                                           Laptop
+a percentage of matches for each. Using three-word                                              Longhand
+chunks (3-grams) as the measure, we found that laptop                                    700
+notes contained an average of 14.6% verbatim overlap                                                                           ***
+with the lecture (SD = 7.3%), whereas longhand notes                                     600
+averaged only 8.8% (SD = 4.8%), t(63) = −3.77, p < .001,
+d = 0.94 (see Fig. 3); 2-grams and 1-grams also showed                                   500
+significant differences in the same direction.
+                                                                        Word Count
+
+
+
+
+                                                                                         400     ***
+   Overall, participants who took more notes performed                                                         ***
+better, β = 0.34, p = .023, partial R2 = .08. However, those
+                                                                                         300
+whose notes had less verbatim overlap with the lecture
+also performed better, β = −0.43, p = .005, partial R2 = .12.                            200
+We tested a model using word count and verbatim over-
+lap as mediators of the relationship between note-taking                                 100
+medium and performance using Preacher and Hayes’s
+(2004) bootstrapping procedure. The indirect effect is                                     0
+significant if its 95% confidence intervals do not include                                     Study 1       Study 2       Study 3
+zero. The full model with note-taking medium as the
+                                                                 Fig. 2. Number of words written by students using laptops and note-
+independent variable and both word count and verbatim            books in Studies 1, 2, and 3. Asterisks indicate a significant difference
+overlap as mediators was a significant predictor of per-         between conditions (p < .001). Error bars indicate standard errors of
+formance, F(3, 61) = 4.25, p = .009, R2 = .17. In the full       the mean.
+1162                                                                                                              Mueller, Oppenheimer
+
+                           Laptop                                             Procedure
+                           Longhand
+                                                                              Participants completed the study in groups. Each partici-
+                            ***                                               pant viewed one lecture on an individual monitor while
+                    16%
+                                                                              wearing headphones. Stimuli were the same as in Study
+                    14%                  ***                 ***              1. Participants in the laptop-nonintervention and long-
+                                                                              hand conditions were given a laptop or pen and paper,
+                    12%                                                       respectively, and were instructed, “We’re doing a study
+                                                                              about how information is conveyed in the classroom.
+ Verbatim Overlap
+
+
+
+
+                    10%                                                       We’d like you to take notes on a lecture, just like you
+                                                                              would in class. Please take whatever kind of notes you’d
+                    8%                                                        take in a class where you expected to be tested on the
+                                                                              material later—don’t change anything just because you’re
+                    6%
+                                                                              in a lab.”
+                                                                                 Participants in the laptop-intervention condition were
+                    4%
+                                                                              instructed, “We’re doing a study about how information is
+                    2%                                                        conveyed in the classroom. We’d like you to take notes
+                                                                              on a lecture, just like you would in class. People who
+                    0%                                                        take class notes on laptops when they expect to be tested
+                          Study 1     Study 2             Study 3             on the material later tend to transcribe what they’re hear-
+                                                                              ing without thinking about it much. Please try not to do
+Fig. 3. Percentage of verbatim overlap between student notes and lec-
+ture transcripts in Studies 1, 2, and 3 as a function of note-taking condi-   this as you take notes today. Take notes in your own
+tion. Verbatim overlap was measured using 3-grams (i.e., by comparing         words and don’t just write down word-for-word what the
+three-word chunks of text in the student notes and lecture transcripts).      speaker is saying.”
+Error bars indicate standard errors of the mean.                                 Participants then completed a typing test, the Need for
+                                                                              Cognition scale (Cacioppo & Petty, 1982), academic self-
+                                                                              efficacy scales, and a shortened version of the reading
+   This study provides initial experimental evidence that
+                                                                              span task used in Study 1. Finally, they completed the
+laptops may harm academic performance even when
+                                                                              same dependent measures and demographics as in Study
+used as intended. Participants using laptops are more
+                                                                              1. Longhand notes were transcribed, and all notes were
+likely to take lengthier transcription-like notes with
+                                                                              analyzed with the n-grams program.
+greater verbatim overlap with the lecture. Although tak-
+ing more notes, thereby having more information, is ben-
+eficial, mindless transcription seems to offset the benefit
+                                                                              Results and discussion
+of the increased content, at least when there is no oppor-
+tunity for review.                                                            Laptop versus longhand performance. Responses
+                                                                              were scored by raters blind to condition. Replicating our
+                                                                              original finding, results showed that on conceptual-appli-
+Study 2                                                                       cation questions, longhand participants performed better
+Because the detrimental effects of laptop note taking                         (z-score M = 0.28, SD = 1.04) than laptop-nonintervention
+appear to be due to verbatim transcription, perhaps                           participants (z-score M = −0.15, SD = 0.85), F(1, 89) =
+instructing students not to take verbatim notes could ame-                    11.98, p = .017, ηp2 = .12. Scores for laptop-intervention
+liorate the problem. Study 2 aimed to replicate the findings                  participants (z-score M = −0.11, SD = 1.02) did not signifi-
+of Study 1 and to determine whether a simple instructional                    cantly differ from those for either laptop-nonintervention
+intervention could reduce the negative effects of laptop                      (p = .91) or longhand (p = .29) participants. The pattern of
+note taking. Moreover, we sought to show that the effects                     data for factual questions was similar, though there were
+generalize to a different student sample.                                     no significant differences (longhand: z-score M = 0.11,
+                                                                              SD = 1.02; laptop intervention: z-score M = 0.02, SD =
+                                                                              1.03; laptop nonintervention: z-score M = −0.16, SD =
+Participants                                                                  0.91; see Fig. 4).8 For both question types, there was no
+Participants were students (final N = 151; 35 male) from                      effect of lecture, nor was there an interaction between
+the University of California, Los Angeles Anderson                            lecture and condition.
+Behavioral Lab subject pool. Two participants were                               Participants’ self-reported grade point average, SAT
+removed because of data-collection errors. Participants                       scores, academic self-efficacy, Need for Cognition scores,
+were paid $10 for 1 hr of participation.                                      and reading span scores were correlated with performance
+Longhand and Laptop Note Taking                                                                                                    1163
+
+                                                 Laptop (No Intervention)
+                                                 Longhand
+                                                 Laptop (Intervention)
+                                           0.5
+
+                                           0.4
+
+                                           0.3
+                  Performance (z score)
+
+
+                                           0.2
+
+                                           0.1
+
+                                            0
+
+                                          –0.1
+
+                                          –0.2
+
+                                          –0.3
+
+                                          –0.4
+                                                          Factual                           Conceptual
+                   Fig. 4. Mean z-scored performance on factual-recall and conceptual-application questions as a function
+                   of note-taking condition (Study 2). Error bars indicate standard errors of the mean.
+
+
+
+on conceptual items, but were not significant covariates                    word count, and word count positively predicted perfor-
+when included in the overall analysis, so we will not dis-                  mance, indirect effect = −0.34, 95% CI = [−0.56, −0.14].
+cuss them further.                                                          Longhand note taking also negatively predicted verbatim
+                                                                            overlap, and verbatim overlap negatively predicted per-
+Content analysis. Participants who took longhand                            formance, indirect effect = 0.19, 95% CI = [0.01, 0.49]. The
+notes wrote significantly fewer words (M = 155.9, SD =                      direct effect of note-taking medium remained significant,
+59.6) than those who took laptop notes without receiving                    b = 0.58 (β = 0.30), p = .01, partial R2 = .06, so there is
+an intervention (M = 260.9, SD = 118.5), t(97) = −5.51,                     likely more at play than the two opposing mechanisms
+p < .001, d = 1.11 (see Fig. 2), as well as less than those                 we identified here. When laptop (with intervention) was
+who took laptop notes after the verbal intervention (M =                    included as an intermediate condition, the pattern of
+229.02, SD = 84.8), t(98) = −4.94, p < .001, d = 1.00. Long-                effects remained the same, though the magnitude
+hand participants also had significantly less verbatim                      decreased; indirect effect of word count = −0.18, 95%
+overlap (M = 6.9%, SD = 4.2%) than laptop-noninterven-                      CI = [−0.29, −0.08], indirect effect of verbatim overlap =
+tion participants (M = 12.11%, SD = 5.0%), t(97) = −5.58,                   0.08, 95% CI = [0.01, 0.17].
+p < .001, d = 1.12 (see Fig. 3), or laptop-intervention                        The intervention did not improve memory perfor-
+participants (M = 12.07%, SD = 6.0%), t(98) = −4.96, p <                    mance above that for the laptop-nonintervention condi-
+.001, d = 0.99. The instruction to not take verbatim notes                  tion, but it was also not statistically distinguishable from
+was completely ineffective at reducing verbatim content                     memory in the longhand condition. However, the inter-
+(p = .97).                                                                  vention was completely ineffective at reducing verbatim
+   Comparing longhand and laptop-nonintervention note                       content, and the overall relationship between verbatim
+taking, we found that for conceptual questions, partici-                    content and negative performance held. Thus, whereas
+pants taking more notes performed better, β = 0.27, p =                     the effect of the intervention on performance is ambigu-
+.02, partial R2 = .05, but those whose notes had less ver-                  ous, any potential impact is unrelated to the mechanisms
+batim overlap also performed better, β = −0.30, p = .01,                    explored in this article.
+partial R2 = .06, which replicates the findings of Study 1.
+We tested a model using word count and verbatim over-
+                                                                            Study 3
+lap as mediators of the relationship between note-taking
+medium and performance; it was a good fit, F(3, 95) =                       Whereas laptop users may not be encoding as much
+5.23, p = .002, R2 = .14. Again, both indirect effects were                 information while taking notes as longhand writers are,
+significant: Longhand note taking negatively predicted                      they record significantly more content. It is possible that
+1164                                                                                                   Mueller, Oppenheimer
+
+Table 1. Examples of Each Question Type Used in Study 3            read from a teleprompter by a graduate student acting as
+                                                                   a professor at a lectern; two “seductive details” (i.e.,
+Question type                        Example
+                                                                   “interesting, but unimportant, information”; Garner,
+Factual            What is the purpose of adding calcium           Gillingham, & White, 1989, p. 41) were added to lectures
+                      propionate to bread?                         that did not have them. Each filmed lecture lasted approx-
+Seductive detail   What was the name of the cow whose              imately 7 min.
+                      cowpox was used to demonstrate
+                      the effectiveness of Edward Jenner’s
+                      technique of inoculation against smallpox?   Procedure
+Conceptual         If a person’s epiglottis was not working
+                      properly, what would be likely to            Participants completed the study in large groups. They
+                      happen?                                      were given either a laptop or pen and paper and were
+Inferential        Sometimes bats die while they are               instructed to take notes on the lectures. They were told
+                      sleeping. What will happen if a bat dies     they would be returning the following week to be tested
+                      while it is hanging upside down?             on the material. Each participant viewed all four lectures
+Application        Psychologists have investigated a               on individual monitors while wearing headphones.
+                      phenomenon known as “attitude                    When participants returned, those in the study condi-
+                      inoculation,” which works on the same
+                                                                   tion were given 10 min to study their notes before being
+                      principle as vaccination, and involves
+                      exposing people to weak arguments            tested. Participants in the no-study condition immediately
+                      against a viewpoint they hold. What          took the test. This dependent measure consisted of 40
+                      would this theory predict would happen       questions, 10 on each lecture—two questions in each of
+                      if the person was later exposed to a         five categories adapted from Butler (2010): facts, seduc-
+                      strong argument against their viewpoint?     tive details, concepts, same-domain inferences (infer-
+                                                                   ences), and new-domain inferences (applications). See
+                                                                   Table 1 for examples. Participants then answered demo-
+this increased external-storage capacity could boost per-          graphic questions. All responses were scored by raters
+formance on tests taken after an opportunity to study              blind to condition. Longhand notes were transcribed, and
+one’s notes. Thus, in Study 3, we used a 2 (laptop, long-          all notes were analyzed using the n-grams program.
+hand) × 2 (study, no study) design to investigate whether
+the disadvantages of laptop note taking for encoding are
+potentially mitigated by enhanced external storage. We             Results
+also continued to investigate whether there were consis-           Laptop versus longhand performance. Across all
+tent differences between responses to factual and con-             question types, there were no main effects of note-taking
+ceptual questions, and additionally explored whether the           medium or opportunity to study. However, there was a
+note-taking medium affected transfer of learning of con-           significant interaction between these two variables, F(1,
+ceptual information to other domains (e.g., Barnett &              105) = 5.63, p = .019, ηp2 = .05. Participants who took
+Ceci, 2002).                                                       longhand notes and were able to study them performed
+                                                                   significantly better (z-score M = 0.19) than participants in
+                                                                   any of the other conditions (z-score Ms = −0.10, −0.02,
+Participants
+                                                                   −0.08), t(105) = 3.11, p = .002, d = 0.64 (see Fig. 5).
+Participants were students (final N = 109; 27 male) from              Collapsing questions about facts and seductive details
+the University of California, Los Angeles Anderson                 into a general measure of “factual” performance, we
+Behavioral Lab subject pool. One hundred forty-two par-            found a significant main effect of note-taking medium,
+ticipants completed Session 1 (presentation), but only 118         F(1, 105) = 5.91, p = .017, ηp2 = .05, and of opportunity to
+returned for Session 2 (testing). Of those 118, 8 partici-         study, F(1, 105) = 13.23, p < .001, ηp2 = .11, but this was
+pants were removed for not having taken notes or failing           qualified by a significant interaction, F(1, 105) = 5.11,
+to respond to the test questions, and 1 was removed                p = .026, ηp2 = .05. Again, participants in the longhand-
+because of a recording error. Participant loss did not differ      study condition (z-score M = 0.29) outperformed the
+significantly across conditions. Participants were paid $6         other participants (z-score Ms = −0.04, −0.14, −0.13),
+for the first session and $7 for the second session.               t(105) = 4.85, p < .001, d = 0.97. Collapsing performance
+                                                                   on conceptual, inferential, and application questions into
+                                                                   a general “conceptual” measure revealed no significant
+Stimuli                                                            main effects, but again there was a significant interaction
+Materials were adapted from Butler (2010). Four prose              between note-taking medium and studying, F(1, 105) = 4.27,
+passages—on bats, bread, vaccines, and respiration—were            p = .04, ηp2 = .04. Longhand-study participants (z-score
+Longhand and Laptop Note Taking                                                                                                       1165
+
+                                                  Laptop-Study       Longhand-Study
+                                                  Laptop–No Study    Longhand–No Study
+                                            0.5
+
+                                            0.4
+
+                                            0.3
+                   Performance (z score)
+
+
+
+
+                                            0.2
+
+                                            0.1
+
+                                             0
+
+                                           –0.1
+
+                                           –0.2
+
+                                           –0.3
+                                                  Combined                   Factual                  Conceptual
+                    Fig. 5. Mean z-scored performance on factual-recall and conceptual-application questions as a function
+                    of note-taking condition and opportunity to study (Study 3). Combined results for both question types are
+                    given separately. Error bars indicate standard errors of the mean.
+
+
+M = 0.13) performed marginally better than the other par-                      their notes (and thus those who were most likely to be
+ticipants (z-score Ms = −0.14, 0.04, −0.05), t(105) = 1.82,                    affected by the contents), verbatim overlap negatively pre-
+p = .07, d = 0.4 (for raw means, see Table 2).                                 dicted overall performance, β = −0.27, p = .046, R2 = .07.
+                                                                               When looking at overall test performance, longhand note
+Content analysis of notes. Again, longhand note tak-                           taking negatively predicted word count, which positively
+ers wrote significantly fewer words (M = 390.65, SD =                          predicted performance, indirect effect = −0.15, 95% CI =
+143.89) than those who typed (M = 548.73, SD = 252.68),                        [−0.24, −0.08]. Longhand note taking also negatively pre-
+t(107) = 4.00, p < .001, d = 0.77 (see Fig. 2). As in the pre-                 dicted verbatim overlap, which negatively predicted per-
+vious studies, there was a significant difference in verba-                    formance, indirect effect = 0.096, 95% CI = [0.004, 0.23].
+tim overlap, with a mean of 11.6% overlap (SD = 5.7%) for                         However, a more nuanced story can be told; the indi-
+laptop note taking and only 4.2% (SD = 2.5%) for long-                         rect effects differ for conceptual and factual questions.
+hand, t(107) = 8.80, p < .001, d = 1.68 (see Fig. 3). There                    For conceptual questions, there were significant indirect
+were no significant differences in word count or verbatim                      effects on performance via both word count (−0.17, 95%
+overlap between the study and no-study conditions.                             CI = [−0.29, −0.08]) and verbatim overlap (0.13, 95% CI =
+   The amount of notes taken positively predicted perfor-                      [0.02, 0.15]). The indirect effect of word count for factual
+mance for all participants, β = 0.35, p < .001, R2 = .12. The                  questions was similar (−0.11, 95% CI = [−0.21, −0.06]), but
+extent of verbatim overlap did not significantly predict                       there was no significant indirect effect of verbatim overlap
+performance for participants who did not study their                           (0.04, 95% CI = [−0.07, 0.16]). Indeed, for factual ques-
+notes, β = 0.13. However, for participants who studied                         tions, there was no significant direct effect of overlap on
+
+
+         Table 2. Raw Means for Overall, Factual, and Conceptual Performance in the Four Conditions of Study 3
+
+         Question type                            Longhand-study    Longhand–no study      Laptop-study            Laptop–no study
+         Factual only                                7.1 (4.0)           3.8 (2.8)            4.5 (3.2)                 3.7 (3.1)
+         Conceptual only                            18.5 (7.8)          15.6 (7.8)           13.8 (6.3)                16.9 (8.1)
+           Overall                                  25.6 (10.8)         19.4 (9.9)           18.3 (9.0)                20.6 (10.7)
+
+         Note: Standard deviations are given in parentheses.
+1166                                                                                                    Mueller, Oppenheimer
+
+performance (p = .52). As in Studies 1 and 2, the detri-         than laptop note takers, thus selecting more important
+ments caused by verbatim overlap occurred primarily for          information to include in their notes, which enables them
+conceptual rather than for factual information, which            to study this content more efficiently. It is worth noting
+aligns with previous literature showing that verbatim            that longhand note takers’ advantage on retention of fac-
+note taking is more problematic for conceptual items             tual content is limited to conditions in which there was a
+(e.g., Bretzing & Kulhavy, 1979).                                delay between presentation and test, which may explain
+   When participants were unable to study, we did not see        the discrepancy between our studies and previous
+a difference between laptop and longhand note taking.            research (Bui et al., 2013). The tasks they describe would
+We believe this is due to the difficulty of test items after a   also fall under our factual-question category, and we
+week’s delay and a subsequent floor effect; average scores       found no difference in performance on factual questions
+were about one-third of the total points available. However,     in immediate testing. For conceptual items, however, our
+when participants had an opportunity to study, longhand          findings strongly suggest the opposite conclusion.
+notes again led to superior performance. This is suggestive      Additionally, whereas Bui et al. (2013) argue that verba-
+evidence that longhand notes may have superior external-         tim notes are superior, they did not report the extent of
+storage as well as superior encoding functions, despite the      verbatim overlap, merely the number of “idea units.” Our
+fact that the quantity of notes was a strong positive predic-    findings concur with theirs in that more notes (and there-
+tor of performance. However, it is also possible that,           fore more ideas) led to better performance.
+because of enhanced encoding, reviewing longhand notes              The studies we report here show that laptop use can
+simply reminded participants of lecture information more         negatively affect performance on educational assess-
+effectively than reviewing laptop notes did.                     ments, even—or perhaps especially—when the computer
+                                                                 is used for its intended function of easier note taking.
+                                                                 Although more notes are beneficial, at least to a point, if
+General Discussion                                               the notes are taken indiscriminately or by mindlessly
+Laptop note taking has been rapidly increasing in preva-         transcribing content, as is more likely the case on a lap-
+lence across college campuses (e.g., Fried, 2008).               top than when notes are taken longhand, the benefit dis-
+Whereas previous studies have shown that laptops (espe-          appears. Indeed, synthesizing and summarizing content
+cially with access to the Internet) can distract students,       rather than verbatim transcription can serve as a desir-
+the present studies are the first to show detriments due to      able difficulty toward improved educational outcomes
+differences in note-taking behavior. On multiple college         (e.g., Diemand-Yauman, Oppenheimer, & Vaughan, 2011;
+campuses, using both immediate and delayed testing               Richland, Bjork, Finley, & Linn, 2005). For that reason,
+across several content areas, we found that participants         laptop use in classrooms should be viewed with a healthy
+using laptops were more inclined to take verbatim notes          dose of caution; despite their growing popularity, laptops
+than participants who wrote longhand, thus hurting               may be doing more harm in classrooms than good.
+learning. Moreover, we found that this pattern of results
+was resistant to a simple verbal intervention: Telling stu-      Author Contributions
+dents not to take notes verbatim did not prevent this            Both authors developed the study concept and design. Data
+deleterious behavior.                                            collection was supervised by both authors. P. A. Mueller ana-
+   One might think that the detriments to encoding would         lyzed the data under the supervision of D. M. Oppenheimer.
+be partially offset by the fact that verbatim transcription      P. A. Mueller drafted the manuscript, and D. M. Oppenheimer
+would leave a more complete record for external storage,         revised the manuscript. Both authors approved the final version
+which would allow for better studying from those notes.          for submission.
+However, we found the opposite—even when allowed to
+review notes after a week’s delay, participants who had          Acknowledgments
+taken notes with laptops performed worse on tests of both        Thanks to Jesse Chandler, David Mackenzie, Peter Mende-
+factual content and conceptual understanding, relative to        Siedlecki, Daniel Ames, Izzy Gainsburg, Jill Hackett, Mariam
+participants who had taken notes longhand.                       Hambarchyan, and Katelyn Wirtz for their assistance.
+   We found no difference in performance on factual
+questions in the first two studies, though we do not dis-        Declaration of Conflicting Interests
+count the possibility that with greater power, differences       The authors declared that they had no conflicts of interest with
+might be seen. In Study 3, it is unclear why longhand            respect to their authorship or the publication of this article.
+note takers outperformed laptop note takers on factual
+questions, as this difference was not related to the rela-       Supplemental Material
+tive lack of verbatim overlap in longhand notes. It may be       Additional supporting information may be found at http://pss
+that longhand note takers engage in more processing              .sagepub.com/content/by/supplemental-data
+Longhand and Laptop Note Taking                                                                                                      1167
+
+Open Practices                                                         Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply
+                                                                           what we learn? A taxonomy for far transfer. Psychological
+                                                                           Bulletin, 128, 612–637.
+                                                                       Bohay, M., Blakely, D. P., Tamplin, A. K., & Radvansky, G. A.
+All data and materials have been made publicly available via               (2011). Note taking, review, memory, and comprehension.
+Open Science Framework and can be accessed at http://osf.io/               The American Journal of Psychology, 124, 63–73.
+crsiz. The complete Open Practices Disclosure for this article         Bretzing, B. H., & Kulhavy, R. W. (1979). Notetaking and depth
+can be found at http://pss.sagepub.com/content/by/supplemental-            of processing. Contemporary Educational Psychology, 4,
+data. This article has received badges for Open Data and Open              145–153.
+Materials. More information about the Open Practices badges            Bretzing, B. H., & Kulhavy, R. W. (1981). Note-taking and pas-
+can be found at https://osf.io/tvyxz/wiki/view/ and http://pss             sage style. Journal of Educational Psychology, 73, 242–250.
+.sagepub.com/content/25/1/3.full.                                      Brown, C. M. (1988). Comparison of typing and handwriting
+                                                                           in “two-finger typists.” Proceedings of the Human Factors
+Notes                                                                      Society, 32, 381–385.
+1. See Additional Analyses in the Supplemental Material avail-         Bui, D. C., Myerson, J., & Hale, S. (2013). Note-taking with com-
+able online for some findings regarding real-world data.                   puters: Exploring alternative strategies for improved recall.
+2. See Lecture Information in the Supplemental Material for                Journal of Educational Psychology, 105, 299–309.
+links to all five TED Talks used in Study 1 and the four prose         Butler, A. C. (2010). Repeated testing produces superior trans-
+passages used in Study 2.                                                  fer of learning relative to repeated studying. Journal
+3. See Raw Means and Questions in the Supplemental Material                of Experimental Psychology: Learning, Memory, and
+for full question lists from all three studies.                            Cognition, 36, 1118–1133.
+4. For factual questions, laptop participants’ raw mean score          Cacioppo, J. T., & Petty, R. E. (1982). The need for cognition.
+was 5.58 (SD = 2.23), and longhand participants’ raw mean                  Journal of Personality and Social Psychology, 42, 116–131.
+score was 6.41 (SD = 2.84). For conceptual questions, the raw          Craik, F. I., & Lockhart, R. S. (1972). Levels of processing:
+mean scores for laptop and longhand participants were 3.77                 A framework for memory research. Journal of Verbal
+(SD = 1.23) and 4.29 (SD = 1.49), respectively. See Raw Means              Learning and Verbal Behavior, 11, 671–684.
+and Questions in the Supplemental Material for raw means               Diemand-Yauman, C., Oppenheimer, D. M., & Vaughan, E. B.
+from Studies 1 and 2.                                                      (2011). Fortune favors the bold (and the italicized): Effects of
+5. In all three studies, the results remained significant when we          disfluency on educational outcomes. Cognition, 118, 111–115.
+controlled for measures of academic ability, such as self-ratings      DiVesta, F. J., & Gray, G. S. (1972). Listening and note taking.
+of prior knowledge and scores on the SAT and reading span task.            Journal of Educational Psychology, 63, 8–14.
+6. Linguistic Inquiry and Word Count (LIWC) software was also          DiVesta, F. J., & Gray, S. G. (1973). Listening and note taking: II.
+used to analyze the notes on categories identified by Pennebaker           Immediate and delayed recall as functions of variations in the-
+(2011) as correlating with improved college grades. Although               matic continuity, note taking, and length of listening-review
+LIWC analysis indicated significant differences in the predicted           intervals. Journal of Educational Psychology, 64, 278–287.
+direction between laptop and longhand notes, none of the differ-       Einstein, G. O., Morris, J., & Smith, S. (1985). Note-taking, indi-
+ences predicted performance, so they will not be discussed here.           vidual differences, and memory for lecture information.
+7. For all three studies, we also analyzed the relation between            Journal of Educational Psychology, 77, 522–532.
+verbatim overlap and students’ preferences for longhand or             Fried, C. B. (2008). In-class laptop use and its effects on student
+laptop note taking. Results of these analyses can be found in              learning. Computers & Education, 50, 906–914.
+Additional Analyses in the Supplemental Material.                      Garner, R., Gillingham, M. G., & White, C. S. (1989). Effects of
+8. For conceptual questions, laptop-nonintervention par-                   “seductive details” on macroprocessing and microprocessing
+ticipants had lower raw scores (M = 2.30, SD = 1.40) than                  in adults and children. Cognition and Instruction, 6, 41–57.
+did longhand note takers (M = 2.94, SD = 1.73) and laptop-             Grace-Martin, M., & Gay, G. (2001). Web browsing, mobile
+intervention participants (M = 2.43, SD = 1.59). For factual               computing and academic performance. Educational
+questions, laptop-nonintervention participants’ raw scores                 Technology & Society, 4, 95–107.
+(M = 4.92, SD = 2.62) were also lower than those of longhand           Hembrooke, H., & Gay, G. (2003). The laptop and the lec-
+note takers (M = 5.11, SD = 3.05) or laptop-intervention par-              ture: The effects of multitasking in learning environments.
+ticipants (M = 5.25, SD = 2.89).                                           Journal of Computing in Higher Education, 15, 46–64.
+                                                                       Igo, L. B., Bruning, R., & McCrudden, M. T. (2005). Exploring
+                                                                           differences in students’ copy-and-paste decision mak-
+References                                                                 ing and processing: A mixed-methods study. Journal of
+Aiken, E. G., Thomas, G. S., & Shennum, W. A. (1975). Memory               Educational Psychology, 97, 103–116.
+    for a lecture: Effects of notes, lecture rate, and informational   Iqbal, S. T., & Horvitz, E. (2007). Disruption and recov-
+    density. Journal of Educational Psychology, 67, 439–444.               ery of computing tasks: Field study, analysis, and direc-
+Barak, M., Lipson, A., & Lerman, S. (2006). Wireless laptops               tions. In Proceedings of the SIGCHI Conference on
+    as means for promoting active learning in large lecture                Human Factors in Computing Systems (pp. 677–686).
+    halls. Journal of Research on Technology in Education, 38,             New York, NY: Association for Computing Machinery.
+    245–263.                                                               doi:10.1145/1240624.1240730
+1168                                                                                                           Mueller, Oppenheimer
+
+Kay, R., & Lauricella, S. (2011). Exploring the benefits and chal-          Technology (pp. 559–570). Retrieved from http://files.eric
+     lenges of using laptop computers in higher education class-            .ed.gov/fulltext/ED397772.pdf
+     rooms: A formative analysis. Canadian Journal of Learning         Richland, L. E., Bjork, R. A., Finley, J. R., & Linn, M. C. (2005).
+     and Technology, 37(1). Retrieved from http://www.cjlt.ca/              Linking cognitive science to education: Generation and
+     index.php/cjlt/article/view/565/299                                    interleaving effects. In B. G. Bara, L. Barsalou, & M.
+Kiewra, K. A. (1985). Investigating notetaking and review: A depth          Bucciarelli (Eds.), Proceedings of the Twenty-Seventh
+     of processing alternative. Educational Psychologist, 20, 23–32.        Annual Conference of the Cognitive Science Society (pp.
+Kiewra, K. A. (1989). A review of note-taking: The encoding-                1850–1855). Mahwah, NJ: Erlbaum.
+     storage paradigm and beyond. Educational Psychology               Rubinstein, J. S., Meyer, D. E., & Evans, J. E. (2001). Executive
+     Review, 1, 147–172.                                                    control of cognitive processes in task switching. Journal
+Kobayashi, K. (2005). What limits the encoding effect of                    of Experimental Psychology: Human Perception and
+     note-taking? A meta-analytic examination. Contemporary                 Performance, 27, 763–797.
+     Educational Psychology, 30, 242–262.                              Skolnick, R., & Puzo, M. (2008). Utilization of laptop com-
+Kraushaar, J. M., & Novak, D. C. (2010). Examining the affects              puters in the school of business classroom. Academy of
+     of student multitasking with laptops during the lecture.               Educational Leadership Journal, 12, 1–10.
+     Journal of Information Systems Education, 21, 241–251.            Slotte, V., & Lonka, K. (1999). Review and process effects
+Lin, L., & Bigenho, C. (2011). Note-taking and memory in dif-               of spontaneous note-taking on text comprehensions.
+     ferent media environments. Computers in the Schools, 28,               Contemporary Educational Psychology, 24, 1–20.
+     200–216.                                                          Sovern, J. (2013). Law student laptop use during class for non-
+Mitra, A., & Steffensmeier, T. (2000). Changes in student atti-             class purposes: Temptation v. incentives. University of
+     tudes and student computer use in a computer-enriched                  Louisville Law Review, 51, 483–517.
+     environment. Journal of Research on Computing in                  Unsworth, N., Heitz, R. P., Schrock, J. C., & Engle, R. W. (2005).
+     Education, 32, 417–432.                                                An automated version of the operation span task. Behavior
+Pennebaker, J. W. (2011). The secret life of pronouns: What our             Research Methods, 37, 498–505.
+     words say about us. New York, NY: Bloomsbury Press.               Van Meter, P., Yokoi, L., & Pressley, M. (1994). College stu-
+Preacher, K. J., & Hayes, A. F. (2004). SPSS and SAS procedures             dents’ theory of note-taking derived from their percep-
+     for estimating indirect effects in simple mediation models.            tions of note-taking. Journal of Educational Psychology,
+     Behavior Research Methods, Instruments, and Computers,                 86, 325–338.
+     36, 717–731.                                                      Wurst, C., Smarkola, C., & Gaffney, M. A. (2008). Ubiquitous
+Quade, A. Q. (1996). An assessment of retention and depth                   laptop usage in higher education: Effects on student
+     of processing associated with notetaking using tradi-                  achievement, student satisfaction, and constructivist mea-
+     tional pencil and paper and an on-line notepad dur-                    sures in honors and traditional classrooms. Computers &
+     ing computer-delivered instruction. In M. R. Simonson,                 Education, 51, 1766–1783.
+     M. Hays, & S. Hall (Eds.), Proceedings of Selected Research       Yamamoto, K. (2007). Banning laptops in the classroom:
+     and Development Presentations at the 1996 Convention                   Is it worth the hassle? Journal of Legal Education, 57,
+     of the Association for Educational Communications and                  477–520.
+

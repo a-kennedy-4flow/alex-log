@@ -1,0 +1,859 @@
+Reading Speed, Comprehension and Eye Movements
+While Reading Japanese Novels: Evidence from
+Untrained Readers and Cases of Speed-Reading Trainees
+Hiromitsu Miyata1,2*, Yasuyo Minagawa-Kawai2, Shigeru Watanabe3, Toyofumi Sasaki4, Kazuhiro Ueda5
+1 Japan Society for the Promotion of Science, Tokyo, Japan, 2 Graduate School of Human Relations, Keio University, Tokyo, Japan, 3 Department of Psychology, Keio
+University, Tokyo, Japan, 4 NBS Japan Society of Speed Reading Education, Tokyo, Japan, 5 Interfaculty Initiative in Information Studies, The University of Tokyo/CREST,
+Japan Science and Technology Agency, Tokyo, Japan
+
+
+
+     Abstract
+     Background: A growing body of evidence suggests that meditative training enhances perception and cognition. In Japan,
+     the Park-Sasaki method of speed-reading involves organized visual training while forming both a relaxed and concentrated
+     state of mind, as in meditation. The present study examined relationships between reading speed, sentence
+     comprehension, and eye movements while reading short Japanese novels. In addition to normal untrained readers, three
+     middle-level trainees and one high-level expert on this method were included for the two case studies.
+
+     Methodology/Principal Findings: In Study 1, three of 17 participants were middle-level trainees on the speed-reading
+     method. Immediately after reading each story once on a computer monitor, participants answered true or false questions
+     regarding the content of the novel. Eye movements while reading were recorded using an eye-tracking system. Results
+     revealed higher reading speed and lower comprehension scores in the trainees than in the untrained participants.
+     Furthermore, eye-tracking data by untrained participants revealed multiple correlations between reading speed, accuracy
+     and eye-movement measures, with faster readers showing shorter fixation durations and larger saccades in X than slower
+     readers. In Study 2, participants included a high-level expert and 14 untrained students. The expert showed higher reading
+     speed and statistically comparable, although numerically lower, comprehension scores compared with the untrained
+     participants. During test sessions this expert moved her eyes along a nearly straight horizontal line as a first pass, without
+     moving her eyes over the whole sentence display as did the untrained students.
+
+     Conclusions/Significance: In addition to revealing correlations between speed, comprehension and eye movements in
+     reading Japanese contemporary novels by untrained readers, we describe cases of speed-reading trainees regarding
+     relationships between these variables. The trainees overall tended to show poor performance influenced by the speed-
+     accuracy trade-off, although this trade-off may be reduced in the case of at least one high-level expert.
+
+  Citation: Miyata H, Minagawa-Kawai Y, Watanabe S, Sasaki T, Ueda K (2012) Reading Speed, Comprehension and Eye Movements While Reading Japanese
+  Novels: Evidence from Untrained Readers and Cases of Speed-Reading Trainees. PLoS ONE 7(5): e36091. doi:10.1371/journal.pone.0036091
+  Editor: Kevin Paterson, University of Leicester, United Kingdom
+  Received October 18, 2011; Accepted March 27, 2012; Published May 9, 2012
+  Copyright: ß 2012 Miyata et al. This is an open-access article distributed under the terms of the Creative Commons Attribution License, which permits
+  unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+  Funding: This study was supported by the Research Fellowship of the Japan Society for the Promotion of Science (JSPS) for Young Scientists to Hiromitsu Miyata,
+  the Grants-in-Aid for Scientific Research No.21118005 from JSPS to Kazuhiro Ueda, and by the Japan Ministry of Education, Culture, Sports, Science and
+  Technology Global COE Program, D-09, to Keio University, Japan. The funders had no role in the study design, data collection and analysis, decision to publish, or
+  preparation of the manuscript.
+  Competing Interests: The authors have declared that no competing interests exist.
+  * E-mail: miyata@cog.human.nagoya-u.ac.jp
+
+
+
+Introduction                                                                           reading speed and comprehension is not consistent. A number of
+                                                                                       studies have shown that reading more quickly improves compre-
+   The relationship between reading speed and sentence compre-                         hension [5,9]. For instance, Walczyk et al. [10] found that
+hension has been under investigation for more than 50 years (for                       encouraging people to read slightly faster than their normal speed
+an overview, see [1]). Poulton [2] discovered that the amount of                       by imposing mild time pressure improved sentence comprehen-
+content retained, which was considered as the criterion for                            sion. This improvement was explained in terms of increased
+comprehension, increased significantly when the reading speed                          motivation and effort resulting from the constraints on reading
+decreased from around 300 words per minute (wpm) to about                              time (see also [11]). These various empirical findings suggest that
+150 wpm. Such reduced comprehension accuracy with increased                            the way in which reading speed and comprehension are related
+reading speed has commonly been referred to as the speed-                              can be influenced by multiple factors, including age, motivation,
+accuracy trade-off [3–6]. For example, the speed-accuracy trade-                       level of reading expertise, and other factors such as instructed
+off is reported to occur while skimming text, during which                             reading strategies.
+participants somehow grasped gist-relevant information but not                            At present, little is known about how patterns of eye movements
+the details [7–8]. However, evidence for the relationship between                      may be associated with potential relationships between reading
+
+
+        PLoS ONE | www.plosone.org                                                 1                                   May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                      Untrained and Speed-Readers’ Novel Reading
+
+
+speed and comprehension. Also, there is relatively little evidence           is particularly true for Japanese novels. Thus, scanning or
+about the relationships between eye movements, reading speed                 skimming may not be very efficient ways to grasp the main points
+and comprehension in Japanese. Given such paucity of basic data,             of Japanese text. The present study is novel in that it quantitatively
+it is important to investigate these variables and how they relate to        examined sentence comprehension during speed-reading in
+each other in reading Japanese text. The present study was                   Japanese with a unique training method. To appropriately
+designed to examine how eye movements and speed-accuracy                     measure the comprehension by these experts, there appear to be
+relationships may be interconnected under conditions in which                several criteria to use in choosing the text: (1) it should be a story
+participants read Japanese novels as fast as possible while also             that is relatively easy to read and does not require specialized
+comprehending the content, followed by content-related questions.            knowledge or schema on any specific area; (2) it should not be
+The studies were conducted in a well-controlled setting using                widely read; and (3) there should be pieces of comparable length
+a computer-assisted setup customized for different participants to           and difficulty for researchers to effectively design multiple sessions.
+collect basic data from normal adults. An eye-tracking system                To meet these criteria, it would be best to use a series of recently
+which provides a natural testing environment without any glasses             published Japanese novels and to ask questions on their content
+was used to record eye movements while reading.                              following reading.
+    Besides collecting such basic data, the present research was also           Accordingly, in addition to investigating relationships between
+focused on issues of speed-reading. The Park-Sasaki method of                reading speed, comprehension, and eye movement while reading
+speed-reading originated in Korea and was later further developed            Japanese novels, the present study also examined sentence
+in Japan [12–13]. The method involves organized visual training              comprehension skills by speed-reading trainees. As a beginning
+while forming both a relaxed and concentrated state of mind, as              step regarding the second point, we included three middle-level
+when one is engaged in meditation with the eyes open. According              trainees and one high-level expert within a case-study approach.
+to what the method claims, advanced experts using this method                After reading Japanese novels on a computer screen, participants
+may be capable of reading Japanese sentences faster than 10,000              answered content-related questions, which aimed to examine the
+characters (corresponding to about 4,120 words in English) per               extent of comprehension of the novel. Potential differences in eye
+minute while following all the characters and lines in order [12–            movements between the trainees and the untrained participants
+13]. However, there has so far been no scientific demonstration              were also examined using an eye-tracking system.
+regarding comprehension abilities of these experts, which must be
+evaluated using solid experimental approaches. A growing body of             Materials and Methods
+evidence suggests that meditative training based on Oriental Zen
+practice enhances various abilities including visual perception,             Study 1
+attention, and cognition [14–17]. Because the Park-Sasaki method                The primary goal of the first study was to obtain basic data on
+essentially involves forming a calm state of mind through an                 eye movement measures in Japanese adults while reading novels
+organized series of mental-focusing techniques such as deep                  with comprehension. Participants read each of the four stories,
+breathing with concentration on one’s abdomen and progressive                around 9,000 characters long, presented on a LCD screen while
+muscle relaxation, this method could be referred to as one                   switching page displays by pressing a response button. They then
+variation of meditation-based mental practices that is intended to           answered 16 true or false content-related questions. Eye-tracking
+cultivate capabilities associated with reading. Using Functional             was done while reading, which enabled examination of the
+Magnetic Resonance Imaging (fMRI), Fujimaki et al. [18] showed               correlations between reading speed and various eye-movement
+that Park-Sasaki experts showed reduced neuronal activation in               measures including numbers and durations of fixations and
+Broca’s area and Wernicke’s area while speed-reading, suggesting             saccadic sizes. Given the scores on the comprehension test, it is
+that they may read sentences using fewer phonological processes              also possible to examine correlations between levels of compre-
+than untrained participants. Fujimaki et al. [19] found that, in             hension and eye-movement measures. The second purpose was to
+addition to the decrease in neuronal activation in language-related          preliminarily examine the efficacy of this setup to examine abilities
+areas, the right intraparietal sulcus showed increased activation            and mechanisms associated with speed-reading. In addition to the
+during speed-reading, which they suggest may reflect enhanced                normal untrained adults, three middle-level trainees of the Park-
+visuospatial processing in these experts (see also [20–21]).                 Sasaki method participated. If these trainees perform well, i.e.,
+    There have been a number of publications on this topic over              show high comprehension scores with short reading time, that
+decades of time, some of which reported seemingly positive effects           would support the efficacy of this testing as well as the reading
+of speed-reading training [22–23]. However, the efficacy of speed-           skills of the Park-Sasaki experts. In contrast, if they fail to perform
+reading methods or the existence of genuine speed-readers                    well, this would either suggest poor performance of the trainees or
+remains highly controversial. There are both skepticism about                potential points for improvement associated with this testing. We
+the mechanics of what speed-readers are doing and skepticism                 expected to find that multiple eye-movement measures correlate
+about the comprehension of speed-readers [1,24]. Among works                 not only with reading speed but also with comprehension scores,
+undertaken in English, for example, Just and Carpenter [25]                  with potential differences between groups.
+suggested that speed readers can at most extract the gist of the                Participants. A total of 17 Japanese adults participated in the
+easy, familiar text but not the details. One reason for these critical       reading sessions. Among them, 14 (10 females and 4 males; age,
+perspectives may be due to the ways in which English-language                25–48 years; mean age = 33.9 years, SD = 8.2) were university
+writing is organized. That is, in a typical English document,                graduate students, research fellows, or company workers with no
+a summary paragraph is provided at the beginning and a topic                 experience of speed-reading training. The other three participants
+sentence appears at the beginning of each paragraph, so that                 (female, 59 years old; female, 46 years old; male, 43 years old)
+readers can catch the main points by skimming. Thus, in this                 were trainees of the Park-Sasaki method of speed reading, who
+writing system, speed-reading can be accomplished by developing              had participated in the training course for 6.2–8.2 years. These
+sophisticated skimming strategies [1]. However, this may not be              three participants were acknowledged to be in the middle level but
+equally true for Japanese writing, because Japanese writing does             had not yet attained the high stage of expertise, according to the
+not usually provide summary paragraphs or topic sentences. This              specific program of the method [13]. The other four (two females
+
+
+       PLoS ONE | www.plosone.org                                        2                              May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                      Untrained and Speed-Readers’ Novel Reading
+
+
+and two males; age, 23–30 years; mean age = 26.3 years, SD = 2.6)            the usual style of text arrangement in Japanese novels. Japanese
+and five (three females and two males; 18–21 years; mean                     words consist of one or multiple characters (mean: about 1.6
+age = 19.4 years, SD = 1.0) participants were also included in the           characters), usually classified into ten parts of speech. However,
+two additional control conditions, i.e., no-reading control and              unlike the English writing system, no spaces were inserted between
+gist/detail control, respectively. All participants had normal or            words, and gaps between words are less apparent than in English.
+corrected-to-normal vision. The present study was approved by                Consequently, word-based counting is less common than
+the Ethics Committee of Keio University (Approval No. 10013).                character-based counting in Japanese writing. Sentences were
+All participants in both studies gave written informed consent               presented at the center of the monitor within an area 20 cm wide
+upon agreement cooperate.                                                    and 14 cm high. Each page display contained 392 characters
+   Settings. The study took place in a dim, sound-attenuated                 (about 245 words) on average, in 20 lines (see Figure 1 for
+room, where the participants were seated in a comfortable height-            examples of the page displays). Each line included 25 characters
+adjustable chair. A 58-cm (23.0 inches) TFT LCD monitor                      (about 16 words), i.e., 1.8 characters per degree of visual angle.
+(FlexScan EV2333W, EIZO, Ishikawa, Japan) was located on                     Each story corresponded to 21–25 pages on the monitor. For the
+a table in front of the participant. The distance between the                instruction, the text of another well-known novel, Hashire Melos
+monitor and the participant’s eyes was set at 57 cm. One                     (Run, Melos!) by Osamu Dazai (9,795 characters/6,122 words
+centimeter on the screen corresponded to a visual angle of                   long), was used.
+approximately one degree. The heights of both the monitor and                   Procedure. Instruction on the general procedure using
+the chair were adjusted for each participant so that he/she could            Hashire Melos (Run, Melos!) as an example was followed by the
+sit in a good posture and gaze at the fixation point in the center of        test sessions for both the trainees and the untrained participants.
+the monitor right in front of him/her. A response device was used            The flow of each session is depicted in Figure 1. Prior to each test
+that was modified by removing unnecessary keys from a numerical              session, regular full-screen calibration check of the eye-tracker was
+keypad (TK-UFHBK, ELECOM, Osaka, Japan), which the                           performed. During calibration, a target circle moved in animation
+participants put on their thigh. Participants could press a button           on the display, which participants were required to follow with
+on the device to switch pages on the display, in a way comparable            their eyes until the target made brief stops at nine different points.
+to a mouse click. These height adjustments and device                        Following calibration, differences between the actual locations of
+modifications were made to make the settings similar to that                 these stop points and the gaze points calculated by the eye-tracker
+used for speed-reading training, by which the trainees could                 were displayed using lines. Calibration was deemed acceptable if
+express their daily abilities. The program for presenting sentence           these lines remained within the area indicated for each stop point.
+stimuli was written in Microsoft VisualBasic 6.0.                            Mean measurement accuracy of 0.5 degrees was regarded to be
+   An eye-tracking system (Tobii X120 Eye Tracker, Tobii                     achieved with these criteria. Otherwise, if the longer lines
+Technology AB, Danderyd, Sweden) located beneath the monitor                 indicated larger errors or if the software displayed that there
+in front of the participant recorded the participants’ eye move-             were not enough calibration data, recalibration was performed
+ments on the monitor throughout the reading period. Use of Tobii             until acceptable calibration was obtained. After a fixation point
+eye-trackers in studies of reading has become widespread [26,27],            appeared at the center of the display, participants were allowed to
+even though it should also be noted that these eye-trackers have             start reading in their own good time. Pressing a response button
+less temporal and spatial resolution than other standard eye-                once displayed the first page of the story. After reading through
+trackers. Tobii eye-trackers are also used in studies of other aspects       each page once, participants pressed the button once and the
+of cognition [28,29]. The system is non-invasive and is relatively           display switched to the next page. Participants were instructed to
+flexible to the head movements of participants, with a measure-              read sentences as fast as possible while understanding the content
+ment accuracy of 0.5 degrees. There is no need to attach
+additional devices on the participants’ bodies. It is thus regarded as
+a tool for recording eye movements in a natural situation in which
+daily cognitive activities are implemented (for more information
+see [30]). Tobii X-120 is a binocular eye-tracker composed of two
+infrared cameras. The recording rate was set at 60 Hz. Tobii
+Studio software (ver. 1.7.3) was used to set up, execute, and later
+analyze the test sessions.
+   Materials. The texts used for the test sessions were four
+stories selected from the same series of Japanese novels (99-no-
+namida [99 tears] by Lindapublishers Co., Ltd., Tokyo, Japan)
+published between the years 2009 and 2010: Tonari no hatsumeika
+(Inventor next door) [31]; Samui yoru no pizza (Pizza on a cold night)
+[32]; Ryu to issho (Together with Ryu) [33]; and On-okuri (Pay it
+forward) [34]. These stories are referred to hereinafter as Story 1,
+2, 3, and 4, respectively. These four stories were 8,046–9,617
+characters (5,029–6,011 Japanese words) long (9,004 characters/
+5,628 Japanese words on average). All four novels involved
+relatively easy content on daily events of general people in the
+present day. All participants declared that they had not read any of
+these stories prior to the study. As is typical in Japanese text, the        Figure 1. Diagram of a test session in Studies 1 and 2. Japanese
+                                                                             sentences shown here, i.e., part of the well-known novel Hashire Melos
+sentences in these novels used a combination of three writing                [Run, Melos!], are the samples used for the instruction. At the beginning
+systems, i.e., kanji (morphogram), hiragana (syllabogram), and               fixation stage, participants were allowed to take sufficient time before
+katakana (syllabogram). The sentences were arranged in a vertical            starting each test session.
+direction from up to down and subsequently from right to left, as is         doi:10.1371/journal.pone.0036091.g001
+
+
+       PLoS ONE | www.plosone.org                                        3                               May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                              Untrained and Speed-Readers’ Novel Reading
+
+
+as well. All participants were also told to maintain both a good                      participants between these measures and three independent
+posture and a calm, relaxed state of mind throughout the reading                      variables: reading speed (characters read per minute),
+period, so that trainees could exhibit their reading capabilities by                  proportions of correct answers to the questions (comprehension
+performing in the same ways as they usually do during the                             scores), and residual values in Y from the regression line in the
+training. In addition, they were instructed not to move their head                    speed-accuracy plot, which was assumed to reflect the excellence
+or speak, to reduce artifacts in the eye-tracking data, unless they                   of performance in the relationships between reading speed and
+wanted to terminate the session. Immediately after reading                            comprehension scores.
+through the final page, another press of the button resulted in
+the reappearance of the fixation cross, and participants were                         Study 2
+required to answer 16 true or false questions presented on a sheet                       Whereas the first study revealed correlations between reading
+of paper set in front of them on the table. The sheet, one for each                   speed, accuracy, and eye movement, it also revealed poor
+session, was set face-down before each session through the reading                    performance in the trainees. Potential problems and points for
+period, after which participants turned it over to fill in the answers                improvement are: (1) participants should be those at the high stage
+with a pen. The questions concerned the plot of the novels, and                       of expertise, who can both comprehend and remember the
+were designed so that they would be relatively easy to answer if the                  content while reading at a high speed; and (2) the present
+reader comprehended the content of the story but not if they read                     instruction to read as fast as possible while also comprehending
+without appropriate understanding of the content. Examples of the                     may have been misleading, because it could have urged
+questions were in the form of sentences such as: Q. The boy thought                   participants to accelerate reading speed while sacrificing compre-
+that the old patient is playing many tricks in an attempt to ease his terror of       hension. It would be better to more strongly encourage
+death (Story 1). Q. The heroine realized that her dead mother, whom she once          participants to focus on comprehension. Thus, in the second
+hated, actually loved her a lot (Story 4). Participants gave true or false            study, we included a high-level expert as well as new untrained
+marks to each sentence based on whether it matched the plot of                        participants and modified the instructions so that participants
+the story. Immediately after finishing the answers, participants                      would prioritize comprehension. We expected that the expert
+pressed the button once more to terminate the session. Between                        would show performance exceeding that of the control partici-
+the test sessions, participants were allowed to take a rest period if                 pants, while potentially showing different eye-movement patterns
+they wished.                                                                          as well.
+    Participants included in the additional two control conditions,                      Participants. An advanced expert of the Park-Sasaki method
+i.e., no-reading control and gist/detail control, were non-speed-                     (FT; female, 59 years old) participated. Prior to participation FT
+readers and were ignorant of the purpose of the study. No-reading                     had participated in the training course for 7.4 years and attained
+control participants were simply presented with the question sheets                   the high stage of expertise. According to the specific program of
+and filled in the answers to the questions for all the test stories used              the method, she was reportedly capable of reading more than
+in this study without reading the novels. Gist/detail control                         120,000 characters per minute using the familiar sentences in the
+participants read the text, questions, referred to the correct                        training textbook of the method [13]. FT reported that her daily
+answers to the questions and rated each question on a scale of one                    reading speed in private when reading Japanese books for pleasure
+to ten, based on the extent to which the question reflected the (1)                   was between 5,000 and 8,000 characters per minute. That is, she
+gist and (2) detail of the stories.                                                   reported that the reading speed which she can practically show for
+   Eye-tracking data analysis. Eye-movement data post-                                unfamiliar text was much lower than when reading familiar text
+processed by Tobii Studio software showing timestamps in                              during training. The other 14 Japanese university undergraduate
+milliseconds and coordinates of each fixation were used for the                       students having no experience with speed-reading training (10
+subsequent analyses. A fixation was scored if the gaze remained                       females and 4 males; age, 18–19 years; mean age, 18.9 years,
+stationary within a radius of 35 pixels (about 0.9 degrees in visual                  SD = 0.3) participated as the untrained control group. For the no-
+angle); otherwise, the recorded sample was defined as part of                         reading control and gist/detail control conditions, data from the
+a saccade. The following variables were used to indicate                              same participants as in Study 1 were used, except that data for one
+characteristics of eye movements: numbers of leftward and                             additional story used in Study 2 were included. In addition, the
+rightward saccades in the X axis; numbers of downward and                             other four participants (3 females and one male; 19–39 years;
+upward saccades in the Y axis; mean size of saccades (absolute                        mean age, 24.0 years, SD = 8.7) had another control condition
+value integrating X and Y components) and its X and Y                                 referred to as FT’s-speed control. All participants had normal or
+components separately with their variances; size of saccades in                       corrected-to-normal vision.
+X and Y shown separately for the first-pass reading; mean                                Settings, materials, and procedure. The same setup as in
+duration of fixation and its variance; and first-pass reading time                    Study 1 was used for Study 2. The materials were the same as in
+(i.e., sum of all fixation times during the first pass) and look-back                 Study 1 except that one additional story from the same series of
+time within each session. First-pass in this context was determined                   novels was used for the test, which now involved five sessions in
+as all the fixations made from first entering each line of the text                   total. This new story, Issho-no-onegai (I’ll never ask for anything
+until leaving it. First-pass measures should help to consider to what                 again) [35], was 9,046 characters (5,654 Japanese words) long and
+extent comprehension was made during first-pass, or during re-                        corresponded to 23 pages on the display. All participants declared
+reading to understand further details of the text. Saccades larger                    that they had not previously read any of the stories used for the
+than 200 pixels (about 5.3 degrees in visual angle) in the rightward                  test. The procedure was the same as in Study 1 except that five test
+direction for the X axis or in the upper direction for the Y axis                     sessions were implemented and that the instructions were
+were analyzed separately, because these were regarded as saccades                     modified. That is, participants were told to read the sentences
+made to proceed to the beginning of the next page display and to                      while comprehending the content, so that they would be able to
+the beginning of the next line (i.e., ‘‘return sweeps’’), respectively.               answer content-related questions presented following reading.
+Regressive saccades were defined as those moving in the rightward                     While maintaining that level of understanding, they were
+direction for the X axis, or in the upward direction for the Y axis                   instructed to read not slowly nor lazily but as rapidly as possible.
+within each line. Correlations were examined for untrained                            FT’s-speed control participants were non-speed-readers and
+
+
+       PLoS ONE | www.plosone.org                                                 4                             May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                       Untrained and Speed-Readers’ Novel Reading
+
+
+participated in all the five test sessions following FT’s participation.       questions with above- and below-average scores of gist/detail
+These participants answered the questions after having each page               rating values, for both the untrained participants and the trainees.
+display switched automatically after the same presentation time as             No significant differences in comprehension scores were found
+FT had. They were instructed that the pages would be switched                  between higher and lower gist (untrained participants: U (N = 34,
+automatically at speed and that they should do their best to                   30) = 481.500, p = 0.694; trainees: U (N = 34, 30) = 443.500,
+comprehend the stories without pressing response buttons by                    p = 0.343) or detail (untrained participants: U (N = 25,
+themselves.                                                                    39) = 428.500, p = 0.405; trainees: U (N = 25, 39) = 392.500,
+   Eye-tracking data analysis. Eye movement measures by                        p = 0.166) rating values. Thus, it was not shown that the extent to
+the eye-tracker were analyzed and examined generally in the same               which the questions reflected the gist/detail of the stories
+manner as in Study 1. Examination of correlations between eye-                 influenced the comprehension scores.
+movement measures, reading speed and comprehension scores,                        Eye-movement measures and correlations. All analyzed
+already reported in Study 1, were not duplicated in this study. In             eye-movement measures together with reading speed and
+order to identify the parts of the sentence display where the                  comprehension score measures for the trainees and the
+participants’ gaze was frequently fixated, the sentence area of                untrained participants from both studies are summarized in
+20614 cm was divided into subareas of every 2 cm for both the                  Table 1. The three trainees showed numerically smaller fixation
+vertical and horizontal axes. These subareas are referred to as X1             times, larger saccade sizes in X and smaller saccade sizes in Y, and
+to X10 (from left to right) for the horizontal axis and as Y1 to Y7            fewer return sweeps, although these numerical differences were
+(from top to bottom) for the vertical axis. Durations of fixations at          not very distinctive. In addition, results of correlation analyses
+each of these subareas were examined. All fixations, including                 between the independent variables, i.e., reading speed,
+those during first-pass reading, re-reading, and return sweeps,                comprehension scores, and residual value from linear regression
+were included in this analysis.                                                in the speed-accuracy plot, and the eye-movement measures for
+                                                                               the 14 untrained participants are summarized in Table 2, to show
+Results                                                                        relationships between these measures for normal readers.
+                                                                                  Reading speed. Correlations between reading speed and eye-
+Study 1                                                                        movement measures for untrained participants revealed a number
+   Reading speed and comprehension scores. Data from all                       of significant tendencies. First, faster reading corresponded to
+the test sessions were included in the analysis, but one untrained             shorter duration of each fixation and smaller variance in fixation
+participant (female, 30 years old) quit after finishing two sessions.          time. Second, faster reading corresponded to smaller variances in
+The average score of the no-reading control participants across the            total saccade sizes. Analyzed separately for X and Y components,
+four stories was 55.5%, which was considered to reflect the                    faster reading corresponded to larger saccade size in X (in the
+baseline ‘‘zero-comprehension’’. The mean rating values                        leftward direction), but not in Y (in the downward direction).
+regarding the questions by the gist/detail control participants                Variances in saccade sizes both in X and Y were larger in fast
+were 5.3 for gist and 7.4 for detail, showing that the questions               readers than in slow readers. Comparable trends were found for
+reflected both the gist and the detail of the stories. Reading speed
+and percentages of correct responses to the questions for both the
+trainees and the untrained participants are shown in Figure 2 and
+in Table 1. Data for each test session is plotted in Figure 2.
+When both the untrained participants and the trainees were
+involved, reading speed and proportions of correct answers to the
+questions revealed a significantly negative correlation (R2
+[N = 66] = 20.528, p,0.001). A comparable negative correlation
+was found when each group was separated, though these did not
+reach significance (untrained participants: R2 [N = 54] = 20.146,
+p = 0.293; trainees: R2 [N = 12] = 20.500, p = 0.098). In addition,
+Mann-Whitney’s U tests showed that comprehension scores for
+both groups were significantly higher than those of the no-reading
+control group (untrained participants: U (N = 54, 16) = 16.500,
+p,0.001; trainees: U (N = 12, 16) = 38.500, p = 0.007). Mean
+reading speed was numerically 2.1 times faster, and mean
+proportion of correct answers was numerically 15.7% lower, in
+the trainees than in the untrained participants (Table 1). For both
+reading speed and comprehension score measures, we conducted
+Mann-Whitney’s U tests in order to make comparisons between
+the trainees and the untrained participants. Data for all sessions
+were used for this analysis. Reading speed turned out to be
+significantly faster in the trainees than in the untrained
+participants      (U     (N = 54,      16) = 105.000,      p,0.001).           Figure 2. Results of Study 1: reading speed in the characters
+Comprehension scores, however, were significantly lower in the                 read per minute and comprehension scores, percentage of
+trainees than in the untrained participants (U (N = 54,                        correct answers to the questions, by the 14 normal participants
+16) = 67.500, p,0.001). These data show that, whereas the                      (‘‘untrained participants’’) and three trainees of the speed-
+                                                                               reading method (‘‘trainees’’). Each dot shows data obtained from
+trainees tended to read faster than the untrained participants,                each reading session. The dashed line indicates the averaged
+their accuracy on comprehension scores was lower, though higher                comprehension score by no-reading control participants who gave
+than that of the no-reading control participants. In addition,                 answers to questions without reading the novels.
+Mann-Whitney’s U tests compared comprehension scores between                   doi:10.1371/journal.pone.0036091.g002
+
+
+       PLoS ONE | www.plosone.org                                          5                             May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                                       Untrained and Speed-Readers’ Novel Reading
+
+
+
+Table 1. Summary of reading speed, comprehension scores, and eye-movement measures for both the untrained participants and
+the trainees in Studies 1 and 2.
+
+
+speed, accuracy, and eye-movement
+measures                                            Study 1                                                    Study 2
+
+                                                                                                                                                trained individual
+                                                    untrained participants             trainees                untrained participants           (FT)
+
+                                                    mean (variance)                    mean (variance)         mean (variance)                  mean (variance)
+
+reading speed (character/min)                       1236.6                             2600.2                  1193.4                           5644.0
+% accuracy on questions                             83.8                               68.1                    84.9                             77.5
+N leftward saccades                                 870.9                              602.1                   924.7                            258.0
+N rightward saccades                                575.3                              384.9                   635.3                            49.0
+N downward saccades                                 1184.8                             643.8                   1278.1                           220.6
+N upward saccades                                   261.4                              343.2                   281.9                            86.4
+N return sweeps                                     294.8                              205.3                   297.5                            60.2
+saccade size: total (degree)                        3.6 (7.2)                          3.7 (4.8)               3.6 (7.9)                        3.0 (2.9)
+saccade size in X: total (degree)                   0.3 (0.7)                          0.4 (1.4)               0.2 (0.7)                        1.1 (1.3)
+saccade size in Y: total (degree)                   1.7 (5.1)                          1.2 (9.5)               1.6 (5.3)                        0.7 (4.8)
+saccade size in X: first pass (degree)              0.3 (0.7)                          0.5 (1.4)               0.3 (0.7)                        1.1 (1.3)
+saccade size in Y: first pass (degree)              1.8 (4.7)                          1.4 (9.0)               1.8 (5.0)                        0.7 (4.8)
+fixation time (msec)                                268 (15525)                        224 (8876)              278 (24098)                      274 (10527)
+first-pass reading time (sec)                       441.2                              240.0                   498.0                            99.3
+look-back time (sec)                                26.4                               22.8                    27.3                             0.1
+
+Saccade sizes in X and Y are shown both for all saccades and for saccades during the first pass. Saccade sizes are presented in terms of degrees of visual angle. Depicted
+are the representative values that were averaged across sessions, and then across participants. For saccade size and fixation time measures, variances are also shown in
+parenthesis.
+doi:10.1371/journal.pone.0036091.t001
+
+
+
+
+Table 2. Results of Study 1.
+
+
+eye-movement
+measure                                                           reading speed                        % correct answers               residual value in y
+                                                                   2                                     2
+                                                                  R (N = 54)           p               R (N = 54)            p         R2 (N = 54)          p
+
+saccade size: total (pixels)                       mean           0.124                0.185           0.036                 0.398     0.071                0.306
+                                                   variance       20.468               ,0.001***       0.046                 0.369     20.084               0.273
+saccade size in X: total (pixels)                  mean           0.897                ,0.001***       20.190                0.085     0.060                0.333
+                                                   variance       0.362                0.004**         0.245                 0.037*    0.346                0.005**
+saccade size in Y: total (pixels)                  mean           20.175               0.103           20.038                0.394     20.086               0.267
+                                                   variance       0.505                ,0.001***       0.084                 0.272     0.226                0.051
+saccade size in X: first pass (pixels)             mean           0.893                ,0.001***       20.186                0.089     0.063                0.325
+                                                   variance       0.355                0.004**         0.247                 0.036*     0.347               0.005**
+saccade size in Y: first pass (pixels)             mean           20.168               0.112           20.005                0.486     20.052               0.355
+                                                   variance       0.541                ,0.001***       0.089                 0.260     0.241                0.040*
+fixation time (msec)                               mean           20.577               ,0.001***       20.219                0.056     20.381               0.002**
+                                                   variance       20.571               ,0.001***       20.113                0.207     20.273               0.023*
+% rightward regression                                            20.234               0.044*          0.260                 0.029*     0.195               0.079
+% upward regression                                               0.454                ,0.001***       0.058                 0.338     0.185                0.090
+
+Shown is the summary of correlations between independent variables (reading speed, comprehension scores, and residual values in the speed-accuracy linear
+regression) and eye-movement measures (saccade size, fixation time, and proportion of regression) across all the sessions from untrained participants. R2: Pearson
+correlation coefficient.
+*: p,0.05;
+**: p,0.01;
+***: p,0.001.
+doi:10.1371/journal.pone.0036091.t002
+
+
+
+      PLoS ONE | www.plosone.org                                                   6                                       May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                      Untrained and Speed-Readers’ Novel Reading
+
+
+saccade sizes in X and Y during the first pass. Finally, faster               untrained participants, the accuracy of the comprehension test for
+reading corresponded to smaller proportions of rightward                      FT was statistically as high as that for the untrained. Compre-
+regressive saccades, i.e., moving rightwards back to the sentences            hension scores between questions with higher and lower gist/detail
+where the participant had already read, but to larger proportions             rating values were compared, comparable to Study 1. No
+of upward regressive saccades within each line.                               significant differences were found between higher and lower gist
+   Comprehension               scores. Correlations        between            (untrained: U (N = 42, 38) = 688.000, p = 0.275; FT: U (N = 42,
+comprehension scores and eye-movement measures generally                      38) = 776.000, p = 0.769) or detail (untrained: U (N = 38,
+failed to reveal strong statistical significance, compared with the           42) = 650.000, p = 0.142; FT: U (N = 38, 42) = 696.000,
+former analyses regarding reading speed. One statistical                      p = 0.174) rating values. Thus, there was no evidence that the
+significance was found for the higher comprehension scores                    extent to which the questions concerned the gist or the detail may
+corresponding to larger proportions of rightward regressive                   have influenced comprehension.
+saccades, as opposed to the case for reading speed.Variances in                  Eye-movement measures. Table 1 summarizes eye-
+saccade sizes in X were larger in readers with higher                         movement measures for the trained individual (FT) and the
+comprehension scores than in those with lower scores, both for                untrained participants respectively. Data obtained for the
+all saccades and saccades during the first pass. Otherwise no                 untrained participants in Study 2 were generally similar to those
+statistically significant correlations were revealed.                         obtained for the untrained participants in Study 1, despite the
+  Residual value from linear regression in the speed-                         modified instructions. Specifically, numerical comparisons
+accuracy plot. Mean residual value was 2.30 for the                           between the untrained participants and FT showed the following
+untrained participants and 25.86 for the trainees. These                      trends. Fixation time was not largely different between these
+numerical data show lower performance by the trainees than by                 participants, but its variance was smaller in FT than in the
+the untrained participants within the speed-accuracy plot. For the            untrained participants. Total saccade size (absolute value
+untrained participants, shorter duration of each fixation and                 integrating X and Y components) and its variance were smaller
+smaller variance in fixation time corresponded to larger residual             in FT than in the untrained participants. The X component of the
+values. Also, larger variances in saccade sizes both in X and Y               saccade was larger, and the Y component was smaller, in FT than
+corresponded to larger residual values, more apparently for                   in the untrained participants. The variance of the X component
+saccades during the first pass than for all saccades. These show              was larger, and the variance of the Y component was smaller, in
+that untrained readers with higher performance within the speed-              FT than in the untrained participants. Comparable trends were
+accuracy plot tended to make fixations with shorter and less
+                                                                              observed for saccades during the first pass. Most saccades for FT
+variable duration, and to make saccades more variable in size for
+                                                                              were made during the first pass, with the mean look-back time as
+both the vertical and horizontal axes, compared with those with
+                                                                              short as 0.1 s. In addition, the number of return sweeps and the
+lower performance. The other correlations involving total saccade
+                                                                              proportion of rightward regressive saccades were smaller, although
+sizes and regressive saccades failed to reach statistical significance.
+                                                                              upward saccades were more frequent, in FT than in the untrained
+                                                                              participants.
+Study 2                                                                          To visualize the differences in looking patterns between the
+   Reading speed and comprehension scores. Data from all                      trained in individual (FT) and the untrained participants, Figure 4
+the test sessions were included in the analysis, but one untrained            depicts heat maps showing durations of fixations at each part of
+participant (male, 19 years old) quit after completing four test              the sentence display from typical sessions for FT (A) and the
+sessions other than Story 2. The average scores of the participants           untrained (B) participants. Further, Figure 5 illustrates propor-
+from no-reading control and FT’s-speed control groups across the
+                                                                              tions of fixation times at each of the horizontally (A) and vertically
+five stories were 52.2% and 58.9%, respectively. The average
+                                                                              (B) divided subareas of the sentence display. These divisions are
+rating values regarding the questions by the gist/detail control
+                                                                              referred to as subareas X1–X10 and Y1–Y7, respectively. Mann-
+participants were 5.0 for gist and 7.1 for detail, showing that the
+                                                                              Whitney’s U tests for each subarea made comparisons between FT
+questions reflected both the gist and the detail of the stories. Mean
+                                                                              and the untrained participants. A false discovery rate (FDR)
+reading speed was numerically 4.7 times faster and mean
+                                                                              method [36] was used to correct multiple comparisons. Regarding
+proportion of correct answers to the questions was numerically
+                                                                              horizontal divisions (Figure 5(A)), for X9 the proportion was
+7.4% lower, in the trained individual (FT) than in the untrained
+                                                                              significantly higher (U (N = 5, 60) = 23.000, p,0.05, corrected),
+participants. Figure 3 depicts reading speed and proportions of
+                                                                              and for X1 the proportion was marginally lower (U (N = 5,
+correct answers in both FT and the untrained participants. Each
+                                                                              60) = 47.000, p,0.10, corrected), in FT than in the untrained
+test session is plotted separately using different markers for
+different stories. Mann-Whitney’s U tests showed that                         participants. No significant differences were found for the other
+comprehension scores for both untrained participants and FT                   subareas (X2–X8; X10) (U (N = 5, 60) = 60.000–146.000, p.0.10,
+were significantly higher than those of the no-reading control                corrected). Regarding vertical divisions (Figure 5(B)), for Y2 and
+group (untrained: U (N = 69, 19) = 21.500, p,0.001; FT: U (N = 5,             Y3 the proportions were significantly higher (U (N = 5,
+19) = 6.000, p = 0.003). In addition, comprehension scores for FT             60) = 2.000–34.000, p,0.05, corrected), and for Y4 marginally
+were significantly higher than those of the FT’s-speed control                higher (U (N = 5, 60) = 61.000, p,0.10, corrected), in FT than in
+group (Mann-Whitney’s U test; U (N = 5, 20) = 10.000, p = 0.004).             the untrained participants. On the other hand, for all the
+   For both reading speed and comprehension score measures, we                remaining subareas (Y1, Y5, Y6, and Y7), the proportions were
+conducted Mann-Whitney’s U tests to make comparisons between                  significantly lower in FT than in the untrained participants (U
+FT and the untrained participants. Reading speed was signifi-                 (N = 5, 60) = 3.000–67.000, p,0.05, corrected). Thus, the trained
+cantly faster in FT than in the untrained (U (N = 5, 69) , 0.001,             individual (FT) looked at the relatively upper part of the sentence
+p,0.001). Comprehension scores, however, did not significantly                area more frequently, but the lower part less frequently, than the
+differ between FT and the untrained participants (U (N = 5,                   untrained participants. Also, whereas FT frequently looked near
+69) = 104.500, p = 0.135). Thus, whereas the reading speed of the             the right end of the sentence area, she tended to look near the left
+trained individual (FT) was significantly faster than that of the             end less frequently than the untrained participants.
+
+
+       PLoS ONE | www.plosone.org                                         7                              May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                        Untrained and Speed-Readers’ Novel Reading
+
+
+
+
+Figure 3. Results of Study 2: reading speed in the characters read per minute and comprehension scores, i.e., percentage of correct
+answers to the questions, by the untrained participants and the trained individual (FT). Data for FT are enclosed by an ellipse. Each
+dot shows data obtained from each reading session. The dashed line indicates the averaged comprehension score by no-reading control participants,
+who gave answers to questions without reading the novels. The long dashed dotted line indicates the averaged comprehension score by FT’s-speed
+control participants, who answered questions after having page displays switched in the same presentation times as FT.
+doi:10.1371/journal.pone.0036091.g003
+
+
+
+
+Figure 4. Heat maps showing typical distributions of fixation times in Study 2. Fixation times for each area of the sentence display are
+shown in different colors. Each figure shows data for the representative test session using Story 1, (A): trained individual (FT) and (B): an untrained
+participant (female, 19 years). The figures were drawn using the Tobii Studio software (ver. 1.7.3).
+doi:10.1371/journal.pone.0036091.g004
+
+
+       PLoS ONE | www.plosone.org                                         8                               May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                       Untrained and Speed-Readers’ Novel Reading
+
+
+                                                                               reading speed. However, higher scores on the comprehension test
+                                                                               were associated with more rightward regressive saccades. This
+                                                                               could be interpreted as moving back to the previous lines in order
+                                                                               to obtain more accurate understanding of the content. Finally,
+                                                                               residual value from linear regression in the speed-accuracy plot
+                                                                               showed that shorter fixation times with smaller variances and
+                                                                               larger variances in saccade sizes corresponded to larger residual
+                                                                               values. These support the notion that relatively excellent reading
+                                                                               performance was achieved by using more variable eye-movement
+                                                                               strategies. These correlations were found in a situation in which
+                                                                               untrained participants read as fast as possible while also
+                                                                               comprehending the content, that is, while performing at their
+                                                                               best. Thus, it seems possible that these data may reflect patterns
+                                                                               generally observed when normal native participants read compa-
+                                                                               rable Japanese text, while using reading strategies to read faster
+                                                                               than their usual daily speed.
+                                                                                  With regard to speed-reading, on the other hand, the results
+                                                                               revealed rather poor performance in the Park-Sasaki trainees.
+                                                                               That is, the negative speed-accuracy correlation involving both
+                                                                               untrained participants and the trainees suggested a speed-accuracy
+                                                                               trade-off. This trade-off appears consistent with previous studies:
+                                                                               even though a small increase in reading speed is not known to
+                                                                               impair comprehension [10], a reading rate that is further increased
+                                                                               may negatively impact comprehension [5]. Whereas the trainees
+                                                                               in this study read faster overall than the untrained participants,
+                                                                               their comprehension scores were lower than the untrained. This
+                                                                               suggests that speed-reading can lead to poor comprehension at
+                                                                               a certain level of expertise. However, the trainees’ comprehension
+                                                                               scores were at least higher than those of the no-reading control
+                                                                               participants. Thus, instead of gazing over the sentences with no
+                                                                               understanding, at least some form of comprehension might have
+                                                                               been made using the trainees’ reading strategies. Appropriate
+                                                                               procedural modification may improve outcomes in terms of
+                                                                               drawing out the abilities potentially possessed by the trainees. The
+                                                                               second study addressed these issues by including a high-level
+Figure 5. Proportion of fixation times at each of the sentence
+areas for the trained individual (FT) and the untrained
+                                                                               expert and modifying the instructions.
+participants in Study 2. Shown are the data averaged across stories
+and then across participants for the untrained. The sentence area was          Study 2
+divided into subareas of every 2 cm for the horizontal (X1–X10; [A]) and          The reading speed of the trained individual (FT) was
+vertical (Y1–Y7; [B]) axes, respectively. Dashed lines show the                numerically 4.7 times that of the untrained participants, and her
+proportions expected by the chance level (i.e., 1/10 for [A] and 1/7
+for [B]). Error bars indicate standard errors of the mean.                     comprehension scores were significantly higher than the zero-
+doi:10.1371/journal.pone.0036091.g005                                          comprehension level for all the five test sessions. This was
+                                                                               statistically no different from the comprehension scores of the
+                                                                               untrained participants, albeit numerically 7.4% lower on average.
+Discussion
+                                                                               FT’s comprehension scores were also higher than those of the
+Study 1                                                                        untrained participants having comparable exposure to the text
+   The results revealed various relationships between reading                  (FT’s-speed control). This suggests that untrained participants
+speed, comprehension scores, and eye-movement measures in                      might not produce results comparable to FT by simply adopting
+untrained participants and the trainees. In particular, eye-tracking           different strategies to read as fast as FT. After finishing all the
+data for untrained participants revealed multiple significant                  sessions, FT reported that she understood the stories as a whole
+correlations between reading speed and comprehension scores                    and gave details about what types of questions she found difficult
+and eye-movement measures. Specifically, faster reading was                    to answer; for example, those on the specific characteristics of
+associated not only with shorter fixation times and fewer/more                 a person in one story. Thus, with reading speed much faster than
+rightward/upward regressive saccades, but also with larger                     those of all the untrained participants the trained individual (FT)
+horizontal saccadic movements. Saccade sizes during the first                  maintained levels of sentence comprehension close to those of
+pass generally produced trends similar to those for all saccades.              untrained participants, while the questions reflected both the gist
+                                                                               and the detail of the stories. FT’s performance thus appears to
+This suggests that eye-movement strategies, such as larger saccade
+                                                                               show reduced speed-accuracy trade-off as observed in Study 1.
+sizes in X in fast readers, largely reflect those during first-pass
+                                                                                  Analyses of eye movements during these sessions revealed that
+reading of lines of text. In addition, larger variances in saccade
+                                                                               fixation time and saccade sizes of FT were numerically not
+sizes in faster reading suggest the use of irregular or unsteady eye-
+                                                                               distinctively different from those of the untrained participants.
+movement strategies as reading rate accelerated. On the other
+                                                                               However, FT tended to make saccades larger in horizontal,
+hand, comprehension scores generally revealed less apparent
+                                                                               leftward directions rather than in vertical, downward directions
+correlations with the eye-movement measures, compared with
+                                                                               typical of the untrained participants. In addition, rightward
+
+
+       PLoS ONE | www.plosone.org                                          9                             May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                      Untrained and Speed-Readers’ Novel Reading
+
+
+regressive saccades and return sweeps were less frequent in FT                trainees were in the high-level of expertise in the Park-Sasaki
+compared with the untrained participants. These fewer return                  method, speed-reading can lead to rather poor levels of
+sweeps, larger saccade sizes in X than one degree, and more                   comprehension. Actually, as indicated in Figure 2, when the
+frequent upward saccades in FT than in the untrained                          trainees read at speeds similar to untrained participants, their
+participants, which appears consistent with but more apparent                 comprehension scores were no better, if anything poorer, than
+than in the trainees of Study 1 (Table 1), suggest that she made              untrained participants. When the trainees read at higher speeds
+horizontal saccades in the upper-left (/lower-left) direction to cross        their comprehension performance often appeared to be little
+lines forward. Further, distributions of fixation coordinates also            different from that of participants who did not even read the texts,
+suggested that FT mainly made horizontal eye movements and                    i.e., no-reading control. Thus, even the gist of the text sometimes
+directed her pupils on limited parts of the sentence display                  may not have been comprehended by the trainees. As Sasaki [12]
+(Figure 4). Specifically, fixation of FT concentrated on around 2–            states, the Park-Sasaki method is based on reading all the
+4 cm from the top of the sentence area. Whereas FT frequently                 characters and lines in order, depending neither on skimming
+looked near the right end of the area, near the left end there were           nor scanning. Participants in Study 1 were the middle-level
+some subareas she rarely looked at. First-pass analyses suggest that          trainees who had mastered the specific strategy of looking at
+these looking patterns by FT were almost always made during the               characters in order and at a high speed but who had not yet
+first pass and not during re-reading. These tendencies were in                attained the more advanced stage of the method, so that the
+contrast to those of the untrained readers, who typically read in             looking strategy can be used while sufficiently comprehending the
+line-by-line ways and thus gazed over almost all parts of the                 content. This difficulty was true for the present comprehension
+sentence area, sometimes re-reading the same lines after the first            tests that required not only understanding of what they are reading
+pass. These participants also tended to frequently look near the              at each given moment but also the ability to store the content in
+right end and near the top of the sentence display, seemingly in              short-term memory until the whole story was finished [37]. Thus,
+order to determine the beginnings of each page and each line.                 answering the questions after reading through the sentences once
+However, these tendencies seem less apparent compared with                    may have been demanding for the trainees. Even though it seems
+those of FT (Figure 5).                                                       that the trainees could move through the text more quickly than
+   Given the comprehension scores, it appears that even though                the untrained participants, the data suggests that these trainees
+FT did not direct her gaze over all characters or lines while speed-          failed to achieve the same levels of comprehension that they might
+reading, she appeared to understand the content of the stories to             achieve by reading in a standard manner. These poor perfor-
+a certain extent. It might not be, for example, that FT obtained              mances need to be emphasized, considering that they have
+information from only a few words on which her eyes were fixated              participated in the training for a number of years.
+during the first pass: such strategies might not have produced her                Regarding Study 2, numerically similar comprehension scores
+comprehension scores, as the lower scores by FT’s-speed control               between the trained individual (FT) the and untrained participants
+participants suggest. The Park-Sasaki method teaches looking                  in Study 2 might be somewhat better than Just and Carpenter [25]
+strategies in which the trainee shifts one’s attention ahead while            reporting that speed-readers in English are capable of at most
+never feeling the movement of one’s own eyes. Consequently, the               grasping the gist of the easy, familiar text but not the details. That
+trainee learns to move the eyes horizontally while seemingly                  is, we used novel text and the questions reflecting both gist and the
+viewing all the characters in order. The present results thus may             detail of the stories, based on the rating scores by the gist/detail
+support the possibility that at least one expert might have                   control participants. Also, the extent with which each question
+developed such looking strategies through training to a level at              reflected gist/detail did not seem to have influenced comprehen-
+which she can grasp the content of sentences to a certain extent.             sion scores. However, FT’s comprehension scores were numeri-
+                                                                              cally lower than those of the untrained participants. It seems
+General Discussion                                                            possible that FT’s scores would have been improved, perhaps
+   The present study examined relationships between reading                   exceeding those of the untrained participants, if she had read at
+speed, scores on comprehension tests and eye-movement measures                a standard speed. To what extent this improvement actually
+while native participants read Japanese contemporary novels. In               occurs seems to require further examination.
+addition to normal untrained participants, four trainees of the                   There appear to remain a series of further issues that need to be
+Park-Sasaki speed-reading method were included in the two case                carefully considered or addressed in the future, before making
+studies. In Study 1, the Park-Sasaki trainees showed poor sentence            better interpretation of the data and conclusive remarks regarding
+comprehension performance influenced by the speed-accuracy                    efficacy of the Park-Sasaki method. First, small sample sizes in the
+trade-off. In addition, for normal untrained readers, multiple                present study clearly impose limitations on the conclusions drawn
+statistically significant correlations were revealed between reading          about speed-reading. That is, conclusions related to speed-reading
+speed, comprehension scores, residual value from linear regression            based on the present study require particularly cautious con-
+in the speed-accuracy plot, and eye movement measures. In Study               siderations given that they mainly derive from numerical
+2, one trained speed reader (FT) showed comprehension scores                  differences or non-parametric tests. Even though the speed-
+approaching those of the untrained participants while reading                 accuracy trader-off appeared to be reduced for the trained
+faster. This single case suggested the possibility of reduced speed-          individual in Study 2, this single case could be insufficient for
+accuracy trade-off. FT’s eye-movements appeared different from                researchers to conclude that the trade-off is overcome in high-level
+those of the untrained participants in that she mainly made                   or top-level Park-Sasaki experts. More trained participants who
+saccades in horizontal directions while looking at limited parts of           did not participate need to be included in the future when they
+the sentence display with little re-reading, scarcely moving her eyes         have achieved sufficiently high levels of expertise, so that the
+in the vertical direction as did the untrained readers.                       present results could be generalized to a larger population. There
+   Some of the the conclusions from the present studies can be                were also age differences between the trainees and the untrained
+discussed in relation to previous work in English. The speed-                 participants, in particular in Study 2. It would thus be more ideal
+accuracy trade-off as found in Study 1 is consistent with other               in the future to control the ages of these participants between
+previous works [7–8]. It seems worth noting that, unless the                  groups.
+
+
+       PLoS ONE | www.plosone.org                                        10                              May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                      Untrained and Speed-Readers’ Novel Reading
+
+
+   Second, what types of looking and reading strategies the Park-             Study 2 were the same regardless of reading speed. Actually,
+Sasaki trainees used has to be cautiously considered. The pattern             comprehension scores of FT were somewhat lower, though not
+of eye movements shown by the trained individual in Study 2                   statistically significantly, than those of the untrained participants.
+(Figure 4(A)) indicates that most fixations occurred within a small           In addition, as described in the Introduction, the present study
+area of the text. Nevertheless, comprehension scores by this                  used relatively easy text that does not require specialized
+participant indicate that a certain level of comprehension was                knowledge/schema on specific areas. Thus, the present results
+made in the absence of fixations over a broader area. One                     may apply only to comparable types of text and reading strategies.
+possibility could be that the expert has developed sophisticated              Other types of reading (e.g. comprehension during student study)
+quick-reading strategies such as skimming or scanning [1,25].                 may require more complex comprehension, such as integration of
+However, as the lower scores from the FT’s-speed control                      the contexts with prior knowledge or understanding of complex
+participants suggest, the trained individual might not produce                concepts. It would surely be required to further modify
+comparable scores by, for example, sampling a small proportion of             comprehension questions by using more various types of text, so
+the words and using heuristics to guess the plot (although this               that different types of comprehension could be separately
+surely requires further rigorous experimental examination). In                examined. In addition, there is so far no clear evidence that any
+addition, the questions concerned both the gist and the detail of             participants including the trainees could comprehend the details of
+the stories. The extent to which the question reflected the gist/             non-fixated text. This also needs to be examined using modified
+detail did not seem to have influenced comprehension. The                     procedures.
+possibility that the perceptual span may be extended in the                      Fifth, even though the instructed reading strategies changed
+trainees has to be further addressed either by using a moving                 across Studies 1 and 2, little difference in the reading speed,
+window method or by using modified tasks that allow for analysis              comprehension, or eye-movement measures was found for the
+of comprehension for details of the text where participants’ eyes             untrained participants. It is thus possible that the change in
+were not fixated. However, it could nevertheless be possible that             instructions had little impact on the reading strategies. However,
+highly skilled looking and reading mechanisms unique to this                  this point remains unclear for the trainees in Studies 1 and 2,
+method might be associated with extended perceptual span. For                 whose levels of expertise were different. It would thus be necessary
+example, Rayner [38] used a moving window technique and                       to further examine how trained participants may perform under
+showed that perceptual span was larger in skilled readers than in             different instructions.
+beginning or less proficient readers. It might also be possible that             The fact that FT appeared to understand the text without
+multiple words can be processed in parallel under certain                     gazing over the whole sentence areas suggests the possibility that
+situations with short sentence presentation times, in particular              effective perceptual span may have been widened through the
+when extracting the gist of the text [39].                                    course of training. This seems consistent with the preliminary
+   Third, a major problem in comparing the trainees and the                   finding that performance on visual search tasks including
+untrained participants is that there may well be underlying                   conjunction search tasks was better in the trainees on this method
+differences between these participants that are not simply                    than in the untrained participants [40]. Findings from fMRI
+associated with the training procedure: (1) Those who self-selected           studies suggesting enhanced visuospatial processing in speed-
+themselves for training may be generally more highly motivated to             readers [19] seem consistent with the notion as well. It is worth
+read efficiently. (2) Those who are successful in the training process        noting that FT’s pattern of fixations as shown in Figures 4(A) and
+and hence choose to continue may have individual differences that             5(B) suggest an asymmetric perceptual span in the downward
+make them more suited to this training method. For example, they              direction, because such patterns of the perceptual span do not
+may have particularly good parafoveal vision or they may be                   seem to have been demonstrated in languages read from top to
+particularly skilled readers from before training, so that they would         bottom. At the neuronal level, it seems possible that trained
+be better able to accurately identify words further from the fixation         readers may exhibit different activation patterns for the same tasks,
+point that are visually degraded. (3) Those who select themselves             thus possibly using neural networks differently than untrained
+for training may simply benefit from having more reading                      participants. In addition to the use of fewer phonological processes
+practice. To clarify these issues, further to comparing advanced              compared with untrained readers, speed-readers may use different
+experts and untrained participants, it would be required to                   neural pathways while reading Japanese sentences. Typically, in
+randomly assign naı̈ve participants to training and no-training               reading Japanese sentences two different neural pathways for
+groups, and make comparisons between pre- and post-training.                  processing Japanese kanji (morphograms) and kana (phonogram)
+Also, another potential approach could be to employ within-                   characters are used [41–42]. However, preliminary findings
+participants designs with the same readers taking either a speed-             suggested that trained speed-readers might use fewer neural
+reading or normal-reading strategies, hence controlling for other             processes for reading kana than untrained participants [43]. Much
+variables including reading practice, ability to use heuristics, age,         further behavioral and neuroimaging studies will be necessary to
+and so on.                                                                    elucidate such differences in relation to the neural pathways and
+   Fourth, the nature of comprehension being assessed in this study           effective perceptual span.
+needs to be carefully considered. In the present task, the                       From a methodological perspective, the present research made
+comprehension questions asked about the plot of the stories. This             use of Tobii eye-tracking system in a reading situation. The
+appears appropriate when examining comprehension of the                       method can be safely used not only for adults but also for children
+context in reading short contemporary novels. Ratings on the                  [28,44] in naturalistic settings. It may thus potentially enable
+questions by gist/detail control participants suggested that they             further related investigations, including reading development or
+reflected both the gist and the detail of the stories. The extent to          evaluation of disorders of reading [45–47] and reading in foreign
+which the questions reflected the gist/detail of the stories did not          languages [48]. Because no devices have to be attached to the
+seem to have effect on comprehension. However, it should be                   participants’ bodies, it also enables simultaneous recordings with
+noted that the degree of comprehension is specific to the tasks               other non-invasive neuroimaging techniques such as near-infrared
+used, and thus much further investigations are required before                spectroscopy (NIRS) [49–51] and electroencephalogram (EEG)
+concluding that comprehension levels in the trained individual in             [52]. However, a number of weak points of the present method
+
+
+       PLoS ONE | www.plosone.org                                        11                              May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                                          Untrained and Speed-Readers’ Novel Reading
+
+
+also justify the notion that use of eye-tracking methods having                             The trainees overall showed poor performance influenced by the
+much higher temporal and spatial resolution would be desired for                            speed-accuracy trade-off, although this trade-off appeared to be
+the future quest. First, it should be noted that a 60 Hz sampling                           reduced in the case of one high-level expert, who used horizontal
+rate of the eye-tracker used in this study was relatively low for                           eye-movements. Effective use of eye-tracking systems in computer-
+reading studies, even though other reading studies used this rate                           assisted settings would allow for potential applications in reading
+[26]. Because this may have reduced sensitivity to small differences                        studies as well as in studies of speed-reading. By accumulating both
+in fixation durations, such as the first-pass reading measures,                             behavioral and neurocognitive evidence by using various exper-
+a higher recording rate would be desired in the future quest.                               imental tasks and modified procedures, it would be possible to
+Second, even though defining a fixation as stability within 0.9                             further elucidate the potentials of humans’ cognitive capabilities
+degrees in visual angle as done in this study seems a standard                              that may be achieved through meditation-based visual training.
+practice for the present eye-tracker, this definition may have
+hidden refixations that would be detected as separate fixations                             Acknowledgments
+with more accurate equipment. Also, it appears better if more
+detailed local analyses, such as reading behavior for specific critical                     We would like to thank Sayaka Ishii and Soichiro Matsuda for their
+words, could be effectively used, which should provide more fine                            assistance in conducting the studies.
+grained analyses. Use of more accurate eye-tracking methods than
+the present one seems to be required in this respect as well.                               Author Contributions
+   To summarize, in addition to finding correlations between                                Conceived and designed the experiments: HM SW YM-K KU TS.
+reading speed and comprehension scores and eye-movement                                     Performed the experiments: HM. Analyzed the data: HM. Wrote the
+measures in reading Japanese contemporary novels by normal                                  paper: HM YM-K KU TS. Recruited the trainees: TS. Conceived and
+untrained readers, we also obtained cases by trainees of a speed-                           supervised the project: SW.
+reading method regarding relationships between these variables.
+
+References
+1.    Carver RP (1990) Reading rate: a review of research and theory. San Diego:            23. Nell V (1988) The psychology of reading for pleasure: Needs and gratifications.
+      Academic Press.                                                                           Read Res Q 23: 6–50.
+2.    Poulton EC (1958) Time for reading and memory. Br J Psychol 49: 230–245.              24. McNamara DS (2000) Preliminary analysis of photoreading: Final Report for
+3.    Berkoff NA (1979) Reading skills in extended discourse in English as a foreign            the period ending September 30, 1999. Summary of Research to NASA-ames,
+      language. J Res Read 2: 95–107.                                                           NAG-2–1319, ODURF File No. 193021 p.
+4.    Dyson MC, Haselgrove M (2000) The effects of reading speed and reading                25. Just MA, Carpenter PA (1987) Speed reading. In: Just MA, Carpenter PA (eds)
+      patterns on our understanding of text read from screen. J Res Read 23:                    The psychology of reading and language processing. Newton, MA: Allyn and
+      210–223.                                                                                  Bacon, 425–452.
+5.    Dyson MC, Haselgrove M (2001) The influence of reading speed and line length          26. Ferreira P, Rita P, Morais D, Rosa P J, Oliveira J, CET AL (2011) Grabbing
+      on the effectiveness of reading from screen. Int J Hum Comput Stud 54:                    attention while reading website pages: the influence of verbal emotional cues in
+      585–612.                                                                                  advertising. Journal of Eyetracking, Visual Cognition and Emotion 1: 64–68.
+6.    Lai FK (1993) The effect of a summer reading course on reading and writing            27. Källmark F (2010) Analysis of reading eye movements with Tobii 1750TM eye
+      skills. System 21: 87–100.                                                                tracker in AMD patients pre and post op ranibizumab (LucentisTM) treatment.
+7.    Masson MEJ (1982) Cognitive processes in skimming stories. J Exp Psychol                  Acta Ophthalmol 88: doi: 10.1111/j.1755–3768.2010.289.x.
+      Learn 8: 400–417.                                                                     28. Baker T, Yu C, Candy R, Smith L, Kim S (2009) Eye, head, and hand
+8.    Duggan GB, Payne SJ (2009) Text skimming: The process and effectiveness of                coordination in 16-to 36-month-old infants. J Vis 9: 835a.
+      foraging through text under time pressure. J Exp Psychol-Appl 15: 228–242.            29. Martin C, Cegarra J, Averty P (2011) Analysis of mental workload during en-
+9.    Bell T (2001) Extensive reading: speed and comprehension. The Reading Matrix              route air traffic control task execution based on eye-tracking technique. In:
+      1. The Reading Matrix website. Available: http://www.readingmatrix.com/                   Harris D, ed. Engineering Psychology and Cognitive Ergonomics. Berlin
+      articles/bell/index.html. Accessed 2012 Apr 14.                                           Heidelberg: Springer-Verlag. pp 592–597.
+                                                                                            30. Tobii Technology website. Available: http://www.tobii.se/. Accessed 2012 Apr,
+10.   Walczyk JJ, Kelly KE, Meche SD, Brand H (1999) Time limitations enhance
+                                                                                                14.
+      reading comprehension. Contemp Educ Psychol 24: 156–165.
+                                                                                            31. Komatsu C (2010) Tonari no hatumeika (Inventor next door). In: Shinbo K, ed.
+11.   Tinker MA (1963) Legibility of Print. Ames: Iowa State University Press.
+                                                                                                99-no-namida tsuki (99 tears moon). Tokyo: Linda Publishers. pp 136–154.
+12.   Sasaki T (1995) Sokudoku-no-kagaku (The science of speed reading). Tokyo:
+                                                                                            32. Taniguchi M (2010) Samui yoru no pizza (Pizza on a cold night). In: Shinbo K,
+      Kobunsha.
+                                                                                                ed. 99-no-namida hikari (99 tears: light). Tokyo: Linda Publishers. pp 7–24.
+13.   Sasaki T, Park H-Y (1986) Kagaku-teki sokudoku-ho (A scientific method of             33. Murakami M (2009) Ryu to issho (Together with Ryu). In: Shinbo K, ed. 99-no-
+      speed reading). Tokyo: NBS Japan Society of Speed Reading Education.                      namida ame (99 tears: rain). Tokyo: Linda Publishers. pp 180–199.
+14.   Lutz A, Slagter HA, Dunne J, Davidson RJ (2008) Attention regulation and              34. Tanaka T (2010) On-okuri (Pay it forward). In: Shinbo K, ed. 99-no-namida
+      monitoring in meditation. Trends Cogn Sci 12: 163–169.                                    hoshi (99 tears: star). Tokyo: Linda Publishers. pp 122–141.
+15.   Lutz A, Slagter H, Rawling N, Francis A, Greischar LL, et al. (2009) Mental           35. Natori S (2010) Issho-no-onegai (I’ll never ask for anything again). In: Shinbo K,
+      training enhances attentional stability: Neural and behavioral evidence.                  ed. 99-no-namida tsuki (99 tears: moon). Tokyo: Linda Publishers. pp 7–24.
+      J Neurosci 29: 13418–13427.                                                           36. Benjamini Y, Hochberg Y (1995) Controlling the false discovery rate: A practical
+16.   MacLean KA, Ferrer E, Aichele SR, Bridwell DA, Zanesco AP, et al. (2010)                  and powerful approach to multiple testing. J R Statist Soc B 57: 289–300.
+      Intensive meditation training improves perceptual discrimination and sustained        37. Perfetti CA, Goldman SR (1976) Discourse memory and reading comprehen-
+      attention. Psychol Sci 21: 829–839.                                                       sion skill. J Verb Learn Verb Beh 15: 33–42.
+17.   Sahdra BK, MacLean KA, Ferrer E, Shaver PR, Rosenberg EL, et al. (2011)               38. Rayner K (1986) Eye movements and the perceptual span in beginning and
+      Enhanced response inhibition during intensive meditation training predicts                skilled readers. J Exp Child Psychol 41: 211–236.
+      improvements in self-reported adaptive socioemotional functioning. Emotion 11:        39. Asano M, Yokosawa K (2011) Rapid extraction of gist from visual text and its
+      299–312.                                                                                  influence on word recognition. J Gen Psychol 138: 127–154.
+18.   Fujimaki N, Hayakawa T, Munetsuna S, Sasaki T (2004) Neural activation                40. Kato M, Kuriyama M, Ueda K, Sasaki T, Atsumori H, et al. (2005) The effects
+      dependent on reading speed during covert reading of novels. Neuroreport 15:               of reading speed on visual search task. Proceedings of the 27th Annual
+      239–243.                                                                                  Conference of the Cognitive Science Society. pp 1102–1107.
+19.   Fujimaki N, Munetsuna S, Sasaki T, Hayakawa T, Ihara A, et al. (2009) Neural          41. Iwata M (1992) Kanji versus Kana: Neuropsychological correlates of Japanese
+      activations correlated with reading speed during reading novels. Neurosci Res             writing system. Trends Neurosci 7: 290–293.
+      65: 335–342.                                                                          42. Usui K, Ikeda A, Takayama M, Matsuhashi M, Sato T, et al. (2005) Processing
+20.   Yokoyama S (1992) Investigation of ‘‘reading’’ with FFT analysis of the beta              of Japanese morphogram and syllabogram in the left basal temporal area:
+      waves in EEG during ‘‘rapid-reading’’. Nichidai Igaku Zasshi 59: 234–236.                 electrical cortical stimulation studies. Cogn Brain Res 24: 274–283.
+21.   Kawano K, Sasaki T (2005) EEGs and other physiological changes with                   43. Kato N, Ueda K, Fukuda H, Sasaki T, Kato M (2008) Can difference in brain
+      progression of reading speed. J Int Soc Life Inform Sci 23: 174–178.                      activity cause difference in reading speed? -A psychological experiment and
+22.   Cranney AG, Brown BL, Hansen DM, Inouye DK (1982) Rate and Reading                        NIRS measurements-. Proceedings of the 6th International Conference of
+      Dynamics reconsidered. J Reading 25: 526–533.                                             Cognitive Science. pp 639–642.
+
+
+
+         PLoS ONE | www.plosone.org                                                    12                                    May 2012 | Volume 7 | Issue 5 | e36091
+                                                                                                                      Untrained and Speed-Readers’ Novel Reading
+
+
+44. Wu R, Kirkham NZ (2010) No two cues are alike: Depth of learning during              49. Minagawa-Kawai Y, Naoi N, Kojima S (2009) A New Approach to Functional
+    infancy is dependent on what orients attention. J Exp Child Psychol 107:                 Neuroimaging: Near-Infrared Spectroscopy (NIRS). Tokyo: Center for
+    118–136.                                                                                 Advanced Research on Logic and Sensibility (CARLS), Keio University.
+45. Kinnunen R, Vauras M (2010) Tracking on-line metacognition: monitoring and           50. Miyata H, Watanabe S, Minagawa-Kawai Y (2010) Prefrontal activation during
+    regulating comprehension in reading. In: Efklides A, Misailidi P, eds. Trends            and before solution of an eight-arm shuriken-shaped maze task presented on
+    and Prospects in Metacognition Research. New York: Springer. pp 209–229.                 a touch screen: A near-infrared spectroscopy study. Inquiries into humans and
+46. Oakhill J, Hartt J, Samols D (2005) Levels of comprehension monitoring and               societies. Studies in Sociology, Psychology and Education 70: 125–140.
+    working memory in good and poor comprehenders. Read Writ 18: 657–686.                51. Miyata H, Watanabe S, Minagawa-Kawai Y (2011) Two successive neurocog-
+47. Philip HKS (1990) Developmental dyslexia. In: Eysenck MW, ed. Cognitive                  nitive processes captured by near-infrared spectroscopy: Prefrontal activation
+    psychology: An international review. Oxford: John Wiley & Sons. pp 135–196.              during a computerized plus-shaped maze task. Brain Res 1734: 90–99.
+48. Bernhardt EB (1993) Reading development in a second language: Theoretical,           52. Uchida-Ota M, Tanaka N, Sato H, Maki A (2008) Intrinsic correlations of
+    empirical, & classroom perspectives. Norwood: Ablex Publishing Corporation.              electroencephalography rhythms with cerebral hemodynamics during sleep
+                                                                                             transitions. Neuroimage 42: 357–368.
+
+
+
+
+        PLoS ONE | www.plosone.org                                                  13                                   May 2012 | Volume 7 | Issue 5 | e36091
+

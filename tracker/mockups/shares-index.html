@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — entering a share on quick fill</title>
+<link rel="stylesheet" href="f-board.css">
+<style>
+.area{max-width:980px}
+h1{font-size:30px;margin:26px 0 10px}
+.intro{color:var(--grey);max-width:74ch}
+ol{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+li a{display:block;background:var(--white);border-radius:var(--r);padding:18px 22px;text-decoration:none;color:inherit}
+li a:hover{outline:2px solid var(--bright-blue);outline-offset:-2px}
+li a.won{outline:2px solid var(--orange);outline-offset:-2px}
+.tag{display:inline-block;background:var(--orange);color:var(--smart-blue);font-weight:700;border-radius:var(--r);padding:1px 9px;font-size:12px;margin-right:8px;vertical-align:2px}
+li b{display:block;font-size:17px;margin-bottom:4px}
+li span{color:var(--grey);font-size:13px}
+.chosen{outline:2px solid var(--orange);outline-offset:-2px}
+footer{padding:36px 0 60px}
+</style>
+</head>
+<body>
+<div class="area">
+  <h1>Entering a share on quick fill</h1>
+  <p class="intro">Five ways to give a cost centre its share of the month, and the box the page has today to measure them against. Every page reads the same four cost centres out of <code>data.js</code> and sits in the same sheet. The share column is the only thing that differs. Each page ends with what the option costs.</p>
+  <p class="intro"><b>Option B won on 2026-09-22 and is built.</b> Because a) the arithmetic of making four figures reach a hundred is the complaint the <code>100 / n</code> button was added for. b) B is the only one of the five that removes that arithmetic rather than checking it afterwards, because the total cannot leave a hundred. c) the shares are a split of one month and a control that can express nothing else says so. It costs predictability, and Hold is what pays it. The four that lost are kept because a decision is only readable beside what it beat.</p>
+  <ol>
+    <li><a class="" href="s0-box.html"><b>The control. A number box a row.</b><span>What the five are measured against.</span></a></li>
+    <li><a class="" href="s1-slider.html"><b>Option A. A slider a row.</b><span>Option A. Each share is dragged on its own track.</span></a></li>
+    <li><a class="won" href="s2-balance.html"><b><span class="tag">Built</span>Option B. Sliders that hold the hundred.</b><span>Option B. Dragging one share takes it from the others.</span></a></li>
+    <li><a class="" href="s3-bar.html"><b>Option C. One bar and a divider between each pair.</b><span>Option C. The month is one bar and the dividers are dragged.</span></a></li>
+    <li><a class="" href="s4-days.html"><b>Option D. Days rather than per cent.</b><span>Option D. The user books days and the per cent is derived.</span></a></li>
+    <li><a class="" href="s5-weights.html"><b>Option E. A weight a row.</b><span>Option E. A weight each and the app does the division.</span></a></li>
+  </ol>
+  <footer>Built by <code>build-shares.py</code>. The shell is <code>f-board.css</code> and <code>shares.css</code>. The data is <code>data.js</code> and <code>shares.js</code>. Every contrast ratio quoted was computed with <code>contrast.py</code>.</footer>
+</div>
+</body>
+</html>

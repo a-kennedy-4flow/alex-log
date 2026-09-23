@@ -1,0 +1,3 @@
+Try to approximate how long it will take to do a code review based on the number of lines changed
+
+The estimate is implemented in `review-time/`. The research behind every constant is in `reading-speed.md`. The papers are in `knowledge_base/`.

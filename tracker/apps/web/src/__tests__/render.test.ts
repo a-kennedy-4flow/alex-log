@@ -206,6 +206,119 @@ describe('the month grid', () => {
   })
 })
 
+/*
+ * Quick fill option B. The shares are sliders and the month is always whole.
+ *
+ * The invariant is what these hold. Whatever is dragged and whatever is held
+ * the shares add up to a hundred, because a page that cannot leave a hundred is
+ * the whole of what the option buys over the box it replaced.
+ */
+describe('the quick fill shares', () => {
+  /** Drives the real cost centre picker in the first column of a row. */
+  async function pick(wrapper: ReturnType<typeof mount>, row: number, id: string) {
+    const pickers = wrapper.findAll('tbody td:first-child .picker')
+    await pickers[row]!.find('.trigger').trigger('click')
+    await flushPromises()
+    const input = pickers[row]!.find('input[type="search"]')
+    await input.setValue(id)
+    await flushPromises()
+    await input.trigger('keydown', { key: 'Enter' })
+    await flushPromises()
+  }
+
+  async function addRow(wrapper: ReturnType<typeof mount>) {
+    await wrapper.findAll('tfoot button')[0]!.trigger('click')
+    await flushPromises()
+  }
+
+  function shares(wrapper: ReturnType<typeof mount>): number[] {
+    return wrapper.findAll('.pct b').map((figure) => Number(figure.text().replace('%', '').trim()))
+  }
+
+  const sum = (list: number[]) => list.reduce((a, b) => a + b, 0)
+
+  /** Three filled rows. The seed is one blank row on an empty month. */
+  async function threeRows() {
+    const wrapper = mount(SimpleView, { global: { plugins } })
+    await flushPromises()
+    await pick(wrapper, 0, '24112')
+    await addRow(wrapper)
+    await pick(wrapper, 1, '24111')
+    await addRow(wrapper)
+    await pick(wrapper, 2, '18019')
+    return wrapper
+  }
+
+  beforeEach(() => clearMonth())
+  afterEach(() => clearMonth())
+
+  it('starts the three rows on a hundred between them', async () => {
+    const wrapper = await threeRows()
+    expect(sum(shares(wrapper))).toBe(100)
+  })
+
+  it('holds the hundred wherever one share is dragged', async () => {
+    const wrapper = await threeRows()
+    for (const value of ['0', '17', '60', '100', '33']) {
+      await wrapper.findAll('.pct input')[0]!.setValue(value)
+      await flushPromises()
+      const out = shares(wrapper)
+      expect(out[0], `dragged to ${value}`).toBe(Number(value))
+      expect(sum(out), `dragged to ${value}`).toBe(100)
+    }
+  })
+
+  it('leaves a held share where the user put it', async () => {
+    const wrapper = await threeRows()
+    await wrapper.findAll('.pct input')[1]!.setValue('50')
+    await flushPromises()
+    // The second row is settled so the next drag may not move it.
+    await wrapper.findAll('.hold')[1]!.trigger('click')
+    await flushPromises()
+    await wrapper.findAll('.pct input')[0]!.setValue('20')
+    await flushPromises()
+    const out = shares(wrapper)
+    expect(out[1]).toBe(50)
+    expect(out[0]).toBe(20)
+    expect(sum(out)).toBe(100)
+  })
+
+  it('stops the handle dead when every other row is held', async () => {
+    const wrapper = await threeRows()
+    await wrapper.findAll('.hold')[1]!.trigger('click')
+    await wrapper.findAll('.hold')[2]!.trigger('click')
+    await flushPromises()
+    const before = shares(wrapper)
+    await wrapper.findAll('.pct input')[0]!.setValue('90')
+    await flushPromises()
+    const out = shares(wrapper)
+    expect(out[0]).toBe(before[0])
+    expect(sum(out)).toBe(100)
+  })
+
+  it('gives back what a removed cost centre held', async () => {
+    const wrapper = await threeRows()
+    await wrapper.findAll('.pct input')[0]!.setValue('60')
+    await flushPromises()
+    await wrapper.findAll('tbody .icon')[0]!.trigger('click')
+    await flushPromises()
+    const out = shares(wrapper)
+    expect(out).toHaveLength(2)
+    expect(sum(out)).toBe(100)
+  })
+
+  it('never asks the user to make the figures add up', async () => {
+    // The warning is the thing the option removes. It is kept as the backstop
+    // and it may not appear through any drag.
+    const wrapper = await threeRows()
+    for (const value of ['0', '45', '100']) {
+      await wrapper.findAll('.pct input')[2]!.setValue(value)
+      await flushPromises()
+      expect(wrapper.find('.warn').exists(), `dragged to ${value}`).toBe(false)
+    }
+  })
+})
+
 describe('the other panels', () => {
   it('mounts the quick fill', () => {
     const wrapper = mount(SimpleView, { global: { plugins } })
@@ -810,7 +923,7 @@ describe('the guided build', () => {
     // Step two is not on the screen until step one is answered. It is the
     // count that says how many days the calendar may take.
     expect(shell.wrapper.findAll('.days button')).toHaveLength(0)
-    await shell.wrapper.get('input.count').setValue('2')
+    await shell.wrapper.get('.count input').setValue('2')
     await flushPromises()
     expect(shell.wrapper.findAll('.days button').length).toBeGreaterThan(0)
   })
@@ -818,7 +931,7 @@ describe('the guided build', () => {
   it('takes no more days than the count asked for', async () => {
     const shell = shellAt('/guided')
     await settle(shell)
-    await shell.wrapper.get('input.count').setValue('1')
+    await shell.wrapper.get('.count input').setValue('1')
     await flushPromises()
     const days = shell.wrapper.findAll('.days button')
     await days[0]!.trigger('click')
@@ -831,7 +944,7 @@ describe('the guided build', () => {
   it('offers one count for each absence the catalogue holds', async () => {
     const shell = shellAt('/guided')
     await settle(shell)
-    expect(shell.wrapper.findAll('input.count')).toHaveLength(
+    expect(shell.wrapper.findAll('.count input')).toHaveLength(
       catalogue.absenceTypes.length,
     )
   })
@@ -840,7 +953,7 @@ describe('the guided build', () => {
     // With one kind asked for there is nothing to choose between.
     const shell = shellAt('/guided')
     await settle(shell)
-    const counts = shell.wrapper.findAll('input.count')
+    const counts = shell.wrapper.findAll('.count input')
     await counts[0]!.setValue('1')
     await flushPromises()
     expect(shell.wrapper.find('[data-tour="guidedKind"]').exists()).toBe(false)
@@ -852,7 +965,7 @@ describe('the guided build', () => {
   it('names the absence on the day that holds it', async () => {
     const shell = shellAt('/guided')
     await settle(shell)
-    const counts = shell.wrapper.findAll('input.count')
+    const counts = shell.wrapper.findAll('.count input')
     await counts[1]!.setValue('1')
     await flushPromises()
     await shell.wrapper.findAll('.days button')[0]!.trigger('click')
@@ -885,7 +998,7 @@ describe('the guided build', () => {
     // A step pointing at an attribute nobody wrote would be skipped in silence.
     const shell = shellAt('/guided', true)
     await settle(shell)
-    const counts = shell.wrapper.findAll('input.count')
+    const counts = shell.wrapper.findAll('.count input')
     await counts[0]!.setValue('1')
     await counts[1]!.setValue('1')
     await flushPromises()
@@ -893,11 +1006,7 @@ describe('the guided build', () => {
     setPage('guided')
     startTour()
     expect(steps.value.map((step) => step.key)).toEqual([
-      'guidedDays',
-      'guidedPlace',
       'guidedKind',
-      'guidedProjects',
-      'guidedBuild',
     ])
     shell.wrapper.unmount()
   })
@@ -1805,7 +1914,7 @@ describe('the tour', () => {
     expect(tourActive.value).toBe(false)
   })
 
-  it('opens the month tour on the tabs', async () => {
+  it('opens the month tour on one step for the tabs', async () => {
     const router = createRouter({
       routeTree,
       history: createMemoryHistory({ initialEntries: ['/'] }),
@@ -1815,20 +1924,13 @@ describe('the tour', () => {
     await router.load()
     await flushPromises()
 
-    // The anchor is handed to a router Link rather than written on an element
-    // so the attribute is read off the rendered tab.
-    expect(shell.find('nav a[data-tour="navMonth"]').exists()).toBe(true)
+    // The anchor is written on the strip rather than on each tab.
+    expect(shell.find('nav[data-tour="tabs"]').exists()).toBe(true)
+    expect(shell.findAll('nav [data-tour]')).toHaveLength(0)
 
     setPage('month')
     startTour()
-    expect(steps.value.slice(0, 6).map((step) => step.key)).toEqual([
-      'navMonth',
-      'navQuick',
-      'navGuided',
-      'navJira',
-      'navCostCentres',
-      'navSetup',
-    ])
+    expect(steps.value[0]!.key).toBe('tabs')
     tourStop()
     shell.unmount()
   })

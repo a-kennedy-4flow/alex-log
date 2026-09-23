@@ -1,0 +1,390 @@
+SJOVS, February 2024, Vol. 17, No. 1 – Scientiﬁc article                                                                                              1
+
+
+
+Validation of the Norwegian International Reading Speed Texts
+(IReST) in adult readers with normal vision
+Dan A. Nachtnebel,1,2 Helle K. Falkenberg1*                            Reading problems are very often the main reason why people
+1 National Centre for Optics, Vision and Eye Care. Department
+                                                                       seek help when they have vision problems and improvement of
+                                                                       reading is a main goal in visual rehabilitation (Elliott et al., 1997;
+of Optometry, Radiography and Lighting Design. Faculty of              Hazel et al., 2000; Radner, 2017; Rubin, 2013).
+Health and Social Sciences, University of South-Eastern                   To measure reading skills effectively, a selection of objective
+Norway, Kongsberg, Norway                                              and standardised tests for reading function are needed (Legge,
+2 Statped – National Service for Special Needs Education,
+                                                                       2006; Rubin, 2013). Some tests measure reading speed, while
+Oslo, Norway                                                           others measure reading comprehension, or are intended for
+                                                                       groups of people with special problems, such as decoding dif-
+Received November 20, 2023, accepted January 26, 2024.                 ﬁculties, visual impairments, or cognitive difﬁculties (Legge et
+* Correspondence: helle.k.falkenberg@usn.no                            al., 1992; Legge, 2006; Radner, 2017; Rolle et al., 2019). There is
+                                                                       a lack of standardised reading tests in Norwegian for visually
+Abstract                                                               impaired readers that measure functional reading over longer
+There is a lack of standardised reading tests in Norwegian suit-       paragraphs. Standardised tests are important both in regard to
+able for adults and persons with visual impairment (VI). The In-       measuring visual function, and in regard to measures of reading
+ternational Reading Speed Texts (IReST) measure reading per-           function, in order to help people with impaired vision in daily
+formance of longer paragraphs. The aim of this project was to          life (Lovie–Kitchin, 2011; Rolle et al., 2019).
+translate and validate the IReST in Norwegian.                            Reading speed is used as a reliable measure in research on
+   Each of the German, English and Swedish IReST were trans-           reading, because it is easy to measure objectively, sensitive to
+lated into Norwegian. The translations were matched for                changes in both vision and text type and makes sense for readers
+length, linguistic difﬁculty, and structure, and piloted in ﬁve        (Carver, 1992; Legge, 2016). The International Reading Speed
+adults. Reading speed was assessed in 25 readers (41 years, SD         Texts (IReST) were created in German to measure reading abil-
+= 10) with normal vision and the readings were recorded. Read-         ity and reading ﬂuency. They were later translated into En-
+ing speeds were analysed for variability between texts and par-        glish and the test is currently available in 19 languages (Gleni
+ticipants.                                                             et al., 2019; Precision Vision, 2021; Trauzettel-Klosinski & Dietz,
+                                                                       2012). The IReST texts are mainly taken from factual literature
+   There were no statistically signiﬁcant differences between the
+ten texts (135 words, 765 characters [SD = 18], word variation in-     for children aged 9–11 years and text material for 6th grade. The
+dex 91.8% [SD = 0.9%]). Reading speed in adult readers was 204         texts are intended to be neutral and easily read and understood
+(SD = 31) words/min. There was no difference across texts for          (Hahn et al., 2006). One advantage is that IReST consist of ten
+any of the participants ( p > 0.05). Reading speed variance was        texts, where each text is standardised in terms of content, length,
+77.4% between subjects and 22.6% between texts.                        degree of difﬁculty and linguistic structure. This makes IReST
+   The Norwegian IReST is standardised and comparable to the           suitable for comparing reading speed between languages. Fur-
+international IReST tests. Reading speed falls within normative        thermore, IReST have the advantage of containing longer para-
+values in adult readers. The Norwegian IReST will be a valuable        graphs, which are more similar to reading ordinary texts and
+tool in assessing reading in clinical health care, rehabilitation      they have been shown to give less variability in reading speed
+and educational practice of adult and visually impaired readers        compared to more traditional tests using shorter texts (Altpeter
+and in reading research.                                               et al., 2015; Rubin, 2013). IReST has been used to measure read-
+                                                                       ing in normal ageing persons and in people with impaired vi-
+Keywords: paragraph reading, reading speed, sentences, text reading,   sion and reading disabilities (Morrice et al., 2021; Trauzettel-
+reading test, reading performance                                      Klosinski & Dietz, 2012). There is a lack of standardised reading
+                                                                       tests in Norwegian suitable for adult readers and persons with
+Introduction                                                           visual impairment, and the aim of this project was therefore to
+Reading is one of the most fundamental skills of daily life today,     translate and validate the IReST in Norwegian.
+almost regardless of geographical and social standing. Good
+reading skills are required to be able to actively participate         Methods
+in society. In many ways, you have a greater disability as a           Linguistic development of the Norwegian IReST
+poor reader today than in the past, and this is especially crit-       The ten IReST texts were translated from the original German
+ical among people who are visually impaired (Kaltenegger et            version into Norwegian by a linguist (DN), a ﬂuent speaker of
+al., 2019; Lamoureux et al., 2007). Reading is a complex pro-          both Norwegian and German. The difﬁculty and complexity of
+cess, involving optical, neurological, cognitive and oculomotor        the texts were set at the reading level of 10–12-year-old children
+factors. Reading requires both a clear image, precise eye move-        (Hahn et al., 2006). To help ensure that all the Norwegian texts
+ments, good ﬁeld of view and a high degree of comprehension            had the same readability and were easy to read, the texts were
+(Brussee et al., 2014; Mitzner & Rogers, 2006). In addition, read-     analysed using LIX, a calculation tool of Scandinavian origin de-
+ing can be challenging due to a range of visual perceptual issues      signed to evaluate the linguistic complexity of a text (Anderson,
+(Chung et al., 2019; Mitzner & Rogers, 2006). The art of reading       1983). The LIX formula uses the number of words, the number
+is about decoding signs perceived through sight and then sys-          of long words (six letters and more), and the number of sen-
+tematising these into larger meaningful units, from letters, via       tences to calculate a readability score (LIX score) and three un-
+words to sentences. In clinical practice, visual acuity is the most    derlying scores indicating word variability and vocabulary rich-
+common measure used to assess central visual function (Kaiser,         ness (TTR, OVIX and OVR). The goal was to ensure that all texts
+2009). However, visual acuity measures the spatial resolution          were within the easy-to-read-category (a LIX score between 30
+of the ﬁxating retinal area, but is not adequate when measur-          and 40) (Anderson, 1983; Björnsson, 1983; Nordtømme, 2023).
+ing reading, or other aspects of functional vision in daily life.      According to this, the Norwegian translated texts should be
+doi:10.15626/sjovs.v17i1.4102 – ISSN: 1891-0890                                                     Scandinavian Journal of Optometry and Visual Science
+SJOVS, February 2024, Vol. 17, No. 1 – Scientiﬁc article                                                                                                                2
+
+
+                                                                                              Beveren er en fremragende svømmer. I vann kan den
+easy to read, with a LIX score of 35 and a high word variabil-                                oppnå en hastighet på opptil ti kilometer i timen. For å
+ity ratio (see Table 1 for details). Data collection was under-                               beskytte seg mot kulde har beveren et tykt fettlag og en
+taken as part of a master’s thesis (DN) at University of South-                               pels med tusenvis av hår. Ved help av sine store lunger
+                                                                                              kan den uten problemer være under vann i inntil tjue
+Eastern Norway (Nachtnebel, 2023) and some results have been                                  minutter. Beveren er ikke bare dyktig til å felle trær,
+presented at the ARVO conference (Nachtnebel & Falkenberg,                                    men den er også flink til å bygge demninger.
+2023).                                                                                        Der Biber ist ein vorzüglicher Schwimmer. Er kann im
+                                                                                              Wasser eine Geschwindigkeit von bis zu zehn Kilometern
+                                                                                              in der Stunde erreichen. Sein Schutz gegen die Kälte
+         Table 1: The LIX readability indexes of the ten Norwegian texts                      besteht aus einem Pelz mit Tausenden von Haaren und
+                                                                                              einer dicken Fettschicht. Mit seiner großen Lunge kann
+ Text               LIX*      Type Token          Word Variability Word Variability           er leicht zwanzig Minuten unter Wasser bleiben. Der
+                              Ratio TTR %         Index OVIX % Ratio OVR %                    Biber kann nicht nur geschickt Bäume fällen, sondern er
+ 1                  35        67.4                63.4             92                         ist auch ein erfahrener Handwerker
+
+ 2                  35        69.9                68.9             92.6                       The beaver is an excellent swimmer. It can achieve a
+                                                                                              speed of up to seven miles per hour in water. Its
+ 3                  35        65.9                60.2             91.5                       protection against the cold consists of a skin with
+ 4                  35        71.1                73               93.1                       thousands of single hairs and a thick layer of fat. With
+                                                                                              its big lungs it can easily stay under water for more than
+ 5                  35        66.7                61.8             91.7                       twenty minutes. The beaver is not only skilful in felling
+ 6                  35        60.7                50.7             90                         trees, but also an experienced craftsman in building
+                                                                                              dams. When the beaver fells a tree, it gnaws
+ 7                  35        70.4                70.9             92.8
+ 8                  35        65.2                58.7             91.3                       Bävern är en mycket skicklig simmare. I vattnet når den
+                                                                                              hastigheter av mer än elva kilometer i timmen. För att
+ 9                  35        66.7                61.8             91.7                       skydda sig mot kylan har bäverns hud tusentals små
+ 10                 35        65.9                60.2             91.5                       hårstrån och ett tjockt lager med fett. Med hjälp av sina
+                                                                                              stora lungor kan den stanna under vattenytan mer än
+ Mean (SD)          35        67.0 (3)            62.9 (7)         91.8 (1)                   tjugo minuter utan problem. Bävern är inte bara duktig
+ 95% CI                       [65, 69]            [58, 68]         [91, 92]                   på att fälla träd, den är också en skicklig dammbyggare.
+                                                                                              När bävern fäller
+ Note: *LIX score range from 0–100, where 35 is within the easy read category.
+                                                                                      Figure 1: Extracts from the Norwegian, German, English and Swedish versions of
+                                                                                      IReST text 2 showing only the ﬁrst eight lines.
+
+   As for earlier IReST texts, Gibson’s syntactic prediction local-
+ity theory (SPLT) was used in the analysis of the translations                                Table 2: Parameters and values for the Norwegian IReST texts
+(Gibson, 1998; 2000). According to Gibson, information in the                          Text         No.       No.           No.            Syllables      Characters
+immediate context of a word is used to predict the syntactic                                        words     syllables     characters     per word       per word
+structure of a sentence. Therefore, it was important that the                          1            135       220           753            1.6            5.6
+Norwegian texts had equal cognitive processing load, while si-                         2            135       217           741            1.6            5.5
+multaneously incorporating syntactic diversity to prevent the
+                                                                                       3            135       216           761            1.6            5.6
+reader from beneﬁting by recognising a pattern.
+                                                                                       4            135       236           800            1.7            5.9
+                                                                                       5            135       223           768            1.7            5.7
+   To adjust for ﬂuency, the Norwegian texts were additionally
+translated from the English and Swedish texts independently by                         6            135       227           765            1.7            5.7
+both authors, ﬂuent in both languages. Details were discussed                          7            135       227           748            1.7            5.5
+until consensus was reached on the ﬁnal versions. The aim was                          8            135       240           786            1.8            5.8
+to make the Norwegian version similar in difﬁculty, linguistic                         9            135       233           756            1.7            5.6
+complexity, and word and sentence lengths to these versions.                           10           135       229           773            1.7            5.7
+See Figure 1 for a comparison of texts in the different languages.                     Mean (SD)    135 (0)   227 (8)       765 (18)       1.7 (0.1)      5.7 (0.1)
+This also ensured that the Norwegian texts were comparable                             95% CI                 [221, 233]    [752, 778]     [1.6, 1.7]     [5.6, 5.8]
+across languages.
+
+   Table 2 shows the parameters for the ten Norwegian texts. All
+consist of 135 words, 20% long words (over six letters), and nine                     Participants
+sentences. The number of characters (including spaces and line                        Twenty-ﬁve adults (18 females) aged 18 to 60 years of age ( M =
+breaks) for each text is 741–800, with a mean of 765 (SD = 18).                       41, SD = 10) with normal vision and reading abilities were
+The mean number of characters per word is 5.7 (SD = 0.1), and                         recruited from the University of South-Eastern Norway and
+the mean number of syllables per text is 227 (SD = 8). Texts                          Statped. Inclusion criteria were: adults over 18 years, ﬂuent
+with mainly short words have fewer syllables and are easier to                        in Norwegian, no diagnosed reading/attention disabilities, and
+read, process, understand, and recognise, which is beneﬁcial to                       normal or corrected to normal vision (near visual acuity [VA]
+all readers. All texts have 16 lines with a maximum line width                        ≤ logMAR 0.0 [decimal VA ≥ 1.0], contrast sensitivity ≤ 1.68
+of 8.5 cm. Like the other existing IReST languages, the Norwe-                        logCS). The participants’ mean near VA, mean distance VA, and
+gian translation uses a Times New Roman font size of 10 (equiv-                       Mars contrast sensitivity were -0.07 logMAR (SD = 0.07), -0.15
+alent to visual acuity 0.4 logMAR at 40 cm viewing distance                           logMAR (SD = 0.22) and 1.81 logCS (SD = 0.05), respectively.
+or 1M unit) and 12-point line spacing (Hahn et al., 2006), cor-                       The sample size of 25 was matched to the original IReST-study
+responding to most newspaper print sizes. The ﬁnished texts                           (Hahn et al., 2006). This also satisﬁes an a priori power analysis
+were printed in high contrast on white 120 g matt paper.                              calculated with G*Power 3.1 (Kang, 2021). Testing the differ-
+                                                                                      ence from a constant and a two-tailed test, a sample size of 23
+  To assess the readability of the ﬁrst Norwegian texts, the ten                      was required to achieve power of 0.95 with a large effect size
+texts were piloted on ﬁve subjects with normal vision and read-                       (d = 0.8), and an α of 0.05 (Faul et al., 2007).
+ing skills. Words or sentences where the subjects hesitated or                           Written and oral information about the study was provided,
+made mistakes were substituted. This did not inﬂuence the                             and each participant gave written informed consent before tak-
+number of words, characters, and letters in the ﬁnal texts.                           ing part. The study was approved by the Norwegian Centre for
+doi:10.15626/sjovs.v17i1.4102 – ISSN: 1891-0890                                                                       Scandinavian Journal of Optometry and Visual Science
+SJOVS, February 2024, Vol. 17, No. 1 – Scientiﬁc article                                                                                                              3
+
+
+Research Data (ref: 56168) and was conducted in line with the                      Performance categories
+Declaration of Helsinki (World Medical Association, 2013).                         The texts were divided into IReST performance categories based
+                                                                                   on mean reading speed per text (Hahn et al., 2006), as shown in
+                                                                                   Table 3. The ten Norwegian texts showed a total difference in
+Procedure
+                                                                                   reading speed of 18.8 words/min. For the total order of read-
+Texts were presented in random order on a table with a view-                       ing speed, see Table 3. The Norwegian texts were grouped
+ing distance of 40 cm. The mean illumination was 767 lux                           into categories A to D, where each category represents a ten
+(SD = 142) avoiding glare. Participants were told to read each                     words/min range of reading speeds (Hahn et al., 2006). Per-
+text once aloud and as quickly as possible, and not to correct                     formance category A starts from the fastest read text (Text 2
+mistakes along the way. The readings were recorded, and all                        at 215 words/min). With a ten words/min range, category A
+audio recordings were reviewed in an editing program to mea-                       has a range of reading speed from 215 to 205 words/min, and
+sure the reading time(s). All errors were counted and noted. To                    includes texts 2, 1, 9, 5 and 7 (Table 3). Category B was then
+uncover any error patterns across readers, incorrect words were                    calculated from the fastest read text outside category A (Text 6
+marked with brackets and colour.                                                   at 204 words/min), and spans ten words/min upwards to 214
+                                                                                   words/min (204 + 10 words/min). Since there were no text read
+Data and statistical analysis                                                      at 214 words/min, category B starts at the ﬁrst read text within
+For this dataset, reading speed means, medians and standard                        the calculated range which is Text 1 at 210 words/min. With ten
+deviations for each text and each participant were calculated.                     words/min for each category, category B now covers reading
+In accordance with work by the IReST group, characters per                         speeds from 210 to 200 words/min (see Table 3). All texts be-
+minute were calculated by including spaces and line breaks                         longing to the same category can be used in repeated measure-
+and the relative standard deviation was calculated as SD/mean                      ments because they do not differ by more than ten words/min.
+reading speed in words/min × 100 (Hahn et al., 2006; Mes-                          It also means that most texts belong to more than one cate-
+sias et al., 2008). One-way analysis of variance (ANOVA) fol-                      gory and can be exchanged with all the other texts (for exam-
+lowed by Levene’s post-hoc tests were used to compare reading                      ple, Text 5 and Text 7 which are included in all four categories
+speed. The null hypothesis was that there was no difference be-                    [A–D]). This means that the Norwegian IReST is well suited for
+tween the texts. The IReST group set a limit of 4 SD for outliers                  repeated measurements as there are at least ﬁve texts to choose
+(Trauzettel-Klosinski & Dietz, 2012). In the data set from the                     from within the same category.
+Norwegian pilot study there were no outliers, and all data were
+included in the analysis. Alpha was set to 0.05, and analyses
+were performed in IBM SPSS Statistics (Version 24, US).
+
+
+
+Results
+The results showed that normally sighted adults read the ten
+texts with a mean reading time of 40.5 ± 5.8 sec. This corre-
+sponds to a mean reading speed of 204 words/min (SD = 6,
+95% CI [200, 209]). Table 3 shows that Text 2 was the fastest
+read text (215.2 words/min) and Text 4 was the slowest (196.4
+words/min). However, the differences in reading speed be-
+tween the texts (ANOVA F[9,240] = 0.81, p = 0.6; Levene’s test p                   Figure 2: IReST reading speeds of all ten texts for individual adults. Solid and
+= 0.82) and within individual participants were not signiﬁcant                     dashed lines show the mean and standard deviation for reading speed across the
+(all p > 0.05) (See Table 3 and Figure 2).                                         texts and all individuals.
+
+
+  Table 3: Mean (SD) reading speed and performance categories for each text
+
+ Text           Performance Words            Min/max   Syllables    Characters
+                                                                                   Discussion
+                category    per min                    per min      per min        The aim of this project was to validate the IReST reading test
+                                                                                   in Norwegian for adult readers. The text analysis showed that
+ 2              A               215          155/303   337          1151
+                                                                                   all ten texts had overlapping language parameters (number of
+ 1              A B             210          160/273   335          1148
+                                                                                   words, sentences, sentence lengths, word lengths and readabil-
+ 9              A B C           209          151/312   350          1137
+                                                                                   ity index), with low variation between the texts.
+ 5              A B C D         206          165/308   334          1152              The values are in line with IReST tests in other languages
+ 7              A B C D         205          156/266   340          1121           (Gleni et al., 2019; Hahn et al., 2006; Messias et al., 2008; Morrice
+ 6                  B C D       204          149/308   334          1126           et al., 2020; Trauzettel-Klosinski & Dietz, 2012). The Norwegian
+ 3                  B C D       200          144/274   314          1105           texts all have the same number of lines. This is in line with the
+ 10                 B C D       200          143/260   331          1118           Swedish translation, but in contrast to e.g., the English and Ger-
+ 8                     C D      199          153/246   349          1142           man texts. The advantage of keeping the line number constant
+ 4                         D    196          148/268   336          1139           is that this inﬂuences the reading performance variables, as line
+                                                                                   breaks can be demanding for visually impaired or poor read-
+ Mean (SD)                      204 (31)               336 (10)     1133 (16)
+ 95% CI                         [200, 209]             [329, 343]   [1123, 1145]
+                                                                                   ers. Future research should consider the use of eye tracking to
+                                                                                   further elucidate the effect of line breaks when reading in both
+                                                                                   normal and visually impaired readers (Wang et al., 2023).
+   The total variation between all readings (n = 250) was dis-                        The reading speed was not signiﬁcantly different in the ten
+tributed so that 77.4% lies between the individuals, while 22.6%                   standardised texts, with reading speeds similar to the German,
+of the mean variation was between the texts. Relative stan-                        English and Swedish texts they were translated from. The to-
+dard deviation varied between 2.6 and 8.4% among individuals                       tal variation between the ten texts was within the spread in the
+( M = 4.5%).                                                                       other languages (Gleni et al., 2019; Trauzettel-Klosinski & Dietz,
+doi:10.15626/sjovs.v17i1.4102 – ISSN: 1891-0890                                                                     Scandinavian Journal of Optometry and Visual Science
+SJOVS, February 2024, Vol. 17, No. 1 – Scientiﬁc article                                                                                                                      4
+
+
+2012). The results show that the Norwegian translation meets                            Chung, S. T. L., Legge, G. E., Pelli, D. G., & Yu, C. (2019). Visual factors in reading.
+the requirements for IReST, corresponds to the standardisation                          Vision Research, 161, 60–62. https://doi.org/10.1016/j.visres.2019.06.002
+of already existing tests (Gleni et al., 2019; Hahn et al., 2006;                       Elliott, D. B., Trukolo-Ilic, M., Strong, J. G., Pace, R., Plotkin, A., & Bevers, P.
+                                                                                        (1997). Demographic characteristics of the vision-disabled elderly. Investigative
+Messias et al., 2008; Trauzettel-Klosinski & Dietz, 2012), and                          Ophthalmology & Visual Science, 38(12), 2566–75.
+can be used as a test to assess reading performance. In com-                            Faul, F., Erdfelder, E., Lang, A. G., & Buchner, A. (2007). G*power 3: A ﬂexible sta-
+parison with the mean reading speed in the other languages,                             tistical power analysis program for the social, behavioral, and biomedical sciences.
+the Norwegian results are in the upper level, placed fourth, af-                        Behaviour Research Methods, 39(2), 175–91. https://doi.org/10.3758/bf03193146
+ter English, Spanish and Greek, and before Dutch, Swedish and                           Gibson, E. (1998). Linguistic complexity: Locality of syntactic dependencies. Cog-
+                                                                                        nition, 68(1), 1–76. https://doi.org/10.1016/S0010-0277(98)00034-1
+French. Different languages have different word lengths, and it
+is worth noting that short words lead to higher reading speeds                          Gibson, E. (2000). The dependency locality theory: A distance-based theory of
+                                                                                        linguistic complexity. In Image, language, brain: Papers from the ﬁrst mind articu-
+when comparing words per minute across languages.                                       lation project symposium (pp. 94–126).
+   Another strength of this study is that a standardised and val-                       Gleni, A., Ktistakis, E., Tsilimbaris, M. K., Simos, P., Trauzettel-Klosinski, S., &
+idated Norwegian paragraph reading test has now been estab-                             Plainis, S. (2019). Assessing variability in reading performance with the New
+lished, which will be clinically important and where the results                        Greek Standardized Reading Speed Texts (IReST). Optometry and Vision Sci-
+                                                                                        ence, 96(10), 761–767. https://doi.org/10.1097/OPX.0000000000001434
+can be compared to international ﬁndings (Gleni et al., 2019;
+                                                                                        Hahn, G. A., Penka, D., Gehrlich, C., Messias, A., Weismann, M., Hyvärinen, L.,
+Hahn et al., 2006; Messias et al., 2008; Morrice et al., 2020). The                     Leinonen, M., Feely, M., Rubin, G., Dauxerre, C., Vital-Durand, F., Featherston, S.,
+study also shows that, although there are individual variations                         Dietz, K., & Trauzettel-Klosinski, S. (2006). New standardised texts for assessing
+for each person, the variation between texts is low even with                           reading performance in four European languages. The British Journal of Ophthal-
+                                                                                        mology, 90(4), 480–484. https://doi.org/10.1136/bjo.2005.087379
+a small sample of individuals. This means that reading speed
+                                                                                        Hazel, C. A., Petre, K. L., Armstrong, R. A., Benson, M. T., & Frost, N. A. (2000). Vi-
+can be assessed and compared across texts in individual read-                           sual function and subjective quality of life compared in subjects with acquired mac-
+ers, but that one should be careful to compare across readers.                          ular disease. Investigative Ophthalmology & Visual Science, 41(6), 1309–1315.
+The Norwegian IReST will be valuable in assessing reading in                            Kaiser, P. K. (2009). Prospective evaluation of visual acuity assessment: A com-
+both research and clinical practice.                                                    parison of Snellen versus ETDRS charts in clinical practice (an AOS thesis). Trans-
+                                                                                        actions of the American Ophthalmological Society, 14.
+   A limitation of this study was the design of this validation
+study, which makes it impossible to establish normal popula-                            Kaltenegger, K., Kuester, S., Altpeter-Ott, E., Eschweiler, G. W., Cordey, A.,
+                                                                                        Ivanov, I. V., Martus, P., Knipp, C., & Trauzettel-Klosinski, S. (2019). Effects of
+tion values. Although our results compare to international read-                        home reading training on reading and quality of life in AMD — a randomized and
+ing performance, future studies, in larger samples, are needed                          controlled study. Graefe’s Archive for Clinical and Experimental Ophthalmology,
+                                                                                        257 (7), 1499–1512. https://doi.org/10.1007/s00417-019-04328-9
+to establish Norwegian normal values across age groups, read-
+ing disabilities, or in low vision.                                                     Kang, H. (2021). Sample size determination and power analysis using the
+                                                                                        G*Power software. Journal of Educational Evaluation for Health Professions, 18,
+   Future research and development should also consider a dig-                          17. https://doi.org/10.3352/jeehp.2021.18.17
+ital test alternative to utilise new technology for assessing and                       Lamoureux, E. L., Pallant, J. F., Pesudovs, K., Rees, G., Hassell, J. B., & Ke-
+monitoring functional reading in visual rehabilitation in adults,                       effe, J. E. (2007). The effectiveness of low-vision rehabilitation on participation in
+in the clinic and at home.                                                              daily living and quality of life. Investigative Ophthalmology & Visual Science, 48(4),
+                                                                                        1476–82. https://doi.org/10.1167/iovs.06-0610
+   Overall, this study shows that the Norwegian texts are vali-
+                                                                                        Legge, G. E., Ross, J. A., Isenberg, L. M., & LaMay, J. M. (1992). Psychophysics
+dated and comparable with other IReST texts.                                            of reading. Clinical predictors of low-vision reading speed. Investigative Ophthal-
+                                                                                        mology & Visual Science, 33(3), 677–687.
+                                                                                        Legge, G. E. (2006). Psychophysics of reading in normal and low vision.
+Conclusion
+                                                                                        Legge, G. E. (2016). Reading digital with low vision. Visible Language, 50(2), 102–
+The results show that there are no signiﬁcant differences be-                           125.
+tween the ten Norwegian texts, and that they can be used for
+                                                                                        Lovie–Kitchin, J. (2011). Reading with low vision: The impact of research on clin-
+repeated measurements in adults with normal vision. The re-                             ical management. Clinical and Experimental Optometry, 94(2), 121–132. https :
+sults also show that the Norwegian IReST values for reading                             //doi.org/10.1111/j.1444-0938.2010.00565.x
+speed are among the fastest, similar to English and Swedish.                            Messias, A., Cruz, e. A. A. V., Schallenmüller, S. J., & Trauzettel-Klosinski, S.
+The Norwegian IReST reading test will be a valuable addition                            (2008). Textos padronizados em Português (BR) para medida da velocidade de
+                                                                                        leitura: Comparação com quatro idiomas europeus. Arquivos Brasileiros de Oftal-
+in clinical practice and for research as an important tool in the                       mologia, 71(4), 553–558. https://doi.org/10.1590/S0004-27492008000400016
+evaluation of reading function over time. With today’s technol-                         Mitzner, T. L., & Rogers, W. A. (2006). Reading in the dark: Effects of age and
+ogy, it would also have been useful to be able to expand the test-                      contrast on reading speed and comprehension. Human Factors, 48(2), 229–240.
+ing apparatus with digital tools, which would increase the test                         https://doi.org/10.1518/001872006777724372
+availability and could lead to an even greater degree of stan-                          Morrice, E., Hughes, J., Stark, Z., Wittich, W., & Johnson, A. (2020). Validation
+                                                                                        of the International Reading Speed Texts in a Canadian sample. Optometry and
+dardisation.                                                                            Vision Science, 97 (7), 509–517. https://doi.org/10.1097/opx.0000000000001538
+                                                                                        Morrice, E., Soldano, V., Addona, C., Murphy, C. E., & Johnson, A. P. (2021).
+   Copyright Nachtnebel, D., A. et al. This article is distributed under the terms of
+                                                                                        Validation of the International Reading Speed Texts in a sample of older (60+)
+the Creative Commons Attribution License, which permits unrestricted use and            Canadian adults. Optometry and Vision Science, 98(8), 971–975. https://doi.org/
+redistribution provided that the original author and source are credited.               10.1097/OPX.0000000000001746
+                                                                                        Nachtnebel, D. A. (2023). Oversettelse og pilotering av lesetesten IReST [Mas-
+                                                                                        ter’s thesis, University of South-Eastern Norway]. https://openarchive.usn.no/usn-
+References                                                                              xmlui/handle/11250/2835867
+Altpeter, E., Marx, T., Nguyen, N., Naumann, A., & Trauzettel-Klosinski, S. (2015).     Nachtnebel, D. A., & Falkenberg, H. K. (2023). Validation of the Norwegian Inter-
+Measurement of reading speed with standardized texts: A comparison of single            national Reading Speed Texts (IReST) in a sample of adult readers with normal
+sentences and paragraphs. Albrecht von Graæes Archiv für Ophthalmologie, 253.           and low vision. Investigative Ophthalmology & Visual Science, 64(8), 2802–2802.
+https://doi.org/10.1007/s00417-015-3065-4
+                                                                                        Nordtømme, C. K. (2023). Lesbarhets-kalkulator (LIKS). Retrieved December 1,
+Anderson, J. (1983). Lix and Rix: Variations on a Little-known Readability Index.       2023, from https://skriftlig.no/liks/
+Journal of Reading, 26(6), 490–496. http://www.jstor.org/stable/40031755
+                                                                                        Precision Vision. (2021). IReST - International Reading Speed Texts - In Multi-
+Björnsson, C. H. (1983). Readability of newspapers in 11 languages. Reading Re-         ple Languages. Retrieved December 1, 2023, from https://precision- vision.com/
+search Quarterly, 18(4), 480–497. https://doi.org/10.2307/747382                        products/visual-acuity-reading-charts/reading-charts/hand-held-reading-charts/
+Brussee, T., van Nispen, R. M. A., & van Rens, G. H. M. B. (2014). Measurement          irest-international-reading-speed-texts-in-multiple-languages/
+properties of continuous text reading performance tests. Ophthalmic and Physio-         Radner, W. (2017). Reading charts in ophthalmology. Graefe’s Archive for Clinical
+logical Optics, 34(6), 636–657. https://doi.org/10.1111/opo.12158                       and Experimental Ophthalmology, 255(8), 1465–1482. https://doi.org/10.1007/
+Carver, R. P. (1992). Reading rate: Theory, research, and practical implications.       s00417-017-3659-0
+Journal of Reading, 36(2), 84–95.
+
+doi:10.15626/sjovs.v17i1.4102 – ISSN: 1891-0890                                                                             Scandinavian Journal of Optometry and Visual Science
+SJOVS, February 2024, Vol. 17, No. 1 – Scientiﬁc article                                                                                                                               5
+
+
+Rolle, T., Dallorto, L., Cafasso, R., Mazzocca, R., Curto, D., & Nuzzi, R. (2019).        Ophthalmology & Visual Science, 53(9), 5452. https://doi.org/10.1167/iovs.11-
+Reading ability in primary open-angle glaucoma: Evaluation with Radner Reading            8284
+Charts. Optometry and Vision Science, 96(1), 55–61. https : / / doi . org / 10 . 1097 /
+                                                                                          Wang, R., Zeng, L., Zhang, X., Mondal, S., & Zhao, Y. (2023). Understanding how
+OPX.0000000000001319
+                                                                                          low vision people read using eye tracking. Conference on Human Factors in Com-
+Rubin, G. S. (2013). Measuring reading performance. Vision Research, 90, 43–51.           puting Systems (CHI ’23). https : / / doi . org / https : / / doi . org / 10 . 1145 / 3544548 .
+https://doi.org/10.1016/j.visres.2013.02.015                                              3581213
+Trauzettel-Klosinski, S., & Dietz, K. (2012). Standardized assessment of reading          World Medical Association. (2013). World Medical Association Declaration of
+performance: The new International Reading Speed Texts IReST. Investigative               Helsinki: Ethical principles for medical research involving human subjects. JAMA,
+                                                                                          310(20), 2191–2194. https://doi.org/10.1001/jama.2013.281053
+
+
+
+
+doi:10.15626/sjovs.v17i1.4102 – ISSN: 1891-0890                                                                                  Scandinavian Journal of Optometry and Visual Science
+SJOVS, February 2024, Vol. 17, No. 1 – Scientiﬁc article                                                                                                          6
+
+
+Validering av den norske International                                             Validazione della versione Norvegese
+Reading Speed Texts (IReST) lesetesten                                             dell’International Reading Speed Texts
+Sammendrag                                                                         (IReST) in lettori adulti con visione normale
+Det er et behov for standardiserte lesetester på norsk, som                        Riassunto
+også passer for voksne personer med synshemming. Den inter-                        Mancano test di lettura standardizzati in Norvegese, adatti
+nasjonale lesetesten IReST (International Reading Speed Texts)                     per adulti e persone con disabilità visive (DV). L’International
+måler lesefunksjon over lengre tekstavsnitt. Målet med dette                       Reading Speed Texts (IReST) misura le abilità di lettura in para-
+prosjektet var å oversette og validere IReST til norsk.                            graﬁ lunghi. L’obiettivo di questo progetto è tradurre e validare
+   De opprinnelige tyske, engelske og svenske IReST-tekstene                       IReST in Norvegese.
+ble oversatt til norsk. Oversettelsene ble analysert med hensyn                       Le versioni in Tedesco, Inglese e Svedese di IReST sono state
+til tekstlengde, språklig vanskelighetsgrad og struktur, og pi-                    tradotte in Norvegese. Le traduzioni sono state adattate per
+lotert på fem voksne. Lesehastigheten ble deretter målt på 25                      lunghezza, difﬁcoltà linguistica e struttura, e sottoposte a prova
+deltakere (41 år, SD = 10) med normalt syn. Det ble gjort opp-                     pilota su cinque adulti. La velocità di lettura è stata misurata in
+tak og lesehastigheten ble analysert for variasjon mellom tekster                  25 lettori (41 anni, SD = 10) con visione normale e le letture sono
+og deltakere.                                                                      state registrate. Le velocità di lettura sono state analizzate per
+   Det var ingen statistisk signiﬁkante forskjeller mellom de ti                   variabilità tra testi e partecipanti.
+tekstene (135 ord, 765 tegn (SD = 18), ordvariasjonsindeks 91,8%                      Non sono state trovate differenze statisticamente signiﬁcative
+(SD = 0,9%)). Gjennomsnittlig lesehastighet hos voksne lesere                      tra i dieci testi (135 parole, 765 caratteri [SD = 18], indice di vari-
+var 204 (SD = 31) ord/min. Det var ingen signiﬁkant forskjell                      azione delle parole 91.8% [SD = 0.9%]). La velocità di lettura in
+mellom tekstene for noen av deltakerne ( p > 0,05). Fordelin-                      lettori adulti è stata di 204 (SD = 31) parole/min. Non è stata
+gen av variansen i lesehastighet var 77,4% mellom deltakere og                     riscontrata differenza tra testi per nessuno dei partecipanti ( p >
+22,6% mellom tekstene.                                                             0.05). La varianza della velocità di lettura era 77.4% tra i soggetti
+   Den norske IReST-testen er standardisert og sammenlignbar                       e 22.6% tra i testi.
+med de internasjonale IReST-testene. Lesehastigheten faller in-                       La versione in Norvegese dell’IReST è standardizzata e com-
+nenfor normative verdier hos voksne lesere. En norsk utgave av                     parabile alle versioni internazionali. La velocità di lettura rien-
+IReST vil være et verdifullt verktøy for å vurdere lesing i klinisk                tra nei valori normativi dei lettori adulti. La versione Norveg-
+helsevesen, rehabilitering og utdanningspraksis for voksne og                      ese dell’IReST rappresenta uno strumento prezioso nella val-
+synshemmede lesere, samt i leseforskning.                                          utazione della lettura nella pratica clinica, nella riabilitazione
+Nøkkelord:      Avsnittslesing,          lesehastighet,   setninger,   lesetest,   e nella pratica educativa di lettori adulti e con deﬁcit visivi,
+leseprøve, leseferdighet                                                           nonché nella ricerca sulla lettura.
+                                                                                   Parole chiave: Lettura di paragraﬁ, velocità di lettura, frasi, test di
+                                                                                   lettura, abilità di lettura
+
+
+
+
+doi:10.15626/sjovs.v17i1.4102 – ISSN: 1891-0890                                                                 Scandinavian Journal of Optometry and Visual Science
+

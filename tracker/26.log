@@ -1,0 +1,17 @@
+Log 26. Grouping the six top tab steps of the month tour into one step.
+2026-09-22T09:02:11Z ls and git log — opened the repo and read the recent commits.
+2026-09-22T09:02:11Z grep for tutorial across the tree — nothing, the feature is named the tour.
+2026-09-22T09:03:40Z find for month files and ls of the web source — located the tour composable and the overlay.
+2026-09-22T09:04:52Z cat useTour.ts and TourOverlay.vue — read the step list and how a step is drawn.
+2026-09-22T09:05:30Z grep for data-tour and for the six nav keys — found the anchors, the eight catalogues and two tests.
+2026-09-22T09:06:15Z sed -n on App.vue and en.ts — read the tab markup and the English step copy.
+2026-09-22T09:12:40Z python3 edit of App.vue — the tour anchor moved from the six tabs onto the strip that holds them.
+2026-09-22T09:13:20Z python3 edit of useTour.ts — the six tab steps of the month became one step named tabs.
+2026-09-22T09:16:05Z python3 edit of the eight message catalogues — the six tab steps became one step of copy per language.
+2026-09-22T09:19:30Z python3 edit of render.test.ts — the month tab test now expects the one step and no per tab anchor.
+2026-09-22T09:21:10Z python3 edit of readme.md — the tour section counts six month steps and says why the strip is one step.
+2026-09-22T09:23:05Z pnpm --filter @tracker/web test — 390 tests passed after the one step change.
+2026-09-22T09:24:40Z pnpm typecheck then pnpm lint — both clean across the workspace.
+2026-09-22T09:25:30Z python3 edit of the eight catalogues — the new body sits on one line like every other step.
+2026-09-22T09:27:10Z pnpm --filter @tracker/web test then pnpm lint — both clean after the copy was flattened.
+2026-09-22T09:27:20Z grep for the six old keys — nothing is left outside the built bundle.

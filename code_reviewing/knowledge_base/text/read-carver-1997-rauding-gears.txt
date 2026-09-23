@@ -1,0 +1,1772 @@
+      Scientific Studies of Reading
+
+
+
+
+      ISSN: 1088-8438 (Print) 1532-799X (Online) Journal homepage: http://www.tandfonline.com/loi/hssr20
+
+
+
+
+Reading for One Second, One Minute, or One Year
+From the Perspective of Rauding Theory
+
+Ronald P. Carver
+
+To cite this article: Ronald P. Carver (1997) Reading for One Second, One Minute, or One Year
+From the Perspective of Rauding Theory, Scientific Studies of Reading, 1:1, 3-43, DOI: 10.1207/
+s1532799xssr0101_2
+
+To link to this article: https://doi.org/10.1207/s1532799xssr0101_2
+
+
+
+
+       Published online: 19 Nov 2009.
+
+
+
+       Submit your article to this journal
+
+
+
+       Article views: 254
+
+
+
+       Citing articles: 42 View citing articles
+
+
+
+
+                      Full Terms & Conditions of access and use can be found at
+             http://www.tandfonline.com/action/journalInformation?journalCode=hssr20
+SCIENTIFICSTUDIES OF READING, !(I), 3-43
+Copyright O 1997, Lawrence Erlbaum Associates, fnc.
+
+
+
+
+              Reading for One Second, One
+              Minute, or One Year From the
+              Perspective of Rauding Theory
+                                  Ronald P. Carver
+                 Division of Educational Research and Psychology
+                               School of Education
+                        University of Missouri-Kansas City
+
+
+   Rauding theory purports to add to our knowledge of (a) the processes involved in 1
+   sec of reading, (b) the percentage of comprehension that occurs during 1 min of
+   reading, and (c) the gain in achievementthat occursduring 1 year of reading. Relevant
+   to 1 sec of reading, this theory predicts the time required for three component
+   processes to be successfully executed during a fixation on a word. Relevant to 1 min
+   of reading, the three laws and two equations of rauding theory allow a precise
+   prediction of the accuracy of text comprehension that occurs; this prediction is based
+   on (a) the reading level and rate level of the individual, (b) the difficulty level and
+   length of the text, and (c) the time spent reading. Relevant to 1 year of reading, a
+   model is presented that includes the primary factors that cause high and low reading
+   achievement. The model has four causal echelons: reading achievement, or general
+   reading ability, at Echelon 1; reading level and rate level at Echelon 2; and listening
+   level, decoding level, and naming speed level at Echelon 3. At Echelon 4, there are
+   two teaching and learning factors, one age factor, and three aptitude factors (verbal
+   knowledge, decoding, and cognitive speed). This model can also be used to diagnose
+   reading disabilities. Empirical evidence of a correlational nature is presented in
+   support of the model. Finally, theory and research relevant to normal reading for 1
+   sec, 1 min, and 1 year has been unified via the constructs of reading level and rate
+   level. Rauding theory should be considered when investigating normal reading for
+   lower grade readers, nkiddle grade readers, adults, and disabled readers.
+
+
+
+   Requests for reprints should be sent to Ronald P. Carver, School of Education, University of
+Missouri-Kansas     City, 5100 Rockhill Road, Kansas City, Missouri 64110. E-mail:
+carver@cctr.urnkc.edu
+4    CARVER
+
+
+    In reading research, it makes a big difference whether 1 sec, 1 min, or 1 year is
+involved. Each of these three slices of time has carried its own theoretical constructs
+and practical implications. In the past, generalizing results from one of these slices
+of time to another has been done using vague generalizations that are fraught with
+uncertainty. Rauding theory uses the reading level and rate level of an individual
+to make mathematically precise predictions about (a) the milliseconds required for
+the components of the rauding process to operate successfully during a fixation that
+occurs when reading for 1 sec, (b) the percentage of comprehension that occurs
+during 1 min of reading, and (c) the gain in achievement that occurs during 1 year
+of reading.
+    The first major section that follows presents background information relevant
+to the theoretical framework underlying rauding theory and how the theory relates
+to 1 sec, 1 min, and 1 year of reading. The second major section contains details of
+how rauding theory relates to 1 min of reading, as well as a review of the three laws
+and the two primary equations of rauding theory. The third major section contains
+a detailed explanation of a causal model of reading achievement that is relevant to
+1 year of reading. The fourth section explicitly unifies the theory relevant to reading
+for 1 sec, 1 min, and 1 year. The fifth and final section provides a summary and
+conclusions.
+
+                        THEORETICAL FRAMEWORK
+
+Three Slices of Time
+
+What exactly, do the terms 1 sec, 1 min, and 1 year of reading mean'? Each of these
+three slices of time is described in turn.
+    One second of reading refers to the cognitive processes that occur during one
+eye fixation on a word. Most researchers in reading are familiar with Cough's
+(1972) famous article on "one second of reading." An important part of the model
+he presented was called TPWSGWTAU, or The Place Where Sentences Go When
+They Are Understood. This part of the model is especially relevant to rauding
+theory, because the comprehension of the complete thoughts in sentences has been
+a fundamental part of this theory since its inception (Carver, 1977). A more recent
+and more streamlined model of the word recognition processes during 1 sec of
+reading was created by Seidenberg and McCleliand (1989) and was referred to
+extensively by Adams (1990) in her book on beginning reading. Much of the
+research relevant to 1 sec of reading has (a) involved the cognitive mechanisms
+responsible for word recognition, (b) used latency measures of the millisecond of
+time required to recognize words, nonwords, and short phrases (e.g., see Perfetti &
+Roth, 1981), and (c) focused on understanding "the reading process."
+    One minute of reading refers to much of the research that presents prose passages
+to readers that are about 100 to 300 words in length and then measures comprehen-
+                            ONE SECOND,ONE MINUTE,ONE YEAR OF READING                5
+
+sion or recall. For example, the research conducted by Anderson, Pichert, and
+Shirey (1983) on schema theory fits into this 1 min slice of time. Another example
+comes from the research by 3. R. Miller and Kintsch (1980) on memory and recall.
+Although this type of research involves short passages and only about 1 min of
+reading, most researchers in this area will probably contend that their results will
+generalize to 1 hr or more of reading longer passages, such as chapters and books.
+In brief, rauding theory has much to contribute to our knowledge about the amount
+of comprehension that occurs during 1 min of reading, as is explained in much more
+detail later.
+    One year of reading refers to the research that involves gain during a school year,
+such as the research conducted by Juel, Griffith, and Gough (1986). Also, the
+research on reading instruction that involves different methods, such as the first
+grade studies (Stauffer, 1967), comes under the rubric of 1 year of reading. As is
+explained in detail in a later major section, rauding theory has recently been
+expanded so that it contributes to the description, explanation, prediction, and
+control of reading achievement during 1 year of reading.
+
+
+One Second of Reading
+
+According to rauding theory, the cognitive processes involved in 1 sec of reading
+are similar but different for various reading processes, or types of reading. There
+are purportedly five bakic processes involved in reading text, or passages (Carver,
+1990b). That is, when someone is reading paragraphs in a book, for example, one
+of five basically different reading processes is likely to be involved. These proc-
+esses, or reading gears, are called scanning (Gear 5), skimming (Gear 4), rauding
+(Gear 3), learning (Gear 2), and memorizing (Gear 1). Table 1 contains the
+culminating component for each one of the five basic reading processes, as well as
+the rate at which each is typically operated by a college student.
+   The fastestbasic process is a scanningprocess, which is Gear 5. This fastest gear
+involves only one component, lexical accessing, so it operates at a relatively high
+rate for college students-around 600 words per minute, or 100 msec per word
+(e.g., see Carver's 1990b review of Fisher's 1975 research). Gear 4, a skimming
+process, involves two components (lexical accessing and semantic encoding), so it
+operates slower-around 450 words per minute, or 133 msec per word, for college
+students (e.g., see Carver's 1990breview of the 1917research of Whipple& Curtis).
+Gear 3, the rauding process, involvesthree components(lexical accessing,semantic
+encoding, and sentenceintegrating), so it operates even slower-around 300 words
+per minute, or 200 msec per word, for students who are reading at the college level
+(e.g., see Carver, 1983). It should be noted that these three components of the
+rauding process are baed on the three components advanced by Perfetti (1985),
+namely lexical accessing, semantic encoding, and proposition integrating.
+6       CARVER
+
+                                     TABLE 1
+                   Five Basic Reading Processes or Reading Gears
+
+Gear        Process        Culminating Component        Rate for College Students (Wpm)
+
+    5      Scanning          Lexical accessing                        600
+    4      Skimming          Semantic encoding                        450
+    3      Rauding           Sentence integrating                     300
+    2      Learning          Idea remembering                         200
+    1      Memorizing        Fact rehearsing                          138
+
+   Note. Wpm = standard-length words per minute; a standard-length word is six character
+spaces, or six letters and spaces.
+
+
+    Gear 2, a learning process, involves four components(lexical accessing, seman-
+tic encoding, sentence integrating, and idea remembering), so it operates still
+slower-around 200 words per minute, or 300 msec per word, for college students
+(e.g., see Carver's 1990breview of the 1985research of Lorch, Lorch, & Matthews).
+Gear 1, a memorizing process, involves all five components noted in Table 1
+(lexical accessing, semantic encoding, sentence integrating, idea remembering, and
+fact rehearsing), so it operates at the slowest rate of all-around 138 words per
+minute, or 433 msec per word, for college students (e.g., see Carver's 1990breview
+of Meyer's 1975 research). Most psychological research in reading has been
+conducted with college students, and it has involved learning processes or memo-
+rizing processes that operate at rates around 200 words per minute (or 300 msec
+per word, Gear 2), or rates around 138 words per minute (or 433 msec/word, Gear
+1).
+    The rauding process, Gear 3, is the process most readers use regularly. It is the
+type of reading that is most typical; it is normal reading, ordinary reading, natural
+reading, or simple reading. It is the process that is used most often when adults are
+reading something that is relatively easy for them to comprehend-that is, a
+magazine, a newspaper, a novel, a memo at work, or a letter from a friend. Evidence
+that most of the reading that goes on in the world involves the rauding process
+comes from Sharon (1973); he surveyed 5,067 adults in a national probability
+sample and found that less than 1% of their reading involved anything that was
+difficult to understand during their typical 2 hr of reading each day. The goal to be
+achieved when an individual executes the rauding process is the comprehension of
+the complete thoughts in the sentences. The rauding process is the focus of rauding
+theory.
+    The term rauding comes from the combination of two words, reading and auding
+(Carver, 1977). It refers to the frequently occurring situation where individuals are
+reading or listening, and they are understanding most of the thoughts that they are
+encountering as they read or aud the sentences involved. Rauding focuses on the
+idea that reading prose and listening to prose generally involve the same compre-
+                            ONE SECOND, ONE MINUTE, ONE YEAR OF READING               7
+
+hension processes. It does not matter whether the thoughts in the prose are presented
+visually when reading or auditorily when listening, the goal of comprehending
+sentences is the same; this particular process is called the rauding process.
+    In summary, there are five basic reading processes involved when individuals
+are reading passages for 1 sec. Each process contains a different set of components
+that operate during one eye fixation on a single word in a sentence. Adding a
+component to a reading process adds millisecondsto the time needed to successfully
+execute this process. The rauding process, called Gear 3, is the most important
+process because it is the one involved in normal or typical reading. It involves three
+components,called lexical accessing, semantic encoding, and sentence integrating.
+The rauding process is the basic reading process that is focused on in rauding theory.
+If the rauding process is involved in 1 see of reading, or one eye fixation on a single
+word, then rauding theory should be relevant.
+
+Inducing the Rauding Process
+
+If a researcher wants to study the rauding process, how can it be induced in a
+research study? There are three primary factors that influence whether readers are
+likely to be engaged in the rauding process (see Carver, 1990b). The first factor is
+the relative difficulty of the material or passages that are involved. If relatively easy
+passages are presented, then the rauding process is more likely to be executed by
+the reader. On the other hand, the rauding process is not likely to be engaged if the
+material presented is relatively hard-that is, at a higher level of difficulty than the
+ability level of the individual.
+     The second primary factor is the way in which the instructions are presented by
+the researcher. If individuals are asked to read the material once as they would
+normally or ordinarily read, then they will probably use their rauding process. On
+the other hand, if individuals are asked to learn the essential elements of the text,
+they are likely to shift out of Gear 3, the rauding process, into Gear 2, a learning
+process. Or, if individuals are asked to read very carefully so they can recall the
+details later, they are more likely to shift out of the rauding process into a
+memorizing process, which is Gear 1.
+     The third primary factor influencing a reader's choice of gears is the objective
+consequences. If individuals are asked to identify incomplete thoughts or anoma-
+ lous sentences, they are likely to use Gear 3, their rauding process. On the other
+ hand, if individuals know they are going to be required to answer difficult multi-
+ ple-choicequestions, they are likely to shift down to Gear 2, a learning process. Or,
+ if they know they are gaing to have to write down everything they can remember,
+ they are likely to shift further down into Gear 1, a memorizing process.
+     Finally, if the researcher wants some post hoc evidence relevant to whether the
+ rauding process was actually engaged or not, then the reading rate of the individual
+ can be measured during the data collection. If college students were in fact reading
+8    CARVER
+
+
+the passages at rates around 260 to 300 words per minute, on the average, then the
+rauding process was probably engaged. On the other hand, if the reading rates
+averaged 450 to 600 words per minute or 100 to 200 words per minute, then the
+rauding process probably was not being executed for most of the college students
+involved.
+
+Other Theoretical Perspectives
+
+It will be helpful now to relate rauding theory to other theories in reading to clarify
+its unique nature. Table 2 contains a comparison of four different theoretical
+perspectives in reading-rauding theory, verbal efficiency theory, schema theory,
+and whole language. These four theoretical perspectives are compared with respect
+to three different dimensions-that is, their focus on (a) each slice of time discussed
+earlier, (b) each basic reading process discussed earlier, and (c) each type of reader,
+such as lower grade readers, middle grade readers, adults, or disabled.
+    In rauding theory, "lower grade readers" are those individuals who have not yet
+reached the age of third graders in school. Middle grade readers are of an age typical
+for students in Grade 3 to Grade 7. Adult readers are at an age typical for eighth
+graders or higher. Disabled readers in rauding theory are those whose achievement
+levels are at least 2 grade levels below what could be reasonably expected from
+their age or their grade in school.
+    From the Yes and No entries under the Rauding theory column in Table 2, it can
+be seen that this theory focuses on typical reading (or the rauding process) during
+ 1 sec, 1 min, and 1 year for lower graders, middle graders, adults, and disabled
+readers. Note that Table 2 first contrasts rauding theory to verbal efficiency
+theory-as explicated by Perfetti (1985). The focus of verbal efficiency theory
+seems to be on typical reading during 1 sec of reading for lower graders, middle
+graders, adults, and disabled readers. Although Perfetti does review some research
+on skimming, or speed reading, this is not a focus of the theory, as evidenced by
+the fact that his concern was mainly on the eye fixations that occur at fast rates.
+Also, verbal efficiency theory does not seem to deal seriously with 1 min of reading
+because the longest amount of time that reading was involved in the research
+presented by Perfetti (1985) can be estimated to be about 20 to 25 sec. Perfetti tried
+to generalize to reading instruction, or 1 year of reading, but this was not a focus
+of the theory because there was little research presented relevant to this particular
+slice of time. Furthermore, the theoretical foundationfor the research presented was
+rooted in concepts from 1 sec of reading.
+    Table 2 also compares rauding theory to schema theory, using the review article
+by Anderson and Pearson (1984) as the primary source. Anderson and Pearson have
+ acknowledged that the hypotheses and predictions of schema theory are (a) most
+appropriate "when a person is studying a text-that is reading with the deliberate
+ intention of learning ideas and information" (p. 277) and (b) less likely to be
+                             ONE SECOND,ONE MINUTE,ONE YEAR OF READING                   9
+
+
+                                    TABLE 2
+       Various Dimensions in Reading and How They Relate to Four Different
+                       Theoretical Perspectives in Reading
+
+                                        Four Theoretical Perspecfives in Reading
+
+                                                Verbal                         Whole
+Dimensions in Reading           Rauding        Efficiency       Schema        Language
+
+Q p e of reading process
+  Scanning and skimming           No              No              No               No
+  Qpical reading (rauding)        Yes             Yes             No               Yes
+  Learning and memorizing         No              Yes             Yes              No
+Time spent reading
+  1sec                            Yes             Yes             No               No
+  1 min                           Yes             No              Yes              No
+  1year                           Yes             No              No               Yes
+m e of reader
+  Lower grade readers             Yes             Yes             No               Yes
+  Middle grade readers            Yes             Yes             No               Yes
+  Adult readers                   Yes             Yes             Yes              No
+  Disabbd readers                 Yes             Yes             No               No
+
+
+appropriate when a pepson is "simply reading." So, schema theory is not relevant
+to the rauding process, which is simple reading or normal reading. Table 2 thus
+indicates from the Ires entries under the Schema column that this theory is mainly
+relevant to learningand pemorizing processes during 1 min of reading by adult readers.
+    Finally, Table 2 compares rauding theory to a whole language approach, using
+an article by Goodman (1989) as the primary source. Again, from the Yes entries
+under the Whole Language column in Table2, it can be seen that the whole language
+focus has been on typical reading (or the rauding process) during 1 year of reading
+for lower and middle grade readers. The Whole Language perspective is similar to
+rauding theory in its focus on typical reading, but it is mostly silent with respect to
+the comprehension that occurs during 1 min, and it is generally not concerned with
+adult readers or disabled readers.
+    By contrasting rauding theory to these other three theoretical perspectives in
+reading, it should be clear that rauding theory is not entirely unique in its focus on
+typical or ordinary reading. However, it is completely unique in that it is the only
+one of these four theoretical perspectives to focus on typical reading during 1sec,
+ 1 min, and 1 year for lower graders, middle graders, adults, and disabled readers.
+
+Basic Constructs
+
+To complete this theoretical framework, a listing of the basic constructs in rauding
+theory is presented in Table 3, along with identifying symbolsand related traditional
+10     CARVER
+
+
+concepts. For example, note that the theoretical construct called rauding accuracy
+level is symbolized as AL and it is similar to the traditional concept of reading level,
+or instructional level, measured in grade equivalent (GE) units. Also, note that the
+construct of rauding rate is symbolized as R , and it is similar to the traditional
+concept of normal reading rate, or how fast the individual typically reads. When
+rauding rate is measured in rate units, such as words per minute, it is symbolized
+as R,, but if rauding rate is measured in GE units, it is symbolized as RLand is called
+rauding rate level, or rate level.
+   Before leaving Table 3, it may be helpful to point out that the constructs that are
+symbolized with a subscript L refer to level and are achievement type measures in
+GE units. For example, if E = 4 for a particular student, this may be interpreted as
+indicating that the student has a level of reading achievement, or general reading
+ability, that is at the fourth-grade level. The constructs in Table 3 that have an r as
+a subscript are those that coincide with the operation of the rauding process, whereas
+those that have no subscripts refer to what happened with respect to the entire
+passage or body of material presented. This means that the symbols with the
+subscripts r refer to only the amount of the passage that was covered during the
+operation of the rauding process. For example, A, refers to the accuracy of
+comprehensionthat occurred during the time that the rauding process was operating
+on apassage. Suppose individuals are asked to read a passage once as they normally
+read, and a particular individual comprehended 80% of the passage. In this example,
+A, = .80, and A would also be .80 because the individual finished reading the entire
+passage once. However, suppose this hypothetical individual was asked to read this
+passage normally but was subsequently asked to stop (time limit) halfway through
+the passage. The accuracy of comprehension for the material covered again would
+be estimated as 80%, or A, = 30, but the accuracy of comprehension for the entire
+passage might be 40%, or A = .40, because only half of it was covered during the
+time limit. So, A, is the accuracy of comprehension that is associated with the
+rauding process being executed at the rauding rate, R,; Er is the associated effi-
+ciency.
+    This completes the theoretical framework needed to understand the following
+two major sections that contain the details of how rauding theory can be used to
+predict (a) accuracy of comprehension during 1 min of reading and (b) gain in
+reading achievement during 1 year of reading.
+
+                          ONE MINUTE OF READING
+
+Lawfulness
+
+As previously noted, most research involving individuals reading prose passages
+has involved around 1 min of reading because the text has usually been around 100
+to 300 words long, yet, most researchers who use these passages probably want to
+                             ONE SECOND, ONE MINUTE,ONE YEAR OF READING                  11
+
+
+                                   TABLE 3
+         Constructs From Rauding Theory With Their Symbols and Related
+                             Traditional Concepts
+                         -           -
+
+
+
+Symbol           Construct                       Related Traditional Concept
+
+          Difficulty level           Readability (of a passage)
+          Accuracy of passage        Percentage comprehension (of a passage)
+            comprehension
+          Rate of passage            Average rate or reading time (of a passage)
+            comprehension
+          Efficiency of passage      Reading efficiency (of a passage)
+            comprehension
+          Rauding accuracy           Individual's accuracy of comprehension (during time
+                                       spent reading a passage once)
+          Rauding rate               Individual's typical rate of reading (during time spent
+                                       reading a passage once)
+          Rauding efficiency         Individual's efficiency of reading (during time spent
+                                       reading a passage once)
+          Rauding accuracy level     Individual's reading level in GE units (measured by
+                                       standardized vocabulary tests)
+          Rauding rate level         Individual's typical reading rate in GE units
+                                       (measured by standardized rate tests)
+          Rauding efficiency level   Individual's reading achievement, or general reading
+                                       ability, in GE units (or reading ability as measured
+                                       by standardized comprehension tests)
+   .AL    Relative difficulty        Difficulty of the material for the individual
+
+
+generalize their results to at least 1 hr of reading. The comprehension that occurs
+when the rauding process is executed for 1 min, or 1 hr, is quite lawful. In fact,
+rauding theory contains three formal laws that apply to I min of rauding (Carver,
+1981).
+   Law 1 is that individuals attempt to comprehend thoughts in passages at a
+constant rate, called their rauding rate, unless they are influenced by situation-spe-
+cific factors to change that rate. This means that individuals ordinarily read at a
+relatively constant rate (e.g., see Carver, 1983, 1990b), and this constant rate at
+which they normally read is their rauding rate, R, When individuals are reading in
+a typical fashion, their rate of passage comprehension, R, is ordinarily the same as
+their rauding rate, Rr; so ordinarily, R = R,. For example, the rauding rate, R,, of an
+individual can be measured with a standardized test (Carver, 1990b), such as 300
+words per minute. Given this rate, Law 1 of rauding theory says that when an
+individual is asked to read a relatively easy passage once, then how long the
+individual will take in minutes can be predicted very accurately by dividing the
+number of words in the passage by 300. That is, the individual's rate of reading the
+entire passage, R, is likely to be the same as R, as measured by a standardizedtest.
+12     CARVER
+
+
+    The constancy of rauding rate is one of the cornerstone ideas in rauding
+theory-hence, Law 1. Of course, it is often possible to get individuals to shift out
+of their rauding process, into other basic reading processes that operate at different
+rates, by giving them relatively hard passages to read, by telling them toread slowly
+and very carefully, or by asking them to write down everything they can recall-as
+was discussed earlier in the theoretical framework.
+    Law 2 is that E = AR; the efficiency of passage comprehension depends on the
+accuracy and rate of passage comprehension. As the accuracy of passage compre-
+hension goes up, so does the efficiency of passage comprehension. As the rate of
+passage comprehension goes up, so does the efficiency. E is the product of A and
+R, indicating that there can be no efficiency when either accuracy or rate is zero.
+This Law 2 equation works as designed when A is expressed as a proportion, such
+as .70, and R is expressed in standard-length sentences per minute so that E is also
+in standard-length sentences per minute. A standard-length sentence has been
+defined as 16.67 standard-length words, and a standard-length word has been
+defined as six character spaces (Carver, 1990b).
+    Law 3 is that the most efficient rate of passage comprehension is the rauding
+rate-that is, when R= R,, then Ern,= E, This means that if individualsare somehow
+induced to read passages at a rate that is faster or slower than their rauding rate, R,
+their number of sentences comprehended per minute, E, will decrease because their
+rauding rate is their most efficient rate of reading. Each individual has learned to
+be highly efficient by reading at a constant rate, the rauding rate, because any other
+rate is less efficient. The rate at which individuals normally operate their rauding
+process is also the rate at which they most efficiently comprehend sentences.
+
+Supporting Data
+
+Some of the data that support these three laws is now reviewed, beginning with
+Law 1. Figure 1 contains data that were collected by G. R. Miller and Coleman
+(1971) and reanalyzed by Carver (1976). There were 36 passages that G. R. Miller
+and Coleman asked college students to read, and they have been grouped by
+difficulty level along the horizontal axis in Figure 1. In this figure, difficulty level
+is represented as Gd, an older symbol, instead of DL as it is currently symbolized
+in rauding theory (see Table 3). Note that there were six groupings of passage
+difficulty with six passages in the easiest group, Grades 1 to 3, and two passages
+in the hardest group, Grades 16 to 18.
+    Reading rate in words per minute is represented along the vertical axis. Note
+that the figure contains two abbreviations for words per minute; one is capitalized
+(Wpm) and the other is not capitalized (wpm). When words per minute is designated
+as wpm, it refers to actual words, but when it is designated as Wpm, it refers to
+standard-length words. A standard-length word was defined earlier as six character
+spaces, including letters and the blank space between words.
+                               ONE SECOND, ONE MINUTE, ONE YEAR OF READING                    13
+
+   Notice in Figure 1that when reading rate is measured in actual words per minute,
+wpm, the dashed line shows that reading rate decreases rapidly from a high of about
+320 wpm for passages at Grades 1 to 3 difficulty to a low of about 200 wpm for
+passages at Grades 16to 18 difficulty. So, these data are completely counter to Law
+1 of rauding theory, which holds that reading rate is typically constant. However,
+these data represent actual words per minute, wpm, not standard words per minute,
+Wpm. Law 1 requires that rate be measured in a standard manner, such as standard-
+length words per minute, Wpm, or standard-length sentences per minute (Spm).
+
+
+
+
+                       (N-6)       (N-14)       (N-7)       (N-2)       (N-5)       (Nm2)
+
+               Ld-         1          2     3        4                     5           6
+               Gd-1-3                4-6   7-9     #-I2                 13-15       16-18
+                                     PASSAGE DIFFICULTY
+
+   FIGURE 1 Reading rate as a functionof passage difficulty(Gdand Ld)using actual words per
+   minute, wpm and standard-length words per minute. Wpm. There were two methods for
+   estimating standard-length words per minute. designated as Wpm, and Wpm. Passage diffi-
+   culty, in GE units, was designated by an older symbol, Gd which means the same as difficulty
+   level, DL.From "Word length, prose difficulty, and reading rate," by Ronald P. Carver, 1976,
+   Journal ofReading Behavior. 8, p. 200. Copyright 1976 by the National Reading Conference.
+   Reprinted with permission.
+14     CARVER
+
+
+    In Figure 1,rate in standard-lengthwords per minute was estimated b m the original
+data in two slightly different ways, symbolized as Wpm, and Wpmz, but both provide
+almost exactly the same results. Reading rate was approximately constant all the way
+from passages at Grades 1to 3 in difficulty up to passagesat Grades 13to 15indifficulty,
+varying only from about 250 to 270 Wpm. However, when the passages became
+relatively hard for these college students at Grades 16 to 18 in difficulty, rate dropped
+off to around 200 Wpm. The rate dropped off when the material became relatively hard
+probably because many students shifted into a learning process, Gear 2, as was
+discussed earlier in connection with inducing the rauding process in research. As long
+as the material was relatively easy for these college students,their rate stayed relatively
+constant in accordance with Law 1 of rauding theory.
+    Figure 2 contains more data supporting Law 1 of rauding theory, taken from Carver
+(1983). In this figure, note that the difficulty level of the material varies along the
+horizontal axis from Grade 1 to Grade 16. Reading rate in standard-length words per
+minute, Wpm, is represented along the vertical axis. For these data, the individuals were
+grouped into five levels of reading ability. The highest level of ability (labeled 5)is the
+college level readers. Their reading rate was relatively constant from the Grade 1
+difficulty passages up through the Grade 13 difficulty passages. When the material
+became relatively hard for these college level readers at Grade 16, their rate dropped
+off,Again, this drop off in rate is probably due to many of these readers shifting out of
+the rauding process into a learning process when the material became relatively hard.
+It may also be noted that the reading rate of individuals at the other four levels of ability
+were also relatively constant-that is, high school (labeled 4), junior high (labeled 3),
+Grades 4 to 6 (labeled 2), and Grades 1 to 3 (labeled I).
+    There is a great deal of data supporting Law 1 of rauding theory that holds that
+individuals tend to read at a relatively constantrate across a range of difficulty levels
+as long as the material is relatively easy (DL< AS. Besides the data collected by G.
+R. Miller and Coleman (1971) in Figure 1 and Carver (1983) in Figure 2, Carver
+(1990b) reviewed other supporting data collected from college students (Coke,
+ 1976; Letson, 1959; Zuber & Wetzel, 1981) and from elementary and secondary
+students (Ballentine, 1951; DiStefano, Noe, & Valencia, 1981; Morse, 1951;
+Seibert. 1943). With respect to Law 1, Carver (1990b) also pointed out that
+"research data that superficially seem to provide counter evidence (e.g., Kintsch &
+Keenan, 1973; Rothkopf & Coatney, 1974), in fact do not do so because these data
+involve reading processes that operate in first and second gear" (p. 215). Whereas
+reading rate for good readers has traditionally been considered to be fluid and
+flexible within individuals across difficulty levels and purpose conditions (e.g., see
+Hoffman, 1978), the empirical evidence strongly supports a rate that is relatively
+constant under ordinary reading conditions wherein individuals are asked to read
+relatively easy materials as they would normally read. Again, this relatively
+constant rate referred to in Law 1 is called their rauding rate, Rc it is the rate at
+which they typically operate their rauding process.
+                                ONE SECOND,ONE MINUTE,ONE YEAR OF READING                                   15
+
+
+
+
+             loo
+                 0
+                     t0'
+                                                             Normal Reading Material
+
+
+                           1           4              7            10             13            16
+                                             GRADE DIFFICULTY
+  FIGURE 2 Reading rate in standard-lengthwords per minute. Wpm, as a function of difficulty
+  level, DL, of the material for individuals (called Grade Difficulty) at five levels of reading ability.
+  The five levels of ability were as follows: Level 5, college; Level 4, high school; Level 3,junior
+  high; Level 2, elementary; Level 1, primary.The long dashed lines indicate that the material
+  was relatively difficult (DL>AL) because the disability level of the material was higher than the
+  ability level of the individual. From "1s reading rate constant or flexible?" by Ronald P. Carver,
+  1983, Reading Research Quarterfy, 18, p. 201. Copyright by the International Reading Asso-
+  ciation. All rights resewed.
+
+
+   There is also a considerable amount of evidence supporting Law 2 and Law 3.
+Figure 3 contains data collected from college students who both read and listened
+to passages presented at rates varying from 83 Wpm to 500 Wpm (taken from
+Carver, 1982). Reading rate was manipulated using motion picture film and auding
+rate was manipulated using time-compressed speech. The passages involved were
+taken from four different levels of difficulty, ranging from elementary school
+material to college level material. After each passage was presented, the accuracy
+of comprehension was measured by (a) administering objective comprehension
+tests and (b) having these college students report what percentage of the passage
+they thought they had comprehended, called Understanding Judgments.
+   In Figure 3, there are eight different graphs relating manipulated rate, R, to
+efficiency, E. Each graph has rate, R, varying along the horizontal axis from 83 to
+500 Wpm, and efficiency, E, varying along the vertical axis. Efficiency, E, was
+                                    READING                                              AUDING
+
+
+
+
+                                                                    Lorn 0   5    10        15       10      25    I0
+                                                                    Wpm I    11   161       150      111    411    500
+
+                                                                                          Rate, ii
+
+
+
+
+       Spm 0     5         10          15       10    75      30
+       Wpm 0     11        161         150      131   411     SO0
+
+                          .          Rate, ii
+
+
+               -.Underrlrrhq I a m l r
+               -- .   Obp~llrn b l t
+
+
+*    i
+
+
+
+
+                                                            .._I
+       Slm 0      5           10        15       m     ?I      lo    Ipm 0    5    10         15      M       I5    I0
+       Wpm 0      11          161      250      131   411      MO    WVm 0   11    161       I50      311    411    MI
+
+                                     bte. i                                                Lte. ?
+
+FIGURE 3 Estimated efficiency of passage comprehension, E, as a function of the estimated
+rate of passage comprehension, R, when accuracy of comprehension is estimated two ways,
+understanding judgments and an average of two objective tests. There are eight graphs, one for
+reading- and one for auding- at each of four levels of difficulty. The difficulty levels are as follows:
+L d = 2 i s D ~ = 4 , 5 , 6 ; & = 3i s D ~ = 7 , 8 , 9 ; & = 4 i s D ~10,11,1Z;&=5isD'=
+                                                                       =                     13,14,15.
+From "Optimal rate of reading prose," by Ronald P. Carver, 1982,Reading Research Quarterly,
+18, p. 71. Copyright by the International Reading Association. All rights reserved.
+                          ONE SECOND, ONE MINUTE, ONE YEAR OF READING              17
+
+measured using Law 2 of rauding theory-that is E = AR. This means that the
+accuracy of comprehension, A, as determined from the Understanding Judgments
+(solid line in the eight figures) or from the Objective Test data (dashed line in the
+eight figures) was multiplied by the rate, R, that the passage was presented. Rate,
+R, was the number of thoughts in the passage (T,) divided by the time (t) the passage
+was presented in minutes; Tpwas measured in standard-length sentences, defined
+earlier as 16.67 standard-length words.
+    Four of the graphs in Figure 3 represent the results from passages presented
+visually for reading (left column) and the other four graphs represent the results
+from passages presented auditorily for listening (right column). There are four rows
+of graphs with a reading and auding graph in each row, and each row represents
+passages at different levels of difficulty. The two graphs in the top row contain the
+results for elementary school passages (DL= 4,5,6), the second row contains the
+results for junior high school level passages (DL= 7,8,9), the third row contains
+the results for high school level passages (DL= 10, 11, 12), and the bottom row
+contains college level passages (DL= 13,14, 15).
+    The result immediately apparent from inspecting these eight graphs in Figure 3
+is that each of the 16 curves represented by the solid and dashed lines (two curves
+in each of the eight graphs) is shaped as an inverted U. In general, the curves for
+the Objective Test data are in an inverted U shape and replicate almost exactly the
+curves for the Understanding Judgments data in each of the eight graphs. For both
+the Understanding Judgments and the Objective Test data, efficiency generally has
+an optimum, a maximum, or a peak, around 300 Wpm, and this is the most important
+aspect of these data. This means that as rate, R, increases (starting at 83 Wpm),
+efficiency, El also initially increases. However, when R reaches about 300 Wpm
+(or 18 Spm), then efficiency, E, reaches its maximum. As R continues to increase
+to 500 Wpm (or 30 Spm), efficiency, E, declines. These data are not perfectly
+consistent in that the highest E value for the curve for the Objective Test data on
+the graph for reading passages at the elementary school level difficulty was not
+close to 300 Wpm. However, this result appears to be an anomaly because in 15 of
+the 16 curves, the highest point on the curve was close to 300 Wpm.
+    According to Law 3 of rauding theory, it was no accident that the highest point
+on 15of the 16 curves in Figure 3 was around 300 Wpm for these college students.
+Individuals tend to read all material at their rauding rate, a constant rate, because
+they can comprehend the most sentences per minute at this rate, no matter whether
+the sentences are at elementary school difficulty,junior high difficulty, high school
+ level difficulty, or college level difficulty. Furthermore, it does not matter whether
+ the sentences are presented visually for reading or auditorily for listening, their
+ most efficient rate is their rauding rate, R,
+    Rauding theory acknowledges that humans are very efficient information proc-
+ essors, in that they have learned to operate their rauding process at a constant rate
+ because that rate is most efficient (around 300 Wpm for college students). Slower
+18    CARVER
+
+rates than R,and fasterrates than R,result in less efficiency-that is, fewer sentences
+comprehended per minute. Individuals do not speed up to a rate higher than their
+rauding rate when they are given very easy material to read at Grade Levels 4, 5,
+and 6, because if they were to speed up to a rate higher than their rauding rate they
+would comprehend less sentences per minute. Individuals do not slow down the
+rate at which they operate their rauding process on college level material-that is,
+slower than 300 Wpm-because if they did they would also comprehend fewer
+sentences per minute. They would comprehend fewer sentences per minute at rates
+higher than R, because they would not have the time required to successfully
+operate the three components of the rauding process-lexical accessing, semantic
+encoding, and sentence integrating-as discussed earlier in the One Second of
+Reading section.
+
+Equations
+
+Besides the three laws of rauding theory that apply to 1 min of reading, as presented
+in the previous section, theoretical equations based on these laws have also been
+presented (Carver, 1990b). Subsequently, Carver (1990a) collected data that al-
+lowed these theoretical equations to be precisely instantiated by empirically col-
+lected data. Given next is one of these mathematical formulas that allows the
+comprehension that occurs during 1 min of reading to be predicted:
+
+
+
+
+TheA in Equation 1 symbolizesthe accuracyof comprehension of text, or a passage,
+in the form of a proportion. As the amount of time, t, an individual is allowed to
+read a passage increases, the accuracy of comprehension, A, increases. As the
+rauding rate of the individual increases, R, then A also increases. If the length of
+the passage in standard-length sentences increases, symbolized as T , then the
+accuracy of passage comprehension decreases. If the rauding accuracy level, AL of
+the reader increases, then A increases. As the difficulty level of the passage, DL,
+increases, then A decreases.
+    Equation 1 will be illustrated using a hypothetical example. Let us suppose we
+have a college student who (a) is reading at the 14th grade level (AL= 14) and (b)
+has a rauding rate at 300 Wpm (R, = 18 Spm). Furthermore, let us say that this
+student was given a 334-word passage (T,= 20 standard-length sentences) to read
+for 1 min (t = 1.0), and that the passage was at the eighth grade level of difficulty
+(DL= 8). When these hypothetical values are substituted into Equation 1, the result
+is A = .79-that is, it would be predicted that this student would comprehend 79%
+of the sentences, or complete thoughts, in the passage.
+                              ONE SECOND, ONE MINUTE,ONE YEAR OF READING                        19
+
+   Equation 1 is appropriate as long as the reader is not allowed to spend more time
+reading than it takes to finish reading the passage once. In the previous example,
+this college student would require 1.11 min to finish reading the passage once
+because her rauding rate, or typical rate, was 18 Spm and the passage contained 20
+standard-length sentences (20118 = 1.11). If she had been given 1.11 min to read,
+then her accuracy of comprehension would have been 88% (A = $8). If she had
+been given more than 1.11 min to read this passage, then the following equation is
+needed:
+
+
+
+
+By using Equation 2, the percentage of the passage comprehension can be predicted
+when the time allowed for reading is more than enough to finish reading the passage
+once, thereby allowing the student to begin reading the passage again.
+   A considerableamount of data supporting the validity of Equations 1and 2 have
+been collected (see review by Carver, 1990b). For example, Figure 4 (from Carver,
+1984) contains data collected from 102 college students, The time allowed for
+reading, in minutes, is along the horizontal axis. Passages were presented for
+reading at five different lengths of time that varied from about 0.1 min to about 1.6
+min. Notice that the accuracy of comprehension is a l o ~ g the vertical axis, which is
+represented by A in Equations 1 and 2. The accuracy of comprehension of the
+passages, A, was measured four different ways-Understanding Judgments, Best
+Titles Test, Missing Verbs Test, and Sentence Halves Test. Note that A was
+estimated to be approximately the same at each value of t-that is, the four data
+points were extremely close to each other at every value of t, except at about t =
+0.2 where the four data points varied from about A = .35 to A = .55.
+   The most important aspect of Figure 4, however, is the extremely close associa-
+tion between the theoretical prediction curves (from Equations 1 and 2) and the data
+points. This means that the theoretically predicted values of accuracy of compre-
+hension were extremely close to the empirically determined values no matter which
+of the four measures of comprehension were used.'
+    Rauding theory appears to have no competitors when it comes to predicting the
+accuracy of comprehension of passages around 100 to 300 words in length when
+they are read for around a minute. Stated differently, rauding theory seems to have
+
+
+   '~guations1 and 2 presented earlier are actually empirically modified versions (based on research
+by Carver, 1990a) of the original Equations 1 and 2 involved in this 1984 research.
+20     CARVER
+
+
+
+
+                                                 Understanding Judgments
+                                             + Best Titles
+                                             0   Missing Verbs
+                                             4 Sentence Halves
+
+
+
+
+                 TIME ALLOWED FOR READING (min.)
+   FIGURE 4 Accuracy of comprehension as a function of the time allowed for reading in
+   minutes, for four different measures of comprehension. Also presented is the independently
+   derived and theoretically predicted relation between accuracy of comprehension. A, and time,
+   t. From "Rauding theojpredictions of amount comprehended under different purposes and
+   speed readingconditions," by Ronald P. Carver, 1984,Reading Research Quarterly, 19, p. 215.
+   Copyright by the International Reading Association. All rights reserved.
+
+
+no competitors when it comes to predicting the percentage of a book that has been
+comprehended after it has been read twice, for example.
+   Equations 1 and 2 also have implicationsfor how educators (or researchers), can
+intervene to increase the accuracy of comprehension of students. First, consider the
+passage, chapter, or entire book. If students in a class are having trouble compre-
+hending a textbook, for example, the textbook can be replaced with one at a lower
+level of difficulty. The gain in the accuracy of comprehension from the first
+textbook to the second textbook can be predicted quite accurately from the different
+values of DL.Of course, if the purpose is to challenge students to learn more difficult
+material, then replacing the textbook with an easier one could be counter productive.
+                          ONE SECOND, ONE MINUTE, ONE YEAR OF READING             21
+
+Second, consider the students who are reading the textbook. Their rauding rate, R,,
+is relatively constant and cannot be improved or changed in a short period of time.
+Their rauding accuracy level, AL, is relatively constant and also cannot be improved
+or changed during a short period of time. Parenthetically, it should be noted that R,
+and At are factors that can be influenced or improved during 1 year of reading,
+which will be discussed in the next major section.
+    From the information just given, it can be deduced that only time, t, can be
+manipulated to increase the accuracy of comprehension on a daily basis. If a teacher
+wants a higher level of accuracy of comprehension for a textbook, then the teacher
+can induce students to spend more time reading the book.
+    In summary, there are a great deal of data supporting the constructs, laws, and
+equations of rauding theory that attempt to describe, explain, predict, and control
+the comprehension that occurs when individuals read text or passages normally for
+around 1 min or 1hr. There are no known data that indicate rauding theory is invalid
+for situations involving 1 min of typical reading. The lawfulness of operating the
+rauding process for 1 min is quite remarkable, and that lawfulness has been
+summarized in rauding theory by (a) three laws and (b) Equations 1 and 2.
+
+                           ONE YEAR OF READING
+
+Causal Model
+
+Although the predictions emanating from rauding theory that are relevant to 1 min
+of reading have been studied for several years, only recently has rauding theory
+been expanded to 1 year of reading. A causal model of the primary factors that
+purportedly cause high and low reading achievement is presented in Figure 5. From
+this model, gain in reading achievement over a year of time can be predicted.
+   Before considering the substantive details of this causal model in Figure 5, it
+will be helpful to point out that the theoretical constructs of rauding theory are
+presented inside the circles, and similar related concepts are presented above the
+circles. Below the circles are the abbreviated names of tests that have been used to
+measure the constructs; in the box toward the bottom of the figure are the full names
+of these tests. Descriptions of the tests are given later. In the box toward the top of
+the figure are theoretical equationsand their qualifyingconditionsthat are explained
+later.
+    In this causal model, the focus is on trying to improve rauding efficiency level,
+EL a construct very similar to reading achievement. This construct is also similar
+to an ability that Perfetti (1985) said he wanted to study when he used the term
+reading skill, which he described as follows: "Our intuitive concept of reading skill
+includes reading fast and reading with good comprehension" (p. 10). Furthermore,
+EL also represents an ability that Perfetti (1985) referred to as general reading
+ability, because it includes both accuracy and rate. ELalso represents what is often
+                    listening
+Teaching1              level
+Learning
+
+
+
+
+                                                                           general
+                                                                           reading
+                                                                             ability
+
+
+
+
+                                                           ACT = Accuracy Level Test
+                                                           RLT = Rate Level Test
+                                                           MORR = Maximum Oral Reading Rate
+                                                           AALT = Auding Accuracy Level Tesr
+                                                           PLT = Pronunc~atfoi~Level Test
+                                                           STT = Speed ol Thinking Test
+                                                           ART = Alphabet Rate Test
+
+
+
+
+Echelon 4          Echelon 3            Echelon 2          Echelon 1
+
+
+ FIGURE 5 A causal model for reading achievement,which contains the primary factors that
+ cause high and low reading achievement.
+                           ONE SECOND, ONE MINUTE, ONE YEAR OF READING              23
+
+measured by standardized reading comprehension tests that involve answering
+multiple-choice questions on passages under a time limit wherein many of the
+students do not have time to finish. Finally, ELis the focal point of this causal model
+because EL is purported to represent what educators want students to improve each
+year-that is, an overall ability measured in GE units and called reading achieve-
+ment.
+   From the arrows running between circles in the model, it can be seen that Ar, and
+RLare hypothesized as being the key determinersof EL,or its proximal determiners.
+Notice also that there are four vertical columns of circles in Figure 5 that are labeled
+at the bottom as echelons. AL and RL are in Echelon 2, so the proximal causes of
+high and low reading achievement, high and low general reading ability, or high
+and low rauding efficiency level, EL,are the two factors at Echelon 2 called rauding
+accuracy level, AL, and rauding rate level, RL ASdiscussed earlier, AL is a construct
+that is similar to the traditional concept of reading level, or instructional level, and
+At will often be called "reading level" to facilitate communication. Also, as
+discussed earlier, Rr. is rauding rate, R, expressed in GE units, and RLwill often be
+called "rate level" to facilitate communication. According to this causal model, the
+only way to get increases in reading achievement, EL, is to increase reading level,
+AL, or rate level, RL (or rauding rate, R,). In fact, this causal model holds that:
+
+
+
+
+Equation 3 states the causal relation in precise mathematical form-that is, reading
+achievement, EL,is equal to the square root of the product of reading level, AL, and
+rate level, RL
+   It should additionally be noted that the general idea inherent in Equation 3 has
+roots at least as far back as Holmes and Singer (see Singer, 1965), who assumed
+that reading ability was composed of two equally important factors, called speed
+and power.
+   If reading achievement is determined by At and RL and we want to improve EL
+then we need to know the factors that cause improvement in ALand RL; these factors
+are represented by the circles in Echelon 3, namely, VL PL and C, The proximal
+causes of reading level, AL, are hypothesized to be verbal knowledge level, VL,and
+pronunciation level, PL The construct VL,verbal knowledge level, is similar to the
+more traditional concept of listening level, whereas the construct PI., pronunciation
+level, is similar to the more traditional concept of decoding level, Improvement in
+reading level, AL, purpOrtedly is caused by improvement in listening level, VL, or
+improvement in decodihg level, PL according to the following equation:
+24    CARVER
+
+
+Equation 4 expresses this causal relation in precise mathematical terms-that is,
+reading level, AL is equal to the square root of the product of listening level, VL
+and decoding level, PL
+    It should be acknowledged that Equation 4 was stimulated by the simple view
+of reading, espoused by Gough and Tunmer (1986) and Hoover and Gough (1990),
+that reading is made up of the product of listening and decoding. However, the
+theory associated with this simple view of reading generally has been closely
+connected to what happens during 1 sec of reading, whereas Equation 4 is not
+purported to have direct connections to 1 sec of reading.
+    With respect to rauding rate level, Rr, at Echelon 2, its proximal causes are
+hypothesized to be pronunciation level, PL,and cognitive speed level, C , both at
+Echelon 3. Notice that PL at Echelon 3 is purported to be a proximal cause of both
+AL and RL at Echelon 2. Cognitive speed level, C, is a construct that is similar to
+(a) the older concept of thinking rate (e.g., see Buswell, 1951) and (b) the newer
+concept of naming speed (e.g., see Spring & Capps, 1974). Cognitive speed level,
+C, will often be referred to as "naming speed level" to facilitate communication.
+According to the causal model, improvement in rauding rate level, RL comes from
+improvement in decoding level, PL or naming speed level, C , as summarized by
+the following equation:
+
+
+
+Equation 5 states the causal relation in mathematical form-that is, rate level, RL,
+is equal to the square root of the product of decoding level, PL,and naming speed
+level, C,
+    Before continuing, it should be pointed out that all of the constructs in Echelons
+1 to 3 must be measured in GE units, otherwise Equations 3 to 5 will not be
+appropriate. Furthermore, it may also be helpful to note that all of the constructs in
+Echelons 1to 3 have a subscript L except one, C,. These constructs in Figure 5 with
+a subscript L (EL Ah RL VL, and PL) all represent achievement measures that
+educators, or education, should be able to improve by instruction. C; does not have
+a subscript L, because in the causal model, education is purported to have little or
+no influence on it, as will become apparent later when its proximal causes in
+Echelon 4 are discussed.
+    All of the causal connectionsrepresented by Echelons 1,2,and 3 have supporting
+data, some of which will be presented later. However, at present there are no
+measures and no data relevant to the hypothesized causal factors depicted at
+Echelon 4. Each of the three constructs at Echelon 3 has two causal factors at
+Echelon 4. Parenthetically, it may be noted that this causal model could be
+accurately described as a simple causal model of reading achievement in that each
+                          ONE SECOND, ONE MINUTE, ONE YEAR OF READING             25
+
+of the six factors in Echelons 1 to 3 is itself causally influenced by two, and only
+two, factors.
+     The two proximal causes of VL, listening level, at Echelon 3, are two factors at
+Echelon 4, namely teaching and learning and verbal knowledge aptitude (a).       This
+particular teaching and learning factor at Echelon 4 represents all of the teaching
+and learning experiences that somehow increase the listening level, or verbal
+knowledge level, of individuals. This factor can probably be described best by
+saying that it represents what Carroll (1967) meant when he said that most of the
+learning that occurs in school comes from telling things to students, whether orally
+or in print. He pointed out that even most visual learning is accompanied by words,
+as in the audio that accompanies videos and movies and the caption that gives
+meaning to a picture. So, if we want to improve VL SO that AL can be improved,
+which in turn improves EL then we can tell the things to students that we want them
+to know, because they learn the most from being told. This "telling" can take the
+form of lectures, videos, movies, and conversations, or it can take the form of
+reading challenging expository materials that expand knowledge. Listening level,
+ VL should also be improved by instruction that focuses on learning words, ideas,
+and concepts, such as in the content areas of such traditional subjects as history,
+science, English, social studies, and language arts. Much of the research that has
+been conducted on text learning and schema theory is applicable to this causal
+connection between the teaching and learning factor and VLin Figure 5.
+     Even though we often tell students in school what we want them to know, some
+ students are likely to remember what they were told whereas other students are not.
+ That is, there are individual differences with respect to what students can compre-
+hend and remember fiom what they are told. This aptitude for being able to
+remember what we were told earlier is called verbal knowledge aptitude, gv; it is
+the basic ability to store factual verbal information well enough to be able to recall
+ it later on cue.
+     Students with high g, will be able to store and remember more information from
+passages than students with low g, Perfetti (1985) was undoubtedly referring to a
+concept similar to g, when he stated that "high ability readers remember more of
+ what they have just heard or read than do low ability readers" (p. 96). This aptitude
+ exists after we have controlled for differences in background knowledge and
+ vocabulary. It is a basic aptitude that probably is little influenced by education or
+ experience.
+     As an example of how verbal knowledge aptitude, g, and teaching and learning
+ experiences are the two proximal causes of verbal knowledge level, V. consider
+ two students in Grade 4 who have the same verbal knowledge level, say VL= 4.
+ However, one may have low verbal knowledge aptitude, g, but have had excellent
+ teaching and learning experiences so that the fourth grade level of VLhas been
+ achieved by Grade 4. The other student may have high verbal knowledge aptitude,
+26    CARVER
+
+
+g , but have had extremely poor teaching and learning experiences so that the fourth
+grade level of VLhas also been achieved by Grade 4.
+    With respect to the causes of decoding level, PL,at Echelon 3, there are two
+causal factors at Echelon 4; they are hypothesized to be teaching and learning and
+decoding aptitude (g,). The teaching and learning experiences that cause improve-
+ment in decoding level are probably those that foster learning the alphabetic
+principle in beginning readers (phonologicalcoding) and foster orthographic skills
+in intermediate readers, such as spelling instruction and high volume of reading.
+However, the same instruction is likely to result in different decoding levels because
+of individual differences in decoding aptitude,g,. (Note: The subscriptp in gpcame
+from the P in PL)
+    Some students are more likely to learn and remember sound-symbol correspon-
+dences than others. Individuals with high gp will be able to learn faster and
+remember better the sounds that go with letters and spelling patterns in words.
+Therefore, two students in Grade 4 may have the same decoding level, say PL= 4,
+but different decoding aptitudes. One may have low gp,but may have had excellent
+teaching and learning experiences relevant to decoding and thereby achieved PL=
+4. The other student may have high g,, but may have had extremely poor teaching
+and learning experiences relevant to decoding and thereby also achieved PL= 4 by
+the fourth grade.
+    With respect to cognitive speed level, C, at Echelon 3, the two causal factors at
+Echelon 4 are hypothesized to be age and cognitive speed aptitude (g,). This means
+that between at least Grade 1 and Grade 8, it is theorized that an individual's GE
+for C, will go up 1 year due to maturation alone. The other factor influencing C, is
+g , but this is misleading because cognitive speed level, C, normed for age is g,.
+Therefore, Cs and g, reflect the same ability, except C, is expressed in GE units and
+allows absolute comparisons between individuals of different ages, whereas g, is
+age normed so that it reflects aptitude with respect to individuals at the same age,
+    The three aptitude factors at Echelon 4-g, g,, and g,-would be readily
+expressed in standard score units, such as z-scores and T-scores, and would therefore
+be similar to IQ scores from the standpoint of units of measurement. However, IQ
+tests generally represent an average over many mental abilities of which g, or VI,is
+likely to be heavily represented, with gp and g, minimally represented or not
+represented at all.
+
+Previous Theory and Data
+
+Now that the causal model has been described in some detail, it is related more
+closely to previous theory and data. Five ideas need to be considered.
+   First, the idea that rauding efficiency level, EL,represents approximately the
+same ability as what is measured by traditional reading comprehension tests, and
+that it is composed of an accuracy factor and a rate factor, has received a great deal
+                          ONE SECOND, ONE MINUTE. ONE YEAR OF READING              27
+
+of empirical support, especially from such traditional reading comprehension tests
+as the Nelson-Denny and the Iowa Test of Basic Skills, (ITBS) as well as other
+comprehension tests (Carver, 1992a, 1992b).
+    Second, the idea that listening level and decoding level are the primary factors
+influencing reading level has received direct support from Carver (1993) and
+indirect support from research on the original simple view of reading (e.g., see
+Hoover & Gough, 1990), as noted earlier.
+    Third, the idea that decoding level and naming speed level combine to form the
+two causal factors in influencingtypical reading rate, or rauding rate level, RL seems
+to have no direct historical roots in theory.
+    Fourth, the idea that verbal knowledge aptitude, decoding aptitude, and
+naming speed aptitude are very important factors in reading is very similar to
+the conclusions drawn by Stanovich, Cunningham, and Feeman (1984), who
+advanced verbal comprehension, decoding accuracy, and decoding rate as three
+relatively independent abilities that are important in predicting early reading
+progress.
+    Fifth, the idea that reading achievement (at Echelon 1) is primarily influenced
+by the quality of education, age, and three aptitude factors (at Echelon 4) is hardly
+new in a general sense. It is an old idea in that we have always known that education
+in general, and teachers and textbooks in particular, can have major effects when
+they are successful in pushing hard on the two teaching and learning buttons at
+Echelon 4. It is also an old idea in the sense that it endorses the argumentspresented
+by Siege1 (1989), Stanovich (1991), and Aaron (1991) that g, or IQ, or general
+intelligence, should not be used to estimate potential in reading because g or IQ are
+nct highly related to reading achievement; however, in the causal model, g, gp, and
+g, are very specific aptitudes that affect reading achievement,
+    The ideas represented at Echelon 4 are new in the sense that they are counter to
+the proposal by Stanovich (1991) that listening replaces intelligence as a measure
+of potential. The discrepancy between listening level, VL and reading level, A&
+cannot indicate potential in the traditional sense that the wider the discrepancy the
+ more potential individuals have for improving their reading level. For example, if
+ an individual has a listening Ievel at Grade 8 (VL= 8) and a reading level at Grade
+ 4 (AL= 4), then this person has a large discrepancy and would purportedly have a
+ great deal of potential for improvement. According to Equation 4, however, the
+ decoding level of this individual would have to be at the second grade level (PL=
+ 2), and the cause for this low decoding level would likely be a wry low decoding
+ aptitude, g, This student would not have large potential unless gp was high and the
+ student had had very poor teaching and learning experiences.In any event, potential
+ would be indicated by g , gp,and g , not by the discrepancy between listening level,
+ VL and readifig level, AL.
+    The previous point about potential can be summarized as follows: (a) those
+ students with high g, gfi,and g, have the most potential and are likely to be the best
+28     CARVER
+
+
+readers, and (b) those students with low g , gp, and g, have the least potential and
+are likely to be the worst readers. The low aptitude students are the ones who are
+most likely to frustrateeducators, whereas the students who have mixtures of highs
+and lows with respbt to g , gp, and g, are the ones likely to present great challenges
+from a theoretical, diagnostic, and an instructional standpoint.
+
+Reading Disabilities
+
+The causal model presented in Figure 5 has implications for diagnosing reading
+disabilities. Those individuals who have a low ELfor their age are poor readers or
+problem readers. They can be diagnosed as having accuracy or rate disabilities, or
+both (at Echelon 2). Parenthetically, it may be noted that Lovett (1984) seems to
+be the first to advocate accuracy and rate disabilities, but her diagnoses were based
+more on measures similarto PLplus a mixture of RLand C, The causes of disabilities
+in accuracy and rate (at Echelon 2) can be diagnosed as due to disabilities in listening
+level, decoding level, or naming speed level (at Echelon 3). This system of diagnosis
+is currently being researched, and it should be possible in the future to predict
+potential for improvement due to intervention, from measures of g , g,, and g,.
+    In the past, those individuals labeled as dyslexics probably have been students
+with high g, and a low g,,. The high g, probably explains why dyslexics have an
+average or higher IQ score, because these tests often reflect crystallized intelligence
+in the form of verbal knowledge. However, the probable low gpof dyslexics is likely
+to prohibit them from making good progress in improving their decoding level, PL
+Many dyslexics probably also suffer from low g,, as the naming speed research
+reviewed by Wolf (1991) would indicate. Low speed of naming overlearned
+symbols, such as digits and letters in continuous lists, has been shown to be a
+frequent characteristic of dyslexics (e.g., see Bowers, Steffy, & Tate, 1988; Wim-
+mer, 1993).
+    Given that IQ tests have traditionally been used to diagnose reading disabilities
+(e.g., see Siegel, 1989), it is important to analyze the IQ test in terms of the causal
+model. If an IQ measure contains subtests that are loaded heavily on g , g, and g ,
+then the IQ test probably will correlate relatively high with ELbecause these three
+factors are distal causes of EL Most IQ tests, however, contain a sampling of the
+eight cognitive abilities that Carroll (1993) proposed as being the components of
+g, or general intelligence, namely, fluid intelligence, crystallized intelligence,
+general memory and learning, broad visual perception, broad auditory perception,
+broad retrieval ability, broad cognitive speediness, and processing speed. If an IQ
+measure contains subtests that do not load heavily on the g,, g,, and g, factors, then
+the IQ score is not likely to correlate highly with EL
+    Knowing g, g, and g, should be very helpful with respect to diagnosing why
+an individual is relatively low in reading achievement. If an individual is low on
+ VLand high on g , this will suggest that this individual has had poor instruction with
+                          ONE SECOND, ONE MINUTE, ONE YEAR OF READING              29
+
+respect to verbal knowledge improvement; therefore, instructional intervention in
+this area is likely to result in relatively quick and large improvements in VL If an
+individual with low VLalso has a low g , then this will suggest that the reason VL is
+low is not because of poor instruction in this area; instead, the implication would
+be that remedial instruction in this area would result in relatively slow and small
+improvements in VL Similarly, if an individual is low on PLand high on gp, this
+would suggest relatively poor prior instruction in decoding, so that good future
+instruction should result in relatively quick and large improvements in PL.If gp is
+low, then this would suggest that instruction is likely to result in relatively slow
+and small improvements in PL.Finally, if gJis low, then this would suggest that this
+student will probably always require more time to read, compared to peers, so that
+this student should always be given extra time to read whenever possible,
+    As noted earlier, students with high aptitudes in g, g, and g, are highly likely
+to be good readers, whereas students with low g, g, and g, are highly likely to be
+poor readers. However, as the causal model indicates, achievement is also highly
+influenced by teaching and learning experiences relevant to VL and PL. It should
+also be noted that diagnosing the reading disabilities, such as has been outlined in
+this section, has been modified slightly so as to be appropriate for adult readers,
+and that will be explained in the next section.
+    In summary, the basic causes of poor reading achievement are rooted in the
+factors at Echelon 3-listening level, decoding level, and naming speed level.
+Disabilities in these factors are most likely due to low aptitudes at Echelon &that
+is, low g, gp, or gs. Therefore, remediation is likely to come from education or
+treatment focused on verbal knowledge, when it is low, and focused on decoding
+ability when it is low. The relative success of an intervention probably is predictable
+from whether g , gp, and g, are high, average, or low.
+
+
+Adult Readers
+
+The causal model depicted in Figure 5 is most relevant to lower grade readers and
+middle grader readers. In the future, it may need to be modified for lower grade
+readers. The model has already been modified to be more appropriate for adult
+readers through a modification that involves distinctions among beginning readers,
+intermediate readers, and advanced readers. A beginning reader has not reached a
+reading level of Grade 2 (ALc 2.0).An intermediate reader has reached a reading
+level of Grade 2 (At> 1.9),but has not yet become an advanced reader. An advanced
+reader is defined as one who has VL> 6.9, PL> 6.9,and C, > 6.9. Modifications in
+the causal model are needed for advanced readers.
+   When individualsbecome advanced readers-about Grade 8 or higher in reading
+achievement-then it is hypothesized th? PLdrops out as a causal factor in the
+model. So, VLand ALbecome synergistic or redundant; improving listening level,
+30    CARVER
+
+
+Vt automatically results in the same improvement in reading level, At and vice
+versa. In the causal model, the following equation applies:
+
+                               AL = VL when VL > 6.9
+
+This equation was stimulated by theory and research, such as the work reviewed
+by Sticht and James (1984). who presented data indicating that reading ability and
+auding ability become equal at Grade 7.
+   PL also drops out as a causal factor for RLwhen reading achievement reaches
+about Grade 8. Then, it is hypothesized that RLis primarily determined by C,and
+they become mostly redundant. In the causal model, the following equation has
+been hypothesized:
+                               RL = C, when PL > 6.9                               (7)
+
+    Equations 6 and 7 also indicate that for typical students in Grade 8 and higher,
+including many adults and most college students, improvement in E L Conly   ~ come
+                                                                               ~
+from improvements in VLand/or AL.Improving rate level, RL is unlikely because
+it is probably limited solely by cognitive speed. Thus, improving ELprobably can
+only come from increases in verbal knowledge, unless these older students happen
+to have some type of reading disability that can be remediated.
+
+Example
+
+Now that the causal model has been presented and discussed, an example is given
+to illustrate how it works from a mathematical modeling standpoint. In Table 4, the
+scores obtained by a hypothetical student, Paul, have been presented for the
+beginning of three school years--Grade 4.0, Grade 5.0, and Grade 6.0. At the
+beginning of Grade 4.0, Paul was above grade level in listening (VL= 5.0) but below
+grade level in decoding (PL= 3.0) and naming speed (C, = 3.0). When the
+aforementioned values of VLand PLare substituted into Equation 4, reading level
+was found to be 3.9. When the values of PLand Cswere substituted into Equation
+5, rate level was found to be 3.0. When AL = 3.9 and RL= 3.0 were substituted into
+Equation 3, then reading achievement or general reading ability was found to be
+3.4-that is, EL= 3.4.
+    In this hypothetical example, Paul had normal experiences in the fourth grade
+and gained 1.0 GE in each of VL,PL,and C,so that At RL and ELall showed a 1.0
+GE gain also. However, in Grade 5 Paul did not read anything, and he also did not
+do any writing or spelling either. Paul therefore did not gain in decoding level during
+Grade 5 (PL= 4.0). Paul did listen and learn from what he was told, and he did
+participate in conversations during the year so he was able to gain 1.0 in listening
+level (VL= 7.0). Paul also matured 1 year so his naming speed level increased 1.0
+                          ONE SECOND, ONE MINUTE, ONE YEAR OF READING            31
+
+                                     TABLE 4
+           Predictions of Gain in Reading Achievement for a Hypothetical
+                                Student Named Paul
+
+Grade        Date        VL       PL         cs        AL         RL    EL      Gain
+
+ 4.0        Aug 92      5.0        3.0       3.0        3.9       3.0   3.4      -
+                           (Paul had a normal fourth grade.)
+ 5.0        Aug 93      6.0        4.0       4.0        4.9       4.0   4.4      1.O
+                         (Paul did not read during fifth grade,
+                        and he did not do any spelling either.)
+ 6.0        Aug 94      7.0        4.0       5.0        5.3       4.5   4.9      0.5
+
+
+GE units (C, = 5.0). When these values for VL, PL,and C, were substituted into
+Equations 4 and 5, and then these results were substituted into Equation 3, we find
+that Paul gained 0.5 GE units in reading achievement or general reading abil-
+ity-that is, his EL increased M of a GE from 4.4 to 4.9.
+    The example in Table 4 indicates that the model predicts that a student will gain
+M of a GE unit in reading achievement even if the student does no reading during
+the year-that is, the student does not improve his or her decoding level during the
+year. One implication of this mathematical modeling is that teachers who deem-
+phasize learning experiences that might have a direct and significant impact on
+decoding level will still have students who show nontrivial gains in reading
+achievement, when achievement is measured by a traditional reading comprehen-
+sion test that reflects rate as well as accuracy. Another implication of this mathe-
+matical modeling is that educators who emphasize decoding for one entire year may
+only get a 0.5 GE improvement when they measure reading achievement using a
+traditional standardized reading comprehension test that reflects reading efficiency.
+
+Empirical Evidence
+
+In this section, evidence will be presented relevant to the validity of Equations 3,
+4, and 5 that express the causal relations among Echelons 1,2, and 3.
+   Figure 6 contains a summary of data relevant to the validity of Equation 3, that
+EL is equal to the square root of the product of AL and RL.Notice in this figure that
+the symbol EL' was used. A prime was added to the symbol for the value of EL
+predicted from AL and RLto discriminate between ELthat is measured d i t l y by a
+test and EL predicted from AL and RL using Equation 3-that is:
+
+
+
+
+  The data in Figure 6 came from 97 students in Grades 3 to 12 who were
+administered three tests-the Rauding Efficiency Level Test (RELT; Carver,
+32     CARVER
+
+
+
+
+                                                                                          general
+                                                                                          reading
+                                                                                          ability
+
+
+
+
+       rauding rate
+          level
+
+
+   FIGURE 6 Empirical evidence relevant to reading achievement,EL being the square root of
+   the product of reading level, AL, and rate level, RL; the three partial correlation coefficients
+   involving 97 students in Grades 3 to 12 have been controlled for grade in school.
+
+
+1987), the Accuracy Level Test (ALT; Carver, 1990b), and the Rate Level Test
+(RLT; see Carver, 1990b).The RELT consists of 100-wordparagraphsthat increase
+in difficulty level from Grade 1 (DL= 1 ) to Grade 18 (DL= 18). AS the passages
+presented on the RELT become more difficult, they also are presented for a lesser
+amount of time that is commensurate with the higher rate expected at that level.
+For example, the first grade level passage (DL= 1) is presented at the rauding rate
+of students at AL= 1, SO that the time allowed to read the passage is what is required
+of an individual at RL= 1 to finish reading the passage once. Then, the second grade
+level passage (DL= 2) is presented for a lesser amount of time so that a person at
+RL= 2 will have time to finish reading it once but a person at RL= 1 will not. After
+each passage is presented, the individual is presented with paraphrases of the
+information that is in the passages, as well as nonparaphrases. The task for the
+                           ONE SECOND, ONE MINUTE,ONE YEAR OF READING                33
+
+individual is to be able to correctly identify the paraphrases and the nonparaphrases.
+If a student gets 80% of these test items correct on Passage 4 (DL= 4) but 60% or
+less of these paraphrase items correct on Passage 5 (DL= 5), then ELwould equal
+4 because Passage 4 would be the highest level of difficulty that the individual could
+accurately comprehend when the passage was presented at a rate comparable to the
+difficulty level. Note that each passage is presented at a higher rate but still requires
+accurate comprehension to pass (greater than 60%) so that the RELT measures
+rauding efficiency level, Er, which is the highest level passage that the individual
+can read efficiently.
+    The indicator of reading level, Ah in Figure 6 came from the ALT,At the time
+this test was administered, it contained 100 vocabulary items that had been shown
+to reflect the reading level, Ah of the student. The indicator of rauding rate level,
+RL in Figure 6 came from the RLT.This test involves passages at the second grade
+level of difficulty that have been modified so that a word is added every fourth word
+to create a test item; the task for the examinee is to choose the word that belongs
+in the passage from the two choices presented every fourth word and to do this as
+fast as possible. Note that the partial correlation between AL and EL was .74,
+controlled for grade, and the partial correlation between RL and Eb controlled for
+grade, was .77. However, the most important result in Figure 6 was the correlation
+between (a) EL as measured by the RELT and (b) EL',as calculated by substituting
+the scores for At and RLinto Equation 8. Notice that this partial correlation between
+ELand EL' was 33, which was quite high considering that the reliability of the
+RELT was probably not any higher than this. The data in Figure 6 provide strong
+support for Equation 8 as well as the empirical techniques used to estimate A& RL,
+and EL.
+    Some researchers may object to reading level being estimated by a vocabulary
+test. There is evidence directly relevant to the validity of this indicator (Carver,
+ 1992a, 1992b). However, it is also important to point out that this value of EL' that
+ was derived from GE scores on a vocabulary test and GE scores from a rate test
+ substituted into Equation 8 correlated considerably higher with scores on the
+ ITBS-Comprehension(r = .85) than did the more authentic measure of ELfrom the
+ RELT (r = .67), for 56 students in Grades 3 to 8 (see Carver, 1992b). The reason
+ that the more authentic measure correlated lower with another purported efficiency
+ measure, as compared to a surrogate derived from a vocabulary test and a rate test,
+ probably is due to the RELT having lowet reliability than EL',The EL' scores were
+ derived from the ALT and RLT, and their reliability coefficient as an indicant of
+ EL is reported to be .88 for students in Grades 5 and 6 (Carver, 1994a).
+    Before continuing, it should be noted that research published before 1995 did
+ not use Equation 8 for predicting ELfrom AL and RL (e.g., Carver, 1992b); the
+ formula used in earlier research was EL'= (At + RL)/~-that is, the arithmetic mean
+ of ALand RL,However, it should also be pointed out that the advantages of using
+ Equation 8 are more theoretical than practical because the partial correlation
+34      CARVER
+
+
+between the two previously mentioned measures (from Equation 8 and from the
+arithmetic mean) was .998 for the 97 students in the research just discussed. The
+main advantage of Equation 8 is that it makes E~'equal0when either Ar, or RLis
+zero, and this is theoretically appealingbecause it is not logical to have an efficiency
+level higher than zero if either ALor RLis zero.
+    The correlational data presented earlier in Figure 6 are relevant to the validity
+of the causal relation between Echelons 1 and 2 of the model, along with the posited
+mathematical relation represented by Equations 3 and 8. Next, correlational data is
+presented relevant to the causal relations between Echelons 2 and 3, and their
+posited mathematical relations as contained in Equations 4,5,6, and 7.
+    Figure 7 contains data relevant to the validity of listening level, VL,and decoding
+level, Pr, at Echelon 3, being the proximal causes of reading level, Ah at Echelon
+2, as posited by Equation 4. To facilitate communication, a distinction is made
+between ALmeasured directly using the ALT, as described earlier, and ALpredicted
+from a measure of listening level (from the Auditory Accuracy Level Test [AALT])
+and a measure of decoding level (from the Pronunciation Level Test [PLT]). The
+AALT is a vocabulary test that is presented auditorily, and the PLT is a word
+identification test.' This predicted reading level will thus be symbolized by an
+attached prime as follows:
+
+
+
+
+    The correlational data in Figure 7 came from four different data collection
+efforts---Studies 1,2,3, and 4. Study 1 involved 52 students in Grades 3 to 5 who
+had no missing data (see Carver & Leibert, 1995,for more methodological details).
+Out of each set of four coefficients in Figure 7, the first was the partial correlation
+controlling for grade in school from Study 1. For example, the partial correlation
+between listening level, VL,and decoding level, PL, was .52 for Study 1.
+    Study 2 involved 104 students in Grades 2 to 11 who had no missing data (see
+Carver, in press, for a more detailed description of methodology). Out of each set
+of four coefficients in Figure 7, the second was the partial correlation controlling
+for grade in school for Study 2. For example, the partial correlation between
+listening level, Vb and reading level, AL, was .83 in Study 2.
+    Study 3 involved 64 college students who had no missing data (see Carver, in
+press, for a more detailed description of methodology).3 Out of each set of four
+
+-
+
+
+   %or these data in Figure 7, the ALT, AALT, and the PLT all used the same words. Carver (1996)
+studied the effect of using the same or different words (from different test forms) on these three tests,
+and no important effect was found.
+   3 ~ h Carver
+          e      (in press) research involved tests of fluid intelligence and memory capacity such that
+the n for no missing data was 62, whereas the n for no missing data here in Study 2 was 64.
+                             ONE SECOND, ONE MINUTE,ONE YEAR OF READING                         35
+
+
+
+
+                                                                                       r,,'    = .83
+
+                                                                                              ALT
+
+
+
+
+     pronunciation
+         level
+
+
+        decoding
+          level
+
+   FIGURE 7 Empirical evidence relevant to reading level, AL being the square root of the
+   product of listening level, V t and decoding level, PL;each set of four correlations represent
+   results from four different reseaxch studies.
+
+coefficients,the third represents the simple correlation from Study 3. For example, the
+correlation between decoding level, PL and reading level, AL was .18 in Study 3.
+   Study 4 involved 128community college students with poor reading ability (see
+Carver & Clark, 1996,for a more detailed description of methodology). Out of each
+set of four coefficients, the fourth represents the simple correlation from Study 4.
+For example, the correlation between A~'(fr0mEquation 9) and A' (from the ALT)
+was .85 in Study 4.
+   It may be noted in Figure 7 that each set of four coefficients was approximately
+the same size except for the coefficients involving PLin Study 3; however, this was
+as expected from Equations 6 and 7 presented earlier, because PL is theoretically
+36    CARVER
+
+
+expected to drop out of the causal model when students reach about Grade 7 or 8
+in reading ability, as was the case for all of these 64 college students. The
+coefficients involving PLin Study 3 were therefore lower than the corresponding
+coefficients for Studies 1, 2, and 4 (.I1 for PL and VL; .18 for PA,and AL); the
+coefficient for VLand AL in Study 3, .95, was higher than in the other three studies,
+as was expected because VLand A t theoretically were supposed to become syner-
+gistic above VL = 6.9.
+    The most important findings presented in Figure 7 are the four correlations
+representing the relation between AL' and AL. These were all extremely high
+correlations, ranging from .82 to .95. For each of the four studies, the correlation
+between AL'and AL was the highest of the four correlations involved in Figure 7.
+Also, it should be noted that the reliability coefficient for ALT reported in the
+manual was .83 (Carver, 1994b). Because the four correlations between A~'andAL
+were all approximately equal to 33, or higher, this means that all of the reliable
+variance in reading level, AL, is probably accounted for by listening level, VL, and
+decoding level, P t via the theoretical relation expressed in Equation 4 (and
+modified by Equation 6). It appears that there is strong correlational support for
+listening level and decoding level being the proximal causes of reading level
+according to the causal model and Equations 4 and 6.
+    Figure 8 contains data relevant to decoding level, PI., and naming speed level,
+C , at Echelon 3, being the proximal causes of reading rate, RL, at Echelon 2,
+according to the theoretical relation posited by Equations 5 and 7. Again, it will be
+helpful to create a special symbol to represent RLas predicted from decoding level,
+PL and cognitive speed level, C,. A prime has thus been added as follows:
+
+
+
+
+    As indicated in Figure 8, naming speed level, C, was measured by two tests-the
+Speed of Thinking Test (STT') and the AlphabetRate Test (ART). The STI'involves
+the speed of deciding whether a capital letter and a lowercase letter, such as Ab,
+have the same name. The ART involves naming continuous lists of randomized
+letters of the alphabet as fast as possible. Evidence for the validity of these two
+measures as indicators of C, has been presented elsewhere (Carver, 1991).
+    Figure 8 also showsthat RLis measured by two tests-the RLT and the Maximum
+Oral Rate Test (MORR). The RLT was described earlier. The MORR involves
+reading a passage at the second grade level of difficulty as fast as possible. Evidence
+to support the RLT and the MORR as indicators of RLhas been presented elsewhere
+(Carver, 1991).
+    Figure 8 is similar to Figure 7 described earlier in that the data involves
+correlations from the same four studies that were described earlier in connection
+with Figure 7. Furthermore, the pattern of results is very similar. The correlations
+                              ONE SECOND, ONE MINUTE. ONE YEAR OF READING                        37
+
+
+
+
+                                                                                           RLT
+                                                                                           m
+
+
+
+
+ FIGURE 8 Empirical evidence relevant to rate level, RL, being the square root of the product of
+ decoding level, PL, and naming speed level, C; each set of four correlationsrepresents results from
+ four different research studies.
+
+involving PLin Study 3 are smaller than the corresponding ones from the other three
+studies because PLhas dropped out as a causal factor for RL for these college
+students, as explained earlier. Again, the correlation between RL' and RL is the
+highest of the four correlationsfor each of the four studies, except for Study 3 where
+the correlation between C, and RLwas the highest, as would be expected. For these
+data, the reliability coefficient reported for the criterion variable, Rb was .79 (see
+Carver, 1994b), and the four correlationsbetween R~'andRLwere all approximately
+equal to .79,or somewhat smaller, ranging from .66 to .SO.
+38    CARVER
+
+
+   The data in Figure 8 suggest that almost all of the reliable variance in rate level,
+RL, can be accounted for by decoding level, PL, and naming speed level, C ,
+according to the theoretical relation posited by Equation 5 as modified by Equation
+7.
+    In summary, it appears from the data presented in Figures 6.7, and 8 that there
+is strong correIationa1 support for the proximal causes depicted in the causal model
+for Echelons 1,2, and 3 and represented mathematically by Equations 3 to 7. Again,
+no correiational data exist at present to support the proximal causes hypothesized
+at Echelon 4, and there is no direct experimental supportfor any aspect of this causal
+model. However, structural equation modeling was applied to the partial correla-
+tions (controlled for age) for all the individuals in both Studies 1 and 2 (N = 156),
+and the causal model in Figure 5 fit the data with a goodness of fit of .99, using
+Bentler and Bonett's (1980) normed fix index. It should be pointed out that the
+exceptionally good fit involved six variables (VL, PL,Cs,   AL, RL, and EL)but the EL
+variable was not independent of ALand RLbecause it was derived by substituting
+ALand RLinto Equation 8.
+
+
+                  UNIFYING THE THREE SLICES OF TIME
+
+Now that the details underlying how rauding theory is relevant to 1 see, 1 min, and
+1 year of reading have been presented, it is appropriate to point out how rauding
+theory has unified these three slices of time. This unification revolves around the
+fact that rauding accuracy level, AL, and rauding rate level, RL(or rauding rate, R,)
+are both directly involved in reading for 1 sec, 1 rnin, and 1 year. Again, note that
+when rauding rate is symbolized as R, this means that it is measured in rate units, '
+whereas when rauding rate is symbolized as RLthis means that it is measured in GE
+units.
+   During 1 sec of rauding, or one eye fixation on a standard-length word when
+individuals are reading relatively easy material, the time required in milliseconds
+for this process to operate successfully can be determined. It is 60,00O/R, when R,
+is measured in standard-length words per minute. For example, 200 msec would
+be required for a college student with a rauding rate, R,, of 300 standard-length
+words per minute. So, the minimum time required for the componentsof therauding
+process-lexical accessing, semantic encoding, and sentence integrating-to suc-
+cessfully operate can be determined from an attribute of the individual, R,. Also,
+the materials that individuals can be expected to successfully raud during 1 sec of
+reading can be determined from their difficulty level in relation to another attribute
+of the individual, AL; the rauding process is more likely to operate successfully
+when the material being read is relatively easy (AL> DL). Researchers who are
+interested in studying what happens during 1 sec, or one eye fixation during the
+execution of the rauding process, can try to induce the rauding process by using
+                          ONE SECOND, ONE MINUTE, ONE YEAR OF READING            39
+
+passages wherein AL> DLand allowing at least 60,0001Rrmsec per standard-length
+word.
+    Next, let us consider 1 year of reading. When educators are successfulin pushing
+the two teaching and learning buttons in Echelon 4 of the causal model, they get
+improvement in reading level, A' and rate level, RL at Echelon 2, via improvement
+in listening level, VL, and decoding level, PL, at Echelon 3. Furthermore, as
+previously mentioned, improvement in rate level, RL automatically means im-
+provement in rauding rate, R, because RL in GE units is the same ability as Rr in
+Wpm. This improvement that educators get in AL and RL (or Rr) means that there
+will also be improvement in the accuracy of comprehension, A, during 1 min of
+reading, via Equations 1 and 2, as presented earlier.
+    The educators who are the most successful in helping students improve their
+listening level and decoding level during 1 year of reading in school will automat-
+ically be the most successful in helping students improve their accuracy of com-
+prehending textbooks, novels, magazines, newspapers, and so forth, during 1 min
+(or 1 hr) of typical reading. Also, when ALand/or RL improves, then students can
+successfully operate the rauding process on more books and other materials and
+can complete the reading of these materials in less time because more can be
+accomplished in 1 sec of reading. Furthermore, the amount of improvement in the
+accuracy of comprehension of passages during 1min of reading, A, can be predicted
+with the precision of mathematical formulas (via Equations 1 and 2) from the
+amount of improvement in listening level, VL and decoding level, PL,during 1 year
+of reading in school (via Equations 3,4, and 5).
+
+
+                      SUMMARY AND CONCLUSIONS
+
+Rauding theory purports to contribute to our knowledge of typical or ordinary
+reading (called the rauding process) during 1 sec, 1 min, or 1 year of reading by
+lower grade readers, middle grade readers, adult readers, and disabled readers.
+Rauding theory has little to contribute to our knowledge about such basic reading
+processes as skimming and scanning or learning and memorizing, except perhaps
+it may stimulate a better organization of that knowledge (see Carver, 1990b).
+    With respect to 1 sec of reading, rauding theory purports to contribute to our
+knowledge of the cognitive process involved in typical reading by adding a time
+dimension. That is, when an individual fixates on a standard word during the
+rauding process, the amount of time in milliseconds that is required to lexically
+access the word, semantically encode it, and then integrate it into the complete
+thought formed by the sentence can be determined from the rauding rate of the
+individual. Also, thelevel of difficulty of materialsthat individualscan successfully
+operate the rauding process may be predicted from the reading level of the
+individual.
+40      CARVER
+
+
+   With respect to 1 min of reading, equations have been developed to predict the
+comprehension of passages (see Equations 1 and 2); these equations are based on
+the three laws of rauding theory. The percentage of passage comprehension can be
+predicted from the length of the passage, the time allowed to read the passage, the
+typical reading rate of the student, the reading level of the student, and the difficulty
+level of the material. At present, no other theory besides rauding theory predicts
+precisely how much of a particular passage will be comprehended by a particular
+reader who reads for a particular amount of time.
+   With respect to 1 year of reading, a causal model has been developed for lower
+graders, middle graders, adults, and disabled readers. This causal model includes
+the primary factors that cause high and low reading achievement (see Figure 5).
+Most of the model has empirical support of a correlational nature (see Figures 6,7,
+and 8); there has been no experimental research on the model.
+   The causal model has implications for reading instruction. For example, the
+model predicts that students who go through the entire school year without
+improving their decoding level will still gain 0.5 GE units in reading achievement
+due to typical or average gains in listening level and naming speed level.
+   The model also has implications for reading diagnosis. For example, general
+intelligence or IQ should not be used to diagnose reading problems because g or
+IQ are not important causal factors; the important causal factors from a cognitive
+ability standpoint that should be used to diagnose reading problems are verbal
+knowledge aptitude, g, decoding aptitude, g,, and cognitive speed aptitude, g, (see
+Figure 5).
+   In conclusion, rauding theory purports to contribute to our understanding of 1
+sec, 1min, and 1 year of ordinary reading by lower graders, middle graders, adults,
+and disabled readers. Rauding theory offers the prospect of organizing what we
+think we know and providing a theoretical framework for investigating what we
+do not know.
+
+                                  ACKNOWLEDGMENTS
+
+This article is Dr. Carver's Presidential Address to the Society for the Scientific
+Study of Reading, which was delivered at the Annual Meeting in San Francisco,
+CA, April, 1995. Following the practice of other journals, we are making this the
+lead article of this issue.
+
+                                        REFERENCES
+
+Aaron, P. 0. (1991). Can reading disabilities be diagnosed without using intelligence tests? Journal of
+   Learning Disabilities, 24, 178-185.
+Adams, M.J. (1990). Beginning to read: Thinking and learning about print. Cambridge, MA: MIT
+   Press.
+                               ONE SECOND, ONE MINUTE, ONE YEAR OF READING                         41
+
+Anderson, R. C., & Pearson. P. D. (1984). A schema-theoretic view of basic processes in reading
+   comprehension. In P. D. Pearson @d.), Handbook of reading research (pp. 255-291). New York:
+   Longman.
+Anderson, R. C., Pichert, J. W., & Shirey, L. L. (1983). Effects of the reader's schemaatdifferentpoints
+   in time. Journal of Educational Psychology, 75,271-279.
+Ballentine. F. A. (1951). Age changes in measures of eye-movements in silent reading. In Studies in the
+   psychology of reading (University of Michigan Monographs in Education No. 4, pp. 67-144). Ann
+   Arbor: University of Mibhigan Press.
+Bentler, P. M., & Bonett, D. G. (1980). Significance tests and goodness-of-fit in the analysis of
+   covariance structures. PSychological Bulletin, 88, 588-606.
+Bowers, P. G., Steffy,R., & Tate, E. (1988). Comparison of the effects of IQ control methodson memory
+   and naming speed predictors of reading disability. Reading Research Quarterly, 23, 304-319.
+Buswell, G. T. (1951). The relationship between rate of thinking and rate of reading. School Review,
+   59,339-346.
+Carroll, J. B. (1967). On learning fiom being told. Educational Psychologist,5(2), 1,s-10.
+Carroll, J. 8. (1993). Human cognitive abilities: A survey of factor analytic studies. New York:
+    Cambridge University b s s .
+Carver, R. P. (1976). Word length, prose difficulty, and reading rate. Journal of Reading Behavior, 8,
+    193-203.
+Carver, R. P. (1977). Toward a theory of reading comprehension and rauding. Reading Research
+    Quarterly, 13, 8-63.
+Carver, R. P. (1981). Reading comprehension and rauding theory. Springfield, IL: Thomas.
+Carver, R. P. (1982). Optimd rate of reading prow. Reading Research Quarterly, 18, 56-88.
+Carver, R. P. (1983). Is readiag rate constant or flexible?Reading Research Quarterly, 18, 190-215.
+Carver. R. P. (1984). Rauding theory predictions of amount comprehended under different purposes and
+    speed reading conditions. Reading Research Quarterly, 19,205-21 8.
+Carver, R. P. (1987). Technicplmanualfor the Rauding Eflciency Level Test. Kansas City, MO: Revrac
+    Publications.
+Carver, R. P. (1990a). Predbting accuracy of comprehension from the relative dificulty of material.
+    Learning and Individual Dtferences, 2,405-422.
+Carver, R. P. (1990b). Readi~grate: A review of research and theory. New York: Academic.
+Carver, R. P. (1991). Using letter-naming speed to diagnose reading disability. Remedial and Special
+    Education, 12(5),33-43.
+Carver, R. P. (1992a). The thtee factors in reading ability: Reanalysis of a study by Cunningham
+    Stanovich, and Wilson. J'purnalof Reading Behavior, 24, 173-190.
+Carver, R. P. (1992b). What do standardized reading comprehensiontests measure in terms ofefficiency,
+    accuracy, and rate. ~ e a d ~esearch
+                                       h ~     Quarterly, 27, 346-359.
+Carver, R P. (1993). Mergiag the simple view of reading with rauding theory. Journal ofReading
+    Behavior, 25,439-455.
+Carver, R. P. (1994a). Manual for the Reading ~ b i e n Level    c ~ Battery. Kansas City, MO: Revcac
+    Publications.
+Carver, R. P. (1994b). Userrs manual for the Computer Assisted Reading Diagnosis (Version 2.0).
+     Kansas City, MO: Revm Publications.
+W e t , R. P. (1996). H w qccuratefy can reading ability be predicted from decodng ability and
+     listening abilityfromjlrst grade to sixth grade? Unpublished manuscript.
+                                      b ~ achievementto intelligenceand memory capacity, In W. Tomic
+Carver, R. P. (in press). ~ e l a t i reading
+     & J. Kingma (Eds.), ~ M n c e in    s cognition and education. Greenwich, CT:JAI.
+Carver, R. P., & Clark, S. M. (19%). Investigating reading disabilities using the rauding diagnostic
+    syslem. Unpublished maduscript.
+42      CARVER
+
+
+Carver, R. P., & Leibert. R. E.(1995). The effect ofreading library books at different levels of difficulty
+    upon gain in reading ability. Reading Research Quarterly, 30,26-48.
+Coke, E. U. (1976). Reading rate, readability, and variations in task-induced processing. Journal of
+    Educational Psychology, 68, 167-173.
+DiStefano, P., Noe, M., & Valencia, S. (1981). Measurement of the effects of purpose and passage
+    difficulty on reading flexibility. Journal of Educational Psychology, 73,602-606.
+Fisher, D. F. (1975). Reading and visual search. Memory & Cognition, 3, 188-196.
+Goodman, K. S. (1989). Whole-language research: Foundations and development. Elementary School
+    Journal, 90, 207-22 1.
+Gough, P. B. (1972). One second of reading. In J. F. Kavanaugh & I. G. Mattingly (Eds.), The
+    relafionshipsbetween speech and reading (pp. 331-358). Cambridge, MA: MIT Press.
+Gough, P. B., & Tunmer, W. E. (1986). Decoding, reading, and reading disability. Remedial and Special
+    Education, 7(1), 6-1 1.
+Hoffman, J. V. (1978). Relationship between rate and reading flexibility. Reading World, 17,325-328.
+Hoover, W. A., & Gough, P. B. (1990). The simple view of reading. Reading and Writing: An
+    Interdisciplinary Journal, 2, 127-160.
+Juel, C., Griffith, P. L., & Gough, P. E. (1986). Acquisition of literacy: A longitudinal study of children
+    in fist and second grade. Journal of Educational Psychology, 78,243-255.
+Kintsch, W., & Keenan. J. (1973). Reading rate and retention as a function of the number of propositions
+    in the base structure of sentences. Cognifive Psychology, 5,257-274.
+Letson, C. T. (1959). The relative influence of material and purpose on reading rates. Journal of
+    Educational Research, 52,238-240.
+Lorch, R. F., Jr., Lorch, E. P., & Matthews, P. D. (1985). On-line processing of the topic stru5ture of a
+    text. Journal of Memory and Language, 23,350-362.
+Lovett, M. W. (1984). A developmental perspective on reading dysfunction: Accuracy and rate criteria
+    in the subtyping of dyslexic children. Brain and Language, 22,67-91.
+Meyer, B. J. F. (1975). The organization ofprose and irs effects on memory. Amsterdam: North-Holland.
+Miller, G. R., & Coleman, E. B. (1971). The measurement of reading speed and the obligation to
+    generalize to a population of reading materials. Journal of Reading Behavior, 4(3), 48-56.
+Miller, J. R., & Kintsch, W. (1980). Readability and recall of shortprose passages: A theoretical analysis.
+    Journal of Experimental Psychology: Human Learning and Memory, 6,335-354.
+Morse, W. C. (1951). A comparison of the eye-movements of average fifth- and seventh-grade pupils
+    reading materials of corresponding difficulty. In Studies in the psychology of reading (University
+    of Michigan Monographs in Education No. 4, pp. 1-64). Ann Arbor: University of Michigan Press.
+Perfetti, C. A. (1985). Reading ability. New York: Oxford University Press.
+Perfetti, C. A., & Roth, S. F. (1981). Some of the interactive processes in reading and their role in reading
+    skill. In A. M. Lesgold & C. A. Perfetti (Eds.). interactive processes in reading (pp. 269-297).
+    Hillsdale, NJ: Lawrence Erlbaum Associates, Inc.
+Rothkopf, E. Z., & Coatney, R. P. (1974). Effects of context passages on subsequent inspection rates.
+    Journal of Applied Psychology, 59,679-682.
+Seibert, E. W. (1943). Reading reactions for varied types of subject matter. Journal of Experimental
+    Education, 1 2 , 3 7 4 .
+Seidenberg, M. S., & McClelland, J. L. (1989). A distributed developmental mode1 of word recognition
+    and naming. Psychological Review, 96,523-568.
+Sharon, A. T. (1973). What do adults read? Reading Research Quarterly, 9,148-169.
+Siegel, L. S, (1989). IQ is irrelevant to the definition of learning disabilities. Journal of Learning
+    Disabilities, 22, 469-479.
+Singer, H. (1965). A devetopmental model for speed of reading in grades three through six. Reading
+    Research Quarrerly, 1, 29-49.
+                               ONE SECOND, ONE MINUTE, ONE YEAR OF READING                         43
+
+Spring, C., & Capps, C. (1974). Encoding speed, rehearsal, and probed recall of dyslexic boys. Joutnal
+    ofEducationa1 Psychology, 66,780-786.
+Stanovich, K. E. (1991). Discrepancy definitions of reading disability: Has intelligence led us astray?
+    Reading Research Quarterly, 26,7-29.
+Stanovich, K. E.. Cunningham, A. E., & Feeman, D. J. (1984). Intelligence, cognitive skills, and early
+    reading progress. Reading Research Quarterly, 19, 278-303.
+Stauffer, R. G. (1967). Thefirstgrade reading studies: Findings of individual investigations. Newark,
+    DE: International Reading Association.
+Sticht, T. G., &James, J. H. (1984). Listening and reading. In P. D. Pearson (Ed.), Haadbook of reading
+    research (pp. 293-317). New York: Longman.
+Whipple, G. M., & Curtis, N. J. (1917). Preliminary investigation of skimming in reading. Journal of
+    Educational Psychology, 8,336-349.
+Wimmer, H. (1993). Characteristics of developmental dyslexia in a regular writing system. Applied
+    Psycholinguistics,14, 1-33.
+Wolf, M. (1991). Naming speed and reading: The contribution of the cognitive neuro sciences. Reading
+    Research Quarterly, 26, 123-141.
+Zuber, B. L., & Wetzel, P. A. (1981). Eye movement determinants of reading rate. In B. L. Zuber (Ed.),
+    Models ofoculomotorbehavior and control (pp. 193-208). Boca Raton, I%CRC Press.
+
+Manuscript received June 15,1995
+Final Revision received June 7, 1996
+Accepted June 11,1996
+

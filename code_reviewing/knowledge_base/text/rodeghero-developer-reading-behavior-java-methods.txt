@@ -1,0 +1,731 @@
+   Developer Reading Behavior While Summarizing
+       Java Methods: Size and Context Matters
+             Nahla J. Abid∗ , Bonita Sharif† , Natalia Dragan‡ , Hend Alrasheed§ and Jonathan I. Maletic‡
+                  ∗ Department of Computer Science, Taibah University, Madinah, Kingdom of Saudi Arabia
+    † Department of Computer Science and Engineering, University of Nebraska-Lincoln, Lincoln, Nebraska, USA 68588
+              § Department of Information Technology, King Saud University, Riyadh, Kingdom of Saudi Arabia
+                       ‡ Department of Computer Science, Kent State University, Kent, Ohio, USA 44242
+
+        Emails: nabd@taibahu.edu.sa, bsharif@unl.edu, ndragan@kent.edu, halrasheed@ksu.edu.sa, jmaletic@kent.edu
+
+
+   Abstract—An eye-tracking study of 18 developers reading and        signatures the most. They use this information to give more
+summarizing Java methods is presented. The developers provide         weight to terms that developers look at more often during
+a written summary for methods assigned to them. In total, 63          summarization (i.e., signature is given more weight compared
+methods are used from five different systems. Previous studies on
+this topic use only short methods presented in isolation usually as   to call statements) as heuristics for their automated summa-
+images. In contrast, this work presents the study in the Eclipse      rization approach that was adapted from prior work [8].
+IDE allowing access to all the source code in the system. The            Unfortunately the prior eye-tracking study by Rodeghero et
+developer can navigate via scrolling and switching files while        al. [17] is limited in that the study could not be conducted in
+writing the summary. New eye-tracking infrastructure allows           a realistic working environment. This is a common limitation
+for this improvement in the study environment. Data collected
+includes eye gazes on source code, written summaries, and time        when using eye-tracking equipment. The work presented here
+to complete each summary. Unlike prior work that concluded            focuses on addressing the two main limitations in the previous
+developers focus on the signature the most, these results indicate    study. The first limitation is that the maximum length of
+that they tend to focus on the method body more than the              methods included in their study is only 22 lines. That is, a
+signature. Moreover, both experts and novices tend to revisit         single fixed window of source code that must appear all at
+control flow terms rather than reading them for a long period.
+They also spend a significant amount of gaze time and have higher     once on the screen with no support for scrolling. The second
+gaze visits when they read call terms. Experts tend to revisit        limitation is that methods are presented in complete isolation
+the body of the method significantly more frequently than its         with no ability to look at other methods or related code.
+signature as the size of the method increases. Moreover, experts         We overcome these two limitations by utilizing a new eye-
+tend to write their summaries from source code lines that they        tracking infrastructure call iTrace [18, 19] that is developed
+read the most.
+                                                                      specifically for conducting eye-tracking studies within a soft-
+   Index Terms—source code summarization, eye tracking, pro-
+gram comprehension, empirical study                                   ware Integrated Development Environment (e.g., MS Visual
+                                                                      Studio, Eclipse). iTrace supports the implicit tracking of eye
+                                                                      movements in the presence of scrolling and switching between
+                       I. I NTRODUCTION
+                                                                      files within the IDE. Hence we are able to conduct our study
+   Source code reading and comprehension is an essential and          using any sized methods and participants have access to all of
+time-consuming task that programmers perform during soft-             the files and the entire code base for the system being studied.
+ware maintenance [1, 2]. Natural language documentation and           That is, the study is conducted in the same environment
+code summarizations are found to be critical to improve code          programmers use daily thus avoiding bias in the experimental
+comprehension [3]. In fact, expert and novice programmers             setup and allowing participants to read code as they normally
+tend to read comments more than the source code during                would. The contributions of this work are as follows:
+comprehension activities [4]. Unfortunately, comments are                • An eye-tracking study of 18 developers reading and
+oftentimes incomplete [5] or outdated due to changes in code                summarizing Java methods in the Eclipse integrated
+during maintenance.                                                         development environment. Unlike the prior study that
+   One way to overcome this problem is to automatically gen-                concluded developers mostly focus on the signature [17],
+erate summaries directly from source code. Several approaches               the results from our study indicate that developers tend
+are proposed to generate automatic summaries using Natural                  to focus on the method body more than the signature.
+Language Processing (NLP) [6, 7], text retrieval [8, 9], and             • An analysis of programmers’ gaze time and number of
+static analysis [10, 11]. In order to further improve source                visits on source code entities with respect to the method
+code summarization techniques [6–8, 11–16], Rodeghero et                    size. For experts, we found that the larger the method,
+al. conducted an eye-tracking study [17] to determine the                   the less likely its signature is focused on. However, as
+statements and terms (i.e., identifier names) that programmers              the control flow increases in complexity, it is revisited
+view as important when they summarize a method. Their                       more. Novices do not seem to be affected by the method
+main results indicate that programmers tend to look at method               size.
+  •   An analysis of locations outside the method scope that         that low-experience programmers repeatedly fixated on the
+      developers target during method summarization. The re-         same code sections, while experienced programmers target the
+      sults reveal that experts and novices read other locations     output of the code, such as evaluation expressions [25, 26].
+      besides the assigned methods (e.g., data members and              Kevic et al. used iTrace to conduct an eye tracking study
+      class declarations) for about 70% of the tasks.                on three bug fixing tasks. They found that developers focus
+   • A comparison of the lines used by experts to write their        on small parts of methods that are often related to data flow.
+      summaries to the lines with the longest gaze time. We          When it comes to switches between methods, they found
+      found strong evidence that developers tend to write their      developers rarely follow call graph links and mostly switch
+      summaries from source-code lines that they read the most       to the elements in close proximity [35, 36].
+      (longest gaze time). Therefore, we conclude that gaze             Rodeghero et al. conduct an eye-tracking study on isolated
+      time can substantially predict lines that are important for    methods to determine statements and terms that programmers
+      summarizing a method [6, 7, 11, 12, 17].                       view as important when they summarize them [17]. They
+   An overarching goal of this paper is to investigate ways to       conclude that programmers consider method signatures as
+improve existing summarization approaches via findings from          the most important section of code followed by call terms
+the eye-tracking study presented. This is done by examining          then control flow terms. Based on these results, a modified
+what developers read during summarization in addition to what        weighted scheme for the Vector Space Model (VSM), an
+they include in their summaries. This is one of the first studies    information retrieval method is implemented. The frequency
+done in a realistic manner similar to how a developer would          of terms in VSM is replaced by the term positions. Therefore,
+work in the field, i.e., the source code is presented in an IDE      terms located in the method signature have a higher weight
+instead of a fixed image presented in isolation. This work           than method invocation and method invocations have higher
+also impacts overall tool development for software engineering       weight than control flow statements. When the term-based
+researchers and practitioners and learning about differences         summarization generated using the original VSM and their
+between experts and novices.                                         improved version is compared to human term-summaries,
+   We present related work on eye tracking in software en-           the improved version outperformed the original VSM. In an
+gineering and code summarization in Section II. Section III          extended version [34] of their initial work, they concluded that
+outlines our research questions. Section IV describes the de-        terms developers used in their method summaries generally
+sign of the eye tracking study. Analyses, results, and threats are   have higher tf/idf scores than terms with high gaze times.
+presented in Sections V through VII followed by implications         In addition, they concluded that longer viewed terms are
+in Section VIII. We end with final remarks in the conclusion         mostly long terms (number of characters) and they are less
+along with future work.                                              likely to appear in developers summaries. The same study
+                                                                     [17] was further analyzed in [28] to find reading patterns of
+                     II. R ELATED W ORK                              programmers during summarization. On average, they find that
+   We focus mainly on relevant eye tracking studies done in          programmers read from top-to-bottom about 49% of the time.
+code comprehension. We also discuss relevant work on code            Finally, they conclude that all of the programmers followed
+summarization given our work impacts that topic.                     nearly identical eye patterns in overall reading.
+   Eye Tracking Studies: Eye-tracking technology is being               The study we present in this paper is similar to the one
+used in software engineering [20–25] to study how pro-               performed by Rodeghero et al. [17] with several differences.
+grammers read [4, 26–30], review [31–33], and summarize              One of our goals was to study if we get the same results
+[17, 28, 34] source code. Crosby et al. [4] conducted an early       after mitigating limitations related to methods size and the
+eye-tracking study of high and low experience programmers            study environment as described earlier. In addition, our study
+reading a binary search algorithm. Both high and low experi-         compares experts and novices eye movements, and analyzes
+ence programmers needed a large amount of fixations in most          them with respect to methods sizes.
+areas of source code than participants that read simple natural         Code Summarization: With regards to code summarization
+language text. The programmers tend to alternate between             approaches, Sridhara et al. propose techniques to automatically
+source code and comments rather than sequentially reading            generate natural language comments for Java methods [6],
+the entire document.                                                 sequences of statements [13], and formal parameters [12]
+   Uwano et al. [31] observed that programmers tend to first         using NLP. Furthermore, Wang et al. propose a model that
+read through the entire code snippet, and then focus on some         defines the high-level action of loops by analyzing linguistic
+parts. Furthermore, longer time spent thoroughly reading the         and structure clues [37]. They also presented an approach to
+code increases the efficiency of finding the defect in the code.     automatically generate a natural language summary of object-
+This correlation was later confirmed by Sharif et al. [32]           oriented action units [38].
+stating that the scan time plays an important role in defect            Moreno et al. [10] use method stereotypes [39] and class
+detection time and visual effort required to review source code.     stereotypes [40] to generate natural language summaries for
+Moreover, experts tend to focus on defects more than novices         Java classes. Abid et al. [11] [41] use method stereotypes
+[32]. Busjahn et al. [27] found that experts read code less          to generate a standard summary for C++ methods via static
+linearly than novices did. Bednarik and Tukiainen concluded          analysis. McBurney and McMillan propose generating docu-
+ mentation summaries for Java methods using the call graph                                                 TABLE I
+ [7]. Furthermore, they propose an approach to evaluate a                                      JAVA S YSTEMS U SED IN THE S TUDY
+ summary using textual similarity of that summary to the source         System version   Domain                        Total methods   Selected methods   Classes involved
+                                                                        ArgoUML 0.30.2   UML diagramming tool                 14,635                 15              2,673
+ code [42]. Haiduc et al. [8] investigate the suitability of several    MegaMek 0.36.0   Computer game                        12,490                 15              2,308
+                                                                        Siena 1.0.0      Database library                      4,116                 12                297
+ text summarization techniques to automatically generate term-          sweetHome3d4.1   Interior design application           6,084                 12              1,757
+                                                                        aTunes 3.1.0     Audio player                          9,579                  9                215
+ based summaries for methods and classes. This was further              Total                                                 46,904                 63              7,250
+ extended by Eddy et al. [9] using a new technique named
+ Hierarchical PAM.
+                                                                          IV. E YE T RACKING S TUDY - E XPERIMENTAL D ESIGN
+                  III. R ESEARCH Q UESTIONS
+    The first goal of this study is to understand what terms             This section describes the process of designing and perform-
+ developers focus on when they summarize Java source code              ing the eye-tracking study for method summarization tasks.
+ using a realistic integrated development environment setting.         The study material including tasks, processed eye-tracking
+ The analysis considers three source-code locations namely,            data and the statistical analysis is provided in the replication
+ method signatures, method calls, and control flow statements          package at https://doi.org/10.5281/zenodo.2550768.
+ [17, 28, 34]. These locations were chosen so that we can make
+ comparisons to the Rodeghero study [17]. A term refers to an          A. Study Participants
+ identifier in a specific location, e.g., call terms are identifiers
+                                                                          The study is performed by 18 developers, a typical sample
+ in a call. In addition to the above, our work expands the
+                                                                       size for eye-tracking studies. They are 5 experts and 13
+ analysis in several different directions based on the level of
+                                                                       novices. Two of the experts are industry professionals working
+ expertise of programmers and size (length) of methods. The
+                                                                       at a local firm and three are PhD students at a local university.
+ second goal is to investigate how experts read source-code
+                                                                       One industry expert had between two to five years of program-
+ lines during summarization tasks and how this information
+                                                                       ming experience and the other four had greater than 5 years
+ can be used to improve source-code summarization and more
+                                                                       of programming experience. We consider the PhD students
+ broadly documentation. The third goal of our work considers
+                                                                       as experts because they are heavily involved in coding for
+ locations outside the method scope that programmers might
+                                                                       open source projects. Novices are undergraduate and graduate
+ find important such as the class name, data member declara-
+                                                                       students with one to five years of programming experience,
+ tions, and other related methods. Such scope analysis could not
+                                                                       most with about a year of experience.
+ be done in the Rodeghero study as the methods were presented
+ in isolation [17]. To address the above three goals, we pose
+ the following research questions.                                     B. Study Systems and Method Selection
+RQ1 Considering all methods summarized, to what extent                    The study includes 63 methods from five open source Java
+       do experts and novices focus on a method’s signa-               systems randomly selected from different domains (see Table
+       ture, method’s body, call invocations in a method, and          I). While the selection of methods chosen to be summarized
+       method’s control flow?                                          is random, we maintain two conditions. First, we eliminate
+RQ2 Does the size (length) of the method (small, medium,               trivial methods such as setters, getters, and empty methods.
+       large) have an impact on what experts and novices look          Second, the largest method (excluding blank lines) chosen
+       at most during the summarization task?                          was set to 80 LOC. This was done to avoid excessive fatigue
+RQ3 What source code elements (if any) does a programmer               during tasks. Based on the above criteria, a total of 63 methods
+       look at outside the scope of the assigned method to             were selected from the systems shown in Table I. Participants
+       summarize? How do they use context around the method            were randomly given a set of 23 methods selected from the 63
+       in the summarization task?                                      methods to summarize. On average, participants summarized
+RQ4 What source code lines do experts read and use in writing          15 of the 23 methods.
+       summaries?                                                         The size of short, medium and long methods range between
+    The first research question will help us compare our results       9-22 LOC, 23-39 LOC, and 40-80 LOC respectively. A line
+ with the Rodeghero study albeit in a more realistic setting. The      of code is counted if and only if it is not empty and is not
+ second research question digs deeper into the effect method           a comment. We used this split to maintain balanced number
+ size has on reading for summarization. The third research             of methods in each size category. Methods in Rodeghero et
+ question focuses on context around the method, i.e., what else        al.’s study [17] fall in the first category. Therefore, methods
+ besides the method being summarized are looked at in the              larger than 22 LOC are analyzed separately to study the impact
+ source code (note that unlike the Rodeghero study, in this study      of summarizing larger methods. Another difference with the
+ the entire source code was provided to the participants with          Rodeghero study is that we did not modify the code. In the
+ eye tracking data recorded at the line and term level), Finally,      Rodeghero study, method text was reformatted to make it fit
+ the fourth research question compares what was looked at              on one line on the screen since they were shown in isolation.
+ with what was written in the summaries. This analysis was             In our study, we left the methods as they appear in the code
+ restricted to just experts as they write accurate summaries.          and did not reformat lines.
+C. Task                                                              systems. Before the study began, we calibrated each partici-
+   The participants were told that their main task was to read       pant using a 9-point calibration. This is a necessary step for
+the assigned methods and write a summary for the method.             the eye tracker to correctly capture data for each participant. A
+They were also told that they could navigate the codebase            moderator was responsible to start and stop eye tracking within
+if they needed to. The entire study was conducted inside             iTrace for each method to be summarized. This was done to
+the Eclipse environment using the Eclipse plugin iTrace [18].        have consistency in the starting and stopping of sessions across
+iTrace is able to collect eye tracking data of where a developer     all participants. The participants wrote their summary in a text
+is looking and map it on the fly to source code elements looked      file present at the bottom of the Eclipse IDE. They were able
+at even in the presence of file scrolling and file switching.        to see the code while writing the summary. The font size was
+Code folding was disabled for all participants to avoid any          set to 14 points in the Eclipse editor. Gazes on the text files
+confounding factors. The Eclipse environment was setup with          were also collected. At the end of each task, we had a time-
+all the projects and assigned methods open in various tabs.          stamped session of line-level gaze data on the source code and
+No web browser was used in this study. The participants were         summary file that we used to answer our research questions.
+also able to view the method while they were writing the                            V. P RE -P ROCESSING THE DATA
+summary. We extended iTrace for this study to include on-the-
+                                                                        Before running statistical analysis on the data, we weeded
+fly mapping to more source code constructs such as conditional
+                                                                     out samples that were invalid. In addition, we identified the
+and looping structures in addition to what was collected in an
+                                                                     location (call, signature, control flow) a term belongs.
+earlier study (method calls, signatures, and definition and use
+of variables) [35].                                                     Data Cleaning: Some invalid samples include writing a
+                                                                     narration of the code word for word (e.g.,”The method uses
+D. Eye Tracking Apparatus and Measures                               an if statement to determine if values are true”). Other cases
+                                                                     were because participants were unable to locate the assigned
+    A Tobii eye tracker (X60) was used to collect gaze data          method or were unable to understand the assigned method. In
+within the iTrace [18] environment. The eye tracker generates        order to catch such cases, three of the authors reviewed the
+60 raw gaze samples per second. The eye gaze is then passed          257 summaries written by developers to judge their suitability
+through a fixation filter to generate fixations. A fixation is the   for further analysis. Each human summary is reviewed by two
+stabilization of the eyes on some object of interest for a certain   reviewers. When both reviewers agree about the inclusion of
+duration [43]. As in [17], two types of eye-movement data are        the summary and its corresponding gaze data for analysis,
+used: number of fixations and their durations (gaze time). We        it is kept otherwise it is discarded. The computed inter-rater
+define gaze time as the total number of milliseconds spent on a      reliability using Cohen’s kappa (κ) is 0.92. There was high
+region of interest (ROI) such as a call or keyword. A fixation       agreement between reviewers on what to discard. At the end
+filter [44] is set to count fixations that are more than 100         of this step, 44 summaries (6 expert summaries and 38 novice
+milliseconds (same as Rodeghero and vendor recommended).             summaries) are discarded.
+Throughout the analysis, we refer to the number of fixations            Term Location Identification. The eye gaze data are pro-
+as the number of visits on particular regions of interest.           cessed to identify whether the term looked at corresponds to
+                                                                     a signature, call, or control flow term. Information from the
+E. Study Procedure and Instrumentation
+                                                                     eye-tracking tool, iTrace [18], includes information about the
+   We first obtained IRB approval for the study. On the day          line number, the term name and the type of the term (method,
+of the study, the participants first signed an informed consent      variable, conditional statements, or other types). In some cases,
+form and filled out a background questionnaire. Next, they           the exact term that a participant looked at was not identified at
+were given a short description on how the study would be             the time of this experiment but the line number was. Since the
+conducted. They were also given a 1-page overview of each            code was not edited during the study, we use the line number to
+system and a hard copy of all the method names (body not             determine in a post processing step the nature of the location.
+included) to be summarized in case they needed to refer to it.       First, for all methods used in the study, the signature lines
+Before beginning the actual study, they were given examples          are extracted from srcML [45], an XML representation of the
+of three method summaries (by the original developers) taken         code. Next, if the line of an eye-tracking record matches the
+from the same systems shown in Table I. The sample methods           signature line in the list, the record is considered a signature.
+are not part of the subsystems used in the study to avoid any        The control flow statements are also identified at the line
+learning effects. These examples included the method’s source        level because all of them stand on their own and do not have
+code along with the summary for the methods. This is a neces-        multiple statements listed on the same line, i.e., the body of
+sary step as it was important for the participants to understand     an if statement appears on another line. This simplifies the
+what they were expected to do during a summarization task.           line-level analysis.
+We encouraged them to use their own words to summarize the              Call terms need to be handled differently as the line
+methods. The study took between 45-90 mins.                          containing a call might include other terms that are not part
+   The participants were seated in front of a 24-inch LCD            of the call. We define call terms to include the method call
+monitor. They were not required to run or build the software         name and parameters [17]. For example, in the statement,
+boolean saved = saveFile(toFile), call terms in-                                                TABLE II
+clude saveFile and toFile. The possibility of identifying           W ILCOXON T EST R ESULTS OF E XPERTS AND N OVICES . N IS NUMBER OF
+                                                                      SAMPLES . A SAMPLE IS A RESULT FROM ONE DEVELOPER AND ONE
+call terms depends on the way the call is written. All calls of                     METHOD . T IS THE SUM OF RANKS .
+our methods are manually examined to identify call cases.
+                                                                               H     Metric   Location       n     T        Z          p
+There were 49,366 total number of eye-tracking gazes inside                                   Signature     69    905   -1.809     0.064
+all methods for all participants. 18,602 of those records are                  H1    Gaze
+                                                                                              Non-Sig       69   1510
+                                                                     Experts
+successfully identified as calls (38%). 28,275 were non-call                                  Signature     69    623    -3.49   <.0001*
+                                                                               H2    Visit
+                                                                                              Non-Sig       69   1792
+records (57%). The number of eye-tracking records that cannot                                 Signature    144   3533    -3.36     .001*
+                                                                               H3    Gaze
+be categorized as calls or non-calls is 2,488 (5%). We exclude       Novices
+                                                                                              Non-Sig      144   6907
+                                                                                              Signature    144   3101    -4.22   <.0001*
+this 5% from the analysis of calls vs. non-calls in RQ1 and                    H4    Visit
+                                                                                              Non-Sig      144   7339
+RQ2. RQ3 and RQ4 are not affected by this identification.                      H5    Gaze
+                                                                                              Call          69   1655    -2.67   <.007*
+                                                                                              Non-call      69    760
+                                                                     Experts
+                                                                                              Call          69   1554    -2.07      .03*
+               VI. E XPERIMENTAL R ESULTS                                      H6    Visit
+                                                                                              Non-call      69    861
+                                                                                              Call         139   7870    -5.28   <.0001*
+                                                                               H7    Gaze
+   We present our findings on each research question along           Novices
+                                                                                              Non-call     139   2570
+with a comparison to the Rodeghero study when appropriate.                                    Call         139   7939    -5.28   <.0001*
+                                                                               H8    Visit
+                                                                                              Non-call     139   2501
+Because our data is not normally distributed, the Wilcoxon                                    Ctrl. Flow    69   1246    -1.13      0.25
+                                                                               H9    Gaze
+non-parametric test is used. Additionally, since the same data                                Non-Ctrl      69    899
+                                                                     Experts
+                                                                                              Ctrl. Flow    69   1487    -2.71     .007*
+is used to test multiple hypothesis, we use Bonferroni p-value                 H10   Visit
+                                                                                              Non-Ctrl      69    658
+correction. We perform three tests (signature, call, and control-              H11   Gaze
+                                                                                              Ctrl. Flow   139   5339    -1.47      0.13
+                                                                                              Non-Ctrl     139   3977
+flow terms) on each set of samples. Therefore, the new p-value       Novices
+                                                                                              Ctrl. Flow   139   5961    -2.83     .005*
+to test against is (0.05/3)= 0.016. Anything before this value                 H12   Visit
+                                                                                              Non-Ctrl     139   3355
+is considered significant. Effect size is given using Cohen’s d.
+
+A. RQ1 Results: Replicating the Rodeghero study analysis               Method Signature: We found no evidence that experts read
+   Methods are read differently if presented in isolation vs.       method signatures more than the method body. On average,
+presented in a realistic environment that developers usually        experts spent 9% of their gaze time reading signatures, while
+work in [35]. To this end, we perform the same analysis done        the signatures averaged 10% of the methods. Similarly, the
+by Rodeghero et al. to study the impact of the differences.         average gaze time of novices reading signatures is 10% and
+   Adjusted Metrics. Number of terms in the signature, call         signatures are 11% of the methods. We computed the adjusted
+and control flow vary based on the size of the method. There-       gaze time and number of visits of the signature and the body
+fore, it is necessary to adjust the total gaze time according       and pose four hypotheses (H1 , H2 , H3 , and H4 ) as follows.
+to the number of terms in each method, which is the same               Hn : For [experts / novices], the difference between the
+adjustment performed by Rodeghero et al. [17]. Let’s assume         adjusted [gaze time / visit] metric for method signature and
+one reads the body and signature of a method for 60% and            method body is not statistically significant.
+40% of the time respectively. Consider the body and signature          Based on computed Z and p values (see Table II), we
+to be 80% and 20% in terms of overall size of identifiers.          reject H2 (medium effect size of 0.30), H3 (small effect
+This does not mean that the body is more important. Longer          size of 0.20), and H4 (medium effect size of 0.25). This
+time in this case is due to size of the body. If the body is        suggests that novices read/visit method bodies more than the
+80% of the overall size; the body is read 60/80 = .75 and the       method signatures. We cannot reject H1 which means that
+signature is read 40/20 = 2. 2 is greater than .75; therefore       there is no statistical difference in the time spent by experts
+the participant gives signature higher attention. Then, these       reading the signature and the body of a method. However,
+two adjusted values are compared using the Wilcoxon non-            experts revisit the method bodies more frequently than the
+parametric test for all collected samples. A sample is a result     method signatures. When data of both experts and novices
+from one developer summarizing one method.                          are combined, the results of Wilcoxon test for gaze time and
+   The same approach is used to compute the adjusted number         number of visits is (Z= -3.93, p <0.001 with a small effect
+of visits for the signature. The approach to compute the            size of 0.19) and (Z= -5.37, p <0.001 with a medium effect
+adjusted gaze time and number of visits for signature and           size of 0.26), respectively. This result indicates that developers
+non-signature terms is also applied to call terms vs. non-          read method bodies more heavily than the method signatures
+call terms, and control flow terms vs. non-control flow terms.      when methods are presented in context. This behavior was
+A total of 26 methods are summarized by five experts and            previously observed by Kevic et al. [35].
+40 methods are summarized by 13 novices. The analysis of               Calls: We found evidence that developers read method calls
+the eye-movements of experts and novices are discussed for          more than other locations. On average, the experts spent 44%
+method signature, calls, and control flow terms. The adjusted       of their gaze time reading calls (≈ 38% of methods). Similarly,
+gaze time and number of visits are used in hypothesis testing       on average, novices spent 46% of their gaze time reading calls
+for RQ1 and RQ2.                                                    (≈ 39% of methods). We define the four hypotheses (H5 , H6 ,
+H7 , and H8 ) regarding call terms as follows.                                                   TABLE III
+   Hn : For [experts / novices], the difference between the           C OMPARING R ESULTS WITH THE RODEGHERO STUDY [17]. O UR RESULTS
+                                                                        SHOW DEVELOPERS READ CALL TERMS THE MOST FOLLOWED BY
+adjusted [gaze time / visit] metric for call terms and non-           CONTROL FLOW AND FINALLY THE SIGNATURE . H IGHER RANK IS BASED
+terms terms is not statistically significant.                                  ON HIGHER GAZE TIME AND NUMBER OF VISITS .
+   We reject all the four hypotheses H5 (medium effect size
+of 0.25), H6 (small effect size of 0.18), H7 (medium effect            Rank       Rodeghero Ranking         This Study Ranking
+size of 0.31), and H8 (medium effect size of 0.31) in Table             1              Signature                 Call terms
+II. Both experts and novices read call terms more heavily than          2             Call terms             Control flow terms
+                                                                        3          Control flow terms            Signature
+non-call terms when the gaze time and number of visits are
+adjusted based on the number of terms.
+   Control Flow: We found no evidence that experts read
+control flow terms longer than other areas but they visit them        time and higher number of visits while control flow terms are
+more frequently. On average, the experts spent 28% of their           visited more frequently by experts and novices. However, one
+gaze time reading control flow terms (≈ 26% of methods)               cannot claim to have evidence to order these locations with
+while novices spent 26% of their gaze time reading control            respect to their importance (even though this is suggested in
+flow terms (≈ 24% of methods). The following presents the             [17]). For example, experts spend a long time comprehending
+definition of the four hypotheses (H9 , H10 , H11 , and H12 ).        calls due to their complex identifiers. However, this long
+   Hn : For [experts / novices], the difference between the           gaze time does not necessarily suggest that call terms are
+adjusted [gaze time / visit] metric for control-flow terms and        more important than other locations. If a method has ten call
+control-flow terms is not statistically significant.                  invocations, these calls may not be equally important. The
+   We reject two hypotheses (H10 with small effect size of            same reasoning applies to control flow terms. A more detailed
+0.24, and H12 with small effect size of 0.18) in Table II. This       analysis of this is left as future work.
+suggests that experts and novices revisit control flow terms but         RQ1 Discussion on Similarities and Differences in Re-
+do not read them for a long period of time during each visit.         sults with the Rodeghero study: Rodeghero et al. observed
+   Adjusted duration and visits based on number of characters:        that long identifiers (high number of characters) experienced
+Gaze time and number of visits for both call terms and control        long gaze time [34] due to their complexity [46]. Similarly,
+flow terms are adjusted based on the number of characters.            we observe that experts read call terms significantly longer
+This assists in determining if the significance of results is         than non-call terms when adjusted by number of terms but
+due to the complexity of the terms (number of characters)             the result becomes insignificant when time is adjusted by
+[34, 46] or the importance of terms at that location. For             number of characters (no character adjustment was done in
+experts, when call terms are adjusted by number of characters,        [34]). This indicates that call terms required longer time due
+the difference between call terms and non-call terms is not           to the complexity of the terms (number of characters) [46].
+statistically significant for the gaze time (Z = -.828, p = .4) and      As seen in Table III, these results do not reproduce results
+number of visits (Z = -.332, p = .47). On the other hand, for         from the Rodeghero study [17]. They concluded that the
+novices, when the gaze time and number of visits are adjusted         signature is the most important location followed by call
+based on the number of characters, the difference between             terms and next by control flow terms. However, in the study
+call terms and non-call terms remains significant for both gaze       presented here, developers read and revisit call terms more
+time (Z= -4.46, p <0.001) and number of visits (Z = -3.45, p          heavily than other locations. Control flow terms are revisited
+<0.001). This indicates that experts spend longer time on call        more frequently than other terms. Finally, signature terms are
+terms due to their length (number of characters) while novices        revisited less frequently than other locations. Therefore, we
+demand longer gaze time to comprehend call terms. Identifiers         conclude that developers read call terms the most followed by
+in all five systems were shown in camel case.                         control flow terms and finally the signature.
+   For both novices and experts, the statistical differences of          We interpret the difference as follows. First, developers
+number of visits remain significant when the results of control       read methods differently when presented inside their inherent
+flow terms are adjusted based on the number of characters.            context versus in isolation. Developers tend to focus on the
+For experts, the statistical results for gaze time and number         method’s body more than its signature when the code is
+of visits are (Z= -1.82, p = .068) and (Z= -3.38, p = .001),          presented in a realistic environment [36]. In the Rodeghero
+respectively. For novices, the statistical result for gaze time       study, when a developer formulates a hypothesis about a
+is (Z= -2.47, p = 0.013) and for number of visits is (Z               method and wants to step back, they have no choice but to
+= -3.66, p <0.001). Note that when gaze time of control               look at the signature. However in our case, they can examine
+flow terms is adjusted by number of characters, the difference        locations outside the method. Second, our study uses longer
+between control flow terms and non-control flow terms become          and more complex methods (the largest method is 80 LOC)
+significant. This indicates that, unlike experts, novices need        compared to the Rodeghero study (the largest method 22
+significant time to comprehend control flow terms.                    LOC). In fact, we found statistical evidence that the larger the
+   Therefore, we conclude that calls and control flow terms are       method, the less likely experts fixate or revisit the signature.
+read differently. In particular, call terms require longer gaze       Furthermore, Rodeghero et al. concluded that control flow
+terms are read statistically less than other areas of a method      C. RQ3 Results: Reading Outside of the Summarized Method
+[17]. Our result indicates that control flow terms in larger
+methods (rated to be harder to summarize by experts) are               As mentioned earlier, since we used the Eclipse plugin,
+visited more frequently than control terms of smaller methods.      iTrace [18], the participants were able to context switch to
+   RQ1 Finding: Experts and novices spend the longest time          any file if they needed to. They worked in a very realistic
+on reading call terms and visit call terms more than non-call       setting where all the code was provided to them. When a
+terms. The next most read and visited locations are control         developer starts summarizing a method and then switches to
+flow terms and the method signature.                                some location outside of the scope of the assigned method,
+                                                                    this may be an indication that they need more information to
+B. RQ2 Results: Method Size                                         understand the method or to confirm an assumption. Accord-
+   We analyze eye-tracking data based on method size using          ingly, they spend some time looking for clues that might be
+the same approach in RQ1 by adjusting the gaze time and             found somewhere else, either within the same file or outside
+number of visits for each location (signature, body, calls,         the file that has the assigned method to be summarized. These
+control flow). Then, methods are divided by their size - large      possible scenarios are examined for experts and novices.
+(40-80 LOC), medium (23-39 LOC), and small (9-22 LOC).                 Both experts and novices read outside of the assigned
+For each category, the eye movements on signature, call,            method in 70% (213 out of 257) of the tasks. The average time
+and control flow statements are analyzed. These findings are        spent by experts to examine locations outside of the method
+reported for experts and novices. The hypotheses are:               is generally lower than the average time spent by novices.
+   Hn : With respect to [experts / novices] for [large / medium     On average, novices spent about 6% of the time examining
+/ small] methods, the difference between the adjusted [gaze         outside locations whereas experts spent about 4%. We further
+time/visit] metric for [signature and the body / calls and          inspected the summary responses collected from the partici-
+other areas / control flow and other areas] is not statistically    pants after the experiment and compared their responses to the
+significant.                                                        average time spent outside the method. All methods for which
+   Experts:We only report the statistical significant results due   participants spent more than average time outside the method,
+to space limitations. Experts revisit the body of a method          at least one of the participants described the method (or one
+statistically more frequently than the signature in case of large   of its components such as a data member or method call) as
+methods (n = 18, Z = −2.94, p = .003 with a large effect            vague, used the word “unsure” in their summary, or rated the
+size of 0.49). No statistical differences were found in case of     method as difficult in a post-questionnaire on task difficulty.
+medium (n = 22, Z = -2.22, p = .026) and small (n = 29,                RQ3 Discussion: We discuss three out-of-scope locations
+Z = -1.22, p = .22) methods. Therefore, we conclude that as         that a participant may have examined while summarizing an
+the size of a method increases, experts visit method bodies         assigned method. These locations are: class declarations, data
+more often than method signatures. For control flow and call        members, and close approximation (i.e., statements that belong
+terms, no statistical differences were found in all cases (small,   to methods that precede or follow the assigned method).
+medium and large methods).                                             For both experts and novices, the largest duration spent
+   Novices: Novices read the signature significantly less than      outside the method scope is to read in close approximation.
+the body in case of small methods - in terms of gaze time           Specifically, we observed that when a participant is reading the
+(n = 68, Z = −3.15, p = .002 with a medium effect size              first few lines of the assigned method, he or she also looks
+of 0.27) and number of visits (Z = −3.41, p = .001 with             at the methods or lines that precede the method (with respect
+a medium effect size of 0.29). Novices spent a significant          to the location in the file). Similarly, when a participant is
+amount of time reading call terms except for large methods.         inspecting the last few statements of an assigned method, he
+They read call terms significantly more than non-call terms         or she may also look at those lines that appeared after the
+in case of small methods - in terms of gaze time (n = 68,           method in the file. This observation confirms the result of
+Z = −3.89, p = <.0001 with a medium effect size of 0.33)            [35]. However, it does not provide insight that the participants
+and number of visits (Z = −3.94, p = .0001 with a medium            might have got help from looking at those nearby locations.
+effect size of 0.37). Novices read call terms significantly more       Data members and class declarations are the next common
+than non-call terms in case of medium methods in terms of           locations that experts and novices examine outside the as-
+gaze time (n = 29, Z = −2.69, p = .007 with a medium                signed method. After manually examining the data, we noticed
+effect size of 0.35) and number of visits (Z = −2.86, p = .002      that locating data members and class declarations is mostly
+with a medium effect size of 0.37). After manually checking         done by scrolling up or down rather than using the search
+novices’ answers we observed that they wrote their summaries        option. This might be the case as the class declaration is
+from the signature and avoided reading the code especially for      always found at the beginning of the file and data members are
+large methods. For control flow terms, no statistical differences   found either at the beginning or the end of the source file. Also,
+were found in small, medium and large methods.                      scrolling up or down to look for information is used usually
+   RQ2 Finding: We found statistical evidence that experts          when the file that contains the assigned method is short. Using
+tend to revisit the body of the method more frequently than         the search option is noticed in cases of large files. On average,
+its signature when the size of the method increases.                experts spent 11% of the gaze time reading data members and
+4% of gaze time reading the class declaration. Novices spent
+1% of the gaze time reading data members and 1% of gaze
+time reading class declaration. Furthermore, we observed one
+expert and one novice switch from a statement with a method
+call (within the assigned method to summarize) to an outside
+location that follows the sequence of the methods captured in
+(or represented by) the call graph.
+   We posit that for both experts and novices, reading outside
+the method scope is more related to developer preference
+than their level of expertise. We found three experts and four
+novices who read outside a method more often than others.
+Finally, a random scan of other methods inside the file is
+a behavior that is carried more frequently by novices while
+experts tend to focus on the assigned methods and read outside
+                                                                    Fig. 1. Heat map generated for one method and one participant. Longest gaze
+the method if they are looking for information such as the class    time (red lines), long gaze time (orange lines), medium gaze time (yellow
+or data member declarations.                                        lines), short gaze time (light green lines), shortest gaze time but not zero
+   RQ3 Finding: All participants looked outside the scope of        (green lines), and zero gaze time (uncolored lines).
+the assigned methods at least once during the experiment. On
+average, they spend 94.23% of their time examining locations
+within the assigned method and 5.77% of the time is spent           line with the lowest gaze time has a rank equal to n, where
+examining other locations outside the scope of the method.          n is the number of lines in a data sample. Second, for the
+All five experts examine data members at least once and three       same data sample, we adjust the gaze time for each source
+experts read the class declarations. Searching for them by          code line based on the number of identifiers. For example,
+scrolling is more common than using the search option.              if a participant spent 100ms reading a line and the line has
+                                                                    4 identifiers, then the adjusted duration is 100/4 = 25ms.
+D. RQ4 Results: Source Lines Read / Used in Summarization           Third, each line is assigned another rank based on the adjusted
+   For this RQ, we choose to focus on tasks completed by            gaze time as we did with the actual time in the first step.
+experts only because we observe that experts write concise and      Finally, the original list is compared to the adjusted duration
+high-quality summaries compared to novices. Although the            using Kendall’s tau coefficient (τ), that evaluates the degree
+analysis of novices data can help understand students reading       of concordance between two sets of ranked data [47, 48] -
+behavior and eventually can contribute in better teaching           a suitable test in this case. If Kendall’s tau is 1, then the
+students, such analysis is out of the scope of this paper. Unlike   two lists are identical, -1 indicates that one is the reverse of
+RQ1 and RQ2 that groups all terms for each statement type           the other. Since critical value of Kendall’s tau depends on n
+(i.e., control flow), we study each line as whole in RQ3.           (number of lines in each sample), samples that has less than
+Therefore, for each source code line read by an expert, the         five lines are eliminated because n is not large enough [48].
+total gaze time is computed. The gaze time of a line is the         We found significant agreement between the line ranks of the
+total amount of time spent reading any term on that line. This      actual gaze time and adjusted gaze time in 90% (61 out of 68)
+analysis is done on 69 samples (spanning a total of 1168 lines      of the samples. Additionally, we found insignificant agreement
+read by all experts).                                               between the line ranks of the actual gaze time and adjusted
+   We observed that 15% of lines with no gaze data are lines        gaze time in 10% (7 out of 68) of the samples. This strongly
+with no identifiers (e.g., a open/close brace, return false; or     suggests that the length of a line does not significantly impact
+having the ‘else’ keyword) as no higher level information can       the amount of time spent reading the line. Consequently, for
+be obtained from them. However, a high number of identifiers        each line, we can use either the actual gaze time or the adjusted
+on a line may not lead directly to long gaze time. See Figure       gaze time. We use actual gaze time for the rest of the analysis.
+1 for a heat map (a common graphical representation of eye-            We analyze expert summaries in order to understand what
+tracking data) of one sample. Although line 18 is the shortest      developers seek in a method summary. These observations can
+line in the method, this participant spent about 3, 832ms on        ultimately produce recommendations and guidelines regarding
+this line which is 6% of the total gaze time. On the other          source code summarization and source code comprehension.
+hand, longer lines could have shorter gaze times such as line       Lines that experts used to write their summaries are first
+6 (933ms) and line 11 (1, 832ms).                                   manually identified. Then, the gaze time of these lines are
+   We first study the impact of line length on the gaze time        analyzed. Figure 2 demonstrates the three steps performed
+to determine if we need to adjust the gaze time based on            for the method shown in Figure 1. We first determine lines
+line length to make a fair comparison for analysis. First, for      used to write the summary for a method. This is done
+each data sample, according to the gaze time, lines are sorted      by manually examining the expert summaries. Consider the
+in decreasing order (from largest to smallest). Therefore, the      method presented in Figure 1. The summary written by expert
+line with the largest gaze time has a rank of one and the           A is “Deploys units for the game, communicating this over
+                            Fig. 2. Illustrating the three steps performed to answer RQ 4 for the method in Figure 1.
+
+
+
+a network connection”. The two words ‘Deploys’ and ‘units’                unique lines from 15 methods. One of the authors manually
+appear together in the signature on line 1 and 2. The main verb           examined all 124 unique lines used by experts to determine
+‘deploy’ also appears on line 17. Therefore, the list of lines            the type of these lines. We found that 119 (out of 124) of
+used are: lines 1, 2 and 17. The second part of the summary               lines used by experts belong to one of the summary units
+“communicating this over a network connection” suggests the               proposed in previous literature on source code summarization
+usage of line 17 although none of the words are directly used             [6, 7, 11, 12, 17]. Summary units are sets of source code lines
+from the method call in line 17. The summary of the same                  that are used to generate an automatic summary of the method.
+method written by expert B is “Transmit game unit object                  These proposed tools select the lines from the method based
+data positioning over the network and flush the connection”               on linguistic and/or static analysis. Table IV demonstrates
+which suggests the use of lines 5, 17 and 18. Line 5 is added             summary unit categories along with summarization lines in-
+because this participant specifies that type and the name of              troduced in the literature and how many of the lines used by
+the data being sent “object data”. Finally, both experts use the          experts (in our study) fall into these categories. For example,
+word “game” although it does not appear in the method. They               the method name is commonly used to summarize a method
+might have gained this information by reading the description             [7, 11, 17] as it describes the goal of a method. In the example
+of the system. Finally, if a phrase used by the developer is              shown in Fig. 1, the last void call summarization unit is used
+found on multiple lines (e.g., a call that appears three times in         (the main summary units are lines 17 and 18). Additionally,
+the method), the three lines are included in the lines-used list          one of the secondary summary units can be used to support
+as long as the gaze duration is greater than zero. Of the 1, 168          one of the main summary units. For example, line 5 - variable
+lines, 181 lines are used by 5 experts. On average, experts use           declaration - is used to add more information to line 17. We
+content from three lines to write their summaries for a method.           conclude that our findings validate the literature at a fine-
+   After these lines are determined, they are sorted in decreas-          grained level. The lines used by experts are actually the same
+ing order. Finally, a comparison is made to determine if lines            lines that past literature has proposed. [6, 7, 11, 12, 17].
+used (lines 1, 2 and 17 in our example) are lines that the expert            RQ4 Finding: We found strong evidence that the gaze time
+read. As shown in Figure 2, of the 20 lines, line 1 and 17 are            of a line can predict if a line should be in a method summary.
+the most read lines and line 2 is the fifth most read line. In            Our analysis reveals that developers tend to use source code
+this sample, for a used line to be in the top 30% read lines,             lines that they read the most (highest gaze time) when they
+the line should be in the (20 lines)/ 3 = 6th position or higher.         write their own summaries. We found that 46% of lines used
+Therefore, expert A wrote her summary using lines that she                are found in summaries written by at least two experts.
+read. These three steps are repeated for all 69 experts samples
+for the 181 lines used. We found that 70% (127 out of 181) of                                VII. T HREATS TO VALIDITY
+used lines are located in the top 30% of lines with the highest              Internal Validity: When a developer writes a summary for
+gaze time. 87% (157 out of 181 ) of used lines are located in             a method from a class, he/she may build some knowledge
+the top 50% of lines with the highest gaze time and finally               about the class. This might affect the time and the effort to
+100% of used lines are located in the top 86% of lines with               understand other methods from the same class. To mitigate
+the highest gaze time.                                                    this, each developer was asked to summarize methods from
+   A line from a method can appear more than once in the                  different unrelated classes. To avoid fatigue, we kept the num-
+set of 181 lines used if more than one expert used it. To                 ber of methods to be summarized to 15 with the goal of having
+examine if participants use similar lines, we analyze methods             the study completed in about an hour. To reduce the overhead
+that are summarized by at least two experts. 15 methods are               in browsing many systems, we limit the number of systems
+summarized by 3-5 experts who use 85 unique lines to write                for each developer to three. As developers mostly rely on
+their summaries. 54% of lines are used by one expert only and             comments to understand methods [4], we remove all comments
+46% of lines used by at least two experts. We interpret this as           from the source code (similar to the Rodeghero study). This
+experts tend to use similar lines but the level of details varies.        was necessary as the goal of the study is to examine source
+   RQ4 Discussion: In the list of 181 used lines, there are 124           code statements that developers focus on when they write
+                                                                   TABLE IV
+         T HE TYPE OF SOURCE CODE LINES USED BY EXPERTS TO WRITE THEIR SUMMARIES . T HESE LINES MATCH SOURCE CODE LINES PROPOSED BY THE
+                                             LITERATURE IN AUTOMATIC SUMMARIZATION / DOCUMENTATION
+
+               Category of Summary Unit                                               Statements Type                                                  Statement Subtype   # occurrences
+                   Method Signature         (1) Method Name and parameters. McBurney’14 [7], Rodeghero’14 [17], Abid’15 [11]                                                    13
+                                            (2) Last void call. Sridhara’10 [6]                                                                                                 15
+                                            (3) Same action (call name inside method body same as method name) Sridhara’10 [6]                                                  13
+                                                                                                                                                              call               9
+                                            (4) Modifying a data member by Abid’15 [11]
+                   Main Summary Units                                                                                                                     assignment             2
+                                                                                                                                                              call               4
+                                            (5) Modifying a parameter by Sridhara’11 [13], Abid’15 [11]
+                                                                                                                                                          assignment             0
+ Method Body
+
+
+
+
+                                            (6) Return. Sridhara’10 [6], Abid’15 [11]                                                                                            2
+                                                                                                                                                           If/switch            19
+                                            (7) Control flow that controls one of the main summary units Sridhara’10 [6], Abid’15 [11]
+                                                                                                                                                             Loops               2
+                                                                                                                                                              call               6
+                 Secondary summary units    (8) Modifying the Returned value by Sridhara’10 [6], Abid’15 [11]
+                                                                                                                                                          assignment            12
+                                                                                                                                                              Call              16
+                                            (9) Variable declaration and/or initialization that used in one of the main summary unit Sridhara’10 [6]
+                                                                                                                                                          assignment             2
+                   Additional Information   (10) Variable declaration and/or initialization used in one of the secondary summary units. Abid’15 [11]        if-stmt              4
+                                            (11) Void-call (calls that don’t return a value)                                                                                     3
+                          Others
+                                            (12) If-statement (predicate)                                                                                                        2
+                                                                                         Total                                                                                  124
+
+
+
+their own summaries. Construct Validity: Developers have                                            tasks [36], not all lines are equally important. For example,
+different IDE environment preferences that might affect their                                       developers tend to ignore catch blocks as they are typically
+performance. We kept the default barebones Eclipse syntax                                           not important for summarization. Furthermore, experts tend to
+highlighting preferences for all participants. In addition, code                                    focus on about 14% of a method to write a summary. This
+folding was not allowed to reduce any confounding effects.                                          finding can be used by folding those lines that are commonly
+None of the participants complained about this setting or the                                       ignored by experts. Additionally, during a maintenance task,
+highlighting used. Lines identified in RQ4 are determined by                                        the automatic documentation summary of a method can be
+one of the authors. Future work will involve more than one                                          displayed, then using eye-tracking data, one can examine if
+author and will report agreement. External validity refers to                                       developers tend to read and/or use the provided documentation.
+generalizing the results to the target population. Our experts
+were comparable to industry programmers. To support conclu-                                                        IX. C ONCLUSIONS AND F UTURE W ORK
+sion validity, we use appropriate statistical tests to match our                                       This paper presents an eye-tracking study of 18 experts and
+data assumptions, i.e., using Wilcoxon signed-rank for paired                                       novices reading and summarizing Java methods. The study
+non-parametric data and also report effect sizes.                                                   uses methods of different sizes to investigate their influence
+                                                                                                    on developers’ reading behavior. The results reveal that the
+                                     VIII. I MPLICATIONS
+                                                                                                    signature of a method is statistically less visited by experts and
+   These results can be directly applied to automatic sum-                                          novices. They also spend a significant amount of gaze time and
+marization approaches. 13 out of 26 (See Table IV) of the                                           have higher gaze visits when they read call terms. On the other
+signatures are used by at least one expert to write their                                           hand, both experts and novices tend to revisit control flow
+summaries. We observe that the expert starts the summary                                            terms rather than read them for a long period. Furthermore,
+with the verb from the signature to explain the main action                                         analyzing lines that experts read during summarization can
+of the method. Then, adds more details from a set of selected                                       uncover important lines for automatic summarization.
+calls and other lines from the body. We suggest the following                                          The main take home message of the results are that con-
+guidance to summarization tool authors.                                                             ducting eye-tracking studies on a single screen of code does
+   • Use the signature to reflect the main action of a method.                                      not always generalize to how a developer behaves in a real
+   • Select one or more main summary units (see Table IV).                                          work environment. This has been a limitation of eye-tracking
+      Last void call is the main summary unit that is often                                         software but with improvements in infrastructure, researchers
+      used (15 times) by experts as methods often perform a                                         can now study developers in a more realistic setting resulting
+      set of steps to accomplish a final action [6]. Therefore,                                     in better understanding of how they actually solve software
+      we advise to include the last void call of a method to                                        engineering tasks. As future work, we plan to replicate other
+      the method summary. The same action [6] summary unit                                          eye tracking studies to see if the results generalize when con-
+      should also be used when applicable. Finally, one can                                         ducted outside a constrained single-screen study environment.
+      distinguish between three types of summary units: (4)                                         nabd
+      modifying a data member; (5) modifying a parameter;
+      and (6) returning a computed value.                                                                                          ACKNOWLEDGMENT
+   • Select one or more secondary summary units related to                                             We are grateful to all the participants who took part in
+      the selected main summary unit as shown in Table IV.                                          this study. This work is supported in part by grants from the
+   The results of this study can benefit other kinds of summa-                                      National Science Foundation under grant numbers CCF 18-
+rization such as automatic code folding. During maintenance                                         55756 and CCF 15-53573.
+                        R EFERENCES                                   ference on Software Engineering, ser. ICSE ’11, 2011,
+ [1] A. J. Ko, B. A. Myers, M. J. Coblenz, and H. H.                  pp. 101–110.
+     Aung, “An exploratory study of how developers seek,         [13] ——, “Generating parameter comments and integrating
+     relate, and collect relevant information during software         with method summaries,” in 2011 IEEE 19th Interna-
+     maintenance tasks,” IEEE Transactions on Software En-            tional Conference on Program Comprehension, 2011, pp.
+     gineering, vol. 32, no. 12, pp. 971–987, 2006.                   71–80.
+ [2] T. D. LaToza, G. Venolia, and R. DeLine, “Maintaining       [14] S. Badihi and A. Heydarnoori, “Crowdsummarizer: Au-
+     mental models: A study of developer work habits,” in             tomated generation of code summaries for java programs
+     Proceedings of the 28th International Conference on              through crowdsourcing,” IEEE Software, vol. 34, no. 2,
+     Software Engineering, ser. ICSE ’06, 2006, pp. 492–501.          pp. 71–80, 2017.
+ [3] B. Fluri, M. Wursch, and H. C. Gall, “Do code and           [15] Y. Wan, Z. Zhao, M. Yang, G. Xu, H. Ying, J. Wu,
+     comments co-evolve? on the relation between source               and S. Y. Philip, “Improving automatic source code
+     code and comment changes,” in 14th Working Conference            summarization via deep reinforcement learning,” in The
+     on Reverse Engineering (WCRE 2007), 2007, pp. 70–79.             33rd IEEE/ACM International Conference on Automated
+ [4] M. E. Crosby and J. Stelovsky, “How do we read                   Software Engineering, 2018.
+     algorithms? a case study,” Computer, vol. 23, no. 1, pp.    [16] L. Moreno and A. Marcus, “Automatic software sum-
+     25–35, 1990.                                                     marization: the state of the art,” in 2017 IEEE/ACM
+ [5] S. C. B. de Souza, N. Anquetil, and K. M. de Oliveira, “A        39th International Conference on Software Engineering
+     study of the documentation essential to software mainte-         Companion (ICSE-C), 2017, pp. 511–512.
+     nance,” in Proceedings of the 23rd Annual International     [17] P. Rodeghero, C. McMillan, P. W. McBurney, N. Bosch,
+     Conference on Design of Communication: Documenting               and S. D’Mello, “Improving automated source code sum-
+     &Amp; Designing for Pervasive Information, ser. SIG-             marization via an eye-tracking study of programmers,”
+     DOC ’05, 2005, pp. 68–75.                                        in Proceedings of the 36th International Conference on
+ [6] G. Sridhara, E. Hill, D. Muppaneni, L. Pollock, and              Software Engineering, ser. ICSE 2014, 2014, pp. 390–
+     K. Vijay-Shanker, “Towards automatically generating              401.
+     summary comments for java methods,” in Proceedings of       [18] T. R. Shaffer, J. L. Wise, B. M. Walters, S. C. Müller,
+     the IEEE/ACM International Conference on Automated               M. Falcone, and B. Sharif, “itrace: Enabling eye tracking
+     Software Engineering, ser. ASE ’10, 2010, pp. 43–52.             on software artifacts within the ide to support software
+ [7] P. W. McBurney and C. McMillan, “Automatic docu-                 engineering tasks,” in Proceedings of the 2015 10th Joint
+     mentation generation via source code summarization of            Meeting on Foundations of Software Engineering, ser.
+     method context,” in Proceedings of the 22Nd Interna-             ESEC/FSE 2015, 2015, pp. 954–957.
+     tional Conference on Program Comprehension, ser. ICPC       [19] D. T. Guarnera, C. A. Bryant, A. Mishra, J. I. Maletic,
+     2014, 2014, pp. 279–290.                                         and B. Sharif, “itrace: Eye tracking infrastructure for
+ [8] S. Haiduc, J. Aponte, L. Moreno, and A. Marcus, “On              development environments,” in Proceedings of the 2018
+     the use of automated text summarization techniques               ACM Symposium on Eye Tracking Research & Applica-
+     for summarizing source code,” in 2010 17th Working               tions, ser. ETRA ’18, 2018, pp. 105:1–105:3.
+     Conference on Reverse Engineering, 2010, pp. 35–44.         [20] Z. Sharafi, Z. Soh, and Y. Guéhéneuc, “A systematic
+ [9] B. P. Eddy, J. A. Robinson, N. A. Kraft, and J. C.               literature review on the usage of eye-tracking in soft-
+     Carver, “Evaluating source code summarization tech-              ware engineering,” Information and Software Technology,
+     niques: Replication and expansion,” in 2013 21st Interna-        vol. 67, pp. 79 – 107, 2015.
+     tional Conference on Program Comprehension (ICPC),          [21] B. Sharif, J. Meinken, T. Shaffer, and H. Kagdi, “Eye
+     2013, pp. 13–22.                                                 movements in software traceability link recovery,” Em-
+[10] L. Moreno, J. Aponte, G. Sridhara, A. Marcus, L. Pol-            pirical Software Engineering, vol. 22, no. 3, pp. 1063–
+     lock, and K. Vijay-Shanker, “Automatic generation of             1102, Jun 2017.
+     natural language summaries for java classes,” in 2013       [22] Z. Sharafi, T. Shaffer, B. Sharif, and Y. Guéhéneuc,
+     21st International Conference on Program Comprehen-              “Eye-tracking metrics in software engineering,” in 2015
+     sion (ICPC), 2013, pp. 23–32.                                    Asia-Pacific Software Engineering Conference (APSEC),
+[11] N. J. Abid, N. Dragan, M. L. Collard, and J. I. Maletic,         2015, pp. 96–103.
+     “Using stereotypes in the automatic generation of natural   [23] U. Obaidellah, M. Al Haek, and P. C.-H. Cheng, “A
+     language summaries for c++ methods,” in 2015 IEEE                survey on the usage of eye-tracking in computer pro-
+     International Conference on Software Maintenance and             gramming,” ACM Comput. Surv., vol. 51, no. 1, pp. 5:1–
+     Evolution (ICSME), 2015, pp. 561–565.                            5:58, Jan. 2018.
+[12] G. Sridhara, L. Pollock, and K. Vijay-Shanker, “Automat-    [24] T. Barik, J. Smith, K. Lubick, E. Holmes, J. Feng,
+     ically detecting and describing high level actions within        E. Murphy-Hill, and C. Parnin, “Do developers read
+     methods,” in Proceedings of the 33rd International Con-          compiler error messages?” in Proceedings of the 39th
+                                                                      International Conference on Software Engineering, ser.
+     ICSE ’17, 2017, pp. 575–585.                                      Engineering, ser. ESEC/FSE 2015, 2015, pp. 202–213.
+[25] R. Bednarik and M. Tukiainen, “An eye-tracking method-       [36] K. Kevic, B. Walters, T. Shaffer, B. Sharif, D. C. Shep-
+     ology for characterizing program comprehension pro-               herd, and T. Fritz, “Eye gaze and interaction contexts
+     cesses,” in Proceedings of the 2006 Symposium on Eye              for change tasks - observations and potential,” Journal
+     Tracking Research &Amp; Applications, ser. ETRA ’06,              of Systems and Software, vol. 128, pp. 252–266, 2017.
+     2006, pp. 125–132.                                           [37] X. Wang, L. Pollock, and K. Vijay-Shanker, “Developing
+[26] ——, “Temporal eye-tracking data: Evolution of debug-              a model of loop actions by mining loop characteristics
+     ging strategies with multiple representations,” in Pro-           from a large code corpus,” in 2015 IEEE International
+     ceedings of the 2008 Symposium on Eye Tracking Re-                Conference on Software Maintenance and Evolution (IC-
+     search &#38; Applications, ser. ETRA ’08, 2008, pp.               SME), 2015, pp. 51–60.
+     99–102.                                                      [38] ——, “Automatically generating natural language de-
+[27] T. Busjahn, R. Bednarik, A. Begel, M. Crosby, J. H.               scriptions for object-related statement sequences,” in
+     Paterson, C. Schulte, B. Sharif, and S. Tamm, “Eye                2017 IEEE 24th International Conference on Software
+     movements in code reading: Relaxing the linear order,”            Analysis, Evolution and Reengineering (SANER), 2017,
+     in 2015 IEEE 23rd International Conference on Program             pp. 205–216.
+     Comprehension, 2015, pp. 255–265.                            [39] N. Dragan, M. L. Collard, and J. I. Maletic, “Reverse
+[28] P. Rodeghero and C. McMillan, “An empirical study                 engineering method stereotypes,” in 2006 22nd IEEE In-
+     on the patterns of eye movement during summariza-                 ternational Conference on Software Maintenance, 2006,
+     tion tasks,” in 2015 ACM/IEEE International Symposium             pp. 24–34.
+     on Empirical Software Engineering and Measurement            [40] ——, “Automatic identification of class stereotypes,” in
+     (ESEM), vol. 00, 2015, pp. 1–10.                                  2010 IEEE International Conference on Software Main-
+[29] A. Jbara and D. G. Feitelson, “How programmers read               tenance, 2010, pp. 1–10.
+     regular code: a controlled experiment using eye tracking,”   [41] N. Abid, N. Dragan, M. L. Collard, and J. I. Maletic,
+     Empirical Software Engineering, vol. 22, no. 3, pp.               “The evaluation of an approach for automatic generated
+     1440–1477, Jun 2017.                                              documentation,” in 2017 IEEE International Conference
+[30] S. Lee, D. Hooshyar, H. Ji, K. Nam, and H. Lim, “Mining           on Software Maintenance and Evolution (ICSME), 2017,
+     biometric data to predict programmer expertise and task           pp. 307–317.
+     difficulty,” Cluster Computing, Jan 2017.                    [42] P. W. Mcburney and C. Mcmillan, “An empirical study
+[31] H. Uwano, M. Nakamura, A. Monden, and K.-i. Mat-                  of the textual similarity between source code and source
+     sumoto, “Analyzing individual performance of source               code summaries,” Empirical Softw. Engg., vol. 21, no. 1,
+     code review using reviewers’ eye movement,” in Pro-               pp. 17–42, Feb. 2016.
+     ceedings of the 2006 Symposium on Eye Tracking Re-           [43] K. Rayner, “Eye movements in reading and information
+     search &Amp; Applications, ser. ETRA ’06, 2006, pp.               processing: 20 years of research,” vol. 124, no. 3, pp.
+     133–140.                                                          372–422, 00 1998.
+[32] B. Sharif, M. Falcone, and J. I. Maletic, “An eye-           [44] P. Olsson, “Real-time and offline filters for eye tracking,”
+     tracking study on the role of scan time in finding source         p. 42, 2007.
+     code defects,” in Proceedings of the Symposium on Eye        [45] M. L. Collard, M. J. Decker, and J. I. Maletic,
+     Tracking Research and Applications, ser. ETRA ’12,                “Lightweight transformation and fact extraction with the
+     2012, pp. 381–384.                                                srcml toolkit,” in 2011 IEEE 11th International Working
+[33] A. Begel and H. Vrzakova, “Eye movements in code                  Conference on Source Code Analysis and Manipulation,
+     review,” in Proceedings of the Workshop on Eye Move-              2011, pp. 173–184.
+     ments in Programming, ser. EMIP ’18, 2018, pp. 5:1–5:5.      [46] B. Liblit, A. Begel, and E. Sweetser, “Cognitive per-
+[34] P. Rodeghero, C. Liu, P. W. McBurney, and C. McMillan,            spectives on the role of naming in computer programs,”
+     “An eye-tracking study of java programmers and applica-           in Proceedings of the 18th Annual Psychology of Pro-
+     tion to source code summarization,” IEEE Transactions             gramming Workshop, ser. PPIG ’06, Brighton, United
+     on Software Engineering, vol. 41, no. 11, pp. 1038–1054,          Kingdom, 2006.
+     2015.                                                        [47] S. Siegel, Nonparametric statistics for the behavioral
+[35] K. Kevic, B. M. Walters, T. R. Shaffer, B. Sharif, D. C.          sciences, ser. McGraw-Hill series in psychology.
+     Shepherd, and T. Fritz, “Tracing software developers’        [48] H. Abdi. (2007) The kendall rank correlation
+     eyes and interactions for change tasks,” in Proceedings of        coefficient. [Online]. Available: http://www.utdallas.
+     the 2015 10th Joint Meeting on Foundations of Software            edu/∼herve/Abdi-KendallCorrelation2007-pretty.pdf
+

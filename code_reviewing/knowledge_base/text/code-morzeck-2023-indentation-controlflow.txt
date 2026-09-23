@@ -1,0 +1,713 @@
+         Indentation in Source Code: A Randomized Control Trial on the
+          Readability of Control Flows in Java Code with Large Effects
+
+               Johannes Morzeck, Stefan Hanenberg1                a
+                                                                      , Ole Werger1    b
+                                                                                           , Volker Gruhn1     c
+                                 1 University of Duisburg–Essen, Essen, Germany
+
+                johannes.morzeck@gmail.com, {stefan.hanenberg, ole.werger, volker.gruhn}@uni-due.de
+
+
+
+
+Keywords:     Programming, Indentation, Empirical Study, User Study
+
+Abstract:     Indentation is a well-known principle for writing code. It is taught to progammers and applied in software
+              projects. The typical argument for indentation is that it makes code more readable. However, taking a look
+              into the literature reveals that the scientific foundatation for indentation is rather weak. The present work in-
+              troduces a four factor experiment with focus on indentation in control flows. In the experiment, 20 participants
+              (10 students and 10 professional developers) were asked to determine the results of given Java code consisting
+              of if-statements and printouts. Measured was the time required to answer the question correctly. The experi-
+              ment reveals that indentation has a strong (p < .001) and large (η2p = .832) positive effect on the readability in
+              terms of answering time. On average participants required 179% more time on non-indented code to answer
+              the question (where the different treatment combinations varied on average between 142% and 269%). Addi-
+              tionally, participants were asked about their subjective impressions on the tasks using the standardized NASA
+              TLX questionnaire (using the categories mental demand, performance, effort, and frustration). It turned out
+              that participants subjectively perceived non–indented code with respect to all categories more negative (p <
+              .001, .4 < η2p < .79).
+
+
+
+
+1       Introduction                                              dentation is given. The same statements hold for other
+                                                                  languages such as regular expressions, etc. as well –
+Indentation is a known and often applied technique                languages that are today massively used (and often in-
+to format source code. Taking a look into tutori-                 tegrated in modern programming languages).
+als for popular programming languages such as Java1                    Given the fact that indentation is widely spread at
+or C++2 shows that source code is mostly indented.                least for popular programming languages, it is reason-
+And taking a look into modern IDEs such as Intel-                 able to ask whether there is a need for another empiri-
+liJ, Visual Studio, etc. shows that indentation is mas-           cal study. This question gets more obvious taking into
+sively considered there as well, either in terms of               account that indentation is quite an old technique – the
+auto-formatting tools or simply in terms of user inter-           first study by Weissman on that topic can be found in
+faces that indent code whenever it seems appropriate.             1974 (Weissman, 1974). But it turns out that the sci-
+     Considering this, one easily forgets that common             entific literature does not provide much evidence for
+indentation guidelines are not naturally given in lan-            positive indentation effects: the authors of the present
+guages. For example, common indentation guidelines                paper are aware of only nine publications that explic-
+for languages such as SQL are not as widely spread                itly focus on indentation. While for one publication
+as for the previously mentioned programming lan-                  it is unclear whether or not an effect was found, three
+guages: just taking a look into SQL tools such as                 publications found a positive effect of indentation –
+PGAdmin3 shows that no automatic support for in-                  five did not find an effect. And one publication that
+                                                                  did not find an effect is a replication of a study that
+    a                                                             found an effect. Hence, one might say that so far only
+         https://orcid.org/0000-0001-5936-2143
+    b                                                             two publications showed a (positive) effect.
+         https://orcid.org/0009-0007-3226-1271
+    c                                                                  But for empirical studies it is not only a question
+         https://orcid.org/0000-0003-3841-2548
+    1 https://docs.oracle.com/javase/tutorial/                    of whether the effect exists. The question is also,
+    2 https://www.w3schools.com/CPP/default.asp                   how large it is. And it turns out that only one of
+    3 https://www.pgadmin.org/
+the two publications report an effect size.4 This re-       beginning and ending of the if-statements.
+maining study by Albayrak and Davenport from 2010               It turned out that indentation has a strong (p <
+(Albayrak and Davenport, 2010) measured the num-            .001) and large (η2p = .832) positive effect on the read-
+ber of functional defects found by developers depend-       ability in terms of answering time. On average partici-
+ing on whether or not indentation was present. While        pants required 179% more time on non-indented code
+the difference in means was 25%, i.e., indentation in-      to answer the questions in comparison to indented
+creased the number of found defects by 25%, the ef-         code (where the different treatment combinations var-
+fect was small (η2 =.047). However, the study does          ied on average between 142% and 269%). Addi-
+not give any details about the given code, the defects      tionally, participants were asked about their subjec-
+that were to be found, or the defects that were more        tive impressions using the standardized NASA TLX
+often found in the presence of indentation. From that       questionnaire (Hart and Staveland, 1988). In the used
+perspective, one can argue that despite its popularity,     categories mental demand, performance, effort, and
+indentation has been hardly studied so far (9 publica-      frustration participants considered non-indented code
+tions known to the authors), or at least that there is      more negative (p < .001, .4 < η2p < .79). The partici-
+not much evidence for a positive effect of indentation      pants’ background (students or professional develop-
+(three publications, for one of them a replication did      ers) had no effect on the dependent variable.
+not show comparable results), but even among those              Altogether, we see the contribution of the present
+studies that found an effect, the reported effect is very   experiment in two ways. First, it answers a ques-
+small (just on single study with η2 =.047).                 tion about the effect of indentation (with the answer
+    Programmers might argue that this does not mat-         that the effect exists and is large in control flow with
+ter: Indentation should be simply used because the          multiple conditionals). This is from our perspective
+costs of indentation seem negligible, no study has          urgently missing in the literature, taking the funda-
+shown any negative effect of indentation, and tools for     mental characteristics of indentation in programming
+indentation are available. Still, we consider such ar-      into account. Second, the experiment shows that the
+gument as problematic. First, we think it is necessary      effort for studing programming related technologies
+in computer science education not only to convince          does neither necessarily require complex experimen-
+students to use some technology because it is avail-        tal designs nor huge effort. Running such studies (and
+able, but to give students evidence that the application    getting answers) would help the field of software sci-
+of a certain technology helps. Second, we need to take      ence to develop a stable background.
+into account that for tool builders even the develop-           Finally, we think the study could encourage re-
+ment of a rather simple tool such as a code formatter       searchers to address even simple questions or simple
+is an investment – and for all investments there should     technologies in empirical studies. Such studies should
+be the desire to determine upfront whether such an in-      not be executed for the sake of running studies, but for
+vestment has a positive effect. Third, we also think        the sake of getting documented evidence about effects
+that developers should not just rely on tools because       of such technologies.
+they exist, but because they do help. I.e., the applica-
+tion of a technology should not be based upon a com-
+mon belief in such technology, but should be based on       2    On Indentation
+documented evidence.
+    The present paper introduces a randomized con-
+                                                            The word indentation decribes an approach to orga-
+trol trial that studies indentation from the perspec-
+                                                            nize source code in a way that some space in the be-
+tive of readability of control flows in programs. In
+                                                            ginning of a line of code is used in order to emphasize
+the four-factor experiment (with the factors indenta-
+                                                            some code fragments (such as bodies of loops, bodies
+tion, skipping, brackets, and background) Java code
+                                                            of conditions, etc.).
+snippets were given participants to read. Each snippet
+                                                                Figure 1 illustrates a simple Java program that
+consisted just of if- and print statements. The partici-
+                                                            prints out the arguments passed to the program or
+pants were asked what the output of the program was
+                                                            "No args" in case no argument is passed. The in-
+and the time required to give the correct answer was
+                                                            dented version highlights that main is part of the class
+measured. The code snippets were chosen with re-
+                                                            ArgumentPrinter: all lines that have two additional
+spect to whether parts of the code could be skipped
+                                                            white spaces in the beginning represent a field or a
+and whether or not brackets were used to mark the
+                                                            method in the class. Furthermore, it emphasizes what
+    4 Evidence standards such as CONSORT (Moher et al.,
+                                                            code belongs to a method: all lines that have four or
+                                                            more white spaces in the beginning belong to a cer-
+2010) consider the reporting of effect sizes as a minimum
+requirement for quantitative studies.                       tain method. And within methods, additional space
+ 1   / / With i n d e n t a t i o n                                            ments were executed in the 70s and 80s and and it is
+ 2   class ArgumentPrinter {                                                   not easy to get details about them. Additionally, there
+ 3      p u b l i c s t a t i c v o i d main ( S t r i n g [ ] a r g s ) {     are indicators for experiments in the literature where
+ 4         i f ( argsl . length ()==0) {
+                                                                               it is unclear to the present authors whether or not they
+ 5              p r i n t ( "No a r g s " ) ;
+ 6         } else {
+                                                                               can be considered. For example, Vessey and Weber
+ 7             f o r ( i n t i = 0 ; i < a r g s . l e n g t h ( ) ; i ++) {   gave an overview of 12 experiments in programming
+ 8                  p r i n t ( " Arg : " + a r g s [ i ] ;                    in 1984 (Vessey and Weber, 1984) and mentioned two
+ 9             }                                                               experiments by Sime et al. (Sime et al., 1977; Sime
+10         }                                                                   et al., 1973) that have according to Vessey and We-
+11      }
+                                                                               ber indentation as a controlled variable. However,
+12   }
+13
+                                                                               a closer look at these experiments reveals that it re-
+14   / / Without i n d e n t a t i o n
+                                                                               mains at least unclear to what extent indentation was
+15   class ArgumentPrinter {                                                   indeed controlled.5 Consequently, we do not consider
+16   p u b l i c s t a t i c v o i d main ( S t r i n g [ ] a r g s ) {        these works in the following.
+17   i f ( argsl . length ()==0) {
+18   p r i n t ( "No a r g s " ) ;
+                                                                               Table 1: Experiments on indentation (some publications
+19   } else {
+                                                                               contain more than one experiment). Column Effect de-
+20   f o r ( i n t i = 0 ; i < a r g s . l e n g t h ( ) ; i ++) {
+                                                                               scribes whether or not an effect was detected, column Size
+21   p r i n t ( " Arg : " + a r g s [ i ] ;
+                                                                               describes whether traditional effect sizes or at least differ-
+22   }
+                                                                               ences between groups were documented.
+23   }
+                                                                                No    Pub             Experiment              Effect    Size
+24   }                                                                          1      1    Weissman 1974 (1)                  no         -
+25   }                                                                          2      1    Weissman 1974 (2)                  no         -
+Figure 1: Simple Java code example with and without in-                         3      1    Weissman 1974 (3)                unclear     no
+                                                                                4      2    Shneiderman, McKay 1976            no         -
+dentation. Details such as System.out.println are ab-                           5      3    Love 1977                          no         -
+breviated by print.                                                             6      4    Norcio 1982 (1)                    yes       no
+                                                                                7      4    Norcio 1982 (2)                    yes       no
+illustrates that some code belongs to another syntacti-                         8      5    Norcio, Kerst                      no         -
+cal element. For example, the indentation of the line                           9      6    Miara et al. 1983                  yes     unclear
+                                                                                            (replication by Bauer et al.)
+following the if-statement makes clear that the line is                          10    7    Kesler et al. 1984                 no        -
+part of the body and the indentation of the line follow-                         11    8    Albayrak and Davenport 2010        yes      yes
+ing the for-statement makes explicit that it belongs                             12    9    Bauer et al. 2019                  no        -
+                                                                                            (replication of Kesler et al.)
+to the loop’s body. It seems that non-indented code
+makes such relationships harder to detect.
+    Apart from the question how many whitespaces                                   Table 1 summarizes the experiments on indenta-
+or tabs should be used for indentation, different pro-                         tion we are aware of.
+gramming styles differ with respect to what code                                   In 1974, Weissmann (Weissman, 1974) reported
+should be indented. For example, in Java there are                             different experiments while some of them also stud-
+styles where opening brackets appear in a new line                             ied indentation. A first experiment using the pro-
+after an if-statement (without additional indentation).                        gramming language PL/I on the programs Quicksort
+There are others, where the opening brackets appear                            and “Wirth’s Eight Queens” was executed on 16 stu-
+at the end of a line. And finally there are program-                           dents. It is not 100% clear what the response variable
+ming languages where indentation is connected to the                           in the experiment was, because the experiment pro-
+language’s semantics. Examples for such languages                              tocol just mentions that the participants were “asked
+are Python or Haskell (in contrast to, for example,                            for a self-evaluation” (Weissman, 1974, p. 95). But
+Java or C++).                                                                  whatever the dependent variable was, Weissman re-
+                                                                               ported that the experiment did not reveal significant
+                                                                               results. A second experiment studied different pro-
+3    Related Work                                                              grams (Quicksort and Postfix) in the programming
+                                                                               language Algol on 48 students. Again, Weissman
+While there are countless resources on different code                              5 Both experiments by Sime et. al considered if state-
+styles, empirical studies on them in general, respec-                          ments where the if-, then-, and else-clause was or was not
+tively studies on indentation in particular are quite                          separated by line breaks. While we see that this has defini-
+rare. Actually, identifying related work on indenta-                           tively something to do with code formatting, we do not
+tion is not as trivial as it seems. A number of experi-                        think that these experiments focus much on indentation but
+                                                                               rather on line breaks.
+reported that with respect to indentation no statisti-      number of different treatments were considered (doc-
+cal differences were found (Weissman, 1974, p. 97).         umentation, segmentation into logic boundaries) and
+And finally, one experiment was performed again on          one additional treatment was indentation. It turned
+PL/I on the programs Heapsort and “Shortest Paths           out that indentation was no significant factor.
+in a Graph” using 24 participants: “The subjects                In 1983, Miara et al. (Miara et al., 1983) per-
+were given five minutes to read the program. They           formed an experiment on 86 participants with seven
+were next asked for a self-evaluation and given fifteen     different versions of the same Pascal program (with
+minutes for a detailed study, using any method they         different kinds of indentation) taken from a textbook.
+wished, and a quiz. They were then asked for a second       The dependent variable was a comprehension quiz
+self-evaluation, and given twenty minutes to make two       consisting of 13 questions. Additionally, the partic-
+specific modifications to the program. Finally, they        ipants were asked to give a subjective rating. The re-
+were given ten minutes for a third self-evaluation and      sults showed a strong effect of indentation (p<.05).
+a second quiz.” (Weissman, 1974, p. 131). Weissman          Unfortunately, it cannot be derived from the paper
+reported that “a paragraphed listing was significantly      what the effect is and taking a closer look into the
+better than an unparagraphed listing on the first self-     graphical representation of the results (Miara et al.,
+evaluation”, but the report did not mention any effect      1983, p. 866) gives the impression that an indentation
+on the other self-evaluations nor on the program mod-       level of 2 had probably a positive effect (in compari-
+ifications which makes it unclear whether or not the        son to no indentation), while an indentation level of 6
+experiment could be interpreted as a positive effect        rather had a negative effect.
+for indentation. Finally, one should take into account          In 1984, Kesler et al. found no significant effect of
+that even a possible positive effect is only a matter of    indentation in their study (Kesler et al., 1984). 72 stu-
+the subjective self-evaluation of the participants.         dents received 3 versions of Pascal programs (no in-
+    In 1976, Shneiderman and McKay reported on              dentation, excessive indentation, and moderate inden-
+an experiment where participants were given an in-          tation). The participants were given a questionnaire
+dented and unindented PASCAL program and partici-           consisting of 10 questions. The number of correctly
+pants had to locate and repair bugs (Shneiderman and        answered questions was the dependent variable. The
+McKay, 1976). The dependent variable was credits            experiment did not show significant differences using
+for giving correct answers. The authors reported that       a commonly accepted alpha-level of .05.
+none of the main effects were significant.                      In 2010, Albayrak and Davenport divided 88 first
+    In 1977, a study by Love (Love, 1977) “also             year students into four groups with the focus on de-
+found no reliable improvement in a reconstruction           fects in indentation and naming on the detection of
+task for indented and unindented short Fortran pro-         functional defects. Each group received a different
+grams” (Sheil, 1981, p. 109).                               version of a comparable piece of code consisting of
+    In 1982, Norcio studied the effect of indentation       “about 100 LOC of Java source code” (Albayrak and
+in two trials executed on 70, respectively 60 partici-      Davenport, 2010). Each version contained six func-
+pants (Norcio, 1982). In each, participants were given      tional defects, but the versions differed with respect
+Fortan code containing a blank line that needed to be       to defects: one version did not contain any defect, one
+written. One of the variables in the experiment was         version contained ten naming defects, another version
+indentation. The dependent variable was the number          ten indentation defects and the final version contained
+of correct statements. The result with regard to inden-     four indentation defects and six naming defects. Each
+tation was “that groups with indented programs and          group’s task was to detect functional defects. With
+interspersed documentation were able to supply sig-         respect to indentation defects it turned out that in
+nificantly more correct statements” (Norcio, 1982, p.       the presence of indentation defects 25% fewer func-
+118). The paper only reports the p-value but does not       tional defects were found (η2p = .832). Unfortunately,
+describe the differences between both groups. Hence,        no more details are given about the study, especially
+one can only state that the evidence for the difference     not the code nor the kind of functional defects to be
+is strong (p<.05), but it is not possible to state how      found. Additionally, no information was given about
+large the effect was. The second experiment was com-        the experiment protocol – but it seems plausible that
+parable to the first one. Again, indentation had a pos-     the same amount of time was given to all groups.
+itive effect (p<.008), but the effect size of indentation       In 2019, Bauer et al. replicated the experiment by
+was not documented.                                         Miara et al. on 39 participants where the original code
+    In 1983, Norcio and Kesler gave 60 participants         base was migrated to the language Java and addition-
+Fortran programs to read and memorize. Afterwards,          ally an eye tracker was used. Altogether, the authors
+the participants had to write the remembered code. A        summarize that the “results did not show any effect
+  1   c l a s s Example {                                                     1   c l a s s Example {                  c l a s s Example {
+  2                                                                           2
+  3   p u b l i c s t a t i c v o i d main ( S t r i n g [ ] a r g s ) {      3       . . . main ( . . . ) {           . . . main ( . . . ) {
+  4   System . o u t . p r i n t l n ( " H e l l o World " ) ;                4           int i = . . . args [ 0 ] ;   int i = . . . args [ 0 ] ;
+  5   i f ( args . length !=0) {                                              5           int j = . . . args [ 1 ] ;   int j = . . . args [ 1 ] ;
+  6   do_something_else ( ) ;                                                 6           i f ( i != j ) {             i f ( i != j ) {
+  7   }                                                                       7              i f ( j >10) {            i f ( j >10) {
+  8   }                                                                       8                  i f ( i <10) {        i f ( i <10) {
+  9                                                                           9                      print (5);        print (5);
+ 10   public s t a t i c void do_something_else ( ) {                        10                  } else {              } else {
+ 11   System . o u t . p r i n t l n ( " S o m e t h i n g e l s e " ) ;     11                      print (10);       print (10);
+ 12   }                                                                      12                  }                     }
+ 13                                                                          13              } else {                  } else {
+ 14   }                                                                      14                  print (12);           print (12);
+                                                                             15              }                         }
+Figure 2: Unindented code where the effect of indentation
+                                                                             16           } else {                     } else {
+is probably small.
+                                                                             17              i f ( i <10) {            i f ( i <10) {
+                                                                             18                  print (23)            print (23)
+of indentation depth on program comprehension, per-
+                                                                             19              } else {                  } else {
+ceived difficulty, or visual effort, indicating that in-                     20                  print (15)            print (15)
+dentation is indeed simply a matter of task and style,                       21              }                         }
+and do not provide support for program comprehen-                            22           }                            }
+sion” (Bauer et al., 2019, p. 163).                                          23       }                                }
+    In summary, one can say that if we accept the work                       24
+by Bauer et al. as a failed replication of the findings                      25   }                                    }
+
+by Miara et al., we could just state that two publica-                     Figure 3: Indented and unindented Java code where the ef-
+tions reveal a positive effect of indentation: the work                    fect of indentation is probably large. Details are omitted
+by Norcio and and the work by Albayrak and Daven-                          (...) or abbreveated (print).
+port. However, only Albayrak and Davenport report                          tom. The only moment where we expect that inden-
+how large the effect was, but the authors did not give                     tation has a potential effect is the if-statement’s body
+any details about the studied code.                                        in line 6. There developers have to infer on their own
+    Hence, our conclusion is that not much evidence                        whether or not the line belongs to the if-statement’s
+exists on the potential positive effect of indentation.                    body. But since no other lines follow within the same
+                                                                           method body we do not think that developers would
+                                                                           benefit much from indentation.
+4     On the Possible Effects of                                               We believe the situation is different in Figure 3.
+      Indentation                                                          When asking “what is the result of the program if it
+                                                                           is started with the parameters 5 and 5?” indentation
+Before describing an experiment, it is necessary to                        has probably a large effect. After someone becomes
+understand the initial considerations that led to the                      aware that both parameters are stored in local vari-
+experiment. Actually, we think that indentation has                        ables, one has to understand the functionality of the
+different effects for different tasks and for difference                   method which is determined by nested if-conditions.
+source codes.                                                              Reading such if-statements is from our perspective
+    Figure 2 illustrates a code example from which                         extraordinary hard without indentation, because even
+we do not believe that indentation has a major effect.                     if someone understands that an if-condition does not
+If we ask developers about the number of methods,                          hold, it becomes hard to determine the next line of
+we do not think that the absence of indentation has                        code that needs to be read.
+a measurable effect because we think that the empty                            We think it makes sense to compare the code from
+lines in line 2 and line 13 are good separators that help                  Figure 2 and 3. Our argument is that indentation mat-
+identify methods. Likewise, asking developers about                        ters for if-statements, but we still argue that it rather
+the number of lines of code is probably also not in-                       does not count for the code in Figure 2. The reason is
+fluenced by indentation. Also, we think that asking                        that the body of the if-statement in Figure 2 is rather
+developers how many lines of the code print on the                         trivial and it does not require major effort to identify
+console will not reveal any effects.                                       the if-statement’s body. From our perspective, unin-
+    Actually, we do not even think that indentation                        dented code becomes complex if larger then- or else-
+contributes much to the understanding of Example                           branches exist in the code (possibly even nested).
+because the code can be easily read from top to bot-
+5    Experiment: Indentation,                               code. Our goal was to use the following approach:
+     Brackets and Skipping                                   • Non-Skippable Code: Every outer condition is
+                                                               true, so that all the inner statements have to be
+Based on the previous discussion, we do not think that         checked (which will then be false, except for the
+indentation has a measurable effect in general and we          actual solution). Consequently, every statement
+believe there is a need to distinguish between indenta-        has to be checked.
+tion that intends to highlight the control flow of pro-      • Skippable Code: Every outer condition is false.
+grams (i.e. indentation in if-statements, loops, etc.)         That way inner statements can be skipped.
+and indentation that intends to highlight structural el-
+ements (such as method bodies, etc). We believe it           • Mixed Code: Mixes the previous ones. Some in-
+makes sense to study the different facets of indenta-          ner statements can be skipped, some have to be
+tion in separation and the goal of the present paper is        read.
+to focus on control flows.                                  Figure 4 shows an excerpt of the three kinds of skip-
+    Algorithmic Complexity: When studying the               ping in indented Java code. However, we need to take
+control flow of programs, one has to keep in mind           into account that concentrating on skipping (again)
+that the algorithmic complexity of programs plays a         leads to the question, whether or not brackets become
+role, too, and we believe that a program’s complexity       a factor: it is quite plausible to assume that opening
+has many facets. For example, we mentioned in Sec-          and closing brackets are appropriate separators to help
+tion 3 the study by Weissman where quite complex            people to identify the start or end of a code body. Con-
+algorithms were given to participants. We believe un-       sequently, we assume that this influences (potential)
+derstanding such complex algorithms takes time and          differences between indented and non-indented code.
+this potentially hides the effect caused by indentation.        Our goal was to additionally integrate subjective
+Consequently, we see the need to keep the algorith-         perceptions by participants as well. For that, we ap-
+mic part of programs as simple as possible. Keeping         plied the NASA TLX (Hart and Staveland, 1988). The
+this in mind, we think it is reasonable to reduce the       NASA TLX is a standard questionnaire to measure
+code to be studied only to if–statements, because it        mental and physical demand, performance, effort, and
+is plausible that reading and understanding e.g. loops      frustration. This questionnaire is (although originally
+adds an undesired complexity – a study by Ajami et          built for a different domain) often applied in software
+al. gives evidence that loops are harder to understand      engineering (see for example (Fritz et al., 2014; Holl-
+than if-statements (Ajami et al., 2019). Finally, one       mann et al., 2017; Couceiro et al., 2019; Al Madi
+needs to keep in mind that even the condition in an if–     et al., 2022) among others). We applied this ques-
+statement potentially becomes complex, because the          tionnaire without questions about physical demands
+Boolean expression might consist of multiple com-           (since we do not think that physical demand plays a
+parisons. Again, our argument is that we should keep        larger role in our context).
+this condition as simple as possible in order to avoid
+additional complexity caused by something that is not       5.1    Experiment Layout
+in the focus of the study. As a result, we use nested if-
+statements where the then- or else-branch hardly does       The experiment was designed as a within-subject ex-
+anything except printing out something.                     periment where all subjects received 16 programming
+    Tasks: We already discussed tasks that could be         snippets. Four code snippets were used as warm–up
+given to developers. However, while tasks such as           tasks, 12 code snippets were used for the actual mea-
+asking for the lines of code or asking for the number       surements.
+of methods is a purely structural task, we think that
+– taking into account that we concentrate on the con-        • Dependent variables:
+trol flow of programs – asking for a program’s result          – Time until correct answer: The time until the
+is reasonable. I.e., for programs such as the one given          correct answer was given. The moment an an-
+in Figure 3 we can simply ask what the output of such            swer was given, the time was stopped. If the
+program is. Such tasks also have the benefit that artic-         answer was not correct, the participant was told
+ulating the output is quite trivial and does not require         so and and the measurement continued (right
+any complex explanations by participants.                        after the feedback was given to the participant).
+    In the experiment we only distinguish between in-          – Subjective ratings: The NASA TLX with the
+dented and non-indented Java code. But we wanted                 the dimensions mental demand, performance,
+to take into account that the identification of if–              effort, and frustration (each measured on a scale
+statement bodies matter instead of the pure lines of
+                 1   i n t f =14;                     1   i n t f =15;                     1   i n t f =8;
+                 2   i n t s =23;                     2   i n t s =26;                     2   i n t s =32;
+                 3                                    3                                    3
+                 4   i f ( f ==7) {                   4   i f ( f ==15) {                  4   i f ( f ==13) {
+                 5       i f ( f ==34) {              5       i f ( f ==13) {              5       ...
+                 6           p r i n t ( "Y" ) ;      6           p r i n t ( "V" ) ;      6   }
+                 7       } e l s e i f ( f ==12) {    7       } e l s e i f ( s ==14) {    7   i f ( f ==8) {
+                 8           p r i n t ( "T" ) ;      8           p r i n t ( "Z" ) ;      8       i f ( s ==11) {
+                 9       }                            9       }                            9           p r i n t ( "A" ) ;
+                10   } e l s e i f ( s ==10) {       10   } e l s e i f ( s ==23) {       10       }
+                11       i f ( s ==22) {             11       ...                         11       i f ( s ==30) {
+                12           p r i n t ( "A" ) ;     12   }                               12           p r i n t ( "G" )
+                13       } e l s e i f ( s ==45) {   13   ...                             13       }
+                14           p r i n t ( "G" ) ;     14   ...                             14       ...
+                15       }                           15   ...                             15   }
+                16   }                               16   ...                             16   ...
+                17   ...                             17   ...                             17   ...
+                18   ...                             18   ...                             18   ...
+Figure 4: Code excerpts of skippable, non-skippable and mixed code. For illustration purposes, the code is slightly modified:
+the variable names in the experiment code is different (firstInt instead of f, secondInt instead of s), before and after the
+double equals sign white spaces occured, instead of print the experiment uses System.out.println.
+
+
+      from 1=low to 20=high). I.e., there are four dif-                  5.2     Execution and Results
+      ferent dependent variables, each representing a
+      different dimension in the NASA TLX.                               The experiment was executed on 10 students and 10
+  • Independent variables:                                               professional developers chosen based on purposive
+                                                                         sampling. The code snippets were shown to the par-
+    – Indentation: With the treatments indentation                       ticipants on the screen. The time measurement was
+      and non–indentation.                                               manually done. The experiment started with four
+    – Brackets: With the treatments with and with-                       warm-up tasks. The data was analyzed using a re-
+      out brackets.                                                      peated measures ANOVA using SPSS v27. Table 2
+    – Skipping type: With treatments non-skippable                       shows the results of the statistical analysis.
+      code, skippable code, mixed code.                                      If we reduce the analysis to the variable inden-
+                                                                                                                   M
+  • Non-controlled variables:                                            tation, we receive the ratio of means Non−Indented
+                                                                                                                     MIndented =
+    – Background (between subject): Student or                           134
+                                                                          48 = 2.791, i.e.      on average non-indented code
+      professional developer.                                            required 179% more time. However, it is neces-
+    – Ordering: The subjects received in the begin-                      sary to take the interactions into account. Figure
+      ning the 4 warm-up tasks (in a random order),                      5 illustrates the interaction Indentation*Skipping. It
+      afterwards the 12 tasks in random order.6                          shows that the difference between indentation and
+  • Fixed variable:                                                      non-indentation is relatively small in non-skippable
+                                                                                M
+    – Lines of Code: All code snippets had 48 lines                      code Non−Indented
+                                                                                  MIndented  = 145
+                                                                                                 60 = 2.417, while the differ-
+      of functional code (variable declarations, if-                     ences between mixed and skippable are larger ( 146
+                                                                                                                          43 =
+      statements, print-statement without) including                     3.396, respectively 144
+                                                                                              30  = 3.692).  However,  the  dif-
+      a method header. The code versions with brack-                     ference between mixed and skippable code was not
+      ets were longer due to the chosen code format                      significant.
+      (closing brackets in separate lines).                                  The dataset also contained a significant interac-
+  • Task: “Say what the given program prints out”.                       tion Indentation*Skipping*Brackets and the results
+Giving each participant 12 tasks is the result of the                    were from our perspective counter-intuitive: while
+independent variable: there are altogether 12 different                  for non–skippable code the ratios between non-
+treatment combinations (2 x indentation, 2 x bracket,                    indented and indented code were almost constant
+3 x skipping type, i.e. 2 x 2 x 3 = 12).                                 (with brackets= 99                              132
+                                                                                          54 = 1.833, without bracket = 66 =
+                                                                         2.00), the introduction of brackets decreased the ra-
+   6 We chose to assign the tasks randomly in order to
+                                                                         tios in skippable code (with brackets = 158
+                                                                                                                  33 = 4.788,
+counter–balance potential periodic effects (see for exam-                without = 123   = 2.73).
+ple (Madeyski and Kitchenham, 2018; Hanenberg and                                     45
+Mehlhorn, 2021)).                                                            Background was neither a significant variable, nor
+Table 2: Experiment Results – Confidence intervals (CI) and means (M) are given in rounded, full seconds. Non-significant
+interactions were omitted. N describes the number of datasets per treatment(-combination).
+
+                          df      F         p       η2p             Treatment                N       CI95%  M
+                                                                     Indented               120      38; 58 48
+        Indentation (I)    1   89.372      <.001   .832
+                                                                   Non-Indented             120 115; 153 134
+        Brackets(B)        1    1.025      .325    .054              omitted due to insignificant results
+        Skipping(S)        2    1.278      .291    .066              omitted due to insignificant results
+        Background         1     .797      .384    .042              omitted due to insignificant results
+                                                             Indented/Non-Skippable          40      49; 71 60
+                                                                  Indented/Mixed             40      35; 52 43
+                                                                Indented/Skippable           40      24; 55 39
+        I*S                2   18.025      <.001   .500
+                                                           Non-Indented/Non-Skippable 40 119; 171 145
+                                                               Non-Indented/Mixed            40 122; 170 146
+                                                             Non-Indented/Skippable          40 119; 171 144
+        I * S* B           2    3.820      .031    .175        ommitted due to large number of combinations
+
+
+
+                                                                 and report for each dependent variable (mental de-
+                                                                 mand, performance, effort, frustration) p-values, η2p
+                                                                 and means. We intentionally report the variables
+                                                                 brackets and indentation, because indentation is the
+                                                                 main goal of the current study, and brackets turned
+                                                                 out to be a non-significant factor in the previous time
+                                                                 measurements. Table 3 summarizes the results of the
+                                                                 analyses.
+                                                                 Table 3: Pairwise Comparisons of the variables defined by
+                                                                 the TLX
+                                                                  Category Treatment       Means                    p      η2p
+                                                                                           MIndented = 5.33;
+                                                                             Indentation                           <.001   .789
+                                                                  Mental                   MNon−Indented = 12.22
+                                                                  Demand                   MBrackets = 8.29        .002    .146
+                                                                             Brackets
+                                                                                           MNo−Brackets = 9.26
+ Figure 5: Interaction between indentation and skipping.                                   MIndented = 12.79
+                                                                             Indentation                           <.001   .396
+                                                                  Perfor-                  MNon−Indented = 9.08
+                                                                  mance                    MBrackets = 11.34
+did it interact with any other variable.                                     Brackets
+                                                                                           MNo−Brackets = 10.53
+                                                                                                                   .027    .081
+                                                                                           MIndented = 4.9
+                                                                             Indentation                           <.001   .68
+                                                                  Effort                   MNon−Indented = 11.52
+5.3    Results of Subjective Ratings                                                       MBrackets = 7.79
+                                                                             Brackets                              .005    .126
+                                                                                           MNo−Brackets = 8.62
+We analyzed the responses of the NASA TLX in the                  Frustra-   Indentation   MIndented = 3.14        <.001   .626
+                                                                  tion                     MNon−Indented = 9.59
+same way as the previously measured times. Since                             Brackets      MBrackets = 6.04        .094    .047
+four different responses were collected (mental de-                                        MNo−Brackets = 6.69
+mand, performance, effort, and frustration), four dif-
+ferent repeated measures ANOVAs were executed.7                      With respect to indentation, the results of the
+    Taking into account that reporting each dependent            NASA TLX are in line with the previous time mea-
+variable in separation takes too much space, we re-              surements. The factor is significant in all dimensions
+duce the reporting of the subjective ratings to a (from          of the NASA TLX: in the absence of indentation par-
+our perspective acceptable) minimum where we con-                ticipants consider tasks as much more demanding, the
+centrate only on the variables indentation and bracket,          effort as much higher, and participants feel less per-
+                                                                 formant, and much more frustrated.
+    7 We are aware that one could argue that the kind of re-         However, with regard to brackets, the results are
+sponse, i.e. the different categories, could also be consid-     not even closely in line with the time measurements.
+ered as a separate variable in the analysis. However, we         The factor brackets is significant in all dimensions
+think that the main goal of the NASA TLX is to collect dif-      except frustation (where brackets approaches signifi-
+ferent kinds of responses of different categories indepen-       cance with p=.094): in the absence of brackets, partic-
+dent of each other. Consequently, we analyze them inde-
+                                                                 ipants consider the tasks slightly more demanding, the
+pendent of each other.
+effort slightly higher, and the participants feel slightly    was the experiment’s intention to remove any kind of
+more performant.                                              algorithmic complexity from the code. Another alter-
+                                                              native could be to define an exclusion criterion such
+                                                              as a certain number of errors in the answers.
+6    Threats to Validity                                          However, we need to keep in mind that another
+                                                              way to compromise the experiment is to sit down
+The experiment does not rely on industrial code but           without doing anything. In such case, the answer time
+uses artificial code: the conditions in the if-statements     will be quite long and possible effects can still be hid-
+are trivial and so are the bodies of the then- or else-       den. I.e., we think that this kind of threat is inherent
+branches. And we need to point out that the present           in experiments with time measurements based on par-
+work only concentrates on control flows and we be-            ticipants’s activities. So far, we are not aware of any
+lieve that the effects on other constructs will be dif-       solution to this problem.
+ferent. While this is obviously an external threat to
+validity, we need to keep in mind that the goal of con-
+trolled trials is to keep as much as possible under con-      7    Summary and Discussion
+trol. I.e. using artificial code helps to focus on the
+variable being studied. But the implication is, that the      This paper performed a randomized control trial on
+effects of indentation that can be found in reality are       the readability of indented and non-indented code, be-
+probably much smaller than the ones reported in the           cause it turned out that evidence for an effect of in-
+present paper: due to other confounding factors, not          dentation is missing in the literature – despite the of-
+due to a reduced effect of the main factor.                   ten and common application of indentation in teach-
+    Another (external) threat is, that the present paper      ing and practice: Although the authors of the present
+just measures answering times without giving partic-          paper are aware of 12 experiments where indenta-
+ipants the opportunity to interact with the code (via         tion was a controlled factor, only one experiment by
+a debugger, etc.). While it is disputable to guess            Albayrak and Davenport (Albayrak and Davenport,
+whether or not such situations should be studied at           2010) was able to reveal an effect and report the effect
+all, one needs to keep in mind that the pure reading          size. However, the experiment did not report much
+of code probably still plays a role even in situations        on the code given to the participants nor does it say
+where development tools are available. Actually, so           much about the defects that had to be found. Hence,
+far we are not able to quantify how much reading time         we think it is quite hard to interpret the results and we
+is actually required per day by developers, but at least      see the need for more experiments on that topic.
+there are studies available that give evidence that time          The experiment presented in this paper (executed
+spent in understanding code is probably larger than           on 10 students and 10 professional developers) con-
+any other activity in development (see for example            sidered four factors: indentation, skipping, brackets
+Murphy et al. (Murphy et al., 2006)).                         and background. Reducing it only to the factor in-
+    We also need to keep in mind that the measure-            dentation, large effects could be found with on av-
+ment technique was hand-measured time. We are                 erage 179% higher answer times for non–indented
+aware that measuring time that way is quite imprecise         code up to 269% higher answer times in situations
+and it probably influenced the results of the experi-         where parts of the code can be skipped. Moreover,
+ment as well. However, even if we assume that hand-           the experiment showed that the difference in answer
+measured time varies even by a few seconds, the mea-          times between indented and non-indented code is in-
+sured differences are still large enough to compensate        fluenced by the given code: not with respect to the
+for this effect, i.e. we think it is not plausible that the   code’s length (which was kept constant in the experi-
+results differ much if a different measurement tech-          ment), but with respect to whether or not parts of the
+nique would be used.                                          code can be skipped. However, it turned out that our
+    While we do not think it mattered in the exper-           notion of skippable and mixed did not reveal the ex-
+iment, the experiment design suffers from a serious           pected results: the differences between indented and
+internal threat: participants can compromise experi-          non–indented code were the same for both kinds of
+ment results. This can be done simply by reading the          code. With respect to brackets, our original expec-
+code and saying the printed statements as quickly as          tations were that brackets help in non–indented code
+possible. In principle, this could be solved by adding        where part of the code can be skipped. However, it
+some algorithmic complexity to the code that does not         turned out that the opposite was true.
+permit to simply guess what the result of the code                Based on the NASA TLX, we were able to ob-
+might be. However, we need to keep in mind that it            serve that the subjective ratings were in line with
+the time measurements. However, the subjective rat-           found. It does not mean that we are not aware of mul-
+ings also considered the presence of brackets as help-        tiple confounding factors that exist in industrial code.
+ful (except with respect to TLX’s dimension frustra-              Another facet of the study was that the back-
+tion where we did not measure a significant differ-           ground of the participants did not matter: no signif-
+ence) which was not in line with the time measure-            icant differences in answer times between students
+ments. Actually, the reason why we introduced brack-          and professionals were found. From our perspective,
+ets in the experiment was that we expected this would         this is caused by the quite simple control flows. Pro-
+help participants especially in situations where inden-       fessional developers probably have more experience
+tation was not present. And while this assumption             with APIs, tools, complex algorithms, or infrastruc-
+did not hold (insignificant variable brackets in time         tures, but we do not think that these skills help much
+measurements), the subjective perception of partic-           when reading control flows.
+ipants matched our original assumption. We think                  We think that with respect to the main factor in-
+that the latter statement rather expresses the strong be-     dentation the experimental results are quite clear: the
+lief among developers (and even our own belief) that          effect of indentation is strong and large. This directly
+brackets are helpful, although the non-subjective time        leads to the question how it comes that we hardly find
+measurements did not reveal such a phenomenon.                experiments in the literature that revealed this effect.
+    We should note that the experiment is just on con-            We believe this is caused by two effects that often
+trol flows caused by if-statements. We think that such        appear at the same time and that both possibly hide
+kind of code has one special characteristic: it can be        the effect of indentation. First, the code of experi-
+read from top to bottom without the need to go back           ments in the literature was relatively complex. We do
+to other lines that were already read. We believe that        believe that complex code increases the deviation in
+other control-flow specific language constructs such          the dependent variable and that this possibly hides the
+as loops have other implications – we think that jump-        effect of indentation (in case the effect of indentation
+ing back and forth in the code would reduce the effect        is smaller than the deviation). An example for such
+of indentation and we think that other effects (such          an experiment was the one by Weissman who gave
+as the existence of beacons in the code – see for ex-         subjects source code with Quicksort and the Eight
+ample (Crosby et al., 2002)) play a larger role. Ac-          Queens Problem.
+tually, there is already evidence that if-statements are          Another potential problem we find in the literature
+harder to read than loops (see (Ajami et al., 2019)).         is the choice of dependent variables such as question-
+And we need to keep in mind that the effects reported         naires consisting of multiple questions where correct
+here are caused by highly controlled source code and          answers give some credit. An example for such an
+we need to keep in mind that source code one finds            experiment is the one by Shneiderman and McKay.
+in reality contains many other factors that do not (or        The potential problem is, that some questions might
+hardly) play a role in the presented experiment. One          or might not refer to the possible difference between
+of these factors is the choice of identifiers: For ex-        indented or non–indented code but rather on some
+ample, the studies by Binkley et al. (Binkley et al.,         other facets of the code. For example, in Section 4 we
+2013) or by Hofmeister et al. (Hofmeister et al., 2019)       discussed a possible question of how many lines of
+showed that the style as well as the length of identi-        code some code snippet contains. If a questionnaire
+fiers has a large effect on readabilty. Keeping in mind       contains a number of questions that do not focus on
+that different code in reality contains different identi-     the possible effect of indentation, we think that such
+fiers implies that this is a potential source of deviation    questionnaires are rather inappropriate to be used in
+(i.e., a confounding factor). Consequently, we believe        a study that focuses on indentation. I.e., the result-
+that it is quite likely that the effects of indentation one   ing studies that end up with null results do not indi-
+finds in industrial code is smaller than in the here re-      cate that indentation has no effect. Instead, it simply
+ported experiment. While one might argue that this            means that under the experimental conditions no ef-
+is rather an argument against the present paper (be-          fect could be measured (which is an important differ-
+cause its generalizability is quite limited and probably      ence, because such null effects are possibly caused by
+does not permit to make a statement about industrial          inappropriate experimental designs).
+code), we argue that one needs to keep in mind that               Finally, we think that the present paper gives some
+the whole point in randomized control trials is to con-       more insights about a phenomenon that was studied
+trol variables. The goal is to identify the effect of the     by Johnson et al. (Johnson et al., 2019) as well as
+studied variable and to remove possible confounding           Ajami et al. (Ajami et al., 2019): both works identi-
+factors. This is what the present paper did and this          fied that the deeper the nesting, the harder is it for de-
+is probably the reason why the large effects could be         velopers to understand the code. Actually, the present
+paper says that nesting has another effect: the pres-            ally affects code complexity? Empirical Soft-
+ence of nesting indicates code that can be skipped               ware Engineering, 24(1):287–328.
+while reading (under some circumstances). I.e., the         Al Madi, N., Peng, S., and Rogers, T. (2022). Assess-
+question is not only how deep a nesting is, but how              ing workload perception in introductory com-
+much code is actually nested. We think that this is-             puter science projects using nasa-tlx.
+sue deserves more studies in the future, because the        Albayrak, O. and Davenport, D. (2010). Impact
+present study was not able to reveal this effect: al-            of maintainability defects on code inspections.
+though the variable skipping was significant, the study          In Proceedings of the 2010 ACM-IEEE Inter-
+did not find a difference between mixed and skip-                national Symposium on Empirical Software En-
+pable. I.e., future work should address this in order            gineering and Measurement, ESEM ’10, New
+to find an explanation for the readability differences           York, NY, USA. Association for Computing Ma-
+between indented and non-indented code.                          chinery.
+                                                            Bauer, J., Siegmund, J., Peitek, N., Hofmeister, J. C.,
+                                                                 and Apel, S. (2019). Indentation: Simply a mat-
+8    Conclusion                                                  ter of style or support for program comprehen-
+                                                                 sion? In Proceedings of the 27th International
+The main point of the present work is that indentation           Conference on Program Comprehension, ICPC
+is an important issue in education and development –             ’19, pages 154–164. IEEE Press.
+but there is so far not much evidence in the scientific
+                                                            Binkley, D. W., Davis, M., Lawrie, D. J., Maletic, J. I.,
+literature that indentation actually matters.
+                                                                 Morrell, C., and Sharif, B. (2013). The impact
+    The present work shows that indentation has – at
+                                                                 of identifier style on effort and comprehension.
+least in the context of control flows – a large, posi-
+                                                                 Empir. Softw. Eng., 18(2):219–276.
+tive effect in comparison to non-indented code. But it
+also shows something different: The effect of inden-        Couceiro, R., Duarte, G., Durães, J. a., Castel-
+tation is not a fixed factor. It depends on other factors        hano, J. a., Duarte, C., Teixeira, C., Branco,
+as well and the present work identified “code skip-              M. C., de Carvalho, P., and Madeira, H. (2019).
+ping” as such an influencing factor with larger effects          Biofeedback augmented software engineering:
+on the difference between indented and non-indented              Monitoring of programmers’ mental effort. In
+code. However, the experiment was not able to re-                Proceedings of the 41st International Confer-
+veal a readability difference between skippable code,            ence on Software Engineering: New Ideas and
+something that should be addressed in future work.               Emerging Results, ICSE-NIER ’19, pages 37–
+    To conclude, we think that the present paper could           40. IEEE Press.
+be used to tell students or professional developers         Crosby, M. E., Scholtz, J., and Wiedenbeck, S.
+why indentation matters. The answer from the present             (2002). The roles beacons play in comprehen-
+experiment is: Because it saves a lot of time when               sion for novice and expert programmers. In
+reading code. We might not know how much time it                 Proceedings of the 14th Annual Workshop of
+saves for some given code basis (where multiple, ad-             the Psychology of Programming Interest Group,
+ditional factors influence the readability of the code).         PPIG 2002, London, UK, June 18-21, 2002,
+But in the reported experiment, non-indented code re-            page 5. Psychology of Programming Interest
+quired between 142% and 269% more time to deter-                 Group.
+mine the output of the code.                                Fritz, T., Begel, A., Müller, S. C., Yigit-Elliott, S., and
+                                                                 Züger, M. (2014). Using psycho-physiological
+Note                                                             measures to assess task difficulty in software
+                                                                 development. In Proceedings of the 36th In-
+A replication package of the experiment is available             ternational Conference on Software Engineer-
+via https://drive.google.com/drive/folders/1ZVDMfT               ing, ICSE 2014, pages 402–413, New York, NY,
+BDIvpKF0uQtZemhmvH_LxoUODf. There, also the                      USA. Association for Computing Machinery.
+raw measurements of the experiment are available.           Hanenberg, S. and Mehlhorn, N. (2021). Two n-of-
+                                                                 1 self-trials on readability differences between
+                                                                 anonymous inner classes (aics) and lambda ex-
+REFERENCES                                                       pressions (les) on java code snippets. Empirical
+                                                                 Software Engineering, 27(2):33.
+Ajami, S., Woodbridge, Y., and Feitelson, D. G.
+    (2019). Syntax, predicates, idioms — what re-
+Hart, S. G. and Staveland, L. E. (1988). Develop-        Moher, D., Hopewell, S., Schulz, K. F., Montori,
+     ment of nasa-tlx (task load index): Results of           V., Gøtzsche, P. C., Devereaux, P. J., Elbourne,
+     empirical and theoretical research. In Hancock,          D., Egger, M., and Altman, D. G. (2010).
+     P. A. and Meshkati, N., editors, Human Mental            Consort 2010 explanation and elaboration: up-
+     Workload, volume 52 of Advances in Psychol-              dated guidelines for reporting parallel group ran-
+     ogy, pages 139–183. North-Holland.                       domised trials. BMJ, 340.
+Hofmeister, J. C., Siegmund, J., and Holt, D. V.         Murphy, G. C., Kersten, M., and Findlater, L. (2006).
+     (2019). Shorter identifier names take longer to          How are java software developers using the
+     comprehend. Empir. Softw. Eng., 24(1):417–443.           eclipse ide? IEEE Softw., 23(4):76–83.
+Hollmann, N., Rossenbeck, T., Kunze, M., Tuerk, L.,      Norcio, A. F. (1982). Indentation, documentation and
+     and Hanenberg, S. (2017). What’s the effect of           programmer comprehension. In Proceedings of
+     projectional editors for creating words for un-          the 1982 Conference on Human Factors in Com-
+     known languages? a controlled experiment. The            puting Systems, CHI ’82, pages 118–120, New
+     8th Workshop on Evaluation and Usability of              York, NY, USA. Association for Computing Ma-
+     Programming Languages and Tools (PLATEAU)                chinery.
+     at SPLASH 2017.                                     Sheil, B. A. (1981). The psychological study of pro-
+Johnson, J., Lubo, S., Yedla, N., Aponte, J., and             gramming. ACM Comput. Surv., 13(1):101–120.
+     Sharif, B. (2019). An empirical study as-           Shneiderman, B. and McKay, D. (1976).              Ex-
+     sessing source code readability in comprehen-            perimental investigations of computer program
+     sion. In 2019 IEEE International Conference on           debugging and modification. Proceedings of
+     Software Maintenance and Evolution (ICSME),              the Human Factors Society Annual Meeting,
+     pages 513–523.                                           20(24):557–563.
+Kesler, T. E., Uram, R. B., Magareh-Abed, F.,            Sime, M., Green, T., and Guest, D. (1973). Psycho-
+     Fritzsche, A., Amport, C., and Dunsmore, H.              logical evaluation of two conditional construc-
+     (1984). The effect of indentation on program             tions used in computer languages. International
+     comprehension. International Journal of Man-             Journal of Man-Machine Studies, 5(1):105–113.
+     Machine Studies, 21(5):415–428.                     Sime, M., Green, T., and Guest, D. (1977). Scope
+Love, L. T. (1977). Relating individual differences in        marking in computer conditionals–a psycholog-
+     computer programming performance to human                ical evaluation. International Journal of Man-
+     information processing abilities. PhD thesis.            Machine Studies, 9(1):107..118.
+Madeyski, L. and Kitchenham, B. A. (2018). Effect        Vessey, I. and Weber, R. (1984). Research on struc-
+     sizes and their variance for AB/BA crossover de-         tured programming: An empiricist’s evaluation.
+     sign studies. Empir. Softw. Eng., 23(4):1982–            IEEE Transactions on Software Engineering,
+     2017.                                                    SE-10(4):397–407.
+Miara, R. J., Musselman, J. A., Navarro, J. A.,          Weissman, L. M. (1974). A Methodology for Study-
+     and Shneiderman, B. (1983). Program inden-               ing the Psychological Complexity of Computer
+     tation and comprehensibility. Commun. ACM,               Programs. PhD thesis. AAI0510378.
+     26(11):861–867.
+

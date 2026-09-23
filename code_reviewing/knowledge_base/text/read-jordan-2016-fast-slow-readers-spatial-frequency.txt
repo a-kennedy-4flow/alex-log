@@ -1,0 +1,709 @@
+                                                                                                                                               ORIGINAL RESEARCH
+                                                                                                                                         published: 28 September 2016
+                                                                                                                                        doi: 10.3389/fpsyg.2016.01433
+
+
+
+
+                                                Effects of Spatial Frequencies on
+                                                Word Identification by Fast and Slow
+                                                Readers: Evidence from Eye
+                                                Movements
+                                                Timothy R. Jordan 1 , Jasmine Dixon 2 , Victoria A. McGowan 2 , Stoyan Kurtev 2 and
+                                                Kevin B. Paterson 2*
+                                                1
+                                                 Department of Psychology, Zayed University, Dubai, United Arab Emirates, 2 Department of Neuroscience, Psychology, and
+                                                Behaviour, University of Leicester, Leicester, UK
+
+
+
+                                                Recent research has shown that differences in the effectiveness of spatial frequencies
+                                                for fast and slow skilled adult readers may be an important component of differences
+                                                in reading ability in the skilled adult reading population (Jordan et al., 2016a). But the
+                            Edited by:          precise nature of this influence on lexical processing during reading remains to be fully
+                  Bernhard Hommel,              determined. Accordingly, to gain more insight into the use of spatial frequencies by
+        Leiden University, Netherlands
+                                                skilled adult readers with fast and slow reading abilities, the present study looked at
+                        Reviewed by:
+                                                effects of spatial frequencies on the processing of specific target words in sentences.
+                       Ehab Hermena,
+       University of Southampton, UK            These target words were of either high or low lexical frequency and each sentence was
+                          Lijing Chen,          displayed as normal or filtered to contain only very low, low, medium, high, or very high
+       Fujian Normal University, China
+                                                spatial frequencies. Eye movement behavior for target words was closest to normal
+                  *Correspondence:
+                    Kevin B. Paterson           for each reading ability when text was shown in medium or higher spatial frequency
+                       kbp3@le.ac.uk            displays, although reading occurred for all spatial frequencies. Moreover, typical word
+                                                frequency effects (the processing advantage for words with higher lexical frequencies)
+                   Specialty section:
+         This article was submitted to
+                                                were observed for each reading ability across a broad range of spatial frequencies,
+                             Cognition,         indicating that many different spatial frequencies provide access to lexical representations
+               a section of the journal
+                                                during textual reading for both fast and slow skilled adult readers. Crucially, however,
+               Frontiers in Psychology
+                                                target word fixations were fewer and shorter for fast readers than for slow readers for
+             Received: 11 May 2016
+      Accepted: 07 September 2016               all display types, and this advantage for fast readers appeared to be similar for normal,
+      Published: 28 September 2016              medium, high, and very high spatial frequencies but larger for low and very low spatial
+                             Citation:          frequencies. Therefore, although fast and slow skilled adult readers can both use a broad
+  Jordan TR, Dixon J, McGowan VA,
+   Kurtev S and Paterson KB (2016)
+                                                range of spatial frequencies when reading, fast readers make more effective use of these
+    Effects of Spatial Frequencies on           spatial frequencies, and especially those that are lower, when processing the identities
+ Word Identification by Fast and Slow           of words.
+         Readers: Evidence from Eye
+ Movements. Front. Psychol. 7:1433.             Keywords: eye movements during reading, spatial frequencies, reading comprehension, reading, word
+     doi: 10.3389/fpsyg.2016.01433              recognition, reading ability, reading speed
+
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                        1                                         September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                            Effects of Spatial Frequencies
+
+
+
+INTRODUCTION                                                                 and Burke, 2003; Hersch and Andrews, 2012; Frömer et al.,
+                                                                             2015; Hawelka et al., 2015). However, others have argued that
+During reading, the eyes move along lines of text in a series                fast reading is facilitated by “bottom-up” processes that enable
+of saccadic movements, each movement ending in a brief                       readers to gain visual access to lexical representations and so
+fixational pause (Rayner, 1998, 2009). During these pauses, visual           identify words more rapidly. For instance, the lexical quality
+information is acquired from the text and the number and                     hypothesis of reading skill (e.g., Perfetti, 1992, 2007; see also
+duration of the fixations made are highly informative about the              Andrews, 2008, 2012; Veldre and Andrews, 2014) proposes that
+process of word identification that takes place during reading.              fast readers have high-quality lexical representations in which
+In particular, the forward movement of the eyes through text                 orthographic information that defines a particular word is stored
+appears to be driven by processes underlying the identification              precisely, so that a written word can activate its correct lexical
+of words, and findings show that words with a lower frequency                representation directly from the visual input. By comparison,
+of written usage, which are less familiar, are fixated for longer            slow readers have underspecified lexical representations such that
+(e.g., Inhoff and Rayner, 1986; Rayner and Duffy, 1986; Rayner               the stored orthographic information defining a particular word
+et al., 1996; Juhasz and Rayner, 2003; Juhasz et al., 2006;                  is imprecise and rapid bottom-up reading is prevented (e.g.,
+Paterson and Jordan, 2010). Such findings are central to cognitive           Perfetti, 1992, 2007; Andrews, 2008, 2012).
+control theories of eye movement behavior (e.g., Rayner et al.,                  Consistent with this general view, skilled readers provide
+1996), and have been fundamental to the development of formal                quicker responses than less skilled readers in tasks requiring the
+computational models of eye movement control (e.g., Reichle                  recognition of single words (e.g., Andrews and Hersch, 2010;
+et al., 1998, 2003; Engbert et al., 2005). However, the nature               Andrews and Lo, 2012) and, during textual reading, skilled
+of the visual information acquired on each fixation, and its                 readers can identify more quickly than less skilled readers
+effectiveness for supporting access to lexical representations, is           unfamiliar words that are highly predictable from prior context
+not yet well-established.                                                    (Ashby et al., 2005). Moreover, recent research with adolescent
+    It is of particular relevance for the present research that              readers shows that fast readers make fewer and shorter fixational
+visual pathways in the brain are selectively sensitive to spatial            pauses on words, longer forward saccades, and fewer regressions
+frequencies associated with different scales of visual information           (i.e., backward saccades) than slow readers (Krieber et al., 2016).
+(e.g., Robson, 1966; Blakemore and Campbell, 1969; Lovegrove                 However, the nature of the visual input that contributes to fast
+et al., 1980). In this sense, the term spatial frequency refers to the       and slow reading abilities is not completely clear. In particular,
+level of detail present in a stimulus, per degree of visual angle. So,       research to date has focused on the role of letter identities and
+for example, a scene with small detailed objects is likely to contain        letter positions in this input (e.g., Perfetti, 1992, 2007; Andrews,
+more high spatial frequency information than one composed of                 2008, 2012). But as the fundamental visual components of words
+large coarse objects, and the spatial frequencies contained in such          are spatial frequencies, not letters, other researchers have argued
+scenes provide the visual bases for recognizing the objects that             that access to lexical representations may be achieved by a broad
+are present. In a similar vein, the visual system acquires a broad           range of spatial frequencies and even by relatively coarse-scale
+range of different spatial frequencies from text and these provide           information provided by lower spatial frequency input (e.g.,
+the fundamental bases for subsequent linguistic analyses that                Jordan, 1990, 1995; Patching and Jordan, 2005a,b; Allen et al.,
+enable readers to identify the words that are present. For instance,         2009). Indeed, whereas high spatial frequencies are conveyed
+lower spatial frequencies may allow readers to establish a word’s            relatively slowly by parvocellular pathways in the brain, low
+overall shape and location but not the fine detail of its component          spatial frequencies are carried by fast magnocellular pathways
+letters. By comparison, higher spatial frequencies may enable                and so may provide especially rapid access to lexical entries (for a
+readers to see a word’s fine detail, such as the precise form and            review, see Hegdé, 2008). It is therefore important to establish if
+location of individual letters, but are less useful for perceiving           differences in the use of high and low spatial frequencies by fast
+the overall shapes of words (e.g., Legge et al., 1985; Jordan, 1990,         and slow readers underlie a word recognition advantage for fast
+1995; Patching and Jordan, 2005a,b; Allen et al., 2009; Kwon                 readers.
+and Legge, 2012). Consequently, although the influence of spatial                While spatial frequency sensitivity by dyslexic and non-
+frequencies is not likely to be apparent to readers, processes that          dyslexic readers has been widely investigated (for a review,
+underlie the identification of words rely fundamentally on these             see Skottun, 2000), the effectiveness of the spatial frequency
+low-level visual properties. However, the effectiveness of different         content of text for fast and slow skilled adult word recognition
+spatial frequencies for accessing lexical representations and how            has yet to be fully revealed. An especially relevant study by
+this might differ for readers of different abilities remains unclear.        Patching and Jordan (2005a) showed that briefly-presented
+    While skilled adult reading generally is fast (up to 400–500             words, filtered to contain only certain spatial frequencies, can be
+words per minute), substantial variation in reading speed exists             recognized equally accurately by fast and slow readers. However,
+across the skilled adult reading population (e.g., Jackson and               the recognition of brief single words is not the same as textual
+McClelland, 1979; Andrews, 2008, 2012; Rayner et al., 2010;                  reading and research shows that eye movements during textual
+Ashby et al., 2012). This may be due to faster readers making                reading are highly informative about individual differences in
+greater use of predictive processes to anticipate the identities             reading performance (e.g., Ashby et al., 2005; Rayner, 2009;
+of words, based on the parafoveal processing of upcoming                     Rayner et al., 2010; Kuperman and Van Dyke, 2011). Indeed,
+text or contextual expectations (e.g., Long et al., 1994; Murray             other investigations show that when lines of text are filtered
+
+
+Frontiers in Psychology | www.frontiersin.org                            2                                    September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                            Effects of Spatial Frequencies
+
+
+
+so that only certain spatial frequencies remain, readers use a              the identification of high and low lexical frequency words during
+broad range of different spatial frequencies, and these different           reading. High lexical frequency words typically receive fewer and
+spatial frequencies produce different patterns of eye movement              shorter fixations than low lexical frequency words when reading,
+behavior (Jordan et al., 2012, 2014; Paterson et al., 2012, 2013a,b).       and this lexical frequency effect is generally taken as a hallmark of
+However, this research did not examine whether these influences             normal processes of word identification (e.g., Inhoff and Rayner,
+of spatial frequencies on textual reading differ for fast and slow          1986; Rayner and Duffy, 1986; Rayner et al., 1996; Juhasz and
+reading abilities.                                                          Rayner, 2003; Juhasz et al., 2006; Paterson and Jordan, 2010).
+    A very recent study (Jordan et al., 2016a) examined this issue          Consequently, if spatial frequencies support normal processes of
+in more detail by comparing the eye movements of fast and                   word identification, lexical frequency effects should be observed
+slow skilled adult readers when sentences were presented either             when these spatial frequencies are present in text. Word
+as normal or filtered to contain only certain bands of spatial              frequency effects are also usually larger when word identification
+frequencies ranging from very low to very high (see Figure 1).              is more difficult, due to readers experiencing disproportionately
+The findings for normal text replicated reading time effects for            greater difficulty recognizing lower lexical frequency words
+fast and slow readers in other research (e.g., Krieber et al., 2016),       (see, e.g., Rayner et al., 1998; Paterson and Jordan, 2010).
+but in addition showed that a broad range of spatial frequencies            Consequently, spatial frequencies that are less effective at
+can support normal reading for both fast and slow readers.                  supporting word identification may produce atypically-large
+However, while reading times for normal text and for each spatial           effects of lexical frequency. However, spatial frequencies that
+frequency were all shorter for fast readers than for slow, the              provide little or no support to word identification may more
+advantage for fast readers was similar to normal for medium                 seriously impair the normal processing of text so that standard
+and higher spatial frequencies but substantially larger for lower           lexical frequency effects are no longer observed. Finally, if fast
+spatial frequencies. The indication from this work, therefore, is           readers benefit more than slow readers from the presence of
+that while fast and slow readers can both use a range of different          particular spatial frequencies, lexical frequency effects may differ
+spatial frequencies for reading, fast readers make more effective           for fast and slow reading abilities depending on which spatial
+use of the spatial frequencies in text and especially those that are        frequencies are present in text.
+lower.
+    But this previous study focused on reading times and eye
+movements averaged across whole sentences, and so it remains                METHODS
+to be confirmed that the overall advantage observed for fast
+readers reflects an ability to actually obtain more rapid access to         Participants
+lexical representations. Clearly, gaining a better understanding            This research was conducted with the ethical approval of the
+of the use of spatial frequencies by fast and slow readers when             Research Ethics Committee at the University of Leicester, and
+processing the identities of individual words in text is crucial            in accordance with the principles expressed in the Declaration
+for revealing the role of spatial frequencies in reading and is             of Helsinki. All participants gave informed consent in writing.
+especially relevant to accounts of reading ability that propose             Thirty participants (aged 18–30 years) from the University of
+that fast reading benefits from rapid visual access to lexical              Leicester were screened for reading speed prior to participating
+representations (e.g., Perfetti, 1992, 2007; Andrews, 2008, 2012).          in the experiment. All were native English speakers and had
+Accordingly, to achieve this, we revisited our earlier experiment           normal or corrected vision, as determined by Bailey-Lovie (Bailey
+(Jordan et al., 2016a) in order to investigate effects of spatial           and Lovie, 1980), ETDRS (Ferris and Bailey, 1996), and Pelli-
+frequencies on individual word recognition. One aspect of this              Robson (Pelli et al., 1988) assessments (see Jordan et al., 2011).
+experiment that is so far unexamined is that the stimuli used               Vocabulary was, in addition, assessed using the Nelson-Denny
+were from a stimulus set in which sentences contained matched               vocabulary test (Brown et al., 1993).
+target words of high and low lexical frequency and so this would               Following previous research (e.g., Jackson and McClelland,
+allow the investigation of lexical frequency effects during reading.        1979; Patching and Jordan, 2005a,b; see also Rayner et al., 2010),
+Consequently, while this aspect of that experiment was neither              fast and slow readers were identified by their effective reading
+inspected nor reported by Jordan et al. (2016a) these additional            speed, which was calculated for each participant by multiplying
+data have the capacity to shed important light on the use of spatial        reading speed in words per minute (wpm) by the proportion of
+frequencies by fast and slow skilled adult readers when processing          reading comprehension questions answered correctly. This was
+the identities of individual words during reading.                          achieved using 4 passages (mean length = 526 words) presented
+    If fast reading relies on detailed analyses of orthographic             on a high-definition display. Participants read all 4 passages
+content (as the lexical quality hypothesis suggests), the processing        normally and each was followed by 6 multiple-choice questions
+of words in filtered displays may show an advantage for fast                that assessed comprehension. Effective reading speeds ranged
+readers that is maximal when spatial frequencies provide this               from 226 to 443. Fast readers were classified as the upper 50%
+detail (i.e., in displays containing medium and higher spatial              of this range (15 participants) and slow readers were the lower
+frequencies) and this advantage may be reduced (or even be                  50% (15 participants). Effective reading speeds were 325–443 for
+absent) when displays contain only lower spatial frequencies. The           the fast readers and 226–318 for the slow readers. Slow readers
+manipulation of lexical frequency also allowed a closer look at             read test passages significantly more slowly than fast readers, t (28)
+the effectiveness of different spatial frequencies for supporting           = 2.65, p < 0.01, r = 0.44, had lower comprehension accuracy,
+
+
+Frontiers in Psychology | www.frontiersin.org                           3                                     September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                                                 Effects of Spatial Frequencies
+
+
+
+
+ FIGURE 1 | Examples of the types of display used in the experiment. The figure shows a sentence displayed as normal and filtered to contain only very low, low,
+ medium, high, and very high spatial frequencies. The visual appearance of the filtered displays shown in the figure is approximate due to variations in display resolution
+ and print medium.
+
+
+TABLE 1 | Visual and vocabulary performance of fast and slow readers.
+
+Reading              High contrast              High contrast               Low contrast                Low contrast                 Contrast              Vocabulary (%)
+ability              acuity (near)              acuity (distant)             acuity (near)             acuity (distant)             sensitivity
+
+Fast                    20/20.6                     20/21.2                     20/26.6                     20/32.8                    1.95                       92
+Slow                    20/20.4                     20/23.4                     20/27.9                     20/33.2                    1.95                       80
+
+
+
+
+t (28) = 3.55, p < 0.01, r = 0.54, and scored lower on the Nelson-                        5.0–10.0, 8.3–16.6, and 10.3–20.6 cycles per degree (see Figure 1).
+Denny vocabulary test than fast readers [t (28) = 3.33, p < 0.01,                         These 5 bands were termed very low, low, medium, high, and
+r = 0.52]. But fast and slow readers did not differ in performance                        very high. The sentences were displayed to participants so that
+on any tests of visual abilities (all ts < 1.3; Table 1).                                 each participant viewed an equal number of sentences containing
+                                                                                          high and low lexical frequency target words in each of the 6
+Stimuli and Design                                                                        display conditions but each participant viewed only one version
+Stimuli were 120 standardized sentences (see McGowan et al.,                              of each sentence (with either its high or low lexical frequency
+2015) that included either a high or low lexical frequency                                target), and each sentence was shown equally often with its high
+target word located toward the middle of each sentence and                                or low lexical frequency target in each display condition over
+which had previously shown robust lexical frequency effects                               the experiment. Sentences were shown to each participant in a
+when sentences were presented as normal. High and low lexical                             randomized order. Additional sentences (2 per display condition)
+frequency members of each target word pair were matched for                               were used as practice items at the start of each session.
+length (M = 5.3 letters, range = 4–6 letters) and occupied the
+same location within their shared sentence. Sentence contexts                             Apparatus and Procedure
+were chosen so that each high/low lexical frequency word pair                             Eye movements were recorded using an Eyelink 1000 tower-
+was equally plausible within the sentence context and equally                             mounted eye-tracker with chin and forehead rest. Viewing was
+unpredictable, as evidenced by prescreening (see McGowan et al.,                          binocular and each participant’s right eye movements were
+2015). High lexical frequency words had a mean Zipf frequency                             sampled at 1000 Hz using pupil-tracking and corneal reflection.
+of 5.24 and low lexical frequency words a mean Zipf frequency of                          Sentences were displayed on a high-definition 19-inch monitor
+3.36 (according to the SUBTLEX-UK database; van Heuven et al.,                            and a 4-letter word subtended approximately 1◦ (i.e., normal
+2014) corresponding to actual mean frequencies of occurrence of                           size for reading; Rayner and Pollatsek, 1989). The eye-tracker
+249.1 and 2.3 per million, respectively.                                                  was calibrated at the beginning of the experiment. On each trial,
+   Each sentence context and high/low lexical frequency target                            participants fixated a cross presented on the left of the screen,
+word combination was displayed in 1 of 6 display conditions,                              and a sentence was then presented, with its first letter replacing
+where each sentence was shown entirely as normal or filtered to                           this cross. Participants were instructed to read normally and for
+leave one of 5 different, 1-octave wide bands of spatial frequencies                      comprehension and answered a comprehension question after
+with low- and high-pass cut-off frequencies of 1.65–3.3, 2.6–5.2,                         each sentence.
+
+
+Frontiers in Psychology | www.frontiersin.org                                        4                                           September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                              Effects of Spatial Frequencies
+
+
+
+RESULTS                                                                       slow readers = 319 ms, fast readers = 273 ms; single-fixation
+                                                                              durations, slow readers = 331 ms, fast readers = 283 ms; gaze
+All participants produced high levels of overall accuracy for                 durations, slow readers = 431 ms, fast readers = 336 ms; total
+the sentence comprehension questions (mean = 91% correct)                     reading times, slow readers = 686 ms, fast readers = 458 ms;
+and no differences in comprehension were observed between                     regressions in, slow readers = 32.5%, fast readers = 24.7%;
+reading abilities for any display type, F < 1.1. Differences were             regressions out, slow readers = 32.5%, fast readers = 9.3%).
+observed, however, across the displays, F (5, 140) = 67.88, p <                   Evidence of main effects of display condition was also
+0.001, ηp2 = 0.71, and comprehension accuracy was equally high                obtained for all measures [word-skipping, F 1(5, 140) = 6.50,
+for text shown normally (95%) and filtered to contain only low                p < 0.001, ηp2 = 0.19, F 2(5, 590) = 18.71, p < 0.001, ηp2 = 0.14;
+(93%), medium (96%), high (95%), or very high (93%) spatial
+                                                                              first-pass fixations, F 1(5, 140) = 13.75, p < 0.001, ηp2 = 0.33,
+frequencies, but lower for very low spatial frequencies (61%;
+ps < 0.01).                                                                   F 2(5, 590) = 22.55, p < 0.001, ηp2 = 0.19; first-fixation durations,
+    The focus of the present investigation was the influence of               F 1(5, 140) = 89.97, p < 0.001, ηp2 = 0.77, F 2(5, 590) = 131.70,
+normal and filtered displays on eye movements for target words                p < 0.001, ηp2 = 0.58; single-fixation durations, F 1(5, 140) =
+in sentences and so the following standard word-level measures                79.30, p < 0.001 ηp2 = 0.75, F 2(5, 590) = 52.90, p < 0.001,
+of eye movements are reported (see Rayner, 2009): word-                       ηp2 = 0.59; gaze durations, F 1(5, 140) = 54.01, p < 0.001, ηp2 =
+skipping (the probability of a target word not receiving a fixation
+                                                                              0.67, F 2(5, 590) = 111.18, p < 0.001, ηp2 = 0.54; total reading
+during first-pass reading), first-pass fixations (the number of
+fixations on a target word during first-pass reading), first-fixation         times, F 1(5, 140) = 29.31, p < 0.001, ηp2 = 0.51, F 2(5, 590) =
+duration (the duration of the first, first-pass fixation on a target          110.57, p < 0.001, ηp2 = 0.48; regressions out, F 1(5, 140) = 3.96,
+word), single-fixation duration (the duration of the first fixation           p < 0.01, ηp2 = 0.12, F 2(5, 590) = 5.26, p < 0.001, ηp2 = 0.04],
+for target words that receive only one first-pass fixation), gaze             although only reliable by participants for regressions-in, F 1(5, 140)
+duration (the sum of all first-pass fixation durations prior to               = 2.80, p < 0.02, ηp2 = 0.09, F 2(5, 590) = 1.85, p = 0.10, ηp2 =
+a fixation on another word), total reading time (the sum of                   0.02. Compared to normal text displays, each filtered display
+all fixation durations on a target word), regressions out (the                produced more and longer fixations (ps < 0.001). For filtered
+probability of a regressive saccade away from a target word), and             displays, the number of fixations was lowest and fixation times
+regressions in (the probability of a regressive saccade to a target           shortest for medium and high spatial frequencies. The number
+word). Mean eye movement measures for high and low lexical                    of fixations and fixation times were both greater for very high
+frequency target words in each display condition for each reading             spatial frequencies, greater still for low spatial frequencies, and
+ability are shown in Table 2 and gaze durations and total reading             greatest of all for very low spatial frequencies (ps < 0.01). All
+times for target words are shown graphically in Figure 2. Data                filtered displays except very low spatial frequencies produced
+for each measure were analyzed using Analysis of Variance with                lower than normal word-skipping rates and, for filtered displays,
+factors reading ability (fast, slow), display condition (normal,              word-skipping rates were highest for very low spatial frequencies,
+very low, low, medium, high, very high), and target word lexical              and equally lower for low, medium, high, and very high spatial
+frequency (high, low), with error computed across participants                frequencies (all ps < 0.05). Finally, more than normal regressions
+(F 1 ) and word stimuli (F 2 ). Additional pairwise comparisons               in were made for low spatial frequencies only, and more than
+were performed using Bonferroni corrections.                                  normal regressions out were made for very low and low spatial
+    Evidence of main effects of reading ability was obtained for              frequencies only (ps < 0.05).
+all measures [word-skipping, F 1(1, 28) = 6.19, p < 0.02, ηp2 =                   In addition to these main effects, interactions between reading
+0.18, F 2(1, 118) = 19.07, p < 0.001, ηp2 = 0.14; first-pass fixations,       ability and display condition were significant for single-fixation
+F 1(1, 28) = 14.25, p < 0.01, ηp2 = 0.34, F 2(1, 118) = 36.82, p              duration, F 1(5, 140) = 2.24, p = 0.05, ηp2 = 0.08, F 2(5, 590) =
+< 0.001, ηp2 = 0.28; first-fixation durations, F 1(1, 28) = 10.46,            4.68, p < 0.001, ηp2 = 0.11, gaze duration F 1(5, 140) = 2.40, p <
+p < 0.01, ηp2 = 0.28, F 2(1, 118) = 63.91, p < 0.001, ηp2 = 0.41;             0.05, ηp2 = 0.08, F 2(5, 590) = 3.64, p < 0.01, ηp2 = 0.04, and total
+single-fixation durations, F 1(1, 28) = 8.62, p < 0.01, ηp2 = 0.24,           reading time F 1(5,140) = 3.59, p < 0.01, ηp2 = 0.11, F 2(5, 590) =
+F 2(1, 118) = 42.64, p < 0.001, ηp2 = 0.54; gaze durations, F 1(1, 28)        15.38, p < 0.001, ηp2 = 0.12, and reliable across participants for
+= 23.05, p < 0.001, ηp2 = 0.46, F 2(1, 118) = 93.63, p < 0.001,               first-fixation duration, F 1(5, 140) = 2.51, p < 0.05, ηp2 = 0.09,
+ηp2 = 0.50; total reading times, F 1(1, 28) = 28.64, p < 0.001, ηp2 =         F 2 < 1. No other interactions were significant, indicating that
+                                                                              the main effects of reading ability and display type observed for
+0.51, F 2(1, 118) = 280.94, p < 0.001, ηp2 = 0.70; regressions in,
+                                                                              other measures did not vary with the additional factor. For single-
+F 1(1, 28) = 4.61, p < 0.05, ηp2 = 0.14, F 2(1, 118) = 37.55, p <             fixation duration, gaze duration, and total reading time, fast
+0.001, ηp2 = 0.24; regressions out, F 1(1, 28) = 71.96, p < 0.001,            readers produced shorter times than slow readers for all display
+ηp2 = 0.72, F 2(1, 118) = 11.38, p < 0.01, ηp2 = 0.09]. Compared              conditions (ps < 0.01) and a similar finding was obtained for
+to fast readers, slow readers skipped words less frequently, made             first-fixation duration (p < 0.01). Further comparisons showed
+more and longer fixations, and more regressions (word-skipping,               that these advantages for fast readers were of similar size for,
+slow readers = 6.2%, fast readers = 11.0%; first-pass fixations,              medium, high, and very high spatial frequencies, but larger for
+slow readers = 1.4, fast readers = 1.2; first-fixation durations,             very low and low (ps < 0.05).
+
+
+
+Frontiers in Psychology | www.frontiersin.org                             5                                     September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                                                 Effects of Spatial Frequencies
+
+
+
+TABLE 2 | Mean eye movement measures for fast and slow readers in each display and target word lexical frequency condition.
+
+                                                                                             Display type
+
+                      Reading                Normal               Very low                    Low                   Medium                 High              Very high
+                      ability
+                                                                                 Target word lexical frequency
+
+                                     High         Low      High         Low          High           Low      High       Low       High            Low      High       Low
+
+Word skipping         Fast           16.7         10.7     27.3         24.7         7.3            3.3      12.0       7.3       6.7             4.7      8.7        2.7
+(%)                                  (2.5)        (1.8)    (6.0)        (6.2)        (1.3)          (0.9)    (2.1)      (1.6)     (2.0)           (1.2)    (1.8)      1.1)
+                      Slow           13.3         8.9      8.0          10.9         2.0            4.9      8.7        4.9       6.0             3.8      4.7        3.8
+                                     (1.8)        (2.2)    (2.3)        (2.4)        (.8)           (1.4)    (2.2)      (1.7)     (1.5)           (1.6)    (1.2)      (1.6)
+
+First-fixation        Fast           200          218      370          371          291            330      228        249       237             255      251        277
+duration                             (3)          (5)      (17)         (17)         (9)            (12)     (6)        (6)       (6)             (9)      (9)        (8)
+(ms)
+                      Slow           241          244      402          390          306            315      259        259       258             262      276        279
+                                     (8)          (7)      (14)         (16)         (16)           (16)     (6)        (10)      (9)             (10)     (12)       (10)
+
+Single-fixation       Fast           201          220      390          401          304            340      229        256       242             261      258        292
+duration                             (3)          (5)      (20)         (23)         (10)           (15)     (6)        (7)       (6)             (8)      (11)       (8)
+(ms)
+                      Slow           233          249      500          485          380            380      256        313       260             299      285        326
+                                     (9)          (7)      (17)         (23)         (20)           (19)     (7)        (12)      (10)            (12)     (12)       (11)
+
+Gaze duration         Fast           206          240      460          515          376            496      244        295       256             314      285        348
+(ms)                                 (3)          (7)      (25)         (35)         (15)           (27)     (6)        (11)      (7)             (14)     (11)       (17)
+                      Slow           246          276      672          659          512            651      275        406       305             378      345        444
+                                     (9)          (12)     (32)         (34)         (26)           (31)     (8)        (22)      (14)            (17)     (22)       (40)
+
+Number of             Fast           1.0          1.1      1.3          1.3          1.3            1.5      1.1        1.2       1.1             1.2      1.1        1.3
+first-pass                           (0.01)       (0.02)   (0.05)       (0.08)       (0.05)         (0.06)   (0.02)     (0.04)    (0.01)          (0.03)   (0.02)     (0.03)
+fixations
+                      Slow           1.1          1.1      1.6          1.6          1.5            1.7      1.1        1.4       1.2             1.4      1.2        1.4
+                                     (0.02)       (0.04)   (0.06)       (0.05)       (0.04)         (0.06)   (0.02)     (0.07)    (0.05)          (0.03)   (0.05)     (0.11)
+
+Total reading         Fast           234          293      577          616          570            883      304        399       323             458      354        483
+time                                 (12)         (19)     (65)         (80)         (45)           (69)     (22)       (29)      (19)            (34)     (22)       (33)
+(ms)
+                      Slow           323          378      1225         1050         815            1184     404        604       416             620      486        727
+                                     (14)         (16)     (118)        (94)         (40)           (57)     (21)       (28)      (16)            (32)     (26)       (71)
+
+Regressions-          Fast           9.6          4.7      14.2         10.0         14.8           15.7     5.6        8.0       8.9             7.3      7.0        5.3
+out                                  (1.7)        (1.4)    (2.7)        (2.5)        (3.6)          (3.3)    (1.4)      (1.9)     (2.1)           (1.6)    (2.2)      (1.7)
+(%)
+                      Slow           27.7         31.9     44.6         32.0         35.8           39.9     22.7       38.3      25.9            33.3     24.8       34.7
+                                     (3.4)        (3.4)    (3.2)        (4.0)        (2.7)          (3.9)    (3.0)      (3.4)     (2.7)           (1.8)    (2.9)      (1.8)
+
+Regressions-in        Fast           18.8         24.1     19.5         21.8         29.4           37.9     20.1       25.8      19.3            29.5     21.7       28.0
+(%)                                  (2.7)        (2.5)    (3.3)        (3.8)        (2.8)          (3.6)    (3.3)      (3.8)     (3.1)           (4.0)    (2.9)      (3.4)
+                      Slow           27.7         31.9     44.6         32.0         35.8           37.8     22.7       38.3      25.9            33.3     24.8       34.7
+                                     (3.4)        (3.4)    (3.3)        (4.0)        (2.7)          (3.9)    (3.0)      (3.4)     (2.7)           (1.8)    (2.9)      (3.0)
+
+
+
+
+   A main effect of lexical frequency was significant for word-                             11.80, p < 0.01, ηp2 = 0.24, gaze duration, F 1(1, 28) = 37.94,
+skipping, F 1(1, 28) = 15.56, p < 0.001, ηp2 = 0.36, F 2(1, 118) =                          p < 0.001, ηp2 = 0.58, F 2(1, 118) = 40.59, p < 0.001, ηp2 = 0.30,
+6.15, p < 0.02, ηp2 = 0.05, first-fixation duration, F 1(1, 28) = 15.69,                    total reading time, F 1(1, 28) = 50.67, p < 0.001, ηp2 = 0.64,
+p < 0.001, ηp2 = 0.37, F 2(1, 118) = 25.64, p < 0.001, ηp2 =                                F 2(1, 118) = 39.24, p < 0.001, ηp2 = 0.25, and regressions in,
+0.21, first-pass fixations, F 1(1, 28) = 24.45, p < 0.001, ηp2 =                            F 1(1, 28) = 11.62, p < 0.01, ηp2 = 0.29, F 2(1, 118) = 10.26, p < 0.01,
+0.46, F 2(1, 118) = 11.47, p < 0.01, ηp2 = 0.11, single-fixation                            ηp2 = 0.08. There was no effect of word frequency for regressions
+duration, F 1(1, 28) = 11.79, p < 0.01, ηp2 = 0.30, F 2(1, 118) =                           out (F < 1.3). Crucially, there were no interactions between
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                         6                                          September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                                                       Effects of Spatial Frequencies
+
+
+
+
+                             A
+
+                                                            Fast Readers / High Lexical Frequency           Fast Readers / Low Lexical Frequency
+                                                            Slow Readers / High Lexical Frequency           Slow Readers / Low Lexical Frequency
+
+
+                                                           800
+                                 Gaze Duration (ms)
+
+                                                           600
+
+
+                                                           400
+
+
+                                                           200
+
+
+                                                             0
+                                                                     Normal    Very Low        Low           Medium         High       Very High
+                                                                                                Display Type
+
+                             B
+
+                                                           Fast Readers / High Lexical Frequency          Fast Readers / Low Lexical Frequency
+                                                           Slow Readers / High Lexical Frequency          Slow Readers / Low Lexical Frequency
+
+
+
+                                                           1400
+                                 Total Reading Time (ms)
+
+
+
+
+                                                           1200
+
+                                                           1000
+
+                                                            800
+
+                                                            600
+
+                                                            400
+
+                                                            200
+
+                                                                 0
+                                                                     Normal     Very Low       Low           Medium         High       Very High
+                                                                                                Display Type
+
+
+ FIGURE 2 | (A) Mean Gaze Durations and (B) mean Total Reading Times (including standard error bars) for fast and slow readers.
+
+
+
+
+reading ability and word frequency (all Fs < 1), indicating that                                        frequency = 295 ms; gaze duration, low frequency = 419 ms, high
+fast and slow readers produced similar word frequency effects.                                          frequency = 348 ms; total reading time, low frequency = 641 ms,
+Readers skipped low lexical frequency words less often than high                                        high frequency = 503 ms; regressions in, low frequency = 31.3,
+lexical frequency words (low lexical frequency = 7.1%, high                                             high frequency = 25.9).
+lexical frequency = 10.1%), and produced more fixations, longer                                             Finally, an interaction between display condition and lexical
+fixations, longer reading times, and more regressions in for                                            frequency was observed for total reading times, F 1(5, 140) = 13.17,
+low than high lexical frequency words (first-pass fixations, low                                        p < 0.001, ηp2 = 0.32, F 2(5,590) = 10.06, p < 0.001, ηp2 = 0.08
+frequency = 1.4 fixations, high frequency = 1.2 fixations; first-                                       and three other measures were reliable across participants: first-
+fixation duration, low frequency = 307 ms, high frequency =                                             pass fixations, F 1(5, 140) = 2.44, p < 0.05, ηp2 = 0.08; F 2 < 1;
+285 ms; single-fixation duration, low frequency = 318 ms, high                                          first-fixation durations, F 1(5, 140) = 2.74, p < 0.05, ηp2 = 0.10,
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                                       7                                    September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                             Effects of Spatial Frequencies
+
+
+
+F 2 < 1; gaze durations, F 1(5, 140) = 4.43, p < 0.01, ηp2 = 0.14,           band of spatial frequencies provided all the information required
+F 2 < 2.0. No other measures showed an interaction, Fs < 1.7.                for the normal processing of words. However, reading behavior
+Lexical frequency effects were obtained for total reading times              for both fast and slow readers was closest to normal for medium
+for all displays (ps < 0.05) except very low spatial frequencies.            and high spatial frequency displays, and reading still occurred,
+Further comparisons showed that, apart from very low spatial                 albeit less efficiently, for all other spatial frequencies. Therefore,
+frequencies, lexical frequency effects on total reading times were           while the processing of target words was most effective for spatial
+larger than normal for all filtered displays (all ps < 0.01) and were        frequencies (medium and high) that could convey relatively
+equal in size for medium, high and very high spatial frequencies,            detailed visual cues about the form and location of letters in
+but larger for low spatial frequencies (all ps < 0.05). No other             words, the processing of words was still supported when only
+effects were obtained (Fs < 2.5, ps > 0.05).                                 higher spatial frequencies that provide very fine detail, or lower
+                                                                             spatial frequencies that provide more coarse-scale cues to word
+                                                                             identities, were present. The indication, therefore, is that a broad
+DISCUSSION                                                                   range of spatial frequencies can contribute to the processing of
+                                                                             words during reading, for fast and slow skilled adult readers.
+The first indication to emerge from these findings is that                       There were, however, important differences in the use of
+differences between fast and slow readers were evident for target            spatial frequencies by fast and slow readers. Fast readers made
+words across a broad range of eye movement measures, even                    fewer and shorter fixations on target words than slow readers
+when text was presented as normal, indicating that differences               for all types of display. However, while this advantage for fast
+in eye movement behavior are a fundamental component of                      readers was similar across all spatial frequencies for several
+differences in the ability of skilled readers to identify words in           measures (word-skipping, first-pass fixations, regressions out,
+text. Of particular importance is that, compared to fast readers,            and regressions in), single-fixation duration, gaze duration,
+slow readers skipped words less often, made more, and longer                 total reading time (and to an extent first-fixation duration)
+fixations on words, and made more regressive saccades. More                  showed that these advantages for fast readers were similar in
+and longer fixations are associated with increased difficulty in             size for medium, high and very high spatial frequencies, but
+processing words, while higher rates of regressive saccades often            larger for very low and low. Fast readers therefore appeared
+reflect efforts to repair processing failures, including those caused        to use all spatial frequencies more effectively than slow readers
+by errors of word identification or miscomprehension (e.g.,                  when processing words and this advantage was greatest for
+Reichle et al., 2009). More and longer fixations on words and                lower spatial frequencies during the early stages of processing
+more regressions by slow readers in the present study, therefore,            words. This pattern of effects is similar to that reported by
+are consistent with slow readers experiencing generally greater              Jordan et al. (2016a) for overall sentence reading and this
+reading difficulty. In contrast, fast readers were more likely to            similarity is consistent with the widely argued opinion that word
+skip words, with no apparent loss of comprehension, and higher               identification is the engine that drives the forward movement
+word-skipping rates combined with normal comprehension are                   of the eyes (e.g., Rayner et al., 1996; Reichle et al., 1998, 2003),
+generally taken to show that readers are better able to anticipate           and so differences in the efficiency of word identification are
+the identities of upcoming words in text (e.g., Schotter et al.,             likely to be reflected in overall sentence reading times. However,
+2012). Differences between the reading performances shown by                 the present findings also revealed that differences in the use
+fast and slow readers, therefore, suggest that fast readers may              of spatial frequencies by fast and slow readers emerge early
+benefit from using more efficient predictive processes to gain a             during the processing of words and so are likely to affect
+head-start in processing upcoming words (e.g., Long et al., 1994;            the fundamental analyses of visual input that contribute to
+Murray and Burke, 2003; Hersch and Andrews, 2012; Frömer                     lexical access and word identification. Indeed, the particular
+et al., 2015; Hawelka et al., 2015).                                         effectiveness of medium and high spatial frequencies for both
+    But the major focus of the current study is that a substantial           reading abilities suggests that, for fast and slow readers, processes
+component of differences between fast and slow readers may be                of word identification benefited directly from relatively detailed
+that fast readers are better able to use the spatial frequencies             analyses of text that enable perception of the precise form and
+present in words to gain more rapid bottom-up access to lexical              location of individual letters in words. Such effects are consistent
+representations when reading. Jordan et al. (2016a) observed                 with some views concerning the role of letter information in
+overall sentence differences in the use of spatial frequencies by            reading (e.g., Pelli et al., 2003; Davis, 2010) and with the lexical
+fast and slow readers that are relevant to this distinction in the use       quality hypothesis which proposes that fast reading benefits
+of bottom-up visual information, and showed that fast readers                from high-quality lexical representations in which orthographic
+make more efficient use of a broad range of spatial frequencies,             information defining a particular word is stored precisely (e.g.,
+and especially those that are lower. But this previous research              Perfetti, 1992, 2007; Andrews, 2008, 2012).
+focused on reading times and eye movements across whole                          But although lower spatial frequencies were generally less
+sentences, and so the role of spatial frequencies in accessing               effective than other spatial frequencies for reading, their
+lexical representations by fast and slow readers remained to be              relative usefulness across reading abilities indicates an important
+confirmed. From the findings reported in the present study,                  distinction between the ways in which fast and slow readers
+all spatial frequencies produced more and longer fixations on                process words. Indeed, compared to slow readers, it appears
+targets, compared to normal displays, indicating that no single              that fast readers were especially able to use lower spatial
+
+
+Frontiers in Psychology | www.frontiersin.org                            8                                     September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                       Effects of Spatial Frequencies
+
+
+
+frequencies to achieve lexical access, and this may provide an           and to establish if word frequency effects differ for fast and
+effective bottom-up basis for influences of predictability that          slow skilled readers when words are more predictable, as this
+many consider to be an important component of fast reading               may shed further light on the ability of fast readers to more
+(e.g., Long et al., 1994; Murray and Burke, 2003; Hersch and             efficiently combine the processing of bottom-up visual cues
+Andrews, 2012; Hawelka et al., 2015). Such a possibility also            (especially those provided by coarse-scale information) with
+resonates with arguments that lower spatial frequencies reach            contextual expectations to facilitate word recognition during
+cortical areas before higher spatial frequencies via magnocellular       reading.
+pathways (e.g., Patching and Jordan, 2005a,b; Allen et al.,                  Filtered displays also showed word frequency effects for
+2009; Jordan et al., 2012, 2014) and so fast readers may use             each reading ability with only partial evidence of influences of
+coarse-scale parafoveal cues to pre-process the identities of            display type, indicating that a range of spatial frequencies can
+upcoming words, and this is also consistent with the present             support normal processes of word identification by fast and
+finding that fast readers skip words more often. Moreover, if            slow skilled adult readers. Indeed, where a reliable interaction
+coarse-scale information provided by lower spatial frequencies           was observed (for total reading times), word frequency effects
+when text is presented normally is sometimes insufficient                were obtained for all displays except very low spatial frequencies.
+to access the correct lexical representation, fast readers may           Consequently, the finding that even low spatial frequencies
+be more able to combine the rapid processing of a word’s                 produced a standard word frequency effect, and that this
+lower spatial frequencies with contextual cues to provide top-           was larger compared to higher spatial frequency displays,
+down predictions of the word’s identity, and (if necessary)              supports the view that detailed visual cues (e.g., those provided
+also integrate this information with more detailed visual input          by medium and high spatial frequencies) are not a pre-
+provided by slower parvocellular pathways. Moreover, in contrast         requisite for word recognition, and that more coarse-scale
+to higher spatial frequencies, lower spatial frequencies can             cues to word identity make an important contribution (e.g.,
+be encoded from a range of locations (foveal, parafoveal,                Jordan, 1990, 1995; Patching and Jordan, 2005a,b; Allen et al.,
+peripheral) relative to the point of each fixation during                2009). Indeed, while the absence of word frequency effects
+reading (e.g., Jordan et al., 2012; Paterson et al., 2013a,b; see        when text contained only very low spatial frequencies might
+also Jordan et al., 2013, 2016b), and so more effective use              appear to indicate a failure of word recognition, it is unlikely
+of lower spatial frequencies by fast readers may indicate a              that word recognition was entirely prevented as even very
+particularly pragmatic and useful response to the nature of              low spatial frequencies produced above chance performance
+human visual input and the complex demands of the process of             with comprehension questions. Moreover, our approach to
+reading.                                                                 investigate fast and slow skilled adult reading intentionally
+    But although the present findings point to important                 used a technique in which the effectiveness of different
+differences in the use of spatial frequencies by fast and slow           spatial frequency bands in text was determined individually
+readers to gain access to lexical representations during reading,        to avoid contamination from other spatial frequencies. But
+fast and slow readers produced similar lexical frequency effects,        all spatial frequencies present in text are normally present
+both when text was shown normally and when text was filtered             simultaneously and so may integrate to exert influences on
+to contain only selected spatial frequencies. Indeed, fast and           word recognition either in parallel or in close succession
+slow readers both produced typical lexical frequency effects, such       during reading. Under these conditions, therefore, even spatial
+that high lexical frequency words received fewer and shorter             frequencies that alone provide relatively weak contributions
+fixations (and were more likely to be skipped) than low lexical          to word recognition may provide crucial influences on the
+frequency words (e.g., Inhoff and Rayner, 1986; Rayner and               effectiveness of other spatial frequencies when normally reading
+Duffy, 1986; Rayner et al., 1996; Juhasz and Rayner, 2003; Juhasz        text.
+et al., 2006; Paterson and Jordan, 2010), and these differences              In sum, the indication from the findings reported here
+were similar for each reading ability. These findings, therefore,        is that a broad range of spatial frequencies contribute to
+suggest that visual access to lexical representations is generally       the identification of words during reading by fast and slow
+more efficient for fast readers than for slow, for both low and          skilled adult readers, but this use of spatial frequencies is most
+high lexical frequency words, but the relative efficiency with           effective for fast readers than for slow. These findings add
+which low and high lexical frequency words are recognized                to the view that reading relies fundamentally on the careful
+is similar for both reading abilities. It is worth pointing out          orchestration of visual cues provided by a broad range of
+that previous research has shown that word frequency effects             spatial frequencies present in visual sensory input (e.g., Jordan,
+are smaller for skilled compared to average readers, but only            1990, 1995; Patching and Jordan, 2005a,b; Allen et al., 2009),
+when words are highly predictable in the sentence context                and that differences in the use of these visual cues underpin
+(Ashby et al., 2005). The sentence and target word combinations          variation in reading performance even in the skilled adult reading
+used in the present research were selected intentionally so              population. But, crucially, these new findings indicate that fast
+that high and low frequency words were equally unpredictable,            readers make more effective use of these spatial frequencies,
+and so broadly equivalent effects of word frequency for fast             and especially those that are lower, to facilitate the early
+and slow readers in the present analyses may reflect this                processing of words, and this, combined with more efficient
+controlled lack of predictability. It will be important for future       predictive processes, may be an essential feature of their reading
+research to explore the role of predictability in more detail            advantage.
+
+
+Frontiers in Psychology | www.frontiersin.org                        9                                   September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                                                          Effects of Spatial Frequencies
+
+
+
+AUTHOR CONTRIBUTIONS                                                                           FUNDING
+TJ, KP, VM, and JD designed the experiment. TJ and KP wrote the                                The research was funded by a research awarded to TJ and KP by
+manuscript. VM and SK designed the stimuli and implemented                                     the Ulverscroft Foundation, an Experimental Psychology Society
+the experiment. JD collected the data. JD, VM, and KP analyzed                                 Undergraduate Research Bursary awarded to JD, and an ESRC
+the data.                                                                                      Future Research Leaders Postdoctoral Fellowship to VM.
+
+
+
+
+REFERENCES                                                                                     Jordan, T. R. (1995). Perceiving exterior letters of words: differential influences of
+                                                                                                  letter-fragment and nonletter fragment masks. J. Exp. Psychol. Hum. Percept.
+Allen, P. A., Smith, A. F., Lien, M. C., Kaut, K. P., and Canfield, A. (2009). A                  Perform. 21, 512–530. doi: 10.1037/0096-1523.21.3.512
+   multi-stream model of visual word recognition. Atten. Percept. Psychophys. 71,              Jordan, T. R., Dixon, J., McGowan, V. A., Kurtev, S., and Paterson, K. B. (2016a).
+   281–296. doi: 10.3758/APP.71.2.281                                                             Fast and slow readers and the effectiveness of the spatial frequency content of
+Andrews, S. (2008). Lexical expertise and reading skill. Psychol. Learn. Motiv. 49,               text: evidence from reading times and eye movements. J. Exp. Psychol. Hum.
+   249–281. doi: 10.1016/s0079-7421(08)00007-8                                                    Percept. Perform. 42, 1066–1071. doi: 10.1037/xhp0000234
+Andrews, S. (2012). “Individual differences in skilled visual word recognition and             Jordan, T. R., McGowan, V. A., Kurtev, S., and Paterson, K. B. (2016b). A further
+   reading: the role of lexical quality,” in Visual Word Recognition, ed J. Adelman               look at postview effects in reading: an eye-movements study of influences
+   (Hove: Psychology Press), 151–172.                                                             from the left of fixation. J. Exp. Psychol. Learn. Mem. Cogn. 42, 296–307. doi:
+Andrews, S., and Hersch, J. (2010). Lexical precision in skilled readers: individual              10.1037/xlm0000157
+   differences in masked priming. J. Exp. Psychol. Gen. 139, 299–318. doi:                     Jordan, T. R., McGowan, V. A., and Paterson, K. B. (2011). Out of sight, out
+   10.1037/a0018366                                                                               of mind: the rarity of assessing and reporting participants’ visual abilities
+Andrews, S., and Lo, S. (2012). Not all skilled readers have cracked the code:                    when studying perception of linguistic stimuli. Perception 40, 873–876. doi:
+   individual differences in masked form priming. J. Exp. Psychol. Learn. Mem.                    10.1068/p6940
+   Cogn. 38, 152–163. doi: 10.1037/a0024953                                                    Jordan, T. R., McGowan, V. A., and Paterson, K. B. (2012). Reading with a filtered
+Ashby, J., Rayner, K., and Clifton, C. (2005). Eye movements of highly skilled and                fovea: the influence of visual quality at the point of fixation during reading.
+   average readers: differential effects of frequency and predictability. Q. J. Exp.              Psychon. Bull. Rev. 19, 1078–1084. doi: 10.3758/s13423-012-0307-x
+   Psychol. 58, 1065–1086. doi: 10.1080/02724980443000476                                      Jordan, T. R., McGowan, V. A., and Paterson, K. B. (2013). What’s left? An eye
+Ashby, J., Yang, J., Evans, K., and Rayner, K. (2012). Eye movements and the                      movement study of the influence of interword spaces to the left of fixation
+   perceptual span in silent and oral reading. Atten. Percept. Psychophys. 74,                    during reading. Psychon. Bull. Rev. 20, 551–557. doi: 10.3758/s13423-012-
+   634–640. doi: 10.3758/s13414-012-0277-0                                                        0372-1
+Bailey, I. L., and Lovie, J. E. (1980). The design and use of a new near-vision chart.         Jordan, T. R., McGowan, V. A., and Paterson, K. B. (2014). Reading with filtered
+   Am. J. Optom. Physiol. Opt. 57, 378–387. doi: 10.1097/00006324-198006000-                      fixations: adult-age differences in the effectiveness of low-level properties of text
+   00011                                                                                          within central vision. Psychol. Aging 29, 229–235. doi: 10.1037/a0035948
+Blakemore, C., and Campbell, F. W. (1969). Adaptation to spatial stimuli. J. Physiol.          Juhasz, B. J., Liversedge, S. P., White, S. J., and Rayner, K. (2006). Binocular
+   200, 11–13.                                                                                    coordination of the eyes during reading: word frequency and case alternation
+Brown, J. I., Fishco, V. V., and Hanna, G. (1993). The Nelson-Denny Reading Test.                 affect fixation duration but not fixation disparity. Q. J. Exp. Psychol. 59,
+   Itasca, IL: The Riverside Publishing Company.                                                  1614–1625. doi: 10.1080/17470210500497722
+Davis, C. J. (2010). The spatial coding model of visual word identification. Psychol.          Juhasz, B. J., and Rayner, K. (2003). Investigating the effects of a set of
+   Rev. 117, 713–758. doi: 10.1037/a0019738                                                       intercorrelated variables on eye fixation durations in reading. J. Exp. Psychol.
+Engbert, R., Nuthmann, A., Richter, E. D., and Kliegl, R. (2005). SWIFT: a                        Learn. Mem. Cogn. 29, 1312–1318. doi: 10.1037/0278-7393.29.6.1312
+   dynamical model of saccade generation during reading. Psychol. Rev. 112,                    Krieber, M., Bartl-Pokorny, K. D., Pokorny, F. B., Einspieler, C., Langmann, A.,
+   777–813. doi: 10.1037/0033-295X.112.4.777                                                      Körner, C., et al. (2016). The relation between reading skills and eye movement
+Ferris, F. L., and Bailey, I. L. (1996). Standardizing the measurement of visual acuity           patterns in adolescent readers: evidence from a regular orthography. PLoS ONE
+   for clinical research studies. Ophthalmology 103, 181–182. doi: 10.1016/S0161-                 11:e0145934. doi: 10.1371/journal.pone.0145934
+   6420(96)30742-2                                                                             Kuperman, V., and Van Dyke, J. A. (2011). Effects of individual differences in
+Frömer, R., Dimigen, O., Niefind, F., Krause, N., Kliegl, R., and Sommer, W. (2015).              verbal skills on eye-movement patterns during sentence reading. J. Mem. Lang.
+   Are individual differences in reading speed related to extrafoveal visual acuity               65, 42–73. doi: 10.1016/j.jml.2011.03.002
+   and crowding? PLoS ONE 10:e0121986. doi: 10.1371/journal.pone.0121986                       Kwon, M., and Legge, G. E. (2012). Spatial-frequency requirements for reading
+Hawelka, S., Schuster, S., Gagl, B., and Hutzler, F. (2015). On forward inferences                revisited. Vision Res. 62, 139–147. doi: 10.1016/j.visres.2012.03.025
+   of fast and slow readers. An eye movement study. Sci. Rep. 5:8432. doi:                     Legge, G. E., Pelli, D. G., Rubin, G. S., and Schleske, M. M. (1985). Psychophysics
+   10.1038/srep08432                                                                              of reading: I. Normal vision. Vision Res. 25, 239–252. doi: 10.1016/0042-
+Hegdé, J. (2008). Time course of visual perception: coarse-to-fine processing and                 6989(85)90117-8
+   beyond. Prog. Neurobiol. 84, 405–439. doi: 10.1016/j.pneurobio.2007.09.001                  Long, D. L., Oppy, B. J., and Seely, M. R. (1994). Individual differences in the
+Hersch, J., and Andrews, S. (2012). Lexical quality and reading skill: bottom-up and              time course of inferential processing. J. Exp. Psychol. Learn. Mem. Cogn. 20,
+   top-down contributions to sentence processing. Sci. Stud. Read. 16, 240–262.                   1456–1470. doi: 10.1037/0278-7393.20.6.1456
+   doi: 10.1080/10888438.2011.564244                                                           Lovegrove, W. J., Bowling, A., Badcock, D., and Blackwood, M. (1980). Specific
+Inhoff, A. W., and Rayner, K. (1986). Parafoveal word processing during eye                       reading disability: differences in contrast sensitivity as a function of spatial
+   fixations in reading: effects of word frequency. Percept. Psychophys. 40,                      frequency. Science 210, 439–440. doi: 10.1126/science.7433985
+   431–439. doi: 10.3758/BF03208203                                                            McGowan, V. A., White, S. J., and Paterson, K. B. (2015). The effects of interword
+Jackson, M. D., and McClelland, J. L. (1979). Processing determinants of reading                  spacing on the eye movements of young and older readers. J. Cogn. Psychol. 27,
+   speed. J. Exp. Psychol. Gen. 108, 151–181. doi: 10.1037/0096-3445.108.2.151                    609–621. doi: 10.1080/20445911.2014.988157
+Jordan, T. R. (1990). Presenting words without interior letters: superiority over              Murray, J. D., and Burke, K. A. (2003). Activation and encoding of predictive
+   single letters and influence of postmask boundaries. J. Exp. Psychol. Hum.                     inferences: the role of reading skill. Discourse Process. 35, 81–102. doi:
+   Percept. Perform. 16, 893–909. doi: 10.1037/0096-1523.16.4.893                                 10.1207/S15326950DP3502_1
+
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                             10                                             September 2016 | Volume 7 | Article 1433
+Jordan et al.                                                                                                                                          Effects of Spatial Frequencies
+
+
+
+Patching, G. R., and Jordan, T. R. (2005a). Assessing the role of different spatial             Rayner, K., Sereno, S. C., and Rayney, G. E. (1996). Eye movement control in
+   frequencies in word perception by good and poor readers. Mem. Cognit. 33,                       reading: a comparison of two types of models. J. Exp. Psychol. Hum. Percept.
+   961–971. doi: 10.3758/BF03193205                                                                Perform. 5, 1188–1200. doi: 10.1037/0096-1523.22.5.1188
+Patching, G. R., and Jordan, T. R. (2005b). Spatial frequency sensitivity differences           Rayner, K., Slattery, T. J., and Bélanger, N. N. (2010). Eye movements, the
+   between adults of good and poor reading ability. Invest. Ophthalmol. Vis. Sci.                  perceptual span, and reading speed. Psychon. Bull. Rev. 17, 834–839. doi:
+   46, 2219–2224. doi: 10.1167/iovs.03-1247                                                        10.3758/PBR.17.6.834
+Paterson, K. B., and Jordan, T. R. (2010). Effects of increased letter spacing on word          Reichle, E. D., Pollatsek, A., Fisher, D. L., and Rayner, K. (1998). Toward a
+   identification and eye guidance during reading. Mem. Cognit. 38, 502–512. doi:                  model of eye movement control in reading. Psychol. Rev. 105, 125–157. doi:
+   10.3758/MC.38.4.502                                                                             10.1037/0033-295X.105.1.125
+Paterson, K. B., McGowan, V. A., and Jordan, T. R. (2012). Eye movements reveal                 Reichle, E. D., Rayner, K., and Pollatsek, A. (2003). The E-Z Reader model of eye
+   effects of visual content on eye guidance and lexical access during reading. PLoS               movement control in reading: comparisons to other models. Behav. Brain Sci.
+   ONE 7:e41766. doi: 10.1371/journal.pone.0041766                                                 26, 445–476. doi: 10.1017/S0140525X03000104
+Paterson, K. B., McGowan, V. A., and Jordan, T. R. (2013a). Effects of adult                    Reichle, E. D., Warren, T., and McConnell, K. (2009). Using E-Z Reader to
+   aging on reading filtered text: evidence from eye movements. PeerJ. 1:e63. doi:                 model the effects of higher-level language processing on eye movements during
+   10.7717/peerj.63                                                                                reading. Psychon. Bull. Rev. 16, 1–21. doi: 10.3758/PBR.16.1.1
+Paterson, K. B., McGowan, V. A., and Jordan, T. R. (2013b). Filtered text reveals               Robson, J. G. (1966). Spatial and temporal contrast sensitivity functions of the
+   adult age differences in reading: evidence from eye movements. Psychol. Aging                   visual system. J. Opt. Soc. Am. 56, 1141–1142. doi: 10.1364/JOSA.56.001141
+   28, 352–364. doi: 10.1037/a0030350                                                           Schotter, E. R., Angele, B., and Rayner, K. (2012). Parafoveal processing in reading.
+Pelli, D. G., Farell, B., and Moore, D. C. (2003). The remarkable inefficiency of                  Atten. Percept. Psychophys. 74, 5–35. doi: 10.3758/s13414-011-0219-2
+   word recognition. Nature 423, 752–756. doi: 10.1038/nature01516                              Skottun, B. C. (2000). The magnocellular deficit theory of dyslexia: the evidence
+Pelli, D. G., Robson, J. G., and Wilkins, A. J. (1988). The design of a new letter chart           from contrast sensitivity. Vision Res. 40, 111–127. doi: 10.1016/S0042-
+   for measuring contrast sensitivity. Clin. Vis. Sci. 2, 187–199.                                 6989(99)00170-4
+Perfetti, C. A. (1992). “The representation problem in reading acquisition,” in                 van Heuven, W. J. B., Mandera, P., Keuleers, E., and Brysbaert, M. (2014). Subtlex-
+   Reading Acquisition, eds P. B. Gough, L. C. Ehri, and R. Treiman (Hillsdale,                    UK: a new and improved word frequency database for British English. Q. J. Exp.
+   NJ: Lawrence Erlbaum Associates), 145–174.                                                      Psychol. 67, 1176–1190. doi: 10.1080/17470218.2013.850521
+Perfetti, C. A. (2007). Reading ability: lexical quality to comprehension. Sci. Stud.           Veldre, A., and Andrews, S. (2014). Lexical quality and eye movements: individual
+   Read. 11, 357–383. doi: 10.1080/10888430701530730                                               differences in the perceptual span of skilled adult readers. Q. J. Exp. Psychol. 67,
+Rayner, K. (1998). Eye movements in reading and information processing: 20 years                   703–727. doi: 10.1080/17470218.2013.826258
+   of research. Psychol. Bull. 124, 372–422. doi: 10.1037/0033-2909.124.3.372
+Rayner, K. (2009). Eye movements and attention in reading, scene                                Conflict of Interest Statement: The authors declare that the research was
+   perception, and visual search. Q. J. Exp. Psychol. 62, 1457–1506. doi:                       conducted in the absence of any commercial or financial relationships that could
+   10.1080/17470210902816461                                                                    be construed as a potential conflict of interest.
+Rayner, K., and Duffy, S. (1986). Lexical complexity and fixation times in reading:
+   effects of word frequency, verb complexity, and lexical ambiguity. Mem. Cognit.              Copyright © 2016 Jordan, Dixon, McGowan, Kurtev and Paterson. This is an open-
+   14, 191–201. doi: 10.3758/BF03197692                                                         access article distributed under the terms of the Creative Commons Attribution
+Rayner, K., Fischer, M. H., and Pollatsek, A. (1998). Unspaced text interferes with             License (CC BY). The use, distribution or reproduction in other forums is permitted,
+   both word identification and eye movement control. Vision Res. 38, 1129–1144.                provided the original author(s) or licensor are credited and that the original
+   doi: 10.1016/S0042-6989(97)00274-5                                                           publication in this journal is cited, in accordance with accepted academic practice.
+Rayner, K., and Pollatsek, A. (1989). The Psychology of Reading. Englewood Cliffs,              No use, distribution or reproduction is permitted which does not comply with these
+   NJ: Prentice-Hall.                                                                           terms.
+
+
+
+
+Frontiers in Psychology | www.frontiersin.org                                              11                                             September 2016 | Volume 7 | Article 1433
+

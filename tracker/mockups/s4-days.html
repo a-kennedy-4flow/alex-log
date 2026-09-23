@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — option D — days rather than per cent</title>
+<link rel="stylesheet" href="f-board.css">
+<link rel="stylesheet" href="shares.css">
+<style>
+th.share{width:132px}
+.st{position:relative;display:block}
+.st input{padding-right:40px!important;min-height:44px}
+.arrows{position:absolute;top:3px;right:3px;bottom:3px;display:flex;flex-direction:column;gap:2px}
+.arrows button{display:flex;align-items:center;justify-content:center;flex:1;min-width:30px;padding:0;border:0;border-radius:6px;background:var(--white);color:var(--smart-blue);cursor:pointer}
+.arrows button:hover{background:var(--smart-blue);color:var(--white)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#">Month view</a><a href="#" class="on">Quick fill</a><a href="#">Guided build</a><a href="#">My settings</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Option D. The user books days and the per cent is derived.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <h2>Quick fill</h2>
+      <p class="lead">Give each cost centre a share of the month. The tracker fills the working days from the first onwards and skips the days it books nothing on.</p>
+
+
+      <table class="fill">
+        <thead>
+          <tr>
+            <th class="cc">Cost centre</th>
+            <th class="spec">Specification</th>
+            <th class="share">Days</th>
+            <th class="days">Share</th>
+            <th class="tasks">Tasks</th>
+            <th class="act"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <span class="acts">
+                <button type="button" class="btn">Add a cost centre</button>
+                <button type="button" class="btn" id="even">100 / n</button>
+              </span>
+            </td>
+            <td class="fig num" id="total">100 %</td>
+            <td class="fig num" id="booked">14.5</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="warn" id="warn" hidden>The shares must add up to 100 per cent.</p>
+
+      <div class="bottom">
+        <p>Working days: 18 &middot; Target: 14.5 &middot; This replaces everything already booked in May.</p>
+        <button type="button" class="primary">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><b>Option D. Days rather than per cent.</b> Nobody worked 37 per cent of May. They worked five and a half days. This asks for the figure the user actually holds and derives the share the tracker wants from it.
+    The arrows step half a day, which is the smallest unit the tracker books, so every value the field can reach is a value the month can hold.
+    It costs the round trip. The share is stored as an integer per cent so 5.5 days of 14.5 is 38 per cent, and 38 per cent of 14.5 comes back as 5.5. It holds here for every row but it is arithmetic the user cannot see and it will not hold for every target.
+    It costs the target. A user who books 14 days when the target is 14.5 has to be told what the target was, and changing the month or the contract rewrites every row.
+    The two columns swap over here. Days is what is typed and Share is what the page works out, because the same figure written in both would be a column spent on nothing.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="shares.js"></script>
+<script>
+const UP = '<svg width="9" height="6" viewBox="0 0 9 6" aria-hidden="true"><path d="M4.5 0 9 6H0z" fill="currentColor"/></svg>'
+const DOWN = '<svg width="9" height="6" viewBox="0 0 9 6" aria-hidden="true"><path d="M4.5 6 9 0H0z" fill="currentColor"/></svg>'
+
+/** Typing days sets the share. The share is what the month is divided by. */
+function setDays(at, days) {
+  const held = Math.max(0, Math.round(days * 2) / 2)
+  MIX[at].share = Math.round((held / TARGET) * 100)
+  redraw()
+}
+
+function draw() {
+  renderRows((row, at) => {
+    const days = daysPerRow()[at]
+    return `<span class="st">
+      <input type="number" min="0" max="${TARGET}" step="0.5" value="${days.toFixed(1)}" data-at="${at}" aria-label="Days on this cost centre">
+      <span class="arrows">
+        <button type="button" data-at="${at}" data-by="0.5" aria-label="Increase">${UP}</button>
+        <button type="button" data-at="${at}" data-by="-0.5" aria-label="Decrease">${DOWN}</button>
+      </span>
+    </span>`
+  }, (row) => `${row.share} %`)
+  renderTotals()
+  for (const field of document.querySelectorAll('.st input')) {
+    field.addEventListener('change', () => setDays(Number(field.dataset.at), Number(field.value)))
+  }
+  for (const arrow of document.querySelectorAll('.arrows button')) {
+    arrow.addEventListener('click', () => {
+      const at = Number(arrow.dataset.at)
+      setDays(at, daysPerRow()[at] + Number(arrow.dataset.by))
+    })
+  }
+}
+function redraw() {
+  const days = daysPerRow()
+  document.querySelectorAll('#rows tr').forEach((tr, at) => {
+    tr.querySelector('.st input').value = days[at].toFixed(1)
+    tr.querySelector('td.fig').textContent = MIX[at].share + ' %'
+  })
+  renderTotals()
+}
+document.querySelector('#even').addEventListener('click', () => { spreadEvenly(); draw() })
+draw()
+</script>
+</body>
+</html>

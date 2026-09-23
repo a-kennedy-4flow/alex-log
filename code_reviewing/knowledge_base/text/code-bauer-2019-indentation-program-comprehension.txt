@@ -1,0 +1,779 @@
+    Indentation: Simply a Matter of Style or Support
+              for Program Comprehension?
+ Jennifer Bauer            Janet Siegmund                     Norman Peitek             Johannes C. Hofmeister                 Sven Apel
+            University of Passau                   Leibniz Institute for Neurobiology     University of Passau         University of Passau
+             Passau, Germany                             Magdeburg, Germany                Passau, Germany              Passau, Germany
+
+
+
+   Abstract—An early study showed that indentation is not a               1   program factorial;
+                                                                          2   const
+matter of style, but provides actual support for program compre-          3     OriginalValue=6;
+hension. In this paper, we present a non-exact replication of this        4   var
+study. Our aim is to provide empirical evidence for the suggested         5     i,Fact:integer;
+                                                                          6   begin
+level of indentation made by many style guides. Following Miara           7     Fact:=1;
+and others, we also included the perceived difficulty, and we             8     for i:=1 to OriginalValue do
+                                                                          9       Fact:=Fact * i;
+extended the original design to gain additional insights into the        10     writeln(Fact);
+influence of indentation on visual effort by employing an eye-           11   end.
+tracker. In the course of our study, we asked 22 participants to
+                                                                                              Listing 1. Factorial in Pascal
+calculate the output of Java code snippets with different levels of
+indentation, while we recorded their gaze behavior. We did not
+find any indication that the indentation levels affect program
+comprehension or visual effort, so we could not replicate the             1   class Factorial{
+                                                                          2      public static void main(String[] args) {
+findings of Miara and others. Nevertheless, our modernization of          3         final int ORIGINAL_VALUE = 6;
+the original experiment design is a promising starting point for          4         int i = 0, fact = 1;
+                                                                          5         for (i = 0; i < ORIGINAL_VALUE; i++;) {
+future studies in this field.                                             6            fact = fact * i;
+   Index Terms—Code Indentation, Program Comprehension,                   7         }
+                                                                          8         System.out.println(fact);
+Visual Effort                                                             9      }
+                                                                         10   }
+                          I. I NTRODUCTION                                                    Listing 2. Factorial in Java
+   Program comprehension is an important cognitive process,
+as programmers spend about half of their time comprehending
+source code [1], [2]. To support developers in this process,
+                                                                          suitable level of indentation by the authors of guidelines. This
+coding conventions have been proposed, which are meant to
+                                                                          is surprising, because although indentation is to a large degree
+help them to communicate with other developers, including
+                                                                          a subtle component of style, it is omnipresent and can hardly
+reviewers, maintainers, and testers of their code. For illustra-
+                                                                          be escaped when working with code.
+tion, we show an example for Pascal in Listing 1 and the
+                                                                             Some languages, such as Python [4], explicitly require
+same example for Java in Listing 2. The coding conventions
+                                                                          indentation for indicating the beginning and end of block
+for the two languages suggest different ways of formatting
+                                                                          structures. In such cases, programmers have to commit to the
+the respective code: In Java1 , the guideline suggests to name
+                                                                          specific language requirements and are limited in the usage
+variables in a lowerCamelCase style. The coding conventions
+                                                                          of indentations as stylistic device. In languages such as Java,
+for Pascal2 recommend to name both variables and constants
+                                                                          indentation is purely optional. Here, indentation does not bear
+in a UpperCamelCase style. The two guidelines also contain
+                                                                          any meaning, so it can be set arbitrarily and is left to personal
+different rules for indentation: While indentation in Java
+                                                                          preference. For Java, there are several suggestions for code
+should consist of four spaces, Pascal code should have an
+                                                                          conventions, and the best known might be style guides of
+indentation of two spaces. Agreement on a common guideline
+                                                                          Oracle [5] and Google [6], who propose an indentation of
+is supposed to ease the communication between developers
+                                                                          four spaces.
+and support them in code diffing and merging.
+                                                                             Despite guidelines, it is unclear how the level of indenta-
+   Similar style guides exist for most modern program-
+                                                                          tion actually affects the comprehensibility of Java code. One
+ming languages, sometimes augmented with individual flavors
+                                                                          early study was conducted by Miara and others [7] in 1983
+(e.g., Google’s JavaScript style guide [3]). A suggested level
+                                                                          (“Program Indentation and Comprehensibility”). It focused on
+of indentation is often part of those recommendations for pro-
+                                                                          Pascal and showed that an indentation of 2 to 4 spaces is
+gramming languages. However, recommendations are typically
+                                                                          most helpful for comprehending code [7]. Since the results
+not explicitly justified and are only a guess about the most
+                                                                          of this study are limited to Pascal and more than 35 years
+  1 https://google.github.io/styleguide/javaguide.html#s5-naming          old, we set out to evaluate whether the recommendation of
+  2 http://www.sourceformat.com/coding-standard-pascal-gnu.htm            2 to 4 spaces still holds in modern programming languages.
+To this end, we conduct a non-exact replication of the study          records is?” or “The output is?” followed by choices) [7].
+of Miara and others, adapted to Java and with students instead        A higher score in the quiz indicated better program com-
+of professional programmers. As a further refinement, we are          prehension. Additionally, participants were asked to give a
+interested in whether different spaces of indentation affect          description of the function of the program. The answer was
+visual effort (i.e., how much effort participants spend to            given gradual credit depending on its accuracy. This credit was
+understand a snippet), so we recorded the eye movements of            then added to the overall score.
+participants with an eye tracker.                                        The second dependent variable was the perceived difficulty
+   Our results indicate that the level of indentation has no effect   for comprehending the code snippet—participants should rate
+on program comprehension or perceived difficulty of the code          the difficulty on a discrete scale from 1 (very easy) to 7 (very
+snippets, as it neither affected the time the participants needed     hard) with 4 representing a moderate level of difficulty.
+for solving tasks nor the correctness of the answers nor their
+rating of difficulty. Furthermore, indentation levels did not         B. Results
+affect visual effort of participants (a difference for fixation          Miara and others found that two-spaced indentation led
+rate vanishes in post hoc tests).                                     to the highest number of correct answers, followed by four
+   In summary, we make the following contributions:                   spaces. The zero-indented code snippet had the fewest correct
+   • We report a non-exact replication of the first study on the      answers. As for perceived difficulty, two spaces were rated
+     effect of indentation levels on program comprehension            easier than other indentations, and zero spaces was rated
+   • We modernized the experiment design to include typical           as the most difficult. Independent of the indentation level,
+     code fragments in Java                                           experts performed overall better than novices and perceived
+   • We added eye tracking to evaluate the effect of indenta-         the snippets as easier.
+     tion levels on visual effort
+                                                                                            III. R EPLICATION
+   • We provide a replication package and share all collected
+     data at https://github.com/brains-on-code/indentation/              In this section, we describe our non-exact replication of the
+                                                                      study of Miara and others. We highlight the changes that we
+                     II. O RIGINAL S TUDY                             made in comparison to the original study in each subsection.
+   In this section, we summarize the original study by Miara
+                                                                      A. Material
+and others [7]. The authors of the original study asked 86 pro-
+grammers with varying experience levels to answer questions              We decided to convert the Pascal snippets to Java as a
+about one code snippet with varying indentation levels and            modern programming language. The four snippets that we used
+to estimate its difficulty. The participants had 20 minutes to        in the study were selected under the aspects of being similar
+complete the tasks and the rating of difficulty. Each participant     enough to be comparable to each other (e.g., regarding length,
+received one of seven code versions.                                  complexity), but at the same time being different enough to
+                                                                      avoid learning effects. Each snippet treats a problem involving
+A. Variables                                                          an array (of numbers or subsequences of a string).
+   The original study used a single Pascal code snippet that             The snippets are similar to standard text book problems and
+calculated how often a word occurred in a given input. It used        were adapted from the code snippets of previous work [8], [9],
+several syntactic structures that are typically indented, such        [10]. They all contain two block structures (i.e., if-then-else
+as while loops and if-then-else statements. It was treated with       block or loops). To ensure that the snippets are suitable for
+different levels of indentation, which was the first independent      our study (i.e., such that participants are finished neither too
+variable. Specifically, the snippet came in four different con-       fast nor take too long), we conducted pilot tests. Based on the
+figurations, with zero, two, four, and six spaces of indentation.     results of the pilot tests, we replaced one snippet that was too
+Additionally, the code within Pascal’s begin-end blocks was           easy (implementing the replacement of elements in an array
+either aligned with the begin and end statements or also              with a constant value except for one index). In Listings 3 to
+indented. Together with the different spaces of indentation,          6, we show all four snippets that we used in our study.
+this resulted in seven different versions of the code snippet            The first snippet calculates the difference of the respective
+(see the project’s Web site for details).                             sums of odd and even numbers in an array (Listing 3). The
+   In their design, Miara and others considered programming           second snippet adds characters to a resulting string depending
+experience as additional factor. To this end, participants were       on a comparison of a value and an element of a traversed array
+categorized either as novice or expert, based on the number           of numbers (Listing 4). The third snippet sums up the integers
+of years they had been programming. Participants who had              contained in intervals, which are given in a string (Listing 5).
+been programming less than three years in school or less than         The last snippet counts the elements of an array that are above
+two years in practice were categorized as novices, all others         and below certain thresholds (Listing 6).
+as experts.                                                              Each snippet has 17 lines of code. This way, we ensured that
+   The first dependent variable was program comprehension.            the snippets are not too trivial and that the eye-tracker was able
+To measure it, the authors asked nine multiple choice questions       to differentiate the points of gaze. Each Java class contains a
+about the program (e.g., “The maximum number of input                 single main method, which, in turn, contained at least one
+   1   public class Do {                                             1        public class Main {
+   2      public static void main (String[] args) {                  2           public static void main(String[] args) {
+   3         int[] array = {5, 6, 11, 0, 2};                         3              int[] values = {3, 0, 1, 0, 2};
+   4         int integer = 0;                                        4              StringBuilder result = new StringBuilder();
+   5         int number1 = 0;                                        5              int variable = 3;
+   6         int numberA = 0;                                        6              for (int value : values) {
+   7         while (integer < array.length){                         7                 if (value == variable) {
+   8            if (array[integer] % 2 == 0){                        8                    result.append("x");
+   9               number1 += array[integer];                        9                 } else if (value < variable) {
+  10            } else {                                            10                    result.append("m");
+  11               numberA += array[integer];                       11                 }
+  12            }                                                   12                 result.append("o");
+  13            integer++;                                          13                 variable --;
+  14         }                                                      14              }
+  15         System.out.println(numberA - number1);                 15              System.out.print(result);
+  16      }                                                         16           }
+  17   }                                                            17        }
+
+            Listing 3. Subtraction of odd and even numbers.                        Listing 4. Conversion of numbers into characters.
+
+   1   public class Program {                                        1        public class Test {
+   2      public static void main(String[] args) {                   2           public static void main(String[] args) {
+   3         String input = "1-3,10-11";                             3              int variable = 0;
+   4         int output = 0;                                         4              String string = "3 21 4 2 55 0 13";
+   5         for (String part : input.split(",")) {                  5              int start = 2;
+   6            String[] numbers = part.split("-");                  6              int end = 18;
+   7            int left = Integer.parseInt(numbers[0]);             7              String[] keys = string.split(" ");
+   8            int right = Integer.parseInt(numbers[1]);            8              for (int i = 0; i < keys.length; i++) {
+   9            int number = left;                                   9                 int key = Integer.parseInt(keys[i]);
+  10            while (number <= right) {                           10                 boolean check = (key >= start && key <= end);
+  11               output += number;                                11                 if (check) {
+  12               number++;                                        12                    variable += 1;
+  13            }                                                   13                 }
+  14         }                                                      14              }
+  15         System.out.println(output);                            15              System.out.print(variable);
+  16      }                                                         16           }
+  17   }                                                            17        }
+
+                  Listing 5. Sum of interval numbers.                        Listing 6. Element count of values above and below thresholds.
+
+
+
+print statement, determining the output of the program. We               • Class header
+chose identifier names such that they did not hint at their              • Method header
+function in the code (e.g., number1, variable), and we                   • Loop header
+named the classes vaguely (e.g., Program, Main). This way,               • if, else if, and else
+we ensured that participants could not guess the output based          Unlike in the original study, we did not treat programming
+on the identifier names, but instead had to focus on actually       experience as independent variable, because we could not
+comprehending the snippets. This way, we enforced bottom-up         recruit a sufficient number of experienced programmers for
+comprehension of the code, which reduces the effect of prior        our study (15 out of 22 participants were students).
+knowledge on the way of understanding the snippet [11].                As dependent variables, we measured program comprehen-
+   Unlike the original study, the snippets implemented differ-      sion, perceived difficulty, and visual effort. We operationalized
+ent problems and were shorter (17 compared to 101 lines).           program comprehension and perceived difficulty different than
+This way, we could compensate for our small sample by               in the original study:
+using a within-subject design: one participant saw all four               a) Program Comprehension: To measure program com-
+different levels of indentation on all four different snippets.     prehension, we asked the participants to determine the output
+Furthermore, the snippets needed to fit on one screen without       of a snippet. An answer was counted as correct if it matched
+scrolling to ensure a reliable identification of code location      exactly the actual output (e.g., “xoxxom” was not given partial
+to participants’ eye gaze. Technically, eye trackers support        credit, when the right answer was “xooxom”). To this end,
+scrolling, but this adds additional complexity to the setup and     participants needed to examine the source code line by line
+analysis to ensure accurate recording of eye movements.             and keep track of the values of the variables.
+                                                                       We deviated from the multiple-choice questions and sum-
+B. Variables                                                        mary of the original study, because our goal was that par-
+  We varied the level of indentation as an independent vari-        ticipants have to go through the code snippets line by line,
+able. Similar to the original study, we implemented four levels:    until having found an answer. This allowed us also to measure
+zero, two, four, and eight spaces. Note that the fourth level       visual effort with an eye tracker.
+had a depth of eight spaces, instead of six spaces, because we         In addition to correctness, we also measured the response
+aimed at maximizing the effect of highly indented code, while       time for each task, from the time a snippet was presented
+keeping it at a reasonable level. For indentation of code blocks,   until a participant submitted their answer. We decided to
+we followed Oracle’s Java coding conventions [5], so code           include response time (in contrast to the original study),
+blocks that belong to the following constructs were indented:       because the duration of the comprehension process is also
+an indicator for the effect of different indentation levels on       cause they are the most widely used and thus well-understood
+program comprehension.                                               measures for visual effort:
+      b) Perceived Difficulty: We asked participants to rate
+each snippet’s difficulty. To this end, we displayed all snippets    Fixation Duration: The duration of a fixation is “likely to
+at once and asked the participants to sort the snippets from             be the most used measure in eye tracking research” [13].
+easy to difficult, thus enforcing a choice on a relation among           In 1980, Just and Carpenter proposed “that there is no
+the snippets. We chose this method because it encourages the             appreciable lag between what is being fixated and what
+participants to compare the snippets directly with the other             is being processed.” [14]. This implies that the longer a
+snippets they had seen. An alternative would have been to                fixation is, the longer the fixated part is processed, and
+display the individual snippets one after another and asking             the larger the visual effort is. This statement has to be
+for a rating on a certain scale. We dismissed this idea, because         handled with some caution, because “some processing
+we anticipated that this method would cue participants to                trace of a fixated item may continue for a very long
+give an absolute rating of how difficult they felt the previous          time after the eye has left the fixated position” [13].
+tasks had been and compare each snippet to snippets they                 Nevertheless, fixation duration is a good indicator for
+had encountered outside of the study. We deviated from the               processing text or code, because only visually perceived
+absolute rating of difficulty, because it allowed us to reduce           items can be handled by the reader. We expected the
+the influence of inter-individual differences, such that each            level of indentation to affect fixation duration, because
+participant sees different levels of indentation and can focus on        participants have to adapt their gaze behavior not only to
+the rating of difficulty more than on the different indentation          the different layout, but also to the assumedly differing
+levels, rather than on the complexity of the snippet itself. For         difficulty of the code. For example, a well-formatted piece
+rating difficulty, we displayed the snippets next to each other,         of code with the supposedly optimal level of indentation
+along with the respective answers given in the preceding trials,         could allow participants to concentrate more on certain
+to indicate that the participant had in fact seen the snippet            code lines, therefore increasing their fixation duration.
+earlier.                                                             Fixation Rate: The number of fixations per second is known
+   The participants rated twice: First, all snippets were dis-           as the fixation rate. It is related to fixation duration, but
+played with a normalized indentation depth of four spaces.               “includes saccade and blink duration” [13]. Nakayama
+This way, we aimed at learning about their perception of                 and others found that fixation rate (or “gazing time” as
+difficulty without giving hints about the role of indentation            they call it) decreases when task difficulty increases [15].
+in the study. Second, we showed the code with the actual                 A high fixation rate implies that the reader jumps more
+indentation that participants saw in the comprehension tasks,            from fixation to fixation, so from item to item, resulting
+that is, with different indentation levels. This way, participants       in higher visual effort. In contrast, a low fixation rate may
+could take the level of indentation into account for their               either occur when people have a harder time to process
+rating. For analysis, we used both ratings of difficulty. This           some parts of a code snippet, or when they feel no need
+way, we reduced the influence of different complexities of the           for looking back for understanding single items. Like
+individual source-code snippets. Our method of evaluating the            with fixation duration, we expected this measurement to
+participants’ estimation of difficulty differs from the one used         be influenced by indentation. For example, non-indented
+by Miara and others, who let the participants rate the difficulty        code could increase the number of saccades in the code
+on a scale from 1 to 7.                                                  to figure out corresponding blocks of code, resulting in
+      c) Visual Effort: In addition to the original study’s setup,       an increased fixation rate.
+we included eye tracking to measure visual effort, which             Saccadic Amplitude: The spatial length of a saccade is also
+allows us to discover challenges while reading code. We use              known as saccadic amplitude. It relates to the jumps
+fixations and saccades to operationalize visual effort (much             made by participants and to the difficulty of a task,
+like in Sharif and others’ eye-tracking study [12]).                     such as understanding a code snippet. The more difficult
+   A fixation takes place when the gaze is resting on a point.           the task, the shorter the saccadic amplitude [16]. Higher
+It “lasts anywhere from some tens of milliseconds up to                  difficulty in tasks related to counting was also shown to
+several second” [13]. There are numerous measures regarding              result in decreased saccadic amplitudes [17]. Naturally,
+fixation, such as fixation position, duration, count, and rate.          the saccadic amplitude can also be influenced by the
+The transition between two fixations is called a saccade. It             layout of the stimulus. If visual clues lie farther apart
+does not need to follow a straight line, but can be curved before        from each other, the saccades between them cover a larger
+ending in a fixation [13]. Measures regarding saccades include           distance, leading to higher visual effort. We therefore
+saccadic velocity, saccadic amplitude, and the directions of             expected that the saccadic amplitude is influenced by the
+saccades.                                                                level of indentation, as it changes the distance between
+   Based on fixations and saccades, we can derive different              ending and beginning of new lines. Furthermore, as
+measures that describe visual effort (see Holmqvist and oth-             code becomes more unstructured, the possible resulting
+ers [13] for a detailed overview). In our study, we selected             jumping between distant lines of code would affect the
+fixation duration, fixation rate, and saccadic amplitude, be-            saccadic amplitude.
+  Having presented our independent (level of indentation) and       eight spaces (so, using only this version might lead to the false
+dependent (program comprehension, perceived difficulty, vi-         conclusion that eight-space indentation is the most effective).
+sual effort) variables, we now describe our research questions.     Furthermore, we could compensate for the smaller sample size.
+
+C. Research Questions                                               E. Participants
+   The overarching question of our study is: Does indentation          We recruited 39 participants via personal invitation, word-
+affect program comprehension? At first glance, indentation          of-mouth recommendation, and an invitation mass e-mail
+by itself does not directly influence program comprehension:        addressing all students at the University of Passau. However,
+The code is still the same, only differently formatted. In          due to a bug in an auxiliary code script, the order was
+many cases, there is no additional information encoded in           not randomized for all participants, so we needed to omit
+this choice. The reason why we believe that indentation could       the data of 17 participants from the analysis. Hence, all
+have an effect on program comprehension is its structuring          following statements refer to the remaining 22 participants
+influence: Indentation highlights cohesive code parts, making       (see Section VI and project’s Web site for more details). As
+them easier to detect. The advantage that proper indentation        compensation, we offered participants sweets and the chance
+offers is therefore a small gain of time, which could be invested   to win an Amazon gift card.
+for deeper program comprehension. However, this highlighting           The participants were mainly students of Computer Science
+effect of indentation could be subverted if the number of           and Internet Computing at the University of Passau. Most
+spaces used is too high. Stretching the code too far to the right   participants were undergraduates in the fourth or fifth semester
+could make it more difficult to keep the bigger picture in mind     (Mean = 4.7, SD = 2.1), who spent, on average, seven hours
+(the role the indented code lines play in the program’s overall     per week on programming (Mean = 7.4, SD = 7.3).
+function). The surrounding code lines could shift out of focus         Another group of participants was working at our de-
+for programmers and they might have trouble to consider the         partment of Computer Science (Ph.D. students, post docs,
+context of the read lines.                                          university staff). Three other participants were employees at
+   We therefore reason that the level of indentation affects pro-   the msg systems ag, a software company located in Passau,
+gram comprehension in terms of correctness and time, as well        Germany.
+as perceived difficulty of the program snippets. Furthermore,
+                                                                    F. Procedure
+as indentation changes the layout of code, we assume that
+visual effort is also influenced by the level of indentation.          We conducted the study in an office with two desks facing
+   To evaluate these considerations, we formulate the following     each other. On one desk, the monitor and keyboard for the
+research questions:                                                 participants were assembled, the other one was empty. The
+     RQCorrect      Does indentation affect correctness?            experimenter took place on this desk. We closed the curtains
+     RQTime         Does indentation affect response time?          and roller shutters as far as possible and turned on the light in
+     RQDiff         Does indentation affect perceived difficulty?   the room to obtain optimal results from the eye tracker. During
+     RQFix:Dur      Does indentation affect fixation duration?      the study, a construction site outside the building repeatedly
+     RQFix:Rate     Does indentation affect fixation rate?          caused a higher noise level, but the participants stated that
+     RQSacc:Amp Does indentation affect saccadic amplitude?         they have not been disturbed during the tasks.
+                                                                       We used a Tobii EyeX tracker with the ‘Tobii Eye Tracking
+D. Experiment Design                                                Core Software’ in version 2.9.0. The tracker has a sampling
+   Our study has a within-subject design (every participant         rate of 60 Hz and an operating range of 50–90 cm. It is suitable
+sees every code snippet and every level of indentation) with        for a display size up to 27” [18]. We used a monitor with a
+a randomized order of code snippets. This way, we reduced           diagonal of 24” and a FHD resolution (1920 × 1080 pixels
+the influence of individual differences, such as programming        / 16:9 aspect ratio) with a refresh rate of 60 Hz. We placed
+experience and reading speed. Additionally, we reduced the ef-      it ˜50 cm away from the desk’s edge and ˜19 cm above the
+fects of confounding parameters that are inherent to empirical      desk’s level. We provided a standard keyboard and a wireless
+studies, such as learning and ordering effects.                     mouse.
+   Randomizing the order of the four snippets results in               Before the actual study started, we asked participants to take
+4! = 24 different orders. The same counts for the four different    place in front of the screen and to sit down as if they would
+levels of indentation, leading to 24 × 24 = 576 possible            do when they had to use the keyboard and mouse. To obtain
+sequences of code snippets and indentations, where no code          good gaze data, we asked to them to change their position until
+snippet and no indentation is repeated. For each participant,       they felt comfortable and until the Tobii Tracking Software
+one sequence was randomly selected.                                 could reliably detect their eye movements. The experimenter
+   This design was different than in the original study with one    stayed in the room, and we instructed participants to ignore
+snippet and between subjects. We selected a within-subjects         her. Then, the study software was executed. It was a self-
+design to reduce the effect of a possible interaction between       written .NET program, which uses the WPF-Framework and
+code snippet and indentation, for example, such that one            handles the logging of the gaze data and the participants’ input.
+snippet is the easiest to understand with an indentation of         The language used in the instructions was German.
+   The study started with a welcome screen, which was                                          TABLE I
+also where the participants gave their informed consent. We                  S UMMARY OF R ESPONSE T IMES AND C ORRECTNESS
+asked demographic questions and about their programming
+                                                                                                           Time in Seconds
+experience. When participants declared to be students, we
+                                                                              Indentation                  Median            IQR         % correct answers
+directed them to answer questions about their studies, before
+getting to the questions regarding programming experience,                                     0            95.00            34.77              73 %
+                                                                                               2            97.55            41.07              68 %
+which all participants answered. Afterwards, the eye tracker                                   4            93.42            47.79              77 %
+was calibrated. We asked the participants to remain in their                                   8            85.08            59.02              55 %
+current position as far as possible to keep the calibration valid.
+Subsequently, we gave them the instructions for the tasks,
+including a warm-up snippet to get accustomed to the study.
+Then, the actual tasks started. The snippets were preceded
+by a fixation cross of 1.5 seconds. The following task screen
+
+
+
+
+                                                                                               300
+showed the stimulus code snippet in the main part of the
+
+
+
+
+                                                                              Time (seconds)
+                                                                                                            ●                                   ●
+                                                                                                                         ●
+                                                                                                                         ●           ●
+window. Separated by a thin line, the input field for the output
+
+
+
+
+                                                                                               200
+answer was at the bottom part of the screen. The question to
+be answered (“What output does this code produce?”) was
+
+
+
+
+                                                                                               100
+written to the left side of this field. With a click on ‘Done’,
+participants moved on to the next screen. Each task had a
+time limit of 5 minutes (which we introduced based on the
+
+
+
+
+                                                                                               0
+pilot study, so that the experiment would not last too long for                                             0            2           4          8
+slower readers). No participant exceeded the time limit.
+                                                                                                       Level of Indentation (number of spaces)
+   After each snippet, participants had the chance to decide
+for themselves when to continue. After comprehending all
+four snippets, participants rated the difficulty of the code                Fig. 1. Distributions of Response Times (untransformed)
+snippets. Via drag-and-drop, participants ordered the snippets
+according to difficulty. Then, we asked participants whether
+they participated seriously and whether they got distracted
+during the experiment. Finally, participants could state whether        1) Program Comprehension: The results for program com-
+they wanted to take part in the lottery and be informed about        prehension (i.e., response time and correctness) are shown
+the study results.                                                   in Table I. The time values are not normally distributed
+   Each trial took, at most, 30 minutes (up to 20 minutes for        but skewed to the left (shown by a p-value of below 0.001
+the code tasks plus ˜10 minutes to answer the questionnaire,         for the Shapiro-Wilk test), which is typical for response
+read the instructions and the warm-up task.)                         times. An indentation of eight spaces resulted in the fastest
+                                                                     response time, but in the smallest number of correct answers.
+                         IV. R ESULTS                                Four spaces of indentations led to the highest correctness of
+                                                                     answers. Overall, the participants needed the longest time for
+   In this section, we present the results of our study, followed    completing the tasks with an indentation of two spaces.
+by the analysis of the influence of the level of indentation on
+                                                                        To minimize the effect of the skewed response times, they
+the depending variables.
+                                                                     can be transformed, for example, by inversion or applying
+                                                                     a logarithmic function [20]. Here, we log-transformed the
+A. Descriptive Statistics
+                                                                     response times [20], leading to normally distributed data
+   This section gives an overview of the values of the depen-        (p-value of 0.1 for the Shapiro-Wilk test). With normally
+dent variables and their distributions. In tables, we show mean      distributed data, we can conduct an ANOVA to evaluate our
+and standard deviation of the values, if the data are normally       hypotheses (see Section IV-B).
+distributed (as the Shapiro-Wilk test [19] indicates), and the
+median and the interquartile range (IQR), otherwise.
+   Since Response time and Saccadic Amplitude are not nor-                                       TABLE II
+                                                                          S UMMARY OF P OSITION IN R ATING WITH E QUAL AND R EAL
+mally distributed, we calculated the natural logarithm of the                                 I NDENTATIONS
+values (i.e., a log transformation), on which we base the
+analysis. The figures and tables show the raw, untransformed                                                    Rating Equal               Rating Real
+values of the data. Note that the graphs show groupings and                               Indentation           Median        IQR        Median        IQR
+do not reflect that the data were collected using a repeated-                                      0              2           1             2           2
+measures design, that is, our statistics account for inter-                                        2              2           1.75          2           1
+individual effects, but our graphs do not as they are not able                                     4              1           0.75          1           2
+                                                                                                   8              1           2             1           2
+to show the data points collected from the same participant.
+   2) Rating: Table II shows a summary of the position in           Next, we report the results of the significance tests for each
+the rating for the respective level of indentation that a rated     research question, followed by an explanation for test selec-
+code snippet had, when the rating took place with equal             tion.
+indentations (i.e., four spaces) and with the actual indentation
+of how participants saw them in the study. The medians of the       RQCorrect : Does indentation affect correctness? → No.
+two conditions are equal, only the distributions differ for the        The Friedman test showed that the number of correct
+indentation levels. In both cases, small levels of indentation         answers was not significantly affected by the levels of
+(zero and two spaces) were rated as more difficult than larger         indentations (χ2 (3) = 3.32, p = 0.36).
+levels of indentation (four and eight spaces).                         We used this test, because the dependent variable (‘correct
+   3) Visual Effort:                                                   answer given’) is not interval-scaled.
+      a) Fixation Duration: The median fixation duration of         RQTime : Does indentation affect response time? → No.
+each trial is approximately normally distributed (Shapiro-Wilk         A One-way ANOVA with repeated measures showed
+test: W = 0, 98, p = 0.18). The results are summarized in Ta-          that the effect of the level of indentation on the
+ble III. On average, the fixations of participants lasted longest      log-transformed response times was not significant
+with an indentation of four spaces (i.e., 157 milliseconds), and       (F (3, 63) = 0.44, p = 0.72, ηp2 = 0.006).
+shortest with non-indented code (146 milliseconds), indicating         We selected this test, because the dependent
+the highest visual effort for 4 spaces.                                variable (‘Time’) is normally distributed after a
+      b) Fixation Rate: The fixation rate is not normally dis-         log-transformation. Sphericity can be assumed, as a
+tributed but skewed to the right with a long tail on the left          Mauchly test indicates (Mauchly − W (3) = 0.85,
+side (W = 0.76, p < 0.001). The results are summarized                 p = 0.65).
+in Table III. Here, participants had the highest fixation rate
+of 3.45 fixations per second with non-indented code and the         RQDiff : Does indentation affect perceived difficulty? →
+lowest with four spaces (3.23 fixations per second), indicating        No.
+the highest visual effort for 0 spaces.                                For determining whether the rating positions of the code
+      c) Saccadic Amplitude: The average saccadic amplitudes           snippets differed depending on the level of indentation,
+per trial are not normally distributed (W = 0.95, p = 0.001).          we applied the Friedman test, once for the rating with
+They are skewed to the left and thus were log-transformed              equal indentations, and once for the one with the actual
+for later analysis (similar to response times). The transformed        indentations. For both, the differences are not significant
+values are normally distributed according to a Shapiro-Wilk            (χ2 (3) = 4.64, p = 0.20 and χ2 (3) = 5.35, p = 0.15).
+test (W = 0.98, p = 0.11). The untransformed values are                Since the dependent variable (‘Rating Position’) is
+summarized in Table III. Overall, the participants’ saccades           ordinal-scaled, we chose the Friedman test.
+were the longest when they handled non-indented code (i.e.,
+155 pixels) and the shortest when handling code with an             RQFix:Dur : Does indentation affect fixation duration? →
+indentation of four spaces (139 pixels), so visual effort appears      No.
+to be highest for 0 spaces.                                            A One-way ANOVA with repeated measures showed
+                                                                       that the effect of the level of indentation on the
+B. Statistical Analysis                                                median fixation duration per trial was significant
+                                                                       (F (3, 63) = 2.85, p = 0.045, ηp2 = 0.028). However, we
+   Next, we answer our research questions. We used two                 could not confirm this difference with post hoc tests, for
+tests for statistical significance of the differences in our data      which we used t tests for dependent samples and false
+regarding our research questions:                                      discovery rate (FDR) correction to adjust the p value for
+One-way repeated-measures ANOVA: This test compares                    multiple testing.
+    means of groups that are differentiated by one factor              We chose ANOVA and the t test, because the dependent
+    (here: level of indentation), and that were collected from         variable (‘Median Fixation Duration Per Trial’) is
+    the same source [21]. It requires that the dependent               interval-scaled and normally distributed. Sphericity can
+    variable is interval-scaled and normally distributed (either       be assumed (M auchly − W (3) = 0.77, p = 0.39).
+    directly or after transformation) and that sphericity can be
+    assumed (for example, by insignificance of the Mauchly          RQFix:Rate : Does indentation affect fixation rate? → No.
+    test [22]).                                                        There was no significant difference among the
+Friedman test: This is an alternative test for ANOVA when              distributions of the fixation rates for the four levels of
+    the assumptions are violated, so when data are not                 indentation according to the Friedman test (χ2 (3) = 7.36,
+    normally distributed and/or sphericity cannot be as-               p = 0.06).
+    sumed [23]. By ranking the values, the test analyzes               As the dependent variable (‘Fixation Rate’) is not
+    the variance of repeated measures derived from one                 normally distributed, also not after transformation, we
+    independent variable. It requires that the values between          chose the Friedman test.
+    samples are paired and independent within a sample.
+                                                                                    TABLE III
+                                                 S UMMARY OF M EDIAN F IXATION D URATION , F IXATION R ATE , AND S ACCADIC A MPLITUDE
+
+                                                     Fixation Duration per Trial (ms)                      Fixation Rate (fixations/second)                                    Saccadic Amplitude (pixels)
+                                   Indentation       Median              IQR                               Median                 IQR                                          Median              IQR
+                                         0           146.09            25.94                                 3.45                 0.81                                         155.53              41.36
+                                         2           153.75            24.45                                 3.38                 0.39                                         144.11              33.23
+                                         4           157.41            25.83                                 3.23                 0.67                                         139.48              22.58
+                                         8           153.50            22.04                                 3.42                 0.38                                         149.09              40.42
+                                      Total          152.69            24.54                                 3.35                 0.69                                         145.24              32.91
+
+
+
+
+                                                                                                                                            Average Saccadic Length (pixels)
+                                                                                              4
+
+
+
+
+                                                                                                                                                                               240
+                                                                                                                                                                                                            ●
+                       300
+
+
+
+
+                                                                        Fixation Rate (1/s)
+
+                                                                                              3
+      Time (seconds)
+
+
+
+
+                                  ●                           ●
+
+
+
+
+                                                                                                                                                                               200
+                                             ●
+                                             ●       ●
+                                                                                                                                                                                                            ●
+                       200
+
+
+
+
+                                                                                                                ●
+
+
+
+
+                                                                                              2
+
+
+
+
+                                                                                                                                                                               160
+                                                                                                       ●
+                       100
+
+
+
+
+                                                                                                       ●                 ●
+                                                                                                                ●                 ●
+                                                                                                                         ●        ●
+                                                                                              1
+                                                                                                       ●        ●
+
+
+
+
+                                                                                                                                                                               120
+                                                                                                                                  ●
+                                                                                                                         ●
+                       0
+
+
+
+
+                                                                                              0
+
+
+
+
+                                  0          2       4        8                                        0        2        4        8                                                       0        2        4        8
+
+                             Level of Indentation (number of spaces)                              Level of Indentation (number of spaces)                                            Level of Indentation (number of spaces)
+
+
+
+                                       Fig. 2. Distribution of Median Fixation Duration, Fixation Rate, and Saccadic Amplitude (untransformed)
+
+
+
+RQSacc:Amp : Does indentation affect saccadic amplitude?                                                             12 seconds (between 2 and 8 spaces, cf. Table I), and the
+     → No.                                                                                                           maximum difference for correctness was 22% (i.e., there were
+     A One-way ANOVA with repeated measures showed                                                                   5 more right answers given for snippets with 4 spaces of
+     that the effect of the level of indentation on the log-                                                         indentation than for those with 8 spaces). For subjective rating
+     transformed average saccadic amplitude was not signifi-                                                         of difficulty, Cliff’s delta is also small, that is, -0.17 for equal
+     cant (F (3, 63) = 1.69, p = 0.18, ηp2 = 0.029).                                                                 indentations and 0.27 for the actual indentations. Regarding
+     We selected this test, because the data are normally dis-                                                       visual effort, the effect sizes are below 0.03 in terms of eta2
+     tributed after a log-transformation and the dependent vari-                                                     for fixation duration, fixation rate, and saccadic amplitude. For
+     able (‘Saccadic Amplitude’) is interval-scaled. Sphericity                                                      fixation duration, this translates into a maximum difference of
+     can be assumed (M auchly − W (3) = 0.87, p = 0.74).                                                             11 ms (between 0 and 4 indentation spaces, cf. Table III).
+   We further discuss the strictness of our statistical analysis                                                     In other words, participants needed about 11 ms longer to
+in Section VI-C.                                                                                                     process information when working with 4 spaces of indenta-
+                                                                                                                     tion, compared to 0 spaces. Similarly small is the maximum
+                                             V. D ISCUSSION                                                          difference in fixation rate (0.22 fixations per second; between
+   Although we observed subtle differences for correctness,                                                          0 and 4 spaces) and saccadic amplitude (16 pixels; between
+response time, perceived difficulty, and visual effort, none                                                         0 and 4 spaces).
+of these differences was statistically significant. Thus, we
+obtained a negative result, showing that guidelines for inden-                                                          Additionally, the sample size may have played a role: While
+tation do seem to be a matter of style.                                                                              Miara and others recruited 86 participants, we obtained only
+   There are several possible explanations for the negative                                                          22 records. However, where Miara and others used a between-
+result. First, the actual effect of the original study was possibly                                                  subjects design with small groups, we used a within-subjects
+spurious. Maybe comprehensibility was not influenced by                                                              design and each participant saw 4 trials, resulting in 88 valid
+indentation but by hidden variables that were not present in                                                         data points that we used to calculate our statistics. Thus, our
+our study. Maybe the obtained results only apply to Pascal, but                                                      sample size was effectively comparable. Wherever possible,
+not to Java, or maybe programming education played a more                                                            we used parametric tests, which have more statistical power
+important role. However, without further studies, we cannot                                                          than non-parametric tests. However, comparing the power and
+know why Miara and others observed an effect and we did                                                              sample sizes between the studies is difficult, because we were
+not.                                                                                                                 unable to pinpoint the effect sizes of the original study, as the
+   Another possible explanation could be the small effect size.                                                      authors did not report all relevant values to calculate an effect
+Regarding response time, the maximum difference was only                                                             size precisely, so our discussion is based on a rough estimation
+of these values. Lehman [24] suggests to estimate the sample         the participants’ behavior, too. To minimize this threat, we
+size for non-parametric tests by adding approximately 15% to         asked participants afterwards how much they were distracted,
+an estimation of a similar parametric test. Assuming that the        and none said that it disturbed their work.
+effect of indentations on comprehension is small (between 0.1           Rating the code snippets’ difficulty by asking participants to
+and 0.2 [25]), we estimated a required sample size for our           order them does not depict absolute values. Participants were
+study, using G-Power [26]. Aiming at a desirable power of            not able to adequately express their perception of difficulty,
+1 − β = 0.8, we estimated a total sample size of n = 304             when they thought all snippets were equally easy or difficult.
+participants to find a small effect (f = 0.15) using a repeated-     However, forcing participants to make a decision for each
+measures ANOVA at a type-I-error probability α = 0.05, with          snippet allowed us to compare the relative difficulty of the
+four measurements of four groups. Thus, to find an effect of         snippets to each other and not to other code snippets that
+this magnitude with acceptable power, our sample might sim-          participants had worked with before.
+ply be too small. It is likely that our design was not sensitive        The eye-gaze attributes examined in this study are only a
+enough to detect such a small effect with the configuration          subset of possible aspects for measuring visual effort. Other
+given. However, we believe that a shorter response time in the       measures, such as blink rate or pupil dilation, might have been
+order of seconds, as we found, does not justify as evidence          more informative. We did not measure these because the aim
+for an effect of indentation on program comprehension.               of this study was to get a first insight into how visual effort is
+   Besides the statistical aspects, other code-related factors       affected by indentation, whereas for measuring other factors,
+could have masked an effect, such as the computation per-            a more elaborate eye tracker setup is needed.
+formed in the code snippets, the size and complexity of a               The absence of evidence of the effect of indentation and
+snippet, or syntax highlighting. It might well be that, the effect   visual effort could originate from the high subjective factor
+of indentation comes more into play when the code is longer          of eye-tracking data, “meaning that one person’s parameters
+and more complex. For example, with a higher degree of               are different from another person’s, irrespective of task” [13].
+nesting (e.g., 4 or 5 nested loops), the depth of indentation may    The small number of participants might thus hinder obtaining
+indeed affect comprehensibility of a code snippet. Looking at        significant results for differences in visual effort. Furthermore,
+the study by Miara and others, their snippet was longer (101         the data obtained by the eye tracker may be too inaccurate to
+lines, compared to 17). Taking the results of both studies into      find significant effects in gaze behavior with the materials and
+account, it might well be that for snippets similar to ours,         setting of this study.
+indentation depth might not affect comprehensibility, which             Due to an error in the script for conducting the experiment,
+instead might come only into play with longer and more               the order of the snippets was randomized only for 22 of the
+complex code.                                                        39 participants. To evaluate whether the lack of a randomized
+   Last, experience may have affected the results. Different to      order affected the results, we separately analyzed the data
+the original study, we mostly recruited novice programmers           of the 22 participants that received a randomized order and
+(i.e., undergraduate students) for our sample. It might well         compared the results to the analysis of all 39 participants. We
+be that they are not yet accustomed to layout guidelines.            found that the effect sizes as well as the means or medians
+Soloway and Ehrlich found a similar effect, showing that             differed between the 22 and 39 participants, indicating that the
+the performance of experts degraded compared to the perfor-          order of presentation also affected the results. To reduce the
+mance of novice programmers when their expectations were             effect of order, we only included the data of the 22 participants
+violated [27]. We might observe a similar effect here, such          who received a randomized order in our analysis (see project’s
+that programming experience interacts with indentation depth.        Web site3 for a comparison).
+   In a nutshell, we could not find any evidence that a certain
+level of indentation is optimal for program comprehension.           B. External Validity
+Thus, especially when working with code that has similar                The number of participants was comparatively small, and
+properties as the snippets in our setting (e.g., in terms of         they were also mostly students. Thus, the lack of effects of in-
+complexity and length), personal preferences and experience          dentation depth can only be very carefully transferred to other
+of developers might be the best recommendation that we can           settings, such as longer code snippets or more experienced
+give. Nevertheless, it might be worth to dig deeper into why         programmers. Nevertheless, our setting is especially relevant
+the personal preferences of indentation emerge in the first          for novice students, which comprise a significant population
+place, and how indentation interacts with other properties of        in computer science.
+source code, such as complexity, nesting depth, or length.
+                                                                     C. Statistical Conclusion Validity
+                 VI. T HREATS TO VALIDITY
+                                                                        Given our small sample size in comparison with the original
+A. Internal Validity                                                 study, we need to be careful not to be too conservative in our
+  While all participants declared that they were not distracted      hypotheses testing. To this end, we used a liberal approach
+during the tasks, the noise of the construction site might           to correct for multiple comparison (i.e., FDR correction, not
+have had an influence on the concentration of participants. Of       a Bonferroni correction). Furthermore, we also considered
+course, the sheer presence of the eye tracker may have affected      defining a less conservative significance level of 0.1 (as often
+used in exploratory studies), but the effects still vanish after     they fail to follow their convention, readability decreases).
+FDR correction.                                                      In contrast to our work, these authors looked for a set of
+                                                                     layout properties of code that influence readability, while
+                    VII. R ELATED W ORK                              we explicitly modify one property to evaluate its effect on
+   There are related studies that explicitly manipulate a layout     readability.
+property as independent variable. Jbara and Feitelson evaluated         In another line of research, indentation has been studied
+how regularity of code affects program comprehension [28].           as a measure for complexity and maintainability of code.
+Regularity refers to structural similarity of code fragments,        For example, Munson and Khoshgoftaar considered mean and
+so the more the structural patterns (e.g., several nested for        maximum indentation level as a complexity measure [36]. Hin-
+loops) repeat, the more regular code is. They found that             dle and others found that indentation correlates with traditional
+with more regular code, participants tend to thoroughly read         complexity and maintainability measures [37], such as Mc-
+code in the beginning only, and switch to a scanning gaze            Cabe’s cyclomatic complexity [38] and Halstead’s complexity
+pattern once they have grasped the structure. Binkley and            metrics [39]. Finally, Gong and Schmidt used indentation to
+others evaluated the effect of identifier naming styles, that is,    refine McCabe’s complexity measure [40]. In contrast to our
+camelCase and under score on program comprehension, and              focus on the effect of indentation on program comprehension,
+found that camelCase styles lead to more accuracy and affected       this line of research uses indentation as a modification to
+response times, which is modulated by familiarity with the           objective complexity measures.
+style, such that participants familiar with camelCase are faster,
+but otherwise under score style is faster [29]. Sharif and                                    VIII. C ONCLUSION
+Maletic replicated this study and added eye tracking, finding           Suggestions on indentation depth of code blocks are part of
+that participants could spot under score identifier styles signif-   most style guides on code layout, yet there is little empirical
+icantly faster, independent of participants familiarity with the     evidence on optimal indentation depth. Inspired by a study
+styles [12]. Furthermore, identifiers with the under score style     by Miara and others [7], who found that 2-spaced indentation
+lead to lower visual effort for some of the measures they used.      has the best effect on program comprehension, we conducted
+Busjahn and others manipulated the similarity of the execution       a non-exact replication to provide empirical evidence for style
+order of code and the actual location in the source code             guides. To this end, we modernized the study design by
+file [30]. They recorded the eye movements of participants and       adapting it to Java snippets and by including eye tracking to
+found that the presentation of code affected the reading order,      measure visual effort.
+which is modulated by expertise, such that experts follow the           Our results did not show any effect of indentation depth
+execution order and novices follow the presentation order.           on program comprehension, perceived difficulty, or visual
+All these papers evaluate how code layout affects program            effort, indicating that indentation is indeed simply a matter
+comprehension, and in that line they contribute empirical            of task and style, and do not provide support for program
+evidence for code style guidelines. Hofmeister and others            comprehension.
+found that shorter identifier names take longer to comprehend,          There are several ways to continue this line of research,
+whereas longer names with more semantic information reduce           especially by increasing the complexity of the code snippets,
+response times [8].                                                  such that scrolling is also necessary. This way, keeping track
+   Different to these four studies, there are several studies that   of the control flow could become more challenging for the
+aim at building a model of how a set of layout properties            participants, so the size of the effect of indentation could
+affect the comprehensibility of code. Jørgensen conducted a          increase, simply by its increased occurrence. However, this
+study that dates before the study by Miara and others [31].          would also require a more advanced eye tracker that is more
+He let human raters create a ground truth of readable and            robust when measuring gaze behavior. Furthermore, exploring
+non-readable source code, on which he based a regression             how the visual effort of more experienced programmers is
+model containing several properties of code, which results           affected by different indentation depths is also on our agenda.
+in a readability score. He found that the average number of                                 ACKNOWLEDGMENTS
+goto-statements per label has the highest influence on the
+readability score. In a modernized setting, Buse and Weimer            Bauer’s, Siegmunds, and Peitek’s work is supported by DFG
+conducted a similar study [32], [33]. Instead of a regression        grant SI 2045/2-1. Siegmunds work is further funded by the
+model, they build a classifier and used properties of code           Bavarian State Ministry of Education, Science and the Arts in
+as features to learn whether a code snippet is readable or           the framework of the Centre Digitisation.Bavaria (ZD.B).
+not. They found that the average number of identifiers in a                                       R EFERENCES
+line of code is the best feature in predicting the readability.
+                                                                      [1] T. D. LaToza, G. Venolia, and R. DeLine, “Maintaining mental models:
+Lee and others conducted a similar study, with the difference             a study of developer work habits,” in Proceedings of the International
+that the ground truth was automatically determined based                  Conference on Software Engineering (ICSE). ACM, 2006, pp. 492–501.
+on readability metrics by Posnett and others [34], [35]. In           [2] R. Tiarks, “What programmers really do: An observational study,”
+                                                                          Softwaretechnik-Trends, vol. 31, no. 2, pp. 36–37, 2011.
+contrast to Jørgensen and Buse & Weimer, they found javadoc           [3] Google, Google JavaScript Style Guide, available online at https://
+comments to be the best predictor for readability (i.e., when             google.github.io/styleguide/jsguide.html; visited on October 9th, 2017.
+ [4] P. S. Foundation, The Python Language Reference, available online            [22] J. W. Mauchly, “Significance test for sphericity of a normal n-variate
+     at https://docs.python.org/3/reference/lexical analysis.html; visited on           distribution,” The Annals of Mathematical Statistics, vol. 11, no. 2, pp.
+     October 8th, 2017.                                                                 204–209, 1940.
+ [5] Sun Microsystems, Inc., Code Conventions for the Java Programming            [23] M. Friedman, “The use of ranks to avoid the assumption of normality
+     Language, available online at http://www.oracle.com/technetwork/java/              implicit in the analysis of variance,” Journal of the American Statistical
+     codeconvtoc-136057.html; visited on September 18th, 2017.                          Association, vol. 32, no. 200, pp. 675–701, 1937.
+ [6] Google, Google Java Style Guide, available online at https://google.         [24] E. L. Lehmann, Nonparametrics: Statistical Methods Based on Ranks.
+     github.io/styleguide/javaguide.html; visited on September 18th, 2017.              Springer, 2006.
+ [7] R. J. Miara, J. A. Musselman, J. A. Navarro, and B. Shneiderman,             [25] J. Cohen, Statistical Power Analysis for the Behavioral Sciences.
+     “Program indentation and comprehensibility,” Communications of the                 Lawrence Erlbaum Associates, 1988.
+     ACM, vol. 26, no. 11, pp. 861–867, 1983.                                     [26] F. Faul, E. Erdfelder, A. Buchner, and A.-G. Lang, “Statistical power
+ [8] J. Hofmeister, J. Siegmund, and D. V. Holt, “Shorter identifier names              analyses using g*power 3.1: Tests for correlation and regression analy-
+     take longer to comprehend,” in Proceedings of IEEE 24th Interna-                   ses,” Behavior Research Methods, vol. 41, pp. 1149–1160, 2009.
+     tional Conference on Software Analysis, Evolution and Reengineering          [27] E. Soloway and K. Ehrlich, “Empirical studies of programming knowl-
+     (SANER). IEEE, 2017, pp. 217–227.                                                  edge,” IEEE Transactions of Software Engineering, vol. 10, no. 5, pp.
+ [9] J. Siegmund, C. Kästner, S. Apel, C. Parnin, A. Bethmann, T. Leich,               595–609, 1984.
+     G. Saake, and A. Brechmann, “Understanding understanding source              [28] A. Jbara and D. G. Feitelson, “How programmers read regular code:
+     code with functional magnetic resonance imaging,” in Proc. Int. Conf.              A controlled experiment using eye tracking,” Empirical Software Engi-
+     Software Engineering (ICSE). ACM, 2014, pp. 378–389. [Online].                     neering, vol. 22, no. 3, pp. 1440–1477, 2017.
+     Available: http://doi.acm.org/10.1145/2568225.2568252                        [29] D. Binkley, M. Davis, D. Lawrie, and C. Morrell, “To camelCase or
+[10] J. Siegmund, N. Peitek, C. Parnin, S. Apel, J. Hofmeister,                         under score,” in International Conference on Program Comprehension
+     C. Kästner, A. Begel, A. Bethmann, and A. Brechmann, “Measuring                   (ICPC). IEEE, 2009, pp. 158–167.
+     neural efficiency of program comprehension,” in Proc. Europ.                 [30] T. Busjahn, R. Bednarik, A. Begel, M. Crosby, J. H. Paterson, C. Schulte,
+     Software Engineering Conf./Foundations of Software Engineering                     B. Sharif, and S. Tamm, “Eye movements in code reading: Relaxing the
+     (ESEC/FSE). ACM, 2017, pp. 140–150. [Online]. Available: http:                     linear order,” in Proceedings of International Conference on Program
+     //doi.acm.org/10.1145/3106237.3106268                                              Comprehension (ICPC). IEEE, May 2015, pp. 255–265.
+[11] N. Pennington, “Stimulus Structures and Mental Representations in
+                                                                                  [31] A. H. Jørgensen, “A methodology for measuring the readability and
+     Expert Comprehension of Computer Programs,” Cognitive Psychology,
+                                                                                        modifiability of computer programs,” BIT Numerical Mathematics,
+     vol. 19, no. 3, pp. 295–341, 1987.
+                                                                                        vol. 20, no. 4, pp. 393–405, 1980.
+[12] B. Sharif and J. I. Maletic, “An eye tracking study on camelCase and
+                                                                                  [32] R. Buse and W. Weimer, “A metric for software readability,” in Pro-
+     under score identifier styles,” in International Conference on Program
+                                                                                        ceedings of the ACM/SIGSOFT International Symposium on Software
+     Comprehension (ICPC). IEEE, 2010, pp. 196–205.
+                                                                                        Testing and Analysis. ACM, 2008, pp. 121–130.
+[13] K. Holmqvist, M. Nystrm, R. Andersson, R. Dewhurst, H. Jarodzka, and
+     J. Van de Weijer, Eye tracking: A comprehensive guide to methods and         [33] R. P. Buse and W. R. Weimer, “Learning a metric for code readability,”
+     measures. OUP Oxford, 2011.                                                        IEEE Transactions on Software Engineering, vol. 36, no. 4, pp. 546–558,
+[14] M. A. Just and P. A. Carpenter, “A theory of reading: From eye fixations           2010.
+     to comprehension.” Psychological Review, vol. 87, no. 4, p. 329, 1980.       [34] T. Lee, J.-B. Lee, and H. Peter, “Effect analysis of coding convention
+[15] M. Nakayama, K. Takahashi, and Y. Shimizu, “The act of task difficulty             violations on readability of post-delivered code,” IEICE Transactions on
+     and eye-movement frequency for the’oculo-motor indices’,” in Proceed-              Information and Systems, vol. E98-D, no. 7, pp. 1–11, 2015.
+     ings of the Symposium on Eye Tracking Research & Applications. ACM,          [35] D. Posnett, A. Hindle, and P. Devanbu, “A simpler model of software
+     2002, pp. 37–42.                                                                   readability,” in Proceedings of the 8th Working Conference on Mining
+[16] M. H. Phillips and J. A. Edelman, “The dependence of visual scanning               Software Repositories. ACM, 2011, pp. 73–82.
+     performance on search direction and difficulty,” Vision Research, vol. 48,   [36] J. C. Munson and T. M. Khoshgoftaar, “The dimensionality of program
+     no. 21, pp. 2184–2192, 2008.                                                       complexity,” in Proceedings of the 11th International Conference on
+[17] J. G. May, R. S. Kennedy, M. C. Williams, W. P. Dunlap, and J. R. Bran-            Software Engineering (ICSE). ACM, 1989, pp. 245–253.
+     nan, “Eye movement indices of mental workload,” Acta Psychologica,           [37] A. Hindle, M. W. Godfrey, and R. C. Holt, “Reading beside the
+     vol. 75, no. 1, pp. 75–89, 1990.                                                   lines: Using indentation to rank revisions by complexity,” Sci. Comput.
+[18] Tobii, Tobii Eyex Tracker, http://tobiigaming.com/product/tobii-eyex;              Program., vol. 74, pp. 414–429, 2009.
+     visited on Sep. 12th, 2017.                                                  [38] T. J. McCabe, “A complexity measure,” IEEE Transactions on Software
+[19] S. S. Shapiro and M. B. Wilk, “An analysis of variance test for normality          Engineering, no. 4, pp. 308–320, 1976.
+     (complete samples),” Biometrika, vol. 52, no. 3/4, pp. 591–611, 1965.        [39] M. H. Halstead et al., Elements of software science. Elsevier New
+[20] R. Ratcliff, “Methods for dealing with reaction time outliers.” Psycho-            York, 1977, vol. 7.
+     logical Bulletin, vol. 114, no. 3, p. 510, 1993.                             [40] H. Gong and M. Schmidt, “A complexity measure based on selection and
+[21] T. Anderson and J. Finn, The New Statistical Analysis of Data. Springer,           nesting,” SIGMETRICS Perform. Eval. Rev., vol. 13, no. 1, pp. 14–19,
+     1996.                                                                        Jun. 1985.
+

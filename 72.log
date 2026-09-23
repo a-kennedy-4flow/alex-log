@@ -1,0 +1,13 @@
+Log 72. Finding why the deployed Jira integration answers "no such route".
+2026-09-22T13:37:07Z ls of the repo root and the tracker folder — 71.log was the last taken number so this log is 72.
+2026-09-22T13:37:07Z find for jira files then cat jira-lambda.ts — the handler returns 404 "no such route" when JIRA_CLIENT_ID is empty.
+2026-09-22T13:37:07Z grep JIRA in tracker-stack.ts — the stack hardcodes a non-empty client id so the deployed value is what needs checking.
+2026-09-22T13:37:23Z aws sts get-caller-identity — NoCredentials so the deployed function cannot be read from this shell.
+2026-09-22T13:37:50Z grep "no such route" across the source — five places answer it and only two are in the Jira function.
+2026-09-22T13:38:32Z grep of the built jira-lambda.mjs — the bundled route regex ends at one segment while the source allows a second.
+2026-09-22T13:38:52Z python3 extract of the bundle route match — the deployed regex takes one segment and GET only.
+2026-09-22T13:38:52Z grep of apps/web/dist — the deployed browser bundle calls /api/jira/completed/period/scope with two segments.
+2026-09-22T13:39:16Z git show of jira-handlers.ts at three commits — the second segment and POST arrived in afa13a6 on 2026-09-21 after the 2026-09-10 build.
+2026-09-22T13:39:49Z ls of apps/web/dist and cat of deploy-site.sh — the browser bundle was rebuilt today and the site deploy does not touch the Lambda.
+2026-09-22T13:39:49Z cat of package.json and infra/package.json — deploy and deploy:site are separate scripts so the two sides can drift.
+2026-09-22T13:39:49Z Conclusion. The deployed Jira Lambda is the 2026-09-10 bundle. It matches one path segment and GET only so the two segment call the browser now makes falls to the 404.

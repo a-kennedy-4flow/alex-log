@@ -1,0 +1,874 @@
+                                                                         First Come First Served:
+                                                                 The Impact of File Position on Code Review
+                                                          Enrico Fregnan, Larissa Braz                                                    Marco D’Ambros
+                                                              {fregnan,larissa}@ifi.uzh.ch                                            marco.dambros@usi.ch
+                                                                  University of Zurich                                          CodeLounge at Software Institute
+                                                                      Switzerland                                          Università della Svizzera Italiana, Switzerland
+
+                                                                       Gül Çalikli                                                        Alberto Bacchelli
+                                                           handangul.calikli@glasgow.ac.uk                                                bacchelli@ifi.uzh.ch
+                                                               University of Glasgow                                                      University of Zurich
+arXiv:2208.04259v1 [cs.SE] 8 Aug 2022
+
+
+
+
+                                                                      Scotland                                                                Switzerland
+                                        ABSTRACT                                                                      1    INTRODUCTION
+                                        The most popular code review tools (e.g., Gerrit and GitHub) present          Code review is a popular software engineering practice where de-
+                                        the files to review sorted in alphabetical order. Could this choice           velopers manually inspect the code written by a peer [7, 39]. Code
+                                        or, more generally, the relative position in which a file is presented        review aims to find defects [11], improve software quality [3, 12],
+                                        bias the outcome of code reviews? We investigate this hypothesis              and transfer knowledge [7, 47]. Over the years, code review has
+                                        by triangulating complementary evidence in a two-step study.                  evolved from a formal strictly-regulated process [22] into a less
+                                           First, we observe developers’ code review activity. We analyze             strict practice. Contemporary code reviewing is informal, asynchro-
+                                        the review comments pertaining to 219,476 Pull Requests (PRs) from            nous, change-based, and supported by tools [9, 10, 45, 47].
+                                        138 popular Java projects on GitHub. We found files shown earlier                The tools used to conduct code reviews share many similari-
+                                        in a PR to receive more comments than files shown later, also when            ties [11]. In particular, the vast majority of tools (including the
+                                        controlling for possible confounding factors: e.g., the presence of           popular Gerrit [27] and GitHub [28]) present the changes to review
+                                        discussion threads or the lines added in a file. Second, we measure           as a list/sequence of diff hunks [25] grouped by the file they belong
+                                        the impact of file position on defect finding in code review. Recruit-        to. Tools sort these files alphabetically, therefore the changes to
+                                        ing 106 participants, we conduct an online controlled experiment              a file named org/Controller.java are always presented before
+                                        in which we measure participants’ performance in detecting two                those to a file named org/Model.java. Could this choice or, more
+                                        unrelated defects seeded into two different files. Participants are           generally, the relative position in which a file is presented influence
+                                        assigned to one of two treatments in which the position of the                the outcome of code review?
+                                        defective files is switched. For one type of defect, participants are            This hypothesis seems to be supported by at least two factors.
+                                        not affected by its file’s position; for the other, they have 64% lower       First, most developers tend to start their reviews in the order pre-
+                                        odds to identify it when its file is last as opposed to first. Overall, our   sented by the review tool [12]. Second, code review is a cognitively
+                                        findings provide evidence that the relative position in which files           demanding task [8] whose outcome might be influenced by cog-
+                                        are presented has an impact on code reviews’ outcome; we discuss              nitive factors [41, 50] also related to the position of the file. For
+                                        these results and implications for tool design and code review.               example, developers may be influenced by attention decrement (a
+                                        Data and Materials: https://doi.org/10.5281/zenodo.6901285                    decrease in attention when exposed to a list of elements [6]) or may
+                                                                                                                      deplete their working memory capacity (the memory for short-term
+                                        CCS CONCEPTS                                                                  storage during ongoing tasks [60]) near the end of longer reviews.
+                                        • Software and its engineering → Empirical software validation.                  In this paper, we set to investigate this hypothesis. We do this
+                                                                                                                      by triangulating complementary evidence in a two-step study.
+                                        KEYWORDS                                                                         In the first step, we focus on the relation between file position and
+                                        Code Review, Controlled Experiment, Cognitive Bias                            reviewers’ activity. We collect and analyze 219,476 Pull Requests
+                                                                                                                      (PRs) from 138 GitHub open-source Java projects and investigate
+                                                                                                                      whether the position in which a file is presented in a PR is associated
+                                                                                                                      with the number of comments the file receives. In fact, the number
+                                                                                                                      of comments can be used to approximate reviewers’ effectiveness
+                                                                                                                      and activity [45]. We find a significant correlation between the file’s
+                                                                                                                      position and the number of comments this file receives: Files shown
+                                                                                                                      later in a PR receive fewer comments than files shown earlier.
+                                                                                                                         In the second step, we focus on the influence of file position on
+                                                                                                                      defect finding in code review. We design and conduct a controlled
+                                                                                                                      experiment with 106 developers who have to review code in which
+                                                                                                                      we seeded two unrelated bugs (a Corner Case defect and a Missing
+                                                                                                                      Break defect) into two different files. By creating two treatments
+ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+that switch the position of the defective files (first Corner Case        authors initially hypothesized that the participants would overlook
+defect and last Missing Break defect, or vice versa), we measure the      defects of other types present in the code due to their proneness
+influence of file position. While we see no effect for the Missing        to availability bias. However, the experiment results show that the
+Break defect, we find that developers have 64% lower odds to iden-        presence of a review comment identifying a bug does not prime
+tify the Corner Case defect when the file containing it is displayed      reviewers towards looking for defects of similar type overlooking
+last as opposed to first. To further confirm our findings, we look        other defect types. On the contrary, such a review comment acts as
+at the files displayed on the participants’ screen during the review      a reminder for bugs developers usually do not look for during their
+task. We detect a statistically significant difference between the        daily practices.
+time participants spend viewing the first file and the last one.
+    Overall, our findings suggest that the relative position in which     2.2    Psychological Factors Related to Position
+files are presented in a code review has an impact on the code            Based on the findings of Baum et al. [12], which suggest that devel-
+review’s outcome. This result has important implications for code         opers start a code review from the first file in the change-set, the
+review practice and for tool design. For instance, code review tool       following psychological factors seem plausible explanations behind
+designers may consider rethinking alphabetically ordering files in        the potential effect of files’ position on code review.
+favor of a more principled approach (e.g., showing first the most
+                                                                          Attention decrement. Attention decrement is defined as “the ten-
+problematic files to review). Alternatively, code change authors may
+                                                                          dency for people to pay less attention to stimuli coming later in a
+consider clearly signaling developers where to start their review,
+                                                                          sequential occurrence or presentation and thus to remember them
+for example through the use of self-comments or in the change
+                                                                          less well” [6]. To give a practical example, a student given a list of
+description, when they implemented more challenging parts.
+                                                                          terms to memorize is likely to have more difficulties committing to
+                                                                          memory those at the end. Hendrick et al. [32] identified attention
+2     BACKGROUND AND RELATED WORK                                         decrement as the most feasible explanation of why people tend to
+In this section, we present relevant literature on cognitive aspects in   remember the first information they see the most.
+modern code review. Then, we illustrate the psychological concepts           During code review, developers might be subjected to this phe-
+that might constitute the underlying causes of the effect of file         nomenon, slowly decreasing their attention the more the review
+position on code review. Finally, we report possible competing            continues. As the majority of reviewers begin their review from
+arguments against the hypothesis that file position plays a role in       the first file in a change-set [12], this decrease in attention is more
+reviewing.                                                                likely to impact the last files in a review change-set. This would
+                                                                          sustain our hypothesis that the position of the files in code review
+2.1     Cognitive Aspects in Code Review                                  matters.
+Code review is a collaborative process where human factors play           Working memory. Working memory is defined as the part of
+a crucial role [7]. Previous studies conducted at companies such          human memory needed for short-term storage during ongoing cog-
+as Microsoft [7] and Google [47] revealed how code review could           nitive processes [13, 60]. However, although the working memory
+foster knowledge transfer among developers in a team and improve          capacity varies from individual to individual, its amount is still
+shared code ownership. However, code review is not only a collab-         limited [21].
+orative process, but it is also a cognitively demanding task for the         In software engineering, the study of Bergersen and Gustafs-
+single reviewer. In particular, a vast amount of research focused         son investigated the effect of working memory on programming
+on reducing developers’ cognitive load to improve reviewers’ per-         performance [14]. Their findings showed how working memory in-
+formance [11, 13, 30]. For instance, Baum et al. [13] conducted a         fluences performance (albeit mediated by the developers’ program-
+controlled experiment to investigate how developers’ code review          ming knowledge). Baum et al. studied the effect of working memory
+performance relates to their cognitive load and working memory            on code review performance [13]. Their experiment showed a corre-
+capacity. Their findings highlighted how working memory is associ-        lation between working memory and the reviewers’ effectiveness in
+ated with finding delocalized defects while only weakly associated        finding delocalized defects. Reviewers might deplete their working
+with the ability to detect other defect types.                            memory looking at the first files in a review change-set, leading
+   Another group of studies addresses developers’ cognitive biases        to an exhaustion of this resource that might negatively influence
+that might affect code review outcome [20, 35, 50, 54]. Huang et al.      their code review performance on the last files they inspect.
+investigated how cognitive biases relate to code review process in
+a controlled experiment using medical imaging and eye-tracking.           2.3    Related Competing Arguments
+Chattopadhyay et al. synthesized helpful practices to reduce the          Although previous evidence [12] suggests that developers start a
+effect of cognitive biases on software development activities, includ-    code review from the first file in the change-set, some factors might
+ing code review. In their two-part field study, the authors identified    affect the order in which developers review files during code review.
+the manifestation of various cognitive biases during code reviews         Given the findings of some eye-tracking studies (e.g., [2, 19, 46]),
+(e.g., representativeness, availability, anchoring, confirmation bias).   it seems plausible to think that some files in a code change might
+Spadini et al. [50] investigated the effect of priming on review-         attract reviewers’ attention more due to their content (e.g., files
+ers’ ability to detect bugs due to their proneness to availability        that contain more call terms, control flow terms) regardless of their
+bias. In the controlled experiment, a review comment was used to          position. For instance, Abid et al. [2] found that developers visit call
+prime the participants to look for defects of the same type. The          terms more often than non-call terms and spend the longest time
+The Impact of File Position on Code Review                                                         ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+reading call terms. The next most visited and read locations were          Data Collection. Using PyGitHub1 a Python library to access the
+control flow terms and signatures. Furthermore, in an earlier study        GitHub REST API, for each PR, we extract the position of each file
+Rodeghero et al. [46] found that developers consider method sig-           and the number of comments it receives. Moreover, we collect other
+natures as the most important section of the code followed by call         factors that can influence the number of comments a file receives
+terms and the control flow terms. Moreover, token length and fre-          (i.e., confounding factors). We consider: (1) The number of lines
+quency in a source code might also influence developers’ attention.        added and (2) deleted in a file because larger changes may require
+The results Al Madi et al. [4] obtained indicate that participants         more comments; (3) whether the file is a test, because these tend to
+fixate longer low-frequency tokens and tokens containing more              receive less comments [49] and to be ordered last alphabetically;
+characters.                                                                and (4) the number of commenters, because more participants in
+   Furthermore, in an eye-tracking study, Busjahn et al. [19] showed       the review of a PR might lead to more comments.
+that people read source code in a more non-linear fashion than read-       Data Filtering. As the presence of a bot might introduce bias in
+ing natural language. However, the findings by Busjahn et al. only         our analysis, we exclude bot comments from our analysis. To do
+explain how developers read code in a single code file: the authors        so, we flag all users containing the word “bot” as bots and create
+showed the participants Java classes and pseudocodes ranging from          a list of commonly used bots in GitHub (extracted from relevant
+a few lines of code to an entire screen full of text. Therefore, whether   gray literature [55, 59]) and remove them. The presence of discus-
+developers navigate files in a code change in a non-linear fashion         sion threads (i.e., a series of comments where the reviewers and
+during code review and how this is related to file position need           the author discuss solutions or improvements to the code) might
+further investigation.                                                     act as a confounding factor in our analysis: A discussion thread
+   In the presence of these arguments in the literature competing          can facilitate developers’ engagement in adding comments to the
+with the hypothesis that file location may influence code review           thread regardless of the file’s position. Therefore, we focus our
+outcome, our study aims to investigate this topic in-depth from            investigation only on the first comment of a thread, disregarding
+complementary angles.                                                      subsequent ones. Moreover, the number of files in a Pull Request
+                                                                           might influence the comments’ distribution. Therefore, we group
+3     METHODOLOGY                                                          the PRs according to the number of files they contain to conduct
+In this study, we aim to understand whether the relative position in       initial analyses (e.g., see Figure 4 for PRs with five files).
+which a file is shown for review influences the code review process.       Data Analysis. To analyze the impact of the aforementioned fac-
+                                                                           tors on the number of comments in a file (dependent variable), we
+3.1      Research Questions                                                build a Hurdle model [24]: A statistical model that specifies two
+We structured our investigation in two steps, which seek to collect        processes, one for zero counts and another for positive counts. We
+complementary evidence. First, we investigate the relationship             choose this model as it handles excess zeros in the dependent vari-
+between file position and reviewers’ activity. We do so by mining          ables, in fact, a vast number of files in the collected PRs receive
+data from PRs belonging to a vast set of open source projects and          zero comments. To model the positive counts, we employ a negative
+answer the following research question:                                    binomial distribution. Furthermore, we check the multi-collinearity
+                                                                           across the variables in the model computing their Variance Inflation
+    RQ1 . To what extent is the relative position of a file in a review    Factor (VIF) and removing those with a VIF higher than five.
+          associated with the amount of comments the file receives?
+                                                                           3.3     RQ2 - File Position and Defect Finding
+   Second, we focus on the influence of file position on defect            Our controlled experiment is organized as an online experiment
+finding in code review. We do so by performing an online controlled        in which participants are asked to complete a review of a code
+experiment with software developers who have to conduct a review           change involving five files. Among these files, we seed two unre-
+of code and answer the following question:                                 lated software defects2 into two different files. We randomly assign
+    RQ2 . What is the effect of the relative position of a defective       participants to one of the following two treatments: (1) one file
+          file in a review on bug detection?                               with a bug is presented first and the other file with the other bug
+                                                                           is presented last (i.e., fifth), or (2) the order of the files (hence the
+                                                                           bugs) is reversed (i.e., the fifth file is now first and vice versa). We
+3.2      RQ1 - File Position and Review Activity                           measure the specific bugs detected by each participant, as well as
+                                                                           how long each file is visible on the participants’ screen.
+Subject Projects. For our analysis, we select 138 open-source
+                                                                              In the following, we provide more details on the experimental
+projects from GitHub, focusing on Java projects with a star-count
+                                                                           objects (i.e., code change to review and seeded defects) and the
+above 1,000. As previously reported [16, 17], the number of stars
+                                                                           experimental design (i.e., online platform and experiment flow). We
+of a project can be effectively used as an indication of the projects’
+                                                                           conclude by describing the pilots we conducted, how we recruited
+popularity and health. We focus on Java as (1) it is a widely popular
+                                                                           participants, and how we analyzed the collected experimental data.
+programming language [56] and (2) focusing on one programming
+language might reduce potential bias introduced by different re-
+view practices of projects based on other programming languages.
+Moreover, we investigate large projects to reduce potential bias           1 PyGitHub: https://github.com/PyGithub/PyGithub
+
+caused by project-specific review policies or characteristics.             2 The participants are not informed about the presence of these defects.
+ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+3.3.1 Experimental Objects
+Code change. For the review task, we create a code change that sat-
+isfies the following requirements: (1) not belonging to any existing
+project (to avoid introducing bias caused by participants’ previous
+knowledge of the review change-set); (2) written in Java, one of the
+most popular programming languages [56]; (3) self-contained (to
+minimize the previous knowledge participants need to understand
+the change fully); and (4) close to an actual code review scenario
+(to increase realism).
+    We create a code change spanning five files as a trade-off between
+small change-sets (e.g., three files) and more complex reviews. For
+smaller code changes (e.g., two files), we expect a smaller effect of
+a file’s position. In contrast, even though larger code changes may
+present a stronger effect, more complex reviews require a longer
+review time, thus likely leading to more participants abandoning             Figure 1: Corner Case defect (CC) used in our experiment.
+the experiment.
+    All files have similar sizes (ranging from 44 to 63 lines). In partic-
+ular, we ensure that the two files containing the defects are similarly
+sized (46 lines in the Corner Case defect file and 44 lines in the
+Missing Break defect) to minimize the potential bias introduced by
+the file length.
+    We devise the code change to minimize links (e.g., method calls)
+between non-adjacent files. In particular, we checked that no con-
+nection existed between the two defective files (i.e., first and last).
+Our goal is to increase the control on how participants navigate
+the change, thus making the file position effect clearer, if any.
+    Finally, to re-position the files for the two different treatments,
+we rename them. This ensures that the reviewers are not influenced
+by a tool behavior that is unexpectedly different than what they
+are used to in common review platforms (where files are displayed
+in alphabetical order).                                                      Figure 2: Missing Break defect (MB) used in our experiment.
+Seeded Defects. In our experiment, we investigate if the given
+treatment influences participants’ ability to find bugs. In the review
+task, we seed the following two unrelated functional defects:                Gerrit. This mitigates possible bias with the users not being familiar
+- Corner Case (CC): A corner case condition in an if statement is            with the experiment platform.
+   left unchecked, thus not respecting the documentation (Figure 1).            CRExperiment also logs participants’ interactions (e.g., scrolling)
+   We select this bug because it represents an issue developers              and the time participants spend in each phase of the study (e.g.,
+   typically check for [18, 50] and frequently exists in practice [36].      in the review tasks). To collect information on which files in the
+- Missing Break (MB): A missing break statement in a switch                  change-set the participants focus on during code review, we ex-
+   construct makes the execution incorrectly fall through the de-            tended the base experiment platform to record the files visible on
+   fault case (Figure 2). We select this defect because it is reported       the participants’ screen during the review. For each file, the experi-
+   as a common Java mistake by relevant gray literature [1, 58],             ment tool records if this was on the participants’ screen (displayed),
+   also resonating with the infamous Apple goto fail [15].                   partially displayed, or not displayed at a given time. We store all
+                                                                             the collected data anonymously.
+We use two defects to make the review task as realistic as possible
+by preventing participants from focusing exclusively on one bug.             Experiment flow. We organize the flow of our experiment as
+                                                                             depicted in Figure 3 and as described in the following:
+3.3.2 Experimental Design                                                    (i) Welcome page. On the experiment’s landing page, we provide
+Experiment Platform. We implement our experiment as an on-                      participants with information on the type of study and our data
+line platform. To this aim, we employ a publicly available tool,                handling policy. Moreover, we ask for their consent to collect
+CRExperiment [48], already successfully used in previous code re-               and use their data before proceeding in the experiment.
+view experiments [18, 50]. CRExperiment allows participants to               (ii) Code review task. Participants are asked to perform a code
+review code displaying a review change-set in two-pane diffs, as                review task. Before starting, we instruct participants to perform
+done in popular code review tools: e.g., Gerrit [27] or GitHub [28].            a code review as they would typically do in their normal prac-
+Moreover, the User Interface (UI) of CRExperiment adopts similar                tice. Participants are randomly assigned to one of two possible
+design choices (e.g., the color scheme) as the one of, for instance,            treatments:
+The Impact of File Position on Code Review                                                                                          ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+                                                    Random assignment to a treatment
+
+                             File 1                  File 1                File 5                 File 5
+
+
+            Welcome!
+                                                                                                                           File 1
+
+
+
+                                      {File 2, File 3, File 4}                  {File 4, File 3, File 2}
+                                                                                                                       !
+                             File 5                  File 5                File 1                 File 1
+
+
+
+(i) Welcome Page                                                                                                    (iii) Post-review        (iv) Demographics         (v) Closing page
+                                                                                                                        questionnaire
+
+                                                          (ii) Code review task
+
+                                                                 Figure 3: Design and flow of the online experiment.
+
+
+   • CC 𝑓 -MB𝑙 - The file containing the Corner Case defect is                                             3.3.4 Data Analysis
+      shown 𝑓 irst in the code change, while the one containing                                            To analyze the data collected in our experiment, we perform a
+      the Missing Break defect is shown 𝑙ast.                                                              Chi-square test to assess the correlation between files position and
+   • MB 𝑓 -CC𝑙 - The file containing the Missing Break defect is                                           participants’ detection of the defects. We evaluate the strength of
+      shown 𝑓 irst, while the one with the Corner Case defect is                                           the correlation using the phi-coefficient. Then, we build two logistic
+      shown 𝑙ast.                                                                                          regression models considering as dependent variables (1) CCFound
+   To avoid bias, we do not inform participants about the functional                                       (whether the participants found the Corner Case defect), and (2)
+   defects, the treatments, and the recorded metrics before the re-                                        MBFound (whether the participants found the Missing Break defect),
+   view task. At the end of the task, we ask participants whether                                          respectively.
+   and for how long they were interrupted during the review.                                                   To identify if a participant found a defect, we follow the guide-
+(iii) Post-review questionnaire. After participants declare their                                          lines of previous studies [13, 30, 31]. We manually inspect the re-
+   review task is completed, they are shown the code change again                                          marks left by the participants and classify a defect as found when
+   with the location and explanation of the defects (Figure 1 and                                          a remark (1) is placed in proximity of the defect and (2) clearly
+   Figure 2). We ask participants whether they found each of the                                           describes the defect in the code. The first author performs this
+   two defects and the cause that, in their opinion, influenced their                                      inspection, and a second author checks later the first author’s in-
+   result. In a subsequent page (as not to influence their previous                                        spection results.
+   answers), we ask participants if they think the position of the file                                        To build our models, we follow the following procedure to ensure
+   containing the bugs might have impacted their results.                                                  the goodness of our results: (1) We use the VARCLUS procedure
+(iv) Demographics. Afterward, we collect information about par-                                            to identify and remove variables from the model with Spearman’s
+   ticipants’ gender, education, occupation, and experience with                                           correlation higher than 0.5. (2) We compute the Variance Inflation
+   Java and code review. We analyze this information (1) to guaran-                                        Factors (VIF) among the variables to ensure none had a VIF value
+   tee that the groups of participants assigned to different treatments                                    above 7. If a variable with a higher VIF is detected, we remove
+   are homogeneous, (2) as confounding factors in the analysis of                                          it from the model. (3) Finally, we build the models adding each
+   the experiment results, and (3) to describe the population repre-                                       variable one by one and checking that the coefficient remained
+   sented in our results.                                                                                  stable, showing little interference among the considered variables.
+(v) Closing page. On the final page of the experiment, we disclose                                             We aim to evaluate if the position of the defect (in the first or
+   the goal of our study and ask participants for any final remark.                                        last file) impacts participants’ ability to find it. For this reason, we
+   We also collect participants’ consent to share their answers in an                                      include the variable position among the independent variables in our
+   anonymized, yet publicly available, research dataset.                                                   model. We also consider the potential effect of other confounding
+                                                                                                           factors, such as the participants’ experience with Java and code
+                                                                                                           review. Furthermore, we compute the time participants spend on
+3.3.3 Pilot Runs
+                                                                                                           the review task and include this variable in the model. Table 1
+Before publicly releasing the online experiment, we conduct a pilot
+                                                                                                           presents all the variables included in our logistic regression models.
+study to (1) verify the absence of technical issues with experiment
+settings (e.g., the online platform) and instructions, (2) check the                                       3.3.5 Number of required participants.
+goodness of the devised review task and seeded defects, and (3)                                            We performed an a priori power analysis to compute the minimum
+improve the experiment based on the participants’ feedback.                                                sample size needed for our experiment. We used the G-Power soft-
+   We conduct four iterations of our pilot study with a total amount                                       ware [23] and employed a two-tail test (with a manual distribution)
+of 15 participants. After each iteration, the authors discuss the                                          having 𝑜𝑑𝑑𝑠 𝑟𝑎𝑡𝑖𝑜𝑛 = 1.5, 𝛼 = 0.05, 𝑃𝑜𝑤𝑒𝑟 = 0.8, and 𝑅 2 = 0.3.
+results and feedback obtained and improve the experiment design                                            The results of this analysis showed our experiment needed a mini-
+accordingly. After the last iteration, the experiment is deemed ready                                      mum of 92 valid participants.
+to be released since the participants detected no significant issues.                                      3.3.6 Participants’ recruitment
+   We excluded the data gathered from the participants in the pilot                                        We disseminated an invite to conduct the online experiment through
+study from the analysis of the experiment results.                                                         the authors’ professional network and social media accounts (e.g.,
+ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+    Table 1: Variables used in the logistic regression models.                                     Table 2: Hurdle models for PR summary.
+
+                  Metric                          Description                                                      Positive count Zero count
+                                      Dependent variables                                                          Estim.      Sig.    Estim. Sig.
+    CCFound                     The participant found the Corner Case defect.                  Intercept            -8.982 **            -3.571 ***
+    MBFound                     The participant found the Missing Break defect.                Position             -0.187 ***           -0.343 ***
+                                     Independent variables                                     Lines added           0.012 ***            0.007 ***
+    Position                    The relative position of the bug (first or last) in            Lines deleted         0.003 ***           -0.001 ***
+                                the code change to review.                                     isTest               -0.433 ***           -0.707 ***
+                                       Control variables                                       N. commenters         0.485 ***            1.142 ***
+    CRDuration                  The time spent on the code review task.                           Sig. codes: *** p < 0.001; ** p < 0.01; * p < 0.05
+    DevExp                      The participant’s development experience in a
+                                professional setting.
+    JavaExp                     The participant’s experience with Java.               Among these, 26,685 pull requests received at least one review
+    CRExp                       The participant’s experience in code review.          comment (which we computed excluding comments left by bots).
+    OftenProg                   How often the participant programmed in the              As the vast majority of PRs (81.06%) contain between one and
+                                three months prior to the experiment.                 ten files, we focused our investigation on this subset of PRs. We
+    OftenCR                     How often the participant reviewed code in the        excluded from our analysis PRs containing only one file as the effect
+                                three months prior to the experiment.                 of the position in such cases is not relevant.
+    Interruptions               How often and for how long the participant was           Code review on GitHub is an iterative process. When a developer
+                                interrupted during the review task.                   uploads a commit, this is reviewed by fellow developers who may
+                                                                                      ask the commit author to perform some changes. These changes are
+                                                                                      addressed in a subsequent commit and the process continues itera-
+                                                                                      tively until the code is accepted. To both consider and exclude the
+          3000
+
+
+
+
+                                                                                      effect of the review process itself, we analyzed the data concerning
+                                                                                      two different moments in the history of pull requests:
+1000 1500 2000 2500
+
+
+
+
+                                                                                      - Pull Request summary : We consider the code change as it
+                                                                                          appears at the end of the review process and all the comments
+Number of comments
+
+
+
+
+                                                                                          that the code has received during the entire process.
+                                                                                      - First commit : We consider only the code as initially submit-
+                        2,969
+                                    2,761                                                 ted in the pull request and the comments it receives. Thus, we
+                                                    2,453
+                                                                                          exclude changes and comments induced by the review process.
+                                                                  2,073
+                                                                          1,809
+                                                                                      4.1.1 Pull Request summary
+                                                                                      Our initial investigation showed that the number of comments
+          500
+
+
+
+
+                                                                                      on the files in a PR is higher in the first files and progressively
+                                                                                      decreases towards the last files. For instance, Figure 4 shows the
+          0
+
+
+
+
+                         1st         2nd            3rd            4th    5th         distribution of the comments in PRs with five files. A similar pattern
+                                            Relative file position
+                                                                                      was observed also for all the other groups of PRs, e.g., with six files.
+                                                                                      We found similar results also when we restrict our investigation to
+ Figure 4: Distribution of comments in a PR with five files.                          the PRs that contain only Java files.3
+                                                                                          To confirm and quantify the correlation between the relative
+                                                                                      position of a file in a pull request and the number of comments it re-
+LinkedIn), as well as on developers’ web forums and communica-                        ceives, we performed a Spearman correlation test (a non-parametric
+tion channels (e.g., Reddit). To prevent any bias in the results, we do               test that measures the strength of the association between ordinal
+not disclose the experiment’s aim to participants in the invite. To                   or continuous variables [53]). We obtained a p-value of < 2.2·10−16
+encourage developers’ participation, we commit to donate 5 USD                        and a 𝜌 = −0.203, thus confirming a statistically significant nega-
+to a charity for each valid participant in the experiment.                            tive relation between these two variables.
+                                                                                          Subsequently, we performed regression modeling to verify this
+4                 RESULTS                                                             association also when controlling for the other factors that may
+We present the results of our investigation by research question.                     influence the number of review comments on a file.
+                                                                                          Table 2 shows the Hurdle model predicting the number of com-
+4.1                   RQ1 - File Position and Review Activity                         ments in a file. We included in the model PRs containing only Java
+                                                                                      files to remove potential bias introduced by multiple file formats.
+Our first research question seeks to investigate the relationship
+                                                                                      Moreover, we excluded PRs having less than three files, since in
+between relative file position and reviewers’ activity, focusing on
+                                                                                      these cases the effect of the file position is likely to be negligible.
+the comments left during code review. We analyze a total of 219,476
+pull requests pertaining to 138 popular Java projects on GitHub.                      3 Our online appendix [26] provides graphs for all the cases we mention.
+The Impact of File Position on Code Review                                                      ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+         Table 3: Hurdle models for PR’s first commit.
+                                                                               Finding 1. The number of comments across the files in the
+                          Positive count           Zero count                  analyzed pull requests is associated with the relative position
+                          Estim.      Sig.        Estim.        Sig.           of each file. Specifically, the later a file is presented in a pull
+                                                                               request, the fewer the comments it receives.
+      Intercept            -10.34 .                   -4.200 ***
+      Position             -0.183 **                  -0.221 ***
+      Lines added           0.019 ***                  0.005 ***
+      Lines deleted         0.004 ***          -4.15 · 10−4 *            4.2      RQ2 - File Position and Defect Finding
+      isTest               -0.353 ***                 -0.667 ***         Encouraged by the findings for RQ1 , we devised a controlled exper-
+      N. commenters         0.607 ***                  1.685 ***         iment to test this hypothesis with complementary evidence. Our
+       Sig. codes: *** p < 0.001; ** p < 0.01; * p < 0.05; . p < 0.1     second research question seeks to investigate the effect of files’
+                                                                         position on developers’ review effectiveness.
+                                                                            A total of 372 participants accessed the online experiment. Of
+                                                                         these, we considered only the participants who completed all the
+To remove outliers, we limited our analysis to files that have fewer
+                                                                         steps. Furthermore, we removed participants who left no remarks
+than 1,000 lines added. Finally, we normalized each file’s position
+                                                                         and spent less than ten minutes doing the review, leaving us with
+over the number of files in the PR to allow for comparison among
+                                                                         106 participants.
+PRs with a different number of files. The model is summarized in
+                                                                            The vast majority of the participants (84.9%) have at least a
+Table 2 and shows how the position of a file is negatively correlated
+                                                                         B.Sc. degree (mostly in Computer Science). Overall, 72 participants
+with the number of comments it receives, confirming how the last
+                                                                         reported to be software developers. Moreover, 84 participants self-
+files in a review change-set tend to receive less review comments
+                                                                         described as male, four as female, two as non-binary, and 16 pre-
+from developers, also when controlling for other factors.
+                                                                         ferred not to disclose. Figure 5 reports participants’ experience and
+    Table 2 also shows that the other independent variables included
+                                                                         practice levels.
+in the model are statistically significant predictors of the number
+                                                                            In total, 56 participants were in treatment CC 𝑓 -MB𝑙 , while 50
+of comments in a file. The sign of the estimates show that the
+                                                                         were in treatment MB 𝑓 -CC𝑙 . We compared the experience and
+direction of the relationship follows the expected direction. For
+                                                                         practices (e.g., Java experience) of the participants assigned to the
+instance, a larger number of changed lines (added or deleted) is
+                                                                         two groups and found no statistically significant difference.
+related to more reviewers’ comments. On the contrary, the expected
+number of comments decreases when the file is a test (this result is     4.2.1 Defect Finding
+inline with previous research’s findings [49]). Finally, the number of   Overall, 52 participants found the Corner Case defect, while 50
+commenters is positively correlated with the number of comments.         detected the Missing Break defect. Table 4 reports the number of
+                                                                         participants who found no defect, only one defect, or both defects
+                                                                         in the review task, by treatment. Table 5 reports how many partici-
+4.1.2 First commit                                                       pants identified each type of bug, by treatment.
+By restricting our analysis to only the first commits of our set of
+Pull Requests, we noticed a similar pattern as the one reported for      Table 4: Participants who found (1) no defects, (2) only the
+the PR summary. The first files in a commit receive more comments        Corner Case defect (CC), (3) only the Missing Break defect
+compared to the last ones. We analyzed commits with number of            (MB), and (4) both defects.
+files ranging from two to ten, noticing similar patterns to the PR
+summary (available in the replication package [26]).                                         No defect       CC     MB      CC & MB         Total
+    As for the PR summary, we corroborated our findings by restrict-        CC 𝑓 -MB𝑙           13            19      9        15              56
+ing our analysis to commits containing only Java files to mitigate
+                                                                            MB 𝑓 -CC𝑙           17             7     15        11              50
+potential bias caused by multiple types of files. This verification,
+                                                                                 Total          30            26     24        26             106
+however, did not reveal any significant difference from the gen-
+eral case confirming our observations that a higher number of
+comments concentrates on the first files in a commit.
+    We performed a Spearman correlation test to verify the presence      Table 5: Participants who found/not found each bug divided
+of a correlation between the number of review comments a file            by treatment: Corner Case defect (CC) first or Missing Break
+receives and the file’s position. The test achieved a p-value of <       defect (MB) first.
+2.2 · 10−16 and a 𝜌 = −0.152, showing how the two variables are
+correlated (although this correlation is weaker).                                               Corner Case                 Missing Break
+    To build the Hurdle model in this scenario, we followed the same                         Found Not found              Found Not found
+steps as the one reported for the Pull request summary. Our results            CC 𝑓 -MB𝑙       34          22               24          32
+(reported in Table 3) confirm how later files in a review change-set           MB 𝑓 -CC𝑙       18          32               26          24
+tend to receive a lower number of comments. Concerning the other                                   p-value: 0.011                p-value: 0.346
+independent variables included in our model, we achieved results                             phi-coefficient: 0.247       phi-coefficient: 0.091
+similar to the ones presented for the PR summary (Section 4.1.1).                                 odds ratio: 2.75             odds ratio: 1.44
+ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+     Experience                                                                                                         Practice
+40
+                                                                                                      39                                                                                  82
+                                                                                                 38                80
+
+
+
+
+30
+                                                                                           29
+                                                                                                                   60
+
+                                                                         26                                                                                                         54
+                                                                   25            25
+                                                              24
+                                                                                                                                                                                                49
+                                                                                      22
+
+20
+                                                                                                                   40
+                                  18
+                                                                                                            17                                                   36
+
+
+
+                                                                                                                                                                            27
+
+
+10
+                       10
+                   9                                                                                               20
+                                                                                                                                                                      18
+                                          8
+                             7                   7       7                                                                                              14
+             6
+                                                                                                                                             10                                                                       10
+
+                                                                                                                                         6
+
+        1                                                                                                                   3                      3                                                 3
+                                                                                                                                                                                                             2
+                                                                                                                                   1
+ 0                                                                                                                 0
+
+
+            None       1 year or less          2 years          3−5 years         6−10 years    11 years or more                ~ once       ~ once a month      ~ once a week       Daily or more       Not at all
+
+                                   Java       Professional Development      Code Review                                                                Design Code    Program    Code Review
+
+
+
+
+                                                                         Figure 5: Participants’ experience and practice.
+
+
+   These results show how participants found more the first bug                                                             To investigate the association between the detection of a defect,
+shown in the review task compared to the bug shown last. The                                                             its position in the code change, and other possible confounding
+Corner Case defect was found 34 times when the file containing it                                                        factors (reported in Table 1), we built two logistic regression models,
+was shown first and only 18 when the file was shown last. A similar,                                                     whose results are shown in Table 6. These findings are aligned with
+albeit weaker, trend seems to appear for the Missing Break defect.                                                       the results of the Chi-square test: The position of the Corner Case
+   To verify the presence of a relation between the position of                                                          defect is statistically significant correlated with developers’ ability
+a bug and its detection, we performed a Chi-square test. In the                                                          to find it (p-value < 0.05).
+case of the Corner Case defect, this test achieved 𝜒 2 (𝑑 𝑓 = 1, 𝑁 =
+106) = 6.45), p-value = 0.011, rejecting the null hypothesis that no                                                            Finding 2. The relative position of the file containing the
+relationship exists between files’ position and the detection of the                                                            Corner Case defect influences the likelihood of participants
+Corner Case defect. However, in the case of Missing Break defect                                                                in detecting the defect. Participants are less likely to find
+our test achieved 𝜒 2 (𝑑 𝑓 = 1, 𝑁 = 106) = 0.88), p-value = 0.346.                                                              the defect when its file is presented last. This effect is not
+Therefore, for this defect we could not draw any conclusion on the                                                              significant for the Missing Break defect.
+fact that its position influenced developers’ ability to find it.
+   For the Corner Case defect, we also computed the phi-coefficient                                                         At the end of the code review task we asked participants if they
+to measure the strength of the association obtaining a value of 0.247,                                                   thought the position of the defect had an influence on their ability
+which is close to a moderate positive correlation [29].                                                                  to find it. The vast majority of them replied negatively (72.6% for
+                                                                                                                         the Corner Case defect and 76.4% for the Missing Break defect).
+              Table 6: Logistic regression models for RQ2.                                                               However, our results showed how, on the contrary, the position of
+                                                                                                                         the bug had an effect on participants’ ability to find it. This shows
+                       Dep. Var. = CC Found Dep. Var. = MB Found                                                         a mismatch between what developers think affects the code review
+                       Estim.     S.E.    Sig. Estim. S.E.      Sig.                                                     outcome and which factors actually play a role in it.
+ Intercept              −1.113 1.570             −1.573 1.536
+                                                                                                                         4.2.2 Visible Files
+ Position               −0.960 0.409 *              0.388 0.418
+                                                                                                                         In the experiment, we measured the time that each file was visible on
+ CRDur.                −3 10−4 0.009                0.005 0.010
+                                                                                                                         the participants’ screen as a way to investigate further the effect of
+ DevExp                 −0.024 0.225                0.052 0.227
+                                                                                                                         files’ position on code review. Figure 6 reports the time (in seconds)
+ JavaExp                  0.120 0.189               0.251 0.191
+                                                                                                                         that participants in the two treatments spent with each file visible
+ CRExp                    0.045 0.228               0.326 0.236
+                                                                                                                         on the screen. We removed from this analysis participants who
+ OftenProg                0.171 0.323               0.130 0.312
+                                                                                                                         declared to have been interrupted for more than ten minutes during
+ OftenCR                  0.024 0.220            −0.547 0.235 *
+                                                                                                                         the review task, as their data may bias this analysis.
+ Interrupt.               0.005 0.156            −0.056 0.158
+                                                                                                                             On average, participants regardless of their treatment (CC 𝑓 -MB𝑙 or
+                                     Sig. codes: * p < 0.05                                                              MB 𝑓 -CC𝑙 ) spent more time looking at the first file compared to the
+The Impact of File Position on Code Review                                                                   ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+                                                                                         the other one. For instance, participants who found one bug might
+                                                                                         have stopped looking for other defects assuming they found the
+1500
+                                                                                         only issue in the code. Another possibility is that one defect can
+                                                                                         give unintentional indications to participants to identify the other
+                                                                                         one. However, the results reported in Table 4 counter the existence
+                                                                                         of such bias: the number of participants who found only one bug
+1000                                                                                     is similar to the one of those who found both bugs. We further
+                                                                                         performed a Chi-square test to verify if finding one defect led par-
+                                                                                         ticipants to also find the second one. Our test obtained a p-value of
+                                                                                         0.888, thus suggesting this bias not to affect the experiment.
+ 500                                                                                     The defects are too easy/difficult. The selected defects might
+                                                                                         have been too easy, or on the contrary, too hard to identify for the
+                                                                                         participants. To mitigate this possible bias we (1) selected defects
+                                                                                         among common Java mistakes based on relevant literature [1, 36,
+   0                                                                                     51] and discussed them among the authors, and (2) verified our
+             File 1        File 2               File 3                 File 4   File 5
+                                                                                         choice through a pilot study. Despite these measures, participants
+                                                                                         in the experiment might have still faced difficulties finding these
+                                    Treatment    CC first   MB first
+                                                                                         defects (or identified them too easily). However, the results reported
+                                                                                         in Table 4 show that the number of participants who found no
+Figure 6: Time (in seconds) participants visualized each file.                           defects, only one defect, or both defects is almost evenly distributed,
+To improve the clarity, we limited the size of the Y axis.                               showing that no defect was too trivial or hard to find.
+                                                                                         A low number of participants. A number of participants too low
+                                                                                         might bias the significance of our findings. The power analysis we
+last one. On average, participants spent 8.58 minutes with the first
+                                                                                         run (Section 3.3) showed that we needed at least 92 participants.
+file displayed as opposed to 6.09 for the last file.
+                                                                                         Our experiment exceeded this number: It was conducted by a total
+    To verify whether the difference between the time participants
+                                                                                         of 106 valid participants.
+visualized the first and last file is statistically significant, we per-
+formed a Mann–Whitney U test. For the whole participants (without
+dividing them by the treatment), our test obtained a p-value of 0.002,
+                                                                                         5   THREATS TO VALIDITY
+therefore showing that the two variables are indeed different. Di-                       Construct validity. The code changes selected for the review task
+viding the participants by treatment, our test achieved a p-value of                     might have introduced bias in the experiment. To mitigate this
+0.022 for the treatment CC 𝑓 -MB𝑙 , and 0.031 for treatment MB 𝑓 -CC𝑙 .                  threat, the first and second authors prepared the code changes
+These results confirm those for the general population.                                  and selected the defects contained in them. The other authors also
+                                                                                         checked the goodness of the code review task.
+                                                                                            The scenario represented in our experiment might differ from a
+       Finding 3. During the review task, participants spent signif-
+                                                                                         real-world review. To reduce this threat, we adopted the following
+       icantly more time with the first file being visible compared
+                                                                                         measures: we (1) created a code change as similar as possible to
+       to the last file.
+                                                                                         real ones (e.g., including documentation), (2) seeded defects that
+                                                                                         commonly happen in real-world scenarios [1, 50], and (3) used a
+4.2.3 Robustness Testing                                                                 review interface similar to widely used code review tools.
+To challenge the validity of our findings and strengthen their good-
+                                                                                         Internal validity. During code review, developers, instead of writ-
+ness, we employed robustness testing [42].
+                                                                                         ing multiple similar comments, might leave only one comment
+Participants’ groups are not homogeneous. Participants’ expe-                            requiring changes in all similar subsequent instances of an issue.
+rience in programming and reviewing might impact their perfor-                           Such comments might introduce bias in the results of our investiga-
+mance during code review and, therefore, influence the results. To                       tion in RQ1 . For this reason, one of the authors manually inspected
+verify that the participants assigned to the two treatments have                         a randomly selected subset of 100 PRs, looking for such comments.
+similar characteristics, we performed a Chi-square test of homo-                         Only eight PRs contained instances of these comments. Considering
+geneity on the variables measuring participants’ experience and                          this proportion, we computed a statistically significant sample size
+practice (e.g., participants’ experience with Java). We obtained p-                      with confidence level 95% and margin of error 5%, obtaining a
+values above 0.1, therefore, not revealing significant differences                       sample size of 54, which confirmed that 100 PRs are sufficient to
+between the two samples of participants. Moreover, we compared                           establish the proportion of this factor in our results.
+the time spent on the code review task of participants belonging to                         In RQ2 , before analyzing the results, we manually inspected the
+the two treatments. To this aim, we performed a Mann-Whitney U                           participants’ logs. We removed all participants that did not take the
+test (p-value of 0.453), which did not detect any difference between                     review task seriously: Participants who spent less than ten minutes
+the two groups.                                                                          on the review and left no remarks. Since our experiment relied on an
+One defect might influence participants in finding the other.                            online platform, the participants might have completed the review
+Finding one defect might have biased participants towards finding                        task with different set-ups and in different environments. However,
+ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+this reflects the various conditions in which developers work in real-    that more principled ways of presenting the files in a code review
+world scenarios. To mitigate the threats that interruptions might         can be used to support reviewers’ effectiveness.
+constitute for the validity of our study, we asked participants to            For example, tools could display first those files that are more
+state how long they were interrupted during the code review task          critical. Previous work focused on identifying salient classes in a
+and included their answers in our statistical analyses.                   code change (i.e., classes that subsequently cause the modification
+External validity. In RQ1 , the selection of the projects might have      of other classes in the change-set) [34]. Such classes can be used
+introduced bias in our investigation. To reduce potential bias caused     as the point from which developers should start a revision. On the
+by the choice of a specific project, we considered a vast set of          contrary, another possibility would be to focus on identifying arid
+projects from different domains, all with star-count above 1,000.         files and placing them last in a code review, taking inspiration from
+However, we cannot exclude the possibility that the choice of dif-        the approach developed at Google to identify arid lines [43]. Such
+ferent projects might lead to different results. Further studies are      an approach would allow developers to prioritize the review of
+needed to verify the generalizability of our findings.                    more relevant files.
+   Participants in our experiment possess a vast set of different             Other studies proposed an ordering approach to re-organize
+backgrounds, yet our sample is not representative of all developers.      files in a code change to support reviewers’ preferences [12, 13].
+Moreover, the specific defects we chose might have influenced the         This approach focuses on how files to review should be grouped,
+experiment results. Although these defects have been reported in          suggesting to show files sequentially sharing a link (e.g., method
+the literature as common defects [1, 36, 50], they have specific          call - method declaration). However, this ordering theory does
+characteristics that do not generalize to all other types of defects.     not consider the absolute position of the files (i.e., which ones
+   Furthermore, the size of the code change contained in the re-          should be shown first). The ordering theory can be expanded to take
+view task might have influenced the observed results. We carefully        into account our findings. Moreover, previous work [12] reported
+chose the review code change size to be a trade-off between a too         how developers adopt different tactics when reviewing code (e.g.,
+small review (where the effect of the files’ positions is likely not to   starting from newly added files or files perceived as easier to review).
+matter) and a too-large task, which would have resulted in a higher       For this reason, future code review tools might include a way to let
+participants drop-out rate. Although the results of RQ1 suggest           reviewers customize the order of the files to review to fit different
+that this effect should be present also in the code change with a         reviewers’ needs and counter the effect of the relative position of
+higher number of files, further studies are needed to corroborate         the files.
+our findings in different scenarios.                                          Finally, if changing the alphabetical order of the files in a code
+   In our experiment, we considered only code written in Java. This       review tool is too unnatural for reviewers, one could consider us-
+was done to keep the necessary number of participants (Section 3.3)       ing warnings to point reviewers towards the file from which they
+within an achievable range. In fact, considering multiple program-        should start the review. To this aim, new solutions could be de-
+ming languages would have required to significantly extend the            vised taking inspiration from previous studies on program-analysis
+number of participants due to the following reasons. First, although      tools [33, 38], where the authors investigated how warnings should
+languages such as Java, C#, and Python can be used to write code          be displayed to be welcomed by developers. These warnings could,
+in a similar way, in reality they tend to follow different coding         for instance, make developers aware of biases during code review
+conventions and idioms [5, 44, 52]. Therefore, using multiple lan-        (e.g., as created by the relative file position). Future studies can
+guages poses the issue of either not following the language’s idioms      be designed and carried out to compare the effectiveness of using
+(thus making the code snippet less “natural”) or having snippets          warnings as opposed to changing the position of files in a code
+substantially different across languages. Second, past research has       review tool.
+provided evidence on different programmers’ behavior when com-
+prehending code written in different languages [57]. Third, work on       Not all defects are the same. In our experiment, participants’
+programming languages learning shows that novices face different          effectiveness in detecting the Corner Case defect was influenced
+difficulty levels with different programming languages [40]. This         by the relative position of the defective file. However, this was not
+might be caused by the different cognitive load that each language        the case for the Missing Break defect.
+poses. For these reasons, we cannot exclude that different program-          If we consider the nature of these bugs, we notice that they may
+ming languages might lead to different results. Further studies can       require a different effort to be found, even though they were found
+be devised and conducted to investigate whether and how the re-           with the same probability overall (as reported in Table 5). On the
+sults of our experiment change considering different programming          one hand, the Corner Case defect requires the reviewer to read
+languages.                                                                and understand the documentation, then comprehend the code and
+                                                                          identify a mismatch in the corresponding implementation. As one
+                                                                          participant explained when asked why they did not find the Corner
+6    DISCUSSION
+                                                                          Case defect: “I didn’t read the JavaDoc carefully enough, and there
+In this section, we discuss the main implications of our findings.        was not anything obviously wrong with the code.” On the other
+The importance of being first. Our investigation provides evi-            hand, the Missing Break defect can be recognized as a pattern, even
+dence that the position of a file influences developers’ review effec-    if one does not fully understand the semantic of the code. One
+tiveness: Developers have 64% lower odds to find a defect when it is      participant who found it explained: “I am accustomed to looking
+in the file shown last. Currently, code review tools (e.g., GitHub or     for break statements on every switch expression because I have
+Phabricator) display files in alphabetical order. Our results suggest     missed them in my own code in the past.”
+The Impact of File Position on Code Review                                                          ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+   Therefore, the underlying reason for the difference in files’ posi-    the one with the Missing Break defect was shown last) and MB 𝑓 -CC𝑙
+tion effect could be that these two bugs require a different cognitive    (where the order of the files was reversed).
+effort to be found. These bugs could impose a different load on              Our experiment found that the position of the file containing the
+participants’ working memory, making, in turn, the effect of the          Corner Case defect influences the likelihood of finding this defect.
+defect position more or less prominent. We did not investigate this       Specifically, 34 participants found the Corner Case defect when in
+further, but studies can investigate this hypothesis and determine        the first file, while only 18 found it in the last. This effect was not
+the role of cognitive effort in defect finding during review.             significant for the less cognitive demanding Missing Break defect.
+The hidden psychological factors of code review. At the end of            Overall, our study provides evidence that the position in which files
+our experiment, we showed the participants the defects we seeded          are presented during code review has an impact on code review’s
+in the code. When asked whether the position of the bugs might            outcome. This finding has implications for code review practices
+have had an impact on their ability to detect them, a vast amount of      and review tool design, and may suggest that a similar effect may
+the developers replied negatively. A total of 77 (72.6%) participants     be present in other software engineering contexts.
+rejected the idea that files’ position influenced their ability to find
+for the Corner Case defect. However, the results of our experiment        ACKNOWLEDGMENTS
+found evidence of the contrary. The impact of file position on re-        The authors would like to thank the anonymous reviewers for their
+viewers was also corroborated by the first part of our study when         thoughtful and important comments, which helped improving our
+associating file position and review activity.                            paper. Fregnan and Bacchelli gratefully acknowledge the support of
+   This mismatch between participants’ perceptions and actual             the Swiss National Science Foundation through the SNSF Projects
+results contributes to the discourse around the importance and            No. PP00P2_170529 and 200021_197227. D’Ambros gratefully ac-
+the impact of cognitive biases that may affect developers during          knowledges the financial support of the Swiss National Science
+different software engineering activities [41]. After all, code review    Foundation through the NRP-77 project 187353.
+is a human effort and as humans we are influenced by biases and
+“hidden” psychological factors of which we are not naturally aware.       REFERENCES
+                                                                           [1] 2015. Buggy Java Code: The Top 10 Most Common Mistakes That Java Developers
+Beyond code review. Our results provided initial evidence on the               Make. Retrieved Feb 28, 2022 from https://www.toptal.com/java/top-10-most-
+effect of files’ position on developers’ activity and effectiveness in         common-java-development-mistakes
+code review. However, this phenomenon might also affect other              [2] N. Abid, B. Sharif, N. Dragan, H. Alrasheed, and J. Maletic. 2019. Developer
+                                                                               Reading Behavior While Summarizing Java Methods: Size and Context Matters.
+aspects of software engineering.                                               In Proceedings of the International Conference on Software Engineering. 384–395.
+   Previous studies investigated factors affecting developers’ adop-       [3] A. Frank Ackerman, Lynne S. Buchwald, and Frank H. Lewski. 1989. Software
+tion of program-analysis tools, showing that the way in which                  inspections: an effective verification process. IEEE Software 6, 3 (1989), 31–36.
+                                                                           [4] N. Al Madi, C. Peterson, B. Sharif, and J. Maletic. 2021. From Novice to Ex-
+warnings are displayed is critical [33, 38]. Among the many factors            pert: Analysis of Token Level Effects in a Longitudinal Eye Tracking Study. In
+identified to improve how warnings are displayed (e.g., warning                Proceedings of the International Conference on Program Comprehension. 172–183.
+                                                                           [5] Carol V Alexandru, José J Merchante, Sebastiano Panichella, Sebastian Proksch,
+should be well motivated [37]), our results may indicate that the              Harald C Gall, and Gregorio Robles. 2018. On the usage of pythonic idioms. In
+position of the warning can play a role. Similarly to files, the po-           Proceedings of the 2018 ACM SIGPLAN International Symposium on New Ideas,
+sition of the warning might affect, for instance, the attention that           New Paradigms, and Reflections on Programming and Software. 1–11.
+                                                                           [6] American Psychological Association. 2022. APA Dictionary of Psychology. Re-
+developers pay to them. Future studies can evaluate whether the                trieved Feb 01, 2022 from https://dictionary.apa.org/attention-decrement
+effect of warnings’ position influences developers. This effect might      [7] Alberto Bacchelli and Christian Bird. 2013. Expectations, outcomes, and chal-
+be particularly significant, for instance, for those complex warnings          lenges of modern code review. In 2013 35th International Conference on Software
+                                                                               Engineering (ICSE). IEEE, 712–721. https://doi.org/10.1109/ICSE.2013.6606617
+that require developers’ effort to be understood and solved.               [8] T. Baum. 2019. Cognitive-support code review tools : improved efficiency of change-
+                                                                               based code review by guiding and assisting reviewers. Ph.D. Dissertation. Univer-
+                                                                               sität Hannover.
+7    CONCLUSION                                                            [9] T. Baum, H. Leßmann, and K. Schneider. 2017. The choice of code review process:
+In this study, we investigated whether the relative position of a              A survey on the state of the practice. In Proceedings of the International Conference
+                                                                               on Product-Focused Software Process Improvement. Springer, 111–127.
+file has an impact on code review. To do so, we devised a two-step        [10] T. Baum, O. Liskin, K. Niklas, and K. Schneider. 2016. A Faceted Classification
+investigation to collect complementary evidence: We (1) collected              Scheme for Change-Based Industrial Code Review Processes. In Proceedings of
+                                                                               the International Conference on Software Quality, Reliability and Security (QRS).
+and analyzed data from 219,476 Pull Requests (PRs) belonging to 138            74–85.
+open-source Java projects and (2) conducted an online controlled          [11] T. Baum and K. Schneider. 2016. On the need for a new generation of code review
+experiment with 106 participants.                                              tools. In Proceedings of the International Conference on Product-Focused Software
+                                                                               Process Improvement. 301–308.
+    In the first step of our investigation, we focused on reviewers’      [12] Tobias Baum, Kurt Schneider, and Alberto Bacchelli. 2017. On the optimal
+activity, investigating the relationship between the relative position         order of reading source code changes for review. In 2017 IEEE international
+of file in a PR and the number of comments it receives. Having                 conference on software maintenance and evolution (ICSME). IEEE, 329–340. https:
+                                                                               //doi.org/10.1109/ICSME.2017.28
+found evidence of a significant correlation between file position         [13] Tobias Baum, Kurt Schneider, and Alberto Bacchelli. 2019. Associating working
+and review activity, we moved to the second step of our study to               memory capacity and code change ordering with code review performance.
+                                                                               Empirical Software Engineering 24, 4 (2019), 1762–1798. https://doi.org/10.1007/
+collect different evidence. We devised an online experiment where              s10664-018-9676-8
+participants had to perform review a code change in which we two          [14] G. Bergersen and J. Gustafsson. 2011. Programming skill, knowledge, and working
+seeded defects (Corner Case and Missing Break). Participants were              memory among professional software developers from an investment theory
+                                                                               perspective. Journal of individual Differences (2011).
+randomly assigned to one of two possible treatments: CC 𝑓 -MB𝑙            [15] M. Bland. 2014. Finding more than one worm in the apple. Commun. ACM 57, 7
+(where the file with the Corner Case defect was shown first, while             (2014), 58–64.
+ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore
+
+
+[16] K. Blincoe, J. Sheoran, S. Goggins, E. Petakovic, and D. Damian. 2016. Under-             [42] E. Neumayer and T. Plümper. 2017. Robustness tests for quantitative research.
+     standing the popular users: Following, affiliation influence and leadership on                 Cambridge University Press.
+     GitHub. Information and Software Technology 70 (2016), 30–39.                             [43] G. Petrović and M. Ivanković. 2018. State of mutation testing at google. In Proceed-
+[17] H. Borges, A. Hora, and M. Valente. 2016. Understanding the factors that im-                   ings of the international conference on software engineering: Software engineering
+     pact the popularity of GitHub repositories. In Proceedings of the International                in practice. 163–171.
+     Conference on Software Maintenance and Evolution. 334–344.                                [44] P. Phan-Udom, N. Wattanakul, T. Sakulniwat, C. Ragkhitwetsagul, T. Sunetnanta,
+[18] Larissa Braz, Enrico Fregnan, Gül Çalikli, and Alberto Bacchelli. 2021. Why                    M. Choetkiertikul, and R. Kula. 2020. Teddy: automatic recommendation of
+     Don’t Developers Detect Improper Input Validation?’; DROP TABLE Papers;--.                     pythonic idiom usage for pull-based software projects. In Proceedings of the
+     In 2021 IEEE/ACM 43rd International Conference on Software Engineering (ICSE).                 International Conference on Software Maintenance and Evolution. 806–809.
+     IEEE, 499–511. https://doi.org/10.1109/ICSE43902.2021.00054                               [45] P. Rigby and C. Bird. 2013. Convergent Contemporary Software Peer Review Prac-
+[19] T. Busjahn, R. Bednarik, A. Begel, M. Crosby, J. Paterson, C. Schulte, B. Sharif, and          tices. In Proceedings of the Joint Meeting on Foundations of Software Engineering.
+     S. Tamm. 2015. Eye Movements in Code Reading: Relaxing the Linear Order. In                    202–212.
+     Proceedings of the International Conference on Program Comprehension. 255–265.            [46] P. Rodeghero, C. Liu, P. McBurney, and C. McMillan. 2015. An Eye-Tracking
+[20] S. Chattopadhyay, N. Nelson, A. Au, N. Morales, C. Sanchez, R. Pandita, and A.                 Study of Java Programmers and Application to Source Code Summarization.
+     Sarma. 2020. A Tale from the Trenches: Cognitive Biases and Software Devel-                    Transactions on Software Engineering 41, 11 (2015), 1038–1054.
+     opment. In Proceedings of theInternational Conference on Software Engineering.            [47] Caitlin Sadowski, Emma Söderberg, Luke Church, Michal Sipko, and Alberto
+     654–665.                                                                                       Bacchelli. 2018. Modern code review: A case study at Google. In Proceedings of
+[21] N. Cowan. 2010. The magical mystery four: How is working memory capacity                       the 40th International Conference on Software Engineering: Software Engineering
+     limited, and why? Current directions in psychological science 19, 1 (2010), 51–57.             in Practice. 181–190. https://doi.org/10.1145/3183519.3183525
+[22] M. Fagan. 1976. Design and code inspections to reduce errors in program devel-            [48] Davide Spadini. 2020. CRExperiment. https://github.com/ishepard/CRExperiment.
+     opment. IBM Systems Journal 15, 3 (1976), 182–211.
+[23] F. Faul, E. Erdfelder, A. Lang, and A. Buchner. 2007. G* Power 3: A flexible              [49] Davide Spadini, Maurício Aniche, Margaret-Anne Storey, Magiel Bruntink, and
+     statistical power analysis program for the social, behavioral, and biomedical                  Alberto Bacchelli. 2018. When testing meets code review: Why and how devel-
+     sciences. Behavior research methods 39, 2 (2007), 175–191.                                     opers review tests. In 2018 IEEE/ACM 40th International Conference on Software
+[24] C. Feng. 2021. A comparison of zero-inflated and hurdle models for modeling                    Engineering (ICSE). IEEE, 677–687. https://doi.org/10.1145/3180155.3180192
+     zero-inflated count data. Journal of Statistical Distributions and Applications 8, 1      [50] Davide Spadini, Gül Çalikli, and Alberto Bacchelli. 2020. Primers or reminders?
+     (2021), 1–19.                                                                                  The effects of existing review comments on code review. In 2020 IEEE/ACM
+[25] Free Software Foundation. 2021. Comparing and Merging Files - Hunks.                           42nd International Conference on Software Engineering (ICSE). IEEE, 1171–1182.
+     https://www.gnu.org/software/diffutils/manual/html_node/Hunks.html.                            https://doi.org/10.1145/3377811.3380385
+[26] Enrico Fregnan, Larissa Braz, Marco D’Ambros, Gül Çalikli, and Alberto Bacchelli.         [51] Davide Spadini, Fabio Palomba, Tobias Baum, Stefan Hanenberg, Magiel Bruntink,
+     2022. Artifacts Package - “First come first served: the impact of file position                and Alberto Bacchelli. 2019. Test-driven code review: an empirical study. In 2019
+     on code review”. https://zenodo.org/record/6901285. https://doi.org/10.5281/                   IEEE/ACM 41st International Conference on Software Engineering (ICSE). IEEE,
+     zenodo.6901285                                                                                 1061–1072. https://doi.org/10.1109/ICSE.2019.00110
+[27] Gerrit. 2021. Gerrit Code Review. https://www.gerritcodereview.com.                       [52] StackOverflow. 2014. What does Pythonic mean? Retrieved Jul 22, 2022 from
+[28] GitHub. 2021. GitHub. https://github.com.                                                      https://stackoverflow.com/questions/25011078/what-does-pythonic-mean
+[29] S. Glen. 2016. Phi Coefficient (Mean Square Contingency Coefficient). Retrieved Mar       [53] Laerd Statistics. 2018. Spearman’s Rank-Order Correlation. Retrieved Mar 17,
+     11, 2022 from https://www.statisticshowto.com/phi-coefficient-mean-square-                     2022 from https://statistics.laerd.com/statistical-guides/spearmans-rank-order-
+     contingency-coefficient                                                                        correlation-statistical-guide.php
+[30] Pavlína Wurzel Gonçalves, Enrico Fregnan, Tobias Baum, Kurt Schneider, and                [54] P. Thongtanunam and A. Hassan. 2021. Review Dynamics and Their Impact on
+     Alberto Bacchelli. 2020. Do explicit review strategies improve code review per-                Software Quality. Transactions on Software Engineering 47, 12 (2021), 2698–2712.
+     formance?. In Proceedings of the 17th international conference on mining software              https://doi.org/10.1109/TSE.2020.2964660
+     repositories. 606–610. https://doi.org/10.1145/3379597.3387509                            [55] T. Thurium. 2015. Beep Boop: 6 Bots To Better Your Open Source Project.
+[31] Pavlína Wurzel Gonçalves, Enrico Fregnan, Tobias Baum, Kurt Schneider, and                     Retrieved Mar 8, 2022 from https://www.twilio.com/blog/6-bots-better-open-
+     Alberto Bacchelli. 2022. Do explicit review strategies improve code review                     source-project
+     performance? Towards understanding the role of cognitive load. Empirical                  [56] TIOBE. 2022. TIOBE-Index. Retrieved Feb 15, 2022 from https://www.tiobe.com/
+     Software Engineering 27, 4 (2022), 1–46. https://doi.org/10.1007/s10664-022-                   tiobe-index/
+     10123-8                                                                                   [57] R. Turner, M. Falcone, B. Sharif, and A. Lazar. 2014. An eye-tracking study
+[32] C. Hendrick, A. F Costantini, J. McGarry, and K. McBride. 1973. Attention                      assessing the comprehension of C++ and Python source code. In Proceedings of
+     decrement, temporal variation, and the primacy effect in impression formation.                 the Symposium on Eye Tracking Research and Applications. 231–234.
+     Memory & cognition 1, 2 (1973), 193–195.                                                  [58] Grand Canyon University. 2019. 5 Common Java Coding Mistakes to Avoid.
+[33] A. Henley, K. Muçlu, M. Christakis, S. Fleming, and C. Bird. 2018. Cfar: A tool to             Retrieved Mar 15, 2022 from https://www.gcu.edu/blog/engineering-technology/
+     increase communication, productivity, and review quality in collaborative code                 5-common-java-coding-mistakes-avoid
+     reviews. In Proceedings of the Conference on Human Factors in Computing Systems.          [59] M. Wessel. 2021. Awesome SE Bots. Retrieved Mar 8, 2022 from https://github.
+     1–13.                                                                                          com/mairieli/awesome-se-bots
+[34] Y. Huang, N. Jia, X. Chen, K. Hong, and Z. Zheng. 2018. Salient-class location:           [60] O. Wilhelm, A. Hildebrandt, and K. Oberauer. 2013. What is working memory
+     Help developers understand code change in code review. In Proceedings of the                   capacity, and how can we measure it? Frontiers in psychology 4 (2013), 433.
+     Joint Meeting on European Software Engineering Conference and Symposium on
+     the Foundations of Software Engineering. 770–774.
+[35] Y. Huang, K. Leach, Z. Sharafi, N. McKay, T. Santander, and W. Weimer. 2020.
+     Biases and Differences in Code Review Using Medical Imaging and Eye-Tracking:
+     Genders, Humans, and Machines. Association for Computing Machinery, 456–468.
+[36] B. Jeng and E. Weyuker. 1994. A simplified domain-testing strategy. Transactions
+     on Software Engineering and Methodology 3, 3 (1994), 254–270.
+[37] B. Johnson, R. Pandita, J. Smith, D. Ford, S. Elder, E. Murphy-Hill, S. Heckman,
+     and C. Sadowski. 2016. A cross-tool communication study on program analysis
+     tool notifications. In Proceedings of the 2016 24th ACM SIGSOFT International
+     Symposium on Foundations of Software Engineering. 73–84.
+[38] B. Johnson, Y. Song, E. Murphy-Hill, and R. Bowdidge. 2013. Why don’t software
+     developers use static analysis tools to find bugs?. In Proceedings of the International
+     Conference on Software Engineering. 672–681.
+[39] L. MacLeod, M. Greiler, M. Storey, C. Bird, and J. Czerwonka. 2017. Code reviewing
+     in the trenches: Challenges and best practices. IEEE Software 35, 4 (2017), 34–42.
+[40] L. Mannila, M. Peltomäki, and T. Salakoski. 2006. What about a simple language?
+     Analyzing the difficulties in learning to program. Computer science education 16,
+     3 (2006), 211–227.
+[41] R. Mohanani, I. Salman, B. Turhan, P. Rodríguez, and P. Ralph. 2018. Cognitive
+     biases in software engineering: a systematic mapping study. Transactions on
+     Software Engineering 46, 12 (2018), 1318–1339.
+

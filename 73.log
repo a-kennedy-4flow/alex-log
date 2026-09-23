@@ -1,0 +1,50 @@
+Log of session 73. Research into human reading comprehension speed for prose and for source code. Feeds the code_reviewing project which estimates review time from lines changed. One line per action as it completes. Times are UTC.
+2026-09-23T08:43:30Z WebSearch 'Brysbaert 2019 reading rate meta-analysis' — returned the 238 wpm non-fiction figure and the 190 study sample.
+2026-09-23T08:43:30Z WebSearch 'eye tracking source code vs natural language Busjahn' — returned the linearity figures of 70 percent for code against 80 percent for prose.
+2026-09-23T08:43:30Z WebSearch 'code review inspection rate LOC per hour SmartBear Cisco' — returned the 200 to 400 LOC limit and the 300 to 500 LOC per hour rate.
+2026-09-23T08:44:19Z WebSearch 'Rayner 2016 speed reading limits' — returned the 200 to 400 wpm normal band and the finding that speed reading trades comprehension.
+2026-09-23T08:44:19Z WebSearch 'modern code review case study Google Sadowski' — returned median latency under 4 hours and about 20000 changes a workday.
+2026-09-23T08:44:19Z WebSearch 'program comprehension time per line of code' — returned nothing specific so the query needed narrowing.
+2026-09-23T08:44:19Z WebSearch 'fixation duration code versus prose' — returned the 200 to 250 ms normal fixation and the E-Z Reader work on code.
+2026-09-23T08:44:19Z WebSearch 'Fagan and Gilb inspection rate' — returned the 100 to 200 LOC per hour optimum and the Russell and Basili detection rates.
+2026-09-23T08:44:19Z WebSearch 'pull request review time versus lines changed' — returned weak correlation coefficients of 0.095 and 0.004 and 0.052.
+2026-09-23T08:44:19Z WebSearch 'novice versus expert comprehension time eye tracking' — returned 66 seconds for novices against 43 seconds for experts summarising a Java method.
+2026-09-23T08:45:32Z WebFetch RSVP speed limits paper PMC4835101 — gave 1200 wpm bare decoding and 300 wpm as the eye movement limit.
+2026-09-23T08:45:32Z WebFetch of three PDFs returned binary so pdftotext is needed on the saved copies.
+2026-09-23T08:50:12Z mkdir knowledge_base then curl of ten sources — eight PDFs saved and Sadowski and Bacchelli needed a second mirror.
+2026-09-23T08:50:12Z curl of four more sources — the RSVP article and the SmartBear page saved as HTML and the Springer page returned a stub.
+2026-09-23T08:50:12Z curl retry against sback.it and arxiv — Sadowski and Bacchelli and the pull request latency paper all saved as PDF.
+2026-09-23T08:52:48Z pdftotext over the knowledge base — fourteen sources converted for grepping.
+2026-09-23T08:52:48Z grep of the Cisco study — no single inspection rate and a best fit of R2 0.29 for one reviewer.
+2026-09-23T08:52:48Z curl of the Springer pull request latency paper — blocked so the paper was dropped and Rigby and Bird was taken instead.
+2026-09-23T08:55:41Z python3 token count over tracker — 4.97 identifier words and 10.89 tokens and 35.4 characters per non-blank line across 166 files.
+2026-09-23T08:55:41Z wrote knowledge_base/index.md — one row per source with what it supplies.
+2026-09-23T08:55:41Z wrote code_reviewing/reading-speed.md — the research note with the rates and the estimate model.
+2026-09-23T08:55:41Z grep for commas in both documents — none found so the grammar rule holds.
+2026-09-23T09:01:16Z dispatched two fresh agents — one on human reading rates and one on code comprehension and review effort each with a broad brief and its own manifest file.
+2026-09-23T09:11:41Z code agent returned — 16 new PDFs and a manifest at knowledge_base/_new-sources-code.md.
+2026-09-23T09:11:41Z spot check of four reported figures against the downloaded text — Avidan naming times and Morzeck 179% and Fregnan 64% and METR 19% all verified.
+2026-09-23T09:51:56Z reading agent returned — 38 sources downloaded and 9 recorded as paywalled and its own trail written to 74.log.
+2026-09-23T09:51:56Z spot check of the reading haul — Delgado 171055 participants and Miyata rates and Rayner Table 1 at 225 ms all verified.
+2026-09-23T09:51:56Z python3 recompute of the speed reading trial from the raw csv — 44 wpm and 31 wpm and 1 wpm gains reproduce the agent figures exactly.
+2026-09-23T09:51:56Z merged both manifests into knowledge_base/index.md and deleted them — 57 source rows and no commas.
+2026-09-23T09:51:56Z rewrote reading-speed.md — added section 5 on what changes the rate and the multipliers and the variation figures.
+2026-09-23T09:57:56Z user supplied Basili and Perricone 1984 as a scan — renamed to the convention and read from the page images because no OCR tool exists here.
+2026-09-23T09:57:56Z read all 11 pages — the paper holds no inspection rate and its Table VII is errors per 1000 lines against module size.
+2026-09-23T09:57:56Z corrected knowledge_base/index.md and reading-speed.md — the 100 to 200 lines per hour rule loses its cited source and the Cisco density curve gains a confound.
+2026-09-23T10:19:22Z verification pass over reading-speed.md — every claim grepped against the text copy of its source.
+2026-09-23T10:19:22Z three errors found and fixed — the 78 line median belongs to Chrome not Microsoft and the working memory penalty is 1200 to 800 wpm not a half and the Mozilla 54% is a back reference with no 28127 anywhere in the corpus.
+2026-09-23T10:19:22Z index.md gained a held but not used section for the three rejected subtitle and stenography files.
+2026-09-23T10:38:07Z corrected the multipliers in reading-speed.md — 179% more time is 2.8x not 1.8x and the replication gives 2.1x.
+2026-09-23T10:44:28Z cargo build and cargo test for review-time — 29 tests pass and the crate has no dependencies.
+2026-09-23T10:45:38Z cargo clippy clean after one fix and cargo test green at 29 tests.
+2026-09-23T10:45:38Z ran review-time over three real diffs — a 167 line change estimates at 46 minutes and a 1150 line change at 9 hours over 10 sittings.
+2026-09-23T10:45:38Z wrote review-time/readme.md and appended two lines to code_reviewing/readme.
+2026-09-23T10:50:41Z investigated hook placement — core.hooksPath is global at ~/.config/git/hooks and holds a shell pre-commit and a compiled prepare-commit-msg.
+2026-09-23T10:50:41Z identified the line counter — the prepare-commit-msg binary is built from repos/alex-log/commit-message and its stats come from git diff --cached --numstat.
+2026-09-23T10:50:41Z read the pre-commit script without running it — it calls ./gradlew which does not exist in alex-log so it would exit 1 and block a commit here.
+2026-09-23T11:00:38Z split review-time into a library and a binary and added it to commit-message as a path dependency.
+2026-09-23T11:00:38Z added a review time row to the commit stats block with notes for naming and indentation and prose.
+2026-09-23T11:00:38Z cargo test green in both crates — 29 tests in review-time and 17 in commit-message.
+2026-09-23T11:00:38Z end to end run in a scratch repo then install.sh — the old binary is kept at prepare-commit-msg.previous.
+2026-09-23T11:00:38Z timed the installed hook on a 50000 line stage at 0.10 seconds.

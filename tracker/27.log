@@ -1,0 +1,15 @@
+Log 27. Drawing guided step two as a calendar board.
+2026-09-22T14:00:22Z ls and cat of GuidedPage.vue — read the five steps and the wrapping day list of step two.
+2026-09-22T14:00:22Z cat of MonthCalendar.vue — read the board the month view already draws.
+2026-09-22T14:00:22Z cat of useGuided.ts — read placed and placing and toggleDate and workingDates.
+2026-09-22T14:00:22Z grep of render.test.ts and useTour.ts — found the .days selectors the tests hold and the guidedPlace anchor.
+2026-09-22T14:00:22Z sed of tokens.css — read the five weekday washes and the note that the guided picker is the one screen carrying them.
+2026-09-22T14:00:41Z wrote useCalendarBoard.ts — the weekday names and the weeks of the month moved out of MonthCalendar.vue so two boards share one layout.
+2026-09-22T14:01:07Z wrote GuidedCalendar.vue — step two is seven columns and one cell a day with the weekday wash moved onto the column.
+2026-09-22T14:03:35Z edited GuidedPage.vue — the wrapping day list became GuidedCalendar and the list styles left with it.
+2026-09-22T14:03:35Z edited MonthCalendar.vue — the weeks and the weekday names now come from useCalendarBoard.
+2026-09-22T14:03:35Z edited styles.test.ts — the weekday wash is read off the board column of GuidedCalendar rather than off a page button.
+2026-09-22T14:04:37Z edited readme.md — the weekday wash section now washes a column and the guided section says why step two is a board.
+2026-09-22T14:04:37Z pnpm --filter @tracker/web test then pnpm lint — 383 pass and lint is clean. The seven i18n key failures are the guidedBuild tour step missing from en.ts and predate this work.
+2026-09-22T14:05:17Z mounted GuidedCalendar in a throwaway test — seven columns and leading blanks and the bank holidays inert and the two placed days named. Deleted after.
+2026-09-22T14:06:00Z curl of localhost:5173/guided — the dev server was already up and answered 200. No browser tool in this session so the layout is left for the user to look at.

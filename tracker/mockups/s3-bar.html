@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracker — option C — one bar with dividers</title>
+<link rel="stylesheet" href="f-board.css">
+<link rel="stylesheet" href="shares.css">
+<style>
+th.share{width:80px}
+.bar{display:flex;height:54px;margin:0 0 6px;border-radius:var(--r);overflow:hidden;gap:2px}
+.seg{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;font-weight:700;font-variant-numeric:tabular-nums;font-size:13px}
+/* Four fills that each carry their own label. Smart Blue holds 4.70 on Vibrant
+   Orange and 8.64 on Bold Pink and 12.69 on Warm Grey. White holds 15.64 on
+   Smart Blue. Computed with contrast.py rather than recalled. */
+.seg.c0{background:#00263C;color:#FFFFFF}
+.seg.c1{background:#FF4D06;color:#00263C}
+.seg.c2{background:#FFA0F5;color:#00263C}
+.seg.c3{background:#EEE6E0;color:#00263C}
+.seg span{padding:0 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* The divider. It is the gap between two segments widened into a target. */
+.grip{position:absolute;top:0;right:-7px;width:14px;height:100%;cursor:col-resize;z-index:2;background:none;border:0;padding:0}
+/* Smart Blue rather than white. A white divider holds 1.23 to 1 on the Warm
+   Grey segment and 1.30 on the Bold Pink one so it vanishes on both. Smart Blue
+   holds 4.70 and 8.64 and 12.69 on the three light fills. */
+.grip::after{content:'';position:absolute;top:14px;bottom:14px;left:6px;width:2px;background:var(--smart-blue)}
+.grip:hover::after,.grip:focus-visible::after{top:6px;bottom:6px;background:var(--orange)}
+.key{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 16px;padding:0;list-style:none;font-size:12px}
+.key li{display:flex;align-items:center;gap:6px;color:var(--grey)}
+.key i{width:12px;height:12px;border-radius:3px;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="area">
+    <div class="bar">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" fill="#00263C"/><circle cx="17" cy="17" r="8" fill="#FF4D06"/>
+        </svg>
+        <span>4<em>flow</em> Tracker</span>
+      </span>
+      <nav>
+        <a href="#">Month view</a><a href="#" class="on">Quick fill</a><a href="#">Guided build</a><a href="#">My settings</a>
+      </nav>
+      <div class="who"><span>Alexander Kennedy</span><button type="button">Sign out</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="area">
+  <div class="title">
+    <h1>May 2026</h1>
+    <span class="pill">DE_BERLIN</span>
+    <span class="pill light">80 per cent contract</span>
+    <p>Option C. The month is one bar and the dividers are dragged.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <h2>Quick fill</h2>
+      <p class="lead">Give each cost centre a share of the month. The tracker fills the working days from the first onwards and skips the days it books nothing on.</p>
+
+      <div class="bar" id="bar"></div>
+      <p class="note">Drag a divider. The month is always whole so what one cost centre takes the one beside it gives up.</p>
+      <table class="fill">
+        <thead>
+          <tr>
+            <th class="cc">Cost centre</th>
+            <th class="spec">Specification</th>
+            <th class="share">Share</th>
+            <th class="days">Days</th>
+            <th class="tasks">Tasks</th>
+            <th class="act"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <span class="acts">
+                <button type="button" class="btn">Add a cost centre</button>
+                <button type="button" class="btn" id="even">100 / n</button>
+              </span>
+            </td>
+            <td class="fig num" id="total">100 %</td>
+            <td class="fig num" id="booked">14.5</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="warn" id="warn" hidden>The shares must add up to 100 per cent.</p>
+
+      <div class="bottom">
+        <p>Working days: 18 &middot; Target: 14.5 &middot; This replaces everything already booked in May.</p>
+        <button type="button" class="primary">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><b>Option C. One bar and a divider between each pair.</b> The month is a hundred by construction so no arithmetic is possible and none is asked for. The shape of the month is readable at a glance, which is the one thing a column of figures never gives.
+    It costs the palette. The four fills are Smart Blue and Vibrant Orange and Bold Pink and Warm Grey, which are the four the theme has that carry a label: computed at 15.64 and 4.70 and 8.64 and 12.69 to 1. A fifth cost centre has no fill left, and the page allows any number of them.
+    The fills do not separate from each other. Vibrant Orange beside Bold Pink is 1.84 to 1 and Bold Pink beside Warm Grey is 1.47, both under the 3 a graphic needs. The label inside each segment is what tells them apart, so a share too narrow to hold its label is a segment nobody can name. That is every share under about 8 per cent.
+    It costs the keyboard too. A divider is not a control a browser gives, so the arrow keys on it are written by hand.</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="shares.js"></script>
+<script>
+/** The fill of each row. Four is what the palette carries with a label on it. */
+function paintBar() {
+  const bar = document.querySelector('#bar')
+  bar.innerHTML = MIX.map((row, at) => `<div class="seg c${at}" style="flex:0 0 ${row.share}%">
+      <span>${row.id} &middot; ${row.share}%</span>
+      ${at < MIX.length - 1 ? `<button type="button" class="grip" data-at="${at}" aria-label="Divider between ${row.id} and ${MIX[at + 1].id}"></button>` : ''}
+    </div>`).join('')
+  for (const grip of bar.querySelectorAll('.grip')) {
+    grip.addEventListener('pointerdown', (event) => startDrag(event, Number(grip.dataset.at)))
+    grip.addEventListener('keydown', (event) => {
+      const step = { ArrowLeft: -1, ArrowRight: 1 }[event.key]
+      if (step === undefined) return
+      event.preventDefault()
+      move(Number(grip.dataset.at), step)
+    })
+  }
+}
+
+/** A divider takes from one side and gives to the other. Nothing else moves. */
+function move(at, by) {
+  const give = by > 0 ? at + 1 : at
+  const take = by > 0 ? at : at + 1
+  const step = Math.min(Math.abs(by), MIX[give].share)
+  MIX[take].share += step
+  MIX[give].share -= step
+  redraw()
+}
+
+function startDrag(event, at) {
+  const bar = document.querySelector('#bar')
+  const width = bar.getBoundingClientRect().width
+  const from = event.clientX
+  const start = MIX[at].share
+  const pair = start + MIX[at + 1].share
+  event.target.setPointerCapture(event.pointerId)
+  function onMove(e) {
+    const moved = Math.round(((e.clientX - from) / width) * 100)
+    const next = Math.max(0, Math.min(pair, start + moved))
+    MIX[at + 1].share = pair - next
+    MIX[at].share = next
+    redraw()
+  }
+  function onUp() {
+    event.target.removeEventListener('pointermove', onMove)
+    event.target.removeEventListener('pointerup', onUp)
+  }
+  event.target.addEventListener('pointermove', onMove)
+  event.target.addEventListener('pointerup', onUp)
+}
+
+function draw() {
+  renderRows((row) => `<span class="fig num" style="display:block">${row.share} %</span>`)
+  paintBar()
+  renderTotals()
+}
+function redraw() {
+  const days = daysPerRow()
+  document.querySelectorAll('#rows tr').forEach((tr, at) => {
+    tr.querySelector('td.share span').textContent = MIX[at].share + ' %'
+    tr.querySelector('td.fig').textContent = days[at].toFixed(1)
+  })
+  paintBar()
+  renderTotals()
+}
+document.querySelector('#even').addEventListener('click', () => { spreadEvenly(); draw() })
+draw()
+</script>
+</body>
+</html>

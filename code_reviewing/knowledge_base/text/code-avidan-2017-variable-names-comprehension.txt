@@ -1,0 +1,714 @@
+         Eﬀects of Variable Names on Comprehension:
+                     An Empirical Study
+                                             Eran Avidan              Dror G. Feitelson
+                                         School of Computer Science and Engineering
+                                        The Hebrew University, 91904 Jerusalem, Israel
+
+
+   Abstract—It is widely accepted that meaningful vari-               they account for about two thirds of the characters in the
+able names are important for comprehension. We con-                   source code [8]. It is therefore doubly important that they
+ducted a controlled experiment in which 9 professional                convey meaning. The importance of meaningful identifier
+developers try to understand 6 methods from pro-
+duction util classes, either with the original variable               names was established in a number of papers [6], [24].
+names or with names replaced by meaningless single                    For example, Lawrie et al. found that full word identifiers
+letters. Results show that parameter names are more                   and abbreviations may lead to better comprehension than
+significant for comprehension than local variables. But,              identifiers composed of single letters [16]. This was done
+surprisingly, we also found that in 3 of the methods                  using controlled experiments, where the different experi-
+there were no significant diﬀerences between the con-
+trol and experimental groups, due to poor and even                    mental treatments were versions of the same methods but
+misleading variable names. These disturbingly common                  with different identifier names. Our work continues this
+bad names reflect the subjective nature of naming,                    line of research using a similar methodology, but focusing
+and highlight the need for additional research on how                 on the identifiers’ meaning rather than their length.
+variable names are interpreted and how better names                      As may be expected, not all identifiers are born equal:
+can be chosen.
+   Index Terms—code comprehension; variable names;                    some are more important than others. This has been
+misleading names; method parameters; local variables                  reflected in naming recommendations, such as the adage
+                                                                      that “The length of a name should correspond to the
+                       I. Introduction                                size of its scope” [17]. In particular, several authors have
+   Code comprehension is a task present in many aspects               expressed the belief that variables in method headers,
+of a programmer’s daily work. In particular, it is pivotal            namely the method’s parameters, are more important than
+in facilitating effective software maintenance and enabling           local variables. Our goal is to test such beliefs empiri-
+successful evolution of computer systems [27]. As Martin              cally. Specifically, we aim to examine the impact of local
+writes, “the ratio of time spent reading vs. writing is well          variables and parameters names by themselves on the
+over 10:1. We are constantly reading old code as part of              comprehension process of software developers approaching
+the effort to write new code” [17]. This implies the need to          an unseen snippet of Java code.
+understand code that was written by another programmer                   Our contributions to the field are
+or in the past. Likewise, examples are important when                    1) To quantify the effect of meaningful names in an ex-
+learning skills such as using new frameworks or languages                    perimentally valid manner (one-on-one experiments
+[26], as witnessed by the burgeoning use of sites like                       with industry professionals in their work environ-
+Stack Overflow. And again, one must understand the code                      ment with no dropouts, and using real methods from
+examples to benefit from them.                                               popular production codes).
+   An important element of code comprehension is to                      2) To demonstrate that bad names that actually im-
+understand the underlying concepts embodied in the code                      pede comprehension are not uncommon, illustrating
+[22]. In principle, such concepts should be described by                     the fact that naming is subjective, and motivating
+in-code documentation and design documents [21]. But                         placing an emphasis on names in code reviews.
+documentation is often missing or outdated. So in many                   3) To identify parameters as more important than lo-
+cases the most important and trusted beacons1 that pro-                      cals in most cases. This is part of the whole signature
+vide signals about concepts are identifiers. It has even been                being important, with implications to API design.
+said that “if a name requires a comment, then the name                   4) On the methodological level, to demonstrate the use
+does not reveal its intent” [17], suggesting identifiers are                 of experiments with dynamic treatments, where the
+the documentation.                                                           treatment changes during the experiment.
+   Identifiers are also prevalent. In large open source
+projects about a third of the tokens are identifiers, and                    II. Background on Identifier Naming
+  1 In program comprehension the term “beacon” describes a code
+                                                                         Practically all programming guidelines state that vari-
+element which illuminates the code’s function beyond this element’s   ables should be given “meaningful names”. But naming
+immediate use.                                                        is hard. Furnas et al. studied spontaneous word choice
+for objects in different application-related domains, and          naming, and shows the impact that unsatisfactory names
+found the variability to be surprisingly high: in every case       have on comprehension. We also use controlled experi-
+two people favored the same term with a probability of             ments to show that some variables have a higher impact on
+less than 0.2 [12]. Arnaoudova et al. studied identifier           comprehension than others, and thus should be given more
+renaming, and found that the vast majority of cases                attention. To the best of our knowledge this distinction has
+include changes or at least modifications of meaning [4].          not been made explicitly before.
+Problematic situations include mismatch of type, number,
+                                                                                  III. Research Questions
+or behavior (e.g. a set method that returns) [3].
+   Hindle et al. show that in large projects the vast ma-            Our specific research questions are as follows:
+jority of the vocabulary used is identifiers, and that the           1) What impact do identifier names have on the com-
+vocabularies of different projects tend to be more diverse               prehension of what a method does? This is essentially
+than the commonly used vocabulary in natural language                    a replication of previous work, perhaps with some
+[15]. Rilling and Klemola have shown that code fragments                 methodological variation.
+with a high identifier density may act as “comprehen-                2) Assuming names are important, which type of iden-
+sion bottlenecks” [23]. These results imply that identifier              tifiers contribute more to comprehension, parameters
+naming is not self-evident, and that programmers need                    or local variables? This is a new distinction that has
+guidance when it comes to naming identifiers in their code.              not been studied before. It is interesting because
+   Regrettably typical coding conventions supply very su-                locals with limited scope have been disparaged in
+perficial guidelines on naming, focusing on style and for-               coding guidelines as not necessarily requiring mean-
+matting, with no regard to their meaning and what they                   ingful names, whereas parameters are part of a
+represent. For instance, “Method names are written in                    method’s signature and thus potentially part of an
+lowerCamelCase” and “Package names are all lowercase”                    API. But do these different roles compel different
+are very common conventions. The Java code conventions                   levels of naming?
+do mention the importance of meaning, saying “Variable             In the experiments these questions are treated together,
+names should be short yet meaningful” and “designed to             by comparing methods that either have meaningful names
+indicate to the casual observer the intent of its use” [25].       or else replace some or all of the names by single letters.
+This is a good start, but hardly enough, considering that
+different people give different names to the same thing.                            IV. Research Design
+   How can one write more useful guidelines? Binkley et al.        A. Controlled Experiments
+have suggested rules to improve field names based on natu-           An important category of empirical study is the con-
+ral language processing providing part-of-speech informa-          trolled experiment, which is the classical scientific method
+tion [5]. Deißenböck and Pizka created a formal model              for identifying cause-effect relationships. Our experiment
+with naming rules that check consistency, conciseness,             was designed to assess the effect of variable names on
+and composition of each element name [8]. Caprile and              comprehension, using real methods from utility packages.
+Tonella are more practical, and suggest standardization of         To remove meaning from identifier names we replace
+variable names using a lexicon of concepts and syntactic           them with consecutive letters of the alphabet. This allows
+rules for arranging them [7]. Allamanis et al. have recently       compilation, but conveys absolutely no information. In
+presented a framework that learns the style of a codebase,         particular, it facilitates the generation of code where either
+building on recent work in applying statistical natural            parameters or locals, or even both, are devoid of meaning.
+language processing to source code [1]. This was then                Experimental subjects were professional developers
+applied to suggest natural identifier names and formatting         working at a major hi-tech company in Israel. The ex-
+conventions and to suggest revisions to improve stylistic          periments were conducted by the first author in multiple
+consistency. Unfortunately, it is not clear that any of the        individual sessions with each subject. In each session
+above ideas is used in practice.                                   subjects were presented with the task of understanding
+   Gellenbeck et al. found that both meaningful procedure          one or more methods, in either an experimental treatment
+and variable names serve as beacons to high-level compre-          or a control treatment. Overall 38 sessions were recorded,
+hension [13]. Similarly, Osman et al. found that names are         totaling approximately 22 hours.
+crucial for the understanding of UML diagrams — without
+them there is no clue of what the different classes actually       B. Experimental Treatments
+do [20]. Haiduc et al. found that when summarizing code,              The experimental treatments are versions of the selected
+developers tend to include in the summary practically all          methods with different classes of variable names masked
+the terms that appear in method names, and the vast                out. In addition the method name was removed, replacing
+majority of terms in parameter types [14]. This suggests           it with ‘xxx’, to enable a focus on variable names and
+that they perceive these elements as conveying important           avoid any confounding effect (including both possibilities:
+information regarding what the method does.                        that the method name aids comprehension or that it is
+   Our study stresses the importance of proper identifier          misleading). From each method we prepared four versions:
+
+
+
+                                                               2
+public static void xxx(final boolean[] a,                            of the “aha” moment when variables are revealed and
+                 final int b, final int c) {                         it makes an immediate difference to the comprehension
+    if (a == null) {
+        return;
+                                                                     and/or confidence.
+    }                                                                   All the participants went through all three phases. Each
+    int d = b < 0 ? 0 : b;                                           phase was limited to ten minutes: after ten minutes the
+    int e = Math.min(a.length, c) - 1;
+    boolean f;                                                       subject was asked what he believes the method does and
+    while (e > d) {                                                  his confidence level, after which he was presented with one
+        f = a[e];                                                    more type of identifier names.
+        a[e] = a[d];
+        a[d] = f;
+        e--;                                                         C. Experimental Design
+        d++;
+    }                                                                   Naturally each subject who performs an experiment
+}                                                                    with the control treatment for a certain method cannot
+                                                                     also perform the experimental treatment, and vice versa,
+Fig. 1: Method with all variables replaced by single letters         because the method is already familiar. We are therefore
+(version 4).                                                         forced to use a “between subjects” design when comparing
+                                                                     versions of the same method.
+   1) Only the method name was removed. All variable                    We randomly divided the subjects into two groups, S1
+      names remained intact.                                         and S2, and the methods into two groups, M1 and M2.
+   2) The method name was removed and parameters were                Group S1 did methods M1 under control conditions, and
+      replaced with single letters.                                  methods M2 under experimental treatment. Group S2 did
+   3) The method name was removed and local variables                the opposite: methods M1 under experimental treatment
+      were replaced with single letters.                             and methods M2 as control.
+   4) The name was removed and both parameters and
+                                                                     D. Variables
+      local variables were replaced with single letters.
+When variable names were replaced by single letters, these              The main independent variables are the treatments, and
+were a, b, c, and so on in order of appearance. An example           naturally also the subjects (and their experience, sex, etc.)
+of a method with all names replaced by single letters is             and the methods.
+shown in Figure 1.                                                      The main dependent variable is time for comprehen-
+   The control treatment consisted of using version no.              sion. This variable represents the time it took for each
+1, namely the original code as is except for the method              participant to give a correct answer. For the experimental
+name. This retains all the information that was embedded             treatment the time was measured from the beginning of
+in the variable names by the original programmers.                   phase one, when the participants were first presented with
+   The experimental treatment consisted of using 3                   the striped method, up until the time the right answer was
+versions in sequence. Initially we presented the participant         received. This time is probably a lower-bound on the time
+with version 4 of the method, where all variables were               required to understand the method without any variable
+replaced with single letter identifiers in alphabetical order.       names, as variables are gradually revealed. Deciding that
+The participant was asked to explain what is the method’s            a participant correctly comprehends a method was based
+purpose. Once an answer was received, we asked how sure              on using the think-aloud methodology with interactions.
+is he in this answer, and if he feels certain enough and             Thus to ascertain comprehension the experimenter read
+would like to move forward and receive one more type                 the participant’s description back to him, and asked fol-
+of identifier names. This phase was identical in all the             lowup questions to verify meaning. The observer never
+experimental treatment sessions.                                     confirmed to the participant the correctness of his answer,
+   We then revealed either the parameters or the local               and the experiment continued until phase three, even if the
+variables identifier names (essentially switching to version         time measurement had stopped because a correct answer
+3 or 2, respectively). The decision of which to reveal was           had already been given.
+random. The participant was asked whether his under-                    Another dependent variable is each subject’s subjective
+standing had changed or his confidence improved due to               opinion of identifier type importance, namely whether
+this additional information. Finally, we revealed the other          parameters or locals were more important for their un-
+type of identifier names, leading to code that has all the           derstanding of the method. This is naturally influenced
+original variable names (version 1). This is the same in all         by the stage in which they reached an understanding.
+sessions, and identical to the control treatment.
+   This dynamic change of treatment was used to reduce               E. Code Selection
+the number of subjects and experiments required, and                   Context plays a major role in code comprehension,
+the length of each session, which was up to thirty five              which may lead to a confounding effect: lack of under-
+minutes even so. In addition, it enabled an observation              standing may result from bad identifier names (or other
+
+
+
+                                                                 3
+aspects of code complexity) or from lack of domain knowl-            with different tasks, project roles, and experience in order
+edge. Domain knowledge also impacts the way program-                 to explore program comprehension as broadly as possible
+mers approach the code [19]. In order to eliminate the               and to improve external validity. According to [16] men
+need for context and domain knowledge, we chose to use               may understand single-letter abbreviations better than
+methods from popular open source utility packages. In ad-            women. Despite the fact that our single letter identifiers
+dition to making the code accessible, this facilitates using         are not abbreviations, in order to eliminate this threat to
+real code that was developed by different programmers.               validity, the recruitment was limited to men.
+   Searching for classes from which to extract methods was              The recruitment was done personally by the first author,
+done as follows. First, we reviewed the most popular Java            starting with random selection from a longer list of devel-
+repositories on github, identified as those starred by at            opers. In total there were 9 participants in the experiment:
+least 10K users. Then the nature of the repository was               6 developers, a team leader, a senior developer, and a tech-
+evaluated, to understand the potential for finding robust            nical lead. The age of participants ranged from 25 to 45,
+utility classes. For those repositories which seemed promis-         and work experience from 3 to 20 years. All participants’
+ing, a manual examination of the source code was used to             work experience includes a good knowledge of Java. Eight
+select suitable methods. During this process we reviewed             of the subjects participated in sessions on all 6 methods,
+over 30 different repositories and over 200 different classes.       but in one case one session was discarded from the analysis
+   The selected packages were Apache Commons, Google                 due to interference during the session. One subject was
+Guava, and Spring Framework. We chose util classes for               hard to schedule and did only one session.
+data types that should be familiar to any Java developer,               The experiments were conducted during working hours
+arrays and strings. Choosing the methods to use in the               in the participants’ working place, and did not require any
+experiments was harder than expected. Many methods are               investment beyond attending the conference room for the
+just too trivial, or contain beacons that make it easy to            duration of the sessions. The participants showed signifi-
+simply guess their purpose. Likewise, we avoided methods             cant interest in the study, and seemed to appreciate the
+that use uncommon types or programming styles, in order              importance of identifier naming and the lack of sufficient
+to keep the focus on identifier naming and not on design             guidelines. Consequently, they all gladly volunteered to
+patterns or coding techniques. Finally, we made an effort            participate without getting any kind of compensation.
+to choose diverse methods, in order to eliminate a learning
+process that may lead to successful guesses instead of code          G. Experimental Procedure
+comprehension.
+   Initially we extracted 12 suitable methods with 10–30                Each subject participated in multiple sessions scheduled
+lines of code and 3–10 parameters and local variables. We            on different days. Control sessions included 2–3 different
+then conducted a pilot with two subjects, one perform-               methods, and experimental sessions one method. At the
+ing the control treatment and the other an experimental              beginning of each session the subject was given a short
+treatment. Based on the pilot we removed some candidate              reminder of the purpose and process of the current session.
+methods that were found to be too hard or easy relative              We explained that he will be presented with a “real world”
+to other ones. These were mainly either short methods                method with its name removed, and that we would like to
+that contain very few identifiers, as the lack of variables          know what this method is meant to do. In experimental
+made them inappropriate for our study, or long methods               treatment sessions we also explained that whenever he
+with many identifiers that were simply too hard to follow.           feels satisfied with his answer we would reveal one more
+We ended up with the 6 methods characterized in Table                type of identifier names. Based on the pilot, participants
+I, where their descriptions are taken from the online Java           were asked to think aloud to give us a better understanding
+documentation of the packages. More details and code will            of how they understand the code [10]. We concluded
+be presented when we discuss the results.                            with questions on what the method name should be and
+   Naturally the choice of specific methods has a subjective         whether local variables or parameters were more beneficial
+element. Reproducibility is however guaranteed as anyone             for comprehension.
+can use the same methods we chose. Alternatively, other                 Note that we use an unorthodox experimental procedure
+researchers can apply the same considerations and select             with these two features:
+their own methods. This is exactly the type of variation               1) Dynamic change of code version as the subject makes
+that leads to better confidence in experimental results (or               progress — we start with no variable names, and
+to uncovering differences that need to be investigated) [11].             then add the names of parameters and locals in a
+                                                                          random order. Thus our experimental treatments are
+F. Participant Recruitment                                                actually a sequence of 3 versions.
+   The subjects who took part in this study were all                   2) Some level of interaction between the experimenter
+industry professionals from Israel. They all work at the                  and the subject, as asking questions adjacent to
+same division of a major hi-tech company and spend most                   actions is expected to result in the most direct and
+of their time in code development. We allowed participants                “capture the moment” answers.
+
+
+
+                                                                 4
+                             TABLE I: The methods which were used in the experiment.
+   ID   Name                LOC    Params   Vars   Description
+    1   reverse              15       3      3     Reverses the order of the given array in the given range
+    2   indexOfAny           27       2      5     Find the first index of any of a set of potential sub-strings
+    3   substringsBetween    30       3      5     Searches a String for sub-strings delimited by a start and end tag, returning
+                                                   all matching substrings in an array
+    4   replaceChars        28        3       6    Replaces multiple characters in a String in one go
+    5   repeat              25        2       5    Repeat a String repeat times to form a new String
+    6   abbriviateMiddle    20        3       4    Abbreviates a String to the length passed, replacing the middle characters
+                                                   with the supplied replacement String
+
+
+
+   The experiments were conducted in front of a laptop             This led to the decision to focus on real production code
+in a quiet room, with only the experimenter and subject            that is unlikely to be known to subjects, as opposed to
+present. Based on the pilot, subjects were provided pen            using textbook examples and algorithms which might be
+and paper to enable simulating the execution of the code to        recognized. Production code also contributes to external
+aid comprehension. They could not run the code. For doc-           validity as it better represents the code developers en-
+umentation we kept a protocol of every experimental ses-           counter in their daily work. Another issue with construct
+sion, including a webcam video, screen capture, observer           validity is the possible confounding effect of lack of domain
+notes, and the participant’s notes and code alterations if         knowledge. This was mitigated by using util classes.
+any.                                                                  Another concern is that masking the method names cre-
+                                                                   ates an unrealistic comprehension scenario, because in real
+H. Statistical Methods
+                                                                   life method names would be available. Moreover, method
+   Our study is based on comparing small samples sizes,            names are expected to provide significant information.
+which most likely are not normally distributed. This pre-          But this is precisely why they need to be masked in
+vents us from using the common t-test. Instead, we chose           order to enable the study of the effects of variable names.
+to use the Mann-Whitney U test [18]. This is a nonpara-            Moreover, method names can also be misleading, adding
+metric test of the null hypothesis that two independent            a confounding effect.
+samples A and B come from the same distribution, against              Another external validity issue is the possible use of
+the alternative that one population A tends to have larger         students as subjects, as was done in many previous studies
+values than another population B (in other words, that A           on program comprehension. We preferred professionals
+stochastically dominates B). More formally, in the specific        because students normally hardly ever read code, whereas
+case of our experiments the null hypothesis is                     professionals need to read and comprehend code a lot
+   H0 : the time it takes a programmer that receives               [17]. We conjecture that as a result professionals develop
+   the experimental treatment to understand a method               expertise in comprehension of unknown code, making
+   has the same distribution as the time it takes a                them especially suited for this specific type of experiment.
+   programmer that receives the control treatment                  Moreover, the recruitment of professional developers in
+The results were that for some methods we were able to             their workplace increases the experimental realism, and,
+reject the null hypothesis at a significance level of 0.05.        thereby, the applicability of the results.
+   Since we are comparing two small sets of observations,             The most common internal validity threat is that in-
+the calculation of the U statistic is trivial. First, assign       dividual differences between experimental subjects may
+numeric ranks to all the observations, beginning with 1            mask the measured effects. We mitigated this concern by
+for the shortest time for comprehension. Then add up the           having each subject participate in both experimental and
+ranks for the observations which came from the control             control treatments. Choosing same sex subjects from the
+group (which we denote Rc ) and from the experimental              same company prevented unintended confounding effects
+group (Re ). Note that Rc + Re = N (N + 1)/2 which is the          of sex and work culture.
+sum of all ranks up to N , the total number of observations.
+                                                                                  V. Results and Analysis
+Now calculate Ui = Ri − ni (ni + 1)/2 where i ∈ {c, e} and
+ni is the number of observations in the control and exper-           In retrospect, the results obtained with the 6 methods
+imental groups, respectively. Finally compare min(Uc , Ue )        we used exhibit interesting diversity. We therefore start by
+to a standard table of Mann-Whitney critical values and            describing the results for each method in detail, and then
+reject or accept the hypothesis accordingly.                       proceed to summarize and discuss the observed effects.
+
+I. Validity Concerns and Mitigation                                A. reverse
+  Some decisions leading to the experimental procedure               The reverse method is shown in Figure 2 (and version
+described above were taken explicitly to mitigate threats          4 with all variable names masked was shown previously
+to validity. A major concern was establishing construct            in Figure 1). It reverses the part of an array between two
+validity, meaning that we really measure comprehension.            indexes. Cumulative distribution functions of the times for
+
+
+
+                                                               5
+public static void xxx(final boolean[] array,                      public static int xxx(final CharSequence str,
+      final int startIndexInclusive,                                     final CharSequence... searchStrs) {
+      final int endIndexExclusive) {                                  // some lines not shown
+   if (array == null) {                                               final int sz = searchStrs.length;
+       return;                                                        int ret = Integer.MAX_VALUE;
+   }                                                                  int tmp = 0;
+   int i = startIndexInclusive<0 ? 0 : startIndexInclusive;           for (int i = 0; i < sz; i++) {
+   int j = Math.min(array.length, endIndexExclusive) - 1;                 final CharSequence search = searchStrs[i];
+   boolean tmp;                                                           if (search == null) {
+   while (j > i) {                                                            continue;
+       tmp = array[j];                                                    }
+       array[j] = array[i];                                               tmp = CharSequenceUtils.indexOf(str, search, 0);
+       array[i] = tmp;                                                    if (tmp == INDEX_NOT_FOUND) {
+       j--;                                                                   continue;
+       i++;                                                               }
+   }                                                                      if (tmp < ret) {
+}                                                                             ret = tmp;
+                                                                          }
+                                                                      }
+                 Fig. 2: reverse method.                              return ret == Integer.MAX_VALUE ? INDEX_NOT_FOUND : ret;
+                                                                   }
+
+comprehension are shown in Figure 4. Participants under
+                                                                      Fig. 3: indexOfAny method (some lines removed).
+the control treatment understood the method’s function-
+ality in 2.5–8 minutes, while those with the experimental
+treatment took 7–19 minutes to come up with a sufficient           the Mann-Whitney statistic was U = 0, again leading to
+answer. Due to the separation between the time ranges              the conclusion that time to comprehension in the control
+in the control and experimental treatments, calculating            group was lower than in the experimental one with a
+the Mann-Whitney statistic returned a U -value of 1. This          significance level of 0.05.
+leads to the conclusion that the time for comprehension               All 4 experimental participants indicated that the pa-
+in the control group was significantly lower than in the           rameters were more beneficial to their comprehension.
+experimental group, with a significance level of 0.05.             Moreover, all of them reached the correct answer only after
+   Five out of six experimental participants indicated that        receiving the parameter names, regardless of the order
+the parameters were more beneficial to their compre-               names were revealed. We also noticed the rise in the level
+hension. Moreover, while three of them were given the              of confidence as more identifiers were revealed, even if this
+parameter names first and three the local variables, all six       did not prompt the subjects to change their answer.
+reached the correct answer only after the parameters were             Two participants in the experimental treatment com-
+revealed. Participants who were given the local variables          pletely missed the ‘...’ type annotation in the second
+first were quick to request the parameters as well, saying         parameter. One was even recorded saying “ahhh there
+that the local variables had very little value to them.            are the three dots, was it there from the beginning? I
+   Interestingly, all of them missed the fact that the end         could have known it before if I noticed the annotation.”
+index is exclusive, despite the “-1” in line 8 that sug-           The other two seemed to notice it, but still treated the
+gests this, until the parameter endIndexExclusive was              parameter as a single charSequence. A possible reason
+revealed. One stated in disappointment “I missed the -1 in         is that variable arguments with the ‘...’ notation are not
+the end exclusive index”, and another said “from the start         commonly used, so its significance was not obvious. Two
+I saw the -1 but did not treat it right”. This demonstrates        participants described the for loop as “running char by
+how beacons in identifier names can focus attention on             char” when pointing to the line with final CharSequence
+related code.                                                      g = b[f]; (the replacement for line 7), even though g is
+   All participants described the functionality of the             clearly of type charSequence and not char. It may be that
+method correctly as a series of actions, but none of them          the single letter name b gave the impression of a single
+used phrases such as “reversing the array” which describe          object, in this case a string, and grasping the fact that it
+it at a higher level of abstraction. But when asked to name        represents more than one object did not come naturally.
+the method, one participant did call it reverseRange.                 None of the participants gave the method the same
+                                                                   name as its developer. One did give a similar name,
+B. indexOfAny                                                      indexOfFirstOccurrence.
+  indexOfAny is shown in Figure 3. This method finds
+                                                                   C. subStringsBetween
+the index of the first of a set of potential substrings.
+Participants under the control treatment understood the              This is a longer method with 30 lines of code which
+method functionality in 2–7 minutes, while those of the            searches a string for all occurrences of substrings delimited
+experimental treatment took 12.5–22 minutes (figure 4).            by given start and end tags (Figure 5). The participants
+Due to the complete separation between the time ranges             with the control treatment took 6–15 minutes to reach a
+
+
+
+                                                               6
+                       reverse                                    indexOfAny                                           subStringBetween
+  1                                            1                                                      1
+ 0.8                                          0.8                                                   0.8
+ 0.6                                          0.6                                                   0.6
+ 0.4                                          0.4                                                   0.4
+ 0.2                            control
+                                              0.2                                                   0.2
+                             experimental
+  0                                            0                                                      0
+       0        5      10        15   20            0        5      10      15      20                    0        5       10     15      20
+           time for comprehension [minutes]             time for comprehension [minutes]                      time for comprehension [minutes]
+
+ Fig. 4: Cumulative distribution functions of required time in the control treatment vs. the experimental treatment.
+
+
+public static String[] xxx(final String str,                                      String xxx(final String str,
+        final String open, final String close) {                                       final String searchChars, String replaceChars)
+    // some lines not shown
+    final int closeLen = close.length();
+    final int openLen = open.length();
+                                                                                           Fig. 6: replaceChars method header
+    final List<String> list = new ArrayList<String>();
+    int pos = 0;
+    while (pos < strLen - closeLen) {                                            header can be seen in Figure 6. What it actually does is to
+        int start = str.indexOf(open, pos);                                      replace multiple characters in a string in one go, by search-
+        if (start < 0) {
+            break;
+                                                                                 ing for characters in the searchChars parameter string,
+        }                                                                        and replacing them with the corresponding characters in
+        start += openLen;                                                        replaceChars. In the first few minutes 3 of the 4 controls
+        final int end = str.indexOf(close, start);
+        if (end < 0) {
+                                                                                 mistakenly claimed that the functionality was quite clear
+            break;                                                               from the parameters alone, and they only needed to verify
+        }                                                                        their intuition that “it performs a simple replace string”.
+        list.add(str.substring(start, end));
+        pos = end + closeLen;
+                                                                                 One changed his answer after further examining the code,
+    }                                                                            while the other two remained with their initial intuition.
+    if (list.isEmpty()) {                                                        Though it took the control group less time than the
+        return null;
+    }
+                                                                                 experimental one, 4.5–10 minutes vs. 8–12 minutes (Figure
+    return list.toArray(new String [list.size()]);                               7), this partial separation in the time for comprehension is
+}                                                                                meaningless since half of the answers of the control group
+                                                                                 were incorrect. Therefore no statistical test was performed.
+Fig. 5: subStringsBetween method (some lines removed).                              Inputs from the control group indicate that the main
+                                                                                 reason for their mistake was that searchChars and
+correct answer, but the distribution indicates only one of                       replaceChars were perceived as a search string and a
+them really found it hard to follow the code (Figure 4).                         replace string. This may be attributed to two root causes:
+The participants with the experimental treatment gave a                          1) Lack of language sensitivity. To non-English natives,
+correct answer in 15–18 minutes, and all of them resorted                        “chars” and “string” can look like synonyms. 2) The fact
+to a pen and paper in the process. As in the previous two                        that the type of these parameters is String conflicts with
+cases, the Mann-Whitney test indicated that the control                          their use as a collection of chars. Hence, a better option,
+treatment time was lower than the experimental time with                         which was also suggested by some participants, would be
+a significance level of 0.05.                                                    to change the type to an array of chars. In any case,
+  All participants reported that identifiers containing                          it appears that just as identifiers can inform and speed
+“open” and “close” were very informative, so receiving                           up comprehension, they can also hinder its correctness,
+them as parameters (open, close) or as locals (openLen,                          by supplying beacons for a different mental model than
+closeLen) was the most helpful clue in understanding the                         intended. And when one gets an intuition regarding a
+method. As a result all of the participants reached their                        method’s functionality, it is hard to change it, even when
+answer after the first type of identifier was revealed, be it                    some beacons point to a different solution.
+parameters or locals.                                                            E. repeat
+                                                                                   This method repeats a string several times to form a
+D. replaceChars                                                                  new string (Figure 8). It uses a non-trivial system function,
+  With this method we observed an interesting phe-                               arrayCopy, which led all participants in the experimental
+nomenon: 2 out of 4 control participants gave the same                           treatment to read the attached Java documentation. On
+incorrect answer, while all of the experimental treatment                        the other hand, none of the control group felt a need
+participants reached the correct answer. The method                              to read the documentation, and they did not seem to
+
+
+
+                                                                            7
+                    replaceChars                                      repeat                                              abbreviateMiddle
+  1                                             1                                                       1
+                                                                                                                        control
+ 0.8                                           0.8                                                     0.8           wrong answer
+                                                                                                                     experimental
+ 0.6                                           0.6                                                     0.6
+
+ 0.4                                           0.4                                                     0.4
+
+ 0.2                                           0.2                                                     0.2
+
+  0                                             0                                                       0
+       0            5          10         15         0            5            10         15                 0        5       10     15      20
+           time for comprehension [minutes]              time for comprehension [minutes]                        time for comprehension [minutes]
+
+ Fig. 7: Cumulative distribution functions of required time in the control treatment vs. the experimental treatment.
+
+
+public static String xxx(String string, int count) {                                public static String xxx(final String str,
+    // some lines not shown                                                              final String middle, final int length) {
+    final int len = string.length();                                                  // some lines not shown
+    final long longSize = (long) len * (long) count;                                  final int targetSting = length-middle.length();
+    final int size = (int) longSize;                                                  final int startOffset = targetSting/2+targetSting%2;
+    // some lines not shown                                                           final int endOffset = str.length()-targetSting/2;
+    for (n = len; n < size - n; n <<= 1) {                                            final StringBuilder builder = new StringBuilder(length);
+        System.arraycopy(array, 0, array, n, n);                                      builder.append(str.substring(0,startOffset));
+    }                                                                                 builder.append(middle);
+    System.arraycopy(array, 0, array, n, size - n);                                   builder.append(str.substring(endOffset));
+    return new String(array);                                                         return builder.toString();
+}                                                                                   }
+
+             Fig. 8: repeat method (some lines removed).                            Fig. 9: abbreviateMiddle method (some lines removed).
+                                                                                    targetSting typo in the source.
+pay much attention to the function at all. This suggests
+that good identifiers not only aid the comprehension of a                           did not understand “why would someone write a method
+specific method, but that the lack of good names could                              for that?” Evidently, when the apparent functionality does
+lead to the need to comprehend additional methods.                                  not make sense, it is harder to comprehend the code.
+   The control group reached a correct answer in 3.5–6.5                               Moreover, the variable names were not meaningful and
+minutes, while the experimental group needed 5–11 min-                              even misleading. Perhaps the most offending one is the int
+utes, with no significant separation (Figure 7). The control                        targetString. The name implies a string, but the type is
+group seemed to get their understanding from the parame-                            an integer, and the actual usage is to calculate the length
+ters, while the experimental subjects got the intuition from                        of those parts in the original string that will be retained
+identifying the patterns where the returned string size is                          in the output string. So this name is obviously misleading;
+the original string’s length times count. However, they                             a better name could be something like lengthToCopy.
+were a bit hesitant with their answer, starting with “in                            Likewise, the parameter length is too general, and par-
+my opinion” and a confidence level of 60%, or “my guess                             ticipants asked “length of what?”, which led them to all
+is” with 80%.                                                                       kinds of directions. A more appropriate name might have
+   Moreover, participants mentioned that some of the                                been targetLength.
+names are confusing. Specifically, size and len have                                   Presumably due to the bad names, the subjects who re-
+practically the same meaning, but one pertains to the                               ceived the control treatment seemed to be more confused.
+input and the other to the output. count is imprecise: its                          One of them gave up after 21 minutes, and another reached
+role is to state the number of times to repeat and not to                           a wrong answer. The experimental subjects took about the
+count. Finally, string is a redundant name for a String                             same time and all reached correct answers (Figure 7).
+type variable, and can be overlooked as String the type
+when scanning the code.                                                                                  VI. Discussion
+                                                                                      Given the above results, we now summarize their impli-
+F. abbreviateMiddle                                                                 cations for the research questions, as well as unexpected
+   This method abbreviates a String to the given length,                            observations such as the detrimental effect of bad names.
+by exchanging its middle with the provided replacement
+string (Figure 9). It is relatively short, but all subjects                         A. The importance of meaningful names
+needed to verify every line in order to understand what it                             The results for the first three methods (reverse,
+does. We attribute this to the fact that its functionality                          indexOfAny, and substringsBetween) show a clear sepa-
+is very unique. In fact, it was hard for the subjects to                            ration between treatments. In all three methods the time
+grasp that there is a method that does such a thing, they                           it took participants to reach comprehension under the
+
+
+
+                                                                               8
+control treatment was shorter than the time needed with
+                                                                                       7                                    parameters
+the experimental treatment, where variable names were
+                                                                                                                            locals
+replaced by a, b, c, and so on. This result was statistically                          6                   79%
+significant at a level of 0.05 using the Mann-Whitney test.                                                   21%
+                                                                                       5
+It conforms with previous results in the literature that also
+
+
+
+
+                                                                        participants
+showed names to be important [6], [16], [24].                                          4
+   The flip side of meaningful names is misleading names.                              3
+The replaceChars and abbreviateMiddle methods pro-
+vide striking examples. With these methods participants                                2
+who received the experimental treatment were found to                                  1
+perform better despite the missing identifier names! More-
+over, participants in the control treatment, who saw the                               0
+full original identifier names, tended to make mistakes                                   ers
+                                                                                              e
+                                                                                                    An
+                                                                                                      y      een   ha
+                                                                                                                      rs       eat  dle
+and arrive at wrong conclusions. Obviously, bad names                                  rev exOf         B etw ceC         rep eMid
+                                                                                                       s        la              iat
+can mislead just as much as good names inform. This is                                    ind tring         rep              rev
+                                                                                                b s                        b
+not a deep observation, but our results do demonstrate                                       su                         ab
+and quantify the effect using real production code and
+                                                                    Fig. 10: parameters vs. locals: which was claimed to be
+professional developers.
+                                                                    more significant for comprehension.
+   In another method, repeat, variables were not so good,
+but not as bad as the misleading variables noted above.
+In addition, two methods suffered from a clash between                 However, in some cases it was not the parameters
+identifier names and their type. In replaceChars this was           that mattered, but which identifiers were revealed first.
+a mismatch between the type String and the name chars.              This was especially prominent in substringsBetween and
+In indexOfAny hiding the plural name led to masking of              replaceChars, where the first variables to be revealed—
+the variable parameters notation.                                   either parameters or locals—were always sufficient for
+   Importantly, we did not select these methods to demon-           comprehension. This can happen when the main beacon
+strate bad names, and in fact we did not realize how bad            for comprehension appeared in both the parameters and
+their variable names were when we started the experiment.           the local variables. It suggests that at least in some cases
+The fact that half of the methods we selected turned out            it’s not the location or type of variables but their actual
+to have problematic names is a warning that such names              name that makes the difference. Indeed, in the majority
+are most probably not uncommon. This may explain why                of cases where participants chose the local variables as
+results reported in the literature are sometimes inconsis-          more beneficial, the main beacon was embedded in the
+tent with each other.                                               parameters as well.
+B. Parameters vs. Locals                                                   VII. Limitations and threats to validity
+  Our experiments indicate that parameters contribute                  As noted above, several decisions about the experimen-
+more to the code comprehension than locals: they were               tal design were taken specifically to mitigate threats to
+deemed more beneficial by the participants in 79% of the            validity. However, other threats remain.
+cases. Figure 10 shows the distribution of answers for                 Construct validity refers to correctly measuring the
+the different methods. In some cases, notably reverse,              dependent variable, in our case the time to understand
+indexOfAny, and abbreviateMiddle, parameters were                   a method. A possible risk stems from our experimental
+nearly universally preferred. This is notable as it implies         procedure which allows a dialog between the observer and
+that local variables alone were not enough, and the partici-        subject. This requires that the observer will restrain him-
+pants really needed the parameters in order to understand           self from pointing the subject to the solution or misleading
+these methods. We believe this can have several reasons:            him away from it. So, there is the risk that the observer
+  • Parameter names are more carefully chosen by the                will affect the comprehension process by mistake.
+     original developers. Developers may even tend to                  Another possible problem is the dynamic treatment
+     embed comprehension beacons in parameters because              where new information is revealed along the way. This is
+     they are part of the interface that defines the method.        expected to assist in the comprehension process, but it also
+  • Because parameters are part of the header, they might           requires flexible thinking to assimilate the new information
+     facilitate a more top-down approach to comprehen-              [9]. Individuals who are less flexible may suffer from the
+     sion. As one subject phrased it: “Parameters are more          new information.
+     beneficial, since once I have a clear starting point              Internal validity refers to causation: are changes in the
+     everything else is easier”.                                    dependent variable necessarily the result of manipulations
+  • Missing information about local names can be com-               to treatments? A possible problem in our work is that
+     pensated by seeing how they are computed.                      sometimes local variable names may mirror parameter
+
+
+
+                                                                9
+names. For instance, given a parameter called str, a                 The cumulative work of multiple researchers is needed to
+method may include a local variable called strLength for             achieve more comprehensive results.
+its length. As a result the separation of parameters from
+                                                                                          IX. Conclusions
+locals is compromised: even if we remove parameter names,
+the information leaks via the local name. In addition,                  Replicating previous work on identifier naming recon-
+information may leak due to the use of library functions.            firms that names have a large impact on the compre-
+These problems seem unavoidable when using real code.                hension of code. Good names can effectively serve as the
+   Another risk is that parameters may have been found               code’s documentation, and are instrumental for compre-
+to be more important because, being part of the API,                 hension. We also showed that method parameter names
+they more directly correlate with the question of “what              are typically more significant for comprehension than local
+does the method do?”. Moreover, the attribution of effect            variable names. This can be because parameter names are
+to variables may be too strong, as in the experiments we             more carefully chosen due to their part in the API, and
+masked the method comments and the method name. In                   thus in the definition of the method. Alternatively, it can
+real life programmers can benefit from these additional              just be due to their location at the top of the method.
+beacons, and the effect of variable names will be reduced.              Surprisingly, three of the six methods we used turned
+                                                                     out to have problematic names that even led to compre-
+   External validity refers to generalization. Conducting
+                                                                     hension errors. These demonstrate that misleading names,
+the experiment on a small number of methods, perform-
+                                                                     or names that clash with their types, are worse than
+ing actions on arrays and strings, may not be generally
+                                                                     meaningless names like consecutive letters of the alphabet.
+representative. Moreover, the fact that the authors of this
+                                                                     But these names were not meant to be misleading. This
+paper chose those methods contains the risk of bias. Still,
+                                                                     reflects the subjective nature of naming, where a name
+we did use 6 different methods and observed a range of
+                                                                     that one developer thinks is meaningful can be misleading
+behaviors. The recruitment of only male subjects working
+                                                                     for another developer.
+at the same company, though intentional, may lead to
+                                                                        The main implication of our work is that names must
+lack of generalization outside the company and to female
+                                                                     be picked with caution and given careful attention, so
+developers.
+                                                                     they reflect the concept or role represented by each vari-
+                                                                     able. But different people have different mindsets and
+                  VIII. Future Work
+                                                                     backgrounds, which may lead to misunderstandings. Thus
+   Our choice to replace the method names with “xxx”                 it would be interesting to map additional examples of
+makes the study less realistic, as names are naturally avail-        misleading names, and try to identify common traits that
+able when developers attempt to understand a method.                 make them bad. We leave this to future work.
+Moreover, it mixes the understanding of a method’s func-                Extending this, our results suggest practitioners would
+tionality (in other words, its “contract”) with the un-              benefit from including the issue of naming in code reviews,
+derstanding of its code (the contract’s implementation).             by making sure that all participants interpret the names in
+Therefore two variations of the current experiment should            the same way. Current practice is that code reviews follow
+be performed to complete the picture. First, we would like           extensive checklists of what to look for, but none of these
+to conduct experiments with the original method names in             checklists address naming problems. Moreover, bad names
+place, to examine the effect of the method name relative             are not considered to be defects and do not figure in defect
+to the variables. These experiments thus focus on the                reports. They should.
+API level. Second, we want to replace the “what does the                More generally, our work highlights the need for ad-
+method do?” question with a more code-related task like              ditional research on how names are interpreted and how
+debugging or refactoring. Such experiments focus on the              better names can be chosen. An ambitious goal would be
+implementation level. Taken together, these experiments              to devise tools capable of effective automatic evaluation
+are more realistic as they have a better match of the                and suggestion of meaningful names. Recent work has
+experimental conditions and the task.                                exhibited progress on this front, using techniques from
+   Another problem with our design is that developers                natural language processing and machine learning [1], [2].
+usually do not focus exclusively on a single method, and             Time will tell whether this can indeed compensate for the
+the patterns in which methods call each other naturally              subjective nature of naming.
+convey information. A big challenge is therefore to improve                              Verifiability
+the experiments’ realism by increasing the scope from a                All versions of the methods used in this study are
+single method to a class or package.                                 available at http://bit.ly/2bbosZL.
+   Finally, all these experiments will benefit from being
+reproduced using other code and different experimental                                Acknowledgments
+subjects (specifically including women). There are most                This study was made possible by its volunteer partici-
+probably myriad subtle effects at play, e.g. the quality             pants. Thank you all. This research was supported by the
+of names, which are hard to quantify and characterize.               ISRAEL SCIENCE FOUNDATION (grant no. 407/13).
+
+
+
+                                                                10
+                           References                                          [14] S. Haiduc, J. Aponte, and A. Marcus, “Supporting program
+                                                                                    comprehension with source code summarization”. In 32nd
+ [1] M. Allamanis, E. T. Barr, C. Bird, and C. Sutton, “Learning                    Intl. Conf. Softw. Eng., vol. 2, pp. 223–226, 2010, DOI:
+     natural coding conventions”. In 22nd Foundations Softw. Eng.,                  10.1145/1810295.1810335.
+     pp. 281–293, Nov 2014, DOI:10.1145/2635868.2635883.                       [15] A. Hindle, E. T. Barr, M. Gabel, Z. Su, and P. Devanbu, “On
+ [2] M. Allamanis, E. T. Barr, C. Bird, and C. Sutton, “Suggesting                  the naturalness of software”. Comm. ACM 59(5), pp. 122–131,
+     accurate method and class names”. In 10th Joint ESEC/FSE,                      May 2016, DOI:10.1145/2902362.
+     pp. 38–49, Sep 2015, DOI:10.1145/2786805.2786849.                         [16] D. Lawrie, C. Morrell, H. Field, and D. Binkley, “What’s in a
+ [3] V. Arnaoudova, M. Di Penta, and G. Antoniol, “Linguistic                       name? a study of identifiers”. In 14th Intl. Conf. Program Com-
+     antipatterns: What they are and how developers perceive them”.                 prehension, pp. 3–12, Jun 2006, DOI:10.1109/ICPC.2006.51.
+     Empirical Softw. Eng. 21(1), pp. 104–158, Feb 2016, DOI:                  [17] R. C. Martin, Clean code: a handbook of agile software crafts-
+     10.1007/s10664-014-9350-8.                                                     manship. Pearson Education, 2009.
+ [4] V. Arnaoudova, L. M. Eshkevari, M. Di Penta, R. Oliveto,                  [18] N. Nachar, “The mann-whitney U: A test for assessing whether
+     G. Antoniol, and Y.-G. Guéhéneuc, “REPENT: Analyzing the                       two independent samples come from the same distribution”.
+     nature of identifier renamings”. IEEE Trans. Softw. Eng. 40(5),                Tutorials in Quantitative Methods for Psychology 4(1), pp.
+     pp. 502–532, May 2014, DOI:10.1109/TSE.2014.2312942.                           13–20, 2008.
+ [5] D. Binkley, M. Hearn, and D. Lawrie, “Improving identifier                [19] M. P. O’Brien and J. Buckley, “Inference-based and expectation-
+     informativeness using part of speech information”. In 8th Work-                based processing in program comprehension”. In 9th IEEE Intl.
+     ing Conf. Mining Softw. Repositories, pp. 203–206, May 2011,                   Workshop Program Comprehension, pp. 71–78, 2001.
+     DOI:10.1145/1985441.1985471.                                              [20] H. Osman, A. van Zadelhoﬀ, D. R. Stikkolorum, and M. R. V.
+ [6] S. Blinman and A. Cockburn, “Program comprehension: Inves-                     Chaudron, “UML class diagram simplification: What is in the
+     tigating the eﬀects of naming style and documentation”. In 6th                 developer’s mind?” In 2nd Workshop Empirical Studies Softw.
+     Australasian User Interface Conf., pp. 73–78, Jan 2005.                        Modeling, art. no. 5, Oct 2012, DOI:10.1145/2424563.2424570.
+ [7] B. Caprile and P. Tonella, “Restructuring program identifier              [21] D. L. Parnas and P. C. Clements, “A rational design process:
+     names”. In Intl. Conf. Softw. Maintenance, pp. 97–107, Oct                     How and why to fake it”. IEEE Trans. Softw. Eng. SE-12(2),
+     2000, DOI:10.1109/ICSM.2000.883022.                                            pp. 251–257, Feb 1986.
+ [8] F. Deißenböck and M. Pizka, “Concise and consistent naming”.              [22] V. Rajlich and N. Wilde, “The role of concepts in program com-
+     In 13th IEEE Intl. Workshop Program Comprehension, pp.                         prehension”. In 10th IEEE Intl. Workshop Program Comprehen-
+     97–106, May 2005, DOI:10.1109/WPC.2005.14.                                     sion, pp. 271–278, Jun 2002, DOI:10.1109/WPC.2002.1021348.
+ [9] C. G. DeYoung, J. B. Peterson, and D. M. Higgins, “Sources of             [23] J. Rilling and T. Klemola, “Identifying comprehension bottle-
+     openness/intellect: Cognitive and neuropsychological correlates                necks using program slicing and cognitive complexity metrics”.
+     of the fifth factor of personality”. Journal of personality 73(4),             In 11th IEEE Intl. Workshop Program Comprehension, pp.
+     pp. 825–858, 2005.                                                             115–124, May 2003.
+[10] K. A. Ericsson and H. A. Simon, Protocol analysis. MIT press              [24] F. Salviulo and G. Scanniello, “Dealing with identifiers and
+     Cambridge, MA, 1993.                                                           comments in source code comprehension and maintenance:
+[11] D. G. Feitelson, “From repeatability to reproducibility and                    Results from an ethnographically-informed study with stu-
+     corroboration”. Operating Syst. Rev. 49(1), pp. 3–11, Jan 2015,                dents and professionals”. In 18th Intl. Conf. Evaluation &
+     DOI:10.1145/2723872.2723875.                                                   Assessment in Softw. Eng., art. no. 48, May 2014, DOI:
+[12] G. W. Furnas, T. K. Landauer, L. M. Gomez, and S. T.                           10.1145/2601248.2601251.
+     Dumais, “The vocabulary problem in human-system com-                      [25] R. Stoll, “Type-safe PHP: Java code conventions” 2014.
+     munication”. Comm. ACM 30(11), pp. 964–971, 1987, DOI:                    [26] K. VanLehn, “Cognitive skill acquisition”. Ann. Rev. Psychol.
+     10.1145/32206.32212.                                                           47, pp. 513–539, 1996, DOI:10.1146/annurev.psych.47.1.513.
+[13] E. M. Gellenbeck and C. R. Cook, “An investigation of proce-              [27] A. von Mayrhauser and A. M. Vans, “Program comprehension
+     dure and variable names as beacons during program comprehen-                   during software maintenance and evolution”. Computer 28(8),
+     sion”. In 4th Workshop on Empirical Studies of Programmers,                    pp. 44–55, Aug 1995, DOI:10.1109/2.402076.
+     pp. 65–79, 1991.
+
+
+
+
+                                                                          11
+
