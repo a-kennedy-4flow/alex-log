@@ -73,11 +73,14 @@ fn fail(message: &str) -> ! {
     std::process::exit(2);
 }
 
-/// Standard input wins when it is a pipe. Otherwise git is asked.
+/// A pipe wins even when it is empty. Otherwise git is asked.
+///
+/// Because a pipe means the caller already chose what to estimate an empty one
+/// is an answer rather than a reason to go and find a different diff.
 fn read_diff(git_args: &[String]) -> String {
     if !std::io::stdin().is_terminal() {
         let mut buffer = String::new();
-        if std::io::stdin().read_to_string(&mut buffer).is_ok() && !buffer.trim().is_empty() {
+        if std::io::stdin().read_to_string(&mut buffer).is_ok() {
             return buffer;
         }
     }

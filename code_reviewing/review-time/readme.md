@@ -37,11 +37,52 @@ Depths are `inspection` at 150 lines per hour and `standard` at 300 and `fast` a
 | Deleted line | 0.25 | Judgement. A deletion is checked for what it breaks. |
 | Data line | 0.2 | Judgement. A data file is sampled rather than read. |
 | Opaque naming | up to 1.6x | Obfuscated identifiers cost 1.63x on the Peitek snippet task. |
+| Language density | 0.95 on the JVM | Measured at 9.44 tokens a line against about 10.2 for rust and typescript and vue. |
 | Missing indentation | 2.1x | Morzeck measured 179% more time. The replication measured 113%. |
 | Sitting | 60 min or 400 lines | Reviewers stop finding defects after 60 minutes. |
 | Range | 0.5x to 2.0x | Change size explains little of review time. |
 
 Binary files and lock files and anything under `node_modules` or `dist` or `vendor` are not read.
+
+## Language profiles
+
+A file is read through the profile its extension selects. The profile holds the
+comment markers and the keywords that declare a name and whether indentation is
+forced by the language and whether a single capital is a type parameter. It also
+holds a density.
+
+Density was measured on 2026-09-23 over your own code. polaris-backend gives 9.44
+tokens a line across 4503 java files. polaris-frontend gives 10.20 for typescript
+over 1646 files and 10.24 for vue over 464. alex-log gives 10.16 for rust. Because
+a) the four sit within 5% of each other b) the rates in the table above were
+measured on java and C family code in the first place and c) inventing a spread
+the measurement does not show would be worse than having none only the JVM moves
+and it moves to 0.95.
+
+So the profiles earn their place through rules rather than through speed.
+
+## Naming
+
+The multiplier counts distinct names the change introduces rather than every
+mention. A name counts as introduced when it follows a declaring keyword for that
+language or when the next character binds it. Because a) a name is chosen once
+and read many times b) a loop mentioning `q` ten times is one naming decision and
+not ten and c) an imported name was somebody else's choice the count belongs at
+the declaration.
+
+A diff of pure call sites declares nothing of its own. There the names it
+mentions stand in.
+
+A single capital is a type parameter rather than a bad name so `T` and `K` and
+`V` never count against a language that uses them. A language that does not such
+as python still counts them.
+
+## Machine written files
+
+A path under `node_modules` or `dist` or `storybook-static` or a lock file is
+skipped by name. Anything else whose changed lines average over 200 characters is
+skipped as well. The storybook bundles in polaris-frontend run to 20604
+characters on one line against a hand written mean of about 35.
 
 ## Why a range
 

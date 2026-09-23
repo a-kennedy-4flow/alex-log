@@ -4,7 +4,8 @@
 //! The model is `minutes = overhead + work / rate` with a multiplier for the state of the diff. Because a) the Cisco data finds no single inspection rate and fits one reviewer at an R squared of 0.29 b) the correlation between change size and time to merge runs only from 0.20 to 0.37 across about 826000 pull requests and c) a review of one line ran past 15 minutes in that same data the output is a range and never a single number.
 
 use crate::diff::FileChange;
-use crate::lang::{self, Kind};
+use crate::lang::{self, Kind, Language};
+use std::collections::HashSet;
 
 /// How carefully the code is being read.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -157,7 +158,7 @@ pub fn estimate(files: &[FileChange], depth: Depth) -> Estimate {
         if let Some(reason) = skip_reason(file) {
             out.files.push(FileEstimate {
                 path: file.path.clone(),
-                kind: lang::kind(&file.path),
+                kind: lang::language(&file.path).kind,
                 effective_lines: 0.0,
                 prose_words: 0.0,
                 naming_multiplier: 1.0,
@@ -168,7 +169,8 @@ pub fn estimate(files: &[FileChange], depth: Depth) -> Estimate {
             continue;
         }
 
-        let kind = lang::kind(&file.path);
+        let language = lang::language(&file.path);
+        let kind = language.kind;
         let mut naming = 1.0;
         let mut indent = 1.0;
         let mut lines = 0.0;
@@ -180,18 +182,18 @@ pub fn estimate(files: &[FileChange], depth: Depth) -> Estimate {
                 PER_FILE_MINUTES + words / depth.words_per_minute()
             }
             Kind::Data | Kind::Code => {
-                lines = effective_lines(file, kind);
+                lines = effective_lines(file, language);
                 if kind == Kind::Code {
-                    let (opaque, total) = name_counts(file);
+                    let (opaque, total) = name_counts(file, language);
                     opaque_names += opaque;
                     all_names += total;
                     naming = naming_multiplier(ratio(opaque, total));
-                    if lacks_indentation(file) {
+                    if lacks_indentation(file, language) {
                         unindented.push(file.path.clone());
                         indent = INDENT_MULTIPLIER;
                     }
                 }
-                PER_FILE_MINUTES + lines / depth.lines_per_minute() * naming * indent
+                PER_FILE_MINUTES + lines / depth.lines_per_minute() * language.density * naming * indent
             }
         };
 
@@ -231,24 +233,27 @@ fn skip_reason(file: &FileChange) -> Option<&'static str> {
     if lang::is_generated(&file.path) {
         return Some("generated");
     }
+    if lang::looks_machine_written(&file.added) {
+        return Some("machine written");
+    }
     None
 }
 
-fn line_weight(line: &str, path: &str) -> f64 {
+fn line_weight(line: &str, language: &Language) -> f64 {
     if lang::is_blank(line) {
         0.0
-    } else if lang::is_comment(line, path) {
+    } else if language.is_comment(line) {
         COMMENT_WEIGHT
     } else {
         1.0
     }
 }
 
-fn effective_lines(file: &FileChange, kind: Kind) -> f64 {
-    let added: f64 = file.added.iter().map(|l| line_weight(l, &file.path)).sum();
-    let removed: f64 = file.removed.iter().map(|l| line_weight(l, &file.path)).sum();
+fn effective_lines(file: &FileChange, language: &Language) -> f64 {
+    let added: f64 = file.added.iter().map(|line| line_weight(line, language)).sum();
+    let removed: f64 = file.removed.iter().map(|line| line_weight(line, language)).sum();
     let total = added + removed * DELETED_WEIGHT;
-    match kind {
+    match language.kind {
         Kind::Data => total * DATA_WEIGHT,
         _ => total,
     }
@@ -260,21 +265,24 @@ fn prose_words(file: &FileChange) -> f64 {
     added as f64 + removed as f64 * DELETED_WEIGHT
 }
 
-fn name_counts(file: &FileChange) -> (usize, usize) {
-    let mut opaque = 0;
-    let mut total = 0;
+/// Distinct names the change introduces and how many of them say nothing.
+///
+/// A diff of pure call sites declares nothing of its own so the names it
+/// mentions stand in. Those were somebody else's choice but they are still what
+/// the reader has to resolve.
+fn name_counts(file: &FileChange, language: &Language) -> (usize, usize) {
+    let mut declared: HashSet<String> = HashSet::new();
+    let mut mentioned: HashSet<String> = HashSet::new();
     for line in &file.added {
-        if lang::is_comment(line, &file.path) || lang::is_blank(line) {
+        if language.is_comment(line) || lang::is_blank(line) {
             continue;
         }
-        for name in lang::identifiers(line) {
-            total += 1;
-            if lang::is_opaque_short_name(&name) {
-                opaque += 1;
-            }
-        }
+        declared.extend(language.declared_names(line));
+        mentioned.extend(lang::identifiers(line));
     }
-    (opaque, total)
+    let names = if declared.is_empty() { mentioned } else { declared };
+    let opaque = names.iter().filter(|name| language.is_opaque(name)).count();
+    (opaque, names.len())
 }
 
 fn ratio(part: usize, whole: usize) -> f64 {
@@ -292,8 +300,8 @@ fn naming_multiplier(opaque_ratio: f64) -> f64 {
 }
 
 /// Nested lines that carry no leading whitespace.
-fn lacks_indentation(file: &FileChange) -> bool {
-    if lang::indentation_is_forced(&file.path) {
+fn lacks_indentation(file: &FileChange, language: &Language) -> bool {
+    if language.indentation_forced {
         return false;
     }
     let mut depth = 0i32;
@@ -452,6 +460,40 @@ mod tests {
     }
 
     #[test]
+    fn repeating_a_name_is_still_one_naming_decision() {
+        let once = file("src/a.rs", &["    let q = load();"], &[]);
+        let many = file("src/a.rs", &["    let q = load();", "    report(q);", "    report(q);", "    report(q);"], &[]);
+        let (opaque_once, total_once) = name_counts(&once, lang::language("src/a.rs"));
+        let (opaque_many, total_many) = name_counts(&many, lang::language("src/a.rs"));
+        assert_eq!((opaque_once, total_once), (1, 1));
+        assert_eq!((opaque_many, total_many), (1, 1));
+    }
+
+    #[test]
+    fn a_java_generic_is_not_a_bad_name() {
+        let generics = file("Api.java", &["    public <T> List<T> wrap(T item) {"], &[]);
+        let (opaque, _) = name_counts(&generics, lang::language("Api.java"));
+        assert_eq!(opaque, 0);
+    }
+
+    #[test]
+    fn a_bundle_is_never_read() {
+        let bundle = file("app/vendor.js", &[&"a=1;".repeat(300), &"b=2;".repeat(300), &"c=3;".repeat(300)], &[]);
+        let out = estimate(&[bundle], Depth::Standard);
+        assert_eq!(out.reviewed_files, 0);
+        assert_eq!(out.files[0].skipped, Some("machine written"));
+    }
+
+    #[test]
+    fn a_java_line_carries_less_than_a_rust_line() {
+        let line = "    let value = compute_value(input);";
+        let rust = estimate(&[file("src/a.rs", &[line; 300], &[])], Depth::Standard);
+        let java = estimate(&[file("Api.java", &[line; 300], &[])], Depth::Standard);
+        assert!(java.minutes < rust.minutes);
+        assert!(java.minutes > rust.minutes * 0.9);
+    }
+
+    #[test]
     fn the_naming_multiplier_is_bounded() {
         assert_eq!(naming_multiplier(0.0), 1.0);
         assert_eq!(naming_multiplier(1.0), NAMING_MAX_MULTIPLIER);
@@ -465,19 +507,19 @@ mod tests {
             &["fn run(input: &str) {", "if ready(input) {", "for item in input.chars() {", "handle(item);", "count += 1;", "total += count;", "log(total);", "}", "}", "}"],
             &[],
         );
-        assert!(lacks_indentation(&flat));
+        assert!(lacks_indentation(&flat, lang::language("src/a.rs")));
 
         let tidy = file(
             "src/a.rs",
             &["fn run(input: &str) {", "    if ready(input) {", "        for item in input.chars() {", "            handle(item);", "            count += 1;", "            total += count;", "            log(total);", "        }", "    }", "}"],
             &[],
         );
-        assert!(!lacks_indentation(&tidy));
+        assert!(!lacks_indentation(&tidy, lang::language("src/a.rs")));
     }
 
     #[test]
     fn python_is_never_flagged_for_indentation() {
-        assert!(!lacks_indentation(&file("run.py", &["def go():", "pass"], &[])));
+        assert!(!lacks_indentation(&file("run.py", &["def go():", "pass"], &[]), lang::language("run.py")));
     }
 
     #[test]

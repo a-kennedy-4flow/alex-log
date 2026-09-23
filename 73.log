@@ -48,3 +48,14 @@ Log of session 73. Research into human reading comprehension speed for prose and
 2026-09-23T11:00:38Z cargo test green in both crates — 29 tests in review-time and 17 in commit-message.
 2026-09-23T11:00:38Z end to end run in a scratch repo then install.sh — the old binary is kept at prepare-commit-msg.previous.
 2026-09-23T11:00:38Z timed the installed hook on a 50000 line stage at 0.10 seconds.
+2026-09-23T11:18:55Z wrote the pre-commit crate — a config of profiles and repos with a marker so checks run in the crate that changed.
+2026-09-23T11:18:55Z cargo test and clippy green at 13 tests.
+2026-09-23T11:18:55Z measured cargo fmt --check across the crates — spacemongor and vid_tools pass while commit-message wants 44 changes so fmt ships commented out.
+2026-09-23T11:18:55Z saved the old shell hook as pre-commit.polaris-template then ran install.sh which seeded pre-commit.conf.
+2026-09-23T11:18:55Z scratch repo proof — a failing test exits 1 and blocks the commit and a passing one commits and a prose only stage runs nothing.
+2026-09-23T11:31:08Z measured token density over polaris-backend and polaris-frontend and alex-log — java 9.44 and rust 10.16 and typescript 10.20 and vue 10.24 per line.
+2026-09-23T11:31:08Z found the polaris-frontend js outlier at 33.32 tokens a line — storybook-static bundles with lines up to 20604 characters.
+2026-09-23T11:31:08Z rewrote lang.rs as language profiles keyed by extension and moved model.rs onto them.
+2026-09-23T11:31:08Z naming now counts distinct declared names and skips single capitals — a test caught punctuation being counted as identifiers.
+2026-09-23T11:31:08Z hu.ts fell from 1.34x to 1.0x which was the false positive the punctuation bug caused.
+2026-09-23T11:31:08Z cargo test green at 39 in review-time and 17 in commit-message and clippy clean then reinstalled prepare-commit-msg.
